@@ -66,9 +66,9 @@
 
 
 - (void)viewDidAppear:(BOOL)animated{
-    
    [super viewDidAppear:animated];
-    
+    self.navigationController.navigationBarHidden = YES;
+    self.hidesBottomBarWhenPushed = YES;//用push方法推出时，Tabbar隐藏
    
 }
 
@@ -76,8 +76,11 @@
 {
     [super viewDidLoad];
     [E_HUDView showMsg:@"长按选择文本" inView:nil];
-    
-    NSArray *imageList = @[[UIImage imageNamed:@"sina.png"], [UIImage imageNamed:@"friend.png"], [UIImage imageNamed:@"weixin.png"], [UIImage imageNamed:@"menuClose.png"]];
+    UIImage *sina = [UIImage imageNamed:@"sina.png"];
+    UIImage *friend=[UIImage imageNamed:@"friend.png"];
+    UIImage *weixin = [UIImage imageNamed:@"weixin.png"];
+    UIImage *menu = [UIImage imageNamed:@"menuClose.png"];
+    NSArray *imageList = [NSArray arrayWithObjects:sina,friend,weixin,menu,nil];
     sideBar = [[CDSideBarController alloc] initWithImages:imageList];
     sideBar.delegate = self;
     [sideBar insertMenuButtonOnView:[UIApplication sharedApplication].delegate.window atPosition:CGPointMake(self.view.frame.size.width - 70, 50)];
@@ -95,9 +98,6 @@
     }else{
         _themeImage = [UIImage imageNamed:[NSString stringWithFormat:@"reader_bg%ld.png",(long)themeID]];
     }
-    
-    // // // /// // /////////////////////////////////////
-    
     
     E_EveryChapter *chapter = [[E_ReaderDataSource shareInstance] openChapter];
     [self parseChapter:chapter];
@@ -117,20 +117,14 @@
 - (void)LightRegulation:(UIPanGestureRecognizer *)recognizer{
     CGPoint touchPoint = [recognizer locationInView:self.view];
     switch (recognizer.state) {
-            
-        case UIGestureRecognizerStateBegan:
-        {
-            
+        case UIGestureRecognizerStateBegan:{
             _panStartY = touchPoint.y;
-        }
-            break;
+        }break;
         case UIGestureRecognizerStateChanged:{
-        
             CGFloat offSetY = touchPoint.y - _panStartY;
            // NSLog(@"offSetY == %f",offSetY);
             CGFloat light = [UIScreen mainScreen].brightness;
             if (offSetY >=0 ) {
-              
                 CGFloat percent = offSetY/self.view.frame.size.height;
                 CGFloat regulaLight = percent + light;
                 if (regulaLight >= 1.0) {
@@ -144,23 +138,16 @@
                     regulaLight = 0.0;
                 }
                 [[UIScreen mainScreen] setBrightness:regulaLight];
-            
-            
             }
-        }
-            break;
-            
+        }break;
         case UIGestureRecognizerStateEnded:{
-        
-        }
-            break;
+        }break;
         default:
             break;
     }
 }
 
 - (void)callToolBar{
-    
     if (_settingToolBar == nil) {
         _settingToolBar= [[E_SettingTopBar alloc] initWithFrame:CGRectMake(0, -64, self.view.frame.size.width, 64)];
         [self.view addSubview:_settingToolBar];

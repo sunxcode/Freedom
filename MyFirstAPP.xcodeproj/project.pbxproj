@@ -2989,6 +2989,18 @@
 		778E93B51D69CC24004D899C /* XFMessageChartData.m in Sources */ = {isa = PBXBuildFile; fileRef = 778E93B41D69CC24004D899C /* XFMessageChartData.m */; };
 		77975EC11D5B1CA30093F854 /* SDDataCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 77975EC01D5B1CA30093F854 /* SDDataCache.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		77975EC51D5B211C0093F854 /* UIControl+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 77975EC41D5B211C0093F854 /* UIControl+Addition.m */; };
+		779B81A91D7D0D4000B23DFA /* JuheNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81A81D7D0D4000B23DFA /* JuheNavigationController.m */; };
+		779B81AC1D7D0E0B00B23DFA /* JuheContectUSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81AB1D7D0E0B00B23DFA /* JuheContectUSViewController.m */; };
+		779B81AF1D7D0E2800B23DFA /* JuheQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81AE1D7D0E2800B23DFA /* JuheQuestionViewController.m */; };
+		779B81B21D7D0E3500B23DFA /* JuheAPIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81B11D7D0E3500B23DFA /* JuheAPIViewController.m */; };
+		779B81B51D7D0E7300B23DFA /* JuheDynamicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81B41D7D0E7300B23DFA /* JuheDynamicViewController.m */; };
+		779B81B81D7D0E8D00B23DFA /* JuheUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81B71D7D0E8D00B23DFA /* JuheUserViewController.m */; };
+		779B81C11D7D11BE00B23DFA /* JuheAboutUSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81C01D7D11BE00B23DFA /* JuheAboutUSViewController.m */; };
+		779B81C41D7D11CD00B23DFA /* JuheChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81C31D7D11CD00B23DFA /* JuheChartViewController.m */; };
+		779B81C71D7D11E300B23DFA /* JuheMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81C61D7D11E300B23DFA /* JuheMessageViewController.m */; };
+		779B81CA1D7D120400B23DFA /* JuhePublicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81C91D7D120400B23DFA /* JuhePublicViewController.m */; };
+		779B81CD1D7D12BC00B23DFA /* JuheDetailQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81CC1D7D12BC00B23DFA /* JuheDetailQuestion.m */; };
+		779B81D01D7D1A2E00B23DFA /* JuheAPIDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81CF1D7D1A2E00B23DFA /* JuheAPIDetailViewController.m */; };
 		77AAA40A1D78290400B1617F /* [NO]@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77AAA37C1D78290300B1617F /* [NO]@2x.png */; };
 		77AAA40B1D78290400B1617F /* [OK]@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77AAA37D1D78290300B1617F /* [OK]@2x.png */; };
 		77AAA40C1D78290400B1617F /* [下雨]@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77AAA37E1D78290300B1617F /* [下雨]@2x.png */; };
@@ -6849,6 +6861,30 @@
 		77975EC41D5B211C0093F854 /* UIControl+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIControl+Addition.m"; sourceTree = "<group>"; };
 		77975ECB1D5B2E290093F854 /* Foundation_defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Foundation_defines.h; sourceTree = "<group>"; };
 		77975ECC1D5B2E290093F854 /* Foundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Foundation.h; sourceTree = "<group>"; };
+		779B81A71D7D0D4000B23DFA /* JuheNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuheNavigationController.h; sourceTree = "<group>"; };
+		779B81A81D7D0D4000B23DFA /* JuheNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuheNavigationController.m; sourceTree = "<group>"; };
+		779B81AA1D7D0E0B00B23DFA /* JuheContectUSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuheContectUSViewController.h; sourceTree = "<group>"; };
+		779B81AB1D7D0E0B00B23DFA /* JuheContectUSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuheContectUSViewController.m; sourceTree = "<group>"; };
+		779B81AD1D7D0E2800B23DFA /* JuheQuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuheQuestionViewController.h; sourceTree = "<group>"; };
+		779B81AE1D7D0E2800B23DFA /* JuheQuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuheQuestionViewController.m; sourceTree = "<group>"; };
+		779B81B01D7D0E3500B23DFA /* JuheAPIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuheAPIViewController.h; sourceTree = "<group>"; };
+		779B81B11D7D0E3500B23DFA /* JuheAPIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuheAPIViewController.m; sourceTree = "<group>"; };
+		779B81B31D7D0E7300B23DFA /* JuheDynamicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuheDynamicViewController.h; sourceTree = "<group>"; };
+		779B81B41D7D0E7300B23DFA /* JuheDynamicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuheDynamicViewController.m; sourceTree = "<group>"; };
+		779B81B61D7D0E8D00B23DFA /* JuheUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuheUserViewController.h; sourceTree = "<group>"; };
+		779B81B71D7D0E8D00B23DFA /* JuheUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuheUserViewController.m; sourceTree = "<group>"; };
+		779B81BF1D7D11BE00B23DFA /* JuheAboutUSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuheAboutUSViewController.h; sourceTree = "<group>"; };
+		779B81C01D7D11BE00B23DFA /* JuheAboutUSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuheAboutUSViewController.m; sourceTree = "<group>"; };
+		779B81C21D7D11CD00B23DFA /* JuheChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuheChartViewController.h; sourceTree = "<group>"; };
+		779B81C31D7D11CD00B23DFA /* JuheChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuheChartViewController.m; sourceTree = "<group>"; };
+		779B81C51D7D11E300B23DFA /* JuheMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuheMessageViewController.h; sourceTree = "<group>"; };
+		779B81C61D7D11E300B23DFA /* JuheMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuheMessageViewController.m; sourceTree = "<group>"; };
+		779B81C81D7D120400B23DFA /* JuhePublicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuhePublicViewController.h; sourceTree = "<group>"; };
+		779B81C91D7D120400B23DFA /* JuhePublicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuhePublicViewController.m; sourceTree = "<group>"; };
+		779B81CB1D7D12BC00B23DFA /* JuheDetailQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuheDetailQuestion.h; sourceTree = "<group>"; };
+		779B81CC1D7D12BC00B23DFA /* JuheDetailQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuheDetailQuestion.m; sourceTree = "<group>"; };
+		779B81CE1D7D1A2E00B23DFA /* JuheAPIDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuheAPIDetailViewController.h; sourceTree = "<group>"; };
+		779B81CF1D7D1A2E00B23DFA /* JuheAPIDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuheAPIDetailViewController.m; sourceTree = "<group>"; };
 		77AAA37C1D78290300B1617F /* [NO]@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "[NO]@2x.png"; sourceTree = "<group>"; };
 		77AAA37D1D78290300B1617F /* [OK]@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "[OK]@2x.png"; sourceTree = "<group>"; };
 		77AAA37E1D78290300B1617F /* [下雨]@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "[下雨]@2x.png"; sourceTree = "<group>"; };
@@ -9645,6 +9681,10 @@
 		7745C20F1D67162F002212DE /* 常见问题 */ = {
 			isa = PBXGroup;
 			children = (
+				779B81AD1D7D0E2800B23DFA /* JuheQuestionViewController.h */,
+				779B81AE1D7D0E2800B23DFA /* JuheQuestionViewController.m */,
+				779B81CB1D7D12BC00B23DFA /* JuheDetailQuestion.h */,
+				779B81CC1D7D12BC00B23DFA /* JuheDetailQuestion.m */,
 			);
 			path = "常见问题";
 			sourceTree = "<group>";
@@ -9654,6 +9694,8 @@
 			children = (
 				7745C2621D6723EC002212DE /* JuheDataTabBarController.h */,
 				7745C2631D6723EC002212DE /* JuheDataTabBarController.m */,
+				779B81A71D7D0D4000B23DFA /* JuheNavigationController.h */,
+				779B81A81D7D0D4000B23DFA /* JuheNavigationController.m */,
 			);
 			path = "基本类库";
 			sourceTree = "<group>";
@@ -9661,6 +9703,8 @@
 		7745C2111D67162F002212DE /* 聚合动态 */ = {
 			isa = PBXGroup;
 			children = (
+				779B81B31D7D0E7300B23DFA /* JuheDynamicViewController.h */,
+				779B81B41D7D0E7300B23DFA /* JuheDynamicViewController.m */,
 			);
 			path = "聚合动态";
 			sourceTree = "<group>";
@@ -9668,6 +9712,16 @@
 		7745C2121D67162F002212DE /* 联系我们 */ = {
 			isa = PBXGroup;
 			children = (
+				779B81AA1D7D0E0B00B23DFA /* JuheContectUSViewController.h */,
+				779B81AB1D7D0E0B00B23DFA /* JuheContectUSViewController.m */,
+				779B81C81D7D120400B23DFA /* JuhePublicViewController.h */,
+				779B81C91D7D120400B23DFA /* JuhePublicViewController.m */,
+				779B81C51D7D11E300B23DFA /* JuheMessageViewController.h */,
+				779B81C61D7D11E300B23DFA /* JuheMessageViewController.m */,
+				779B81BF1D7D11BE00B23DFA /* JuheAboutUSViewController.h */,
+				779B81C01D7D11BE00B23DFA /* JuheAboutUSViewController.m */,
+				779B81C21D7D11CD00B23DFA /* JuheChartViewController.h */,
+				779B81C31D7D11CD00B23DFA /* JuheChartViewController.m */,
 			);
 			path = "联系我们";
 			sourceTree = "<group>";
@@ -9675,6 +9729,10 @@
 		7745C2131D67162F002212DE /* 数据接口 */ = {
 			isa = PBXGroup;
 			children = (
+				779B81B01D7D0E3500B23DFA /* JuheAPIViewController.h */,
+				779B81B11D7D0E3500B23DFA /* JuheAPIViewController.m */,
+				779B81CE1D7D1A2E00B23DFA /* JuheAPIDetailViewController.h */,
+				779B81CF1D7D1A2E00B23DFA /* JuheAPIDetailViewController.m */,
 			);
 			path = "数据接口";
 			sourceTree = "<group>";
@@ -9682,6 +9740,8 @@
 		7745C2141D67162F002212DE /* 用户中心 */ = {
 			isa = PBXGroup;
 			children = (
+				779B81B61D7D0E8D00B23DFA /* JuheUserViewController.h */,
+				779B81B71D7D0E8D00B23DFA /* JuheUserViewController.m */,
 			);
 			path = "用户中心";
 			sourceTree = "<group>";
@@ -16868,6 +16928,7 @@
 				7759B75D1D0EA3E900AE3A59 /* CALayer+XibConfiguration.m in Sources */,
 				778E93B21D69CB86004D899C /* XFMessageChartViewController.m in Sources */,
 				774BFB401D76744F005CA603 /* TitleScrollHelper.m in Sources */,
+				779B81A91D7D0D4000B23DFA /* JuheNavigationController.m in Sources */,
 				776463151D68452B00ACCCAC /* TLSettingItem.m in Sources */,
 				776460851D6843BE00ACCCAC /* TLQRCodeViewController.m in Sources */,
 				7788AC641D7996E000376C95 /* E_ScrollViewController.m in Sources */,
@@ -16922,6 +16983,7 @@
 				77BD16A81D6EC9E600DE5DB9 /* District.m in Sources */,
 				7764600A1D68429C00ACCCAC /* UIColor+TLChat.m in Sources */,
 				7764606E1D68437F00ACCCAC /* TLDBFriendStore.m in Sources */,
+				779B81B81D7D0E8D00B23DFA /* JuheUserViewController.m in Sources */,
 				778E8F481D696279004D899C /* UIWindow+Extension.m in Sources */,
 				776462731D68445800ACCCAC /* TLEmojiGroupCell.m in Sources */,
 				77BD16CD1D6ECBB800DE5DB9 /* DianpingNavigationController.m in Sources */,
@@ -16931,6 +16993,7 @@
 				7745C2701D672445002212DE /* ResumeTabBarController.m in Sources */,
 				7741F1901D6D514100EED332 /* SDCollectionViewCell.m in Sources */,
 				773D56011D79536D00A0C615 /* UIBarButtonItem+JFBarButtonItem.m in Sources */,
+				779B81CD1D7D12BC00B23DFA /* JuheDetailQuestion.m in Sources */,
 				776463411D68460B00ACCCAC /* TLMoreKBHelper.m in Sources */,
 				776462631D68445800ACCCAC /* TLChatBar.m in Sources */,
 				778E936F1D699D8C004D899C /* XFEmotionTabBar.m in Sources */,
@@ -16970,6 +17033,7 @@
 				77BD162E1D6EBDC400DE5DB9 /* UIScrollView+PageControl.m in Sources */,
 				77BD16D01D6ED6B400DE5DB9 /* ToutiaoViewController.m in Sources */,
 				77BD162B1D6EBDC400DE5DB9 /* MFullScreenView.m in Sources */,
+				779B81C41D7D11CD00B23DFA /* JuheChartViewController.m in Sources */,
 				776461131D6843EC00ACCCAC /* TLTagCell.m in Sources */,
 				7741F1931D6D514100EED332 /* SDBasicNavigationController.m in Sources */,
 				7741F1D31D6D530300EED332 /* SDHomeGridItemModel.m in Sources */,
@@ -17069,6 +17133,7 @@
 				773D56901D7955AE00A0C615 /* JFSearchHistoryViewController.m in Sources */,
 				776460701D68437F00ACCCAC /* TLDBManager.m in Sources */,
 				774BFB1E1D767389005CA603 /* LyricsUtil.m in Sources */,
+				779B81D01D7D1A2E00B23DFA /* JuheAPIDetailViewController.m in Sources */,
 				7745C2611D6723DF002212DE /* ToutiaoTabBarController.m in Sources */,
 				7764639A1D68478500ACCCAC /* TLUserGroup.m in Sources */,
 				7764630D1D68452B00ACCCAC /* TLMenuItem.m in Sources */,
@@ -17076,6 +17141,7 @@
 				778E934A1D699D74004D899C /* XFTextView.m in Sources */,
 				776463AD1D68479900ACCCAC /* TLTextMessage.m in Sources */,
 				7745C2761D672EE5002212DE /* MyDatabaseTabBarController.m in Sources */,
+				779B81B51D7D0E7300B23DFA /* JuheDynamicViewController.m in Sources */,
 				776462C41D68446300ACCCAC /* TLMineSettingViewController.m in Sources */,
 				773D56291D7953C400A0C615 /* JFVideosModel.m in Sources */,
 				7764631A1D68452B00ACCCAC /* TLTableViewCell.m in Sources */,
@@ -17098,6 +17164,7 @@
 				776463081D68452B00ACCCAC /* TLInfoCell.m in Sources */,
 				776460081D68429C00ACCCAC /* TLNetworking.m in Sources */,
 				7745C2521D67234B002212DE /* KugouTabBarController.m in Sources */,
+				779B81AF1D7D0E2800B23DFA /* JuheQuestionViewController.m in Sources */,
 				776461C11D68440600ACCCAC /* TLExpressionCell.m in Sources */,
 				776462821D68445800ACCCAC /* TLMessageBaseCell.m in Sources */,
 				776460A61D6843E100ACCCAC /* TLConversationViewController.m in Sources */,
@@ -17159,6 +17226,7 @@
 				7788AC501D7996CE00376C95 /* E_ReaderView.m in Sources */,
 				778E93B51D69CC24004D899C /* XFMessageChartData.m in Sources */,
 				7788AC661D7996E000376C95 /* E_WebViewControler.m in Sources */,
+				779B81CA1D7D120400B23DFA /* JuhePublicViewController.m in Sources */,
 				776463991D68478500ACCCAC /* TLUserDetail.m in Sources */,
 				773D56001D79536D00A0C615 /* NSString+JFColorString.m in Sources */,
 				776461CF1D68440600ACCCAC /* TLMyExpressionCell.m in Sources */,
@@ -17170,6 +17238,7 @@
 				776462BF1D68446300ACCCAC /* TLChatFontViewController.m in Sources */,
 				776461D61D68440600ACCCAC /* TLMineViewController.m in Sources */,
 				776460821D6843BE00ACCCAC /* TLImagePickerController.m in Sources */,
+				779B81C11D7D11BE00B23DFA /* JuheAboutUSViewController.m in Sources */,
 				773D569D1D7955F800A0C615 /* JFClassifyModel.m in Sources */,
 				776463BC1D6847C000ACCCAC /* TLMomentDetail.m in Sources */,
 				7764627F1D68445800ACCCAC /* TLMoreKeyboard.m in Sources */,
@@ -17206,6 +17275,7 @@
 				776462BC1D68446300ACCCAC /* TLChatBackgroundSelectViewController.m in Sources */,
 				77BD16A51D6EC9E600DE5DB9 /* BaseModel.m in Sources */,
 				7764610A1D6843EC00ACCCAC /* TLContactCell.m in Sources */,
+				779B81B21D7D0E3500B23DFA /* JuheAPIViewController.m in Sources */,
 				776461691D6843F900ACCCAC /* TLMomentHeaderCell.m in Sources */,
 				776463831D68471300ACCCAC /* TLBaseDataModel.m in Sources */,
 				7741F18D1D6D514100EED332 /* TAAnimatedDotView.m in Sources */,
@@ -17261,6 +17331,7 @@
 				771917871D65C2E6002F2BCD /* MyDatabaseViewController.m in Sources */,
 				77BD15041D6E858700DE5DB9 /* TaobaoTools.m in Sources */,
 				7764626F1D68445800ACCCAC /* TLEmojiFaceItemCell.m in Sources */,
+				779B81AC1D7D0E0B00B23DFA /* JuheContectUSViewController.m in Sources */,
 				7764627C1D68445800ACCCAC /* TLMoreKeyboardCell.m in Sources */,
 				774BFB411D76744F005CA603 /* TitleScrollView.m in Sources */,
 				773D563E1D79540000A0C615 /* JFImageScrollView.m in Sources */,
@@ -17287,6 +17358,7 @@
 				778E93681D699D8C004D899C /* XFComposeViewController.m in Sources */,
 				7759B7621D0EA3E900AE3A59 /* NSDictionary+expanded.m in Sources */,
 				773D56A11D79560100A0C615 /* JFClassifyCell.m in Sources */,
+				779B81C71D7D11E300B23DFA /* JuheMessageViewController.m in Sources */,
 				776462BD1D68446300ACCCAC /* TLChatBackgroundSettingViewController.m in Sources */,
 				7759B75E1D0EA3E900AE3A59 /* myLabelCategory.m in Sources */,
 				776463761D68466200ACCCAC /* TLCommonSettingHelper.m in Sources */,

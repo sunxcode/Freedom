@@ -534,7 +534,7 @@ static BaseViewController *BVC = nil;
     
 }
 - (void)readData {
-    AppDelegate *del = [UIApplication sharedApplication].delegate;
+    AppDelegate *del = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"TotalData"];
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:NO],
                                 [NSSortDescriptor sortDescriptorWithKey:@"icon" ascending:NO]];
@@ -547,7 +547,7 @@ static BaseViewController *BVC = nil;
             NSString *strPath = [[NSBundle mainBundle] pathForResource:@"icons" ofType:@"txt"];
             NSString *text = [NSString stringWithContentsOfFile:strPath encoding:NSUTF16StringEncoding error:nil];
             NSArray *lineArr = [text componentsSeparatedByString:@"\n"];
-            AppDelegate *del = [UIApplication sharedApplication].delegate;
+            AppDelegate *del = (AppDelegate*)[[UIApplication sharedApplication]delegate];
             NSEntityDescription *description = [NSEntityDescription entityForName:@"TotalData" inManagedObjectContext:del.managedObjectContext];
             for (NSString *line in lineArr) {
                 NSArray *icons = [line componentsSeparatedByString:@"\t"];

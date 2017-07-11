@@ -311,7 +311,7 @@ static FirstViewController *FVC = nil;
         [self readData];
         return;
     }
-    AppDelegate *del = [UIApplication sharedApplication].delegate;
+    AppDelegate *del = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"TotalData"];
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:NO],
                                 [NSSortDescriptor sortDescriptorWithKey:@"icon" ascending:NO]];
