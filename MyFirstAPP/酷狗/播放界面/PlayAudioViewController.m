@@ -143,7 +143,7 @@
     _btnFastForward = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward target:self action:@selector(fastForward)];
     
     _arrayModels = [NSArray arrayWithObjects:@"列表循环",@"顺序播放",@"单曲循环",@"单曲播放",@"随机播放", nil];
-    _btnModel = [[UIBarButtonItem alloc] initWithTitle:_arrayModels[_modelIndex] style:UIBarButtonItemStyleBordered target:self action:@selector(modelChange)];
+    _btnModel = [[UIBarButtonItem alloc] initWithTitle:_arrayModels[_modelIndex] style:UIBarButtonItemStylePlain target:self action:@selector(modelChange)];
     
     _btnSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     NSArray *arrayItems = [NSArray arrayWithObjects:_btnModel,_btnSpace,_btnRewind,_btnSpace,_btnPlay,_btnSpace,_btnFastForward,_btnSpace,_btnStop,_btnSpace, nil];

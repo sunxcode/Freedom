@@ -26,6 +26,9 @@
 #import "UIImage+expanded.h"
 #import "SVProgressHUD.h"
 #import "UIImageView+WebCache.h"
+#import "MJRefresh.h"
+#import "MJExtension.h"
+#import "AFNetworking.h"
 /*************************************************   微   信   的   头   文   件  ****************************************************/
 #import "TLMacros.h"            // 宏
 #import "TLEnumerate.h"         // 枚举
@@ -69,7 +72,6 @@ static const DDLogLevel ddLogLevel = DDLogLevelVerbose;
 #define XFLog(...) NSLog(__VA_ARGS__)
 #else
 #define XFLog(...)
-
 #endif
 // RGB颜色
 #define XFColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
@@ -82,7 +84,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelVerbose;
 /*********************************************              淘                             宝              ****************************************************/
 #import "UIGestureRecognizer+YYAdd.h"
 #import "TaobaoTools.h"
-/*********************************************                         ****************************************************/
+/*********************************************             酷                                狗              ****************************************************/
 #import "TitleScrollHelper.h"
 #import "TitleScrollView.h"
 #import "KugouTools.h"
@@ -116,7 +118,6 @@ static const DDLogLevel ddLogLevel = DDLogLevelVerbose;
 #define CATEGORY @"http://ioscdn.kugou.com/api/v3/category/list"
 //歌单二级界面分类列表
 #define SPECIALLIST(categoryid,page,pagesize) [NSString stringWithFormat:@"http://ioscdn.kugou.com/api/v3/category/special?categoryid=%@&page=%d&pagesize=%d",categoryid,page,pagesize]
-
 //歌曲信息
 #define MUSICURL(hash) [NSString stringWithFormat:@"http://cloud.kugou.com/app/checkIllegal.php?hash=%@",hash]
 #define MUSICINFO(hash) [NSString stringWithFormat:@"http://m.kugou.com/app/i/getSongInfo.php?hash=%@&cmd=playInfo",hash]
@@ -152,9 +153,23 @@ static const DDLogLevel ddLogLevel = DDLogLevelVerbose;
 #define WS(weakSelf)  __weak __typeof(&*self)weakSelf = self;
 
 #ifdef DEBUG
+#   define JFLog(fmt, ...) {NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);}
+#   define ELog(err) {if(err) DLog(@"%@", err)}
 #define NSLog(...) NSLog(__VA_ARGS__)
 #else
+#   define DLog(...)
+#   define ELog(err)
 #define NSLog(...)
 #endif
+/***************************************************************        爱         奇         艺        ***************************************************************/
+#define IqiyinavigationBarColor RGBCOLOR(251, 117, 44)
+#define IqiyiseparaterColor RGBCOLOR(200, 199, 204)
+//搜索文件
+#define JFSearchHistoryPath [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"hisDatas.data"]
+#import "UIBarButtonItem+JFBarButtonItem.h"
+#import "NetWork.h"
+#import "GetPlistArray.h"
+#import "GetUrlString.h"
+/***************************************************************                ***************************************************************/
 
 #endif
