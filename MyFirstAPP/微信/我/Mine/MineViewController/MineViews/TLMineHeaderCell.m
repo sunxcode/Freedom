@@ -114,7 +114,7 @@
 {
     if (_QRImageView == nil) {
         _QRImageView = [[UIImageView alloc] init];
-        [_QRImageView setImage:[UIImage imageNamed:@"UserErweima"]];
+        [_QRImageView setImage:[UIImage imageNamed:@"setting_myQR@2x"]];
     }
     return _QRImageView;
 }

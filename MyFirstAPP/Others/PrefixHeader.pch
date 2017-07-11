@@ -60,5 +60,26 @@
 #import "UINavigationItem+Fixed.h"
 
 static const DDLogLevel ddLogLevel = DDLogLevelVerbose;
+/***********************************************    新    浪    微    博    ************************************************************************************/
+#import "UIView+Extension.h"
+#import "UIBarButtonItem+Extension.h"
+#import "NSString+Extension.h"
+#import "NSString+Emoji.h"
+#import "UITextView+Extension.h"
+
+#ifdef DEBUG
+#define XFLog(...) NSLog(__VA_ARGS__)
+#else
+#define XFLog(...)
+
+#endif
+// RGB颜色
+#define XFColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
+// cell的边框宽度
+#define XFStatusCellBorderW 10
+#define XFStatusCellBorderH 5
+#define XFStatusMargin 10
+// 随机色
+#define XFRandomColor XFColor(arc4random_uniform(256), arc4random_uniform(256), arc4random_uniform(256))
 /************************************************************************************************************************************************/
 #endif

@@ -98,7 +98,7 @@ static TLRootViewController *rootVC = nil;
     if (_discoverVC == nil) {
         _discoverVC = [[TLDiscoverViewController alloc] init];
         [_discoverVC.tabBarItem setTitle:@"发现"];
-        [_discoverVC.tabBarItem setImage:[UIImage imageNamed:@"tabbar_discover"]];
+        [_discoverVC.tabBarItem setImage:[UIImage imageNamed:@"tabbar_discoverS"]];
         [_discoverVC.tabBarItem setSelectedImage:[UIImage imageNamed:@"tabbar_discoverHL"]];
     }
     return _discoverVC;

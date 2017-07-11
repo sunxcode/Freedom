@@ -67,8 +67,7 @@
         if ([self.navigationController findViewController:@"TLChatViewController"]) {
             if ([[chatVC.partner chat_userID] isEqualToString:self.user.userID]) {
                 [self.navigationController popToViewControllerWithClassName:@"TLChatViewController" animated:YES];
-            }
-            else {
+            }else {
                 [chatVC setPartner:self.user];
                 __block id navController = self.navigationController;
                 [self.navigationController popToRootViewControllerAnimated:YES completion:^(BOOL finished) {
@@ -77,8 +76,7 @@
                     }
                 }];
             }
-        }
-        else {
+        }else {
             [chatVC setPartner:self.user];
             UIViewController *vc = [[TLRootViewController sharedRootViewController] childViewControllerAtIndex:0];
             [[TLRootViewController sharedRootViewController] setSelectedIndex:0];
@@ -88,8 +86,7 @@
             }];
             [vc setHidesBottomBarWhenPushed:NO];
         }
-    }
-    else {
+    }else {
         [super infoButtonCellClicked:info];
     }
 }

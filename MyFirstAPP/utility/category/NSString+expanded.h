@@ -20,4 +20,5 @@ typedef enum {
 -(NSString*)replaceStoreKey;
 - (NSString*)soapMessage:(NSString *)key,...;
 - (NSString *)md5;
+- (CGSize)sizeWithFont:(UIFont *)font maxSize:(CGSize)maxSize;
 @end

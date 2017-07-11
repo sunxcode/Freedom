@@ -255,15 +255,18 @@ static FirstViewController *FVC = nil;
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     NSString *controlName = [self.items[indexPath.row] valueForKey:@"control"];
       [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    if(![controlName isEqualToString:@"Sina"]){
     [self showStoryboardWithStoryboardName:controlName andViewIdentifier:[NSString stringWithFormat:@"%@TabBarController",controlName]];
-//    NSString *s =[NSString stringWithFormat:@"%@ViewController",[self.items[indexPath.row] valueForKey:@"control"]];
-//    UIViewController *con = [[NSClassFromString(s) alloc]init];
-//    CATransition *animation = [CATransition animation];
-//    animation.duration = 1;
-//    animation.timingFunction = UIViewAnimationCurveEaseInOut;
-//    [self.view.window.layer addAnimation:animation forKey:nil];
-//    [self presentViewController:con animated:NO completion:^{
-//    }];
+        return;
+    }
+    NSString *s =[NSString stringWithFormat:@"%@TabBarController",controlName];
+    UIViewController *con = [[NSClassFromString(s) alloc]init];
+    CATransition *animation = [CATransition animation];
+    animation.duration = 1;
+    animation.timingFunction = UIViewAnimationCurveEaseInOut;
+    [self.view.window.layer addAnimation:animation forKey:nil];
+    [self presentViewController:con animated:NO completion:^{
+    }];
     [SVProgressHUD showSuccessWithStatus:[self.items[indexPath.row] valueForKey:@"title"]];
 }
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{

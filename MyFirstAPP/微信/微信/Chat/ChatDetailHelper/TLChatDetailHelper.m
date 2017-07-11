@@ -52,7 +52,7 @@
     TLSettingItem *groupName = TLCreateSettingItem(@"群聊名称");
     groupName.subTitle = groupInfo.groupName;
     TLSettingItem *groupQR = TLCreateSettingItem(@"群二维码");
-    groupQR.rightImagePath = @"UserErweima";
+    groupQR.rightImagePath = @"setting_myQR@2x";
     TLSettingItem *groupPost = TLCreateSettingItem(@"群公告");
     if (groupInfo.post.length > 0) {
         groupPost.subTitle = groupInfo.post;
