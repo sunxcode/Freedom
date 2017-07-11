@@ -45,7 +45,7 @@
 #pragma mark 搭建UI界面
 -(void)buildUI{
     self.view.backgroundColor = [UIColor whiteColor];
-    UIBarButtonItem *more = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"addstore_icon_add@2x"] style:UIBarButtonItemStylePlain target:self action:@selector(moreAction)];
+    UIBarButtonItem *more = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"juheadd"] style:UIBarButtonItemStylePlain target:self action:@selector(moreAction)];
     self.navigationItem.rightBarButtonItem = more;
     UISearchBar *searchBar = [[UISearchBar alloc] init];
     searchBar.placeholder = @"请输入想要查找的接口";
@@ -61,7 +61,8 @@
                 NSString *url = [adViewArr[i] objectForJSONKey:@"pic"];
                 [urls addObject:url];
             }
-            [banner setWithTitles:nil icons:urls round:NO size:CGSizeZero type:MyScrollBanner controllers:nil selectIndex:^(NSInteger index, NSDictionary *dict) {
+            [banner setWithTitles:nil icons:urls round:NO size:CGSizeZero type:MyScrollTypeBanner controllers:nil selectIndex:^(NSInteger index, NSDictionary *dict) {
+                DLog(@"选中了其中的某个banner：%ld",index);
             }];
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

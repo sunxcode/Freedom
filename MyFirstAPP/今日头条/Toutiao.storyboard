@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Toutiao Video View Controller-->
@@ -14,9 +18,9 @@
                         <viewControllerLayoutGuide type="bottom" id="H2s-eG-4TT"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ija-sK-6br">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="ZzE-Uo-Cqw"/>
                 </viewController>
@@ -33,9 +37,9 @@
                         <viewControllerLayoutGuide type="bottom" id="uf5-Qc-WLg"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="oAl-IX-StT">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="jx5-Yx-ZFi"/>
                 </viewController>
@@ -52,9 +56,9 @@
                         <viewControllerLayoutGuide type="bottom" id="et5-DV-H48"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Gvl-Tg-Toq">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="5Wy-ub-d2C"/>
                 </viewController>
@@ -71,9 +75,9 @@
                         <viewControllerLayoutGuide type="bottom" id="L3w-gt-Vzs"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="WLC-7w-5Si">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="79d-8e-nkB"/>
                 </viewController>
@@ -88,7 +92,7 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" id="fwh-7E-bwc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="J0q-Xy-4kz" kind="relationship" relationship="viewControllers" id="u9x-F1-PXQ"/>
@@ -105,7 +109,7 @@
         <scene sceneID="FTu-Ld-Ho4">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Uq5-Vg-AXw" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="关注" id="g3R-7Y-aZr"/>
+                    <tabBarItem key="tabBarItem" title="关注" image="toutiao_tabbar_3" selectedImage="toutiao_tabbar_3on" id="g3R-7Y-aZr"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Evt-7B-bFT">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -124,7 +128,7 @@
         <scene sceneID="i6f-dX-biZ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="J0q-Xy-4kz" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="首页" id="Aft-hQ-dfH"/>
+                    <tabBarItem key="tabBarItem" title="首页" image="toutiao_tabbar_1" selectedImage="toutiao_tabbar_1on" id="Aft-hQ-dfH"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZAQ-iQ-YBH">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -143,7 +147,7 @@
         <scene sceneID="tS3-qC-fGK">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aog-jF-uQQ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="视频" id="N9R-xf-Wwz"/>
+                    <tabBarItem key="tabBarItem" title="视频" image="toutiao_tabbar_2" selectedImage="toutiao_tabbar_2on" id="N9R-xf-Wwz"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="VX6-6K-tVN">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -162,7 +166,7 @@
         <scene sceneID="XWc-ts-aui">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AlW-9g-6ZK" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="我的" id="aIC-DD-L4i"/>
+                    <tabBarItem key="tabBarItem" title="我的" image="toutiao_tabbar_4" selectedImage="toutiao_tabbar_4on" id="aIC-DD-L4i"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="vp4-zg-YQl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -178,4 +182,14 @@
             <point key="canvasLocation" x="-93" y="783"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="toutiao_tabbar_1" width="16" height="16"/>
+        <image name="toutiao_tabbar_1on" width="16" height="16"/>
+        <image name="toutiao_tabbar_2" width="16" height="16"/>
+        <image name="toutiao_tabbar_2on" width="16" height="16"/>
+        <image name="toutiao_tabbar_3" width="16" height="16"/>
+        <image name="toutiao_tabbar_3on" width="16" height="16"/>
+        <image name="toutiao_tabbar_4" width="16" height="16"/>
+        <image name="toutiao_tabbar_4on" width="16" height="16"/>
+    </resources>
 </document>

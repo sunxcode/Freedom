@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface JuheDynamicViewController : UIViewController
+@interface JuheDynamicViewController : BaseViewController
 
 @end

@@ -28,7 +28,6 @@
     [super viewDidLoad];
     urlStr = [[GetUrlString sharedManager]urlWithclassifyData];
      _dataSource = [[NSMutableArray alloc] init];
-    [self initNav];
     [self initView];
     [self setUpRefresh];
 }
@@ -39,11 +38,6 @@
         [self initData];
     }];
     [self.classifyTableView.mj_header beginRefreshing];
-}
-
-#pragma mark - 初始化导航栏
--(void)initNav{
-    self.title = @"分类";
 }
 
 

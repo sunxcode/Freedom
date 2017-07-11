@@ -52,9 +52,8 @@
 }
 #pragma mark - 初始化导航栏
 -(void)initNav{
-    self.title = @"精选视频";
     
-    UIBarButtonItem *leftBarButtonItem = [UIBarButtonItem initWithNormalImage:@"home_logo" target:nil action:nil width:65 height:24];
+    UIBarButtonItem *leftBarButtonItem = [UIBarButtonItem initWithNormalImage:@"qylogo_p@3x" target:nil action:nil width:65 height:24];
     self.navigationItem.leftBarButtonItem = leftBarButtonItem;
     
     

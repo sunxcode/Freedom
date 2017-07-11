@@ -53,7 +53,6 @@
         NSString *buttontitle = array[i];
         
         [button setTitle:buttontitle forState:UIControlStateNormal];
-        button.backgroundColor = IqiyinavigationBarColor;
         [self addSubview:button];
     }
 

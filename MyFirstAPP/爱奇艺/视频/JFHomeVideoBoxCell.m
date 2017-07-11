@@ -41,7 +41,6 @@
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.backgroundColor = IqiyinavigationBarColor;
         [self initViews];
     }
     return self;
@@ -70,11 +69,11 @@
     [backView addSubview:_imageView];
     //
     _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 0, 100, 40)];
-    _titleLabel.textColor = IqiyinavigationBarColor;
+    _titleLabel.textColor = gradtextcolor;
     [headView addSubview:_titleLabel];
     //
     UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(5, 38, kScreenWidth-10, 1)];
-    lineView.backgroundColor = IqiyinavigationBarColor;
+    lineView.backgroundColor = gradcolor;
     [backView addSubview:lineView];
     //图
     _cardView1 = [[JFImageCardView alloc] initWithFrame:CGRectMake(0, 40, (kScreenWidth-5)/3, 230)];

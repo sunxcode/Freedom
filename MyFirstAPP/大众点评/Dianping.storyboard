@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Me Controller-->
@@ -14,9 +18,9 @@
                         <viewControllerLayoutGuide type="bottom" id="J8c-d0-U3a"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="6np-Y5-3C1">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="dfz-s2-haI"/>
                 </viewController>
@@ -31,7 +35,7 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" id="XVJ-sq-Kot">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="TXL-Vb-OD7" kind="relationship" relationship="viewControllers" id="rW9-Z3-zf4"/>
@@ -48,7 +52,7 @@
         <scene sceneID="OUR-Hs-qle">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="656-g9-KpQ" customClass="DianpingNavigationController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="我的" image="home_footbar_icon_my@2x" selectedImage="home_footbar_icon_my_pressed@2x" id="UYJ-Fv-Wuj"/>
+                    <tabBarItem key="tabBarItem" title="我的" image="home_footbar_icon_my" selectedImage="home_footbar_icon_my_pressed" id="UYJ-Fv-Wuj"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="H6j-AZ-g54">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -67,7 +71,7 @@
         <scene sceneID="pat-WM-wbg">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rw2-PS-gpk" customClass="DianpingNavigationController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="发现" image="home_footbar_icon_found@2x" selectedImage="home_footbar_icon_found_pressed@2x" id="TpH-pc-bp9"/>
+                    <tabBarItem key="tabBarItem" title="发现" image="home_footbar_icon_found" selectedImage="home_footbar_icon_found_pressed" id="TpH-pc-bp9"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="9YK-gP-awg">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -87,15 +91,15 @@
             <objects>
                 <tableViewController storyboardIdentifier="DZDealController" id="1xf-so-fTb" customClass="DZDealController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="KMI-t5-XY5">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="JC9-gv-HRW">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JC9-gv-HRW" id="OhO-rS-DSK">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -115,7 +119,7 @@
         <scene sceneID="SEe-wT-R6r">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TXL-Vb-OD7" customClass="DianpingNavigationController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="首页" image="home_footbar_icon_dianping@2x" selectedImage="home_footbar_icon_dianping_pressed@2x" id="GnU-wC-3w1"/>
+                    <tabBarItem key="tabBarItem" title="首页" image="home_footbar_icon_dianping" selectedImage="home_footbar_icon_dianping_pressed" id="GnU-wC-3w1"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="fWk-G3-2O8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -135,15 +139,15 @@
             <objects>
                 <tableViewController storyboardIdentifier="DZHomeController" id="Ebm-sX-wEB" customClass="DZHomeController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="tEu-q7-KA8">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="YKS-xi-cJO">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YKS-xi-cJO" id="C32-3Q-khy">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -163,7 +167,7 @@
         <scene sceneID="cfD-yb-Kjy">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8U3-d7-6Ze" customClass="DianpingNavigationController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="闪惠团购" image="home_footbar_icon_group@2x" selectedImage="home_footbar_icon_group_pressed@2x" id="awc-Uk-FIh"/>
+                    <tabBarItem key="tabBarItem" title="闪惠团购" image="home_footbar_icon_group" selectedImage="home_footbar_icon_group_pressed" id="awc-Uk-FIh"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="GtF-EV-7t3">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -183,15 +187,15 @@
             <objects>
                 <tableViewController storyboardIdentifier="DZDiscoverController" id="urj-8r-8BD" customClass="DZDiscoverController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="rWf-m1-1oz">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="cRZ-a0-F1P">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cRZ-a0-F1P" id="Qld-dR-LAP">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -209,13 +213,13 @@
         </scene>
     </scenes>
     <resources>
-        <image name="home_footbar_icon_dianping@2x" width="320" height="480"/>
-        <image name="home_footbar_icon_dianping_pressed@2x" width="320" height="480"/>
-        <image name="home_footbar_icon_found@2x" width="320" height="480"/>
-        <image name="home_footbar_icon_found_pressed@2x" width="320" height="480"/>
-        <image name="home_footbar_icon_group@2x" width="320" height="480"/>
-        <image name="home_footbar_icon_group_pressed@2x" width="320" height="480"/>
-        <image name="home_footbar_icon_my@2x" width="320" height="480"/>
-        <image name="home_footbar_icon_my_pressed@2x" width="320" height="480"/>
+        <image name="home_footbar_icon_dianping" width="24" height="24"/>
+        <image name="home_footbar_icon_dianping_pressed" width="24" height="24"/>
+        <image name="home_footbar_icon_found" width="24" height="24"/>
+        <image name="home_footbar_icon_found_pressed" width="24" height="24"/>
+        <image name="home_footbar_icon_group" width="24" height="24"/>
+        <image name="home_footbar_icon_group_pressed" width="24" height="24"/>
+        <image name="home_footbar_icon_my" width="24" height="24"/>
+        <image name="home_footbar_icon_my_pressed" width="24" height="24"/>
     </resources>
 </document>

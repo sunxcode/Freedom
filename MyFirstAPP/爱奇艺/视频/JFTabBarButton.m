@@ -23,7 +23,7 @@
         self.titleLabel.font = [UIFont systemFontOfSize:11];
         //文字颜色
         [self setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [self setTitleColor:IqiyinavigationBarColor forState:UIControlStateSelected];
+        [self setTitleColor:redcolor forState:UIControlStateSelected];
         
         //添加一个提醒数字按钮
         UIButton *badgeButton = [[UIButton alloc]init];

@@ -32,7 +32,7 @@
 -(void)buildUI{
     self.view.backgroundColor = [UIColor whiteColor];
     //设置右上角按钮
-    UIBarButtonItem *more = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"addstore_icon_add@2x"] style:UIBarButtonItemStylePlain target:self action:@selector(moreAction)];
+    UIBarButtonItem *more = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"juheadd"] style:UIBarButtonItemStylePlain target:self action:@selector(moreAction)];
     self.navigationItem.rightBarButtonItem = more;
     //设置左上角按钮
 //    UIBarButtonItem *map = [[UIBarButtonItem alloc]initWithTitle:@"北京" style:UIBarButtonItemStylePlain target:self action:@selector(mapAction)];

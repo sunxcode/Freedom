@@ -25,38 +25,38 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setTitle:@"个人中心"];
-    self.tableView = [[BaseTableView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH)];
+    self.tableView = [[BaseTableView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH-TabBarH)];
     UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPW, 260)];
-    UIImageView *icon = [[UIImageView alloc]initWithFrame:CGRectMake(50, 15, 60, 60)];
+    UIImageView *icon = [[UIImageView alloc]initWithFrame:CGRectMake(10, 15, 60, 60)];
     icon.layer.cornerRadius = H(icon)/2.0;icon.layer.masksToBounds = YES;
-    UILabel *name = [Utility labelWithFrame:CGRectMake(XW(icon)+30, 20, 100, 20) font:fontTitle color:blacktextcolor text:@"薛超  👑VIP"];
-    UILabel *phone = [Utility labelWithFrame:CGRectMake(X(name), YH(name)+10, 200, 20) font:fontTitle color:blacktextcolor text:@"18721064516"];
-    [headerView addSubviews:icon,name,phone,nil];
+    UILabel *name = [Utility labelWithFrame:CGRectMake(XW(icon)+10, 10,300, 20) font:fontTitle color:blacktextcolor text:@"用户名：18326891683  👑已认证"];
+    UILabel *openid = [Utility labelWithFrame:CGRectMake(X(name), YH(name), 400, 20) font:fontTitle color:blacktextcolor text:@"OpenId:JH12bd23ef316e3d8a9dfe7402ef8bc453"];
+    UILabel *email = [Utility labelWithFrame:CGRectMake(X(name), YH(openid), 300, 20) font:fontTitle color:blacktextcolor text:@"绑定邮箱:1069106050@qq.com"];
+    UILabel *phone = [Utility labelWithFrame:CGRectMake(X(name), YH(email), 300, 20) font:fontTitle color:blacktextcolor text:@"手机号码:18721064516"];
+    [headerView addSubviews:icon,name,openid,email,phone,nil];
     [icon imageWithURL:[[Utility Share] userLogo] useProgress:NO useActivity:NO];
     UIView *v = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPW, 50)];
     UIButton *quit = [Utility buttonWithFrame:CGRectMake(APPW/2-50, 10, 100, 30) title:@"退      出" image:nil bgimage:nil];
+    [quit setTitleColor:whitecolor forState:UIControlStateNormal];
     quit.backgroundColor = redcolor;[v addSubview:quit];
-    NSArray *titles = @[@"我的投资",@"我的钱袋",@"我的预约",@"交易大厅",@"我的收藏",@"我的购物车",@"我的订单",@"收货地址"];
+    NSArray *titles = @[@"我的聚合",@"我的数据",@"我的收藏",@"我的余额",@"聚合币",@"优惠券",@"发票管理",@"其他信息"];
     NSArray *icons = @[@"juheintopublic",@"juheintopublic",@"juheintopublic",@"juheintopublic",@"juheintopublic",@"juheintopublic",@"juheintopublic",@"juheintopublic"];
     BaseScrollView *banItemSV = [BaseScrollView sharedBaseItemWithFrame:CGRectMake(0, 100, APPW, 160) icons:icons titles:titles size:CGSizeMake(APPW/4.0, 80) round:NO];
     [headerView addSubview:banItemSV];
+    banItemSV.selectBlock = ^(NSInteger index, NSDictionary *dict) {
+        DLog(@"点击了%ld,%@",index,dict);
+    };
     self.tableView.dataArray = [NSMutableArray arrayWithObjects:
-         @{@"name":@"IP地址",@"pic":@"juheintopublic"},@{@"name":@"手机号码归属地",@"pic":@"juhelookhistory"},@{@"name":@"身份证查询",@"pic":@"juheaboutus"},@{@"name":@"常用快递",@"pic":@"juhechart"},
-         @{@"name":@"餐饮美食",@"pic":@"juhechart"},@{@"name":@"菜谱大全",@"pic":@"juhechart"},@{@"name":@"彩票开奖结果",@"pic":@"juhechart"},@{@"name":@"邮编查询",@"pic":@"juhechart"},
-         @{@"name":@"律师查询",@"pic":@"juhechart"},@{@"name":@"笑话大全",@"pic":@"juhechart"},@{@"name":@"小说大全",@"pic":@"juhechart"},@{@"name":@"恋爱物语",@"pic":@"juhechart"},
-         @{@"name":@"商品比价",@"pic":@"juhechart"},@{@"name":@"新闻",@"pic":@"juhechart"},@{@"name":@"微信精选",@"pic":@"juhechart"},@{@"name":@"经典日至",@"pic":@"juhechart"},
-         @{@"name":@"天气查询",@"pic":@"juhechart"},@{@"name":@"手机话费",@"pic":@"juhechart"},@{@"name":@"个人缴费",@"pic":@"juhechart"},@{@"name":@"移动出行",@"pic":@"juhechart"},
-         @{@"name":@"足球赛事",@"pic":@"juhechart"},@{@"name":@"新闻资讯",@"pic":@"juhechart"},@{@"name":@"视频播放",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"}, nil];
+         @{@"name":@"我的充值记录",@"pic":@"juheintopublic"},@{@"name":@"我的消费记录",@"pic":@"juhelookhistory"},@{@"name":@"账户信息",@"pic":@"juheaboutus"},@{@"name":@"密码修改",@"pic":@"juhechart"},
+         @{@"name":@"实名认证",@"pic":@"juhechart"}, nil];
     [self fillTheTableDataWithHeadV:headerView footV:v canMove:NO canEdit:NO headH:0 footH:0 rowH:60 sectionN:1 rowN:5 cellName:@"JuheUserViewCell"];
     [self.view addSubview:self.tableView];
-    
-    
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-
+    DLog(@"点击了第%ld个单元格",indexPath.row);
 }
 
 @end

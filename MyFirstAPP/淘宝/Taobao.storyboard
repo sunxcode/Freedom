@@ -1,22 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Taobao Community View Controller-->
         <scene sceneID="sNd-Xh-y4n">
             <objects>
-                <viewController id="YTB-lM-IzH" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TaobaoCommunityViewController" id="YTB-lM-IzH" customClass="TaobaoCommunityViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3nH-ql-oAb"/>
                         <viewControllerLayoutGuide type="bottom" id="DBw-Wf-hls"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="DAC-Rc-5ex">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="2XO-h2-PCF"/>
                 </viewController>
@@ -24,18 +28,18 @@
             </objects>
             <point key="canvasLocation" x="471" y="150"/>
         </scene>
-        <!--View Controller-->
+        <!--Taobao Me View Controller-->
         <scene sceneID="RwO-qZ-N0a">
             <objects>
-                <viewController id="q4i-GJ-dmh" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TaobaoMeViewController" id="q4i-GJ-dmh" customClass="TaobaoMeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Y2V-dI-FLf"/>
                         <viewControllerLayoutGuide type="bottom" id="hmA-We-Cyh"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="d1n-50-a1c">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="dUr-Id-hIf"/>
                 </viewController>
@@ -43,18 +47,18 @@
             </objects>
             <point key="canvasLocation" x="471" y="1412"/>
         </scene>
-        <!--View Controller-->
+        <!--Taobao Mini View Controller-->
         <scene sceneID="FnL-fE-nmg">
             <objects>
-                <viewController id="XP3-pV-GPR" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TaobaoMiniViewController" id="XP3-pV-GPR" customClass="TaobaoMiniViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ihp-J4-Ike"/>
                         <viewControllerLayoutGuide type="bottom" id="zMk-Un-KSi"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="xmK-Gm-YW5">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="X4b-Tu-DoR"/>
                 </viewController>
@@ -62,18 +66,18 @@
             </objects>
             <point key="canvasLocation" x="471" y="-479"/>
         </scene>
-        <!--View Controller-->
+        <!--Taobao Shop Car View Controller-->
         <scene sceneID="jWt-43-MDa">
             <objects>
-                <viewController id="GbE-Ga-QWk" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TaobaoShopCarViewController" id="GbE-Ga-QWk" customClass="TaobaoShopCarViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Pqa-uR-2en"/>
                         <viewControllerLayoutGuide type="bottom" id="OAg-mP-gs9"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Yxp-aU-Pxn">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="G2V-hG-3vd"/>
                 </viewController>
@@ -81,18 +85,18 @@
             </objects>
             <point key="canvasLocation" x="471" y="783"/>
         </scene>
-        <!--Taobao View Controller-->
+        <!--Taobao Home View Controller-->
         <scene sceneID="DLM-Cm-dEh">
             <objects>
-                <viewController storyboardIdentifier="TaobaoViewController" id="DNA-KE-KTC" customClass="TaobaoViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TaobaoHomeViewController" id="DNA-KE-KTC" customClass="TaobaoHomeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Kje-HS-fMU"/>
                         <viewControllerLayoutGuide type="bottom" id="a6f-jH-Pfe"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="1UN-gS-IDG">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="rAc-XB-noe"/>
                 </viewController>
@@ -107,7 +111,7 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" id="9qB-sQ-BgG">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="mYN-Yu-0ge" kind="relationship" relationship="viewControllers" id="N4Z-il-1pG"/>
@@ -125,7 +129,7 @@
         <scene sceneID="suG-TH-dz1">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mYN-Yu-0ge" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="首页" id="jiT-FE-b7v"/>
+                    <tabBarItem key="tabBarItem" title="首页" image="tt_tabbar_1" selectedImage="tt_tabbar_1on" id="jiT-FE-b7v"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="MZh-MQ-V3D">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -144,7 +148,7 @@
         <scene sceneID="bFl-d3-77U">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="E84-KQ-1b6" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="微淘" id="oKB-sI-vW0"/>
+                    <tabBarItem key="tabBarItem" title="微淘" image="tt_tabbar_2" selectedImage="tt_tabbar_2on" id="oKB-sI-vW0"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="a6O-uD-gKc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -163,7 +167,7 @@
         <scene sceneID="tME-dI-8hQ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Cmg-OT-jTx" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="社区" id="D92-bT-6nI"/>
+                    <tabBarItem key="tabBarItem" title="社区" image="tt_tabbar_3" selectedImage="tt_tabbar_3on" id="D92-bT-6nI"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="DbE-bm-ErD">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -182,7 +186,7 @@
         <scene sceneID="yki-iK-Rcg">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="J66-bE-0OS" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="购物车" id="7zU-m5-laT"/>
+                    <tabBarItem key="tabBarItem" title="购物车" image="tt_tabbar_4" selectedImage="tt_tabbar_4on" id="7zU-m5-laT"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="7JW-Dk-U1q">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -201,7 +205,7 @@
         <scene sceneID="zgv-fm-f3f">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="M5a-0e-vh3" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="我的淘宝" id="bTa-KN-ulD"/>
+                    <tabBarItem key="tabBarItem" title="我的淘宝" image="tt_tabbar_5" selectedImage="tt_tabbar_5on" id="bTa-KN-ulD"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cca-NB-kbc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -217,4 +221,16 @@
             <point key="canvasLocation" x="9" y="1412"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="tt_tabbar_1" width="28" height="28"/>
+        <image name="tt_tabbar_1on" width="28" height="28"/>
+        <image name="tt_tabbar_2" width="28" height="28"/>
+        <image name="tt_tabbar_2on" width="28" height="28"/>
+        <image name="tt_tabbar_3" width="28" height="28"/>
+        <image name="tt_tabbar_3on" width="28" height="28"/>
+        <image name="tt_tabbar_4" width="28" height="28"/>
+        <image name="tt_tabbar_4on" width="28" height="28"/>
+        <image name="tt_tabbar_5" width="28" height="28"/>
+        <image name="tt_tabbar_5on" width="28" height="28"/>
+    </resources>
 </document>

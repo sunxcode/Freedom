@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Resume Call Me View Controller-->
@@ -14,9 +18,9 @@
                         <viewControllerLayoutGuide type="bottom" id="FIE-MQ-MGD"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="h7y-0D-x9i">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="Nmj-Lb-wM4"/>
                 </viewController>
@@ -33,9 +37,9 @@
                         <viewControllerLayoutGuide type="bottom" id="Q0S-VD-Dzb"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="J3v-Zm-vEn">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="dhP-Iz-2Zi"/>
                 </viewController>
@@ -52,9 +56,9 @@
                         <viewControllerLayoutGuide type="bottom" id="jEN-3o-cOG"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="D0a-kp-1AV">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="Kwa-Jp-NNE"/>
                 </viewController>
@@ -71,9 +75,9 @@
                         <viewControllerLayoutGuide type="bottom" id="jvv-K8-mEM"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="aDG-04-oj7">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="H1u-oJ-Doc"/>
                 </viewController>
@@ -88,7 +92,7 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" id="FeM-yJ-AMY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="YgJ-Y7-lXS" kind="relationship" relationship="viewControllers" id="elm-9D-qYl"/>
@@ -105,7 +109,7 @@
         <scene sceneID="XTm-fl-7uB">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YgJ-Y7-lXS" customClass="ResumeNavigationController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="首页" id="NcJ-N8-sk2"/>
+                    <tabBarItem key="tabBarItem" title="首页" image="resume_tabbar_1" selectedImage="resume_tabbar_1on" id="NcJ-N8-sk2"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="es7-ij-SK2">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -124,7 +128,7 @@
         <scene sceneID="pyn-nU-ffH">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Thh-uY-5AY" customClass="ResumeNavigationController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="事业合作" id="dgc-hg-FCX"/>
+                    <tabBarItem key="tabBarItem" title="事业合作" image="resume_tabbar_2" selectedImage="resume_tabbar_2on" id="dgc-hg-FCX"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="F0i-Wh-nbH">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -143,7 +147,7 @@
         <scene sceneID="WLJ-tG-eIX">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mMv-sA-jRv" customClass="ResumeNavigationController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="理论体系" id="7ei-nu-RQk"/>
+                    <tabBarItem key="tabBarItem" title="理论体系" image="resume_tabbar_3" selectedImage="resume_tabbar_3on" id="7ei-nu-RQk"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="sgf-zw-wiG">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -162,7 +166,7 @@
         <scene sceneID="WKW-9k-yWD">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bbn-7E-ieG" customClass="ResumeNavigationController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="联系我" id="81J-lC-5tM"/>
+                    <tabBarItem key="tabBarItem" title="联系我" image="resume_tabbar_4" selectedImage="resume_tabbar_4on" id="81J-lC-5tM"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Y3X-8Z-YJd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -178,4 +182,14 @@
             <point key="canvasLocation" x="-67" y="559"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="resume_tabbar_1" width="16" height="16"/>
+        <image name="resume_tabbar_1on" width="16" height="16"/>
+        <image name="resume_tabbar_2" width="16" height="16"/>
+        <image name="resume_tabbar_2on" width="16" height="16"/>
+        <image name="resume_tabbar_3" width="16" height="16"/>
+        <image name="resume_tabbar_3on" width="16" height="16"/>
+        <image name="resume_tabbar_4" width="16" height="16"/>
+        <image name="resume_tabbar_4on" width="16" height="16"/>
+    </resources>
 </document>
