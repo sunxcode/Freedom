@@ -84,6 +84,25 @@
 #define FULLPATH(filename)  [NSString stringWithFormat:@"%@/%@/%@.mp3",NSHomeDirectory(),@"Documents",filename]//本地歌曲的完整地址
 #define SINGERMV(singerid,singername,page,pagesize) [NSString stringWithFormat:@"http://ioscdn.kugou.com/api/v3/singer/mv?singerid=%@&singername=%@&page=%d&pagesize=%d",singerid,singername,page,pagesize]//MV列表
 #define FMMUSIC(offset0,fmtype0,offset,fmid0) [NSString stringWithFormat:@"http://lib3.service.kugou.com/index.php?size=20&pid=ios&offset0=%@&ver=4070&fmtype0=%@&offset=%@&fmcount=1&fmid0=%@",offset0,fmtype0,offset,fmid0]//电台歌单
+
+#define TBaiduRestserver1  @"http://tingapi.ting.baidu.com/v1/restserver/ting?from=qianqian&version=2.1.0&method=baidu.ting.search.catalogSug&format=json&query=%E5%B0%8F%E8%8B%B9%E6%9E%9C"   //搜索建议
+#define TBaiduRestserver2  @"http://tingapi.ting.baidu.com/v1/restserver/ting?method=baidu.ting.search.suggestion&query=%E5%B0%8F%E8%8B%B9%E6%9E%9C&format=json&from=ios&version=2.1.1"  //搜索建议：只有歌名
+#define TBaiduRestserver3  @"http://tingapi.ting.baidu.com/v1/restserver/ting?from=qianqian&version=2.1.0&method=baidu.ting.search.common&format=json&query=%E5%B0%8F%E8%8B%B9%E6%9E%9C&page_no=1&page_size=30" //搜索结果
+#define TBaiduRestserver4  @"http://tingapi.ting.baidu.com/v1/restserver/ting?from=qianqian&version=2.1.0&method=baidu.ting.artist.getList&format=json&order=1&offset=0&limit=5"
+#define TBaiduRestserver5  @"http://tingapi.ting.baidu.com/v1/restserver/ting?from=qianqian&version=2.1.0&method=baidu.ting.billboard.billList&format=json&type=1&offset=0&size=50"  //新歌榜
+#define TBaiduRestserver6  @"http://tingapi.ting.baidu.com/v1/restserver/ting?from=qianqian&version=2.1.0&method=baidu.ting.billboard.billList&format=json&type=2&offset=0&size=50" //热歌榜注意这个和上边的区别，type=1
+#define TBaiduRestserver7  @"http://tingapi.ting.baidu.com/v1/restserver/ting?from=qianqian&version=2.1.0&method=baidu.ting.billboard.billList&format=json&type=8&offset=0&size=507" //Hito中文榜
+#define TBaiduRestserver8  @"http://tingapi.ting.baidu.com/v1/restserver/ting?from=qianqian&version=2.1.0&method=baidu.ting.billboard.billList&format=json&type=18&offset=0&size=50"  // Hito中文榜
+#define TBaiduRestserver9  @"http://tingapi.ting.baidu.com/v1/restserver/ting?from=qianqian&version=2.1.0&method=baidu.ting.billboard.billList&format=json&type=6&offset=0&size=50"  // KTV热歌榜
+#define TBaiduRestserver10 @"http://tingapi.ting.baidu.com/v1/restserver/ting?from=qianqian&version=2.1.0&method=baidu.ting.radio.getCategoryList&format=json"  //电台列表
+#define TBaiduRestserver11 @"http://tingapi.ting.baidu.com/v1/restserver/ting?from=qianqian&version=2.1.0&method=baidu.ting.radio.getChannelSong&format=json&pn=0&rn=10&channelname=public_tuijian_ktv"  //获取某个电台下的歌曲列表
+#define TBaiduRestserver12 @"http://tingapi.ting.baidu.com/v1/restserver/ting?from=qianqian&version=2.1.0&method=baidu.ting.song.getInfos&format=json&songid=8059247&ts=1408284347323&e=JoN56kTXnnbEpd9MVczkYJCSx%2FE1mkLx%2BPMIkTcOEu4%3D&nw=2&ucf=1&res=1"   //获取songid的歌曲信息
+#define TBaiduRestserver13 @"http://tingapi.ting.baidu.com/v1/restserver/ting?from=qianqian&version=2.1.0&method=baidu.ting.artist.get72HotArtist&format=json&order=1&offset=0&limit=50"  //歌手列表
+#define TBaiduRestserver14 @"http://tingapi.ting.baidu.com/v1/restserver/ting?from=qianqian&version=2.1.0&method=baidu.ting.artist.getinfo&format=json&tinguid=7994"  //歌手简介，tinguid为歌手id
+#define TBaiduRestserver15 @"http://tingapi.ting.baidu.com/v1/restserver/ting?from=qianqian&version=2.1.0&method=baidu.ting.artist.getSongList&format=json&order=2&tinguid=7994&offset=0&limits=50"  //歌手歌曲列表，tinguid为歌手id
+#define TBaiduRestserver16 @"http://tingapi.ting.baidu.com/v1/restserver/ting?from=qianqian&version=2.1.0&method=baidu.ting.plaza.getRecommendAlbum&format=json&offset=0&limit=50"  //新碟上架
+#define TBaiduRestserver17 @"http://tingapi.ting.baidu.com/v1/restserver/ting?from=qianqian&version=2.1.0&method=baidu.ting.album.getAlbumInfo&format=json&album_id=122314357"  //专辑信息
+#define TBaiduRestserver18 @"http://tingapi.ting.baidu.com/v1/restserver/ting?from=qianqian&version=2.1.0&method=baidu.ting.plaza.getNewSongs&format=json&limit=50"//新歌速递
 /******************                         听                        *******************/
 #define KGBanner            @"http://mvads.kugou.com/mobile/?type=1&plat=2&version=8200&channel=1009&operator=1&networktype=2&mid=2f009fc8fc19b495ef837827f923863d956959e1&userid=61953775&ismonthly=0&isvip=0"//启动广告
 #define KGListen            @"http://tools.mobile.kugou.com/api/v1/listen/rate?plat=2&version=8200"//
