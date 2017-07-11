@@ -42,7 +42,7 @@
 #import "TLExpressionProxy.h"
 #import "TLExpressionHelper.h"
 #import "AFNetworking.h"
-#import <JSPatch/JSPatch.h>
+#import "JPEngine.h"
 static WechartTabBarController *rootVC = nil;
 
 @interface WechartTabBarController ()
@@ -184,8 +184,8 @@ static WechartTabBarController *rootVC = nil;
 #ifdef DEBUG_JSPATCH
     [JSPatch testScriptInBundle];
 #else
-    [JSPatch startWithAppKey:JSPATCH_APPKEY];
-    [JSPatch sync];
+//    [JSPatch startWithAppKey:JSPATCH_APPKEY];
+//    [JSPatch sync];
 #endif
     // Mob SMS
     //    [SMSSDK registerApp:MOB_SMS_APPKEY withSecret:MOB_SMS_SECRET];

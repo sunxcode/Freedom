@@ -50,6 +50,9 @@ PODS:
     - FMDB/standard (= 2.6.2)
   - FMDB/standard (2.6.2)
   - JSONKit (1.4)
+  - JSPatch (1.0):
+    - JSPatch/Core (= 1.0)
+  - JSPatch/Core (1.0)
   - KissXML (5.0)
   - Masonry (0.6.4)
   - MBProgressHUD (0.9.2)
@@ -85,6 +88,7 @@ DEPENDENCIES:
   - ElasticTransitionObjC
   - FMDB (~> 2.6)
   - JSONKit
+  - JSPatch
   - KissXML (= 5.0)
   - Masonry (~> 0.6.4)
   - MJExtension (~> 3.0.10)
@@ -107,6 +111,7 @@ SPEC CHECKSUMS:
   ElasticTransitionObjC: 122ca894bec7006929dcc7e1386c085a78b07ac6
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   JSONKit: 5b69e804ea54d99293eed0fd2ce596c5703fefb0
+  JSPatch: c689ea4dde17441f2f4a95d40dfedb8900c20099
   KissXML: ce643413d618ad69886d0d43c3792b7dedfe476e
   Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
@@ -122,6 +127,6 @@ SPEC CHECKSUMS:
   SVProgressHUD: 7038ae9d6a0bd2c87560d2699eba642eef82d41e
   UMengAnalytics: 4bf831415146b9c57cb10be65fbd43462ef8cf65
 
-PODFILE CHECKSUM: 02f000ed0207ecd7a698cac716ea2501a867f750
+PODFILE CHECKSUM: 467a4e94a254d0111ddf44cb538f1e2faee3fd8f
 
 COCOAPODS: 1.0.0

@@ -2236,7 +2236,6 @@
 		7764604C1D6842AB00ACCCAC /* UIScrollView+Pages.m in Sources */ = {isa = PBXBuildFile; fileRef = 776460331D6842AB00ACCCAC /* UIScrollView+Pages.m */; };
 		7764604D1D6842AB00ACCCAC /* UITableView+TLChat.m in Sources */ = {isa = PBXBuildFile; fileRef = 776460361D6842AB00ACCCAC /* UITableView+TLChat.m */; };
 		7764604E1D6842AB00ACCCAC /* UIView+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 776460391D6842AB00ACCCAC /* UIView+Extensions.m */; };
-		776460501D6842AB00ACCCAC /* JSPatch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7764603E1D6842AB00ACCCAC /* JSPatch.framework */; };
 		7764606A1D68437F00ACCCAC /* TLDBBaseStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 776460541D68437F00ACCCAC /* TLDBBaseStore.m */; };
 		7764606B1D68437F00ACCCAC /* TLDBMessageStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 776460571D68437F00ACCCAC /* TLDBMessageStore.m */; };
 		7764606C1D68437F00ACCCAC /* TLDBConversationStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 7764605C1D68437F00ACCCAC /* TLDBConversationStore.m */; };
@@ -5778,7 +5777,6 @@
 		776460361D6842AB00ACCCAC /* UITableView+TLChat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+TLChat.m"; sourceTree = "<group>"; };
 		776460381D6842AB00ACCCAC /* UIView+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extensions.h"; sourceTree = "<group>"; };
 		776460391D6842AB00ACCCAC /* UIView+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extensions.m"; sourceTree = "<group>"; };
-		7764603E1D6842AB00ACCCAC /* JSPatch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JSPatch.framework; sourceTree = "<group>"; };
 		776460531D68437F00ACCCAC /* TLDBBaseStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLDBBaseStore.h; sourceTree = "<group>"; };
 		776460541D68437F00ACCCAC /* TLDBBaseStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLDBBaseStore.m; sourceTree = "<group>"; };
 		776460561D68437F00ACCCAC /* TLDBMessageStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLDBMessageStore.h; sourceTree = "<group>"; };
@@ -7413,7 +7411,6 @@
 				774BFAE81D7672E2005CA603 /* CoreGraphics.framework in Frameworks */,
 				774BFAE61D7672CA005CA603 /* Accelerate.framework in Frameworks */,
 				774BFAE41D7672A0005CA603 /* AudioToolbox.framework in Frameworks */,
-				776460501D6842AB00ACCCAC /* JSPatch.framework in Frameworks */,
 				77645C631D680E7F00ACCCAC /* WebKit.framework in Frameworks */,
 				77D460671D5C71DA0066B352 /* CoreData.framework in Frameworks */,
 				77BE53731D2CB0930001AA09 /* AssetsLibrary.framework in Frameworks */,
@@ -11113,17 +11110,8 @@
 		7764603C1D6842AB00ACCCAC /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
-				7764603D1D6842AB00ACCCAC /* JSPatch */,
 			);
 			path = Vendors;
-			sourceTree = "<group>";
-		};
-		7764603D1D6842AB00ACCCAC /* JSPatch */ = {
-			isa = PBXGroup;
-			children = (
-				7764603E1D6842AB00ACCCAC /* JSPatch.framework */,
-			);
-			path = JSPatch;
 			sourceTree = "<group>";
 		};
 		776460511D68435500ACCCAC /* 数据库 */ = {
@@ -14334,6 +14322,7 @@
 					7759B68A1D0EA37F00AE3A59 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 968Q63C2Z7;
+						ProvisioningStyle = Automatic;
 					};
 					7759B6A31D0EA38000AE3A59 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -17904,6 +17893,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 968Q63C2Z7;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -17915,8 +17905,10 @@
 				INFOPLIST_FILE = "$(SRCROOT)/MyFirstAPP/Others/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.isolar88.MyFirstAPP;
+				PRODUCT_BUNDLE_IDENTIFIER = com.isolar88.zyzy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WARNING_CFLAGS = "-Wno-shorten-64-to-32";
 			};
 			name = Debug;
@@ -17928,6 +17920,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 968Q63C2Z7;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -17940,8 +17933,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.isolar88.MyFirstAPP;
+				PRODUCT_BUNDLE_IDENTIFIER = com.isolar88.zyzy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WARNING_CFLAGS = "-Wno-shorten-64-to-32";
 			};
 			name = Release;

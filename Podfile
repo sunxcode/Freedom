@@ -30,7 +30,7 @@ pod 'ReactiveCocoa', '~> 2.5'
 pod 'CocoaLumberjack', '~> 2.2.0'
 pod 'BlocksKit', '~> 2.2.5'
 pod 'MWPhotoBrowser', '~> 2.1.1'
-
+pod 'JSPatch'    #https://github.com/bang590/JSPatch
 #pod 'TheAmazingAudioEngine'
 #https://github.com/TheAmazingAudioEngine/TheAmazingAudioEngine
 #http://theamazingaudioengine.com/doc/_getting-_started.html
