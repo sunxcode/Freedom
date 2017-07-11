@@ -6,8 +6,6 @@
 //  Copyright © 2016年 薛超. All rights reserved.
 //
 
-#import "BaseViewController.h"
-
 @interface DianpingViewController : BaseViewController
 
 @end

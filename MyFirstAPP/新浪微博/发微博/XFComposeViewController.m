@@ -232,11 +232,11 @@
             break;
             
         case XFComposeToolbarButtonTypeMention: // @
-            XFLog(@"--- @");
+            DLog(@"--- @");
             break;
             
         case XFComposeToolbarButtonTypeTrend: // #
-            XFLog(@"--- #");
+            DLog(@"--- #");
             break;
             
         case XFComposeToolbarButtonTypeEmotion: // 表情\键盘

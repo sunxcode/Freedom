@@ -17,7 +17,7 @@
         // 从xib中加载cell
         headView = [[[NSBundle mainBundle] loadNibNamed:@"JFsearchHeaderView" owner:nil options:nil] lastObject];
     }
-    headView.backgroundColor = IqiyiseparaterColor;
+    headView.backgroundColor = RGBCOLOR(200, 199, 204);
     return headView;
 }
 

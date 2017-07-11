@@ -37,14 +37,14 @@
 
 -(void)initUI{
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame  = CGRectMake(kScreenWidth-90,kVersion7?0:0, 90, 40);
+    button.frame  = CGRectMake(kScreenWidth-90,Version7?0:0, 90, 40);
     [button setImage:[UIImage imageNamed:@"memNav06"] forState:UIControlStateNormal];
     button.tag = 14;
     [button addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationController.navigationItem.rightBarButtonItem =[[UIBarButtonItem alloc]initWithCustomView:button];
-    tableView1 = [[UITableView alloc]initWithFrame:CGRectMake(0, kTopHeight, kScreenWidth, kScreenHeight - kTopHeight - 49) style:UITableViewStyleGrouped];
+    tableView1 = [[UITableView alloc]initWithFrame:CGRectMake(0, TopHeight, kScreenWidth, kScreenHeight - TopHeight - 49) style:UITableViewStyleGrouped];
     tableView1.backgroundColor = [UIColor whiteColor];
-    headerView = [[UIView alloc]initWithFrame:CGRectMake(0, kTopHeight, kScreenWidth, 110)];
+    headerView = [[UIView alloc]initWithFrame:CGRectMake(0, TopHeight, kScreenWidth, 110)];
     tableView1.tableHeaderView = headerView;
     [self.view addSubview:tableView1];
     
@@ -62,11 +62,11 @@
     [editebtn addTarget:self action:@selector(editbtnAction) forControlEvents:UIControlEventTouchUpInside];
     [headerView addSubview:editebtn];
     
-    nicknameLable = [RHMethods labelWithFrame:CGRectMake(XW(icon)+20, 15, 80, 20) font:fontTitle color:blacktextcolor text:@""];
+    nicknameLable = [Utility labelWithFrame:CGRectMake(XW(icon)+20, 15, 80, 20) font:fontTitle color:blacktextcolor text:@""];
     //    nicknameLable.textAlignment = NSTextAlignmentCenter;
     [headerView addSubview:nicknameLable];
     
-    phonlb = [RHMethods labelWithFrame:CGRectMake(XW(icon)+20, YH(nicknameLable) + 10, 100, 20) font:fontTitle color:blacktextcolor text:@""];
+    phonlb = [Utility labelWithFrame:CGRectMake(XW(icon)+20, YH(nicknameLable) + 10, 100, 20) font:fontTitle color:blacktextcolor text:@""];
     //    phonlb.textAlignment = NSTextAlignmentCenter;
     [headerView addSubview:phonlb];
     
@@ -196,7 +196,7 @@
     UIImageView *imageview = [[UIImageView alloc]initWithFrame:CGRectMake((W(butt) - image.size.width)/2.0, (H(butt) - image.size.height - 5 - 20)/2.0, image.size.width, image.size.height)];
     imageview.image = image;
     [butt addSubview:imageview];
-    UILabel *titleLable = [RHMethods labelWithFrame:CGRectMake(0, YH(imageview) + 5, W(butt), 20) font:fontTitle color:blacktextcolor text:title];
+    UILabel *titleLable = [Utility labelWithFrame:CGRectMake(0, YH(imageview) + 5, W(butt), 20) font:fontTitle color:blacktextcolor text:title];
     titleLable.textAlignment = NSTextAlignmentCenter;
     [butt addSubview:titleLable];
     return butt;
@@ -321,7 +321,7 @@
         ipc.allowsEditing = YES;
         ipc.delegate=self;
         [self presentViewController:ipc animated:YES completion:^{
-            if (kVersion7) {
+            if (Version7) {
                 [[UIApplication sharedApplication] setStatusBarStyle: UIStatusBarStyleDefault];
             }
         }];
@@ -390,14 +390,14 @@
     [self dismissViewControllerAnimated:YES completion:^{
     }];
     [self dismissViewControllerAnimated:YES completion:^{
-        if (kVersion7) {
+        if (Version7) {
             [[UIApplication sharedApplication] setStatusBarStyle: UIStatusBarStyleLightContent];
         }
     }];
 }
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
     [self dismissViewControllerAnimated:YES completion:^{
-        if (kVersion7) {
+        if (Version7) {
             [[UIApplication sharedApplication] setStatusBarStyle: UIStatusBarStyleLightContent];
         }
     }];

@@ -11,7 +11,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface E_HUDView : UIView
+@interface E_HUDView : UIView<CAAnimationDelegate>
 {
     UIFont *msgFont;
 }

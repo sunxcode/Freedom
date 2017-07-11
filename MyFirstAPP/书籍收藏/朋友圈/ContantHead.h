@@ -36,7 +36,6 @@ typedef NS_ENUM(NSInteger, GestureType) {
 
 #define DELAYEXECUTE(delayTime,func) (dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{func;}))
 
-#define WS(weakSelf)  __weak __typeof(self)weakSelf = self;
 
 #define kContentText1 @"思想不会流血，不会感到痛苦，思想不会死去"
 

@@ -58,7 +58,6 @@
 @synthesize textView;
 @synthesize lblPlaceholder;
 @synthesize sendButton;
-
 @synthesize keyboardHeight;
 
 
@@ -150,7 +149,7 @@
 }
 
 - (void) awakeFromNib
-{
+{[super awakeFromNib];
     [self composeView];
 }
 

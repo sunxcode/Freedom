@@ -61,16 +61,7 @@
 @implementation EnergyContactUSViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UILabel *ab = [self.navView viewWithTag:101];
-    [ab removeFromSuperview];
-    label = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, kScreenWidth-140, 44)];
-    label.backgroundColor = [UIColor clearColor];
-    label.font = BoldFont(18);
-    label.textColor  = [UIColor blackColor];
-    label.shadowOffset = CGSizeMake(0, 0);
-    label.textAlignment = NSTextAlignmentCenter;
-    UIView *nV = [self.navView viewWithTag:102];
-    [nV addSubview:label];
+
     [self loadUI];
 }
 -(void)loadData{

@@ -46,7 +46,7 @@
 }
 #pragma mark - 创建tableView
 - (void)setupTableView{
-    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, APPW, APPH-TabBarHeight+2) style:UITableViewStylePlain];
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, APPW, APPH-TabBarH+2) style:UITableViewStylePlain];
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.tableHeaderView = [self headerView];

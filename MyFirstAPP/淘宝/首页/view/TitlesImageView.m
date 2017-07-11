@@ -15,7 +15,7 @@
 }
 
 - (void)awakeFromNib {
-
+[super awakeFromNib];
 }
 
 - (void)setTitle:(NSString*)str color:(UIColor*)aColor size:(CGFloat)aSize {

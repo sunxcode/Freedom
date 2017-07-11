@@ -13,7 +13,7 @@
 }
 
 - (void)awakeFromNib {
-    // Initialization code
+    [super awakeFromNib];
     lable.backgroundColor = RGBACOLOR(245, 245, 245, 1);
 }
 

@@ -1,14 +1,14 @@
 //
-//  MyCustomSegue.m
-//  MyFirstAPP
+//  CustomSegue.m
+//  薛超APP框架
 //
-//  Created by 薛超 on 16/8/18.
+//  Created by 薛超 on 16/9/8.
 //  Copyright © 2016年 薛超. All rights reserved.
 //
 
-#import "MyCustomSegue.h"
+#import "CustomSegue.h"
 
-@implementation MyCustomSegue
+@implementation CustomSegue
 //-(void)perform{
 //    UIViewController * svc = self.sourceViewController;
 //    UIViewController * dvc = self.destinationViewController;
@@ -28,9 +28,8 @@
 -(void)perform{
     UIViewController * svc = self.sourceViewController;
     UIViewController * dvc = self.destinationViewController;
-//    [svc showViewController:dvc sender:svc];
+    //    [svc showViewController:dvc sender:svc];
     dvc.modalPresentationStyle = UIModalPresentationFormSheet;
     [svc presentViewController:dvc animated:YES completion:NULL];
 }
-
 @end

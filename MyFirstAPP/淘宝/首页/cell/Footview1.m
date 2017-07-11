@@ -10,8 +10,6 @@
 
 @implementation Footview1
 
-- (void)awakeFromNib {
-    // Initialization code
-}
+
 
 @end

@@ -1,5 +1,4 @@
-//  ViewController.m
-//  AWCollectionViewDialLayoutDemo
+
 #import "FirstViewController.h"
 #import "XCollectionViewDialLayout.h"
 #import "ElasticTransition.h"
@@ -71,14 +70,12 @@
 @end
 #pragma mark ViewController
 @interface FirstViewController ()<UICollectionViewDataSource, UICollectionViewDelegate,UISearchBarDelegate>{
-    __weak IBOutlet UICollectionView *collectionView;
+    __weak IBOutlet UICollectionView *homecollectionView;
 //    UIButton *editBtn;
     ElasticTransition *transition;
     UIScreenEdgePanGestureRecognizer *LibraryGR;
     UIScreenEdgePanGestureRecognizer *SettingsGR;
-    
     UISearchBar *searchBar;
-
     BOOL showingSettings;
     UIView *settingsView;
     UILabel *radiusLabel;
@@ -115,12 +112,21 @@ static FirstViewController *FVC = nil;
     searchBar.delegate = self;
     searchBar.placeholder = @"搜索";
 //    searchBar.barTintColor = gradcolor;
-    [self navbarTitle:nil titleView:searchBar titleFrame:CGRectMake(55, NavY, kScreenWidth-120, 44) NavBGColor:RGBCOLOR(201, 201, 206) NavBGImage:nil hiddenLine:NO];
-    self.navView.frameY-=20;
-    [self.navView addSubview:searchBar];
-    [self leftButton:CGRectMake(Boardseperad, NavY, 44, 44) title:nil image:@"userLogo" round:YES sel:@selector(gotoSettingsView:)];
-    [self rightButton:CGRectMake(kScreenWidth-60, NavY, 44, 44) title:nil image:@"settings" round:NO sel:@selector(showSettingsView:)];
-    // 键盘通知
+//    [self setTitle:nil titleView:searchBar backGroundColor:gradcolor backGroundImage:nil];
+    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:self];
+    
+    nav.title = @"titlesd";
+    UIBarButtonItem *ad = [[UIBarButtonItem alloc]initWithTitle:@"bianji" style:UIBarButtonItemStyleDone actionBlick:^{
+        DLog(@"编辑了");
+    }];
+    self.navigationItem.rightBarButtonItem = ad;
+    self.navigationController.navigationItem.rightBarButtonItem = ad;
+    self.navigationController.navigationItem.titleView = searchBar;
+    nav.navigationItem.rightBarButtonItem = ad;
+    
+//    [self leftBarButtonItemWithTitle:nil Image:[UIImage imageNamed:@"userLogo"] customView:nil style:UIBarButtonItemStyleDone target:self action:@selector(gotoSettingsView:)];
+//    [self rightBarButtonItemWithTitle:nil Image:[UIImage imageNamed:@"settings"] customView:nil style:UIBarButtonItemStyleDone target:self action:@selector(showSettingsView:)];
+      // 键盘通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     
@@ -144,12 +150,11 @@ static FirstViewController *FVC = nil;
     [self.view addGestureRecognizer:LibraryGR];
     showingSettings = NO;
     [self buildSettings];
-    [collectionView registerClass:[CollectionViewCell1 class] forCellWithReuseIdentifier:cellId1];
-    [collectionView registerClass:[CollectionViewCell2 class] forCellWithReuseIdentifier:cellId2];
-//  [self readData];
-    collectionView.delegate = self;
-    collectionView.dataSource = self;
-    collectionView.backgroundColor = RGBACOLOR(230, 230, 230, 1);
+    [homecollectionView registerClass:[CollectionViewCell1 class] forCellWithReuseIdentifier:cellId1];
+    [homecollectionView registerClass:[CollectionViewCell2 class] forCellWithReuseIdentifier:cellId2];
+    homecollectionView.delegate = self;
+    homecollectionView.dataSource = self;
+    homecollectionView.backgroundColor = RGBACOLOR(230, 230, 230, 1);
     //下雪 每隔1秒下一次
     timer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(snowAnimat:) userInfo:nil repeats:YES];
     [timer setFireDate:[NSDate distantFuture]];
@@ -205,7 +210,7 @@ static FirstViewController *FVC = nil;
     [settingsView addSubviews:exampleSwitch,radiusLabel,radiusSlider,angularSpacingLabel,angularSpacingSlider,xOffsetLabel,xOffsetSlider,nil];
     [self.view addSubview:settingsView];
     dialLayout = [[XCollectionViewDialLayout alloc] initWithRadius:radiusSlider.value * 1000 andAngularSpacing:angularSpacingSlider.value * 90 andCellSize:CGSizeMake(240, 100) andAlignment:WHEELALIGNMENTCENTER andItemHeight:100 andXOffset:xOffsetSlider.value * 320];
-    [collectionView setCollectionViewLayout:dialLayout];
+    [homecollectionView setCollectionViewLayout:dialLayout];
 }
 
 -(void)switchExample{
@@ -220,7 +225,7 @@ static FirstViewController *FVC = nil;
         [dialLayout setWheelType:WHEELALIGNMENTCENTER];
     }
     [self updateDialSettings];
-    [collectionView reloadData];
+    [homecollectionView reloadData];
 }
 -(void)updateDialSettings{
     CGFloat radius = radiusSlider.value * 1000;
@@ -320,7 +325,7 @@ static FirstViewController *FVC = nil;
     NSError *error = nil;
     NSArray *b = [del.managedObjectContext executeFetchRequest:request error:&error];
     self.items = [[NSMutableArray alloc] initWithArray:b];
-    [collectionView reloadData];
+    [homecollectionView reloadData];
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBa{

@@ -36,7 +36,7 @@
     self.centerView = [self makeDefaultCenterView];
     self.centerView.frame = self.bounds;
     self.startAngle = -75;
-    self.distanceBetweenPopouts = 20;
+    self.distanceBetweenPopouts = 2*180/10;
     self.distanceFromCenter = 100;
     self.stagger = 0.1;
     self.animationDuration = 0.4;

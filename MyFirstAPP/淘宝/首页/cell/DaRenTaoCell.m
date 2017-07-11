@@ -19,7 +19,7 @@
 }
 
 - (void)awakeFromNib {
-    // Initialization code
+    [super awakeFromNib];
     mainView.backgroundColor = [UIColor whiteColor];
     view1 = [[TitlesImageViewFull alloc] init];
     view2 = [[TitlesImageViewFull alloc] init];

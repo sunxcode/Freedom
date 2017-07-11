@@ -21,18 +21,13 @@
 @end
 
 @implementation FogetKeyViewController
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureExec:)];
     [self.view addGestureRecognizer:tapGesture];
     [self loadUI];
-   
 }
-
 -(void) loadUI{
-    //    btnBg03
-    
     self.refPhoneTF.returnKeyType = UIReturnKeyDone;
     self.refPhoneTF.delegate = self;
     self.refMSGTF.returnKeyType = UIReturnKeyDone;
@@ -41,23 +36,17 @@
     self.refLoginKeyTF.delegate = self;
     self.refLoginKeyAgainTF.returnKeyType = UIReturnKeyDone;
     self.refLoginKeyAgainTF.delegate = self;
-    
-    [self.scrolView setFrame:CGRectMake(0, 64, W(self.view), kScreenHeight-64)];
-    self.scrolView.contentSize = CGSizeMake(0, kScreenHeight + 1);
+    [self.scrolView setFrame:CGRectMake(0, 64, W(self.view), APPH-64)];
+    self.scrolView.contentSize = CGSizeMake(0, APPH + 1);
     [self.refPhoneTFBG setImage:[[UIImage imageNamed:@"btnBg03"] stretchableImageWithLeftCapWidth:50 topCapHeight:0]];
     [self.refMSGTFBG setImage:[[UIImage imageNamed:@"btnBg03"] stretchableImageWithLeftCapWidth:50 topCapHeight:0]];
     [self.refLoginTFBG setImage:[[UIImage imageNamed:@"btnBg03"] stretchableImageWithLeftCapWidth:50 topCapHeight:0]];
     [self.refLoginTFBG2 setImage:[[UIImage imageNamed:@"btnBg03"] stretchableImageWithLeftCapWidth:50 topCapHeight:0]];
-    
     self.refYZMView.layer.cornerRadius = 20;
-    
     self.refRegisBtn.layer.cornerRadius = 20;
     _refLoginKeyTF.secureTextEntry = YES;
     _refLoginKeyAgainTF.secureTextEntry = YES;
 }
-
-
-
 -(void)BtnOnclick:(id)sender{
     if (sender == self.refYZMBtn) {
         //验证码
@@ -99,10 +88,7 @@
 
 }
 
-
 -(void) tapGestureExec:(UIGestureRecognizer*) gesture {
-//    @property (nonatomic, weak) IBOutlet UITextField *refPhoneTF,*refMSGTF,*refLoginKeyTF,*refLoginKeyAgainTF;
-    
     if ([gesture state] == UIGestureRecognizerStateEnded) {
         if ([_refPhoneTF canResignFirstResponder]) {
             [_refPhoneTF resignFirstResponder];
@@ -118,33 +104,22 @@
         }
     }
 }
-
-
 #pragma mark - textfielddelegate
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
     [self.view endEditing:YES];
     return YES;
 }
-
 #pragma mark - keyboard
-
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     //注册监听键盘事件
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleKeyboardDidShow:) name:UIKeyboardWillShowNotification object:nil];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleKeyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-    
 }
-
-
 -(void)viewWillDisappear:(BOOL)animated{
-    
     [super viewWillAppear:animated];
     [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
-
 
 -(void)handleKeyboardDidShow:(NSNotification *)notification{
     NSDictionary *info = [notification userInfo];
@@ -153,18 +128,13 @@
     CGSize kbSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey]CGRectValue].size;
     CGFloat distanceToMove = kbSize.height;
     NSLog(@"---->动态键盘高度:%f",distanceToMove);
-    
     [UIView animateWithDuration:0.3 animations:^{
         _scrolView.frame=CGRectMake(X(_scrolView), Y(_scrolView), W(_scrolView),self.view.frame.size.height- Y(_scrolView)-distanceToMove);
-        
-        
     }];
 }
-- (void)handleKeyboardWillHide:(NSNotification *)notification
-{
+- (void)handleKeyboardWillHide:(NSNotification *)notification{
     [UIView animateWithDuration:0.3 animations:^{
-        
-        _scrolView.frame=CGRectMake(0, 64, kScreenWidth,kScreenHeight-64);
+        _scrolView.frame=CGRectMake(0, 64, APPW,APPH-64);
         _scrolView.contentOffset = CGPointMake(0, 0);
         
     }];

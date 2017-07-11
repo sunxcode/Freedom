@@ -30,7 +30,7 @@
     [bgView setPagingEnabled:YES];
     [self addSubview:bgView];
     for (int i=0; i<4; i++) {
-        UIImageView *imageV=[RHMethods imageviewWithFrame:CGRectMake(i*W(bgView), 0, W(bgView), H(bgView)) defaultimage:[NSString stringWithFormat:@"gfbyindao%d",i+1]];
+        UIImageView *imageV=[Utility imageviewWithFrame:CGRectMake(i*W(bgView), 0, W(bgView), H(bgView)) defaultimage:[NSString stringWithFormat:@"gfbyindao%d",i+1]];
         imageV.contentMode=UIViewContentModeScaleAspectFill;
         imageV.clipsToBounds=YES;
         [bgView addSubview:imageV];

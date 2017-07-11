@@ -6,10 +6,11 @@ pod 'SVProgressHUD', '0.9'                           #提示性信息展示     
 pod 'Reachability' ,'3.1.1'                          #检测网络状况wifi还是3G          https://github.com/tonymillion/Reachability
 pod 'MJRefresh', '~> 3.1.0'
 pod 'MJExtension', '~> 3.0.10'                       #json与对象                     https://github.com/CoderMJLee/MJExtension
-pod 'SDWebImage', '~> 3.7.4'
+pod 'SDWebImage', '~> 3.7.4'                         #网络图片请求                    https://github.com/rs/SDWebImage
 pod 'KissXML', '5.0'                                 #XML文件解析                    https://github.com/robbiehanson/KissXML
 pod 'ElasticTransitionObjC'                          #OC版流动性质的拖拉界面切换效果    https://github.com/taglia3/ElasticTransition-ObjC
-#pod 'ElasticTransition'                 #Swift流动性质的拖拉界面切换效果   https://github.com/lkzhao/ElasticTransition
+#pod 'ElasticTransition', '~> 3.0.0'                  #Swift流动性质的拖拉界面切换效果   https://github.com/lkzhao/ElasticTransition
+#pod ‘MotionAnimation’                                #动态滑动效果的单元格             https://github.com/lkzhao/MotionAnimation
 pod 'PPRevealSideViewController', '~> 1.2.1'         #左界面和右界面                  https://github.com/ipup/PPRevealSideViewController
 #pod 'iCarousel', '1.7.6'                            #集合视图圆圈                    https://github.com/nicklockwood/iCarousel
 #pod 'ZYQAssetPickerController', '~> 1.0.0'          #可适配的照片查看器               https://github.com/heroims/ZYQAssetPickerController
@@ -19,6 +20,7 @@ pod 'PPRevealSideViewController', '~> 1.2.1'         #左界面和右界面     
 #pod 'XMPPFramework'                                 #聊天                           https://github.com/robbiehanson/XMPPFramework
 #pod 'JSONModel', '0.9.0'                            #jsonmodel                      https://github.com/jsonmodel/jsonmodel
 pod 'AFNetworking', '~> 3.0'                         #轻量级网络请求                   https://github.com/AFNetworking/AFNetworking
+pod 'RESideMenu'                                     #左右视图                        https://github.com/romaonthego/RESideMenu
 #下面是微信的
 pod 'CocoaAsyncSocket', '~> 7.4.2'
 pod 'Masonry', '~> 0.6.4'
@@ -29,11 +31,18 @@ pod 'CocoaLumberjack', '~> 2.2.0'
 pod 'BlocksKit', '~> 2.2.5'
 pod 'MWPhotoBrowser', '~> 2.1.1'
 
-pod 'RESideMenu' # https://github.com/romaonthego/RESideMenu
 #pod 'TheAmazingAudioEngine'
 #https://github.com/TheAmazingAudioEngine/TheAmazingAudioEngine
 #http://theamazingaudioengine.com/doc/_getting-_started.html
 #除了要依赖常规framework之外还依赖Accelerate.framework和AudioToolbox.framework和AVFoundation.framework
+#使用alipaySDK需要在buildsettings searchPath header  增加这一行："$(SRCROOT)/薛超APP框架/ThirdSDK/alipaySDK"
+#https://doc.open.alipay.com/doc2/detail.htm?treeId=54&articleId=104509&docType=1
+#Demo说明 http://www.2cto.com/kf/201606/520021.html
+#libz.tbd  libc++.tbd  CoreMotion.framework  CFNetwork.framework  libc++.dylib  AlipaySDK.framework  libcrypto.a   libssl.a
+#SystemConfiguration.framework   QuartzCore.farmework  libz.dylib  CoreText.framework  CoreTelephoney.framework   Foundation.frame
+#CoreGraphics.framework    UIKit.framework  Security.framework  #商户私钥、 支付宝公钥、商户ID（partner）和账号ID（seller）
+#https://pay.weixin.qq.com/wiki/doc/api/index.html 微信支付 https://pay.weixin.qq.com/wiki/doc/api/app/app.php?chapter=11_1
+
 #pod 'ASIHttp'                                       #重量级网络请求
 #pod 'SDWebImage/WebP'                                #网络图片请求                    https://github.com/rs/SDWebImage
 #以下是网络分享和第三方登录功能                                                           https://github.com/MobClub/ShareSDK-for-iOS

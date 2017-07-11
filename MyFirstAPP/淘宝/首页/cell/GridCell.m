@@ -18,6 +18,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    [super awakeFromNib];
     iv.clipsToBounds = YES;
     
     bgview.layer.shadowColor =[UIColor blackColor].CGColor;

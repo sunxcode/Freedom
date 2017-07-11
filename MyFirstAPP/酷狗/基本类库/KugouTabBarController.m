@@ -29,7 +29,7 @@
 - (TabBarView *)coustomTabBar{
     if (_coustomTabBar == nil) {
         _coustomTabBar = [TabBarView show];
-        _coustomTabBar.frame = CGRectMake(0, 49-TabBarHeight, APPW, TabBarHeight);
+        _coustomTabBar.frame = CGRectMake(0, 49-TabBarH, APPW, TabBarH);
     }return _coustomTabBar;
 }
 - (void)viewDidAppear:(BOOL)animated{

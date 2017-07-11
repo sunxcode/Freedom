@@ -1,231 +1,169 @@
 
 #import <Foundation/Foundation.h>
+#define USERACCOUNT @"userAccount"//账号
+#define USERID @"userId"//ID
+#define USERNAME @"userName"//用户名
+#define USERPWD @"userPwd"//密码
+#define USERLOGO @"userLogo"//头像
+#define USERTOKEN @"userToken"//口令
+#define USERADDRESS @"userAddress"//地址
+#define USERLONGITUDE @"userlongitude"//经度
+#define USERLATITUDE @"userlatitude"//维度
+#define USERTYPE @"usertype"//用户级别
+#define USERSIGN @"userSign"//用户签名
+#define USERMONY @"usermony"//用户金额
+#define USERSTATUS @"userstatus"//用户状态
+#define USERCARDS @"usercards"//用户银行卡号
+#define USERPHONE @"userphone"//手机号
+#define USERIDCARD @"useridcard"//身份证号
+#define USERWECHARTNUM @"userWechartnum"//微信号
+#define USERQQNUMBER @"userQQnumber"//QQ号
+#define USERSEX @"userSex"//性别
+#define USERAGE @"userAge"//年龄
+#define USERPROTECT @"userProtect"//账号保护
+#define USEREMAIL @"userEmail"//邮箱
+#define USERDEVICES @"userDevices"//登录设备
+#define USERSYSTEM @"userSystem"//手机系统
+#define USERIP @"userIP"//手机登录的IP地址
+#define USERREALNAME @"userRealName"//真实姓名
 
-#define default_pwd @"default_pwd"
-#define default_userName @"default_userName"
-#define default_userLogo @"default_userLogo"
-#define default_userId @"default_userId"
-#define default_userToken @"default_userToken"
-#define default_userAccount @"default_userAccount"
-#define default_userAddress @"default_userAddress"
-#define default_userstatus @"default_userstatus"
-#define default_useriscard @"default_useriscard"
-#define default_userallmony @"default_userallmony"
-#define default_usercanusermony @"default_usercanusermony"
-#define default_userphone @"default_userphone"
-#define default_useridcard @"default_useridcard"
-#define default_setDefaultStartVibrate @"default_setDefaultStartVibrate"
-#define default_setDefaultplaySystemSound @"default_setDefaultplaySystemSound"
-
-#import "CustomTabBar.h"
 @class BaseViewController;
-#import "BaseViewController.h"
-//#import "SRWebSocket.h"
-//#import <AlipaySDK/AlipaySDK.h>//支付宝
-
-//1成功 0失败 2未知错误
+///1成功 0失败 2未知错误
 typedef void (^LoginSuc)(NSInteger NoLogin);
-typedef void (^DownloadNewData)(BOOL isSuccess);
-
 @interface Utility : NSObject
-//启用缓存
-@property (nonatomic,assign) BOOL offline;
-
+#pragma mark 用户相关属性
+@property (nonatomic, strong) NSString *userAccount;//账号
+@property (nonatomic, strong) NSString *userId;//ID
+@property (nonatomic, strong) NSString *userName;//用户名
+@property (nonatomic, strong) NSString *userPwd;//密码
+@property (nonatomic, strong) NSString *userLogo;//头像
+@property (nonatomic, strong) NSString *userToken;//口令
+@property (nonatomic, strong) NSString *userAddress;//地址
+@property (nonatomic, strong) NSString *userlongitude;//经度
+@property (nonatomic, strong) NSString *userlatitude;//维度
+@property (nonatomic, strong) NSString *usertype;//用户级别
+@property (nonatomic, strong) NSString *userSign;//用户签名
+@property (nonatomic, strong) NSString *usermony;//用户金额
+@property (nonatomic, strong) NSString *userstatus;//用户状态
+@property (nonatomic, strong) NSString *usercards;//用户银行卡号
+@property (nonatomic, strong) NSString *userphone;//手机号
+@property (nonatomic, strong) NSString *useridcard;//身份证号
+@property (nonatomic, strong) NSString *userWechartnum;//微信号
+@property (nonatomic, strong) NSString *userQQnumber;//QQ号
+@property (nonatomic, strong) NSString *userSex;//性别
+@property (nonatomic, strong) NSString *userAge;//年龄
+@property (nonatomic, strong) NSString *userProtect;//账号保护
+@property (nonatomic, strong) NSString *userEmail;//邮箱
+@property (nonatomic, strong) NSString *userDevices;//登录设备
+@property (nonatomic, strong) NSString *userSystem;//手机系统
+@property (nonatomic, strong) NSString *userIP;//手机登录的IP地址
+@property (nonatomic, strong) NSString *userRealName;//真实姓名
+@property(nonatomic,weak)BaseViewController *currentViewController;
+@property (nonatomic,assign) BOOL offline;//启用缓存
+@property (nonatomic,strong) LoginSuc loginSuc;
+@property (nonatomic,strong)UITabBarController *CustomTabBar_zk;
+///单例初始化
 +(id)Share;
-+ (void)alertError:(NSString*)content;
-+ (void)alertSuccess:(NSString*)content;
-- (void)alert:(NSString*)content;
-- (void)alert:(NSString*)content delegate:(id)delegate;
-- (NSString*)timeToNow:(NSString*)theDate;
-- (BOOL) validateEmail: (NSString *) candidate ;
-- (BOOL) validateTel: (NSString *) candidate ;
-- (void) makeCall:(NSString *)phoneNumber;
 
-+ (BOOL)removeForArrayObj:(id)obj forKey:(NSString*)key;
-+ (void)saveToDefaults:(id)obj forKey:(NSString*)key;
-+ (void)saveToArrayDefaults:(id)obj forKey:(NSString*)key;
-+ (void)saveToArrayDefaults:(id)obj replace:(id)oldobj forKey:(NSString*)key;
-
-+ (id)defaultsForKey:(NSString*)key;
-+ (void)removeForKey:(NSString*)key;
-
-//用户相关
-@property (nonatomic, strong) NSString *userAccount;
-@property (nonatomic, strong) NSString *userId;
-@property (nonatomic, strong) NSString *userGroupId;
-@property (nonatomic, strong) NSString *userName;
-@property (nonatomic, strong) NSString *userPwd;
-@property (nonatomic, strong) NSString *userLogo;
-@property (nonatomic, strong) NSString *userToken;
-@property (nonatomic, strong) NSString *userAddress;
-@property (nonatomic, strong) NSString *userMobile;
-@property (nonatomic, strong) NSString *userlongitude;
-@property (nonatomic, strong) NSString *userlatitude;
-@property (nonatomic, strong) NSString *usertype;
-@property (nonatomic, strong) NSString *userroom_id;
-@property (nonatomic, strong) NSString *userSign;
-@property (nonatomic, strong) NSString *usermony;
-@property (nonatomic, strong) NSString *userstatus;
-@property (nonatomic, strong) NSString *useriscards;
-@property (nonatomic, strong) NSString *userallmony;
-@property (nonatomic, strong) NSString *usercanusermony;
-@property (nonatomic, strong) NSString *userphone;
-@property (nonatomic, strong) NSString *useridcard;
--(void)renzhenghh;
-
-@property(nonatomic,weak)BaseViewController* currentViewController;
-//@property (nonatomic,strong) NSString *userNemberId;////绑定设备的id
-//@property (nonatomic,assign) BOOL userBluetoothBinding;////绑定设备
-
-@property (nonatomic, assign) BOOL boolAnimationHidden;
-@property (nonatomic, assign) BOOL isMan;
-@property (nonatomic, assign) BOOL isPushEnable;
-
-@property (nonatomic,assign ) BOOL isAlertViewFlag;//弹出类型设置
-@property (nonatomic, strong) NSString *deviceNum;
-
-@property (nonatomic, strong) LoginSuc loginSuc;
-@property (nonatomic, strong) DownloadNewData loadNewData;
-//
-@property (nonatomic, strong) NSMutableDictionary *badgeViewDict;
-
-@property (nonatomic,strong)CustomTabBar *CustomTabBar_zk;
-
-//@property(nonatomic,strong)SRWebSocket *srWebSocket;
-
-@property (nonatomic, assign) BOOL isDefaultNOStartSystemShake;//是否开启振动
-@property (nonatomic, assign) BOOL isNOStartVibrate;
-@property (nonatomic, assign) BOOL isDefaultNOplaySystemSound;//是否开启声音
-@property (nonatomic, assign) BOOL isNOplaySystemSound;
-
-
-
-+(id)uid;
--(void)ShowMessage:(NSString *)title msg:(NSString *)msg;
--(void)hiddenMessageAlert;
--(void)isLoginAccount:(NSString *)account pwd:(NSString *)password aLogin:(LoginSuc)aLoginSuc;
-
-
--(void)isLogin:(LoginSuc)aLoginSuc;
--(BOOL)isLogin;
-
-
-
--(void)loginWithAccount:(NSString *)account pwd:(NSString *)password;
--(void)registerWithAccount:(NSString *)account pwd:(NSString *)password authorCode:(NSString *)code;
-//-(void)registerWithAccount:(NSString *)account code:(NSString *)aCode pwd:(NSString *)password name:(NSString *)name sex:(BOOL)isMan;
-//获取内存地址
--(NSString *)getAddressBy:(NSString *)description;
-- (BOOL)isAvailableIOS:(CGFloat)availableVersion;
-//-(NSString*)blowfish:(NSString*)password;
-//登陆注册
-- (void)showLoginAlert:(BOOL)abool;
+#pragma mark 登录相关
+///显示登陆注册界面
+- (void)showLoginAlert;
+///隐藏登录注册界面
 - (void)hiddenLoginAlert;
-//刷新push enable
-- (void)reloadIsPushEnable;
-//用户本地数据
+///是否在线
+-(BOOL)isLogin;
+-(void)isLogin:(LoginSuc)aLoginSuc;
+-(void)isLoginAccount:(NSString *)account pwd:(NSString *)password aLogin:(LoginSuc)aLoginSuc;
+///用账号和密码登录
+-(void)loginWithAccount:(NSString *)account pwd:(NSString *)password;
+///用账号密码和验证码提交注册
+-(void)registerWithAccount:(NSString *)account pwd:(NSString *)password authorCode:(NSString *)code;
+#pragma mark userDefaults
+///保存用户数据到本地
 -(void)saveUserInfoToDefault;
+///从本地读取用户数据
 -(void)readUserInfoFromDefault;
+///清空本地用户数据
 -(void)clearUserInfoInDefault;
-//清除本地数据库
--(void)removeSqlData;
-
-///改变时间格式yy/MM/dd HH:mm
-- (NSString*)time_ChangeTheFormat:(NSString*)theDate;
--(NSInteger )time_Age:(NSString *)theDate;//年龄计算
-///计算时间差
--(NSInteger)ACtimeToNow:(NSString*)theDate;
-////data-固定格式时间yy/MM/dd
--(NSString *)timeToFormatConversion:(NSString *)aDate;
-
-////时间戳
+///删除本地数组
++ (BOOL)removeArrayObj:(id)obj fordefaultsKey:(NSString*)key;
+///数组本地化
++ (void)saveArrayToDefaults:(id)obj forKey:(NSString*)key;
+///数组本地替换
++ (void)saveArrayToDefaults:(id)obj replace:(id)oldobj forKey:(NSString*)key;
+#pragma mark 时间戳
+///时间戳格式化时间yyyy-MM-dd HH:mm
 -(NSString *)timeToTimestamp:(NSString *)timestamp;
-////刚刚。。。。
--(NSString *)time_strDate:(NSString *)theDate;
-///时间
-- (NSString*)timeToNow_zk:(NSString*)theDate;
-
-///通过时间戳计算生日
-- (NSString*)birthdayWithTime:(NSString *)timestamp;
-
-//
--(void)getUserIdByDeviceNum;
-
-///处理图片大小
--(UIImage*)imageWithImageSimple:(UIImage*)image scaledToSize:(CGSize)newSize;
-//通过颜色来生成一个纯色图片
-- (UIImage *)imageFromColor:(UIColor *)color rect:(CGSize )aSize;
-
+///计算时间差
+-(NSString *)timeToNow:(NSString *)theDate;
+#pragma mark 数据格式化
+///格式化电话号码
+-(NSString *)FormatPhone:(NSString *)str;
+///格式化身份证号
+-(NSString *)FormatIDC:(NSString *)str;
+///格式化组织机构代码证
+-(NSString *)FormatOCC:(NSString *)str;
+///格式化车牌号
+-(NSString *)FormatPlate:(NSString *)str;
+///格式化vin
+-(NSString *)FormatVin:(NSString *)str;
+///数字格式化
+-(NSString*)FormatNumStr:(NSString*)nf;
+///判断是否为整形
+- (BOOL)isPureInt:(NSString*)string;
+///判断是否为浮点形
+- (BOOL)isPureFloat:(NSString*)string;
+///验证邮箱
+- (BOOL)validateEmail:(NSString *)candidate;
+///验证手机号
+- (BOOL)validateTel:(NSString *)candidate ;
+#pragma mark 定位
+///定位
+-(void)loadUserLocation;
+#pragma mark 振动与抖动
+///振动
+-(void)StartSystemShake;
+///播放提示音
+-(void)playSystemSound;
 ///类似qq聊天窗口的抖动效果
--(void)viewAnimations:(UIView *)aV;
-
+-(void)shakeViewAnimation:(UIView *)aV;
 ///view 左右抖动
 -(void)leftRightAnimations:(UIView *)view;
-///背景view
+#pragma mark 视图与界面
+///背景view  在没有数据的时候用于提示用户的界面
 - (UIView*)tipsView:(NSString*)str;
 ///圆角或椭圆
 -(void)viewLayerRound:(UIView *)view borderWidth:(float)width borderColor:(UIColor *)color;
-
-//讯飞
+///处理图片大小
+-(UIImage*)imageWithImageSimple:(UIImage*)image scaledToSize:(CGSize)newSize;
+///通过颜色来生成一个纯色图片
+- (UIImage *)imageFromColor:(UIColor *)color size:(CGSize )aSize;
+///启动引导过渡图片
+-(void)showStartTransitionView;
+///关闭引导过渡图片
+-(void)hiddenStartTransitionView;
+#pragma mark 元件创建
++(UITextField *)textFieldlWithFrame:(CGRect)aframe font:(UIFont*)afont color:(UIColor*)acolor placeholder:(NSString *)aplaceholder text:(NSString*)atext;
++(UILabel*)labelWithFrame:(CGRect)aframe font:(UIFont*)afont color:(UIColor*)acolor text:(NSString*)atext;
++(UILabel*)labelWithFrame:(CGRect)aframe font:(UIFont*)afont color:(UIColor*)acolor text:(NSString*)atext textAlignment:(NSTextAlignment)aalignment;
++(UILabel*)labelWithFrame:(CGRect)aframe font:(UIFont*)afont color:(UIColor*)acolor text:(NSString*)atext textAlignment:(NSTextAlignment)aalignment setLineSpacing:(float)afloat;
++(UIButton*)buttonWithFrame:(CGRect)_frame title:(NSString*)_title  image:(NSString*)_image bgimage:(NSString*)_bgimage;
++(UIImageView*)imageviewWithFrame:(CGRect)_frame defaultimage:(NSString*)_image;
++(UIImageView*)imageviewWithFrame:(CGRect)_frame defaultimage:(NSString*)_image stretchW:(NSInteger)_w stretchH:(NSInteger)_h;
+#pragma mark 蓝牙 语音识别 支付 分享 即时聊天 打电话
+///是否支持蓝牙协议4.0
+- (BOOL)whetherToSupportBluetoothProtocol;
+///讯飞
 //-(void)iflyView:(NSString *)str;
-
+///拨打电话
+- (void)makeCall:(NSString *)phoneNumber;
+#pragma mark 版本
 ///获取当前app版本
 -(NSString *)VersionSelect;
-//更新版本
+///判断ios版本是否高于当前版本要求
+- (BOOL)isAvailableIOS:(CGFloat)availableVersion;
+///更新版本
 - (void)upDataVersion;
--(void)VersionNew;
-
-///判断是否为整形：
-- (BOOL)isPureInt:(NSString*)string;
-///判断是否为浮点形：
-- (BOOL)isPureFloat:(NSString*)string;
-
-
-//////////////数据格式化
-//格式化电话号码
--(NSString *)ACFormatPhone:(NSString *)str;
-//格式化手机号
--(NSString *)ACFormatMobile:(NSString *)str;
-//格式化身份证号
--(NSString *)ACFormatIDC:(NSString *)str;
-//格式化组织机构代码证
--(NSString *)ACFormatOCC:(NSString *)str;
-//格式化车牌号
--(NSString *)ACFormatPlate:(NSString *)str;
-//格式化vin
--(NSString *)ACFormatVin:(NSString *)str;
-//------数字格式化----------------
--(NSString*)ACFormatNumStr:(NSString*)nf;
-
-//格式化身份证号2
--(NSString *)ACFormatIDC_DH:(NSString *)str;
-//格式化vin2
--(NSString *)ACFormatVin_DH:(NSString *)str;
-
-//定位
--(void)loadUserLocation;
-
-//-(void)paymentResult:(NSString *)result;
-//-(void)showAlipay:(id)data;
-
-//-(void)WebSocketsend:(NSString *)strJson;
-//-(void)websocketClose;
-//- (void)WebSocketLogin;
-
-//z振动
--(void)StartSystemShake;
-//播放提示音
--(void)playSystemSound;
-
-///启动过渡图片
--(void)showStartTransitionView;
--(void)hiddenStartTransitionView;
-
-//是否支持蓝牙协议4.0
-- (BOOL)whetherToSupportBluetoothProtocol;
-
-////读取数据
-//-(void)showDataSynchronizationView;
-//-(void)hiddenDataSynchronizationView;
-
+///返回字符串尺寸大小
++(CGSize)sizeOfStr:(NSString *)str andFont:(UIFont *)font andMaxSize:(CGSize)size;
 @end

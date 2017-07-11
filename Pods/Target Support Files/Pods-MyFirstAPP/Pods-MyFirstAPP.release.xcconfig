@@ -7,5 +7,4 @@ OTHER_CFLAGS = $(inherited) -iquote "$PODS_CONFIGURATION_BUILD_DIR/AFNetworking/
 OTHER_LDFLAGS = $(inherited) -l"MobClickLibrary" -l"z" -framework "AFNetworking" -framework "BlocksKit" -framework "CocoaAsyncSocket" -framework "CocoaLumberjack" -framework "DACircularProgress" -framework "ElasticTransitionObjC" -framework "FMDB" -framework "JSONKit" -framework "KissXML" -framework "MBProgressHUD" -framework "MJExtension" -framework "MJRefresh" -framework "MWPhotoBrowser" -framework "Masonry" -framework "PPHelpMe" -framework "PPRevealSideViewController" -framework "RESideMenu" -framework "Reachability" -framework "ReactiveCocoa" -framework "SDWebImage" -framework "SVProgressHUD"
 PODS_BUILD_DIR = $BUILD_DIR
 PODS_CONFIGURATION_BUILD_DIR = $PODS_BUILD_DIR/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
-PODS_PODFILE_DIR_PATH = ${SRCROOT}/.
 PODS_ROOT = ${SRCROOT}/Pods

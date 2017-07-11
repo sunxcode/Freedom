@@ -109,7 +109,7 @@
     
     /** 转发微博整体 */
     UIView *retweetView = [[UIView alloc] init];
-    retweetView.backgroundColor = XFColor(240, 240, 240);
+    retweetView.backgroundColor = RGBCOLOR(240, 240, 240);
     [self.contentView addSubview:retweetView];
     self.retweetView = retweetView;
     
@@ -235,13 +235,13 @@
     /** 时间 */
     NSString *time = status.created_at;
     CGFloat timeX = statusFrame.nameLabelF.origin.x;
-    CGFloat timeY = CGRectGetMaxY(statusFrame.nameLabelF) + XFStatusCellBorderW;
+    CGFloat timeY = CGRectGetMaxY(statusFrame.nameLabelF) + 10;
     CGSize timeSize = [time sizeWithFont:XFStatusCellTimeFont];
     self.timeLabel.frame = (CGRect){{timeX, timeY}, timeSize};
     self.timeLabel.text = time;
 
     /** 来源 */
-    CGFloat sourceX = CGRectGetMaxX(self.timeLabel.frame) + XFStatusCellBorderW;
+    CGFloat sourceX = CGRectGetMaxX(self.timeLabel.frame) + 10;
     CGFloat sourceY = timeY;
     CGSize sourceSize = [status.source sizeWithFont:XFStatusCellSourceFont];
     self.sourceLabel.textColor = [UIColor grayColor];
@@ -285,7 +285,7 @@
 
 
 - (void)awakeFromNib {
-    // Initialization code
+    [super awakeFromNib];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

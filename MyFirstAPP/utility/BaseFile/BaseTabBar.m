@@ -1,16 +1,16 @@
 //
-//  MyTabBar.m
-//  视图整合练习
+//  BaseTabBar.m
+//  MyFirstAPP
 //
-//  Created by ISD1510 on 16/1/6.
-//  Copyright © 2016年 tarena. All rights reserved.
+//  Created by 薛超 on 16/9/20.
+//  Copyright © 2016年 薛超. All rights reserved.
 //
 
-#import "MyTabBar.h"
-@interface MyTabBar()
+#import "BaseTabBar.h"
+@interface BaseTabBar()
 @property(nonatomic,weak)UIButton *centerButton;
 @end
-@implementation MyTabBar
+@implementation BaseTabBar
 //告知系统动态处理delegate
 @dynamic delegate;
 -(instancetype)initWithFrame:(CGRect)frame{

@@ -262,7 +262,7 @@
     content.tag = 200;
     content.font = Font(13);
     content.delegate = delegate;
-    UILabel *desc = [RHMethods labelWithFrame:CGRectMake(10, 10, W(row), 21) font:Font(13) color:[UIColor grayColor] text:placeholder];
+    UILabel *desc = [Utility labelWithFrame:CGRectMake(10, 10, W(row), 21) font:Font(13) color:[UIColor grayColor] text:placeholder];
     desc.tag = 100;
     [row addSubview:desc];
     

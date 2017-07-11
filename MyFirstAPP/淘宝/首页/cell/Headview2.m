@@ -10,8 +10,5 @@
 
 @implementation Headview2
 
-- (void)awakeFromNib {
-    // Initialization code
-}
 
 @end

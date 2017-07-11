@@ -13,7 +13,7 @@
 }
 
 - (void)awakeFromNib {
-    // Initialization code
+    [super awakeFromNib];
     iv.layer.cornerRadius  = (kScreenWidth/5-8/5 -20) /2;
     iv.layer.masksToBounds = YES;
     iv.clipsToBounds = YES;

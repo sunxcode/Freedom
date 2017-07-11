@@ -13,7 +13,7 @@
 
 @implementation NSData (SDDataCache)
 
-+ (NSString *)cachePath
++ (NSString *)cachesPath
 {
     NSString *path = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) lastObject];
     path = [path stringByAppendingPathComponent:@"Caches"];
@@ -38,7 +38,7 @@
 
 + (NSString *)creatDataPathWithString:(NSString *)string
 {
-    NSString *path = [NSData cachePath];
+    NSString *path = [NSData cachesPath];
     path = [path stringByAppendingPathComponent:[self creatMD5StringWithString:string]];
     return path;
 }
@@ -54,9 +54,9 @@
     static BOOL isCheckedCacheDisk = NO;
     if (!isCheckedCacheDisk) {
         NSFileManager *manager = [NSFileManager defaultManager];
-        NSArray *contents = [manager contentsOfDirectoryAtPath:[self cachePath] error:nil];
+        NSArray *contents = [manager contentsOfDirectoryAtPath:[self cachesPath] error:nil];
         if (contents.count >= kSDMaxCacheFileAmount) {
-            [manager removeItemAtPath:[self cachePath] error:nil];
+            [manager removeItemAtPath:[self cachesPath] error:nil];
         }
         isCheckedCacheDisk = YES;
     }

@@ -24,13 +24,13 @@
     [self setupChildViews];
     [self setupContentView];
 //    [self setupRightGesture];
-    [CLNotificationCenter addObserver:self selector:@selector(getMessage) name:ChangeMainVCContentEnable object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getMessage) name:ChangeMainVCContentEnable object:nil];
 }
 - (void)getMessage{
     self.contentView.userInteractionEnabled = YES;
 }
 - (void)dealloc{
-    [CLNotificationCenter removeObserver:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 - (TitleScrollView *)titleView{
     if (_titleView == nil) {
@@ -45,7 +45,7 @@
     [self.navBar addSubview:self.titleView];    
     self.leftItem.image = [UIImage imageNamed:@"placeHoder-128"];
     self.leftItem.frame = CGRectMake(15, 34, 25, 25);
-    KGViewsBorder(self.leftItem, self.leftItem.frameWidth*0.5, 1, [UIColor grayColor])
+    RViewsBorder(self.leftItem, self.leftItem.frameWidth*0.5, 1, [UIColor grayColor]);
     self.rightItem.image = [UIImage imageNamed:@"main_search"];
     self.rightItem.frame = CGRectMake(APPW-40, 34, 20, 20);
     self.navBar.backgroundColor = [UIColor colorWithWhite:1 alpha:0];

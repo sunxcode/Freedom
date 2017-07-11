@@ -37,10 +37,10 @@
         [self.msgImageView setImage:[UIImage sd_animatedGIFWithData:data]];
     }
     else {      // 表情组被删掉，先从缓存目录中查找，没有的话在下载并存入缓存目录
-        NSString *cachePath = [NSFileManager cacheForFile:[NSString stringWithFormat:@"%@_%@.gif", message.emoji.groupID, message.emoji.emojiID]];
-        NSData *data = [NSData dataWithContentsOfFile:cachePath];
+        NSString *MycachePath = [NSFileManager cacheForFile:[NSString stringWithFormat:@"%@_%@.gif", message.emoji.groupID, message.emoji.emojiID]];
+        NSData *data = [NSData dataWithContentsOfFile:MycachePath];
         if (data) {
-            [self.msgImageView setImage:[UIImage imageNamed:cachePath]];
+            [self.msgImageView setImage:[UIImage imageNamed:MycachePath]];
             [self.msgImageView setImage:[UIImage sd_animatedGIFWithData:data]];
         }
         else {

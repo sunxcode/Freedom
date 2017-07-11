@@ -10,7 +10,8 @@
 #import "XFStatus.h"
 #import "XFUser.h"
 #import "XFStatusPhotosView.h"
-
+#define XFStatusCellBorderW 10
+#define XFStatusCellBorderH 5
 
 @implementation XFStatusFrame
 
@@ -155,7 +156,7 @@
     self.toolbarF = CGRectMake(toolbarX, toolbarY, toolbarW, toolbarH);
     
     /* cell的高度 */
-    self.cellHeight = CGRectGetMaxY(self.toolbarF) + XFStatusMargin;
+    self.cellHeight = CGRectGetMaxY(self.toolbarF) + Boardseperad;
 
 
 }

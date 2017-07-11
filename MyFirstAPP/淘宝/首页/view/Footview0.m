@@ -24,7 +24,7 @@
 @implementation Footview0
 
 - (void)awakeFromNib {
-    // Initialization code
+    [super awakeFromNib];
     
     _dataArr = @[@"111尼玛xx门又出现了啊，为什么没有我啊",
                  @"222淘宝开新店了优惠多多，速度购",

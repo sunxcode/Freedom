@@ -43,8 +43,9 @@
 }
 
 - (void)awakeFromNib{
+    [super awakeFromNib];
     self.backgroundColor = [UIColor whiteColor];
-    KGViewsBorder(self.IconView, self.IconView.frameWidth*0.5, 1,[UIColor grayColor]);
+    RViewsBorder(self.IconView, self.IconView.frameWidth*0.5, 1,[UIColor grayColor]);
     [self.sliderView setThumbImage:[UIImage imageNamed:@"slider"] forState:UIControlStateNormal];
     NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
     NSData *myencode = [def valueForKey:@"currentMusicInfo"];

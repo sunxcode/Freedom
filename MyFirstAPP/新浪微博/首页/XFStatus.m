@@ -74,7 +74,7 @@
     NSRange range;
     range.location = [source rangeOfString:@">"].location + 1;
     range.length = (NSInteger)[source rangeOfString:@"</"].location - range.location;
-    //XFLog(@"%@ %lu %lu",range,(unsigned long)range.length,(unsigned long)source.length);
+    //DLog(@"%@ %lu %lu",range,(unsigned long)range.length,(unsigned long)source.length);
     if(range.length > 150){
         return;
     }else{

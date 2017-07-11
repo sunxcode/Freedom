@@ -44,7 +44,7 @@
     [self.view addSubview:self.tableView];
     
     //增加底部额外的滚动区域
-    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, kCellBorderWidth * 2, 0);
+    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 20, 0);
     
     //去掉cell分割线
     //self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;

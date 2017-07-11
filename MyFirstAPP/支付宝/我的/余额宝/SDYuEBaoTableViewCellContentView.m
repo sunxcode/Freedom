@@ -29,7 +29,7 @@
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
-{
+{self = [super initWithFrame:frame];
     SDYuEBaoTableViewCellContentView *view = [[[NSBundle mainBundle] loadNibNamed:@"SDYuEBaoTableViewCellContentView" owner:nil options:nil] lastObject];
     view.yesterdayIncomeLabel.text = @"0.00";
     view.totalMoneyAmountLabel.text = @"0.00";

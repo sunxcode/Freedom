@@ -2,402 +2,187 @@
 #import "BaseViewController.h"
 #import "Reachability.h"
 #include <objc/runtime.h>
-#import "UIControl+Addition.h"
 static BaseViewController *BVC = nil;
-@interface BaseViewController (){
-    BOOL boolNavTitleAnimate;
-    BOOL boolDefaultNavTitleAnimate;
-    
-}
+@interface BaseViewController ()
 @property (nonatomic,strong) UILabel *sizeLabel;
 @property (nonatomic,strong) UITextView *sizeTextView;
-@property (nonatomic,strong) UIView *DefaultNavView;
 @end
 @implementation BaseViewController
 + (BaseViewController *) sharedViewController{
     static dispatch_once_t once;
     dispatch_once(&once, ^{
-        BVC = [[BaseViewController alloc] init];
+        BVC = [[BaseViewController alloc] initWithNavStyle:1];
     });
     return BVC;
 }
 - (id)initWithNavStyle:(NSInteger)style{
     self = [super init];
     if (self) {
-        // Custom initialization
+        
     }return self;
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [[Utility Share]setCurrentViewController:self];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:)name:kReachabilityChangedNotification object:nil];
-    if (kVersion7) {
+    if (Version7) {
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     }
 }
 - (void)viewDidLoad{
     [super viewDidLoad];
-    
-    
-    
-    self.navView.backgroundColor = [UIColor whiteColor];
-    if (kVersion7) {
+    if (Version7) {
         self.automaticallyAdjustsScrollViewInsets=NO;
-        self.navigationController.navigationBarHidden = YES;
         self.edgesForExtendedLayout = UIRectEdgeNone;
-        [self.navigationController.navigationBar setBarTintColor:gradcolor];
+        [self.navigationController.navigationBar setFrame:CGRectMake(0, 0,APPW, TopHeight)];
         [[UINavigationBar appearance] setBackIndicatorImage:[UIImage imageNamed:@"back"]];
         [[UINavigationBar appearance] setBackIndicatorTransitionMaskImage:[UIImage imageNamed:@"back"]];
         UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
         backItem.title = @"返回";
         self.navigationItem.backBarButtonItem = backItem;
-        [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
-        [self.navigationController.view setBackgroundColor:gradcolor];
+        [self.navigationController.view setBackgroundColor:whitecolor];
         NSDictionary *dict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[UIColor whiteColor],[UIFont boldSystemFontOfSize:18.0f], nil] forKeys:[NSArray arrayWithObjects: NSForegroundColorAttributeName,NSFontAttributeName, nil]];
         self.navigationController.navigationBar.titleTextAttributes = dict;
-    }else{
-        self.navigationController.navigationBarHidden = YES;
     }
     [self.view setClipsToBounds:YES];
-    [self.view setBackgroundColor:[UIColor whiteColor]];
-    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
-     UIBarButtonItem *backItem=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStyleDone target:self action:@selector(backButtonClicked:)];
-     self.navigationItem.leftBarButtonItem=backItem;
+    [self.view setBackgroundColor:whitecolor];
+    [self.navigationController.navigationBar setBarTintColor:gradcolor];
 }
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
-    if (kVersion7) {
+    if (Version7) {
         CGFloat topBarOffset = [[self performSelector:@selector(topLayoutGuide)] length];
-        DLog(@"topBarOffset:%f",topBarOffset);
-        self.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
-        self.automaticallyAdjustsScrollViewInsets=NO;
+        DLog(@"viewDidLayoutSubviews_topBarOffset:%f",topBarOffset);
+    }
+    self.automaticallyAdjustsScrollViewInsets=NO;
+}
+- (UIBarButtonItem*)leftBarButtonItemWithTitle:(NSString*)title Image:(UIImage *)image customView:(UIView*)view style:(UIBarButtonItemStyle)style target:(id)target action:(SEL)sel{
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]init];
+    leftItem.style = style;
+    if(image){
+        leftItem.image = image;
+    }else if(title){
+        leftItem.title = title;
+    }else if(view){
+        leftItem.customView = view;
+    }
+    leftItem.target = target;
+    leftItem.action = sel;
+    self.navigationItem.leftBarButtonItem = leftItem;
+    return leftItem;
+}
+- (UIBarButtonItem*)rightBarButtonItemWithTitle:(NSString*)title Image:(UIImage *)image customView:(UIView*)view style:(UIBarButtonItemStyle)style target:(id)target action:(SEL)sel{
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]init];
+    rightItem.style = style;
+    if(image){
+        rightItem.image = image;
+    }else if(title){
+        rightItem.title = title;
+    }else if(view){
+        rightItem.customView = view;
+    }
+    rightItem.target = target;
+    rightItem.action = sel;
+    self.navigationItem.rightBarButtonItem = rightItem;
+    return rightItem;
+}
+
+- (void)setTitle:(NSString *)title titleView:(UIView *)titleV backGroundColor:(UIColor *)color backGroundImage:(NSString *)image{
+    if(titleV){
+        self.navigationItem.titleView = titleV;
     }else{
+        self.navigationItem.titleView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPW-140, 44)];
     }
-}
--(void)updateDefaultNavView:(NSString *)strTitle{
-    if(!self.DefaultNavView){
-        self.DefaultNavView = [[UIView alloc] initWithFrame:CGRectMake(70, 0, kScreenWidth-140, 44)];
-        [self.DefaultNavView setBackgroundColor:[UIColor clearColor]];
-        if (strTitle.length) {
-            UIView *nV=[[UIView alloc]initWithFrame:self.DefaultNavView.bounds];
-            nV.backgroundColor=[UIColor clearColor];
-            nV.clipsToBounds=YES;
-            nV.tag=202;
-            CAGradientLayer* gradientMask = [CAGradientLayer layer];
-            gradientMask.bounds = nV.layer.bounds;
-            gradientMask.position = CGPointMake([nV bounds].size.width / 2, [nV bounds].size.height / 2);
-            NSObject *transparent = (NSObject*) [[UIColor clearColor] CGColor];
-            NSObject *opaque = (NSObject*) [[UIColor blackColor] CGColor];
-            gradientMask.startPoint = CGPointMake(0.0, CGRectGetMidY(nV.frame));
-            gradientMask.endPoint = CGPointMake(1.0, CGRectGetMidY(nV.frame));
-            float fadePoint = (float)10/nV.frame.size.width;
-            [gradientMask setColors: [NSArray arrayWithObjects: transparent, opaque, opaque, transparent, nil]];
-            [gradientMask setLocations: [NSArray arrayWithObjects:
-                                         [NSNumber numberWithFloat: 0.0],
-                                         [NSNumber numberWithFloat: fadePoint],
-                                         [NSNumber numberWithFloat: 1 - fadePoint],
-                                         [NSNumber numberWithFloat: 1.0],
-                                         nil]];
-            nV.layer.mask = gradientMask;
-            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, W(self.DefaultNavView), 44)];
-            label.backgroundColor = [UIColor clearColor];
-            label.font = BoldFont(18);
-            label.textColor  = [UIColor whiteColor];
-            label.shadowOffset = CGSizeMake(0, 0);
-            label.text = strTitle;
-            label.tag = 201;
-            label.textAlignment = NSTextAlignmentCenter;
-            [nV addSubview:label];
-            [self.DefaultNavView addSubview:nV];
+    if (title.length) {
+        CAGradientLayer* gradientMask = [CAGradientLayer layer];
+        gradientMask.bounds = self.navigationItem.titleView.layer.bounds;
+        gradientMask.position = CGPointMake([self.navigationItem.titleView bounds].size.width / 2, [self.navigationItem.titleView bounds].size.height / 2);
+        NSObject *transparent = (NSObject*) [[UIColor clearColor] CGColor];
+        NSObject *opaque = (NSObject*) [[UIColor blackColor] CGColor];
+        gradientMask.startPoint = CGPointMake(0.0, CGRectGetMidY(self.navigationItem.titleView.frame));
+        gradientMask.endPoint = CGPointMake(1.0, CGRectGetMidY(self.navigationItem.titleView.frame));
+        float fadePoint = (float)10/self.navigationItem.titleView.frame.size.width;
+        [gradientMask setColors: [NSArray arrayWithObjects: transparent, opaque, opaque, transparent, nil]];
+        [gradientMask setLocations:[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.0],[NSNumber numberWithFloat:fadePoint],[NSNumber numberWithFloat:1-fadePoint],[NSNumber numberWithFloat:1.0],nil]];
+        self.navigationItem.titleView.layer.mask = gradientMask;
+
+        UILabel *label = [[UILabel alloc] initWithFrame:self.navigationItem.titleView.bounds];
+        label.backgroundColor = [UIColor clearColor];
+        label.font = BoldFont(18);
+        label.textColor  = [UIColor blackColor];
+        label.shadowOffset = CGSizeMake(0, 0);
+        label.text = title;
+        label.textAlignment = NSTextAlignmentCenter;
+        [self.navigationItem.titleView addSubview:label];
+        CGSize size = [label sizeThatFits:CGSizeMake(MAXFLOAT, 20)];
+        if (label.frame.size.width<size.width) {
+            label.frameWidth=size.width;
+            [self performSelector:@selector(startScrollAnimateWithLabel:) withObject:label afterDelay:3.0];
         }
-        self.navigationItem.titleView=self.DefaultNavView;
     }
-    
-    [NSObject cancelPreviousPerformRequestsWithTarget:self];
-    UILabel *label = (UILabel*)[self.DefaultNavView viewWithTag:201];
-    [label.layer removeAllAnimations];
-    CGRect frame=CGRectMake(10, 0, W(self.DefaultNavView)-20,44);
-    label.frame=frame;
-    label.text = strTitle;
-    CGSize size = [label sizeThatFits:CGSizeMake(MAXFLOAT, 20)];
-    boolDefaultNavTitleAnimate=NO;
-    if (frame.size.width<size.width) {
-        frame.size.width=size.width;
-        label.frame=frame;
-        [self performSelector:@selector(startDefaultNavTitleAnimate) withObject:nil afterDelay:5.0];
+    if(image.length){
+        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:image] forBarMetrics:UIBarMetricsDefault];
+    }
+    if(color){
+         [self.navigationController.navigationBar setBackgroundImage:[[Utility Share]imageFromColor:color size:CGSizeMake(APPW, 64)] forBarMetrics:UIBarMetricsDefault];
+//        self.navigationController.navigationBar.backgroundColor = color;
     }
 }
--(UIView *)navbarTitle:(NSString *)title titleView:(UIView *)titleV titleFrame:(CGRect)frame NavBGColor:(UIColor *)color NavBGImage:(NSString *)image hiddenLine:(BOOL)bLine{
-    if(!self.navView){
-        self.navView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kVersion7?64:44)];
-        UIImageView *imageview = [RHMethods imageviewWithFrame:CGRectMake(0, kVersion7?0:-20, kScreenWidth, 64) defaultimage:@""];
-        imageview.tag=103;
-        [imageview setContentMode:UIViewContentModeScaleAspectFill];
-        [self.navView addSubview:imageview];
-        
-        UIView *viewLine=[[UIView alloc]initWithFrame:CGRectMake(0, H(self.navView)-1, W(self.navView), 0.5)];
-        viewLine.backgroundColor=RGBACOLOR(0, 0, 0, 0.2);
-        viewLine.tag=104;
-        [self.navView addSubview:viewLine];
-        self.navView.clipsToBounds = NO;
-        if (title.length) {
-            UIView *nV=[[UIView alloc]initWithFrame:CGRectMake(60, kVersion7?20:0, kScreenWidth-120, 44)];
-            nV.backgroundColor=[UIColor clearColor];
-            nV.clipsToBounds=YES;
-            nV.tag=102;
-            CAGradientLayer* gradientMask = [CAGradientLayer layer];
-            gradientMask.bounds = nV.layer.bounds;
-            gradientMask.position = CGPointMake([nV bounds].size.width / 2, [nV bounds].size.height / 2);
-            NSObject *transparent = (NSObject*) [[UIColor clearColor] CGColor];
-            NSObject *opaque = (NSObject*) [[UIColor blackColor] CGColor];
-            gradientMask.startPoint = CGPointMake(0.0, CGRectGetMidY(nV.frame));
-            gradientMask.endPoint = CGPointMake(1.0, CGRectGetMidY(nV.frame));
-            float fadePoint = (float)10/nV.frame.size.width;
-            [gradientMask setColors: [NSArray arrayWithObjects: transparent, opaque, opaque, transparent, nil]];
-            [gradientMask setLocations: [NSArray arrayWithObjects:
-                                         [NSNumber numberWithFloat: 0.0],
-                                         [NSNumber numberWithFloat: fadePoint],
-                                         [NSNumber numberWithFloat: 1 - fadePoint],
-                                         [NSNumber numberWithFloat: 1.0],
-                                         nil]];
-            nV.layer.mask = gradientMask;
-            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, kScreenWidth-140, 44)];
-            label.backgroundColor = [UIColor clearColor];
-            label.font = BoldFont(18);
-            label.textColor  = [UIColor blackColor];
-            label.shadowOffset = CGSizeMake(0, 0);
-            label.text = title;
-            label.tag = 101;
-            label.textAlignment = NSTextAlignmentCenter;
-            [nV addSubview:label];
-            [self.navView addSubview:nV];
-        }
-        [self.view addSubview:self.navView];
-    }
-    UIView *vLine=[self.navView viewWithTag:104];
-    vLine.hidden=bLine;
-    if (CGRectEqualToRect(frame,CGRectNull)||CGRectEqualToRect(frame, CGRectZero)){
-        frame = CGRectMake(10, NavY, kScreenWidth-140, 44);
-    }
-    if (color) {
-        [self.navView setBackgroundColor:color];
-    }
-    if (image){
-        UIImageView *imageV=(UIImageView *)[self.navView viewWithTag:103];
-        imageV.image=[UIImage imageNamed:image];
-    }
-    if (titleV){
-        titleV.frame = frame;
-        [self.navView addSubview:titleV];
-    }
-    [NSObject cancelPreviousPerformRequestsWithTarget:self];
-    UILabel *label = (UILabel*)[self.navView viewWithTag:101];
-    [label.layer removeAllAnimations];
-    label.frame=frame;
-    label.text = title;
-    CGSize size = [label sizeThatFits:CGSizeMake(MAXFLOAT, 20)];
-    boolNavTitleAnimate=NO;
-    if (frame.size.width<size.width) {
-        frame.size.width=size.width;
-        label.frame=frame;
-        [self performSelector:@selector(startNavTitleAnimate) withObject:nil afterDelay:5.0];
-    }
-    return self.navView;
-}
-- (UIView*)navbarTitle:(NSString*)title{
-    [self navbarTitle:title titleView:nil titleFrame:CGRectNull NavBGColor:[UIColor whiteColor] NavBGImage:nil hiddenLine:NO];
-    return self.navView;
-}
--(void)startDefaultNavTitleAnimate{
-    boolDefaultNavTitleAnimate=YES;
-    UILabel *label = (UILabel*)[self.DefaultNavView viewWithTag:201];
+
+-(void)startScrollAnimateWithLabel:(UILabel*)label{
     CGRect frame=label.frame;
-    frame.origin.x=-frame.size.width;
-    UIView *nBGv=[self.DefaultNavView viewWithTag:202];
+    UIView *nBGv=self.navigationItem.titleView;
     [UIView animateWithDuration:5.4 delay:0.0 options:UIViewAnimationOptionCurveLinear animations:^{
-        label.frame = frame;
+        label.frameX = -frame.size.width;
     } completion:^(BOOL finished) {
-        if (boolDefaultNavTitleAnimate) {
-            [self EntertainingDiversionsAnimation:10.8 aView:label subView:nBGv];
-        }
+        [self EntertainingDiversionsAnimation:10.8 aView:label supView:nBGv];
     }];
 }
--(void)startNavTitleAnimate{
-    boolNavTitleAnimate=YES;
-    UILabel *label = (UILabel*)[self.navView viewWithTag:101];
-    CGRect frame=label.frame;
-    frame.origin.x=-frame.size.width;
-    UIView *nBGv=[self.navView viewWithTag:102];
-    [UIView animateWithDuration:5.4 delay:0.0 options:UIViewAnimationOptionCurveLinear animations:^{
-        label.frame = frame;
-    } completion:^(BOOL finished) {
-        if (boolNavTitleAnimate) {
-            [self EntertainingDiversionsAnimation:10.8 aView:label subView:nBGv];
-        }
-    }];
-}
--(void)EntertainingDiversionsAnimation:(NSTimeInterval)interval aView:(UIView *)av subView:(UIView *)sv{
+-(void)EntertainingDiversionsAnimation:(NSTimeInterval)interval aView:(UIView *)av supView:(UIView *)sv{
     CGRect frame =av.frame;
-    frame.origin.x=sv.frame.size.width;
-    av.frame=frame;
-    frame.origin.x=-frame.size.width;
-    [UIView animateWithDuration:interval
-                          delay:0.0
-                        options:UIViewAnimationOptionRepeat|UIViewAnimationOptionCurveLinear
-                     animations:^{
-                         av.frame = frame;
-                     }
-                     completion:^(BOOL finished) {
-                         
-                     }];
-}
-
-
-- (UIButton*)backButton{
-    return [self backButton:self];
-}
-- (UIButton*)backButton:(BaseViewController*)target{
-    UIButton *button = (UIButton*)[self.navView viewWithTag:100];
-    if (button) {
-        return button;
-    }
-    button = [[UIButton alloc] initWithFrame:CGRectMake(10,kVersion7?20:0, 100, 44)];
-    [button setImage:[UIImage imageNamed:@"return"] forState:UIControlStateNormal];
-    [button setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
-    [button setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
-    [button setTitle:@"返回" forState:UIControlStateNormal];
-    button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    button.titleLabel.font = Font(15);
-    button.tag = 100;
-    [button removeAllTargets];
-    [button addTarget:target action:@selector(backButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [target.navView addSubview:button];
-    return button;
-}
--(UIButton *)leftButton:(CGRect)frame title:(NSString *)title image:(NSString *)image round:(BOOL)round sel:(SEL)sel{
-    if (!self.navleftButton) {
-        self.navleftButton = [[UIButton alloc] initWithFrame:frame];
-    }
-    if(image){
-        [self.navleftButton setImage:[UIImage imageNamed:image] forState:UIControlStateNormal];
-        [self.navleftButton setImageEdgeInsets:UIEdgeInsetsMake(3, 3, 3, 3)];
-    }
-    if(round){
-        [self.navleftButton setImageEdgeInsets:UIEdgeInsetsZero];
-        self.navleftButton.layer.cornerRadius = frame.size.width/2;
-        self.navleftButton.layer.masksToBounds = YES;
-    }
-    if(title){
-        [self.navleftButton setTitle:title forState:UIControlStateNormal];
-        [self.navleftButton setTitleColor:RGBCOLOR(255, 255, 255) forState:UIControlStateNormal];
-        [self.navleftButton setTitleEdgeInsets:UIEdgeInsetsMake(0, -47, 0, 0)];
-        [self.navleftButton setImageEdgeInsets:UIEdgeInsetsMake(0, -47, 0, 0)];
-        self.navleftButton.titleLabel.font = Font(15);
-    }
-    [self.navleftButton removeAllTargets];
-    if(sel)[self.navleftButton addTarget:self action:sel forControlEvents:UIControlEventTouchUpInside];
-    [self.navView addSubview:self.navleftButton];
-    return self.navleftButton;
-}
--(UIButton *)rightButton:(CGRect)frame title:(NSString *)title image:(NSString *)image round:(BOOL)round sel:(SEL)sel{
-    if (!self.navrightButton) {
-        self.navrightButton = [[UIButton alloc] initWithFrame:frame];
-    }
-    if(image){
-        [self.navrightButton setImage:[UIImage imageNamed:image] forState:UIControlStateNormal];
-        [self.navrightButton setImageEdgeInsets:UIEdgeInsetsMake(3, 3, 3, 3)];
-    }
-    if(round){
-        [self.navrightButton setImageEdgeInsets:UIEdgeInsetsZero];
-        self.navrightButton.layer.cornerRadius = frame.size.width/2;
-        self.navleftButton.layer.masksToBounds = YES;
-    }
-    if(title){
-        [self.navrightButton setTitle:title forState:UIControlStateNormal];
-        [self.navrightButton setTitleColor:RGBCOLOR(255, 255, 255) forState:UIControlStateNormal];
-        if (image) {
-            [self.navrightButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 10)];
-            [self.navrightButton setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 20)];
-        }else{
-            [self.navrightButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 10)];
-        }
-        self.navrightButton.titleLabel.font = Font(15);
-        
-    }
-    [self.navrightButton removeAllTargets];
-    self.navrightButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
-    if(sel)[self.navrightButton addTarget:self action:sel forControlEvents:UIControlEventTouchUpInside];
-    [self.navView addSubview:self.navrightButton];
-    return self.navrightButton;
-}
-
-- (void)setTitle:(NSString *)title{
-    for (UIView *view in self.navView.subviews) {
-        if ([view isKindOfClass:[UILabel class]]) {
-            ((UILabel*)view).text = title;
-            break;
-        }
-    }
-    [super setTitle:title];
-}
-- (NSString*)navTitle{
-    UILabel *label = (UILabel*)[self.navView viewWithTag:101];
-    if (label) {
-        return label.text;
-    }
-    return @"";
-}
-- (void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
+    av.frame=CGRectMake(W(av), frame.origin.y, frame.size.width, frame.size.height);
+    [UIView animateWithDuration:interval delay:0.0 options:UIViewAnimationOptionRepeat|UIViewAnimationOptionCurveLinear animations:^{
+         av.frame = frame;
+     }completion:^(BOOL finished) {
+     }];
 }
 #pragma mark - Methods
 - (BaseViewController*)pushController:(Class)controller withInfo:(id)info{
-    return [self pushController:controller withInfo:info withTitle:nil withOther:nil tabBar:YES];
+    return [self pushController:controller withInfo:info withTitle:nil withOther:nil tabBarHidden:YES];
 }
 - (BaseViewController*)pushController:(Class)controller withInfo:(id)info withTitle:(NSString*)title{
-    return [self pushController:controller withInfo:info withTitle:title withOther:nil tabBar:YES];
+    return [self pushController:controller withInfo:info withTitle:title withOther:nil tabBarHidden:YES];
 }
 - (BaseViewController*)pushController:(Class)controller withInfo:(id)info withTitle:(NSString*)title withOther:(id)other{
-   return [self pushController:controller withInfo:info withTitle:title withOther:other tabBar:YES];
+   return [self pushController:controller withInfo:info withTitle:title withOther:other tabBarHidden:YES];
 }
-- (BaseViewController*)pushController:(Class)controller withInfo:(id)info withTitle:(NSString*)title withOther:(id)other tabBar:(BOOL)abool{
-#pragma mark  zxh 框架修改 跳转
-    DLog(@"\n跳转到 %@ 页面 %@",title,NSStringFromClass(controller));
+- (BaseViewController*)pushController:(Class)controller withInfo:(id)info withTitle:(NSString*)title withOther:(id)other tabBarHidden:(BOOL)abool{
+    DLog(@"\n跳转到 %@ 类",NSStringFromClass(controller));
+    return [self pushController:[[controller alloc]init] withInfo:info withTitle:title withOther:other tabBarHid:abool];
+}
+- (BaseViewController*)pushController:(BaseViewController*)controller withInfo:(id)info withTitle:(NSString*)title withOther:(id)other tabBarHid:(BOOL)abool{
+    DLog(@"\n跳转到 %@ 页面",title);
     DLog(@"\nBase UserInfo:%@",info);
     DLog(@"\nBase OtherInfo:%@",other);
-    BaseViewController *base = [[controller alloc] init];
-    if ([(NSObject*)base respondsToSelector:@selector(setUserInfo:)]) {
-        base.userInfo = info;
-        base.otherInfo = other;
+    if ([(NSObject*)controller respondsToSelector:@selector(setUserInfo:)]) {
+        controller.userInfo = info;
+        controller.otherInfo = other;
     }
-    base.hidesBottomBarWhenPushed=abool;
-    [self.navigationController pushViewController:base animated:YES];
-        if ([(NSObject*)base respondsToSelector:@selector(setUserInfo:)]) {
-            [base navbarTitle:title];
-            if (base.navleftButton) {
-                [base.navView addSubview:base.navleftButton];
-            }else{
-                [base backButton:base];
-            }
-            if (base.navrightButton) {
-                [base.navView addSubview:base.navrightButton];
-            }
-        }
-    return base;
+    controller.title = title;
+    controller.hidesBottomBarWhenPushed=abool;
+    [self.navigationController pushViewController:controller animated:YES];
+    return controller;
 }
-//不需要Base来配置头部
-- (BaseViewController*)pushController:(Class)controller withOnlyInfo:(id)info{
-    DLog(@"Base UserInfo:%@",info);
-    BaseViewController *base = [[controller alloc] init];
-    if ([(NSObject*)base respondsToSelector:@selector(setUserInfo:)]) {
-        base.userInfo = info;
+- (void)popToControllerNamed:(NSString*)controller{
+    Class cls = NSClassFromString(controller);
+    if ([cls isSubclassOfClass:[UIViewController class]]) {
+        [self.navigationController popToViewController:(UIViewController*)cls animated:YES];
+    }else{
+        DLog(@"popToController NOT FOUND.");
+        [self.navigationController popViewControllerAnimated:YES];
     }
-    [self.navigationController pushViewController:base animated:YES];
-    return base;
 }
-- (void)lj_popController:(id)controller{
-    //Class cls = NSClassFromString(controller);
+- (void)popToTheControllerNamed:(id)controller{
     if ([controller isKindOfClass:[UIViewController class]]) {
         [self.navigationController popToViewController:controller animated:YES];
     }else{
@@ -405,8 +190,7 @@ static BaseViewController *BVC = nil;
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
-- (void)popController:(NSString*)controllerstr withSel:(SEL)sel withObj:(id)info{
-#pragma mark  zxh 框架修改 跳转
+- (void)popToControllerNamed:(NSString*)controllerstr withSel:(SEL)sel withObj:(id)info{
     DLog(@"\n返回到 %@ 页面",controllerstr);
     if ([info isKindOfClass:[NSDictionary class]]) {
         DLog(@"\nBase UserInfo:%@",info);
@@ -416,18 +200,9 @@ static BaseViewController *BVC = nil;
             if ([(NSObject*)controller respondsToSelector:sel]) {
                 [controller performSelector:sel withObject:info afterDelay:0.01];
             }
-            [self lj_popController:controller];
+            [self popToTheControllerNamed:controller];
             break;
         }
-    }
-}
-- (void)popController:(NSString*)controller{
-    Class cls = NSClassFromString(controller);
-    if ([cls isSubclassOfClass:[UIViewController class]]) {
-        [self.navigationController popToViewController:(UIViewController*)cls animated:YES];
-    }else{
-        DLog(@"popToController NOT FOUND.");
-        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 /**
@@ -438,7 +213,7 @@ static BaseViewController *BVC = nil;
  *	@param	_aLine	文字内容换行行间距
  *	@return	Label高度
  */
-- (CGFloat)heightForLabel:(CGFloat)_width font:(UIFont*)_font text:(NSString*)_text floatLine:(CGFloat)_aLine{
+- (CGFloat)heightForLabel:(CGFloat)_width font:(UIFont*)_font text:(NSString*)_text lineSpace:(CGFloat)_aLine{
     if (!self.sizeLabel) {
         self.sizeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 1, 1)];
     }
@@ -461,14 +236,12 @@ static BaseViewController *BVC = nil;
         return 0;
     }
 }
-- (CGFloat)heightForTextView:(CGFloat)_width font:(UIFont*)_font text:(NSString*)_text floatLine:(CGFloat)_aLine{
+- (CGFloat)heightForTextView:(CGFloat)_width font:(UIFont*)_font text:(NSString*)_text lineSpace:(CGFloat)_aLine{
     if (!self.sizeTextView) {
-        self.sizeTextView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, 1, 1)];
-        [self.view addSubview:self.sizeTextView];
-        self.sizeTextView.alpha=0.0;
+        self.sizeTextView = [[UITextView alloc] init];
     }
     [self.sizeTextView setEditable:NO];
-    self.sizeTextView.frame=CGRectMake(X(self.sizeTextView), Y(self.sizeTextView), _width, 20);
+    self.sizeTextView.frame=CGRectMake(0,0, _width, 20);
     self.sizeTextView.font = _font;
     if (_text) {
         self.sizeTextView.text = _text;
@@ -478,7 +251,7 @@ static BaseViewController *BVC = nil;
             NSDictionary *attributes = @{ NSFontAttributeName:_font, NSParagraphStyleAttributeName:paragraphStyle};
             paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
             self.sizeTextView.attributedText =[[NSAttributedString alloc]initWithString:_text attributes:attributes];
-             if (kVersion7) {
+             if (Version7) {
                 CGSize size = [_text boundingRectWithSize:CGSizeMake(_width, 0) options: NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attributes context:nil].size;
                 DLog(@"TextView的高度:%f",size.height);
                 return  size.height;
@@ -492,15 +265,15 @@ static BaseViewController *BVC = nil;
     }
 }
 #pragma mark - Actions
-- (IBAction)backByButtonTagNavClicked:(UIButton*)sender{
-    NSArray *controllers = [(UITabBarController*)[(UIWindow*)[[UIApplication sharedApplication] windows][0] rootViewController] viewControllers];
-    if (controllers.count>sender.tag) {
-        [controllers[sender.tag] popViewControllerAnimated:YES];
+- (void)backToHomeViewController{
+    NSArray *controllers = [(UITabBarController*)[(UIWindow*)[[UIApplication sharedApplication] windows][0] rootViewController] viewControllers];//首页的controllers
+    if([controllers[0] navigationController]){
+        [[controllers[0] navigationController]popToRootViewControllerAnimated:YES];//回到首页
     }else{
-        DLog(@"Nav Not Found.");
+        [controllers[0] dismissViewControllerAnimated:YES completion:nil];
     }
 }
-- (IBAction)backButtonClicked:(id)sender{
+- (void)goback{
     [SVProgressHUD dismiss];
     if (self.navigationController) {
         [self.navigationController popViewControllerAnimated:YES];
@@ -508,19 +281,138 @@ static BaseViewController *BVC = nil;
         [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
-- (IBAction)rootButtonClicked:(id)sender{
-    [self.navigationController popToRootViewControllerAnimated:YES];
+#pragma mark UItableViewDelegagte
+- (void)fillTheTableDataWithHeadV:(UIView*)head footV:(UIView*)foot canMove:(BOOL)move canEdit:(BOOL)edit headH:(CGFloat)headH footH:(CGFloat)footH rowH:(CGFloat)rowH sectionN:(NSInteger)sectionN rowN:(NSInteger)rowN cellName:(NSString *)cell{
+    self.tableView.tableHeaderView = head;
+    self.tableView.tableFooterView = foot;
+    self.tableView.canMoveRow = move;
+    self.tableView.canEditRow = edit;
+    self.tableView.headH = headH;
+    self.tableView.footH = footH;
+    self.tableView.rowH = rowH;
+    self.tableView.sectionN = sectionN;
+    self.tableView.rowN = rowN;
+    self.tableView.cell = [NSClassFromString(cell) getInstance];
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return self.tableView.rowH;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return self.tableView.headH;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return self.tableView.footH;
+}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return self.tableView.sectionN;
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.tableView.rowN;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(!self.tableView.cell){
+        self.tableView.cell = [BaseTableViewCell getInstance];
+    }
+    [self.tableView.cell  setDataWithDict:self.tableView.dataArray[indexPath.row]];
+    return self.tableView.cell;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    return self.tableView.tableHeaderView;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    return self.tableView.tableFooterView;
+}
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    return self.tableView.canEditRow;
+}
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath{
+    return self.tableView.canMoveRow;
 }
 
+#pragma mark  子类重写
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    DLog(@"请子类重写这个方法");
+}
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    DLog(@"请子类重写这个方法");return nil;
+}
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section{
+    DLog(@"请子类重写这个方法");return nil;
+}
+- (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath{
+    // 1 添加一个删除按钮
+    UITableViewRowAction *deleteRowAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"删除" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
+        [self.tableView.dataArray removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }];
+    // 2 添加一个置顶按钮
+    UITableViewRowAction *topRowAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"置顶" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
+        NSLog(@"点击了置顶");
+        [self.tableView.dataArray exchangeObjectAtIndex:indexPath.row withObjectAtIndex:0];
+        NSIndexPath *firstIndexPath = [NSIndexPath indexPathForRow:0 inSection:indexPath.section];
+        [tableView moveRowAtIndexPath:indexPath toIndexPath:firstIndexPath];
+    }];
+    topRowAction.backgroundColor = gradcolor;
+    // 将设置好的按钮放到数组中返回
+    return @[deleteRowAction,topRowAction];
+}
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    //return UITableViewCellEditingStyleDelete;
+    //return UITableViewCellEditingStyleInsert;
+    return UITableViewCellEditingStyleNone;
+}
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSUInteger row = [indexPath row];
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [self.tableView.dataArray removeObjectAtIndex:row];
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }else{
+        [self.tableView.dataArray addObject:self.tableView.dataArray[indexPath.row]];
+        [tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+    }
+}
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath{
+    DLog(@"请子类重写这个方法");
+    [self.tableView.dataArray removeObjectAtIndex:sourceIndexPath.row];
+    [self.tableView.dataArray insertObject:self.tableView.dataArray[sourceIndexPath.row] atIndex:destinationIndexPath.row];
+}
+#pragma mark UICollectionViewDelegate
+-(void)fillTheCollectionViewDataWithCanMove:(BOOL)move sectionN:(NSInteger)sectionN itemN:(NSInteger)itemN itemName:(NSString *)item{
+    self.collectionView.canMoveRow = move;
+    self.collectionView.sectionN = sectionN;
+    self.collectionView.itemN = itemN;
+    [self.collectionView registerClass:NSClassFromString(item) forCellWithReuseIdentifier:[NSString stringWithFormat:@"%@Identifier",item]];
+    self.collectionReuseId = [NSString stringWithFormat:@"%@Identifier",item];
+}
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+    return self.collectionView.sectionN;
+}
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return self.collectionView.itemN;
+}
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    self.collectionView.cell = [collectionView dequeueReusableCellWithReuseIdentifier:self.collectionReuseId forIndexPath:indexPath];
+    [self.collectionView.cell  setCollectionDataWithDic:self.collectionView.dataArray[indexPath.row]];
+    return self.collectionView.cell;
+}
+- (BOOL)collectionView:(UICollectionView *)collectionView canMoveItemAtIndexPath:(NSIndexPath *)indexPath{
+    return self.collectionView.canMoveRow;
+}
+
+//子类重写
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+      DLog(@"请子类重写这个方法");
+}
+- (void)collectionView:(UICollectionView *)collectionView moveItemAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath*)destinationIndexPath{
+      DLog(@"请子类重写这个方法");
+}
 #pragma mark -Notify
 -(void) reachabilityChanged:(NSNotification*) notification{
     if ([(Reachability*)[notification object] currentReachabilityStatus] == ReachableViaWiFi) {
         NSLog(@"网络状态改变了.");
     }
 }
-- (void)dealloc{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
+#pragma mark others
 - (void)addFloatView{
     
 }
@@ -567,10 +459,10 @@ static BaseViewController *BVC = nil;
         //        [collectionView reloadData];
     }
     //     删除所有数据
-//                for (TotalData *postcode in a) {
-//                    [del.managedObjectContext deleteObject:postcode];
-//                }
-//                [del saveContext];
+    //                for (TotalData *postcode in a) {
+    //                    [del.managedObjectContext deleteObject:postcode];
+    //                }
+    //                [del saveContext];
 }
 
 -(void)radialMenu:(CKRadialMenu *)radialMenu didSelectPopoutWithIndentifier:(NSString *)identifier{
@@ -584,8 +476,8 @@ static BaseViewController *BVC = nil;
     animation.duration = 0.5;
     animation.timingFunction = UIViewAnimationCurveEaseInOut;
     animation.type = @"cube";
-//    animation.type = kCATransitionReveal;
-//    animation.subtype = kCATransitionFromTop;
+    //    animation.type = kCATransitionReveal;
+    //    animation.subtype = kCATransitionFromTop;
     [self.view.window.layer addAnimation:animation forKey:nil];
     [self presentViewController:con animated:NO completion:^{
     }];
@@ -609,7 +501,6 @@ static BaseViewController *BVC = nil;
     //    cube 立方体效果
     //    oglFlip 上下翻转效果
 }
-#pragma mark 推出故事板
 -(void)showStoryboardWithStoryboardName:(NSString*)story andViewIdentifier:(NSString*)identifier{
     UIStoryboard *StoryBoard = [UIStoryboard storyboardWithName:story bundle:nil];
     [self showViewController:[StoryBoard instantiateViewControllerWithIdentifier:identifier] sender:self];
@@ -629,7 +520,12 @@ static BaseViewController *BVC = nil;
         [self.radialView addPopoutView:a withIndentifier:[NSString stringWithFormat:@"%d",i]];
     }
     [self.radialView enableDevelopmentMode];
+     self.radialView.distanceBetweenPopouts = 2*180/self.items.count;
     self.radialView.delegate = self;
     [self.view addSubview: self.radialView];
+}
+
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 @end

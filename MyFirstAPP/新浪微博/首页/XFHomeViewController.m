@@ -39,7 +39,7 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
-    self.tableView.backgroundColor = XFColor(211, 211, 211);
+    self.tableView.backgroundColor = RGBCOLOR(211, 211, 211);
     //设置主题
     [self setNavTheme];
     //设置昵称
@@ -95,7 +95,7 @@
         }
 
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-         XFLog(@"请求失败-%@", error);
+         DLog(@"请求失败-%@", error);
     }];
 }
 
@@ -187,7 +187,7 @@
         
 
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-         XFLog(@"请求失败-%@", error);
+         DLog(@"请求失败-%@", error);
     }];
 }
 
@@ -271,7 +271,7 @@
         
         [XFAccountTool saveAccount:account];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-         XFLog(@"请求失败");
+         DLog(@"请求失败");
     }];
 }
 
@@ -350,7 +350,7 @@
         // 结束刷新(隐藏footer)
         self.tableView.tableFooterView.hidden = YES;
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        XFLog(@"请求失败-%@", error);
+        DLog(@"请求失败-%@", error);
         
         // 结束刷新
         self.tableView.tableFooterView.hidden = YES;

@@ -39,13 +39,13 @@
     _titleLine.backgroundColor = [UIColor grayColor];
     _titleLabel.backgroundColor = [UIColor clearColor];
     _titleLabel.numberOfLines = 1;
-    _titleLabel.textColor = NavBarItemBtnColor;
+    _titleLabel.textColor = whitecolor;
     _titleLabel.textAlignment = NSTextAlignmentCenter;
-    _titleLabel.font = NavTextFont;
+    _titleLabel.font = BoldFont(17);
     [_navBar addSubview:_titleLabel];
     [_navBar addSubview:_titleLine];
     
-    _navBar.backgroundColor = NavColor;
+    _navBar.backgroundColor = RGBCOLOR(51, 124, 200);
     
     _titleLabel.frame = CGRectMake(0, 20, APPW, 64-20);
     _titleLine.frame = CGRectMake(0, 64, APPW, 0.26);
@@ -121,7 +121,7 @@
     if (!_leftButton) {
         _leftButton = [[UIButton alloc]init];
         [_leftButton addTarget:self action:@selector(leftButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-        _leftButton.titleLabel.font = NavItemFont;
+        _leftButton.titleLabel.font = fontSmallTitle;
         [_leftButton setTitleColor:[UIColor whiteColor] forState:0];
         [_navBar addSubview:_leftButton];
         _leftButton.frame = CGRectMake(5, 28, ItemButtonwidth, ItemImagewidth);
@@ -140,7 +140,7 @@
     if (!_rightButton) {
         _rightButton = [[UIButton alloc]init];
         [_rightButton addTarget:self action:@selector(rightButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-        _rightButton.titleLabel.font = NavItemFont;
+        _rightButton.titleLabel.font = fontSmallTitle;
         [_rightButton setTitleColor:[UIColor whiteColor] forState:0];
         [_navBar addSubview:_rightButton];
         _rightButton.frame =  CGRectMake(APPW-55, 28, ItemButtonwidth, ItemImagewidth);

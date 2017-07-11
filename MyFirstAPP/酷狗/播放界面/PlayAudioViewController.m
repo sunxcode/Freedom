@@ -185,7 +185,7 @@
     NSFileManager *fm = [NSFileManager defaultManager];
     //    NSString *path = [NSHomeDirectory() stringByAppendingString:@"/GKMusic.app"];
     //深度遍历(会去遍历当前目录下的子目录里的文件)
-    NSArray *array = [fm subpathsOfDirectoryAtPath:PATH error:nil];
+    NSArray *array = [fm subpathsOfDirectoryAtPath:DOCUMENTS_FOLDER error:nil];
     //    NSLog(@"%@",array);
     for (NSString *str in array) {
         if ([str hasSuffix:@"mp3"]) {
@@ -219,7 +219,7 @@
     _labelSinger.text = _arraySingers[_index];
     [self loadLyrics];//读取歌词
     NSString *str = [NSString stringWithFormat:@"%@ - %@",_arraySingers[_index],_arraySongs[_index]];
-    NSString *strPath = [NSString stringWithFormat:@"%@/%@.mp3",PATH,str];
+    NSString *strPath = [NSString stringWithFormat:@"%@/%@.mp3",DOCUMENTS_FOLDER,str];
     NSData *data = [NSData dataWithContentsOfFile:strPath];
     _audioPlayer = [[AVAudioPlayer alloc] initWithData:data error:nil];
     _audioPlayer.delegate = self;

@@ -36,7 +36,7 @@
     self.navigationItem.titleView = searchBar;
     
     //增加顶部额外的滚动区域
-    self.tableView.contentInset = UIEdgeInsetsMake( kTableBorderWidth, 0, 0, 0);
+    self.tableView.contentInset = UIEdgeInsetsMake( 8, 0, 0, 0);
 }
 
 #pragma mark 选择地点

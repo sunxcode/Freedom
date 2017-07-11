@@ -10,8 +10,6 @@
 
 @implementation Cell1
 
-- (void)awakeFromNib {
-    // Initialization code
-}
+
 
 @end

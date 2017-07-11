@@ -1,93 +1,104 @@
 
 #import "Foundation_defines.h"
-
-#define baseDomain   @"www.baidu.com"
-#define basePort    @"80"
-#define basePath     @"app"
-#define basePicPath  @"www.baidu.com/"
-#define BaseURL @"http://www.isolar88.com/app/upload/xuechao"
-#define kTopHeight (kVersion7?64:44)
-#define clearcolor [UIColor clearColor]
-#define gradcolor RGBACOLOR(224, 225, 226, 1)
-#define redcolor RGBACOLOR(229, 59, 25, 1)
-#define blacktextcolor RGBACOLOR(33, 34, 35, 1)
-#define gradtextcolor RGBACOLOR(116, 117, 118, 1)
-#define Boardseperad 10
-#define fontTitle Font(15)
-#define fontnomal Font(13)
-#define fontSmallTitle Font(14)
-/******************登录注册*******************/
-#define SENSMCODE @"user/sendMcode"//发送验证码
-#define REGIST @"user/regist"//用户注册
-#define LOGIN @"user/login"//登录
-#define OTHWELOGIN @"user/tposlogin"//第三方登录
-/******************编辑个人资料*******************/
-#define GETPENSONSOUCE @"info/getuserinfo"//获取个人质料
-#define EDITEMYSOUCE @"info/edtuserinfo"//编辑个人资料
-#define CHANGELONGPWS @"info/changepwd"//修改密码
-#define SUBMITCHANGW @"info/submitChange"//修改修改交易密码
-#define FINSPSW @"user/findpwd"//找回密码
-#define CHANGEBANGDING @"info/changemobile"//修改绑定手机
-#define EDITEICON @"info/editphoto"//编辑头像
-#define MyFirstAPPUpdate @"version/index"//版本更新
-
-
-#define default_PageSize 10
-#define default_StartPage 1
-#define APPVersion [[[NSBundle mainBundle] infoDictionary] objectForKey:@"Bundle version"]
-#define Models_path @"/Users/xuechao/Desktop/MyFirstAPP/MyFirstAPP/Resources"
-#define kVersion7 ([[[UIDevice currentDevice] systemVersion] floatValue]>=7.0)
-#define kVersion8 ([[[UIDevice currentDevice] systemVersion] floatValue]>=8.0)
-#define isIpad      ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
-#define isIos7      ([[[UIDevice currentDevice] systemVersion] floatValue])
-// 设置tableView的边框宽度
-#define kTableBorderWidth 8
-// 3.设置cell的边框宽度
-#define kCellBorderWidth 10
-//全局的背景色
-#define kGlobalBackgroundColor kColor(250, 250, 250)
-//判断是否为iPhone5的宏
-#define iPhone5 ([UIScreen mainScreen].bounds.size.height == 568)
-
-#define NetEngine [AFHTTPSessionManager manager] 
+#import "Foundation_API.h"
+#ifdef DEBUG
+#define NSLog(...) NSLog(__VA_ARGS__)
+#define ELog(err) {if(err) DLog(@"%@", err)}
+#define DLog(fmt, ...) {NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);}
+//@weakify(self)[self doSomething^{@strongify(self)[self back];}];
+#if __has_feature(objc_arc)
+#define weakify(object) autoreleasepool{} __weak __typeof__(object) weak##_##object = object;
+#define strongify(object) autoreleasepool{} __typeof__(object) object = weak##_##object;
+#else
+#define weakify(object) autoreleasepool{} __block __typeof__(object) block##_##object = object;
+#define strongify(object) autoreleasepool{} __typeof__(object) object = block##_##object;
+#endif
+#else
+#define NSLog(...)
+#define ELog(err)
+#define DLog(...)
+#if __has_feature(objc_arc)
+#define weakify(object) try{} @finally{} {} __weak __typeof__(object) weak##_##object = object;
+#define strongify(object) try{} @finally{} __typeof__(object) object = weak##_##object;
+#else
+#define weakify(object) try{} @finally{} {} __block __typeof__(object) block##_##object = object;
+#define strongify(object) try{} @finally{} __typeof__(object) object = block##_##object;
+#endif
+#endif
+/**********************       系       统      **********************/
+#define APPVersion        [[[NSBundle mainBundle] infoDictionary] objectForKey:@"Bundle version"]
+#define IOSVersion        ([[[UIDevice currentDevice] systemVersion] floatValue])
+#define Version7          ([[[UIDevice currentDevice] systemVersion] floatValue]>=7.0)
+#define Version8          ([[[UIDevice currentDevice] systemVersion] floatValue]>=8.0)
+#define isIpad            ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+#define APPDelegate       [[UIApplication sharedApplication]delegate]
+#define iPhone5           ([UIScreen mainScreen].bounds.size.height == 568)
 #define CN 1
 #define UI_language(cn,us) CN?cn:us
-#define UI_btn_back CN?@"返回":@"back"
-#define UI_btn_search CN?@"搜索":@"Search"
-#define UI_btn_upload CN?@"上传":@"Upload"
-#define UI_btn_submit CN?@"提交":@"Submit"
-#define UI_btn_cancel CN?@"取消":@"cancel"
-#define UI_btn_confirm CN?@"确定":@"OK"
-#define UI_btn_delete CN?@"删除":@"Delete"
-#define UI_tips_load CN?@"正在加载...":@"Loading..."
-#define alertErrorTxt @"服务器异常,请稍后再试"
-
-#define DOCUMENTS_FOLDER [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"SpeechSoundDir"]//录音的存放文件夹
-#define DOCUMENTS_CHAT_FOLDER [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"downAudio"]//语音聊天的录音存放文件夹
-#define FILEPATH [DOCUMENTS_FOLDER stringByAppendingPathComponent:[self fileNameString]]  //录音的路径
-#define documentsDirectory [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask,YES) objectAtIndex:0] stringByAppendingPathComponent:@"SpeechSoundDir"]//录音临时文件
-#define K_alreadyNum @"K_alreadyNum"
-#define DOCUMENTPATH [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]
-#define CACHESPATH  NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0]
-#define TEMPPATH NSTemporaryDirectory()
-
-/* { thread } */
+#define MAS_SHORTHAND// 定义这个常量,就可以在使用Masonry不必总带着前缀 `mas_`:
+#define MAS_SHORTHAND_GLOBALS// 定义这个常量,以支持在 Masonry 语法中自动将基本类型转换为 object 类型:
+/**********************       方        法      **********************/
+#define S2N(x)            [NSNumber numberWithInt:[x intValue]]
+#define I2N(x)            [NSNumber numberWithInt:x]
+#define F2N(x)            [NSNumber numberWithFloat:x]
+#define RViewsBorder(View,radius,width,color)\
+[View.layer setCornerRadius:(radius)];[View.layer setMasksToBounds:YES];[View.layer setBorderWidth:(width)];[View.layer setBorderColor:[color CGColor]]
+/**********************     网   络   资   源    **********************/
+#define FileResource(s)   [[NSBundle mainBundle]pathForResource:s ofType:nil]
+#define JSONWebResource(s) [NSDictionary dictionaryWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.isolar88.com/upload/xuechao/json/%@",s]]];
 #define __async_opt__  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
 #define __async_main__ dispatch_async(dispatch_get_main_queue()
-//-------------wap------------------------
-#define ZKWAPUrl @""
-// WEBsocket
-#define LikeWEBsocket @""
+#define NetEngine         [AFHTTPSessionManager manager]
+#define WS(weakSelf)      __weak __typeof(&*self)weakSelf = self;
+/**********************     字     符    串     ***********************/
+#define alertErrorTxt     @"服务器异常,请稍后再试"
+/**********************       尺        寸      ***********************/
+#define APPW              [UIScreen mainScreen].bounds.size.width
+#define APPH              [UIScreen mainScreen].bounds.size.height
+#define ApplicationH      [UIScreen mainScreen].applicationFrame.size.height
+#define kScreenWidth      APPW
+#define kScreenHeight     APPH
+#define TopHeight         (Version7?64:44)
+#define NavY              (Version7?20:0)
+#define TabBarH           60
+#define Boardseperad      10
+#define W(obj)            (!obj?0:(obj).frame.size.width)
+#define H(obj)            (!obj?0:(obj).frame.size.height)
+#define X(obj)            (!obj?0:(obj).frame.origin.x)
+#define Y(obj)            (!obj?0:(obj).frame.origin.y)
+#define XW(obj)           (X(obj)+W(obj))
+#define YH(obj)           (Y(obj)+H(obj))
+#define CGRectMakeXY(x,y,size) CGRectMake(x,y,size.width,size.height)
+#define CGRectMakeWH(origin,w,h) CGRectMake(origin.x,origin.y,w,h)
+/***********************       字        体      ************************/
+#define fontTitle         Font(15)
+#define fontnomal         Font(13)
+#define fontSmallTitle    Font(14)
+#define BoldFont(x)       [UIFont boldSystemFontOfSize:x]
+#define Font(x)           [UIFont systemFontOfSize:x]
+/***********************       颜        色      ************************/
+#define RGBCOLOR(r,g,b)   [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:1]
+#define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]
+#define RandomColor       RGBCOLOR(arc4random_uniform(256), arc4random_uniform(256), arc4random_uniform(256))
+#define clearcolor        [UIColor clearColor]
+#define gradcolor         RGBACOLOR(224, 225, 226, 1)
+#define redcolor          RGBACOLOR(229, 59, 25, 1)
+#define yellowcolor       [UIColor yellowColor]
+#define whitecolor        RGBACOLOR(256, 256,256,1)
+#define blacktextcolor    RGBACOLOR(33, 34, 35, 1)
+#define gradtextcolor     RGBACOLOR(116, 117, 118, 1)
+#define graycolor         [UIColor grayColor]
+/************************   文  件  与  文  件  夹  ***********************/
+#define HOMEPATH          NSHomeDirectory()//主页路径
+#define documentPath      [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask,YES) objectAtIndex:0]//Documents路径
+#define cachePath         [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0]
+#define tempPath          NSTemporaryDirectory()
+#define DOCUMENTS_FOLDER  [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
+#define FOLDERPATH(s)     [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:s]
+#define FILEPATH          [DOCUMENTS_FOLDER stringByAppendingPathComponent:[self fileNameString]]
 
-//合作身份者id，以2088开头的16位纯数字
-#define PartnerID  @""
-//收款支付宝账号
-#define SellerID   @"zfb@"
+/************************      额  外  的  宏     ************************/
+#define JFSearchHistoryPath [cachePath stringByAppendingPathComponent:@"hisDatas.data"]//搜索文件
+#define IqiyinavigationBarColor RGBCOLOR(251, 117, 44)
 
-//安全校验码（MD5）密钥，以数字和字母组成的32位字符
-#define MD5_KEY @""
 
-//支付宝公钥
-#define AlipayPubKey    @""
-
-#define alipayBackUrl @""//支付宝回掉路径

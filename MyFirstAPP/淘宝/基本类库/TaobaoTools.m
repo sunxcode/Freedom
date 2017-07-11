@@ -9,8 +9,7 @@
 #import "TaobaoTools.h"
 
 @implementation TaobaoTools
-
-+ (NSDate *)strToDate:(nonnull NSString *)str {
++ (NSDate *)strToDate:(NSString *)str {
     NSAssert(str.length >0, @"str date error");
     NSDateFormatter *inputFormatter = [[NSDateFormatter alloc] init];
     [inputFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
