@@ -68,18 +68,19 @@
 }
 -(void)didLongpressCenterView{
     UIStoryboard *StoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewController *vc =[StoryBoard instantiateViewControllerWithIdentifier:@"First"];
+    UIViewController *vc =[StoryBoard instantiateViewControllerWithIdentifier:@"FirstViewController"];
     CATransition *animation = [CATransition animation];
-    vc.view.alpha = 0;
+//    vc.view.alpha = 0;
     animation.duration = 2.0;
     animation.timingFunction = UIViewAnimationCurveEaseInOut;
     animation.type = @"rippleEffect";
 //    animation.type = kCATransitionPush;
 //    animation.subtype = kCATransitionFromLeft;
     [[self getCurrentViewController].view.window.layer addAnimation:animation forKey:nil];
-    [[self getCurrentViewController] presentViewController:vc animated:NO completion:^{
-        vc.view.alpha = 1;
-    }];
+    UIWindow *win =[UIApplication sharedApplication].keyWindow;
+    win.rootViewController = vc;
+    [win makeKeyAndVisible];
+//    [[self getCurrentViewController] presentViewController:vc animated:NO completion:^{vc.view.alpha = 1;}];
 }
 -(void)setFrame:(CGRect)frame{
   [super setFrame:frame];

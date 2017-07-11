@@ -11,7 +11,7 @@
 #import "TLWebViewController.h"
 #import "TLScannerButton.h"
 #import "TLMyQRCodeViewController.h"
-
+#import "UINavigationController+JZExtension.h"
 #define     HEIGHT_BOTTOM_VIEW      82
 
 @interface TLScanningViewController () <TLScannerDelegate>

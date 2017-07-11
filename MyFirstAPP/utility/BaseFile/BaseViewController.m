@@ -479,8 +479,10 @@ static BaseViewController *BVC = nil;
     //    animation.type = kCATransitionReveal;
     //    animation.subtype = kCATransitionFromTop;
     [self.view.window.layer addAnimation:animation forKey:nil];
-    [self presentViewController:con animated:NO completion:^{
-    }];
+//    [self presentViewController:con animated:NO completion:^{}];
+    UIWindow *win = [UIApplication sharedApplication].keyWindow;
+    win.rootViewController = con;
+    [win makeKeyAndVisible];
     [SVProgressHUD showSuccessWithStatus:[NSString stringWithFormat:@"%@",[self.items[a] valueForKey:@"title"]]];
     
     //    常见变换类型（type）
@@ -512,19 +514,42 @@ static BaseViewController *BVC = nil;
     [self presentViewController:dvc animated:YES completion:NULL];
 }
 -(void)showRadialMenu{
-    [self readData];
-    self.radialView = [[CKRadialMenu alloc] initWithFrame:CGRectMake(10, kScreenHeight-100, 50, 50)];
-    for(int i = 0;i<self.items.count;i++){
-        UIImageView *a = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
-        a.image = [UIImage imageNamed:[self.items[i] valueForKey:@"icon"]];
-        [self.radialView addPopoutView:a withIndentifier:[NSString stringWithFormat:@"%d",i]];
+    if(!self.radialView){
+        [self readData];
+        self.radialView = [[CKRadialMenu alloc] initWithFrame:CGRectMake(kScreenWidth/2-25, kScreenHeight/2-25, 50, 50)];
+        for(int i = 0;i<self.items.count;i++){
+            UIImageView *a = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
+            a.image = [UIImage imageNamed:[self.items[i] valueForKey:@"icon"]];
+            [self.radialView addPopoutView:a withIndentifier:[NSString stringWithFormat:@"%d",i]];
+        }
+        [self.radialView enableDevelopmentMode];
+        self.radialView.distanceBetweenPopouts = 2*180/self.items.count;
+        self.radialView.delegate = self;
+        [self.view addSubview:self.radialView];
+        self.radialView.center = self.view.center;
+        UIWindow *win = [[UIApplication sharedApplication]keyWindow];
+        [win addSubview:self.radialView];
+        [win bringSubviewToFront:self.radialView];
+    }else{
+        [self.radialView removeFromSuperview];
+        self.radialView = nil;
     }
-    [self.radialView enableDevelopmentMode];
-     self.radialView.distanceBetweenPopouts = 2*180/self.items.count;
-    self.radialView.delegate = self;
-    [self.view addSubview: self.radialView];
+   
 }
-
+#pragma mark 摇一摇
+/** 开始摇一摇 */
+- (void) motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event{
+    [self showRadialMenu];
+}
+/** 摇一摇结束 */
+- (void) motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event{
+    if (motion != UIEventSubtypeMotionShake)return;
+    DLog(@"结束摇一摇");
+}
+/** 摇一摇取消(被中断 比如突然来了电话 )*/
+- (void) motionCancelled:(UIEventSubtype)motion withEvent:(UIEvent *)event{
+    DLog(@"取消摇一摇");
+}
 - (void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }

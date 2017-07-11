@@ -11,7 +11,7 @@
 #import "TLRootViewController.h"
 #import "TLGroup+ChatModel.h"
 #import "TLGroupCell.h"
-
+#import "UINavigationController+JZExtension.h"
 @implementation TLGroupViewController (Delegate)
 
 #pragma mark - Public Methods -

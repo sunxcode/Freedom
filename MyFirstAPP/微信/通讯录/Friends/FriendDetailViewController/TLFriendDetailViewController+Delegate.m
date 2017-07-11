@@ -12,7 +12,7 @@
 #import "MWPhotoBrowser.h"
 #import "TLUser+ChatModel.h"
 #import "TLFriendDetailAlbumCell.h"
-
+#import "UINavigationController+JZExtension.h"
 @implementation TLFriendDetailViewController (Delegate)
 
 #pragma mark - Private Methods -
