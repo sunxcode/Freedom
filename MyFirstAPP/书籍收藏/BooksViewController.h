@@ -8,6 +8,6 @@
 
 #import "BaseViewController.h"
 
-@interface BooksViewController : BaseViewController
+@interface BooksViewController : UIViewController
 
 @end

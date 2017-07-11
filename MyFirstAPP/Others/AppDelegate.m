@@ -67,27 +67,6 @@
         [_launchView removeFromSuperview];
     }];
 
-//    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-//    self.window.backgroundColor = [UIColor whiteColor];
-//    FirstViewController *main = [[FirstViewController alloc] init];
-//    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:main];
-//    _revealSideViewController = [[PPRevealSideViewController alloc] initWithRootViewController:nav];
-//    _revealSideViewController.delegate = self;
-//    self.window.rootViewController = _revealSideViewController;
-//    self.window.backgroundColor = [UIColor whiteColor];
-//    [self.window makeKeyAndVisible];
-
-//    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-//    self.window.backgroundColor = [UIColor whiteColor];
-//    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[SliderViewController sharedSliderController]];
-//    
-//    [SliderViewController sharedSliderController].MainVC = [[SettingsViewController alloc] init];
-//    [SliderViewController sharedSliderController].RightVC = [[LibraryCollectionViewController alloc] init];
-//    [SliderViewController sharedSliderController].LeftVC = [[FirstViewController alloc] init];
-//    
-//    [self.window makeKeyAndVisible];
-    
-    
     FirstViewController *controller = (FirstViewController *)self.window.rootViewController;
     controller.managedObjectContext = self.managedObjectContext;
     //检查初次使用标识
@@ -95,15 +74,12 @@
     if ([prefs boolForKey:@"hasRunBefore"] != YES) {
         [prefs setBool:YES forKey:@"hasRunBefore"];
         [prefs synchronize];
-        
         [self readData];
     }
     //数据操作提交并检查错误
     NSError *error;
     if (![self.managedObjectContext save:&error])
         NSLog(@"Failed to add default Object with error: %@", [error domain]);
-    
-
     return YES;
 }
 - (void)readData {
