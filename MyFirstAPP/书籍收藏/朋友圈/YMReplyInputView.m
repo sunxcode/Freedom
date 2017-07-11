@@ -40,7 +40,10 @@
     }
     else
     {
-        size = [self sizeWithFont:font constrainedToSize:constraint lineBreakMode:lineBreakMode];
+//        size = [self sizeWithFont:font constrainedToSize:constraint lineBreakMode:lineBreakMode];
+        NSDictionary *attributes = @{ NSFontAttributeName:font, NSParagraphStyleAttributeName:[[NSMutableParagraphStyle alloc]init]};
+        size = [self boundingRectWithSize:constraint options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attributes context:nil].size;
+
     }
     
     return size;

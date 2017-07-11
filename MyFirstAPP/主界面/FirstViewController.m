@@ -108,6 +108,7 @@ static FirstViewController *FVC = nil;
 }
 - (void)viewDidLoad{
     [super viewDidLoad];
+    [self showRadialMenu];
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     [[UIApplication sharedApplication].delegate window].rootViewController = self;
     searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(50, 0, kScreenWidth-110, 44)];

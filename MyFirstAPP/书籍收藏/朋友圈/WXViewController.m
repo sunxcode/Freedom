@@ -110,7 +110,7 @@
     messBody2.posterPostImage = @[@"1.png",@"2.png",@"3.png"];
     messBody2.posterReplies = [NSMutableArray arrayWithObjects:body1,body2,body4, nil];
     messBody2.posterImgstr = @"mao.jpg";
-    messBody2.posterName = @"山姆·温彻斯特";
+    messBody2.posterName = @"山姆·温彻斯特"; 
     messBody2.posterIntro = @"这个人很懒，什么都没有留下";
     messBody2.posterFavour = [NSMutableArray arrayWithObjects:@"塞纳留斯",@"希尔瓦娜斯",@"鹿盔", nil];
     messBody2.isFavour = NO;
@@ -133,7 +133,7 @@
     messBody4.posterImgstr = @"mao.jpg";
     messBody4.posterName = @"基尔加丹";
     messBody4.posterIntro = @"这个人很懒，什么都没有留下";
-    messBody4.posterFavour = [NSMutableArray arrayWithObjects:nil];
+    messBody4.posterFavour = [NSMutableArray arrayWithObjects:@"",nil];
     messBody4.isFavour = NO;
     
     WFMessageBody *messBody5 = [[WFMessageBody alloc] init];

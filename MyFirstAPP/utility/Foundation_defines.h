@@ -40,9 +40,6 @@
 
 /*******************淘宝定义的宏*****************/
 #define IOS_VERSION ([[[UIDevice currentDevice] systemVersion] floatValue])
-//宽高
-#define SCREEN_W ([[UIScreen mainScreen] bounds].size.width)
-#define SCREEN_H ([[UIScreen mainScreen] bounds].size.height)
 // 定义这个常量,就可以在使用Masonry不必总带着前缀 `mas_`:
 #define MAS_SHORTHAND
 // 定义这个常量,以支持在 Masonry 语法中自动将基本类型转换为 object 类型:

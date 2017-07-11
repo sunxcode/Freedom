@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--My Database View Controller-->
         <scene sceneID="EMo-XW-KYL">
             <objects>
-                <viewController id="OuM-CD-vRT" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyDatabaseViewController" id="OuM-CD-vRT" customClass="MyDatabaseViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="nrz-rs-eEF"/>
                         <viewControllerLayoutGuide type="bottom" id="q5o-JX-dKj"/>
@@ -44,7 +44,7 @@
         <!--我的数据库-->
         <scene sceneID="9wT-5I-vXz">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="oWJ-9X-XVy" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MyDatabaseNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="oWJ-9X-XVy" customClass="MyDatabaseNavigationController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="我的数据库" id="K3I-OH-oTG"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="sDb-cm-Wl6">

@@ -31,7 +31,7 @@
 - (void)popController:(NSString*)controller withSel:(SEL)sel withObj:(id)info;
 - (CGFloat)heightForLabel:(CGFloat)_width font:(UIFont*)_font text:(NSString*)_text floatLine:(CGFloat)_aLine;
 - (CGFloat)heightForTextView:(CGFloat)_width font:(UIFont*)_font text:(NSString*)_text floatLine:(CGFloat)_aLine;
-
+- (void)showRadialMenu;
 - (NSString*)navTitle;
 - (UIButton*)backButton;
 // updateDefaultNavView: 和navbarTitle： 不能同时存在

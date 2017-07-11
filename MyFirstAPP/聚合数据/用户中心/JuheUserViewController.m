@@ -300,7 +300,6 @@
     [[Utility Share] readUserInfoFromDefault];
     [SVProgressHUD showSuccessWithStatus:@"退出登录成功"];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [[[Utility Share] CustomTabBar_zk]selectedTabIndex:@"0"];
         [[Utility Share] loginWithAccount:[[Utility Share] userAccount] pwd:[[Utility Share] userPwd]];
     });
 }
@@ -380,7 +379,7 @@
             [[Utility Share]setUserLogo:[[responseObject valueForKey:@"data"] valueForJSONKey:@"pic"]];
             [[Utility Share] saveUserInfoToDefault];
             [[Utility Share] readUserInfoFromDefault];
-            NSString *str = [[Utility Share] userLogo];
+            
             [icon imageWithURL:[[Utility Share] userLogo] useProgress:NO useActivity:NO];
         });
 

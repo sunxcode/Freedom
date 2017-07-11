@@ -44,8 +44,8 @@
     view2.backgroundColor = [UIColor whiteColor];
     [mainView addSubview:view1];
     [mainView addSubview:view2];
-    view1.frame = CGRectMake(0, 0, (SCREEN_W-1)/2, 120);
-    view2.frame = CGRectMake((SCREEN_W-1)/2+1, 0, (SCREEN_W-1)/2, 120);
+    view1.frame = CGRectMake(0, 0, (kScreenWidth-1)/2, 120);
+    view2.frame = CGRectMake((kScreenWidth-1)/2+1, 0, (kScreenWidth-1)/2, 120);
     [view1 setTitle:@"家具" subTitle:@"尖货推荐" size1:14 size2:12 color1:[UIColor blackColor] color2:[UIColor lightGrayColor]];
     [view2 setTitle:@"女装" subTitle:@"新品推荐" size1:14 size2:12 color1:[UIColor blackColor] color2:[UIColor lightGrayColor]];
     [view1 setImage:[UIImage imageNamed:@"05.jpg"] titleIcon:nil];
@@ -69,7 +69,7 @@
     float y = 0;
     int row = 0;
     int col = 0;
-    float width  = (SCREEN_W-3)/4; //间隔为1，4列，总间隔3
+    float width  = (kScreenWidth-3)/4; //间隔为1，4列，总间隔3
     float height = 100;
     for (int i=0; i<self.dataArr.count; i++) {
         NSDictionary *dic = self.dataArr[i];
@@ -79,7 +79,7 @@
             row = (i/4); DLog(@"行 %zd", (i/4));
         }
         col = (i%4);     DLog(@" 列 %zd", (i%4));
-        x = (SCREEN_W-3)/4*i + col - row*(SCREEN_W-3);
+        x = (kScreenWidth-3)/4*i + col - row*(kScreenWidth-3);
         y = 120 +row*1+1 +row*height;//顶部 间隔 行高
         view.frame = CGRectMake(x, y, width, height);
         if (i == _dataArr.count-1 || i == _dataArr.count -2) {

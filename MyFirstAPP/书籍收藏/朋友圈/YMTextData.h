@@ -75,5 +75,5 @@ typedef enum : NSUInteger {
 - (float)calculateFavourHeightWithWidth:(float)sizeWidth;
 
 
-- (id)initWithMessage:(WFMessageBody *)messageBody;
+//- (id)initWithMessage:(WFMessageBody *)messageBody;
 @end

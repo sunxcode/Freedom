@@ -169,7 +169,10 @@
 {
     UIFont *theFont = msgFont;
     CGSize size = CGSizeMake(160, 2000);
-    CGSize tempSize = [_theString sizeWithFont:theFont constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
+//    CGSize tempSize = [_theString sizeWithFont:theFont constrainedToSize:size lineBreakMode:NSLineBreakByWordWrapping];
+     NSDictionary *attributes = @{ NSFontAttributeName:theFont, NSParagraphStyleAttributeName:[[NSMutableParagraphStyle alloc]init]};
+    CGSize tempSize = [_theString boundingRectWithSize:size options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attributes context:nil].size;
+ 
     return tempSize;
 }
 

@@ -8,7 +8,6 @@
 
 #import "JuheDataTabBarController.h"
 #import "UIImage+DZ.h"
-#import "DianpingNavigationController.h"
 @interface JuheDataTabBarController ()
 
 @property (nonatomic, strong) NSMutableArray *items;

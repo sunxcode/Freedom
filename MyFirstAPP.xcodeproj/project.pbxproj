@@ -40,7 +40,6 @@
 		771917781D65C2A7002F2BCD /* MicroEnergyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 771917771D65C2A7002F2BCD /* MicroEnergyViewController.m */; };
 		7719177B1D65C2B2002F2BCD /* PersonalApplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7719177A1D65C2B2002F2BCD /* PersonalApplyViewController.m */; };
 		7719177E1D65C2BE002F2BCD /* FreedomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7719177D1D65C2BE002F2BCD /* FreedomViewController.m */; };
-		771917811D65C2CE002F2BCD /* ResumeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 771917801D65C2CE002F2BCD /* ResumeViewController.m */; };
 		771917841D65C2DB002F2BCD /* BooksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 771917831D65C2DB002F2BCD /* BooksViewController.m */; };
 		771917871D65C2E6002F2BCD /* MyDatabaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 771917861D65C2E6002F2BCD /* MyDatabaseViewController.m */; };
 		7719178A1D65C3D3002F2BCD /* MyTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 771917891D65C3D3002F2BCD /* MyTabBarController.m */; };
@@ -3001,6 +3000,35 @@
 		779B81CA1D7D120400B23DFA /* JuhePublicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81C91D7D120400B23DFA /* JuhePublicViewController.m */; };
 		779B81CD1D7D12BC00B23DFA /* JuheDetailQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81CC1D7D12BC00B23DFA /* JuheDetailQuestion.m */; };
 		779B81D01D7D1A2E00B23DFA /* JuheAPIDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81CF1D7D1A2E00B23DFA /* JuheAPIDetailViewController.m */; };
+		779B81D31D7D3EBD00B23DFA /* EnergyNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81D21D7D3EBD00B23DFA /* EnergyNavigationController.m */; };
+		779B81D61D7D3F1F00B23DFA /* EnergySampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81D51D7D3F1F00B23DFA /* EnergySampleViewController.m */; };
+		779B81D91D7D3F3100B23DFA /* EnergyNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81D81D7D3F3100B23DFA /* EnergyNewsViewController.m */; };
+		779B81DC1D7D3F3F00B23DFA /* EnergyHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81DB1D7D3F3F00B23DFA /* EnergyHomeViewController.m */; };
+		779B81DF1D7D3F6D00B23DFA /* EnergyShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81DE1D7D3F6D00B23DFA /* EnergyShopViewController.m */; };
+		779B81E21D7D3F7D00B23DFA /* EnergyContactUSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81E11D7D3F7D00B23DFA /* EnergyContactUSViewController.m */; };
+		779B81E81D7D424900B23DFA /* EnergyBusinessListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81E71D7D424900B23DFA /* EnergyBusinessListViewController.m */; };
+		779B81EB1D7D428C00B23DFA /* EnergyBusinessDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81EA1D7D428C00B23DFA /* EnergyBusinessDetailViewController.m */; };
+		779B81EE1D7D438C00B23DFA /* EnergyNewsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81ED1D7D438C00B23DFA /* EnergyNewsDetailViewController.m */; };
+		779B81F11D7D45A100B23DFA /* EnergyListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81F01D7D45A100B23DFA /* EnergyListViewController.m */; };
+		779B81F41D7D45B600B23DFA /* EnergyDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81F31D7D45B600B23DFA /* EnergyDetailViewController.m */; };
+		779B81F71D7D478800B23DFA /* EnergyShopTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81F61D7D478800B23DFA /* EnergyShopTabBarController.m */; };
+		779B81FA1D7D47B500B23DFA /* EnergySuperMarketTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81F91D7D47B500B23DFA /* EnergySuperMarketTabBarController.m */; };
+		779B81FD1D7D482000B23DFA /* EnergyDetailShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81FC1D7D482000B23DFA /* EnergyDetailShopViewController.m */; };
+		779B82001D7D491500B23DFA /* EnergyContactDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81FF1D7D491500B23DFA /* EnergyContactDetailViewController.m */; };
+		779B82031D7D4B2400B23DFA /* PersonalApplyNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B82021D7D4B2400B23DFA /* PersonalApplyNavigationController.m */; };
+		779B82061D7D4C6B00B23DFA /* PersonalIndustryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B82051D7D4C6B00B23DFA /* PersonalIndustryViewController.m */; };
+		779B82091D7D4CC100B23DFA /* PersonalCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B82081D7D4CC100B23DFA /* PersonalCompanyViewController.m */; };
+		779B820C1D7D4F0400B23DFA /* ResumeNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B820B1D7D4F0400B23DFA /* ResumeNavigationController.m */; };
+		779B82131D7D501E00B23DFA /* ResumeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B82121D7D501E00B23DFA /* ResumeViewController.m */; };
+		779B82161D7D506700B23DFA /* ResumeBusinessCooperationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B82151D7D506700B23DFA /* ResumeBusinessCooperationVC.m */; };
+		779B82191D7D509D00B23DFA /* ResumeTheorySystemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B82181D7D509D00B23DFA /* ResumeTheorySystemViewController.m */; };
+		779B821C1D7D50B000B23DFA /* ResumeCallMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B821B1D7D50B000B23DFA /* ResumeCallMeViewController.m */; };
+		779B821F1D7D512500B23DFA /* ResumeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B821E1D7D512500B23DFA /* ResumeDetailViewController.m */; };
+		779B82221D7D533100B23DFA /* FreeDomNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B82211D7D533100B23DFA /* FreeDomNavigationController.m */; };
+		779B82251D7D556500B23DFA /* FreedomBooksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B82241D7D556500B23DFA /* FreedomBooksViewController.m */; };
+		779B82281D7D557300B23DFA /* FreedomBooksEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B82271D7D557300B23DFA /* FreedomBooksEditViewController.m */; };
+		779B822B1D7D568C00B23DFA /* MyDatabaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B822A1D7D568C00B23DFA /* MyDatabaseNavigationController.m */; };
+		779B822E1D7D574500B23DFA /* MyDatabaseEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B822D1D7D574500B23DFA /* MyDatabaseEditViewController.m */; };
 		77AAA40A1D78290400B1617F /* [NO]@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77AAA37C1D78290300B1617F /* [NO]@2x.png */; };
 		77AAA40B1D78290400B1617F /* [OK]@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77AAA37D1D78290300B1617F /* [OK]@2x.png */; };
 		77AAA40C1D78290400B1617F /* [下雨]@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77AAA37E1D78290300B1617F /* [下雨]@2x.png */; };
@@ -3355,8 +3383,6 @@
 		7719177A1D65C2B2002F2BCD /* PersonalApplyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalApplyViewController.m; sourceTree = "<group>"; };
 		7719177C1D65C2BE002F2BCD /* FreedomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreedomViewController.h; sourceTree = "<group>"; };
 		7719177D1D65C2BE002F2BCD /* FreedomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreedomViewController.m; sourceTree = "<group>"; };
-		7719177F1D65C2CE002F2BCD /* ResumeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResumeViewController.h; sourceTree = "<group>"; };
-		771917801D65C2CE002F2BCD /* ResumeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResumeViewController.m; sourceTree = "<group>"; };
 		771917821D65C2DB002F2BCD /* BooksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BooksViewController.h; sourceTree = "<group>"; };
 		771917831D65C2DB002F2BCD /* BooksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BooksViewController.m; sourceTree = "<group>"; };
 		771917851D65C2E5002F2BCD /* MyDatabaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDatabaseViewController.h; sourceTree = "<group>"; };
@@ -6885,6 +6911,64 @@
 		779B81CC1D7D12BC00B23DFA /* JuheDetailQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuheDetailQuestion.m; sourceTree = "<group>"; };
 		779B81CE1D7D1A2E00B23DFA /* JuheAPIDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuheAPIDetailViewController.h; sourceTree = "<group>"; };
 		779B81CF1D7D1A2E00B23DFA /* JuheAPIDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuheAPIDetailViewController.m; sourceTree = "<group>"; };
+		779B81D11D7D3EBD00B23DFA /* EnergyNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnergyNavigationController.h; sourceTree = "<group>"; };
+		779B81D21D7D3EBD00B23DFA /* EnergyNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnergyNavigationController.m; sourceTree = "<group>"; };
+		779B81D41D7D3F1F00B23DFA /* EnergySampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnergySampleViewController.h; sourceTree = "<group>"; };
+		779B81D51D7D3F1F00B23DFA /* EnergySampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnergySampleViewController.m; sourceTree = "<group>"; };
+		779B81D71D7D3F3100B23DFA /* EnergyNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnergyNewsViewController.h; sourceTree = "<group>"; };
+		779B81D81D7D3F3100B23DFA /* EnergyNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnergyNewsViewController.m; sourceTree = "<group>"; };
+		779B81DA1D7D3F3F00B23DFA /* EnergyHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnergyHomeViewController.h; sourceTree = "<group>"; };
+		779B81DB1D7D3F3F00B23DFA /* EnergyHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnergyHomeViewController.m; sourceTree = "<group>"; };
+		779B81DD1D7D3F6D00B23DFA /* EnergyShopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnergyShopViewController.h; sourceTree = "<group>"; };
+		779B81DE1D7D3F6D00B23DFA /* EnergyShopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnergyShopViewController.m; sourceTree = "<group>"; };
+		779B81E01D7D3F7D00B23DFA /* EnergyContactUSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnergyContactUSViewController.h; sourceTree = "<group>"; };
+		779B81E11D7D3F7D00B23DFA /* EnergyContactUSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnergyContactUSViewController.m; sourceTree = "<group>"; };
+		779B81E61D7D424900B23DFA /* EnergyBusinessListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnergyBusinessListViewController.h; sourceTree = "<group>"; };
+		779B81E71D7D424900B23DFA /* EnergyBusinessListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnergyBusinessListViewController.m; sourceTree = "<group>"; };
+		779B81E91D7D428C00B23DFA /* EnergyBusinessDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnergyBusinessDetailViewController.h; sourceTree = "<group>"; };
+		779B81EA1D7D428C00B23DFA /* EnergyBusinessDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnergyBusinessDetailViewController.m; sourceTree = "<group>"; };
+		779B81EC1D7D438C00B23DFA /* EnergyNewsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnergyNewsDetailViewController.h; sourceTree = "<group>"; };
+		779B81ED1D7D438C00B23DFA /* EnergyNewsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnergyNewsDetailViewController.m; sourceTree = "<group>"; };
+		779B81EF1D7D45A100B23DFA /* EnergyListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnergyListViewController.h; sourceTree = "<group>"; };
+		779B81F01D7D45A100B23DFA /* EnergyListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnergyListViewController.m; sourceTree = "<group>"; };
+		779B81F21D7D45B600B23DFA /* EnergyDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnergyDetailViewController.h; sourceTree = "<group>"; };
+		779B81F31D7D45B600B23DFA /* EnergyDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnergyDetailViewController.m; sourceTree = "<group>"; };
+		779B81F51D7D478800B23DFA /* EnergyShopTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnergyShopTabBarController.h; sourceTree = "<group>"; };
+		779B81F61D7D478800B23DFA /* EnergyShopTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnergyShopTabBarController.m; sourceTree = "<group>"; };
+		779B81F81D7D47B500B23DFA /* EnergySuperMarketTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnergySuperMarketTabBarController.h; sourceTree = "<group>"; };
+		779B81F91D7D47B500B23DFA /* EnergySuperMarketTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnergySuperMarketTabBarController.m; sourceTree = "<group>"; };
+		779B81FB1D7D482000B23DFA /* EnergyDetailShopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnergyDetailShopViewController.h; sourceTree = "<group>"; };
+		779B81FC1D7D482000B23DFA /* EnergyDetailShopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnergyDetailShopViewController.m; sourceTree = "<group>"; };
+		779B81FE1D7D491500B23DFA /* EnergyContactDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnergyContactDetailViewController.h; sourceTree = "<group>"; };
+		779B81FF1D7D491500B23DFA /* EnergyContactDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnergyContactDetailViewController.m; sourceTree = "<group>"; };
+		779B82011D7D4B2400B23DFA /* PersonalApplyNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalApplyNavigationController.h; sourceTree = "<group>"; };
+		779B82021D7D4B2400B23DFA /* PersonalApplyNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalApplyNavigationController.m; sourceTree = "<group>"; };
+		779B82041D7D4C6B00B23DFA /* PersonalIndustryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalIndustryViewController.h; sourceTree = "<group>"; };
+		779B82051D7D4C6B00B23DFA /* PersonalIndustryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalIndustryViewController.m; sourceTree = "<group>"; };
+		779B82071D7D4CC100B23DFA /* PersonalCompanyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCompanyViewController.h; sourceTree = "<group>"; };
+		779B82081D7D4CC100B23DFA /* PersonalCompanyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalCompanyViewController.m; sourceTree = "<group>"; };
+		779B820A1D7D4F0400B23DFA /* ResumeNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResumeNavigationController.h; sourceTree = "<group>"; };
+		779B820B1D7D4F0400B23DFA /* ResumeNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResumeNavigationController.m; sourceTree = "<group>"; };
+		779B82111D7D501E00B23DFA /* ResumeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResumeViewController.h; sourceTree = "<group>"; };
+		779B82121D7D501E00B23DFA /* ResumeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResumeViewController.m; sourceTree = "<group>"; };
+		779B82141D7D506700B23DFA /* ResumeBusinessCooperationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResumeBusinessCooperationVC.h; sourceTree = "<group>"; };
+		779B82151D7D506700B23DFA /* ResumeBusinessCooperationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResumeBusinessCooperationVC.m; sourceTree = "<group>"; };
+		779B82171D7D509D00B23DFA /* ResumeTheorySystemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResumeTheorySystemViewController.h; sourceTree = "<group>"; };
+		779B82181D7D509D00B23DFA /* ResumeTheorySystemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResumeTheorySystemViewController.m; sourceTree = "<group>"; };
+		779B821A1D7D50B000B23DFA /* ResumeCallMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResumeCallMeViewController.h; sourceTree = "<group>"; };
+		779B821B1D7D50B000B23DFA /* ResumeCallMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResumeCallMeViewController.m; sourceTree = "<group>"; };
+		779B821D1D7D512500B23DFA /* ResumeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResumeDetailViewController.h; sourceTree = "<group>"; };
+		779B821E1D7D512500B23DFA /* ResumeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResumeDetailViewController.m; sourceTree = "<group>"; };
+		779B82201D7D533100B23DFA /* FreeDomNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreeDomNavigationController.h; sourceTree = "<group>"; };
+		779B82211D7D533100B23DFA /* FreeDomNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreeDomNavigationController.m; sourceTree = "<group>"; };
+		779B82231D7D556500B23DFA /* FreedomBooksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreedomBooksViewController.h; sourceTree = "<group>"; };
+		779B82241D7D556500B23DFA /* FreedomBooksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreedomBooksViewController.m; sourceTree = "<group>"; };
+		779B82261D7D557300B23DFA /* FreedomBooksEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreedomBooksEditViewController.h; sourceTree = "<group>"; };
+		779B82271D7D557300B23DFA /* FreedomBooksEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreedomBooksEditViewController.m; sourceTree = "<group>"; };
+		779B82291D7D568C00B23DFA /* MyDatabaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDatabaseNavigationController.h; sourceTree = "<group>"; };
+		779B822A1D7D568C00B23DFA /* MyDatabaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyDatabaseNavigationController.m; sourceTree = "<group>"; };
+		779B822C1D7D574500B23DFA /* MyDatabaseEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDatabaseEditViewController.h; sourceTree = "<group>"; };
+		779B822D1D7D574500B23DFA /* MyDatabaseEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyDatabaseEditViewController.m; sourceTree = "<group>"; };
 		77AAA37C1D78290300B1617F /* [NO]@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "[NO]@2x.png"; sourceTree = "<group>"; };
 		77AAA37D1D78290300B1617F /* [OK]@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "[OK]@2x.png"; sourceTree = "<group>"; };
 		77AAA37E1D78290300B1617F /* [下雨]@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "[下雨]@2x.png"; sourceTree = "<group>"; };
@@ -9751,6 +9835,8 @@
 			children = (
 				7745C2651D672409002212DE /* MicroEnergyTabBarController.h */,
 				7745C2661D672409002212DE /* MicroEnergyTabBarController.m */,
+				779B81D11D7D3EBD00B23DFA /* EnergyNavigationController.h */,
+				779B81D21D7D3EBD00B23DFA /* EnergyNavigationController.m */,
 			);
 			path = "基本类库";
 			sourceTree = "<group>";
@@ -9758,6 +9844,12 @@
 		7745C2161D67168E002212DE /* 经典案例 */ = {
 			isa = PBXGroup;
 			children = (
+				779B81D41D7D3F1F00B23DFA /* EnergySampleViewController.h */,
+				779B81D51D7D3F1F00B23DFA /* EnergySampleViewController.m */,
+				779B81E61D7D424900B23DFA /* EnergyBusinessListViewController.h */,
+				779B81E71D7D424900B23DFA /* EnergyBusinessListViewController.m */,
+				779B81E91D7D428C00B23DFA /* EnergyBusinessDetailViewController.h */,
+				779B81EA1D7D428C00B23DFA /* EnergyBusinessDetailViewController.m */,
 			);
 			path = "经典案例";
 			sourceTree = "<group>";
@@ -9765,6 +9857,14 @@
 		7745C2171D67168E002212DE /* 精品人人店 */ = {
 			isa = PBXGroup;
 			children = (
+				779B81DD1D7D3F6D00B23DFA /* EnergyShopViewController.h */,
+				779B81DE1D7D3F6D00B23DFA /* EnergyShopViewController.m */,
+				779B81F51D7D478800B23DFA /* EnergyShopTabBarController.h */,
+				779B81F61D7D478800B23DFA /* EnergyShopTabBarController.m */,
+				779B81FB1D7D482000B23DFA /* EnergyDetailShopViewController.h */,
+				779B81FC1D7D482000B23DFA /* EnergyDetailShopViewController.m */,
+				779B81F81D7D47B500B23DFA /* EnergySuperMarketTabBarController.h */,
+				779B81F91D7D47B500B23DFA /* EnergySuperMarketTabBarController.m */,
 			);
 			path = "精品人人店";
 			sourceTree = "<group>";
@@ -9772,6 +9872,10 @@
 		7745C2181D67168E002212DE /* 联系我们 */ = {
 			isa = PBXGroup;
 			children = (
+				779B81E01D7D3F7D00B23DFA /* EnergyContactUSViewController.h */,
+				779B81E11D7D3F7D00B23DFA /* EnergyContactUSViewController.m */,
+				779B81FE1D7D491500B23DFA /* EnergyContactDetailViewController.h */,
+				779B81FF1D7D491500B23DFA /* EnergyContactDetailViewController.m */,
 			);
 			path = "联系我们";
 			sourceTree = "<group>";
@@ -9779,6 +9883,10 @@
 		7745C2191D67168E002212DE /* 新闻动态 */ = {
 			isa = PBXGroup;
 			children = (
+				779B81D71D7D3F3100B23DFA /* EnergyNewsViewController.h */,
+				779B81D81D7D3F3100B23DFA /* EnergyNewsViewController.m */,
+				779B81EC1D7D438C00B23DFA /* EnergyNewsDetailViewController.h */,
+				779B81ED1D7D438C00B23DFA /* EnergyNewsDetailViewController.m */,
 			);
 			path = "新闻动态";
 			sourceTree = "<group>";
@@ -9786,6 +9894,12 @@
 		7745C21A1D67168E002212DE /* HOME */ = {
 			isa = PBXGroup;
 			children = (
+				779B81DA1D7D3F3F00B23DFA /* EnergyHomeViewController.h */,
+				779B81DB1D7D3F3F00B23DFA /* EnergyHomeViewController.m */,
+				779B81EF1D7D45A100B23DFA /* EnergyListViewController.h */,
+				779B81F01D7D45A100B23DFA /* EnergyListViewController.m */,
+				779B81F21D7D45B600B23DFA /* EnergyDetailViewController.h */,
+				779B81F31D7D45B600B23DFA /* EnergyDetailViewController.m */,
 			);
 			path = HOME;
 			sourceTree = "<group>";
@@ -9816,6 +9930,8 @@
 			children = (
 				7745C2681D67241E002212DE /* PersonalApplyTabBarController.h */,
 				7745C2691D67241E002212DE /* PersonalApplyTabBarController.m */,
+				779B82011D7D4B2400B23DFA /* PersonalApplyNavigationController.h */,
+				779B82021D7D4B2400B23DFA /* PersonalApplyNavigationController.m */,
 			);
 			path = "基本类库";
 			sourceTree = "<group>";
@@ -9902,6 +10018,8 @@
 			children = (
 				7745C26B1D672436002212DE /* FreedomTabBarController.h */,
 				7745C26C1D672436002212DE /* FreedomTabBarController.m */,
+				779B82201D7D533100B23DFA /* FreeDomNavigationController.h */,
+				779B82211D7D533100B23DFA /* FreeDomNavigationController.m */,
 			);
 			path = "基本类库";
 			sourceTree = "<group>";
@@ -10002,29 +10120,10 @@
 			children = (
 				7745C26E1D672445002212DE /* ResumeTabBarController.h */,
 				7745C26F1D672445002212DE /* ResumeTabBarController.m */,
+				779B820A1D7D4F0400B23DFA /* ResumeNavigationController.h */,
+				779B820B1D7D4F0400B23DFA /* ResumeNavigationController.m */,
 			);
 			path = "基本类库";
-			sourceTree = "<group>";
-		};
-		7745C2391D6717B3002212DE /* 我的成长史 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "我的成长史";
-			sourceTree = "<group>";
-		};
-		7745C23A1D6717B3002212DE /* 我的经历 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "我的经历";
-			sourceTree = "<group>";
-		};
-		7745C23B1D6717B3002212DE /* 我的作品 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "我的作品";
 			sourceTree = "<group>";
 		};
 		7745C23C1D671801002212DE /* 基本类库 */ = {
@@ -12616,6 +12715,10 @@
 				771917461D6599EB002F2BCD /* PersonalApply.storyboard */,
 				771917791D65C2B2002F2BCD /* PersonalApplyViewController.h */,
 				7719177A1D65C2B2002F2BCD /* PersonalApplyViewController.m */,
+				779B82041D7D4C6B00B23DFA /* PersonalIndustryViewController.h */,
+				779B82051D7D4C6B00B23DFA /* PersonalIndustryViewController.m */,
+				779B82071D7D4CC100B23DFA /* PersonalCompanyViewController.h */,
+				779B82081D7D4CC100B23DFA /* PersonalCompanyViewController.m */,
 			);
 			path = "个人应用";
 			sourceTree = "<group>";
@@ -12763,9 +12866,13 @@
 			children = (
 				7745C2741D672EE5002212DE /* MyDatabaseTabBarController.h */,
 				7745C2751D672EE5002212DE /* MyDatabaseTabBarController.m */,
+				779B82291D7D568C00B23DFA /* MyDatabaseNavigationController.h */,
+				779B822A1D7D568C00B23DFA /* MyDatabaseNavigationController.m */,
 				7719174E1D659A68002F2BCD /* MyDatabase.storyboard */,
 				771917851D65C2E5002F2BCD /* MyDatabaseViewController.h */,
 				771917861D65C2E6002F2BCD /* MyDatabaseViewController.m */,
+				779B822C1D7D574500B23DFA /* MyDatabaseEditViewController.h */,
+				779B822D1D7D574500B23DFA /* MyDatabaseEditViewController.m */,
 			);
 			path = "我的数据库";
 			sourceTree = "<group>";
@@ -12792,6 +12899,10 @@
 				771917481D659A00002F2BCD /* Freedom.storyboard */,
 				7719177C1D65C2BE002F2BCD /* FreedomViewController.h */,
 				7719177D1D65C2BE002F2BCD /* FreedomViewController.m */,
+				779B82231D7D556500B23DFA /* FreedomBooksViewController.h */,
+				779B82241D7D556500B23DFA /* FreedomBooksViewController.m */,
+				779B82261D7D557300B23DFA /* FreedomBooksEditViewController.h */,
+				779B82271D7D557300B23DFA /* FreedomBooksEditViewController.m */,
 			);
 			path = "个性特色自由主义";
 			sourceTree = "<group>";
@@ -12800,12 +12911,11 @@
 			isa = PBXGroup;
 			children = (
 				7745C2381D6717B3002212DE /* 基本类库 */,
-				7745C2391D6717B3002212DE /* 我的成长史 */,
-				7745C23B1D6717B3002212DE /* 我的作品 */,
-				7745C23A1D6717B3002212DE /* 我的经历 */,
+				779B82101D7D4FEA00B23DFA /* 首页 */,
+				779B820F1D7D4FEA00B23DFA /* 事业合作 */,
+				779B820D1D7D4FEA00B23DFA /* 理论体系 */,
+				779B820E1D7D4FEA00B23DFA /* 联系我 */,
 				7719174A1D659A57002F2BCD /* Resume.storyboard */,
-				7719177F1D65C2CE002F2BCD /* ResumeViewController.h */,
-				771917801D65C2CE002F2BCD /* ResumeViewController.m */,
 			);
 			path = "我的简历";
 			sourceTree = "<group>";
@@ -13476,6 +13586,44 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		779B820D1D7D4FEA00B23DFA /* 理论体系 */ = {
+			isa = PBXGroup;
+			children = (
+				779B82171D7D509D00B23DFA /* ResumeTheorySystemViewController.h */,
+				779B82181D7D509D00B23DFA /* ResumeTheorySystemViewController.m */,
+			);
+			path = "理论体系";
+			sourceTree = "<group>";
+		};
+		779B820E1D7D4FEA00B23DFA /* 联系我 */ = {
+			isa = PBXGroup;
+			children = (
+				779B821A1D7D50B000B23DFA /* ResumeCallMeViewController.h */,
+				779B821B1D7D50B000B23DFA /* ResumeCallMeViewController.m */,
+			);
+			path = "联系我";
+			sourceTree = "<group>";
+		};
+		779B820F1D7D4FEA00B23DFA /* 事业合作 */ = {
+			isa = PBXGroup;
+			children = (
+				779B82141D7D506700B23DFA /* ResumeBusinessCooperationVC.h */,
+				779B82151D7D506700B23DFA /* ResumeBusinessCooperationVC.m */,
+			);
+			path = "事业合作";
+			sourceTree = "<group>";
+		};
+		779B82101D7D4FEA00B23DFA /* 首页 */ = {
+			isa = PBXGroup;
+			children = (
+				779B82111D7D501E00B23DFA /* ResumeViewController.h */,
+				779B82121D7D501E00B23DFA /* ResumeViewController.m */,
+				779B821D1D7D512500B23DFA /* ResumeDetailViewController.h */,
+				779B821E1D7D512500B23DFA /* ResumeDetailViewController.m */,
+			);
+			path = "首页";
+			sourceTree = "<group>";
+		};
 		77AAA37B1D78290300B1617F /* 表情 */ = {
 			isa = PBXGroup;
 			children = (
@@ -14031,7 +14179,6 @@
 					7759B68A1D0EA37F00AE3A59 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 968Q63C2Z7;
-						LastSwiftMigration = 0830;
 					};
 					7759B6A31D0EA38000AE3A59 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -16811,7 +16958,6 @@
 				778E93811D69A3F2004D899C /* SWCommonArrowItem.m in Sources */,
 				773D56141D7953A100A0C615 /* JFVideoDetailViewController.m in Sources */,
 				7759B76A1D0EA3E900AE3A59 /* UIColor+expanded.m in Sources */,
-				771917811D65C2CE002F2BCD /* ResumeViewController.m in Sources */,
 				776461661D6843F900ACCCAC /* TLBottleViewController.m in Sources */,
 				7764604A1D6842AB00ACCCAC /* UINavigationController+StackManager.m in Sources */,
 				778E8F051D696020004D899C /* XFStatusToolbar.m in Sources */,
@@ -16826,15 +16972,18 @@
 				773D563D1D79540000A0C615 /* JFImageScrollCell.m in Sources */,
 				7788AC301D7996B100376C95 /* E_Mark.m in Sources */,
 				776462C01D68446300ACCCAC /* TLCommonSettingViewController.m in Sources */,
+				779B82161D7D506700B23DFA /* ResumeBusinessCooperationVC.m in Sources */,
 				778913921D0FDDDB0096AB3B /* main.m in Sources */,
 				7745C1D71D66E0F7002212DE /* UIViewController+expanded.m in Sources */,
 				776463101D68452B00ACCCAC /* TLSearchController.m in Sources */,
 				7719178F1D65CDC1002F2BCD /* TotalData.m in Sources */,
+				779B82131D7D501E00B23DFA /* ResumeViewController.m in Sources */,
 				7764617D1D6843F900ACCCAC /* TLScanningViewController.m in Sources */,
 				7759B76C1D0EA3E900AE3A59 /* UIView+AutoLayout.m in Sources */,
 				776462681D68445800ACCCAC /* TLChatBaseViewController+UIDelegate.m in Sources */,
 				776462881D68445800ACCCAC /* TLGroup+ChatModel.m in Sources */,
 				778E93A61D69B1C2004D899C /* SWCommonTableViewController.m in Sources */,
+				779B81F71D7D478800B23DFA /* EnergyShopTabBarController.m in Sources */,
 				778E936A1D699D8C004D899C /* XFEmotionAttachment.m in Sources */,
 				77DE73401D1CC7E600F39FDB /* LibraryCollectionViewController.m in Sources */,
 				77BD14E41D6E831000DE5DB9 /* Headview1.m in Sources */,
@@ -16848,10 +16997,12 @@
 				776462651D68445800ACCCAC /* TLChatBaseViewController+ChatTableView.m in Sources */,
 				7764616E1D6843F900ACCCAC /* TLMomentDetailTextView.m in Sources */,
 				774BFB1D1D767389005CA603 /* KugouLyricsManage.m in Sources */,
+				779B82281D7D557300B23DFA /* FreedomBooksEditViewController.m in Sources */,
 				776463111D68452B00ACCCAC /* TLSettingButtonCell.m in Sources */,
 				778E93691D699D8C004D899C /* XFEmotion.m in Sources */,
 				77BD16461D6EC53300DE5DB9 /* DetailTableViewController.m in Sources */,
 				773D569A1D7955EE00A0C615 /* JFWebViewController.m in Sources */,
+				779B82001D7D491500B23DFA /* EnergyContactDetailViewController.m in Sources */,
 				776463751D68466200ACCCAC /* TLAccountAndSafetyHelper.m in Sources */,
 				778E936D1D699D8C004D899C /* XFEmotionListView.m in Sources */,
 				778E8EFE1D696020004D899C /* XFHomeViewController.m in Sources */,
@@ -16859,6 +17010,7 @@
 				776462751D68445800ACCCAC /* TLEmoji.m in Sources */,
 				771917601D65C239002F2BCD /* WechartViewController.m in Sources */,
 				776463531D68463600ACCCAC /* TLFriendHelper+Detail.m in Sources */,
+				779B82091D7D4CC100B23DFA /* PersonalCompanyViewController.m in Sources */,
 				771917841D65C2DB002F2BCD /* BooksViewController.m in Sources */,
 				778E93661D699D8C004D899C /* XFComposePhotosView.m in Sources */,
 				774BFB3C1D76744F005CA603 /* KugouTools.m in Sources */,
@@ -16893,6 +17045,7 @@
 				776460911D6843CF00ACCCAC /* TLRootViewController.m in Sources */,
 				773D56471D79542800A0C615 /* JFTabBar.m in Sources */,
 				7764625E1D68445800ACCCAC /* TLChatGroupDetailViewController.m in Sources */,
+				779B821C1D7D50B000B23DFA /* ResumeCallMeViewController.m in Sources */,
 				778E8EFF1D696020004D899C /* XFLoadMoreFooter.m in Sources */,
 				776463461D68460B00ACCCAC /* TLMessageManager.m in Sources */,
 				773D56AB1D79564D00A0C615 /* JFSubscribeModel.m in Sources */,
@@ -16906,6 +17059,7 @@
 				774BFB221D767389005CA603 /* LinsenViewController.m in Sources */,
 				7788AC971D7997DB00376C95 /* WFActionSheet.m in Sources */,
 				776463661D68465400ACCCAC /* TLMineInfoHelper.m in Sources */,
+				779B81FD1D7D482000B23DFA /* EnergyDetailShopViewController.m in Sources */,
 				7788ACAC1D7997EC00376C95 /* ILRegularExpressionManager.m in Sources */,
 				7745C24C1D671DEC002212DE /* BaseNavigationController.m in Sources */,
 				7788AC721D79972300376C95 /* NJKWebViewProgressView.m in Sources */,
@@ -16928,6 +17082,8 @@
 				7759B75D1D0EA3E900AE3A59 /* CALayer+XibConfiguration.m in Sources */,
 				778E93B21D69CB86004D899C /* XFMessageChartViewController.m in Sources */,
 				774BFB401D76744F005CA603 /* TitleScrollHelper.m in Sources */,
+				779B81D91D7D3F3100B23DFA /* EnergyNewsViewController.m in Sources */,
+				779B81FA1D7D47B500B23DFA /* EnergySuperMarketTabBarController.m in Sources */,
 				779B81A91D7D0D4000B23DFA /* JuheNavigationController.m in Sources */,
 				776463151D68452B00ACCCAC /* TLSettingItem.m in Sources */,
 				776460851D6843BE00ACCCAC /* TLQRCodeViewController.m in Sources */,
@@ -16942,12 +17098,15 @@
 				7764633F1D68460B00ACCCAC /* TLChatDetailHelper.m in Sources */,
 				7741F1F41D6D53B700EED332 /* SDYuEBaoTableViewCellModel.m in Sources */,
 				778E936C1D699D8C004D899C /* XFEmotionKeyboard.m in Sources */,
+				779B822B1D7D568C00B23DFA /* MyDatabaseNavigationController.m in Sources */,
 				7741F1F21D6D53B700EED332 /* SDYuEBaoTableViewCellContentView.m in Sources */,
 				776463541D68463600ACCCAC /* TLFriendHelper.m in Sources */,
 				778E8F071D696020004D899C /* XFTitleButton.m in Sources */,
 				7772A7F41D64434200444973 /* CKRadialMenu.m in Sources */,
 				778E93841D69A3F2004D899C /* SWCommonLabelItem.m in Sources */,
 				7741F1951D6D514100EED332 /* SDBasicTableViewControllerCell.m in Sources */,
+				779B81E81D7D424900B23DFA /* EnergyBusinessListViewController.m in Sources */,
+				779B820C1D7D4F0400B23DFA /* ResumeNavigationController.m in Sources */,
 				776463091D68452B00ACCCAC /* TLInfoHeaderFooterView.m in Sources */,
 				776461C81D68440600ACCCAC /* TLExpressionDetailViewController+CollectionView.m in Sources */,
 				77BD16BE1D6ECA3C00DE5DB9 /* DealModel.m in Sources */,
@@ -16974,6 +17133,7 @@
 				7764625B1D68445800ACCCAC /* TLUserGroupCell.m in Sources */,
 				776461D11D68440600ACCCAC /* TLExpressionViewController.m in Sources */,
 				7745C2671D672409002212DE /* MicroEnergyTabBarController.m in Sources */,
+				779B81DF1D7D3F6D00B23DFA /* EnergyShopViewController.m in Sources */,
 				7759B75F1D0EA3E900AE3A59 /* MyPageControl.m in Sources */,
 				773D56891D7955AE00A0C615 /* JFDiscoverModel.m in Sources */,
 				777657591D2BEB6200B538F9 /* RHMethods.m in Sources */,
@@ -16986,6 +17146,7 @@
 				779B81B81D7D0E8D00B23DFA /* JuheUserViewController.m in Sources */,
 				778E8F481D696279004D899C /* UIWindow+Extension.m in Sources */,
 				776462731D68445800ACCCAC /* TLEmojiGroupCell.m in Sources */,
+				779B822E1D7D574500B23DFA /* MyDatabaseEditViewController.m in Sources */,
 				77BD16CD1D6ECBB800DE5DB9 /* DianpingNavigationController.m in Sources */,
 				7764635B1D68464700ACCCAC /* TLShakeHelper.m in Sources */,
 				776460811D6843BE00ACCCAC /* TLImageBrowserController.m in Sources */,
@@ -17066,6 +17227,7 @@
 				776462801D68445800ACCCAC /* TLExpressionMessageCell.m in Sources */,
 				778E93451D699D74004D899C /* XFDropdownView.m in Sources */,
 				776461791D6843F900ACCCAC /* TLScannerBackgroundView.m in Sources */,
+				779B82191D7D509D00B23DFA /* ResumeTheorySystemViewController.m in Sources */,
 				7764617A1D6843F900ACCCAC /* TLScannerButton.m in Sources */,
 				7764630F1D68452B00ACCCAC /* TLNavigationController.m in Sources */,
 				776461CD1D68440600ACCCAC /* TLExpressionPublicViewController.m in Sources */,
@@ -17091,6 +17253,7 @@
 				776463171D68452B00ACCCAC /* TLSettingFooterTitleView.m in Sources */,
 				7745C2451D67188C002212DE /* WechartNavigationController.m in Sources */,
 				776461121D6843EC00ACCCAC /* TLPublicServerViewController.m in Sources */,
+				779B821F1D7D512500B23DFA /* ResumeDetailViewController.m in Sources */,
 				773D56BB1D79568500A0C615 /* JFLoginViewController.m in Sources */,
 				776461C41D68440600ACCCAC /* TLExpressionChosenViewController+TableView.m in Sources */,
 				77BD14DE1D6E831000DE5DB9 /* GridCell.m in Sources */,
@@ -17123,6 +17286,7 @@
 				7788AC531D7996CE00376C95 /* E_SettingTopBar.m in Sources */,
 				776460FF1D6843EC00ACCCAC /* TLFriendCell.m in Sources */,
 				7719178A1D65C3D3002F2BCD /* MyTabBarController.m in Sources */,
+				779B81D61D7D3F1F00B23DFA /* EnergySampleViewController.m in Sources */,
 				776460FA1D6843EC00ACCCAC /* TLFriendDetailAlbumCell.m in Sources */,
 				7788AC6C1D79971500376C95 /* UIImage+ImageEffects.m in Sources */,
 				7788ACB11D7997EC00376C95 /* YMTextData.m in Sources */,
@@ -17140,12 +17304,14 @@
 				776461051D6843EC00ACCCAC /* TLGroupViewController+Delegate.m in Sources */,
 				778E934A1D699D74004D899C /* XFTextView.m in Sources */,
 				776463AD1D68479900ACCCAC /* TLTextMessage.m in Sources */,
+				779B81F11D7D45A100B23DFA /* EnergyListViewController.m in Sources */,
 				7745C2761D672EE5002212DE /* MyDatabaseTabBarController.m in Sources */,
 				779B81B51D7D0E7300B23DFA /* JuheDynamicViewController.m in Sources */,
 				776462C41D68446300ACCCAC /* TLMineSettingViewController.m in Sources */,
 				773D56291D7953C400A0C615 /* JFVideosModel.m in Sources */,
 				7764631A1D68452B00ACCCAC /* TLTableViewCell.m in Sources */,
 				7741F1F51D6D53B700EED332 /* SDYuEBaoTableViewController.m in Sources */,
+				779B82061D7D4C6B00B23DFA /* PersonalIndustryViewController.m in Sources */,
 				7741F1D41D6D530300EED332 /* SDHomeGridView.m in Sources */,
 				776460451D6842AB00ACCCAC /* UIButton+TLChat.m in Sources */,
 				7764606D1D68437F00ACCCAC /* TLDBExpressionStore.m in Sources */,
@@ -17159,7 +17325,9 @@
 				77BD16D91D6EF25900DE5DB9 /* ToutiaoMeViewController.m in Sources */,
 				77BD16B11D6ECA1900DE5DB9 /* DZDealController.m in Sources */,
 				776461701D6843F900ACCCAC /* TLMomentExtensionCommentCell.m in Sources */,
+				779B81E21D7D3F7D00B23DFA /* EnergyContactUSViewController.m in Sources */,
 				77ECE0E91D5D5F2C004AE122 /* WeixinData.m in Sources */,
+				779B81D31D7D3EBD00B23DFA /* EnergyNavigationController.m in Sources */,
 				776463AB1D68479900ACCCAC /* TLMessage.m in Sources */,
 				776463081D68452B00ACCCAC /* TLInfoCell.m in Sources */,
 				776460081D68429C00ACCCAC /* TLNetworking.m in Sources */,
@@ -17254,6 +17422,7 @@
 				776463071D68452B00ACCCAC /* TLInfoButtonCell.m in Sources */,
 				776462671D68445800ACCCAC /* TLChatBaseViewController+EmojiKBDelegate.m in Sources */,
 				7759B7611D0EA3E900AE3A59 /* NSDate+WQCalendarLogic.m in Sources */,
+				779B81DC1D7D3F3F00B23DFA /* EnergyHomeViewController.m in Sources */,
 				7788AC611D7996E000376C95 /* DetailViewController.m in Sources */,
 				776462811D68445800ACCCAC /* TLImageMessageCell.m in Sources */,
 				776462BE1D68446300ACCCAC /* TLChatFontSettingView.m in Sources */,
@@ -17263,6 +17432,7 @@
 				773D56B61D79565800A0C615 /* JFSubscribeCell.m in Sources */,
 				7764626A1D68445800ACCCAC /* TLChatCellMenuView.m in Sources */,
 				776461751D6843F900ACCCAC /* TLMomentImageView.m in Sources */,
+				779B82031D7D4B2400B23DFA /* PersonalApplyNavigationController.m in Sources */,
 				77BD14E21D6E831000DE5DB9 /* GridCell3.m in Sources */,
 				776462851D68445800ACCCAC /* TLVoiceMessageCell.m in Sources */,
 				776462C31D68446300ACCCAC /* TLPrivacySettingViewController.m in Sources */,
@@ -17272,6 +17442,7 @@
 				776462B61D68446300ACCCAC /* TLAboutHeaderView.m in Sources */,
 				776463521D68463600ACCCAC /* TLFriendHelper+Contacts.m in Sources */,
 				778E93851D69A3F2004D899C /* SWCommonSwitchItem.m in Sources */,
+				779B82221D7D533100B23DFA /* FreeDomNavigationController.m in Sources */,
 				776462BC1D68446300ACCCAC /* TLChatBackgroundSelectViewController.m in Sources */,
 				77BD16A51D6EC9E600DE5DB9 /* BaseModel.m in Sources */,
 				7764610A1D6843EC00ACCCAC /* TLContactCell.m in Sources */,
@@ -17292,6 +17463,7 @@
 				776462BA1D68446300ACCCAC /* TLChatBackgroundSelectViewController+CollectionView.m in Sources */,
 				7764610D1D6843EC00ACCCAC /* TLContactsViewController+Delegate.m in Sources */,
 				778E93711D699D8C004D899C /* XFEmotionTextView.m in Sources */,
+				779B82251D7D556500B23DFA /* FreedomBooksViewController.m in Sources */,
 				776462871D68445800ACCCAC /* TLChatTableViewController.m in Sources */,
 				778E93A31D69AE99004D899C /* SWCommonCell.m in Sources */,
 				7788ACAE1D7997EC00376C95 /* NSString+NSString_ILExtension.m in Sources */,
@@ -17326,6 +17498,7 @@
 				774BFB201D767389005CA603 /* SingViewController.m in Sources */,
 				7764616F1D6843F900ACCCAC /* TLMomentMultiImageView.m in Sources */,
 				778E8F0F1D69607E004D899C /* XFDiscoverViewController.m in Sources */,
+				779B81EB1D7D428C00B23DFA /* EnergyBusinessDetailViewController.m in Sources */,
 				7745C2641D6723EC002212DE /* JuheDataTabBarController.m in Sources */,
 				776462861D68445800ACCCAC /* TLChatTableViewController+Delegate.m in Sources */,
 				771917871D65C2E6002F2BCD /* MyDatabaseViewController.m in Sources */,
@@ -17371,6 +17544,7 @@
 				7741F1941D6D514100EED332 /* SDBasicTableViewController.m in Sources */,
 				776463771D68466200ACCCAC /* TLNewMessageSettingHelper.m in Sources */,
 				7764608F1D6843CF00ACCCAC /* TLLoginViewController.m in Sources */,
+				779B81EE1D7D438C00B23DFA /* EnergyNewsDetailViewController.m in Sources */,
 				776463141D68452B00ACCCAC /* TLSettingGroup.m in Sources */,
 				7764631B1D68452B00ACCCAC /* TLTableViewController.m in Sources */,
 				773D56251D7953C400A0C615 /* JFBoxesModel.m in Sources */,
@@ -17386,6 +17560,7 @@
 				77BD14DA1D6E831000DE5DB9 /* DaRenTaoCell.m in Sources */,
 				776461C51D68440600ACCCAC /* TLExpressionChosenViewController.m in Sources */,
 				778E8F041D696020004D899C /* XFStatusPhotoView.m in Sources */,
+				779B81F41D7D45B600B23DFA /* EnergyDetailViewController.m in Sources */,
 				776460411D6842AB00ACCCAC /* NSFileManager+Paths.m in Sources */,
 				776463121D68452B00ACCCAC /* TLSettingCell.m in Sources */,
 				773D56261D7953C400A0C615 /* JFHomeModel.m in Sources */,
@@ -17552,7 +17727,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.isolar88.MyFirstAPP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
 				WARNING_CFLAGS = "-Wno-shorten-64-to-32";
 			};
 			name = Debug;
@@ -17578,7 +17752,6 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.isolar88.MyFirstAPP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
 				WARNING_CFLAGS = "-Wno-shorten-64-to-32";
 			};
 			name = Release;

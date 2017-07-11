@@ -27,11 +27,11 @@
     [mainView addSubview:view1];
     [mainView addSubview:view2];
     [mainView addSubview:view3];
-    CGFloat height = (SCREEN_W-32)/3 +14+3+12+3;
+    CGFloat height = (kScreenWidth-32)/3 +14+3+12+3;
     DLog(@"%f", height);
-    view1.frame = CGRectMake(8, 6, (SCREEN_W-32)/3, height);
-    view2.frame = CGRectMake(8+(SCREEN_W-32)/3+8, 6, (SCREEN_W-32)/3, height);
-    view3.frame = CGRectMake(8+(SCREEN_W-32)/3+8+(SCREEN_W-32)/3+8, 6, (SCREEN_W-32)/3, height);
+    view1.frame = CGRectMake(8, 6, (kScreenWidth-32)/3, height);
+    view2.frame = CGRectMake(8+(kScreenWidth-32)/3+8, 6, (kScreenWidth-32)/3, height);
+    view3.frame = CGRectMake(8+(kScreenWidth-32)/3+8+(kScreenWidth-32)/3+8, 6, (kScreenWidth-32)/3, height);
     
     [view1 setTitle:@"红人圈" subTitle:@"别怕，红人圈来了" size1:14 size2:12 color1:[UIColor redColor] color2:[UIColor lightGrayColor]];
     [view1 setImage:[UIImage imageNamed:@"mini1.png"] titleIcon:[UIImage imageNamed:@"hot.png"]];
@@ -54,7 +54,7 @@
 }
 
 - (CGFloat)getHeight {
-    return (SCREEN_W-32)/3 +8+30+8+42+42;
+    return (kScreenWidth-32)/3 +8+30+8+42+42;
 }
 
 @end

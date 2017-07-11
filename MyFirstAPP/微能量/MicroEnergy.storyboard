@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Energy News View Controller-->
         <scene sceneID="Xwa-Mb-EIO">
             <objects>
-                <viewController id="AEi-XA-nYG" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EnergyNewsViewController" id="AEi-XA-nYG" customClass="EnergyNewsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mdc-pV-qPe"/>
                         <viewControllerLayoutGuide type="bottom" id="rn0-t7-kGq"/>
@@ -24,10 +24,10 @@
             </objects>
             <point key="canvasLocation" x="1282" y="-513"/>
         </scene>
-        <!--View Controller-->
+        <!--Energy Sample View Controller-->
         <scene sceneID="2dp-Wq-pQE">
             <objects>
-                <viewController id="7eg-Wn-dDA" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EnergySampleViewController" id="7eg-Wn-dDA" customClass="EnergySampleViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="XlD-Sb-3g2"/>
                         <viewControllerLayoutGuide type="bottom" id="xDY-z4-sHT"/>
@@ -64,10 +64,10 @@
             </objects>
             <point key="canvasLocation" x="-176" y="309"/>
         </scene>
-        <!--View Controller-->
+        <!--Energy ContactUS View Controller-->
         <scene sceneID="6Wh-zs-C4W">
             <objects>
-                <viewController id="5vV-pH-hJl" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EnergyContactUSViewController" id="5vV-pH-hJl" customClass="EnergyContactUSViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fUC-Yr-9nn"/>
                         <viewControllerLayoutGuide type="bottom" id="3Ii-U0-rZ9"/>
@@ -83,10 +83,10 @@
             </objects>
             <point key="canvasLocation" x="1282" y="1394"/>
         </scene>
-        <!--View Controller-->
+        <!--Energy Shop View Controller-->
         <scene sceneID="zd9-mz-fkt">
             <objects>
-                <viewController id="boc-wI-w6d" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EnergyShopViewController" id="boc-wI-w6d" customClass="EnergyShopViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="E07-WC-sFB"/>
                         <viewControllerLayoutGuide type="bottom" id="gO8-6n-TgZ"/>
@@ -102,10 +102,10 @@
             </objects>
             <point key="canvasLocation" x="1282" y="758"/>
         </scene>
-        <!--View Controller-->
+        <!--Energy Home View Controller-->
         <scene sceneID="kyf-dn-1cW">
             <objects>
-                <viewController id="R80-6d-xcG" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EnergyHomeViewController" id="R80-6d-xcG" customClass="EnergyHomeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="NVU-45-2ww"/>
                         <viewControllerLayoutGuide type="bottom" id="JY8-nI-q7C"/>
@@ -124,7 +124,7 @@
         <!--新闻动态-->
         <scene sceneID="dSQ-Jq-sHG">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Gwb-bG-uvF" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Gwb-bG-uvF" customClass="EnergyNavigationController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="新闻动态" id="lKd-GM-aIq"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="p8h-HB-K9e">
@@ -143,7 +143,7 @@
         <!--经典案例-->
         <scene sceneID="B8K-Fn-JVB">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ald-KL-hBo" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ald-KL-hBo" customClass="EnergyNavigationController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="经典案例" id="4pd-4n-yNI"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="1Q2-Ta-VoK">
@@ -162,7 +162,7 @@
         <!--精品人人店-->
         <scene sceneID="nOL-Hi-Vud">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="XCQ-Z4-SHv" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="XCQ-Z4-SHv" customClass="EnergyNavigationController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="精品人人店" id="KN8-bo-a2T"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="0iw-4z-rMd">
@@ -181,7 +181,7 @@
         <!--联系我们-->
         <scene sceneID="at2-fX-EgU">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xsk-ck-kO0" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xsk-ck-kO0" customClass="EnergyNavigationController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="联系我们" id="AiU-4U-caa"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="HnQ-mc-spb">
@@ -200,7 +200,7 @@
         <!--HOME-->
         <scene sceneID="eA7-d6-I1a">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="azq-e5-pza" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="azq-e5-pza" customClass="EnergyNavigationController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="HOME" id="Fut-ar-4m4"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cF5-il-zfA">

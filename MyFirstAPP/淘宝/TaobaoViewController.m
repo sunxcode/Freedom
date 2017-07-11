@@ -20,7 +20,7 @@
 #import "HotShiChangCell.h"
 #import "DaRenTaoCell.h"
 //cell等比高
-#define cell_height(i) SCREEN_W*((i)/375.0f)
+#define cell_height(i) kScreenWidth*((i)/375.0f)
 @interface TaobaoViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 @property (nonatomic ,strong) UICollectionView *grid;
 @property (nonatomic, strong) NSArray *dataArr;
@@ -195,25 +195,25 @@
     if (indexPath.section == 0) {//9宫格组
         //减1去除误差
         //DLog(@"########%f", (SCREEN_W-4-4-1)/5;
-        return CGSizeMake((SCREEN_W-4-4-1)/5 , SCREEN_W/5 + 20);
+        return CGSizeMake((kScreenWidth-4-4-1)/5 , kScreenWidth/5 + 20);
     }
     if (indexPath.section == 1) {//乱七八糟组
         if (indexPath.row == 0) {
-            return CGSizeMake(SCREEN_W, cell_height(190)+8);
+            return CGSizeMake(kScreenWidth, cell_height(190)+8);
         }
         if (indexPath.row == 4) {
-            return CGSizeMake(SCREEN_W, 8+30+1+120+1+70 +2*101);
+            return CGSizeMake(kScreenWidth, 8+30+1+120+1+70 +2*101);
         }
         if (indexPath.row == 5) {
-            return CGSizeMake(SCREEN_W, (SCREEN_W-32)/3 +8+30+8+42+40);
+            return CGSizeMake(kScreenWidth, (kScreenWidth-32)/3 +8+30+8+42+40);
         }
-        return CGSizeMake(SCREEN_W, cell_height(190)+8);
+        return CGSizeMake(kScreenWidth, cell_height(190)+8);
     }
     if (indexPath.section == 2) {//喜欢组
-        return CGSizeMake(SCREEN_W/2-4/2, (SCREEN_W/2-4/2)*2/3 +48);
+        return CGSizeMake(kScreenWidth/2-4/2, (kScreenWidth/2-4/2)*2/3 +48);
     }
     if (indexPath.section == 3) {//推荐组
-        return CGSizeMake(SCREEN_W/2-4/2, SCREEN_W/2-4/2 +80);
+        return CGSizeMake(kScreenWidth/2-4/2, kScreenWidth/2-4/2 +80);
     }
     return CGSizeMake(0, 0);
 }
@@ -221,13 +221,13 @@
 //head 宽高
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
     if (section == 0) {
-        return CGSizeMake(SCREEN_W, SCREEN_W/4); //图片滚动的宽高
+        return CGSizeMake(kScreenWidth, kScreenWidth/4); //图片滚动的宽高
     }
     if (section == 2) {
-        return CGSizeMake(SCREEN_W, 50);    //猜你喜欢的宽高
+        return CGSizeMake(kScreenWidth, 50);    //猜你喜欢的宽高
     }
     if (section == 3) {
-        return CGSizeMake(SCREEN_W, 35);    //推荐适合的宽高
+        return CGSizeMake(kScreenWidth, 35);    //推荐适合的宽高
     }
     return CGSizeMake(0, 0);
 }
@@ -235,10 +235,10 @@
 //foot 宽高
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section {
     if (section == 0) {
-        return CGSizeMake(SCREEN_W, 50);  //淘宝头条的宽高
+        return CGSizeMake(kScreenWidth, 50);  //淘宝头条的宽高
     }
     if (section == 3) {
-        return CGSizeMake(SCREEN_W, 110); //最底部view的宽高
+        return CGSizeMake(kScreenWidth, 110); //最底部view的宽高
     }
     return CGSizeZero;
 }
@@ -282,7 +282,7 @@
     if (_msgLab) {
         return;
     }
-    _msgLab = [[UILabel alloc] initWithFrame:CGRectMake(0, -64, SCREEN_W, 64)];
+    _msgLab = [[UILabel alloc] initWithFrame:CGRectMake(0, -64, kScreenWidth, 64)];
     _msgLab.backgroundColor = RGBACOLOR(0, 0, 0, 0.6);
     _msgLab.text = msg;
     _msgLab.textColor = [UIColor whiteColor];

@@ -651,12 +651,18 @@
     lyricsView.maskLable.attributedText = attributedString1;
     lyricsView.textAlignment = NSTextAlignmentCenter;
     //正常步骤，知道歌词，知道lab字体大小算出歌词的
-    size = [_lyricsStr sizeWithFont:lyricsView.textLable.font
-                  constrainedToSize:(CGSize){lyricsView.textLable.frame.size.width, NSIntegerMax}
-                      lineBreakMode:lyricsView.textLable.lineBreakMode];
+//    size = [_lyricsStr sizeWithFont:lyricsView.textLable.font
+//                  constrainedToSize:(CGSize){lyricsView.textLable.frame.size.width, NSIntegerMax}
+//                      lineBreakMode:lyricsView.textLable.lineBreakMode];
+    
+    NSDictionary *attributes = @{ NSFontAttributeName:lyricsView.textLable.font, NSParagraphStyleAttributeName:[[NSMutableParagraphStyle alloc]init]};
+    size = [_lyricsStr boundingRectWithSize:(CGSize){lyricsView.textLable.frame.size.width, NSIntegerMax} options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attributes context:nil].size;
     [self.backScrollView addSubview:lyricsView];
     self.lyricsView = lyricsView;
-    lineSize = [_lyricsSArray[0] sizeWithFont:self.lyricsView.textLable.font constrainedToSize:CGSizeMake(self.lyricsView.textLable.frame.size.width, MAXFLOAT) lineBreakMode:NSLineBreakByCharWrapping];
+//    lineSize = [_lyricsSArray[0] sizeWithFont:self.lyricsView.textLable.font constrainedToSize:CGSizeMake(self.lyricsView.textLable.frame.size.width, MAXFLOAT) lineBreakMode:NSLineBreakByCharWrapping];
+    NSDictionary *attributes1 = @{ NSFontAttributeName:self.lyricsView.textLable.font, NSParagraphStyleAttributeName:[[NSMutableParagraphStyle alloc]init]};
+    lineSize = [_lyricsSArray[0] boundingRectWithSize:CGSizeMake(self.lyricsView.textLable.frame.size.width, MAXFLOAT) options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attributes1 context:nil].size;
+    
     size.height =(lineSize.height-9) * _lyricsSArray.count;
     self.backScrollView.contentSize = (CGSize){size.width, size.height+300};
     lyricsView.frame = CGRectMake(10, 10, APPW-20, size.height);

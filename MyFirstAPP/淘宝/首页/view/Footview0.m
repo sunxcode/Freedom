@@ -31,7 +31,7 @@
                  @"333好吧你又被骗了哈哈, 好笨啊"];
     _currentIndex = 0;
     sHeight = 50;
-    sWidth = SCREEN_W -sHeight*3/2;
+    sWidth = kScreenWidth -sHeight*3/2;
     scroll = [[UIScrollView alloc] init];
     scroll.frame = CGRectMake(0, 0, sWidth, sHeight);
     scroll.pagingEnabled = YES;

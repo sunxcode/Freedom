@@ -5,7 +5,7 @@
 #import "WeixinData.h"
 @implementation NSObject (expanded)
 -(AppDelegate *)getAPPDelegate{
-    return [UIApplication sharedApplication].delegate;
+    return (AppDelegate*)[[UIApplication sharedApplication]delegate];
 }
 - (void)performSelector:(SEL)aSelector withBool:(BOOL)aValue
 {

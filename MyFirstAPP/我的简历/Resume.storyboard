@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Resume Call Me View Controller-->
         <scene sceneID="XxF-qs-0VN">
             <objects>
-                <viewController id="oXZ-Mv-h1l" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ResumeCallMeViewController" id="oXZ-Mv-h1l" customClass="ResumeCallMeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="6v5-qv-mi1"/>
                         <viewControllerLayoutGuide type="bottom" id="FIE-MQ-MGD"/>
@@ -24,10 +24,10 @@
             </objects>
             <point key="canvasLocation" x="537" y="559"/>
         </scene>
-        <!--View Controller-->
+        <!--Resume Theory System View Controller-->
         <scene sceneID="QuI-bH-2O3">
             <objects>
-                <viewController id="xMp-fd-cK1" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ResumeTheorySystemViewController" id="xMp-fd-cK1" customClass="ResumeTheorySystemViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vW5-BJ-3HP"/>
                         <viewControllerLayoutGuide type="bottom" id="Q0S-VD-Dzb"/>
@@ -43,10 +43,10 @@
             </objects>
             <point key="canvasLocation" x="537" y="-74"/>
         </scene>
-        <!--View Controller-->
+        <!--Resume Business CooperationVC-->
         <scene sceneID="Lyf-rT-RyA">
             <objects>
-                <viewController id="n7n-ww-xHo" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ResumeBusinessCooperationVC" id="n7n-ww-xHo" customClass="ResumeBusinessCooperationVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FNs-by-DiN"/>
                         <viewControllerLayoutGuide type="bottom" id="jEN-3o-cOG"/>
@@ -62,10 +62,10 @@
             </objects>
             <point key="canvasLocation" x="537" y="-702"/>
         </scene>
-        <!--View Controller-->
+        <!--Resume View Controller-->
         <scene sceneID="hwZ-CP-iRh">
             <objects>
-                <viewController id="6jT-K9-Yyi" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ResumeViewController" id="6jT-K9-Yyi" customClass="ResumeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kAO-6g-xPB"/>
                         <viewControllerLayoutGuide type="bottom" id="jvv-K8-mEM"/>
@@ -104,7 +104,7 @@
         <!--首页-->
         <scene sceneID="XTm-fl-7uB">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YgJ-Y7-lXS" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YgJ-Y7-lXS" customClass="ResumeNavigationController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="首页" id="NcJ-N8-sk2"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="es7-ij-SK2">
@@ -123,7 +123,7 @@
         <!--事业合作-->
         <scene sceneID="pyn-nU-ffH">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Thh-uY-5AY" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Thh-uY-5AY" customClass="ResumeNavigationController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="事业合作" id="dgc-hg-FCX"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="F0i-Wh-nbH">
@@ -142,7 +142,7 @@
         <!--理论体系-->
         <scene sceneID="WLJ-tG-eIX">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mMv-sA-jRv" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mMv-sA-jRv" customClass="ResumeNavigationController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="理论体系" id="7ei-nu-RQk"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="sgf-zw-wiG">
@@ -161,7 +161,7 @@
         <!--联系我-->
         <scene sceneID="WKW-9k-yWD">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bbn-7E-ieG" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bbn-7E-ieG" customClass="ResumeNavigationController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="联系我" id="81J-lC-5tM"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Y3X-8Z-YJd">

@@ -37,16 +37,7 @@ static BaseViewController *BVC = nil;
 }
 - (void)viewDidLoad{
     [super viewDidLoad];
-    [self readData];
-    self.radialView = [[CKRadialMenu alloc] initWithFrame:CGRectMake(10, kScreenHeight-100, 50, 50)];
-    for(int i = 0;i<self.items.count;i++){
-        UIImageView *a = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
-        a.image = [UIImage imageNamed:[self.items[i] valueForKey:@"icon"]];
-    [self.radialView addPopoutView:a withIndentifier:[NSString stringWithFormat:@"%d",i]];
-     }
-    [self.radialView enableDevelopmentMode];
-     self.radialView.delegate = self;
-    [self.view addSubview: self.radialView];
+    
     
     
     self.navView.backgroundColor = [UIColor whiteColor];
@@ -629,5 +620,16 @@ static BaseViewController *BVC = nil;
     dvc.modalPresentationStyle = UIModalPresentationFormSheet;
     [self presentViewController:dvc animated:YES completion:NULL];
 }
-
+-(void)showRadialMenu{
+    [self readData];
+    self.radialView = [[CKRadialMenu alloc] initWithFrame:CGRectMake(10, kScreenHeight-100, 50, 50)];
+    for(int i = 0;i<self.items.count;i++){
+        UIImageView *a = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
+        a.image = [UIImage imageNamed:[self.items[i] valueForKey:@"icon"]];
+        [self.radialView addPopoutView:a withIndentifier:[NSString stringWithFormat:@"%d",i]];
+    }
+    [self.radialView enableDevelopmentMode];
+    self.radialView.delegate = self;
+    [self.view addSubview: self.radialView];
+}
 @end

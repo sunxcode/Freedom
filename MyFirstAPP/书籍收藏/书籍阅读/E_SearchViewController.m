@@ -143,9 +143,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellStr = @"listCell";
-    E_SearchTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"listCell"];
+    E_SearchTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellStr];
     if (cell == nil) {
-        cell = [[E_SearchTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"listCell"];
+        cell = [[E_SearchTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellStr];
     }
     cell.backgroundColor = [UIColor clearColor];
     
