@@ -33,6 +33,8 @@ typedef void (^BaseTableLoadedDataBlock)(NSArray *array,BOOL cache);
 @property (nonatomic,assign) NSInteger sectionN;
 @property (nonatomic,assign) NSInteger rowN;
 @property (nonatomic,strong) BaseTableViewCell *cell;
+@property (nonatomic,assign) UITableViewCellEditingStyle editingStyle;
+@property (nonatomic,strong) NSString *cellName;
 //@property (nonatomic,strong) UIView *headView;
 //@property (nonatomic,strong) UIView *footView;
 - (void)refresh;

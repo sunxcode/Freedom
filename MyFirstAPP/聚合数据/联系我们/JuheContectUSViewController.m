@@ -11,46 +11,64 @@
 #import "JuheMessageViewController.h"
 #import "JuheAboutUSViewController.h"
 #import "JuheChartViewController.h"
+@interface JuheContectUSViewCell:BaseCollectionViewCell{
+    NSMutableDictionary *thumbnailCache;
+}
+-(void)setCollectionDataWithDic:(NSDictionary*)dict;
+@end
+@implementation JuheContectUSViewCell
+-(void)initUI{
+    [super initUI];
+    self.icon.frame = CGRectMake(0, 0, APPW*2/3, 120);
+    self.title.frame = CGRectMake(0, YH(self.icon), W(self.icon), 20);
+    self.title.textAlignment = NSTextAlignmentCenter;
+    [self addSubviews:self.icon,self.title,nil];
+}
+-(void)setCollectionDataWithDic:(NSDictionary*)dict{
+    
+    self.title.text = dict[@"name"];
+    __block UIImage *imageProduct = [thumbnailCache objectForKey:dict[@"pic"]];
+    if(imageProduct){
+        self.icon.image = imageProduct;
+    }else{
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
+        dispatch_async(queue, ^{
+            UIImage *image = [UIImage imageNamed:dict[@"pic"]];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.icon.image = image;
+                [thumbnailCache setValue:image forKey:dict[@"pic"]];
+            });
+        });
+    }
+}
+@end
 @implementation JuheContectUSViewController
 -(void)viewDidLoad{
     [super viewDidLoad];
-    UIButton *publicNumber = [[UIButton alloc]initWithFrame:CGRectMake(30, 30, kScreenWidth-60, 90)];
-    [publicNumber setImage:[UIImage imageNamed:@""] imageHL:[UIImage imageNamed:@""]];
-    [publicNumber setTitle:@"" forState:UIControlStateNormal];
-    [publicNumber setTitleColor:blacktextcolor forState:UIControlStateNormal];
-    [publicNumber addTarget:self action:@selector(publicNumber) forControlEvents:UIControlEventTouchUpInside];
+    self.title = @"联系我们";
+    BaseCollectionViewLayout *layout = [BaseCollectionViewLayout sharedFlowlayoutWithCellSize:CGSizeMake(APPW*2/3, 140) groupInset:UIEdgeInsetsMake(10, 10, 0, 10) itemSpace:50 linespace:10];
+    self.collectionView = [[BaseCollectionView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH-100) collectionViewLayout:layout];
+   
+    self.collectionView.dataArray = [NSMutableArray arrayWithObjects:@{@"name":@"进入公众号",@"pic":@"juheintopublic"},@{@"name":@"查看历史消息",@"pic":@"juhelookhistory"},@{@"name":@"关于我们",@"pic":@"juheaboutus"},@{@"name":@"聊天",@"pic":@"juhechart"}, nil];
+    [self fillTheCollectionViewDataWithCanMove:NO sectionN:1 itemN:4 itemName:@"JuheContectUSViewCell"];
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
+    [self.view addSubview:self.collectionView];
+}
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    if(indexPath.row==0){
+        [self pushController:[JuhePublicViewController class] withInfo:nil withTitle:self.collectionView.dataArray[indexPath.row][@"name"]];
     
-    UIButton *message = [[UIButton alloc]initWithFrame:CGRectMake(30, 30, kScreenWidth-60, 90)];
-    [message setImage:[UIImage imageNamed:@""] imageHL:[UIImage imageNamed:@""]];
-    [message setTitle:@"" forState:UIControlStateNormal];
-    [message setTitleColor:blacktextcolor forState:UIControlStateNormal];
-    [message addTarget:self action:@selector(message) forControlEvents:UIControlEventTouchUpInside];
+    }else if(indexPath.row==1){
+        [self pushController:[JuheMessageViewController class] withInfo:nil withTitle:self.collectionView.dataArray[indexPath.row][@"name"]];
+    }else if(indexPath.row==2){
+        [self pushController:[JuheAboutUSViewController class] withInfo:nil withTitle:self.collectionView.dataArray[indexPath.row][@"name"]];
+    }else{
+        [self pushController:[JuheChartViewController class] withInfo:nil withTitle:self.collectionView.dataArray[indexPath.row][@"name"]];
+    }
+}
 
-    UIButton *aboutUS = [[UIButton alloc]initWithFrame:CGRectMake(30, 30, kScreenWidth-60, 90)];
-    [aboutUS setImage:[UIImage imageNamed:@""] imageHL:[UIImage imageNamed:@""]];
-    [aboutUS setTitle:@"" forState:UIControlStateNormal];
-    [aboutUS setTitleColor:blacktextcolor forState:UIControlStateNormal];
-    [aboutUS addTarget:self action:@selector(aboutUS) forControlEvents:UIControlEventTouchUpInside];
 
-    UIButton *chart = [[UIButton alloc]initWithFrame:CGRectMake(30, 30, kScreenWidth-60, 90)];
-    [chart setImage:[UIImage imageNamed:@""] imageHL:[UIImage imageNamed:@""]];
-    [chart setTitle:@"" forState:UIControlStateNormal];
-    [chart setTitleColor:blacktextcolor forState:UIControlStateNormal];
-    [chart addTarget:self action:@selector(chart) forControlEvents:UIControlEventTouchUpInside];
-    
-}
--(void)publicNumber{
-    [self.navigationController pushViewController:[[JuhePublicViewController alloc]init] animated:YES];
-}
--(void)message{
-    [self.navigationController pushViewController:[[JuheMessageViewController alloc]init] animated:YES];
-}
--(void)aboutUS{
-    [self.navigationController pushViewController:[[JuheAboutUSViewController alloc]init] animated:YES];
-    
-}
--(void)chart{
-    [self.navigationController pushViewController:[[JuheChartViewController alloc]init] animated:YES];
-    
-}
+
+
 @end

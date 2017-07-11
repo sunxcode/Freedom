@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface JuheQuestionViewController : UIViewController
+@interface JuheQuestionViewController : BaseViewController
 
 @end

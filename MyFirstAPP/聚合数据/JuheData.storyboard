@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Juhe Question View Controller-->
@@ -14,9 +18,9 @@
                         <viewControllerLayoutGuide type="bottom" id="xyq-40-26a"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Cu1-Qb-To3">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="GEd-3i-0DC"/>
                 </viewController>
@@ -33,9 +37,9 @@
                         <viewControllerLayoutGuide type="bottom" id="qhr-XT-Hml"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="XkW-iu-6MG">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="XL9-pq-cuG"/>
                 </viewController>
@@ -52,9 +56,9 @@
                         <viewControllerLayoutGuide type="bottom" id="1E9-nu-jjk"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="jja-pl-8di">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="vsZ-MS-lTk"/>
                 </viewController>
@@ -69,7 +73,7 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" id="sN9-ya-6Ul">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="FgU-vP-dsN" kind="relationship" relationship="viewControllers" id="X1z-cy-O9I"/>
@@ -92,9 +96,9 @@
                         <viewControllerLayoutGuide type="bottom" id="iPG-py-zBP"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="exe-Mc-MGX">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="yng-h8-ExL"/>
                 </viewController>
@@ -111,9 +115,9 @@
                         <viewControllerLayoutGuide type="bottom" id="tXD-la-zke"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="OiZ-0L-W0U">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="OXM-Dl-tYc"/>
                 </viewController>
@@ -125,7 +129,7 @@
         <scene sceneID="G4v-84-wf4">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="91B-U6-0tf" customClass="JuheNavigationController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="常见问题" id="gd8-cJ-m46"/>
+                    <tabBarItem key="tabBarItem" title="常见问题" image="juhetab2" id="gd8-cJ-m46"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dlm-rI-v0o">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -144,7 +148,7 @@
         <scene sceneID="Sh3-SM-9wf">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FgU-vP-dsN" customClass="JuheNavigationController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="联系我们" id="w0c-Qt-b4l"/>
+                    <tabBarItem key="tabBarItem" title="联系我们" image="juhetab1" id="w0c-Qt-b4l"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="hw9-hY-cEq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -163,7 +167,7 @@
         <scene sceneID="OB2-J9-kxa">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sdL-zU-h8k" customClass="JuheNavigationController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="数据接口" id="bIt-4l-QrX"/>
+                    <tabBarItem key="tabBarItem" title="数据接口" image="juhetab3" id="bIt-4l-QrX"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Abm-cc-v3d">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -182,7 +186,7 @@
         <scene sceneID="5tl-mi-fay">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Zul-F6-iGP" customClass="JuheNavigationController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="聚合动态" id="ttQ-LK-dOj"/>
+                    <tabBarItem key="tabBarItem" title="聚合动态" image="juhetab4" id="ttQ-LK-dOj"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Qph-XK-MnB">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -201,7 +205,7 @@
         <scene sceneID="s1j-Bb-kn6">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="anM-sa-rHb" customClass="JuheNavigationController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="用户中心" id="Jvw-th-ZZr"/>
+                    <tabBarItem key="tabBarItem" title="用户中心" image="juhetab5" id="Jvw-th-ZZr"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="vim-op-yBT">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -217,4 +221,11 @@
             <point key="canvasLocation" x="732" y="1032"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="juhetab1" width="25" height="25"/>
+        <image name="juhetab2" width="25" height="25"/>
+        <image name="juhetab3" width="25" height="25"/>
+        <image name="juhetab4" width="25" height="25"/>
+        <image name="juhetab5" width="25" height="25"/>
+    </resources>
 </document>

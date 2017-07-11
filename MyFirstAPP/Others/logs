@@ -1,0 +1,4 @@
+这是本软件的修改日志
+2017.1.7
+1.修改了BaseTableView和BaseViewController，table加一个cellName，VC中fillData时增加cellName赋值，并在cellForIdentifier中deque和用cellName的类来创建cell。
+2.修改了category文件夹下的UIView+expand文件，完成了网络图片下载显示的功能。

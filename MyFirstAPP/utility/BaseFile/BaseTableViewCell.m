@@ -110,7 +110,8 @@
     self.script.font = fontnomal;
     self.script.textColor = self.title.textColor = blacktextcolor;
     self.line = [[UIView alloc]init];
-//    [self addSubviews:self.icon,self.title,self.script,self.line,nil];
+    self.line.backgroundColor = gradcolor;
+    [self addSubviews:self.icon,self.title,self.script,self.line,nil];
     DLog(@"请子类重写这个方法");
 
 }
@@ -118,7 +119,8 @@
     DLog(@"请子类重写这个方法");
 }
 - (NSArray *)observableKeypaths {
-   DLog(@"请子类重写这个方法"); return nil;
+//   DLog(@"请子类重写这个方法");
+    return nil;
 }
 - (void)updateUIForKeypath:(NSString *)keyPath {
     DLog(@"请子类重写这个方法");

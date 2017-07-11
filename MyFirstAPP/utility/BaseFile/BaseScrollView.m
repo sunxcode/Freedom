@@ -157,21 +157,22 @@
     self.tag = MyScrollBaseItemType;
     CGFloat starx = 0;
     CGFloat stary = 0;
+    
     for (int i = 0; i < titles.count; i++) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.frame = CGRectMake(starx, stary, size.width, size.height);
         button.tag = 10 + i;
         [button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
         starx = XW(button);
-        if (starx>W(self)-W(button)) {//一行放不下的时候换行
+        if (starx>W(self)) {//一行放不下的时候换行
             starx = 0;
             stary = YH(button);
             button.frame = CGRectMake(starx, stary, size.width, size.height);
             starx = XW(button);
         }
         [self addSubview:button];
-        UIImageView *imageview = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, size.height-30,size.height-30)];
-        imageview.center = CGPointMake(button.frameWidth/2, button.frameY/2-15);
+        UIImageView *imageview = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, size.width-20,size.height-30)];
+        imageview.center = CGPointMake(button.frameWidth/2, button.frameHeight/2-15);
         imageview.contentMode = UIViewContentModeScaleAspectFill;
         if(round){
             imageview.layer.cornerRadius = imageview.frameWidth/2;
@@ -283,8 +284,8 @@
     count = icons.count + 2;
     pagecontroller.numberOfPages = icons.count;
     self.contentSize = CGSizeMake(W(self) * (icons.count + 2), 0);
-    UIImageView *imageview = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, W(self), H(self))];
-    [imageview imageWithURL:[icons lastObject] useProgress:NO useActivity:NO];;
+    UIImageView *imageview = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, W(self),H(self))];
+    [imageview imageWithURL:[icons lastObject] useProgress:NO useActivity:NO];
     imageview.contentMode = UIViewContentModeScaleAspectFill;
     imageview.clipsToBounds = YES;
     [self addSubview:imageview];
@@ -300,10 +301,11 @@
     lastimage.contentMode = UIViewContentModeScaleAspectFill;
     lastimage.clipsToBounds = YES;
     [self addSubview:lastimage];
-    _time = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(bannerTimeAction) userInfo:nil repeats:YES];
+    _time = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(bannerTimeAction) userInfo:nil repeats:YES];
     [_time setFireDate:[NSDate date]];
-    
-    _selectBlock(3,nil);
+    if(self.selectBlock){
+        _selectBlock(3,nil);
+    }
 }
 #pragma mark 竖着动态播放的视图或广告
 +(BaseScrollView *)sharedVerticallyBannerWithFrame:(CGRect)frame icons:(NSArray*)icons{
@@ -427,7 +429,9 @@
     //    [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];    //文字变红
     //    btn.transform = CGAffineTransformMakeScale(1.5, 1.5);    //放大的效果,放大1.5倍
     //数据回传=================================
-    self.selectBlock(btn.tag-10,nil);
+    if(self.selectBlock){
+        self.selectBlock(btn.tag-10,nil);
+    }
     CGFloat centx =btn.frameX-APPW/2+btn.frameWidth/2;
     if(self.contentSize.width< btn.frameX+(APPW+btn.frameWidth)/2){
         centx = self.contentSize.width-APPW+29;

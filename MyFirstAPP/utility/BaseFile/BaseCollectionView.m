@@ -7,23 +7,6 @@
 //
 
 #import "BaseCollectionView.h"
-@implementation BaseCollectionViewLayout
-- (instancetype)init{
-    self = [super init];
-    if (self) {
-        // 设置item的大小
-        self.itemSize = _cellSize;
-        // 设置水平滚动
-        self.scrollDirection = UICollectionViewScrollDirectionVertical;
-        // 设置最小行间距和格间距为10
-        self.minimumInteritemSpacing = _itemSpace;//格
-        self.minimumLineSpacing = _lineSpace;//行
-        // 设置内边距
-        self.sectionInset = _groupInset;
-    }
-    return self;
-}
-@end
 
 @interface BaseCollectionView(){
     UIView *bgView;

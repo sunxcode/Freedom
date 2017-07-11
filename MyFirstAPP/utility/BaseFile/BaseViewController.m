@@ -292,6 +292,7 @@ static BaseViewController *BVC = nil;
     self.tableView.rowH = rowH;
     self.tableView.sectionN = sectionN;
     self.tableView.rowN = rowN;
+    self.tableView.cellName = cell;
     self.tableView.cell = [NSClassFromString(cell) getInstance];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -307,11 +308,17 @@ static BaseViewController *BVC = nil;
     return self.tableView.sectionN;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.tableView.rowN;
+    if(self.tableView.sectionN == 1){
+        return self.tableView.rowN;
+    }else{
+        NSArray *rows = self.tableView.dataArray[section];
+        return rows.count;
+    }
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    self.tableView.cell = [tableView dequeueReusableCellWithIdentifier:[NSClassFromString(self.tableView.cellName) getTableCellIdentifier]];
     if(!self.tableView.cell){
-        self.tableView.cell = [BaseTableViewCell getInstance];
+        self.tableView.cell = [NSClassFromString(self.tableView.cellName) getInstance];
     }
     [self.tableView.cell  setDataWithDict:self.tableView.dataArray[indexPath.row]];
     return self.tableView.cell;
@@ -359,7 +366,8 @@ static BaseViewController *BVC = nil;
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
     //return UITableViewCellEditingStyleDelete;
     //return UITableViewCellEditingStyleInsert;
-    return UITableViewCellEditingStyleNone;
+//    return UITableViewCellEditingStyleNone;
+      return self.tableView.editingStyle;
 }
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     NSUInteger row = [indexPath row];
@@ -388,7 +396,11 @@ static BaseViewController *BVC = nil;
     return self.collectionView.sectionN;
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return self.collectionView.itemN;
+    if(self.collectionView.sectionN==1) return self.collectionView.itemN;
+    else{
+        NSArray *a = self.collectionView.dataArray[section];
+        return a.count;
+    }
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     self.collectionView.cell = [collectionView dequeueReusableCellWithReuseIdentifier:self.collectionReuseId forIndexPath:indexPath];

@@ -4,7 +4,8 @@
 #import "SDDataCache.h"
 #import "NSString+expanded.h"
 #import "UIImage+expanded.h"
-
+#import "UIImageView+AFNetworking.h"
+#import "UIButton+AFNetworking.h"
 #define showProgressIndicator_width 250
 
 @implementation UIView(Addition)
@@ -208,7 +209,6 @@
             CGFloat fY = self.frame.size.height/2.0 - 10;
             UIProgressView *progressIndicator = [[UIProgressView alloc] initWithFrame:CGRectMake(fX, fY, width, 20)];
             [progressIndicator setProgressViewStyle:UIProgressViewStyleBar];
-//            [progressIndicator setProgressTintColor:[UIColor grayColor]];
             [progressIndicator setProgressTintColor:RGBCOLOR(0 , 97,  167)];
             [progressIndicator setTrackTintColor:[UIColor grayColor]];
             tempView = progressIndicator;
@@ -228,24 +228,18 @@
         }
         
         [self addSubview:tempView];
+        __weak __typeof(UIImageView*)wekimg = imgView;
+        [imgView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]] placeholderImage:[UIImage imageNamed:strImage] success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull image) {
+            wekimg.image = image;
+            [tempView removeFromSuperview];
+        } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error) {
+            [SVProgressHUD showErrorWithStatus:alertErrorTxt];
+        }];
+       
         
-//        MKNetworkOperation *op = [NetEngine imageAtURL:url onCompletion:^(UIImage *fetchedImage, NSURL *url, BOOL isInCache) {
-//            imgView.image = fetchedImage;
-//            [tempView removeFromSuperview];
-//        }];
-//        
-//        if (useProgress) {
-//            UIProgressView *progressIndicator = (UIProgressView *)tempView;
-//            [op onDownloadProgressChanged:^(double progress) {
-//                [progressIndicator setProgress:progress];
-//            }];
-//        }
-//    }else{
-//        
-//        UIButton *BtnView = (UIButton *)self;
-//        [NetEngine imageAtURL:url onCompletion:^(UIImage *fetchedImage, NSURL *url, BOOL isInCache) {
-//            [BtnView setImage:fetchedImage forState:UIControlStateNormal];
-//        }];
+    }else{
+        UIButton *BtnView = (UIButton *)self;
+        [BtnView setImageForState:UIControlStateNormal withURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:strImage]];
 
     }
 }

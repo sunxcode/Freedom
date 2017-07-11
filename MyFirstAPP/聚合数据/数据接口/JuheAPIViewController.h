@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface JuheAPIViewController : UIViewController
+@interface JuheAPIViewController : BaseViewController
 
 @end

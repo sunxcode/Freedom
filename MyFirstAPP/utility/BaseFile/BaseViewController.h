@@ -10,7 +10,7 @@
 #import "TotalData.h"
 #import "AppDelegate.h"
 #import "CKRadialMenu.h"
-@interface BaseViewController : UIViewController<CKRadialMenuDelegate,UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource>
+@interface BaseViewController : UIViewController<CKRadialMenuDelegate,UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UISearchBarDelegate>
 @property (nonatomic,strong) id  userInfo;
 @property (nonatomic,strong) id  otherInfo;
 @property (nonatomic,strong) BaseTableView *tableView;

@@ -311,4 +311,7 @@
     //    area1.text = [NSString stringWithFormat:@"%@-%@-%@",a[@"name"],b[@"name"],c[@"name"]];
     //    areaValue = area1.text;
 }
+- (NSArray *)areaPickerData:(AreaPickView *)picker{
+    return nil;
+}
 @end

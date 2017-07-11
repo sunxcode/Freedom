@@ -8,12 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseCollectionViewCell.h"
-@interface BaseCollectionViewLayout:UICollectionViewFlowLayout
-@property (nonatomic, assign)CGSize cellSize;
-@property (nonatomic, assign)UIEdgeInsets groupInset;
-@property (nonatomic, assign)CGFloat itemSpace;
-@property (nonatomic, assign)CGFloat lineSpace;
-@end
+#import "BaseCollectionViewLayout.h"
 typedef id (^BaseCollectionDataBlock)(NSInteger page);
 typedef id (^BaseCollectionDataOfflineBlock)(NSInteger page);
 typedef void (^BaseCollectionLoadedDataBlock)(NSArray *array,BOOL cache);

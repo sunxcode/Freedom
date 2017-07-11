@@ -8,18 +8,26 @@
 
 #import "JuheQuestionViewController.h"
 #import "JuheDetailQuestion.h"
-@interface JuheQuestionViewController()<UITableViewDelegate,UITableViewDataSource>{
-    UITableView *JuheQuestiontableView;
+@interface JuheQuestionViewCell:BaseTableViewCell
+@end
+@implementation JuheQuestionViewCell
+-(void)initUI{
+    [super initUI];
+    self.icon.frame = CGRectMake(10, 10, 40, 40);
+    self.title.frame = CGRectMake(XW(self.icon)+10, 10, APPW-XW(self.icon)-20, 20);
+    self.script.frame = CGRectMake(X(self.title), YH(self.title), W(self.title), H(self.title));
+}
+-(void)setDataWithDict:(NSDictionary *)dict{
+    self.icon.image = [UIImage imageNamed:@"juhetab2"];
+    self.title.text = @"免费接口，不认证会影响使用吗？";
+    self.script.text = @"👀 68次浏览    📝 1天前";
 }
 @end
 @implementation JuheQuestionViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self buildUI];
-    
 }
-
 #pragma mark 搭建UI界面
 -(void)buildUI{
     self.view.backgroundColor = [UIColor whiteColor];
@@ -33,33 +41,21 @@
     UISearchBar *searchBar = [[UISearchBar alloc] init];
     searchBar.placeholder = @"输入问题关键字";
     self.navigationItem.titleView = searchBar;
-    JuheQuestiontableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, kScreenWidth, kScreenHeight-64) style:UITableViewStylePlain];
-    //增加顶部额外的滚动区域
-    JuheQuestiontableView.contentInset = UIEdgeInsetsMake( 8, 0, 0, 0);
-    [self.view addSubviews:JuheQuestiontableView,nil];
+    
+    self.tableView = [[BaseTableView alloc]initWithFrame:CGRectMake(0,0, kScreenWidth, kScreenHeight) style:UITableViewStylePlain];
+    [self fillTheTableDataWithHeadV:nil footV:nil canMove:NO canEdit:NO headH:0 footH:0 rowH:60 sectionN:1 rowN:11 cellName:@"JuheQuestionViewCell"];
+    self.tableView.dataArray = [NSMutableArray arrayWithObjects:@"b",@"a",@"v",@"f",@"d",@"a",@"w",@"u",@"n",@"o",@"2", nil];
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    [self.view addSubview:self.tableView];
 }
 
 -(void)moreAction{
     DLog(@"更多");
     
 }
-
-#pragma mark - Table view data source
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
-}
-- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *CellIdentifier = @"JuheQuestion";
-    UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
-    cell.textLabel.text =@"";
-    return cell;
-
-}
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [self.navigationController pushViewController:[[JuheDetailQuestion alloc]init] animated:YES];
+    [self pushController:[JuheDetailQuestion class] withInfo:nil withTitle:@"问题详情"];
 }
 
 
