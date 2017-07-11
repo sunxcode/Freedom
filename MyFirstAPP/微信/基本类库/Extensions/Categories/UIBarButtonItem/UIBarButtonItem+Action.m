@@ -52,7 +52,7 @@ char * const UIBarButtonItemActionBlock = "UIBarButtonItemActionBlock";
         [imageView setFrame:CGRectMake(0, 0, 17, 34)];
         CGSize size = [label sizeThatFits:CGSizeMake(MAXFLOAT, MAXFLOAT)];
         [label setFrame:CGRectMake(17, 0, size.width, 34)];
-        [view setFrame:CGRectMake(0, 0, label.right, 34)];
+        [view setFrame:CGRectMake(0, 0, label.frameRight, 34)];
     }
     return self;
 }

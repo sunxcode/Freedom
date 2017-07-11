@@ -67,7 +67,7 @@ static TLEmojiKeyboard *emojiKB;
             }];
             [view layoutIfNeeded];
             if (_keyboardDelegate && [_keyboardDelegate respondsToSelector:@selector(chatKeyboard:didChangeHeight:)]) {
-                [_keyboardDelegate chatKeyboard:self didChangeHeight:view.height - self.y];
+                [_keyboardDelegate chatKeyboard:self didChangeHeight:view.frameHeight - self.frameY];
             }
         } completion:^(BOOL finished) {
             if (_keyboardDelegate && [_keyboardDelegate respondsToSelector:@selector(chatKeyboardDidShow:)]) {
@@ -102,7 +102,7 @@ static TLEmojiKeyboard *emojiKB;
             }];
             [self.superview layoutIfNeeded];
             if (_keyboardDelegate && [_keyboardDelegate respondsToSelector:@selector(chatKeyboard:didChangeHeight:)]) {
-                [_keyboardDelegate chatKeyboard:self didChangeHeight:self.superview.height - self.y];
+                [_keyboardDelegate chatKeyboard:self didChangeHeight:self.superview.frameHeight - self.frameY];
             }
         } completion:^(BOOL finished) {
             [self removeFromSuperview];
@@ -121,7 +121,7 @@ static TLEmojiKeyboard *emojiKB;
 
 - (void)reset
 {
-    [self.collectionView scrollRectToVisible:CGRectMake(0, 0, self.collectionView.width, self.collectionView.height) animated:NO];
+    [self.collectionView scrollRectToVisible:CGRectMake(0, 0, self.collectionView.frameWidth, self.collectionView.frameHeight) animated:NO];
     // 更新发送按钮状态
     [self updateSendButtonStatus];
 }
@@ -186,7 +186,7 @@ static TLEmojiKeyboard *emojiKB;
 {
     if (_pageControl == nil) {
         _pageControl = [[UIPageControl alloc] init];
-        _pageControl.centerX = self.centerX;
+        _pageControl.frameCenterX = self.frameCenterX;
         [_pageControl setPageIndicatorTintColor:[UIColor colorGrayLine]];
         [_pageControl setCurrentPageIndicatorTintColor:[UIColor grayColor]];
         [_pageControl addTarget:self action:@selector(pageControlChanged:) forControlEvents:UIControlEventValueChanged];

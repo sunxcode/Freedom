@@ -8,7 +8,7 @@
 
 #import "TLTextDisplayView.h"
 
-#define     WIDTH_TEXTVIEW          self.width * 0.94
+#define     WIDTH_TEXTVIEW          self.frameWidth * 0.94
 
 @interface TLTextDisplayView ()
 

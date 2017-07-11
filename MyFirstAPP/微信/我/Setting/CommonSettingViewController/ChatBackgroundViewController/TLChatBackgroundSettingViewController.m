@@ -101,7 +101,7 @@
 #pragma mark - Private Methods -
 - (void)p_setChatBackgroundImage:(UIImage *)image
 {
-    image = [image scalingToSize:self.view.size];
+    image = [image scalingToSize:self.view.frameSize];
     NSData *imageData = (UIImagePNGRepresentation(image) ? UIImagePNGRepresentation(image) :UIImageJPEGRepresentation(image, 1));
     NSString *imageName = [NSString stringWithFormat:@"%lf.jpg", [NSDate date].timeIntervalSince1970];
     NSString *imagePath = [NSFileManager pathUserChatBackgroundImage:imageName];;

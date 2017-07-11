@@ -58,7 +58,7 @@ typedef void(^clickLocalMusicBlock)();
     phoneimage.image = [UIImage imageNamed:@"main_phone"];
     [self addSubview:phoneimage];
     
-    UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(phoneimage.frame)+8, phoneimage.y, 100, 25)];
+    UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(phoneimage.frame)+8, phoneimage.frameY, 100, 25)];
     lable.text = @"本地音乐";
     lable.font = [UIFont systemFontOfSize:14];
     lable.textColor = [UIColor whiteColor];
@@ -66,19 +66,19 @@ typedef void(^clickLocalMusicBlock)();
     
     MPMediaQuery *everyMusic = [[MPMediaQuery alloc] init];
     NSArray *musicArr = [everyMusic items];
-    UILabel *lable2 = [[UILabel alloc] initWithFrame:CGRectMake(APPW-130, phoneimage.y, 100, 25)];
+    UILabel *lable2 = [[UILabel alloc] initWithFrame:CGRectMake(APPW-130, phoneimage.frameY, 100, 25)];
     lable2.text = [NSString stringWithFormat:@"%ld首",musicArr.count];
     lable2.font = [UIFont systemFontOfSize:12];
     lable2.textColor = [UIColor whiteColor];
     lable2.textAlignment = NSTextAlignmentRight;
     [self addSubview:lable2];
     lable2.userInteractionEnabled = YES;
-    UILabel *lable3 = [[UILabel alloc] initWithFrame:CGRectMake(0, lable2.y, APPW, lable2.height)];
+    UILabel *lable3 = [[UILabel alloc] initWithFrame:CGRectMake(0, lable2.frameY, APPW, lable2.frameHeight)];
     [self addSubview:lable3];
     lable3.userInteractionEnabled = YES;
     [lable3 addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickLable2)]];
     
-    UIImageView *imageArrow = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(lable2.frame), lable2.y, 25, 25)];
+    UIImageView *imageArrow = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(lable2.frame), lable2.frameY, 25, 25)];
     imageArrow.image = [UIImage imageNamed:@"arrow"];
     [self addSubview:imageArrow];
     // 底部

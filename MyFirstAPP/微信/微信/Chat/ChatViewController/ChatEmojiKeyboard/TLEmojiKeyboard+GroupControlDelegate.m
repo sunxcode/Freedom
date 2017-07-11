@@ -37,7 +37,7 @@
     [self.pageControl setNumberOfPages:group.pageNumber];
     [self.pageControl setCurrentPage:0];
     [self.collectionView reloadData];
-    [self.collectionView scrollRectToVisible:CGRectMake(0, 0, self.collectionView.width, self.collectionView.height) animated:NO];
+    [self.collectionView scrollRectToVisible:CGRectMake(0, 0, self.collectionView.frameWidth, self.collectionView.frameHeight) animated:NO];
     // 更新发送按钮状态
     [self updateSendButtonStatus];
     // 更新chatBar的textView状态

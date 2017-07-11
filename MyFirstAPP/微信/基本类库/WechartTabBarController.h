@@ -9,12 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface WechartTabBarController : BaseTabBarController
-+ (WechartTabBarController *) sharedRootViewController;
+//+ (WechartTabBarController *) sharedRootViewController;
 
 /**
  *  获取tabbarController的第Index个VC（不是navController）
  *
  *  @return navController的rootVC
  */
-- (id)childViewControllerAtIndex:(NSUInteger)index;
+//- (id)childViewControllerAtIndex:(NSUInteger)index;
 @end

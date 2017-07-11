@@ -91,7 +91,7 @@
     if (hidden) {
         [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
         [UIView animateWithDuration:0.5 animations:^{
-            [self.navigationController.navigationBar setY: -HEIGHT_NAVBAR - HEIGHT_STATUSBAR];
+            [self.navigationController.navigationBar setFrameY: -HEIGHT_NAVBAR - HEIGHT_STATUSBAR];
         } completion:^(BOOL finished) {
             [self.navigationController.navigationBar setHidden:YES];
         }];
@@ -100,7 +100,7 @@
         [self.navigationController.navigationBar setHidden:NO];
         [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
         [UIView animateWithDuration:0.2 animations:^{
-            [self.navigationController.navigationBar setY:HEIGHT_STATUSBAR];
+            [self.navigationController.navigationBar setFrameY:HEIGHT_STATUSBAR];
         }];
     }
 }

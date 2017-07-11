@@ -39,7 +39,7 @@
     [logout setBackgroundImage:[UIImage resizableImageWithName:@"common_card_background_highlighted"] forState:UIControlStateHighlighted];
     
     // 3.设置尺寸(tableFooterView和tableHeaderView的宽度跟tableView的宽度一样)
-    logout.height = 35;
+    logout.frameHeight = 35;
     
     self.tableView.tableFooterView = logout;
 }

@@ -103,21 +103,18 @@
     //内边距
     CGFloat inset = 20;
     NSUInteger count = self.emotions.count;
-    CGFloat btnw = (self.width - 2 * inset) /XFEmotionMaxCols;
-    CGFloat btnH = (self.height - inset) /XFEmotionMaxRows;
+    CGFloat btnw = (self.frameWidth - 2 * inset) /XFEmotionMaxCols;
+    CGFloat btnH = (self.frameHeight - inset) /XFEmotionMaxRows;
     for (int i = 0; i<count; i++) {
         UIButton *btn = self.subviews[i+1];
-        btn.width = btnw;
-        btn.height = btnH;
-        btn.x = inset + (i%XFEmotionMaxCols) * btnw;
-        btn.y = inset + (i/XFEmotionMaxCols) * btnH;
+        btn.frameWidth = btnw;
+        btn.frameHeight = btnH;
+        btn.frameX = inset + (i%XFEmotionMaxCols) * btnw;
+        btn.frameY = inset + (i/XFEmotionMaxCols) * btnH;
         
     }
     // 删除按钮
-    self.deleteButton.width = btnw;
-    self.deleteButton.height = btnH;
-    self.deleteButton.x = self.width - inset - btnw;
-    self.deleteButton.y = self.height - btnH;
+    self.deleteButton.frame = CGRectMake(self.frameWidth - inset - btnw,  self.frameHeight - btnH, btnw, btnH);
 }
 @end
 // 版权属于原作者

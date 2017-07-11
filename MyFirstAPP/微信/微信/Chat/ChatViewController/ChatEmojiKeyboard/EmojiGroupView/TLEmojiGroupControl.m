@@ -121,13 +121,13 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(WIDTH_EMOJIGROUP_CELL, self.height);
+    return CGSizeMake(WIDTH_EMOJIGROUP_CELL, self.frameHeight);
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section
 {
     if (section == self.emojiGroupData.count - 1) {
-        return CGSizeMake(WIDTH_EMOJIGROUP_CELL * 2, self.height);
+        return CGSizeMake(WIDTH_EMOJIGROUP_CELL * 2, self.frameHeight);
     }
     return CGSizeZero;
 }
@@ -184,7 +184,7 @@
     CGContextSetStrokeColorWithColor(context, [UIColor colorGrayLine].CGColor);
     CGContextBeginPath(context);
     CGContextMoveToPoint(context, WIDTH_EMOJIGROUP_CELL, 5);
-    CGContextAddLineToPoint(context, WIDTH_EMOJIGROUP_CELL, self.height - 5);
+    CGContextAddLineToPoint(context, WIDTH_EMOJIGROUP_CELL, self.frameHeight - 5);
     CGContextStrokePath(context);
 }
 

@@ -35,7 +35,7 @@
     NSArray *titleArr = @[@"MV",@"繁星直播",@"酷狗LIVE"];
     for (int i = 0; i < 3; i ++) {
         CGFloat btnX = magin + (magin + btnW)*i;
-        CoustomButtom *btn = [[CoustomButtom alloc] initWithFrame:CGRectMake(btnX, banner.height+15, btnW, btnH)];
+        CoustomButtom *btn = [[CoustomButtom alloc] initWithFrame:CGRectMake(btnX, banner.frameHeight+15, btnW, btnH)];
         btn.titleLabel.font = [UIFont systemFontOfSize:15];
         [btn setImage:[UIImage imageNamed:[NSString stringWithFormat:@"n%d",i+1]] forState:UIControlStateNormal];
         [btn setTitle:titleArr[i] forState:UIControlStateNormal];

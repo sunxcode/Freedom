@@ -79,10 +79,10 @@
     
     [super layoutSubviews];
     
-    self.verifiedView.size = self.verifiedView.image.size;
+    self.verifiedView.frameSize = self.verifiedView.image.size;
     
-    self.verifiedView.x = self.width - self.verifiedView.width * 0.6;
-    self.verifiedView.y = self.height - self.verifiedView.height * 0.6;
+    self.verifiedView.frameX = self.frameWidth - self.verifiedView.frameWidth * 0.6;
+    self.verifiedView.frameY = self.frameHeight - self.verifiedView.frameHeight * 0.6;
     
     
 }

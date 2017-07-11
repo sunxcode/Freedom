@@ -3,42 +3,25 @@
 //CGFloat DegreesToRadians(CGFloat degrees);
 //CGFloat RadiansToDegrees(CGFloat radians);
 CGFloat RadiansToDegrees(CGFloat radians);
-
-NS_INLINE  UIImage *InlineScaledImageToMiniumuSize(UIImage *sourceImage,CGSize targetSize)
-{
+NS_INLINE  UIImage *InlineScaledImageToMiniumuSize(UIImage *sourceImage,CGSize targetSize){
     //    UIImage *sourceImage = sourceImage;
     UIImage *newImage = nil;
-    
     CGSize imageSize = sourceImage.size;
     CGFloat width = imageSize.width;
     CGFloat height = imageSize.height;
-    
     CGFloat targetWidth = targetSize.width;
     CGFloat targetHeight = targetSize.height;
-    
     CGFloat scaleFactor = 0.0;
-    
-    if (CGSizeEqualToSize(imageSize, targetSize) == NO)
-    {
-        
+    if (CGSizeEqualToSize(imageSize, targetSize) == NO){
         CGFloat widthFactor = targetWidth / width;
         CGFloat heightFactor = targetHeight / height;
-        
-        if (widthFactor > heightFactor)
-            scaleFactor = widthFactor;
-        else
-            scaleFactor = heightFactor;
-    }
-    else
-    {
+        if (widthFactor > heightFactor)scaleFactor = widthFactor;
+        else scaleFactor = heightFactor;
+    }else{
         return sourceImage;
     }
-    
     newImage = [[UIImage alloc] initWithCGImage:sourceImage.CGImage scale:scaleFactor orientation:UIImageOrientationUp];
-    
-    if(!newImage)
-        NSLog(@"could not scale image");
-    
+    if(!newImage) NSLog(@"could not scale image");
     return newImage ;
 }
 
@@ -48,26 +31,12 @@ NS_INLINE  UIImage *InlineScaledImageToMiniumuSize(UIImage *sourceImage,CGSize t
 - (UIImage *)imageScaledToWidth:(CGFloat)value;
 - (UIImage *)imageScaledToHeight:(CGFloat)value;
 - (UIImage *)imageScaledToSizeEx:(CGSize)size;
-- (UIImage *)imageAtRect:(CGRect)rect;
-- (UIImage *)imageByScalingProportionallyToMinimumSize:(CGSize)targetSize;
-- (UIImage *)imageByScalingProportionallyToSize:(CGSize)targetSize;
-- (UIImage *)imageByScalingToSize:(CGSize)targetSize;
-- (UIImage *)imageRotatedByRadians:(CGFloat)radians;
-- (UIImage *)imageRotatedByDegrees:(CGFloat)degrees;
-
 - (UIImage *)imageWithShadowColor:(UIColor *)color offset:(CGSize)offset blur:(CGFloat)blur;
 - (UIImage *)imageWithCornerRadius:(CGFloat)radius;
-
 - (UIImage *)gaussianBlur;
-
-- (UIImage *)fixOrientation;
-
 - (CGFloat)resizableHeightWithFixedwidth:(CGFloat)width;
-
 - (UIImage *)reSizeImage:(UIImage *)image toSize:(CGSize)reSize;
-
 -(UIImage*)getGrayImage:(UIImage*)sourceImage;
-
 + (UIImage *) getLaunchImage;
 #pragma mark 以上是淘宝详情的，以下是原有的
 - (UIImage *)imageAtRect:(CGRect)rect;
@@ -83,16 +52,9 @@ NS_INLINE  UIImage *InlineScaledImageToMiniumuSize(UIImage *sourceImage,CGSize t
 - (UIImage *) imageWithWaterText:(NSString*)text inRect:(CGRect)rect;
 
 - (UIImage *)croppedImage:(CGRect)bounds;
-//- (UIImage *)thumbnailImage:(NSInteger)thumbnailSize
-//          transparentBorder:(NSUInteger)borderSize
-//               cornerRadius:(NSUInteger)cornerRadius
-//       interpolationQuality:(CGInterpolationQuality)quality;
-- (UIImage *)resizedImage:(CGSize)newSize
-     interpolationQuality:(CGInterpolationQuality)quality;
-- (UIImage *)resizedImageWithContentMode:(UIViewContentMode)contentMode
-                                  bounds:(CGSize)bounds
-                    interpolationQuality:(CGInterpolationQuality)quality;
-
+//- (UIImage *)thumbnailImage:(NSInteger)thumbnailSize transparentBorder:(NSUInteger)borderSize cornerRadius:(NSUInteger)cornerRadius interpolationQuality:(CGInterpolationQuality)quality;
+- (UIImage *)resizedImage:(CGSize)newSize interpolationQuality:(CGInterpolationQuality)quality;
+- (UIImage *)resizedImageWithContentMode:(UIViewContentMode)contentMode bounds:(CGSize)bounds interpolationQuality:(CGInterpolationQuality)quality;
 -(UIImage*)rotate:(UIImageOrientation)orient;
 - (UIImage*)resizeImageWithNewSize:(CGSize)newSize;
 +(UIImage *)imageName:(NSString *)name;

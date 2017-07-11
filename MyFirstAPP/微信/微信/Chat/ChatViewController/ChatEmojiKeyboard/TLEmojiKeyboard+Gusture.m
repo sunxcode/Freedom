@@ -32,7 +32,7 @@ static UICollectionViewCell *lastCell;
         CGPoint point = [sender locationInView:self.collectionView];
         
         for (UICollectionViewCell *cell in self.collectionView.visibleCells) {
-            if (cell.x - minimumLineSpacing / 2.0 <= point.x && cell.y - minimumInteritemSpacing / 2.0 <= point.y && cell.x + cell.width + minimumLineSpacing / 2.0 >= point.x && cell.y + cell.height + minimumInteritemSpacing / 2.0 >= point.y) {
+            if (cell.frameX - minimumLineSpacing / 2.0 <= point.x && cell.frameY - minimumInteritemSpacing / 2.0 <= point.y && cell.frameX + cell.frameWidth + minimumLineSpacing / 2.0 >= point.x && cell.frameY + cell.frameHeight + minimumInteritemSpacing / 2.0 >= point.y) {
                 if (lastCell == cell) {
                     return;
                 }
@@ -50,7 +50,7 @@ static UICollectionViewCell *lastCell;
                 if (self.delegate && [self.delegate respondsToSelector:@selector(emojiKeyboard:didTouchEmojiItem:atRect:)]) {
                     emoji.type = self.curGroup.type;
                     CGRect rect = [cell frame];
-                    rect.origin.x = rect.origin.x - self.width * (int)(rect.origin.x / self.width);
+                    rect.origin.x = rect.origin.x - self.frameWidth * (int)(rect.origin.x / self.frameWidth);
                     [self.delegate emojiKeyboard:self didTouchEmojiItem:emoji atRect:rect];
                 }
                 return;

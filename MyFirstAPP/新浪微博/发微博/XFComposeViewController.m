@@ -40,8 +40,8 @@
 {
     if (!_emotionKeyboard) {
         self.emotionKeyboard = [[XFEmotionKeyboard alloc] init];
-        self.emotionKeyboard.width = self.view.width;
-        self.emotionKeyboard.height = 256;
+        self.emotionKeyboard.frameWidth = self.view.frameWidth;
+        self.emotionKeyboard.frameHeight = 256;
     }
     return _emotionKeyboard;
 
@@ -93,11 +93,11 @@
     if (name) {
 
     UILabel *titleView = [[UILabel alloc]init];
-    titleView.height = 100;
-    titleView.width = 200;
+    titleView.frameHeight = 100;
+    titleView.frameWidth = 200;
     titleView.numberOfLines = 0;
     titleView.textAlignment = NSTextAlignmentCenter;
-    titleView.y = 50;
+    titleView.frameY = 50;
         
     NSString *str = [NSString stringWithFormat:@"%@\n%@", prefix, name];
     // 创建一个带有属性的字符串（比如颜色属性、字体属性等文字属性）
@@ -117,10 +117,10 @@
 -(void)setupToolbar {
 
     XFComposeToolbar *toolbar = [[XFComposeToolbar alloc]init];
-    toolbar.height = 44;
-    toolbar.x = 0;
-    toolbar.y = self.view.height - toolbar.height;
-    toolbar.width = self.view.width;
+    toolbar.frameHeight = 44;
+    toolbar.frameX = 0;
+    toolbar.frameY = self.view.frameHeight - toolbar.frameHeight;
+    toolbar.frameWidth = self.view.frameWidth;
     toolbar.delegate = self;
     [self.view addSubview:toolbar];
     self.toolbar = toolbar;
@@ -155,9 +155,9 @@
 -(void)setupPhotoView {
     
     XFComposePhotosView *photoView = [[XFComposePhotosView alloc]init];
-    photoView.width = self.view.width;
-    photoView.height = 400;
-    photoView.y = 130;
+    photoView.frameWidth = self.view.frameWidth;
+    photoView.frameHeight = 400;
+    photoView.frameY = 130;
     [self.textView addSubview:photoView];
     self.photoView = photoView;
     
@@ -200,11 +200,11 @@
     [UIView animateWithDuration:duration animations:^{
         
         // 工具条的Y值 == 键盘的Y值 - 工具条的高度
-        if (keyboardF.origin.y > self.view.height) { // 键盘的Y值已经远远超过了控制器view的高度
+        if (keyboardF.origin.y > self.view.frameHeight) { // 键盘的Y值已经远远超过了控制器view的高度
             
-            self.toolbar.y = self.view.height - self.toolbar.height;
+            self.toolbar.frameY = self.view.frameHeight - self.toolbar.frameHeight;
         } else {
-            self.toolbar.y = keyboardF.origin.y - self.toolbar.height;
+            self.toolbar.frameY = keyboardF.origin.y - self.toolbar.frameHeight;
         }
 
     }];

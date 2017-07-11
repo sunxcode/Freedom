@@ -49,7 +49,6 @@
 #import "TLFriendHelper.h"
 
 #import "TLActionSheet.h"
-#import "UIView+Frame.h"
 #import "UIButton+TLChat.h"
 #import "UITableView+TLChat.h"
 #import "UINavigationController+StackManager.h"
@@ -61,7 +60,6 @@
 
 static const DDLogLevel ddLogLevel = DDLogLevelVerbose;
 /***********************************************    新    浪    微    博    ************************************************************************************/
-#import "UIView+Extension.h"
 #import "UIBarButtonItem+Extension.h"
 #import "NSString+Extension.h"
 #import "NSString+Emoji.h"

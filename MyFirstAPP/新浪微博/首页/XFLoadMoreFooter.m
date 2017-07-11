@@ -24,8 +24,8 @@
     if (self) {
         
         UILabel *label = [[UILabel alloc]init];
-        label.width = [UIScreen mainScreen].bounds.size.width;
-        label.height = 44;
+        label.frameWidth = [UIScreen mainScreen].bounds.size.width;
+        label.frameHeight = 44;
         label.text = @"加载更多内容";
         label.textAlignment = NSTextAlignmentCenter;
         label.textColor = [UIColor grayColor];

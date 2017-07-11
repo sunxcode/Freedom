@@ -166,21 +166,21 @@
 
 - (void)textViewDidChange:(UITextView *)textView
 {
-    CGFloat height = [textView sizeThatFits:CGSizeMake(self.textView.width, MAXFLOAT)].height;
+    CGFloat height = [textView sizeThatFits:CGSizeMake(self.textView.frameWidth, MAXFLOAT)].height;
     height = height > HEIGHT_CHATBAR_TEXTVIEW ? height : HEIGHT_CHATBAR_TEXTVIEW;
-    height = (height <= HEIGHT_MAX_CHATBAR_TEXTVIEW ? height : textView.height);
-    if (height != textView.height) {
+    height = (height <= HEIGHT_MAX_CHATBAR_TEXTVIEW ? height : textView.frameHeight);
+    if (height != textView.frameHeight) {
         [UIView animateWithDuration:0.2 animations:^{
             [textView mas_updateConstraints:^(MASConstraintMaker *make) {
                 make.height.mas_equalTo(height);
             }];
             [self.superview layoutIfNeeded];
             if (_delegate && [_delegate respondsToSelector:@selector(chatBar:didChangeTextViewHeight:)]) {
-                [_delegate chatBar:self didChangeTextViewHeight:textView.height];
+                [_delegate chatBar:self didChangeTextViewHeight:textView.frameHeight];
             }
         } completion:^(BOOL finished) {
             if (_delegate && [_delegate respondsToSelector:@selector(chatBar:didChangeTextViewHeight:)]) {
-                [_delegate chatBar:self didChangeTextViewHeight:textView.height];
+                [_delegate chatBar:self didChangeTextViewHeight:textView.frameHeight];
             }
         }];
     }

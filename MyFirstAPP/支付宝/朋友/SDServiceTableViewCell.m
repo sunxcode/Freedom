@@ -44,7 +44,7 @@
     
     self.titleLabel.text = cellModel.title;
     self.detailLabel.text = cellModel.detailString;
-    [self.iconView setImageWithURL:[NSURL URLWithString:cellModel.iconImageURLString] placeholderImage:nil];
+    [self.iconView sd_setImageWithURL:[NSURL URLWithString:cellModel.iconImageURLString] placeholderImage:nil];
 }
 
 @end

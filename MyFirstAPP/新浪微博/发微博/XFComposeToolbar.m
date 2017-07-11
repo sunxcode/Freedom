@@ -80,14 +80,14 @@
     
     // 设置所有按钮的frame
     NSUInteger count = self.subviews.count;
-    CGFloat btnW = self.width / count;
-    CGFloat btnH = self.height;
+    CGFloat btnW = self.frameWidth / count;
+    CGFloat btnH = self.frameHeight;
     for (NSUInteger i = 0; i<count; i++) {
         UIButton *btn = self.subviews[i];
-        btn.y = 0;
-        btn.width = btnW;
-        btn.x = i * btnW;
-        btn.height = btnH;
+        btn.frameY = 0;
+        btn.frameWidth = btnW;
+        btn.frameX = i * btnW;
+        btn.frameHeight = btnH;
     }
 }
 @end

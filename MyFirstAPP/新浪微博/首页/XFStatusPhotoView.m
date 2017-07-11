@@ -53,8 +53,8 @@
 {
     [super layoutSubviews];
     
-    self.gifView.x = self.width - self.gifView.width;
-    self.gifView.y = self.height - self.gifView.height;
+    self.gifView.frameX = self.frameWidth - self.gifView.frameWidth;
+    self.gifView.frameY = self.frameHeight - self.gifView.frameHeight;
 }
 
 @end

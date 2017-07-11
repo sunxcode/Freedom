@@ -81,7 +81,7 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return collectionView.size;
+    return collectionView.frameSize;
 }
 
 //MARK: UIScrollViewDelegate

@@ -45,7 +45,7 @@
     [self.navBar addSubview:self.titleView];    
     self.leftItem.image = [UIImage imageNamed:@"placeHoder-128"];
     self.leftItem.frame = CGRectMake(15, 34, 25, 25);
-    KGViewsBorder(self.leftItem, self.leftItem.width*0.5, 1, [UIColor grayColor])
+    KGViewsBorder(self.leftItem, self.leftItem.frameWidth*0.5, 1, [UIColor grayColor])
     self.rightItem.image = [UIImage imageNamed:@"main_search"];
     self.rightItem.frame = CGRectMake(APPW-40, 34, 20, 20);
     self.navBar.backgroundColor = [UIColor colorWithWhite:1 alpha:0];
@@ -62,7 +62,7 @@
     [self.titleView setSelectedIndex:index];
     // 滚动
     CGPoint offset = self.contentView.contentOffset;
-    offset.x = index * self.contentView.width;
+    offset.x = index * self.contentView.frameWidth;
     [self.contentView setContentOffset:offset animated:YES];
 }
 
@@ -76,7 +76,7 @@
     contentView.bounces = NO;
     contentView.pagingEnabled = YES;
     [self.view insertSubview:contentView atIndex:0];
-    contentView.contentSize = CGSizeMake(contentView.width * self.childViewControllers.count, 0);
+    contentView.contentSize = CGSizeMake(contentView.frameWidth * self.childViewControllers.count, 0);
     self.contentView = contentView;
     // 添加第一个控制器的view
     [self scrollViewDidEndScrollingAnimation:contentView];
@@ -84,22 +84,22 @@
 #pragma mark - <UIScrollViewDelegate>
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView{
     // 当前的索引
-    NSInteger index = 0;//scrollView.contentOffset.x / scrollView.width;
+    NSInteger index = scrollView.contentOffset.x / scrollView.frameWidth;
     // 取出子控制器
     UIViewController *vc = self.childViewControllers[index];
-    vc.view.x = scrollView.contentOffset.x;
-    vc.view.y = 0; // 设置控制器view的y值为0(默认是20)
-    vc.view.height = scrollView.height; // 设置控制器view的height值为整个屏幕的高度(默认是比屏幕高度少个20)
+    vc.view.frameX = scrollView.contentOffset.x;
+    vc.view.frameY = 0; // 设置控制器view的y值为0(默认是20)
+    vc.view.frameHeight = scrollView.frameHeight; // 设置控制器view的height值为整个屏幕的高度(默认是比屏幕高度少个20)
     [scrollView addSubview:vc.view];
 }
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     [self scrollViewDidEndScrollingAnimation:scrollView];
     // 点击按钮
-    NSInteger index = scrollView.contentOffset.x / scrollView.width;
+    NSInteger index = scrollView.contentOffset.x / scrollView.frameWidth;
     [self titleClick:index];
 }
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    CGFloat alphe = scrollView.contentOffset.x / scrollView.width;
+    CGFloat alphe = scrollView.contentOffset.x / scrollView.frameWidth;
     self.navBar.backgroundColor = [UIColor colorWithRed:51/255. green:124/255. blue:200/255. alpha:alphe];
 }
 #pragma mark - 抽屉效果

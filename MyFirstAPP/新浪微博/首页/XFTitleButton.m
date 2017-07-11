@@ -30,9 +30,9 @@
 
     [super layoutSubviews];
         // 1.计算titleLabel的frame
-    self.titleLabel.x = 0;
+    self.titleLabel.frameX = 0;
     // 2.计算imageView的frame
-    self.imageView.x = CGRectGetMaxX(self.titleLabel.frame) + 10;
+    self.imageView.frameX = CGRectGetMaxX(self.titleLabel.frame) + 10;
     //self.titleLabel.x = self.imageView.x;
       
 }

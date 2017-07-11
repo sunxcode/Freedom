@@ -52,12 +52,12 @@
         UIImageView *image = self.subviews[i];
         
         int col = i % maxCol;
-        image.x = col * (imageWH + imageMargin) + imageMargin;
+        image.frameX = col * (imageWH + imageMargin) + imageMargin;
         
         int row = i / maxCol;
-        image.y = row * (imageWH + imageMargin);
-        image.width = imageWH;
-        image.height = imageWH;
+        image.frameY = row * (imageWH + imageMargin);
+        image.frameWidth = imageWH;
+        image.frameHeight = imageWH;
         
         
     }

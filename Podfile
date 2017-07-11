@@ -9,7 +9,7 @@ pod 'MJExtension', '~> 3.0.10'                       #json与对象             
 pod 'SDWebImage', '~> 3.7.4'
 pod 'KissXML', '5.0'                                 #XML文件解析                    https://github.com/robbiehanson/KissXML
 pod 'ElasticTransitionObjC'                          #OC版流动性质的拖拉界面切换效果    https://github.com/taglia3/ElasticTransition-ObjC
-#pod 'ElasticTransition'                 #Swift流动性质的拖拉界面切换效果   https://github.com/lkzhao/ElasticTransition
+#pod 'ElasticTransition'                              #Swift流动性质的拖拉界面切换效果   https://github.com/lkzhao/ElasticTransition
 pod 'PPRevealSideViewController', '~> 1.2.1'         #左界面和右界面                  https://github.com/ipup/PPRevealSideViewController
 #pod 'iCarousel', '1.7.6'                            #集合视图圆圈                    https://github.com/nicklockwood/iCarousel
 #pod 'ZYQAssetPickerController', '~> 1.0.0'          #可适配的照片查看器               https://github.com/heroims/ZYQAssetPickerController

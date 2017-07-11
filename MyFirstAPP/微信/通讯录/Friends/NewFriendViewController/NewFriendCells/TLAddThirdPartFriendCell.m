@@ -81,14 +81,14 @@
     CGContextSetStrokeColorWithColor(context, [UIColor colorGrayLine].CGColor);
     CGContextBeginPath(context);
     if (self.thridPartItems.count == 2) {
-        CGContextMoveToPoint(context, self.width / 2.0, 0);
-        CGContextAddLineToPoint(context, self.width / 2.0, self.height);
+        CGContextMoveToPoint(context, self.frameWidth / 2.0, 0);
+        CGContextAddLineToPoint(context, self.frameWidth / 2.0, self.frameHeight);
     }
     else if (self.thridPartItems.count == 3) {
-        CGContextMoveToPoint(context, self.width / 3.0, 0);
-        CGContextAddLineToPoint(context, self.width / 3.0, self.height);
-        CGContextMoveToPoint(context, self.width / 3.0 * 2, 0);
-        CGContextAddLineToPoint(context, self.width / 3.0 * 2, self.height);
+        CGContextMoveToPoint(context, self.frameWidth / 3.0, 0);
+        CGContextAddLineToPoint(context, self.frameWidth / 3.0, self.frameHeight);
+        CGContextMoveToPoint(context, self.frameWidth / 3.0 * 2, 0);
+        CGContextAddLineToPoint(context, self.frameWidth / 3.0 * 2, self.frameHeight);
     }
     CGContextStrokePath(context);
 }

@@ -7,7 +7,6 @@
 //
 
 #import "UIBarButtonItem+Extension.h"
-#import "UIView+Extension.h"
 
 @implementation UIBarButtonItem (Extension)
 
@@ -22,7 +21,7 @@
     
     [btn setBackgroundImage:[UIImage imageNamed:heilightImage] forState:UIControlStateHighlighted];
     
-    btn.size = btn.currentBackgroundImage.size;
+    btn.frameSize = btn.currentBackgroundImage.size;
     
     [btn addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
     

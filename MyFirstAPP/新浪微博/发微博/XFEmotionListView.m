@@ -8,8 +8,7 @@
 
 #import "XFEmotionListView.h"
 #import "XFEmotionPageView.h"
-// 每一页的表情个数
-#define XFEmotionPageSize 20
+// 每一页的表情个数20
 
 @interface XFEmotionListView ()<UIScrollViewDelegate>
 @property (nonatomic,weak) UIScrollView *scrollView;
@@ -90,35 +89,35 @@
     [super layoutSubviews];
     
     //1.pageControl
-    self.pageControl.width = self.width;
-    self.pageControl.height = 35;
-    self.pageControl.x = 0;
-    self.pageControl.y = self.height - self.pageControl.height;
+    self.pageControl.frameWidth = self.frameWidth;
+    self.pageControl.frameHeight = 35;
+    self.pageControl.frameX = 0;
+    self.pageControl.frameY = self.frameHeight - self.pageControl.frameHeight;
     
     //2.scrollView
-    self.scrollView.width = self.width;
-    self.scrollView.height = self.pageControl.y;
-    self.scrollView.x = self.scrollView.y = 0;
+    self.scrollView.frameWidth = self.frameWidth;
+    self.scrollView.frameHeight = self.pageControl.frameY;
+    self.scrollView.frameX = self.scrollView.frameY = 0;
 
     
     //3.设置scrollerView内部每一页的尺寸
     NSUInteger count = self.scrollView.subviews.count;
     for (int i = 0; i<count; i++) {
         XFEmotionPageView *pageView = self.scrollView.subviews[i];
-        pageView.height = self.scrollView.height;
-        pageView.width = self.scrollView.width;
-        pageView.x = i * pageView.width;
-        pageView.y = 0;
+        pageView.frameHeight = self.scrollView.frameHeight;
+        pageView.frameWidth = self.scrollView.frameWidth;
+        pageView.frameX = i * pageView.frameWidth;
+        pageView.frameY = 0;
     }
     //4.设置scrollView的contentSize
-    self.scrollView.contentSize = CGSizeMake(count * self.scrollView.width, 0);
+    self.scrollView.contentSize = CGSizeMake(count * self.scrollView.frameWidth, 0);
     
 }
 
 #pragma mark - scrollViewDelegate
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView {
     
-    double pageNum = scrollView.contentOffset.x / scrollView.width;
+    double pageNum = scrollView.contentOffset.x / scrollView.frameWidth;
     
     self.pageControl.currentPage = (int)(pageNum + 0.5);
     

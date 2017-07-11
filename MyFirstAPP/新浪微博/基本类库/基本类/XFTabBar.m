@@ -12,7 +12,7 @@
 @property (nonatomic, weak) UIButton *plusBtn;
 @end
 @implementation XFTabBar
-
+@dynamic delegate;
 -(id)initWithFrame:(CGRect)frame {
     
     self = [super initWithFrame:frame];
@@ -25,7 +25,7 @@
         [plusBtn setBackgroundImage:[UIImage imageNamed:@"tabbar_compose_button_highlighted"] forState:UIControlStateHighlighted];
         [plusBtn setImage:[UIImage imageNamed:@"tabbar_compose_icon_add"] forState:UIControlStateNormal];
         [plusBtn setImage:[UIImage imageNamed:@"tabbar_compose_icon_add_highlighted"] forState:UIControlStateHighlighted];
-        plusBtn.size = plusBtn.currentBackgroundImage.size;
+        plusBtn.frameSize = plusBtn.currentBackgroundImage.size;
         [plusBtn addTarget:self action:@selector(plusClick) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:plusBtn];
         self.plusBtn = plusBtn;
@@ -57,8 +57,8 @@
     
     //设置加号的位置
     
-    self.plusBtn.centerX = kScreenWidth *0.5;
-    self.plusBtn.centerY = 50 * 0.5;
+    self.plusBtn.frameCenterX = kScreenWidth *0.5;
+    self.plusBtn.frameCenterY = 50 * 0.5;
     
     //设置其他tabbarButton的位置和尺寸
     CGFloat tabBarButtonW  = kScreenWidth / 5;
@@ -67,8 +67,8 @@
     for (UIView *child in self.subviews) {
         Class class = NSClassFromString(@"UITabBarButton");
         if ([child isKindOfClass:class]) {
-            child.width = tabBarButtonW;
-            child.x = tabbarButtonIndex *tabBarButtonW;
+            child.frameWidth = tabBarButtonW;
+            child.frameX = tabbarButtonIndex *tabBarButtonW;
             
             //增加索引
             tabbarButtonIndex ++;

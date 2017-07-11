@@ -111,25 +111,25 @@
     
     // 设置按钮的frame
     int btnCount = (int)self.btns.count;
-    CGFloat btnw = self.width / btnCount;
-    CGFloat btnH = self.height;
+    CGFloat btnw = self.frameWidth / btnCount;
+    CGFloat btnH = self.frameHeight;
     
     for (int i = 0; i<btnCount; i++) {
         UIButton *btn = self.subviews[i];
-        btn.height = btnH;
-        btn.width = btnw;
-        btn.x = i * btnw;
-        btn.y = 0;
+        btn.frameHeight = btnH;
+        btn.frameWidth = btnw;
+        btn.frameX = i * btnw;
+        btn.frameY = 0;
 
     }
     // 设置分割线的frame
     int dividerCount = (int)self.dividers.count;
     for (int i = 0; i<dividerCount; i++) {
         UIImageView *divider = self.dividers[i];
-        divider.width = 1;
-        divider.height = btnH;
-        divider.x = (i+1) * btnw;
-        divider.y = 0;
+        divider.frameWidth = 1;
+        divider.frameHeight = btnH;
+        divider.frameX = (i+1) * btnw;
+        divider.frameY = 0;
         
     }
     

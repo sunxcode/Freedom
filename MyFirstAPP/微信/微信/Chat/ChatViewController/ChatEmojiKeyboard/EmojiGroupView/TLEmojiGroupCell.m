@@ -52,8 +52,8 @@
     CGContextSetLineWidth(context, 0.5);
     CGContextSetStrokeColorWithColor(context, [UIColor colorGrayLine].CGColor);
     CGContextBeginPath(context);
-    CGContextMoveToPoint(context, self.width - 0.5, 5);
-    CGContextAddLineToPoint(context, self.width - 0.5, self.height - 5);
+    CGContextMoveToPoint(context, self.frameWidth - 0.5, 5);
+    CGContextAddLineToPoint(context, self.frameWidth - 0.5, self.frameHeight - 5);
     CGContextStrokePath(context);
 }
 

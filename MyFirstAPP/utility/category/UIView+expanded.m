@@ -8,6 +8,41 @@
 #define showProgressIndicator_width 250
 
 @implementation UIView(Addition)
+- (CGFloat)frameTop{
+    return self.frame.origin.y;
+}
+- (void)setFrameTop:(CGFloat)y{
+    self.frame = CGRectMake(self.frame.origin.x, y, self.frame.size.width, self.frame.size.height);
+}
+- (CGFloat)frameLeft{
+    return self.frame.origin.x;
+}
+
+- (void)setFrameLeft:(CGFloat)x{
+    self.frame = CGRectMake(x, self.frame.origin.y, self.frame.size.width, self.frame.size.height);
+}
+
+
+- (CGFloat)frameCenterX {
+    return self.center.x;
+}
+
+- (void)setFrameCenterX:(CGFloat)centerX {
+    self.center = CGPointMake(centerX, self.center.y);
+}
+
+- (CGFloat)frameCenterY {
+    return self.center.y;
+}
+
+- (void)setFrameCenterY:(CGFloat)centerY {
+    self.center = CGPointMake(self.center.x, centerY);
+}
+
+
+
+
+
 
 -(BOOL) containsSubView:(UIView *)subView
 {
@@ -42,8 +77,7 @@
 }
 
 - (void)setFrameSize:(CGSize)newSize {
-	self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y,
-							newSize.width, newSize.height);
+	self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y,newSize.width, newSize.height);
 }
 
 - (CGFloat)frameX {
@@ -51,8 +85,7 @@
 }
 
 - (void)setFrameX:(CGFloat)newX {
-	self.frame = CGRectMake(newX, self.frame.origin.y,
-							self.frame.size.width, self.frame.size.height);
+	self.frame = CGRectMake(newX, self.frame.origin.y,self.frame.size.width, self.frame.size.height);
 }
 
 - (CGFloat)frameY {
@@ -60,8 +93,7 @@
 }
 
 - (void)setFrameY:(CGFloat)newY {
-	self.frame = CGRectMake(self.frame.origin.x, newY,
-							self.frame.size.width, self.frame.size.height);
+	self.frame = CGRectMake(self.frame.origin.x, newY,self.frame.size.width, self.frame.size.height);
 }
 
 - (CGFloat)frameRight {
@@ -69,8 +101,7 @@
 }
 
 - (void)setFrameRight:(CGFloat)newRight {
-	self.frame = CGRectMake(newRight - self.frame.size.width, self.frame.origin.y,
-							self.frame.size.width, self.frame.size.height);
+	self.frame = CGRectMake(newRight - self.frame.size.width, self.frame.origin.y,self.frame.size.width, self.frame.size.height);
 }
 
 - (CGFloat)frameBottom {
@@ -78,8 +109,7 @@
 }
 
 - (void)setFrameBottom:(CGFloat)newBottom {
-	self.frame = CGRectMake(self.frame.origin.x, newBottom - self.frame.size.height,
-							self.frame.size.width, self.frame.size.height);
+	self.frame = CGRectMake(self.frame.origin.x, newBottom - self.frame.size.height,self.frame.size.width, self.frame.size.height);
 }
 
 - (CGFloat)frameWidth {
@@ -87,8 +117,7 @@
 }
 
 - (void)setFrameWidth:(CGFloat)newWidth {
-	self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y,
-							newWidth, self.frame.size.height);
+	self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y,newWidth, self.frame.size.height);
 }
 
 - (CGFloat)frameHeight {
@@ -96,8 +125,7 @@
 }
 
 - (void)setFrameHeight:(CGFloat)newHeight {
-	self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y,
-							self.frame.size.width, newHeight);
+	self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y,self.frame.size.width, newHeight);
 }
 
 -(void)roundCorner

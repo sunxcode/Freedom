@@ -121,7 +121,7 @@
     }];
     
     // rect值范围0-1，基准点在右上角
-    CGRect rect = CGRectMake(self.scannerView.y / HEIGHT_SCREEN, self.scannerView.x / WIDTH_SCREEN, self.scannerView.height / HEIGHT_SCREEN, self.scannerView.width / WIDTH_SCREEN);
+    CGRect rect = CGRectMake(self.scannerView.frameY / HEIGHT_SCREEN, self.scannerView.frameX / WIDTH_SCREEN, self.scannerView.frameHeight / HEIGHT_SCREEN, self.scannerView.frameWidth / WIDTH_SCREEN);
     [self.scannerSession.outputs[0] setRectOfInterest:rect];
     if (!self.isRunning) {
         [self startCodeReading];

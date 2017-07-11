@@ -29,8 +29,8 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.tableView.y = HEIGHT_NAVBAR + HEIGHT_STATUSBAR;
-    self.tableView.height = HEIGHT_SCREEN - self.tableView.y;
+    self.tableView.frameY = HEIGHT_NAVBAR + HEIGHT_STATUSBAR;
+    self.tableView.frameHeight = HEIGHT_SCREEN - self.tableView.frameY;
 }
 
 #pragma mark - UITableViewDataSource

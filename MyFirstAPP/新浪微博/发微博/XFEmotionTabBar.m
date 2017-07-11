@@ -101,14 +101,14 @@
     
     // 设置按钮的frame
     NSUInteger btnCount = self.subviews.count;
-    CGFloat btnW = self.width / btnCount;
-    CGFloat btnH = self.height;
+    CGFloat btnW = self.frameWidth / btnCount;
+    CGFloat btnH = self.frameHeight;
     for (int i = 0; i<btnCount; i++) {
         XFEmotionTabBarButton *btn = self.subviews[i];
-        btn.y = 0;
-        btn.width = btnW;
-        btn.x = i * btnW;
-        btn.height = btnH;
+        btn.frameY = 0;
+        btn.frameWidth = btnW;
+        btn.frameX = i * btnW;
+        btn.frameHeight = btnH;
     }
 }
 

@@ -30,7 +30,7 @@
 - (void) layoutSubviews
 {
     [super layoutSubviews];
-    [self.titleLabel setFrame:CGRectMake(10, 0, self.width - 15, self.height)];
+    [self.titleLabel setFrame:CGRectMake(10, 0, self.frameWidth - 15, self.frameHeight)];
 }
 
 - (void) setTitle:(NSString *)title

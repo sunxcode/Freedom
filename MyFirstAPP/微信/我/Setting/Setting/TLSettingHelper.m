@@ -22,11 +22,10 @@
 - (void) p_initTestData
 {
     TLSettingItem *item1 = TLCreateSettingItem(@"账号与安全");
-    if (1) {
+    if (/* DISABLES CODE */ (1)) {
         item1.subTitle = @"已保护";
         item1.rightImagePath = @"ProfileLockOn@2x";
-    }
-    else {
+    }else {
         item1.subTitle = @"为保护";
         item1.rightImagePath = @"ProfileLockOff@2x";
     }

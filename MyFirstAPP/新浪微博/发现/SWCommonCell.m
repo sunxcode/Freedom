@@ -107,7 +107,7 @@
     [super layoutSubviews];
     
     // 调整子标题的x
-    self.detailTextLabel.x = CGRectGetMaxX(self.textLabel.frame) + 5;
+    self.detailTextLabel.frameX = CGRectGetMaxX(self.textLabel.frame) + 5;
 }
 #pragma mark - setter
 - (void)setIndexPath:(NSIndexPath *)indexPath rowsInSection:(int)rows
@@ -167,7 +167,7 @@
         // 设置文字
         self.rightLabel.text = labelItem.text;
         // 根据文字计算尺寸
-        self.rightLabel.size = [labelItem.text sizeWithFont:self.rightLabel.font maxSize:CGSizeMake(MAXFLOAT, MAXFLOAT)];
+        self.rightLabel.frameSize = [labelItem.text sizeWithFont:self.rightLabel.font maxSize:CGSizeMake(MAXFLOAT, MAXFLOAT)];
         self.accessoryView = self.rightLabel;
     } else { // 取消右边的内容
         self.accessoryView = nil;

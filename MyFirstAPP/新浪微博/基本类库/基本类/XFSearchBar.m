@@ -20,9 +20,9 @@
         self.font = [UIFont systemFontOfSize:13];
         UIImageView *searchIcon = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"searchbar_textfield_search_icon"]];
         
-        searchIcon.width = 30;
+        searchIcon.frameWidth = 30;
         
-        searchIcon.height = 30;
+        searchIcon.frameHeight = 30;
         
         self.leftView = searchIcon;
         

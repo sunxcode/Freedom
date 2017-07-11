@@ -29,8 +29,8 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    [self.maskLayer setFrame:CGRectMake(0, 0, self.width, self.height)];
-    [self.contentLayer setFrame:CGRectMake(0, 0, self.width, self.height)];
+    [self.maskLayer setFrame:CGRectMake(0, 0, self.frameWidth, self.frameHeight)];
+    [self.contentLayer setFrame:CGRectMake(0, 0, self.frameWidth, self.frameHeight)];
 }
 
 - (void)setThumbnailPath:(NSString *)imagePath highDefinitionImageURL:(NSString *)imageURL

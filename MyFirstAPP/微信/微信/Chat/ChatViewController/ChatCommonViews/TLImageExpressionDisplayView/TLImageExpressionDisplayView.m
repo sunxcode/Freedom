@@ -78,23 +78,23 @@ static NSString *curID;
 
 - (void)setRect:(CGRect)rect
 {
-    self.y = rect.origin.y - self.height + 13;
+    self.frameY = rect.origin.y - self.frameHeight + 13;
     CGFloat w = WIDTH_TIPS - WIDTH_CENTER;
     CGFloat centerX = rect.origin.x + rect.size.width / 2;
-    if (rect.origin.x + rect.size.width < self.width) {     // 箭头在左边
-        self.centerX = centerX + (WIDTH_TIPS - w / 4 - WIDTH_CENTER) / 2 - SPACE_IMAGE;
+    if (rect.origin.x + rect.size.width < self.frameWidth) {     // 箭头在左边
+        self.frameCenterX = centerX + (WIDTH_TIPS - w / 4 - WIDTH_CENTER) / 2 - SPACE_IMAGE;
         [self.bgLeftView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.width.mas_equalTo(w / 4);
         }];
     }
-    else if (WIDTH_SCREEN - rect.origin.x < self.width) {   // 箭头在右边
-        self.centerX = centerX - (WIDTH_TIPS - w / 4 - WIDTH_CENTER) / 2 + SPACE_IMAGE;
+    else if (WIDTH_SCREEN - rect.origin.x < self.frameWidth) {   // 箭头在右边
+        self.frameCenterX = centerX - (WIDTH_TIPS - w / 4 - WIDTH_CENTER) / 2 + SPACE_IMAGE;
         [self.bgLeftView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.width.mas_equalTo(w / 4 * 3);
         }];
     }
     else {
-        self.centerX = centerX;
+        self.frameCenterX = centerX;
         [self.bgLeftView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.width.mas_equalTo(w / 2);
         }];

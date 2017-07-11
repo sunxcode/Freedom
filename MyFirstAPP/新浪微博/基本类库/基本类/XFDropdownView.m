@@ -26,8 +26,8 @@
         // 添加一个灰色图片控件
         UIImageView *containerView = [[UIImageView alloc] init];
         containerView.image = [UIImage imageNamed:@"popover_background"];
-        containerView.width = 180;
-        containerView.height = 217;
+        containerView.frameWidth = 180;
+        containerView.frameHeight = 217;
         containerView.userInteractionEnabled = YES; // 开启交互
         [self addSubview:containerView];
         self.containerView = containerView;
@@ -56,14 +56,14 @@
     _content = content;
     
     // 调整内容的位置
-    content.x = 10;
-    content.y = 15;
+    content.frameX = 10;
+    content.frameY = 15;
     
     // 调整内容的宽度
-    content.width = self.containerView.width - 2 * content.x;
+    content.frameWidth = self.containerView.frameWidth - 2 * content.frameX;
     
     // 设置灰色的高度
-    self.containerView.height = CGRectGetMaxY(content.frame) + 10;
+    self.containerView.frameHeight = CGRectGetMaxY(content.frame) + 10;
     
     // 添加内容到灰色图片中
     [self.containerView addSubview:content];
@@ -96,9 +96,9 @@
     
     CGRect newFrame = [from.superview convertRect:from.frame toView:window];
     
-    self.containerView.centerX = CGRectGetMidX(newFrame);
+    self.containerView.frameCenterX = CGRectGetMidX(newFrame);
     
-    self.containerView.y = CGRectGetMaxY(newFrame);
+    self.containerView.frameCenterY = CGRectGetMaxY(newFrame);
     
     // 通知外界，自己显示了
     if ([self.delegate respondsToSelector:@selector(dropdownMenuDidShow:)]) {

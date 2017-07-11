@@ -65,12 +65,12 @@
     for (int i = 0; i<photosCount; i++) {
         XFStatusPhotoView *photoView = self.subviews[i];
         int col = i % maxCol;
-        photoView.x = col * (XFStatusPhotoWH + XFStatusPhotoMargin);
+        photoView.frameX = col * (XFStatusPhotoWH + XFStatusPhotoMargin);
         
         int row = i / maxCol;
-        photoView.y = row * (XFStatusPhotoWH + XFStatusPhotoMargin);
-        photoView.width = XFStatusPhotoWH;
-        photoView.height = XFStatusPhotoWH;
+        photoView.frameY = row * (XFStatusPhotoWH + XFStatusPhotoMargin);
+        photoView.frameWidth = XFStatusPhotoWH;
+        photoView.frameHeight = XFStatusPhotoWH;
     }
     
 }

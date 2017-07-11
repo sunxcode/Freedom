@@ -25,8 +25,8 @@
     UIScrollView *scrollView = [[UIScrollView alloc]init];
     scrollView.delegate = self;
     scrollView.frame = self.view.bounds;
-    CGFloat scrollW = scrollView.width;
-    CGFloat scrollH = scrollView.height;
+    CGFloat scrollW = scrollView.frameWidth;
+    CGFloat scrollH = scrollView.frameHeight;
     scrollView.contentSize = CGSizeMake(scrollW * KCount, 0);
     scrollView.pagingEnabled = YES;
     scrollView.showsHorizontalScrollIndicator = NO;
@@ -38,10 +38,10 @@
     for (int i = 0; i < KCount; i++) {
         
         UIImageView *imageView = [[UIImageView alloc]init];
-        imageView.x = i * scrollW;
-        imageView.y = 0;
-        imageView.width = scrollW;
-        imageView.height = scrollH;
+        imageView.frameX = i * scrollW;
+        imageView.frameY = 0;
+        imageView.frameWidth = scrollW;
+        imageView.frameHeight = scrollH;
         NSString *imageName = [NSString stringWithFormat:@"new_feature_%d",i+1];
         imageView.image = [UIImage imageNamed:imageName];
         [scrollView addSubview:imageView];
@@ -54,10 +54,10 @@
             [shareBtn setTitle:@"分享至微博" forState:UIControlStateNormal];
             [shareBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
             shareBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 30);
-            shareBtn.centerX = imageView.width *0.24;
-            shareBtn.centerY = imageView.height * 0.70;
-            shareBtn.height = 30;
-            shareBtn.width = 200;
+            shareBtn.frameCenterX = imageView.frameWidth *0.24;
+            shareBtn.frameCenterY = imageView.frameHeight * 0.70;
+            shareBtn.frameHeight = 30;
+            shareBtn.frameWidth = 200;
             [shareBtn addTarget:self action:@selector(shareClick) forControlEvents:UIControlEventTouchUpInside];
             self.shareBtn = shareBtn;
             [imageView addSubview:shareBtn];
@@ -68,10 +68,7 @@
             [startBtn setBackgroundImage:[UIImage imageNamed:@"new_feature_finish_button_highlighted"] forState:UIControlStateHighlighted];
             [startBtn setTitle:@"开始微博" forState:UIControlStateNormal];
             [startBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-            startBtn.centerX = imageView.width *0.25;
-            startBtn.centerY = imageView.height * 0.80;
-            startBtn.height = 40;
-            startBtn.width = 180;
+            startBtn.frame = CGRectMake(imageView.frameWidth *0.25, imageView.frameHeight * 0.80, 40, 180);
             [startBtn addTarget:self action:@selector(startClick) forControlEvents:UIControlEventTouchUpInside];
             [imageView addSubview:startBtn];
 
@@ -84,8 +81,7 @@
     pageControl.numberOfPages = KCount;
     pageControl.currentPageIndicatorTintColor = [UIColor orangeColor];
     pageControl.pageIndicatorTintColor = [UIColor grayColor];
-    pageControl.centerX = scrollW * 0.5;
-    pageControl.centerY = scrollH - 40;
+    pageControl.center =CGPointMake(scrollW * 0.5, scrollH - 40) ;
     self.pageControl = pageControl;
     [self.view addSubview:pageControl];
     
@@ -120,7 +116,7 @@
 //监听pageControl
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView {
     
-    double page = scrollView.contentOffset.x / scrollView.width;
+    double page = scrollView.contentOffset.x / scrollView.frameWidth;
     
     self.pageControl.currentPage = (int)(page + 0.5);
     

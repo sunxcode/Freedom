@@ -36,15 +36,15 @@
     
     UIImageView *img = [[UIImageView alloc] initWithFrame:CGRectMake(15, 0, 40, 40)];
     img.image = [UIImage imageNamed:@"placeHoder-128"];
-    img.centerY = self.topView.centerY;
-    img.layer.cornerRadius = img.width*0.5;
+    img.frameCenterY = self.topView.frameCenterY;
+    img.layer.cornerRadius = img.frameWidth*0.5;
     img.layer.masksToBounds = YES;
     [self.topView addSubview:img];
     
     UIImageView *img2 = [[UIImageView alloc] initWithFrame:CGRectMake(APPW-80, 0, 40, 40)];
     img2.image = [UIImage imageNamed:@"placeHoder-128"];
-    img2.centerY = self.topView.centerY;
-    img2.layer.cornerRadius = img.width*0.5;
+    img2.frameCenterY = self.topView.frameCenterY;
+    img2.layer.cornerRadius = img.frameWidth*0.5;
     img2.layer.masksToBounds = YES;
     [self.topView addSubview:img2];
     
@@ -72,7 +72,7 @@
     return foot;
 }
 - (void)setupTableView{
-    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.topView.height, APPW, APPH-210) style:UITableViewStylePlain];
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.topView.frameHeight, APPW, APPH-210) style:UITableViewStylePlain];
     tableView.delegate = self;
     tableView.dataSource = self;
     self.tableView = tableView;
@@ -123,16 +123,16 @@
     } else {
         self.bottomView.transform = CGAffineTransformScale(self.view.transform, scare, scare);
         if (((APPW-50)/APPW + tranX)>=0) {
-            self.presentingViewController.view.x =  ((APPW-50)/APPW + tranX)*APPW;
-            self.presentingViewController.view.y =  (100/APPH-tranY)*APPH;
-            self.presentingViewController.view.height = APPH-2*self.presentingViewController.view.y;
+            self.presentingViewController.view.frameX =  ((APPW-50)/APPW + tranX)*APPW;
+            self.presentingViewController.view.frameY =  (100/APPH-tranY)*APPH;
+            self.presentingViewController.view.frameHeight = APPH-2*self.presentingViewController.view.frameY;
         }
         if (pan.state == UIGestureRecognizerStateEnded) {
             if (((APPW-50)/APPW + tranX)<=0.2) {
                 [UIView animateWithDuration:0.1 animations:^{
-                    self.presentingViewController.view.x = 0;
-                    self.presentingViewController.view.y = 0;
-                    self.presentingViewController.view.height = APPH;
+                    self.presentingViewController.view.frameX = 0;
+                    self.presentingViewController.view.frameY = 0;
+                    self.presentingViewController.view.frameHeight = APPH;
                     self.bottomView.transform = CGAffineTransformMakeScale(1,1);
                 } completion:^(BOOL finished) {
                     [self dismissViewControllerAnimated:YES completion:nil];
@@ -140,9 +140,9 @@
                 }];
             } else {
                 [UIView animateWithDuration:0.3 animations:^{
-                    self.presentingViewController.view.x = APPW-50;
-                    self.presentingViewController.view.y = 100;
-                    self.presentingViewController.view.height = APPH-200;
+                    self.presentingViewController.view.frameX = APPW-50;
+                    self.presentingViewController.view.frameY = 100;
+                    self.presentingViewController.view.frameHeight = APPH-200;
                     self.bottomView.transform = CGAffineTransformMakeScale(1,1);
                 }];
             }

@@ -205,9 +205,9 @@
     label.textAlignment = NSTextAlignmentCenter;
     label.textColor = [UIColor whiteColor];
     label.font = [UIFont systemFontOfSize:16];
-    label.width = [UIScreen mainScreen].bounds.size.width;
-    label.height = 35;
-    label.y = 64 - label.height;
+    label.frameWidth = [UIScreen mainScreen].bounds.size.width;
+    label.frameHeight = 35;
+    label.frameY = 64 - label.frameHeight;
     
     
     if (count) {
@@ -225,7 +225,7 @@
     //出来的动画
     [UIView animateWithDuration:1.0 animations:^{
         
-        label.transform = CGAffineTransformMakeTranslation(0, label.height);
+        label.transform = CGAffineTransformMakeTranslation(0, label.frameHeight);
         
     } completion:^(BOOL finished) {
         
@@ -302,7 +302,7 @@
     
     XFTitleMenuViewController *vc = [[XFTitleMenuViewController alloc]init];
     
-    vc.view.height = 200;
+    vc.view.frameHeight = 200;
 
    //下拉列表的控制器
     dropMenu.contentController = vc;
@@ -422,7 +422,7 @@
     CGFloat offsetY = scrollView.contentOffset.y;
     
     // 当最后一个cell完全显示在眼前时，contentOffset的y值
-    CGFloat judgeOffsetY = scrollView.contentSize.height + scrollView.contentInset.bottom - scrollView.height - self.tableView.tableFooterView.height;
+    CGFloat judgeOffsetY = scrollView.contentSize.height + scrollView.contentInset.bottom - scrollView.frameHeight - self.tableView.tableFooterView.frameHeight;
     if (offsetY >= judgeOffsetY) { // 最后一个cell完全进入视野范围内
         // 显示footer
         self.tableView.tableFooterView.hidden = NO;

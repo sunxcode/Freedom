@@ -49,7 +49,7 @@
         self.defaultListView = [[XFEmotionListView alloc]init];
         NSString *path = [[NSBundle mainBundle] pathForResource:@"EmotionIcons/default/info.plist" ofType:nil];
 
-        self.defaultListView.emotions = [XFEmotion objectArrayWithKeyValuesArray:[NSArray arrayWithContentsOfFile:path]];
+        self.defaultListView.emotions = [XFEmotion mj_objectArrayWithKeyValuesArray:[NSArray arrayWithContentsOfFile:path]];
         
         
     }
@@ -62,7 +62,7 @@
     if (!_emojiListView) {
         self.emojiListView = [[XFEmotionListView alloc] init];
         NSString *path = [[NSBundle mainBundle] pathForResource:@"EmotionIcons/emoji/info.plist" ofType:nil];
-        self.emojiListView.emotions = [XFEmotion objectArrayWithKeyValuesArray:[NSArray arrayWithContentsOfFile:path]];
+        self.emojiListView.emotions = [XFEmotion mj_objectArrayWithKeyValuesArray:[NSArray arrayWithContentsOfFile:path]];
         
     }
     return _emojiListView;
@@ -73,7 +73,7 @@
     if (!_lxhListView) {
         self.lxhListView = [[XFEmotionListView alloc] init];
         NSString *path = [[NSBundle mainBundle] pathForResource:@"EmotionIcons/lxh/info.plist" ofType:nil];
-        self.lxhListView.emotions = [XFEmotion objectArrayWithKeyValuesArray:[NSArray arrayWithContentsOfFile:path]];
+        self.lxhListView.emotions = [XFEmotion mj_objectArrayWithKeyValuesArray:[NSArray arrayWithContentsOfFile:path]];
         
     }
     return _lxhListView;
@@ -116,15 +116,15 @@
     [super layoutSubviews];
     
     // 1.tabbar
-    self.tabBar.width = self.width;
-    self.tabBar.height = 37;
-    self.tabBar.x = 0;
-    self.tabBar.y = self.height - self.tabBar.height;
+    self.tabBar.frameWidth = self.frameWidth;
+    self.tabBar.frameHeight = 37;
+    self.tabBar.frameX = 0;
+    self.tabBar.frameY = self.frameHeight - self.tabBar.frameHeight;
     
     // 2.表情内容
-    self.showingListView.x = self.showingListView.y = 0;
-    self.showingListView.width = self.width;
-    self.showingListView.height = self.tabBar.y;
+    self.showingListView.frameX = self.showingListView.frameY = 0;
+    self.showingListView.frameWidth = self.frameWidth;
+    self.showingListView.frameHeight = self.tabBar.frameY;
     
 }
 

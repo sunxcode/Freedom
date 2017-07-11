@@ -52,14 +52,14 @@
         if (self.hiddenScannerIndicator) {
             return;
         }
-        self.scannerLine.centerX = self.bgView.centerX;
-        self.scannerLine.width = self.bgView.width * 1.4;
-        self.scannerLine.height = 10;
-        if (self.scannerLine.y + self.scannerLine.height >= self.height) {
-            self.scannerLine.y = 0;
+        self.scannerLine.frameCenterX = self.bgView.frameCenterX;
+        self.scannerLine.frameWidth = self.bgView.frameWidth * 1.4;
+        self.scannerLine.frameHeight = 10;
+        if (self.scannerLine.frameY + self.scannerLine.frameHeight >= self.frameHeight) {
+            self.scannerLine.frameY = 0;
         }
         else {
-            self.scannerLine.y ++;
+            self.scannerLine.frameY ++;
         }
     } repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
@@ -80,14 +80,14 @@
     }
     
     if (hiddenScannerIndicator) {
-        self.scannerLine.y = 0;
+        self.scannerLine.frameY = 0;
         [self.scannerLine setHidden:YES];
         _hiddenScannerIndicator = hiddenScannerIndicator;
     }
     else {
         _hiddenScannerIndicator = hiddenScannerIndicator;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            self.scannerLine.y = 0;
+            self.scannerLine.frameY = 0;
             [self.scannerLine setHidden:hiddenScannerIndicator];
         });
     }
