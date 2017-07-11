@@ -97,14 +97,4 @@
         NSLog(@"%@",p.title);
     }
 }
-+ (NSString *)getFilePath:(NSString *)fileNameAndType
-{
-    NSString *szFilename = [fileNameAndType stringByDeletingPathExtension];
-    NSString *szFileext = [fileNameAndType pathExtension];
-    
-    NSString *path = [[NSBundle mainBundle] pathForResource:szFilename ofType:szFileext];
-    
-    return path;
-}
-
 @end

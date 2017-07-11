@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FirstViewController : BaseViewController
+@interface FirstViewController : UIViewController
 
-
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @end

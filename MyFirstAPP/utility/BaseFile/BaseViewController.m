@@ -3,11 +3,9 @@
 #import "Reachability.h"
 #include <objc/runtime.h>
 #import "UIControl+Addition.h"
-
 @interface BaseViewController (){
     BOOL boolNavTitleAnimate;
     BOOL boolDefaultNavTitleAnimate;
-    
 }
 @property (nonatomic,strong) UILabel *sizeLabel;
 @property (nonatomic,strong) UITextView *sizeTextView;
@@ -31,18 +29,6 @@
 }
 - (void)viewDidLoad{
     [super viewDidLoad];
-    [self readData];
-    self.radialView = [[CKRadialMenu alloc] initWithFrame:CGRectMake(10, kScreenHeight-100, 50, 50)];
-    for(int i = 0;i<self.items.count;i++){
-        UIImageView *a = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
-        a.image = [UIImage imageNamed:[self.items[i] valueForKey:@"icon"]];
-    [self.radialView addPopoutView:a withIndentifier:[NSString stringWithFormat:@"%d",i]];
-     }
-    [self.radialView enableDevelopmentMode];
-     self.radialView.delegate = self;
-    [self.view addSubview: self.radialView];
-    
-    
     self.navView.backgroundColor = [UIColor whiteColor];
     if (kVersion7) {
         self.automaticallyAdjustsScrollViewInsets=NO;
@@ -70,11 +56,21 @@
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
     if (kVersion7) {
+        CGRect viewBounds = self.view.frame;
         CGFloat topBarOffset = [[self performSelector:@selector(topLayoutGuide)] length];
-        DLog(@"topBarOffset:%f",topBarOffset);
-        self.view.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
+        DLog(@"______topBarOffset:%f",topBarOffset);
+        viewBounds.origin.y = 20;
+         viewBounds.size.height -= 20;
+        viewBounds.size.height=kScreenHeight-20;
+        self.view.frame = viewBounds;
         self.automaticallyAdjustsScrollViewInsets=NO;
     }else{
+        [self.view setTranslatesAutoresizingMaskIntoConstraints:YES];
+        CGRect viewBounds = self.view.frame;
+        viewBounds.origin.y = -20;
+        viewBounds.size.height -= 20;
+        viewBounds.size.height=kScreenHeight-20;
+        self.view.frame = viewBounds;
     }
 }
 -(void)updateDefaultNavView:(NSString *)strTitle{
@@ -130,7 +126,7 @@
         [self performSelector:@selector(startDefaultNavTitleAnimate) withObject:nil afterDelay:5.0];
     }
 }
--(UIView *)navbarTitle:(NSString *)title titleView:(UIView *)titleV titleFrame:(CGRect)frame NavBGColor:(UIColor *)color NavBGImage:(NSString *)image hiddenLine:(BOOL)bLine{
+-(UIView *)navbarTitle:(NSString *)title NavBGColor:(UIColor *)color NavBGImage:(NSString *)image hiddenLine:(BOOL)bLine{
     if(!self.navView){
         self.navView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kVersion7?64:44)];
         UIImageView *imageview = [RHMethods imageviewWithFrame:CGRectMake(0, kVersion7?0:-20, kScreenWidth, 64) defaultimage:@""];
@@ -179,9 +175,6 @@
     }
     UIView *vLine=[self.navView viewWithTag:104];
     vLine.hidden=bLine;
-    if (CGRectEqualToRect(frame,CGRectNull)||CGRectEqualToRect(frame, CGRectZero)){
-        frame = CGRectMake(10, NavY, kScreenWidth-140, 44);
-    }
     if (color) {
         [self.navView setBackgroundColor:color];
     }
@@ -189,13 +182,10 @@
         UIImageView *imageV=(UIImageView *)[self.navView viewWithTag:103];
         imageV.image=[UIImage imageNamed:image];
     }
-    if (titleV){
-        titleV.frame = frame;
-        [self.navView addSubview:titleV];
-    }
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
     UILabel *label = (UILabel*)[self.navView viewWithTag:101];
     [label.layer removeAllAnimations];
+    CGRect frame=CGRectMake(10, 0, kScreenWidth-140, 44);
     label.frame=frame;
     label.text = title;
     CGSize size = [label sizeThatFits:CGSizeMake(MAXFLOAT, 20)];
@@ -208,7 +198,7 @@
     return self.navView;
 }
 - (UIView*)navbarTitle:(NSString*)title{
-    [self navbarTitle:title titleView:nil titleFrame:CGRectNull NavBGColor:[UIColor whiteColor] NavBGImage:nil hiddenLine:NO];
+    [self navbarTitle:title NavBGColor:[UIColor whiteColor] NavBGImage:nil hiddenLine:NO];
     return self.navView;
 }
 -(void)startDefaultNavTitleAnimate{
@@ -278,19 +268,11 @@
     [target.navView addSubview:button];
     return button;
 }
--(UIButton *)leftButton:(CGRect)frame title:(NSString *)title image:(NSString *)image round:(BOOL)round sel:(SEL)sel{
+- (UIButton*)leftButton:(NSString*)title image:(NSString*)image sel:(SEL)sel{
     if (!self.navleftButton) {
-        self.navleftButton = [[UIButton alloc] initWithFrame:frame];
+        self.navleftButton = [[UIButton alloc] initWithFrame:CGRectMake(0, kVersion7?20:0, 100, 44)];
     }
-    if(image){
-        [self.navleftButton setImage:[UIImage imageNamed:image] forState:UIControlStateNormal];
-        [self.navleftButton setImageEdgeInsets:UIEdgeInsetsMake(3, 3, 3, 3)];
-    }
-    if(round){
-        [self.navleftButton setImageEdgeInsets:UIEdgeInsetsZero];
-        self.navleftButton.layer.cornerRadius = frame.size.width/2;
-        self.navleftButton.layer.masksToBounds = YES;
-    }
+    if(image)[self.navleftButton setImage:[UIImage imageNamed:image] forState:UIControlStateNormal];
     if(title){
         [self.navleftButton setTitle:title forState:UIControlStateNormal];
         [self.navleftButton setTitleColor:RGBCOLOR(255, 255, 255) forState:UIControlStateNormal];
@@ -303,18 +285,13 @@
     [self.navView addSubview:self.navleftButton];
     return self.navleftButton;
 }
--(UIButton *)rightButton:(CGRect)frame title:(NSString *)title image:(NSString *)image round:(BOOL)round sel:(SEL)sel{
+- (UIButton*)rightButton:(NSString*)title image:(NSString*)image sel:(SEL)sel{
     if (!self.navrightButton) {
-        self.navrightButton = [[UIButton alloc] initWithFrame:frame];
+        self.navrightButton = [[UIButton alloc] initWithFrame:CGRectMake(kScreenWidth-100,kVersion7?20:0, 100, 44)];
     }
     if(image){
         [self.navrightButton setImage:[UIImage imageNamed:image] forState:UIControlStateNormal];
-        [self.navrightButton setImageEdgeInsets:UIEdgeInsetsMake(3, 3, 3, 3)];
-    }
-    if(round){
-        [self.navrightButton setImageEdgeInsets:UIEdgeInsetsZero];
-        self.navrightButton.layer.cornerRadius = frame.size.width/2;
-        self.navleftButton.layer.masksToBounds = YES;
+        [self.navrightButton setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 8)];
     }
     if(title){
         [self.navrightButton setTitle:title forState:UIControlStateNormal];
@@ -524,104 +501,4 @@
 - (void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
-- (void)addFloatView{
-    
-}
-- (void)readData {
-    AppDelegate *del = [UIApplication sharedApplication].delegate;
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"TotalData"];
-    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:NO],
-                                [NSSortDescriptor sortDescriptorWithKey:@"icon" ascending:NO]];
-    NSError *error = nil;
-    NSArray *a = [del.managedObjectContext executeFetchRequest:request error:&error];
-    DLog(@"%@", error);
-    if (!a || ([a isKindOfClass:[NSArray class]] && [a count] <= 0)) {
-        // 添加数据到数据库
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            NSString *strPath = [[NSBundle mainBundle] pathForResource:@"icons" ofType:@"txt"];
-            NSString *text = [NSString stringWithContentsOfFile:strPath encoding:NSUTF16StringEncoding error:nil];
-            NSArray *lineArr = [text componentsSeparatedByString:@"\n"];
-            AppDelegate *del = [UIApplication sharedApplication].delegate;
-            NSEntityDescription *description = [NSEntityDescription entityForName:@"TotalData" inManagedObjectContext:del.managedObjectContext];
-            for (NSString *line in lineArr) {
-                NSArray *icons = [line componentsSeparatedByString:@"\t"];
-                /*items[0],items[1], items[2], items[3], items[4], items[5]*/
-                TotalData *icon = [[TotalData alloc] initWithEntity:description insertIntoManagedObjectContext:self.managedObjectContext];
-                icon.title = icons[0];
-                icon.icon = icons[1];
-                DLog(@"%@===%@",icons,icons[2]);
-                icon.control = icons[2];
-            }
-            [del saveContext];
-            //从数据库中读
-            NSError *error = nil;
-            NSArray *b = [del.managedObjectContext executeFetchRequest:request error:&error];
-            if (error) {
-                DLog(@"%@", error);
-            } else {
-                self.items = [NSArray arrayWithArray:b];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    //                    [collectionView reloadData];
-                });
-            }
-        });
-    } else {
-        self.items = [NSArray arrayWithArray:a];
-        //        [collectionView reloadData];
-    }
-    //     删除所有数据
-//                for (TotalData *postcode in a) {
-//                    [del.managedObjectContext deleteObject:postcode];
-//                }
-//                [del saveContext];
-}
-
--(void)radialMenu:(CKRadialMenu *)radialMenu didSelectPopoutWithIndentifier:(NSString *)identifier{
-    DLog(@"代理通知发现点击了控制器%@", identifier);
-    int a = [identifier intValue];
-    [radialMenu didTapCenterView:nil];
-    DLog(@"%@",self.items);
-    NSString *s =[NSString stringWithFormat:@"%@ViewController",[self.items[a] valueForKey:@"control"]];
-    UIViewController *con = [[NSClassFromString(s) alloc]init];
-    CATransition *animation = [CATransition animation];
-    animation.duration = 0.5;
-    animation.timingFunction = UIViewAnimationCurveEaseInOut;
-    animation.type = @"cube";
-//    animation.type = kCATransitionReveal;
-//    animation.subtype = kCATransitionFromTop;
-    [self.view.window.layer addAnimation:animation forKey:nil];
-    [self presentViewController:con animated:NO completion:^{
-    }];
-    [SVProgressHUD showSuccessWithStatus:[NSString stringWithFormat:@"%@",[self.items[a] valueForKey:@"title"]]];
-    
-    //    常见变换类型（type）
-    //    kCATransitionFade//淡出
-    //    kCATransitionMoveIn//覆盖原图
-    //    kCATransitionPush  //推出
-    //    kCATransitionReveal//底部显出来
-    //SubType:
-    //    kCATransitionFromRight
-    //    kCATransitionFromLeft// 默认值
-    //    kCATransitionFromTop
-    //    kCATransitionFromBottom
-    //(type):
-    //    pageCurl   向上翻一页
-    //    pageUnCurl 向下翻一页
-    //    rippleEffect 滴水效果
-    //    suckEffect 收缩效果
-    //    cube 立方体效果
-    //    oglFlip 上下翻转效果
-}
-#pragma mark 推出故事板
--(void)showStoryboardWithStoryboardName:(NSString*)story andViewIdentifier:(NSString*)identifier{
-    UIStoryboard *StoryBoard = [UIStoryboard storyboardWithName:story bundle:nil];
-    [self showViewController:[StoryBoard instantiateViewControllerWithIdentifier:identifier] sender:self];
-}
--(void)presentStoryboardWithStoryboardName:(NSString*)story andViewIdentifier:(NSString*)identifier{
-    UIStoryboard *StoryBoard = [UIStoryboard storyboardWithName:story bundle:nil];
-    UIViewController *dvc = [StoryBoard instantiateViewControllerWithIdentifier:identifier];
-    dvc.modalPresentationStyle = UIModalPresentationFormSheet;
-    [self presentViewController:dvc animated:YES completion:NULL];
-}
-
 @end
