@@ -26,7 +26,7 @@
         <!--First View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="FirstViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="First" id="BYZ-38-t0r" customClass="FirstViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -41,9 +41,7 @@
                                     <constraint firstAttribute="height" constant="44" id="ewS-0k-DvH"/>
                                 </constraints>
                                 <items>
-                                    <navigationItem id="hZM-zI-UBz">
-                                        <barButtonItem key="rightBarButtonItem" title="编辑" id="lX5-Rz-ATG"/>
-                                    </navigationItem>
+                                    <navigationItem id="hZM-zI-UBz"/>
                                 </items>
                             </navigationBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="apI-gD-v76">
@@ -80,14 +78,13 @@
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="apI-gD-v76" id="o5H-Zl-HfR"/>
-                        <outlet property="editBtn" destination="lX5-Rz-ATG" id="vDL-xa-kOf"/>
                         <segue destination="rdk-ZK-dwu" kind="show" identifier="library" id="qVa-Il-p0Z"/>
                         <segue destination="pTM-vk-dWz" kind="show" identifier="settings" id="gAU-ED-YBr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="360" y="305"/>
+            <point key="canvasLocation" x="370" y="287"/>
         </scene>
         <!--Library Collection View Controller-->
         <scene sceneID="JxB-zW-s2o">

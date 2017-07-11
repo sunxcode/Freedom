@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface TotalData : NSManagedObject
 @property (nonatomic, retain) NSString *title;
 @property (nonatomic, retain) NSString *icon;
+@property (nonatomic, retain) NSString *control;
 @end
 
 NS_ASSUME_NONNULL_END

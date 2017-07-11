@@ -9,7 +9,6 @@
 #import "XwelcomView.h"
 
 @interface XwelcomView(){
-    
     UIScrollView *bgView;
 }
 

@@ -18,9 +18,47 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 #import "BaseViewController.h"
+#import "BaseTabBarController.h"
+#import "BaseNavigationController.h"
 #import "NSString+expanded.h"
 #import "UIView+expanded.h"
 #import "UIView+AutoLayout.h"
 #import "UIImage+expanded.h"
 #import "SVProgressHUD.h"
+#import "UIImageView+WebCache.h"
+/*************************************************   微   信   的   头   文   件  ****************************************************/
+#import "TLMacros.h"            // 宏
+#import "TLEnumerate.h"         // 枚举
+#import "TLEventStatistics.h"   // 数据统计
+#import "TLHost.h"              // 网络地址
+
+#import "UIColor+TLChat.h"      // 颜色
+#import "UIFont+TLChat.h"       // 字体
+#import "TLUIUtility.h"
+
+#import "Masonry.h"
+#import <MobClick.h>
+#import "ReactiveCocoa.h"
+#import "CocoaLumberjack.h"
+#import "BlocksKit.h"
+#import "BlocksKit+UIKit.h"
+
+#import "TLNavigationController.h"
+
+#import "TLUserHelper.h"
+#import "TLFriendHelper.h"
+
+#import "TLActionSheet.h"
+#import "UIView+Frame.h"
+#import "UIButton+TLChat.h"
+#import "UITableView+TLChat.h"
+#import "UINavigationController+StackManager.h"
+#import "UINavigationController+JZExtension.h"
+#import "NSFileManager+TLChat.h"
+#import "UIImagePickerController+Fixed.h"
+#import "UIBarButtonItem+Action.h"
+#import "UINavigationItem+Fixed.h"
+
+static const DDLogLevel ddLogLevel = DDLogLevelVerbose;
+/************************************************************************************************************************************************/
 #endif

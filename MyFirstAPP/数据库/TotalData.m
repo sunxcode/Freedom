@@ -2,7 +2,7 @@
 //  TotalData.m
 //  MyFirstAPP
 //
-//  Created by 薛超 on 16/8/12.
+//  Created by 薛超 on 16/8/18.
 //  Copyright © 2016年 薛超. All rights reserved.
 //
 
@@ -11,4 +11,5 @@
 @implementation TotalData
 @dynamic title;
 @dynamic icon;
+@dynamic control;
 @end

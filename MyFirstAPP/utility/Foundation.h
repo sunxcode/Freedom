@@ -34,10 +34,12 @@
 
 #define default_PageSize 10
 #define default_StartPage 1
-#define appVersion [[[NSBundle mainBundle] infoDictionary] objectForKey:@"Bundle version"]
+#define APPVersion [[[NSBundle mainBundle] infoDictionary] objectForKey:@"Bundle version"]
 #define Models_path @"/Users/xuechao/Desktop/MyFirstAPP/MyFirstAPP/Resources"
 #define kVersion7 ([[[UIDevice currentDevice] systemVersion] floatValue]>=7.0)
 #define kVersion8 ([[[UIDevice currentDevice] systemVersion] floatValue]>=8.0)
+#define isIpad      ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+#define isIos7      ([[[UIDevice currentDevice] systemVersion] floatValue])
 
 #define NetEngine [AFHTTPSessionManager manager] 
 #define CN 1
@@ -61,6 +63,9 @@
 #define CACHESPATH  NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0]
 #define TEMPPATH NSTemporaryDirectory()
 
+/* { thread } */
+#define __async_opt__  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+#define __async_main__ dispatch_async(dispatch_get_main_queue()
 //-------------wap------------------------
 #define ZKWAPUrl @""
 // WEBsocket

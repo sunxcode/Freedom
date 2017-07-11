@@ -6,36 +6,36 @@
 //  Copyright © 2016年 薛超. All rights reserved.
 #import "AppDelegate.h"
 #import "TotalData.h"
+//#import "SliderViewController.h"
 #import "FirstViewController.h"
+#import "SettingsViewController.h"
+#import "LibraryCollectionViewController.h"
 //＝＝＝＝＝＝＝＝＝＝ShareSDK头文件＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
-#import <ShareSDK/ShareSDK.h>
+//#import <ShareSDK/ShareSDK.h>
 //＝＝＝＝＝＝＝＝＝＝以下是各个平台SDK的头文件，根据需要继承的平台添加＝＝＝
 //腾讯开放平台（对应QQ和QQ空间）SDK头文件
-#import <TencentOpenAPI/TencentOAuth.h>
-#import <TencentOpenAPI/QQApiInterface.h>
+//#import <TencentOpenAPI/TencentOAuth.h>
+//#import <TencentOpenAPI/QQApiInterface.h>
 //以下是腾讯SDK的依赖库：
 //libsqlite3.dylib
 
 //微信SDK头文件
-#import "WXApi.h"
+//#import "WXApi.h"
 
 //新浪微博SDK头文件
-#import "WeiboSDK.h"
+//#import "WeiboSDK.h"
 //新浪微博SDK需要在项目Build Settings中的Other Linker Flags添加"-ObjC"
 
 //人人SDK头文件
-#import <RennSDK/RennSDK.h>
+//#import <RennSDK/RennSDK.h>
 
 //支付宝SDK
-#import "APOpenAPI.h"
+//#import "APOpenAPI.h"
 
 //易信SDK头文件
-#import "YXApi.h"
+//#import "YXApi.h"
 
-@interface AppDelegate ()<WXApiDelegate>{
-    NSMutableArray *items;
-}
-
+@interface AppDelegate ()
 @end
 
 @implementation AppDelegate
@@ -43,13 +43,34 @@
 @synthesize managedObjectContext = __managedObjectContext;
 @synthesize managedObjectModel = __managedObjectModel;
 @synthesize persistentStoreCoordinator = __persistentStoreCoordinator;
-
+//禁止横屏
+- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window{
+    return UIInterfaceOrientationMaskPortrait;
+}
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
-    // Override point for customization after application launch.
-//    UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
+//    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+//    self.window.backgroundColor = [UIColor whiteColor];
+//    FirstViewController *main = [[FirstViewController alloc] init];
+//    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:main];
+//    _revealSideViewController = [[PPRevealSideViewController alloc] initWithRootViewController:nav];
+//    _revealSideViewController.delegate = self;
+//    self.window.rootViewController = _revealSideViewController;
+//    self.window.backgroundColor = [UIColor whiteColor];
+//    [self.window makeKeyAndVisible];
+
+//    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+//    self.window.backgroundColor = [UIColor whiteColor];
+//    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[SliderViewController sharedSliderController]];
+//    
+//    [SliderViewController sharedSliderController].MainVC = [[SettingsViewController alloc] init];
+//    [SliderViewController sharedSliderController].RightVC = [[LibraryCollectionViewController alloc] init];
+//    [SliderViewController sharedSliderController].LeftVC = [[FirstViewController alloc] init];
+//    
+//    [self.window makeKeyAndVisible];
+    
+    
     FirstViewController *controller = (FirstViewController *)self.window.rootViewController;
     controller.managedObjectContext = self.managedObjectContext;
-    
     //检查初次使用标识
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     if ([prefs boolForKey:@"hasRunBefore"] != YES) {
@@ -88,6 +109,7 @@
                 TotalData *icon = [[TotalData alloc] initWithEntity:description insertIntoManagedObjectContext:self.managedObjectContext];
                 icon.title = icons[0];
                 icon.icon = icons[1];
+                icon.control = icons[2];
             }
             [self saveContext];
             NSError *error = nil;
@@ -95,21 +117,21 @@
             if (error) {
                 NSLog(@"%@", error);
             } else {
-                items = [[NSMutableArray alloc] initWithArray:b];
+                self.items = [[NSMutableArray alloc] initWithArray:b];
                 dispatch_async(dispatch_get_main_queue(), ^{
 //                    [collectionView reloadData];
                 });
             }
         });
     } else {
-        items = [[NSMutableArray alloc] initWithArray:a];
+        self.items = [[NSMutableArray alloc] initWithArray:a];
 //        [collectionView reloadData];
     }
     // 删除所有数据
-    //        for (PostCode *postcode in a) {
-    //            [del.managedObjectContext deleteObject:postcode];
-    //        }
-    //        [del saveContext];
+//            for (TotalData *data in a) {
+//                [self.managedObjectContext deleteObject:data];
+//            }
+//            [self saveContext];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -190,6 +212,8 @@
 - (NSURL *)applicationDocumentsDirectory{
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
-
+//- (PPRevealSideDirection)pprevealSideViewController:(PPRevealSideViewController *)controller directionsAllowedForPanningOnView:(UIView *)view {
+//    return PPRevealSideDirectionLeft | PPRevealSideDirectionRight | PPRevealSideDirectionTop | PPRevealSideDirectionBottom;
+//}
 
 @end

@@ -11,5 +11,6 @@
 -(void)reviseCoreData;
 -(void)searchCoreData;
 -(AppDelegate*)getAPPDelegate;
++ (NSString *)getFilePath:(NSString *)fileNameAndType;
 
 @end

@@ -14,157 +14,111 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - BlocksKit (2.2.5):
+    - BlocksKit/All (= 2.2.5)
+  - BlocksKit/All (2.2.5):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
+    - BlocksKit/MessageUI
+    - BlocksKit/UIKit
+  - BlocksKit/Core (2.2.5)
+  - BlocksKit/DynamicDelegate (2.2.5)
+  - BlocksKit/MessageUI (2.2.5):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
+  - BlocksKit/UIKit (2.2.5):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
+  - CocoaAsyncSocket (7.4.3):
+    - CocoaAsyncSocket/All (= 7.4.3)
+  - CocoaAsyncSocket/All (7.4.3):
+    - CocoaAsyncSocket/GCD
+    - CocoaAsyncSocket/RunLoop
+  - CocoaAsyncSocket/GCD (7.4.3)
+  - CocoaAsyncSocket/RunLoop (7.4.3)
+  - CocoaLumberjack (2.2.0):
+    - CocoaLumberjack/Default (= 2.2.0)
+    - CocoaLumberjack/Extensions (= 2.2.0)
+  - CocoaLumberjack/Core (2.2.0)
+  - CocoaLumberjack/Default (2.2.0):
+    - CocoaLumberjack/Core
+  - CocoaLumberjack/Extensions (2.2.0):
+    - CocoaLumberjack/Default
+  - DACircularProgress (2.3.1)
   - ElasticTransitionObjC (0.1)
+  - FMDB (2.6.2):
+    - FMDB/standard (= 2.6.2)
+  - FMDB/standard (2.6.2)
+  - JSONKit (1.4)
   - KissXML (5.0)
+  - Masonry (0.6.4)
+  - MBProgressHUD (0.9.2)
   - MJExtension (3.0.10)
-  - MOBFoundation (1.5.3)
+  - MJRefresh (3.1.0)
+  - MWPhotoBrowser (2.1.2):
+    - DACircularProgress (~> 2.3)
+    - MBProgressHUD (~> 0.9)
+    - SDWebImage (!= 3.7.2, ~> 3.7)
   - PPHelpMe (1.0.2)
   - PPRevealSideViewController (1.2.3):
     - PPHelpMe
   - Reachability (3.1.1)
+  - ReactiveCocoa (2.5):
+    - ReactiveCocoa/UI (= 2.5)
+  - ReactiveCocoa/Core (2.5):
+    - ReactiveCocoa/no-arc
+  - ReactiveCocoa/no-arc (2.5)
+  - ReactiveCocoa/UI (2.5):
+    - ReactiveCocoa/Core
   - SDWebImage (3.7.6):
     - SDWebImage/Core (= 3.7.6)
   - SDWebImage/Core (3.7.6)
-  - ShareSDK2 (2.12.5):
-    - ShareSDK2/Core (= 2.12.5)
-  - ShareSDK2/Connection (2.12.5):
-    - ShareSDK2/Connection/AliPaySocial (= 2.12.5)
-    - ShareSDK2/Connection/Copy (= 2.12.5)
-    - ShareSDK2/Connection/DouBan (= 2.12.5)
-    - ShareSDK2/Connection/Dropbox (= 2.12.5)
-    - ShareSDK2/Connection/EverNote (= 2.12.5)
-    - ShareSDK2/Connection/Facebook (= 2.12.5)
-    - ShareSDK2/Connection/Flickr (= 2.12.5)
-    - ShareSDK2/Connection/GooglePlus (= 2.12.5)
-    - ShareSDK2/Connection/Instagram (= 2.12.5)
-    - ShareSDK2/Connection/Instapaper (= 2.12.5)
-    - ShareSDK2/Connection/KaiXin (= 2.12.5)
-    - ShareSDK2/Connection/KaKaoStory (= 2.12.5)
-    - ShareSDK2/Connection/KaKaoTalk (= 2.12.5)
-    - ShareSDK2/Connection/Line (= 2.12.5)
-    - ShareSDK2/Connection/LinkedIn (= 2.12.5)
-    - ShareSDK2/Connection/Mail (= 2.12.5)
-    - ShareSDK2/Connection/MingDao (= 2.12.5)
-    - ShareSDK2/Connection/Pinterest (= 2.12.5)
-    - ShareSDK2/Connection/Pocket (= 2.12.5)
-    - ShareSDK2/Connection/Print (= 2.12.5)
-    - ShareSDK2/Connection/QQ (= 2.12.5)
-    - ShareSDK2/Connection/QZone (= 2.12.5)
-    - ShareSDK2/Connection/RenRen (= 2.12.5)
-    - ShareSDK2/Connection/SinaWeibo (= 2.12.5)
-    - ShareSDK2/Connection/SMS (= 2.12.5)
-    - ShareSDK2/Connection/TencentWeibo (= 2.12.5)
-    - ShareSDK2/Connection/Tumblr (= 2.12.5)
-    - ShareSDK2/Connection/Twitter (= 2.12.5)
-    - ShareSDK2/Connection/VKontakte (= 2.12.5)
-    - ShareSDK2/Connection/WeChat (= 2.12.5)
-    - ShareSDK2/Connection/WhatsApp (= 2.12.5)
-    - ShareSDK2/Connection/YiXin (= 2.12.5)
-    - ShareSDK2/Connection/YouDaoNote (= 2.12.5)
-  - ShareSDK2/Connection/AliPaySocial (2.12.5):
-    - ShareSDK2/Extend/APSocialSDK
-  - ShareSDK2/Connection/Copy (2.12.5)
-  - ShareSDK2/Connection/DouBan (2.12.5)
-  - ShareSDK2/Connection/Dropbox (2.12.5)
-  - ShareSDK2/Connection/EverNote (2.12.5)
-  - ShareSDK2/Connection/Facebook (2.12.5)
-  - ShareSDK2/Connection/Flickr (2.12.5)
-  - ShareSDK2/Connection/GooglePlus (2.12.5):
-    - ShareSDK2/Extend/GooglePlusSDK
-  - ShareSDK2/Connection/Instagram (2.12.5)
-  - ShareSDK2/Connection/Instapaper (2.12.5)
-  - ShareSDK2/Connection/KaiXin (2.12.5)
-  - ShareSDK2/Connection/KaKaoStory (2.12.5)
-  - ShareSDK2/Connection/KaKaoTalk (2.12.5)
-  - ShareSDK2/Connection/Line (2.12.5)
-  - ShareSDK2/Connection/LinkedIn (2.12.5)
-  - ShareSDK2/Connection/Mail (2.12.5)
-  - ShareSDK2/Connection/MingDao (2.12.5)
-  - ShareSDK2/Connection/Pinterest (2.12.5):
-    - ShareSDK2/Extend/Pinterest.embeddedframework
-  - ShareSDK2/Connection/Pocket (2.12.5)
-  - ShareSDK2/Connection/Print (2.12.5)
-  - ShareSDK2/Connection/QQ (2.12.5):
-    - ShareSDK2/Extend/QQConnectSDK
-  - ShareSDK2/Connection/QZone (2.12.5):
-    - ShareSDK2/Extend/QQConnectSDK
-  - ShareSDK2/Connection/RenRen (2.12.5):
-    - ShareSDK2/Extend/RenRenSDK
-  - ShareSDK2/Connection/SinaWeibo (2.12.5):
-    - ShareSDK2/Extend/SinaWeiboSDK
-  - ShareSDK2/Connection/SMS (2.12.5)
-  - ShareSDK2/Connection/TencentWeibo (2.12.5)
-  - ShareSDK2/Connection/Tumblr (2.12.5)
-  - ShareSDK2/Connection/Twitter (2.12.5)
-  - ShareSDK2/Connection/VKontakte (2.12.5)
-  - ShareSDK2/Connection/WeChat (2.12.5):
-    - ShareSDK2/Extend/WeChatSDK
-  - ShareSDK2/Connection/WhatsApp (2.12.5)
-  - ShareSDK2/Connection/YiXin (2.12.5):
-    - ShareSDK2/Extend/YiXinSDK
-  - ShareSDK2/Connection/YouDaoNote (2.12.5)
-  - ShareSDK2/Core (2.12.5)
-  - ShareSDK2/Extend/APSocialSDK (2.12.5)
-  - ShareSDK2/Extend/GooglePlusSDK (2.12.5)
-  - ShareSDK2/Extend/Pinterest.embeddedframework (2.12.5)
-  - ShareSDK2/Extend/QQConnectSDK (2.12.5)
-  - ShareSDK2/Extend/RenRenSDK (2.12.5)
-  - ShareSDK2/Extend/SinaWeiboSDK (2.12.5)
-  - ShareSDK2/Extend/WeChatSDK (2.12.5)
-  - ShareSDK2/Extend/YiXinSDK (2.12.5)
-  - ShareSDK2/UI (2.12.5):
-    - ShareSDK2/UI/Flat (= 2.12.5)
-    - ShareSDK2/UI/iPadDefault (= 2.12.5)
-    - ShareSDK2/UI/iPadSimple (= 2.12.5)
-    - ShareSDK2/UI/iPhoneAppRecommend (= 2.12.5)
-    - ShareSDK2/UI/iPhoneDefault (= 2.12.5)
-    - ShareSDK2/UI/iPhoneSimple (= 2.12.5)
-  - ShareSDK2/UI/Flat (2.12.5)
-  - ShareSDK2/UI/iPadDefault (2.12.5)
-  - ShareSDK2/UI/iPadSimple (2.12.5)
-  - ShareSDK2/UI/iPhoneAppRecommend (2.12.5)
-  - ShareSDK2/UI/iPhoneDefault (2.12.5)
-  - ShareSDK2/UI/iPhoneSimple (2.12.5)
   - SVProgressHUD (0.9)
-  - XJSONKit (0.0.3)
+  - UMengAnalytics (3.6.6)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
+  - BlocksKit (~> 2.2.5)
+  - CocoaAsyncSocket (~> 7.4.2)
+  - CocoaLumberjack (~> 2.2.0)
   - ElasticTransitionObjC
+  - FMDB (~> 2.6)
+  - JSONKit
   - KissXML (= 5.0)
-  - MJExtension
-  - MOBFoundation
+  - Masonry (~> 0.6.4)
+  - MJExtension (~> 3.0.10)
+  - MJRefresh (~> 3.1.0)
+  - MWPhotoBrowser (~> 2.1.1)
   - PPRevealSideViewController (~> 1.2.1)
   - Reachability (= 3.1.1)
-  - SDWebImage
-  - ShareSDK2
-  - ShareSDK2/Connection
-  - ShareSDK2/Connection/AliPaySocial
-  - ShareSDK2/Connection/Facebook
-  - ShareSDK2/Connection/KaKaoStory
-  - ShareSDK2/Connection/RenRen
-  - ShareSDK2/Connection/SinaWeibo
-  - ShareSDK2/Connection/WeChat
-  - ShareSDK2/Connection/YiXin
-  - ShareSDK2/UI
-  - ShareSDK2/UI/Flat
+  - ReactiveCocoa (~> 2.5)
+  - SDWebImage (~> 3.7.4)
   - SVProgressHUD (= 0.9)
-  - XJSONKit
+  - UMengAnalytics (~> 3.6.6)
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
+  CocoaAsyncSocket: a18c75dca4b08723628a0bacca6e94803d90be91
+  CocoaLumberjack: 17fe8581f84914d5d7e6360f7c70022b173c3ae0
+  DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   ElasticTransitionObjC: 122ca894bec7006929dcc7e1386c085a78b07ac6
+  FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
+  JSONKit: 5b69e804ea54d99293eed0fd2ce596c5703fefb0
   KissXML: ce643413d618ad69886d0d43c3792b7dedfe476e
+  Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
+  MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MJExtension: d86aacb740c87519d20e3cca55b6fa4be6cc7548
-  MOBFoundation: 1a4f9865c777e76f069050c4990602c668126a89
+  MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
+  MWPhotoBrowser: 5836d7aa041dc05a13de380c246826578adc5ea5
   PPHelpMe: 243c40d2fad33ebdcc6b158c0db54893e0cc2d14
   PPRevealSideViewController: e74d7b490738b39388f3ab9166f89dbe751560b4
   Reachability: dd9aa4fb6667b9f787690a74f53cb7634ce99893
+  ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
-  ShareSDK2: c076a9ea57d9d87650130b8071f2bcf0f169cb94
   SVProgressHUD: 7038ae9d6a0bd2c87560d2699eba642eef82d41e
-  XJSONKit: 8a04df8b0642b23b1352f80e35a9e197c7135b78
+  UMengAnalytics: 4bf831415146b9c57cb10be65fbd43462ef8cf65
 
-PODFILE CHECKSUM: 06823bcd22b8eec8636900ba2c12a2a8eebf25a5
+PODFILE CHECKSUM: 00291ef5722c4f5c64b65e5f0ef5b3ae8d4955b4
 
 COCOAPODS: 1.2.1

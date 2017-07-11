@@ -6,8 +6,8 @@
 #import "SettingsViewController.h"
 #import "LibraryCollectionViewController.h"
 #import "UIColor+expanded.h"
-#import "AppDelegate.h"
-#import "TotalData.h"
+//#import "AppDelegate.h"
+//#import "SliderViewController.h"
 @interface CollectionViewCell1 : UICollectionViewCell{
     UIView *view;
     UIImageView *imageView;
@@ -72,13 +72,13 @@
 #pragma mark ViewController
 @interface FirstViewController ()<UICollectionViewDataSource, UICollectionViewDelegate,UISearchBarDelegate>{
     __weak IBOutlet UICollectionView *collectionView;
-    __weak IBOutlet UIBarButtonItem *editBtn;
+//    UIButton *editBtn;
     ElasticTransition *transition;
     UIScreenEdgePanGestureRecognizer *LibraryGR;
     UIScreenEdgePanGestureRecognizer *SettingsGR;
     
     UISearchBar *searchBar;
-    NSArray *items;
+
     BOOL showingSettings;
     UIView *settingsView;
     UILabel *radiusLabel;
@@ -89,19 +89,36 @@
     UISlider *xOffsetSlider;
     UISwitch *exampleSwitch;
     XCollectionViewDialLayout *dialLayout;
+    //定时器 下雪
+    int count;
+    NSTimer *timer;
 }
 @end
 static NSString *cellId1 = @"cellId1";
 static NSString *cellId2 = @"cellId2";
-
+static FirstViewController *FVC = nil;
 @implementation FirstViewController
 @synthesize managedObjectContext = __managedObjectContext;
++ (FirstViewController *) sharedViewController{
+    static dispatch_once_t once;
+    dispatch_once(&once, ^{
+        FVC = [[FirstViewController alloc] init];
+    });
+    return FVC;
+}
 - (void)viewDidLoad{
     [super viewDidLoad];
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    [[UIApplication sharedApplication].delegate window].rootViewController = self;
     searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(50, 0, kScreenWidth-110, 44)];
     searchBar.delegate = self;
     searchBar.placeholder = @"搜索";
-    [self.view addSubview:searchBar];
+//    searchBar.barTintColor = gradcolor;
+    [self navbarTitle:nil titleView:searchBar titleFrame:CGRectMake(55, NavY, kScreenWidth-120, 44) NavBGColor:RGBCOLOR(201, 201, 206) NavBGImage:nil hiddenLine:NO];
+    self.navView.frameY-=20;
+    [self.navView addSubview:searchBar];
+    [self leftButton:CGRectMake(Boardseperad, NavY, 44, 44) title:nil image:@"userLogo" round:YES sel:@selector(gotoSettingsView:)];
+    [self rightButton:CGRectMake(kScreenWidth-60, NavY, 44, 44) title:nil image:@"settings" round:NO sel:@selector(showSettingsView:)];
     // 键盘通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillHide:) name:UIKeyboardWillHideNotification object:nil];
@@ -126,70 +143,29 @@ static NSString *cellId2 = @"cellId2";
     [self.view addGestureRecognizer:LibraryGR];
     showingSettings = NO;
     [self buildSettings];
-    [editBtn setTarget:self];
-    [editBtn setAction:@selector(showSettingsView:)];
     [collectionView registerClass:[CollectionViewCell1 class] forCellWithReuseIdentifier:cellId1];
     [collectionView registerClass:[CollectionViewCell2 class] forCellWithReuseIdentifier:cellId2];
-      [self readData];
+//  [self readData];
     collectionView.delegate = self;
     collectionView.dataSource = self;
     collectionView.backgroundColor = RGBACOLOR(230, 230, 230, 1);
-  
+    //下雪 每隔1秒下一次
+    timer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(snowAnimat:) userInfo:nil repeats:YES];
+    [timer setFireDate:[NSDate distantFuture]];
+    [self switchExample];
 }
-- (void)readData {
-    AppDelegate *del = [UIApplication sharedApplication].delegate;
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"TotalData"];
-    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:NO],
-                                [NSSortDescriptor sortDescriptorWithKey:@"icon" ascending:NO]];
-    NSError *error = nil;
-    NSArray *a = [del.managedObjectContext executeFetchRequest:request error:&error];
-    DLog(@"%@", error);
-    if (!a || ([a isKindOfClass:[NSArray class]] && [a count] <= 0)) {
-        // 添加数据到数据库
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            NSString *strPath = [[NSBundle mainBundle] pathForResource:@"icons" ofType:@"txt"];
-            NSString *text = [NSString stringWithContentsOfFile:strPath encoding:NSUTF16StringEncoding error:nil];
-            NSArray *lineArr = [text componentsSeparatedByString:@"\n"];
-            AppDelegate *del = [UIApplication sharedApplication].delegate;
-            NSEntityDescription *description = [NSEntityDescription entityForName:@"TotalData" inManagedObjectContext:del.managedObjectContext];
-            for (NSString *line in lineArr) {
-                NSArray *icons = [line componentsSeparatedByString:@"\t"];
-                /*items[0],items[1], items[2], items[3], items[4], items[5]*/
-                TotalData *icon = [[TotalData alloc] initWithEntity:description insertIntoManagedObjectContext:self.managedObjectContext];
-                icon.title = icons[0];
-                icon.icon = icons[1];
-            }
-            [del saveContext];
-            //从数据库中读
-            NSError *error = nil;
-            NSArray *b = [del.managedObjectContext executeFetchRequest:request error:&error];
-            if (error) {
-                DLog(@"%@", error);
-            } else {
-                items = [NSArray arrayWithArray:b];
-                dispatch_async(dispatch_get_main_queue(), ^{
-//                    [collectionView reloadData];
-                });
-            }
-        });
-    } else {
-         items = [NSArray arrayWithArray:a];
-//        [collectionView reloadData];
-    }
-//     删除所有数据
-//            for (TotalData *postcode in a) {
-//                [del.managedObjectContext deleteObject:postcode];
-//            }
-//            [del saveContext];
-}
-
 #pragma mark 设置与收藏的跳转
+-(void)gotoSettingsView:(UIButton*)sender{
+//     [((SliderViewController *)[[[self.view superview] superview] nextResponder]) showLeftViewController];
+//    [self.navigationController pushViewController:[[SettingsViewController alloc]init] animated:YES];
+    [self pushController:[SettingsViewController class] withInfo:nil];
+}
 -(void)gotoSettings:(UIPanGestureRecognizer*)pan{
-    if (pan.state == UIGestureRecognizerStateBegan){
+    if (pan.state != UIGestureRecognizerStateBegan){
+        [transition updateInteractiveTransitionWithGestureRecognizer:pan];
+    }else{
         transition.edge = LEFT;
         [transition startInteractiveTransitionFromViewController:self SegueIdentifier:@"settings" GestureRecognizer:pan];
-    }else{
-        [transition updateInteractiveTransitionWithGestureRecognizer:pan];
     }
 }
 
@@ -212,7 +188,7 @@ static NSString *cellId2 = @"cellId2";
     [settingsView setBackgroundColor:[UIColor colorWithWhite:1.0 alpha:0.6]];
     exampleSwitch =  [[UISwitch alloc]initWithFrame:CGRectMake(30, 30, 200, 20)];
     [exampleSwitch addTarget:self action:@selector(switchExample) forControlEvents:UIControlEventValueChanged];
-    
+    exampleSwitch.on = true;
     radiusLabel = [[UILabel alloc]initWithFrame:CGRectMake(30, YH(exampleSwitch)+20, kScreenWidth-60, 20)];
     radiusSlider = [[UISlider alloc]initWithFrame:CGRectMake(30, YH(radiusLabel)+10, W(settingsView)-60, 20)];
     [radiusSlider addTarget:self action:@selector(updateDialSettings) forControlEvents:UIControlEventValueChanged];
@@ -227,7 +203,6 @@ static NSString *cellId2 = @"cellId2";
     
     [settingsView addSubviews:exampleSwitch,radiusLabel,radiusSlider,angularSpacingLabel,angularSpacingSlider,xOffsetLabel,xOffsetSlider,nil];
     [self.view addSubview:settingsView];
-    [self switchExample];
     dialLayout = [[XCollectionViewDialLayout alloc] initWithRadius:radiusSlider.value * 1000 andAngularSpacing:angularSpacingSlider.value * 90 andCellSize:CGSizeMake(240, 100) andAlignment:WHEELALIGNMENTCENTER andItemHeight:100 andXOffset:xOffsetSlider.value * 320];
     [collectionView setCollectionViewLayout:dialLayout];
 }
@@ -258,13 +233,11 @@ static NSString *cellId2 = @"cellId2";
     [dialLayout setXOffset:xOffset];
     [dialLayout invalidateLayout];
 }
--(void)showSettingsView:(id)sender{
+-(void)showSettingsView:(UIButton*)sender{
     CGRect frame = settingsView.frame;
     if(showingSettings){
-        editBtn.title = @"编辑";
         frame.origin.y = self.view.frame.size.height+100;
     }else{
-        editBtn.title = @"关闭";
         frame.origin.y = 44;
     }
     [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
@@ -280,11 +253,21 @@ static NSString *cellId2 = @"cellId2";
 
 #pragma mark - UICollectionViewDelegate methods
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    NSString* name = [items[indexPath.row] valueForKey:@"title"];
-    [SVProgressHUD showSuccessWithStatus:name];
+    NSString *controlName = [self.items[indexPath.row] valueForKey:@"control"];
+      [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    [self showStoryboardWithStoryboardName:controlName andViewIdentifier:[NSString stringWithFormat:@"%@TabBarController",controlName]];
+//    NSString *s =[NSString stringWithFormat:@"%@ViewController",[self.items[indexPath.row] valueForKey:@"control"]];
+//    UIViewController *con = [[NSClassFromString(s) alloc]init];
+//    CATransition *animation = [CATransition animation];
+//    animation.duration = 1;
+//    animation.timingFunction = UIViewAnimationCurveEaseInOut;
+//    [self.view.window.layer addAnimation:animation forKey:nil];
+//    [self presentViewController:con animated:NO completion:^{
+//    }];
+    [SVProgressHUD showSuccessWithStatus:[self.items[indexPath.row] valueForKey:@"title"]];
 }
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return items.count;
+    return self.items.count;
 }
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     return 1;
@@ -293,7 +276,7 @@ static NSString *cellId2 = @"cellId2";
     return YES;
 }
 -(UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    NSDictionary *dic = [items objectAtIndex:indexPath.item];
+    NSDictionary *dic = [self.items objectAtIndex:indexPath.item];
     UIColor *color =[UIColor randomColor];
     if(exampleSwitch.on){
         CollectionViewCell1 *cell = [cv dequeueReusableCellWithReuseIdentifier:cellId1 forIndexPath:indexPath];
@@ -332,7 +315,7 @@ static NSString *cellId2 = @"cellId2";
     request.predicate = [NSPredicate predicateWithFormat:@"title CONTAINS %@ OR icon CONTAINS[c] %@ OR icon MATCHES %@", searchText, searchText,@"[F-j]+"];
     NSError *error = nil;
     NSArray *b = [del.managedObjectContext executeFetchRequest:request error:&error];
-    items = [[NSMutableArray alloc] initWithArray:b];
+    self.items = [[NSMutableArray alloc] initWithArray:b];
     [collectionView reloadData];
 }
 
@@ -354,4 +337,92 @@ static NSString *cellId2 = @"cellId2";
     }];
 }
 
+
+#pragma mark 下雪相关内容
+-(void)tingzhixiaxue{
+    [timer setFireDate:[NSDate distantFuture]];
+}
+-(void)kaishixiaxue{
+    [timer setFireDate:[NSDate distantPast]];
+}
+//下雪
+#define MAX_SIZE 10 //雪花大小
+#define MAX_DURATION 10 //时长
+#define MAX_OFFSET 100
+#define DISAPPEAR_DURATION 2 //雪花融化的时长
+-(void)snowAnimat:(NSTimer *)timer{
+    count++;
+    //    NSLog(@"create:%d",self.count);
+    //    NSLog(@"view counts:%d",[self.view.subviews count]);
+    //1.创建雪花
+    UIImageView *snow = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"snow.png"]];
+    snow.tag = count;//区分不同的视图
+    //创建下雪的位置
+    int width = self.view.frame.size.width;
+    int x = arc4random()%width;
+    //创建雪花的大小 10~20
+    int size = arc4random()%MAX_SIZE+MAX_SIZE;
+    snow.frame = CGRectMake(x, -20, size, size);
+    //将雪花放入到父视图中
+    [self.view addSubview:snow];
+    //a.设置动画开始
+    [UIView beginAnimations:[NSString stringWithFormat:@"%d",count] context:nil];
+    //b.设置属性
+    //时长
+    [UIView setAnimationDuration:arc4random()%MAX_DURATION+2];
+    //越来越快
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+    //c.动画结束
+    //雪花落地的位置 偏屏幕上面一点
+    int offset = arc4random()%MAX_OFFSET - 50;
+    snow.center = CGPointMake(snow.center.x+offset, self.view.bounds.size.height-30);
+    //动画之后 设置委托 早期语法没有协议
+    [UIView setAnimationDelegate:self];
+    //动画结束之后发送消息
+    [UIView setAnimationDidStopSelector:@selector(snowDisappear:)];
+    
+    //提交动画
+    [UIView commitAnimations];
+}
+//区分不同的雪花动画
+-(void)snowDisappear:(NSString *)animatedID{
+    //    NSLog(@"动画结束 雪花:%@",animatedID);
+    //创建雪花消失动画
+    [UIView beginAnimations:animatedID context:nil];
+    [UIView setAnimationDuration:arc4random()%DISAPPEAR_DURATION+2];//2秒~4秒
+    //越来越快 融化速度
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+    //雪花消失 动画
+    //得到一个视图中子视图或者本视图
+    UIView *view = [self.view viewWithTag:[animatedID intValue]];
+    UIImageView *imageView = (UIImageView*)view;
+    imageView.alpha = 0.0f;
+    //设置委托 解决动画结束后 删除父视图中的子视图
+    [UIView setAnimationDelegate:self];
+    //动画结束时 向被委托对象发送消息
+    [UIView setAnimationDidStopSelector:@selector(snowRemove:)];
+    //动画结束
+    [UIView commitAnimations];
+}
+//动画结束后 删除视图
+-(void)snowRemove:(NSString*)animatedID{
+    UIView *snow = [self.view viewWithTag:[animatedID intValue]];
+    //转换动画标识 刚好与 视图标识相符合
+    //    NSLog(@"remove:%d",[animatedID intValue]);
+    //查看view视图中 有多少子视图
+    //    NSLog(@"Remove before view counts:%d",[self.view.subviews count]);
+    //将某个视图从父视图删除
+    [snow removeFromSuperview];
+    //    NSLog(@"Remove after view counts:%d",[self.view.subviews count]);
+}
+#pragma mark View生存周期
+-(void)viewWillAppear:(BOOL)animated{
+    
+}
+-(void)viewWillDisappear:(BOOL)animated{
+    [timer setFireDate:[NSDate distantFuture]];
+    [timer invalidate];
+    timer = nil;
+
+}
 @end

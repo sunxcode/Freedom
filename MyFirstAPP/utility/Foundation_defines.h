@@ -12,7 +12,7 @@
 
 #define docPath [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]
 #define docDataPath [docPath stringByAppendingPathComponent:@"data.db"]
-//#define docDataInfoPath [docPath stringByAppendingPathComponent:@"Data/info"]
+#define docDataInfoPath [docPath stringByAppendingPathComponent:@"Data/info"]
 #define RGBCOLOR(r,g,b) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:1]
 #define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]
 
@@ -29,7 +29,7 @@
 #define YH(obj) (Y(obj)+H(obj))
 #define BoldFont(x) [UIFont boldSystemFontOfSize:x]
 #define Font(x) [UIFont systemFontOfSize:x]
-
+#define NavY (kVersion7?20:0)
 #define CGRectMakeXY(x,y,size) CGRectMake(x,y,size.width,size.height)
 #define CGRectMakeWH(origin,w,h) CGRectMake(origin.x,origin.y,w,h)
 

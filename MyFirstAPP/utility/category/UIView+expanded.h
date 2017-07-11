@@ -49,5 +49,5 @@
  }
  */
 +(UIView *)setTextViewWithFrame:(CGRect)frame placeholder:(NSString *)placeholder delegate:(id<UITextViewDelegate>)delegate;
-
+-(UIViewController *)getCurrentViewController;
 @end

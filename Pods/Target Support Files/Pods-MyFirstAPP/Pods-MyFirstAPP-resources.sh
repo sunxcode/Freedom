@@ -79,38 +79,6 @@ EOM
       ;;
   esac
 }
-if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_resource "ShareSDK2/ShareSDK/Connection/InstapaperResource.bundle"
-  install_resource "ShareSDK2/ShareSDK/Core/Resource.bundle"
-  install_resource "ShareSDK2/ShareSDK/Core/zh-Hans.lproj"
-  install_resource "ShareSDK2/ShareSDK/Core/en.lproj"
-  install_resource "ShareSDK2/ShareSDK/Extend/googlePlusSDK/GooglePlus.bundle"
-  install_resource "ShareSDK2/ShareSDK/Extend/Pinterest.embeddedframework/Resources/PinterestSDKResources.bundle"
-  install_resource "ShareSDK2/ShareSDK/Extend/QQConnectSDK/TencentOpenApi_IOS_Bundle.bundle"
-  install_resource "ShareSDK2/ShareSDK/Extend/RenRenSDK/RennSDK.bundle"
-  install_resource "ShareSDK2/ShareSDK/Extend/SinaWeiboSDK/WeiboSDK.bundle"
-  install_resource "ShareSDK2/ShareSDK/UI/ShareSDKFlatShareViewUI.bundle"
-  install_resource "ShareSDK2/ShareSDK/UI/ShareSDKiPadDefaultShareViewUI.bundle"
-  install_resource "ShareSDK2/ShareSDK/UI/ShareSDKiPadSimpleShareViewUI.bundle"
-  install_resource "ShareSDK2/ShareSDK/UI/ShareSDKiPhoneDefaultShareViewUI.bundle"
-  install_resource "ShareSDK2/ShareSDK/UI/ShareSDKiPhoneSimpleShareViewUI.bundle"
-fi
-if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_resource "ShareSDK2/ShareSDK/Connection/InstapaperResource.bundle"
-  install_resource "ShareSDK2/ShareSDK/Core/Resource.bundle"
-  install_resource "ShareSDK2/ShareSDK/Core/zh-Hans.lproj"
-  install_resource "ShareSDK2/ShareSDK/Core/en.lproj"
-  install_resource "ShareSDK2/ShareSDK/Extend/googlePlusSDK/GooglePlus.bundle"
-  install_resource "ShareSDK2/ShareSDK/Extend/Pinterest.embeddedframework/Resources/PinterestSDKResources.bundle"
-  install_resource "ShareSDK2/ShareSDK/Extend/QQConnectSDK/TencentOpenApi_IOS_Bundle.bundle"
-  install_resource "ShareSDK2/ShareSDK/Extend/RenRenSDK/RennSDK.bundle"
-  install_resource "ShareSDK2/ShareSDK/Extend/SinaWeiboSDK/WeiboSDK.bundle"
-  install_resource "ShareSDK2/ShareSDK/UI/ShareSDKFlatShareViewUI.bundle"
-  install_resource "ShareSDK2/ShareSDK/UI/ShareSDKiPadDefaultShareViewUI.bundle"
-  install_resource "ShareSDK2/ShareSDK/UI/ShareSDKiPadSimpleShareViewUI.bundle"
-  install_resource "ShareSDK2/ShareSDK/UI/ShareSDKiPhoneDefaultShareViewUI.bundle"
-  install_resource "ShareSDK2/ShareSDK/UI/ShareSDKiPhoneSimpleShareViewUI.bundle"
-fi
 
 mkdir -p "${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
 rsync -avr --copy-links --no-relative --exclude '*/.svn/*' --files-from="$RESOURCES_TO_COPY" / "${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
