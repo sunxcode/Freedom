@@ -10,6 +10,11 @@
 #import "FirstViewController.h"
 #import "SettingsViewController.h"
 #import "LibraryCollectionViewController.h"
+
+#import "PlayAudioViewController.h"
+//#import "TheAmazingAudioEngine.h"
+#import <AVFoundation/AVFoundation.h>
+//#import "LaunchViewController.h"
 //＝＝＝＝＝＝＝＝＝＝ShareSDK头文件＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 //#import <ShareSDK/ShareSDK.h>
 //＝＝＝＝＝＝＝＝＝＝以下是各个平台SDK的头文件，根据需要继承的平台添加＝＝＝
@@ -40,6 +45,7 @@
 
 @implementation AppDelegate
 @synthesize window = _window;
+@synthesize audioController = _audioController;
 @synthesize managedObjectContext = __managedObjectContext;
 @synthesize managedObjectModel = __managedObjectModel;
 @synthesize persistentStoreCoordinator = __persistentStoreCoordinator;
@@ -48,6 +54,19 @@
     return UIInterfaceOrientationMaskPortrait;
 }
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
+    _launchView  = [[UIImageView alloc] initWithFrame:self.window.bounds];
+    _launchView.image = [UIImage imageNamed:@"LaunchImage-700-568h"];
+    _launchView.alpha = 1;
+    [self.window addSubview:_launchView];
+    [self.window bringSubviewToFront:_launchView];
+    
+    [UIView animateWithDuration:1 delay:1 options:UIViewAnimationOptionTransitionNone animations:^{
+        _launchView.frame = CGRectMake(-80, -140, self.window.bounds.size.width+160, self.window.bounds.size.height+320); //最终位置
+        _launchView.alpha = 0;
+    } completion:^(BOOL finished) {
+        [_launchView removeFromSuperview];
+    }];
+
 //    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 //    self.window.backgroundColor = [UIColor whiteColor];
 //    FirstViewController *main = [[FirstViewController alloc] init];
@@ -135,8 +154,10 @@
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    // 设置音频会话类型
+    AVAudioSession *session = [AVAudioSession sharedInstance];
+    [session setActive:YES error:nil];
+    [session setCategory:AVAudioSessionCategoryPlayback error:nil];
 }
 
 /**
@@ -144,7 +165,9 @@
  */
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    
+    [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+    [self becomeFirstResponder];
+    taskID = [application beginBackgroundTaskWithExpirationHandler:nil];//模拟机可以后台 (在真机上不行)
     /**
      *  app的状态
      *  1.死亡状态：没有打开app
@@ -174,16 +197,49 @@
 
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    [[UIApplication sharedApplication] endReceivingRemoteControlEvents];
+    [self resignFirstResponder];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [application endBackgroundTask:taskID];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+- (BOOL)canBecomeFirstResponder{
+    return YES;
+}
+- (BOOL)canResignFirstResponder{
+    return YES;
+}
+- (void)remoteControlReceivedWithEvent:(UIEvent *)event{
+    NSLog(@"remoteControlReceivedWithEvent");
+    PlayAudioViewController *pbVC = [PlayAudioViewController shared];
+    if (event.type == UIEventTypeRemoteControl) {
+        switch (event.subtype) {
+            case UIEventSubtypeRemoteControlPlay:
+                [pbVC play];
+                break;
+            case UIEventSubtypeRemoteControlPause:
+                [pbVC play];
+                break;
+            case UIEventSubtypeRemoteControlStop:
+                [pbVC stop];
+                break;
+            case UIEventSubtypeRemoteControlPreviousTrack:
+                [pbVC rewind];
+                break;
+            case UIEventSubtypeRemoteControlNextTrack:
+                [pbVC fastForward];
+                break;
+            default:
+                break;
+        }
+    }
+}
+
 -(void)applicationDidReceiveMemoryWarning:(UIApplication *)application{
     SDWebImageManager *mgr = [SDWebImageManager sharedManager];
     //取消下载

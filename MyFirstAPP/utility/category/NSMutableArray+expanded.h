@@ -10,5 +10,5 @@
 @interface NSMutableArray (Convenience)
 
 - (void)moveObjectFromIndex:(NSUInteger)from toIndex:(NSUInteger)to;
-
+- (void)addSafeObject:(id)key;
 @end

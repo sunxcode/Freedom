@@ -7,7 +7,33 @@
 //
 
 #import "KugouTabBarController.h"
-
+#import "MainViewController.h"
+#import "SettingViewController.h"
+#import "KugouRightSettingViewController.h"
+#import "TabBarView.h"
+#import "RESideMenu.h"
+@interface KugouTabBarController ()
+@end
 @implementation KugouTabBarController
-
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    //创建RESideMenu对象(指定内容/左边/右边)
+    RESideMenu *sideViewController = [[RESideMenu alloc] initWithContentViewController:[MainViewController new] leftMenuViewController:[SettingViewController new] rightMenuViewController:[[KugouRightSettingViewController alloc]init]];
+    sideViewController.backgroundImage = [UIImage imageNamed:@"bj"];
+    //设置内容控制器的阴影颜色/半径/enable
+    sideViewController.contentViewShadowColor = [UIColor blackColor];
+    sideViewController.contentViewShadowRadius = 10;
+    sideViewController.contentViewShadowEnabled = YES;
+    [self addChildViewController:sideViewController];
+}
+- (TabBarView *)coustomTabBar{
+    if (_coustomTabBar == nil) {
+        _coustomTabBar = [TabBarView show];
+        _coustomTabBar.frame = CGRectMake(0, 49-TabBarHeight, APPW, TabBarHeight);
+    }return _coustomTabBar;
+}
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self.tabBar addSubview:self.coustomTabBar];
+}
 @end

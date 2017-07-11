@@ -7,7 +7,7 @@
 //
 
 #import "BaseTabBarController.h"
-
+#import "TabBarView.h"
 @interface KugouTabBarController : BaseTabBarController
-
+@property (nonatomic,strong) TabBarView *coustomTabBar;
 @end

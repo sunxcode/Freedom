@@ -70,6 +70,7 @@ PODS:
   - ReactiveCocoa/no-arc (2.5)
   - ReactiveCocoa/UI (2.5):
     - ReactiveCocoa/Core
+  - RESideMenu (4.0.7)
   - SDWebImage (3.7.6):
     - SDWebImage/Core (= 3.7.6)
   - SDWebImage/Core (3.7.6)
@@ -92,6 +93,7 @@ DEPENDENCIES:
   - PPRevealSideViewController (~> 1.2.1)
   - Reachability (= 3.1.1)
   - ReactiveCocoa (~> 2.5)
+  - RESideMenu
   - SDWebImage (~> 3.7.4)
   - SVProgressHUD (= 0.9)
   - UMengAnalytics (~> 3.6.6)
@@ -115,10 +117,11 @@ SPEC CHECKSUMS:
   PPRevealSideViewController: e74d7b490738b39388f3ab9166f89dbe751560b4
   Reachability: dd9aa4fb6667b9f787690a74f53cb7634ce99893
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
+  RESideMenu: f24c508404b49c667344c54aba7e590883533958
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
   SVProgressHUD: 7038ae9d6a0bd2c87560d2699eba642eef82d41e
   UMengAnalytics: 4bf831415146b9c57cb10be65fbd43462ef8cf65
 
-PODFILE CHECKSUM: 00291ef5722c4f5c64b65e5f0ef5b3ae8d4955b4
+PODFILE CHECKSUM: 07aeb1cc78cb2fa8738c0edf4bc94847c0cdb01b
 
 COCOAPODS: 1.2.1

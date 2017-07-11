@@ -19,5 +19,11 @@
         //[obj release];
     }
 }
-
+- (void)addSafeObject:(id)key
+{
+    if (!key) {
+        key = @"";
+    }
+    [self addObject:key];
+}
 @end

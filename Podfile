@@ -29,6 +29,11 @@ pod 'CocoaLumberjack', '~> 2.2.0'
 pod 'BlocksKit', '~> 2.2.5'
 pod 'MWPhotoBrowser', '~> 2.1.1'
 
+pod 'RESideMenu' # https://github.com/romaonthego/RESideMenu
+#pod 'TheAmazingAudioEngine'
+#https://github.com/TheAmazingAudioEngine/TheAmazingAudioEngine
+#http://theamazingaudioengine.com/doc/_getting-_started.html
+#除了要依赖常规framework之外还依赖Accelerate.framework和AudioToolbox.framework和AVFoundation.framework
 #pod 'ASIHttp'                                       #重量级网络请求
 #pod 'SDWebImage/WebP'                                #网络图片请求                    https://github.com/rs/SDWebImage
 #以下是网络分享和第三方登录功能                                                           https://github.com/MobClub/ShareSDK-for-iOS

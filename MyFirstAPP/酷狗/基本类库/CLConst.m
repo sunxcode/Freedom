@@ -1,0 +1,3 @@
+
+
+NSString * const ChangeMainVCContentEnable = @"ChangeMainVCContentEnable";
