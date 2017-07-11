@@ -81,5 +81,10 @@ static const DDLogLevel ddLogLevel = DDLogLevelVerbose;
 #define XFStatusMargin 10
 // 随机色
 #define XFRandomColor XFColor(arc4random_uniform(256), arc4random_uniform(256), arc4random_uniform(256))
-/************************************************************************************************************************************************/
+/*********************************************              淘                             宝              ****************************************************/
+#import "UIGestureRecognizer+YYAdd.h"
+#import "TaobaoTools.h"
+/*********************************************                         ****************************************************/
+
+
 #endif

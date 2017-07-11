@@ -1,13 +1,13 @@
 //
-//  ToutiaoViewController.m
+//  ToutiaoViewController.h
 //  MyFirstAPP
 //
 //  Created by 薛超 on 16/8/18.
 //  Copyright © 2016年 薛超. All rights reserved.
 //
 
-#import "ToutiaoViewController.h"
+#import "BaseViewController.h"
 
-@implementation ToutiaoViewController
+@interface ToutiaoViewController : UIViewController
 
 @end

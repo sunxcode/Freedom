@@ -40,6 +40,14 @@
 #define kVersion8 ([[[UIDevice currentDevice] systemVersion] floatValue]>=8.0)
 #define isIpad      ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
 #define isIos7      ([[[UIDevice currentDevice] systemVersion] floatValue])
+// 设置tableView的边框宽度
+#define kTableBorderWidth 8
+// 3.设置cell的边框宽度
+#define kCellBorderWidth 10
+//全局的背景色
+#define kGlobalBackgroundColor kColor(250, 250, 250)
+//判断是否为iPhone5的宏
+#define iPhone5 ([UIScreen mainScreen].bounds.size.height == 568)
 
 #define NetEngine [AFHTTPSessionManager manager] 
 #define CN 1

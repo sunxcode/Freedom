@@ -37,6 +37,58 @@
 #define I2N(x) [NSNumber numberWithInt:x]
 #define F2N(x) [NSNumber numberWithFloat:x]
 #endif
+
+/*******************淘宝定义的宏*****************/
+#define IOS_VERSION ([[[UIDevice currentDevice] systemVersion] floatValue])
+//宽高
+#define SCREEN_W ([[UIScreen mainScreen] bounds].size.width)
+#define SCREEN_H ([[UIScreen mainScreen] bounds].size.height)
+// 定义这个常量,就可以在使用Masonry不必总带着前缀 `mas_`:
+#define MAS_SHORTHAND
+// 定义这个常量,以支持在 Masonry 语法中自动将基本类型转换为 object 类型:
+#define MAS_SHORTHAND_GLOBALS
+/**
+ Synthsize a weak or strong reference.
+ Example:
+ @weakify(self)
+ [self doSomething^{
+ @strongify(self)
+ if (!self) return;
+ ...
+ }];
+ */
+#ifndef weakify
+#if DEBUG
+#if __has_feature(objc_arc)
+#define weakify(object) autoreleasepool{} __weak __typeof__(object) weak##_##object = object;
+#else
+#define weakify(object) autoreleasepool{} __block __typeof__(object) block##_##object = object;
+#endif
+#else
+#if __has_feature(objc_arc)
+#define weakify(object) try{} @finally{} {} __weak __typeof__(object) weak##_##object = object;
+#else
+#define weakify(object) try{} @finally{} {} __block __typeof__(object) block##_##object = object;
+#endif
+#endif
+#endif
+
+#ifndef strongify
+#if DEBUG
+#if __has_feature(objc_arc)
+#define strongify(object) autoreleasepool{} __typeof__(object) object = weak##_##object;
+#else
+#define strongify(object) autoreleasepool{} __typeof__(object) object = block##_##object;
+#endif
+#else
+#if __has_feature(objc_arc)
+#define strongify(object) try{} @finally{} __typeof__(object) object = weak##_##object;
+#else
+#define strongify(object) try{} @finally{} __typeof__(object) object = block##_##object;
+#endif
+#endif
+#endif
+
 /*******************我的网络资源文件*****************/
 #define JSONResource(s) [[NSBundle mainBundle]pathForResource:s ofType:nil]
 #define JSONWebResource(s) [NSDictionary dictionaryWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.isolar88.com/upload/xuechao/json/%@",s]]];

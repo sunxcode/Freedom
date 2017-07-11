@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Toutiao Video View Controller-->
         <scene sceneID="T1J-J7-3JR">
             <objects>
-                <viewController id="hlA-lA-PKL" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ToutiaoVideoViewController" id="hlA-lA-PKL" customClass="ToutiaoVideoViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wga-Vy-mJK"/>
                         <viewControllerLayoutGuide type="bottom" id="H2s-eG-4TT"/>
@@ -24,10 +24,10 @@
             </objects>
             <point key="canvasLocation" x="509" y="-481"/>
         </scene>
-        <!--View Controller-->
+        <!--Toutiao Attention View Controller-->
         <scene sceneID="Ube-o6-36z">
             <objects>
-                <viewController id="BVq-eq-syi" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ToutiaoAttentionViewController" id="BVq-eq-syi" customClass="ToutiaoAttentionViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="i82-uD-Gla"/>
                         <viewControllerLayoutGuide type="bottom" id="uf5-Qc-WLg"/>
@@ -43,10 +43,10 @@
             </objects>
             <point key="canvasLocation" x="509" y="153"/>
         </scene>
-        <!--View Controller-->
+        <!--Toutiao Me View Controller-->
         <scene sceneID="duS-a2-LLX">
             <objects>
-                <viewController id="ttP-Uq-mtu" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ToutiaoMeViewController" id="ttP-Uq-mtu" customClass="ToutiaoMeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Tet-2q-dZG"/>
                         <viewControllerLayoutGuide type="bottom" id="et5-DV-H48"/>
@@ -62,10 +62,10 @@
             </objects>
             <point key="canvasLocation" x="509" y="783"/>
         </scene>
-        <!--View Controller-->
+        <!--Toutiao View Controller-->
         <scene sceneID="ge2-wS-u47">
             <objects>
-                <viewController id="7Zw-nk-oaa" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ToutiaoViewController" id="7Zw-nk-oaa" customClass="ToutiaoViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZI7-Wa-fx1"/>
                         <viewControllerLayoutGuide type="bottom" id="L3w-gt-Vzs"/>

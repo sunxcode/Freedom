@@ -8,6 +8,6 @@
 
 #import "BaseViewController.h"
 
-@interface TaobaoViewController : BaseViewController
+@interface TaobaoViewController : UIViewController
 
 @end

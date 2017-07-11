@@ -81,10 +81,10 @@
             </objects>
             <point key="canvasLocation" x="471" y="783"/>
         </scene>
-        <!--View Controller-->
+        <!--Taobao View Controller-->
         <scene sceneID="DLM-Cm-dEh">
             <objects>
-                <viewController id="DNA-KE-KTC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TaobaoViewController" id="DNA-KE-KTC" customClass="TaobaoViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Kje-HS-fMU"/>
                         <viewControllerLayoutGuide type="bottom" id="a6f-jH-Pfe"/>
