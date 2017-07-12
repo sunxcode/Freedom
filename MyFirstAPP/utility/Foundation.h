@@ -92,7 +92,6 @@
 #define gradcolor         RGBACOLOR(224, 225, 226, 1)
 #define redcolor          RGBACOLOR(229, 59, 25, 1)
 #define yellowcolor       [UIColor yellowColor]
-#define greencolor        [UIColor greenColor]
 #define whitecolor        RGBACOLOR(256, 256,256,1)
 #define blacktextcolor    RGBACOLOR(33, 34, 35, 1)
 #define gradtextcolor     RGBACOLOR(116, 117, 118, 1)

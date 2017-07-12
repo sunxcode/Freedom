@@ -25,7 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setTitle:@"个人中心"];
-    self.tableView = [[BaseTableView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH-TabBarH)];
+    self.tableView = [[BaseTableView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH)];
     UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPW, 260)];
     UIImageView *icon = [[UIImageView alloc]initWithFrame:CGRectMake(10, 15, 60, 60)];
     icon.layer.cornerRadius = H(icon)/2.0;icon.layer.masksToBounds = YES;
@@ -43,20 +43,19 @@
     NSArray *icons = @[@"juheintopublic",@"juheintopublic",@"juheintopublic",@"juheintopublic",@"juheintopublic",@"juheintopublic",@"juheintopublic",@"juheintopublic"];
     BaseScrollView *banItemSV = [BaseScrollView sharedBaseItemWithFrame:CGRectMake(0, 100, APPW, 160) icons:icons titles:titles size:CGSizeMake(APPW/4.0, 80) round:NO];
     [headerView addSubview:banItemSV];
-    banItemSV.selectBlock = ^(NSInteger index, NSDictionary *dict) {
-        DLog(@"点击了%ld,%@",index,dict);
-    };
     self.tableView.dataArray = [NSMutableArray arrayWithObjects:
          @{@"name":@"我的充值记录",@"pic":@"juheintopublic"},@{@"name":@"我的消费记录",@"pic":@"juhelookhistory"},@{@"name":@"账户信息",@"pic":@"juheaboutus"},@{@"name":@"密码修改",@"pic":@"juhechart"},
          @{@"name":@"实名认证",@"pic":@"juhechart"}, nil];
     [self fillTheTableDataWithHeadV:headerView footV:v canMove:NO canEdit:NO headH:0 footH:0 rowH:60 sectionN:1 rowN:5 cellName:@"JuheUserViewCell"];
     [self.view addSubview:self.tableView];
+    
+    
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    DLog(@"点击了第%ld个单元格",indexPath.row);
+
 }
 
 @end

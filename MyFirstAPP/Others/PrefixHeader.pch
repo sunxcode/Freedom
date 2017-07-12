@@ -13,7 +13,7 @@
 #import "BaseViewController.h"
 #import "BaseTabBarController.h"
 #import "BaseNavigationController.h"
-#import "UIControl+expanded.h"
+
 #import "NSString+expanded.h"
 #import "UIView+expanded.h"
 #import "UIView+AutoLayout.h"

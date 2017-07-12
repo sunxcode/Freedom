@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DZHomeController : BaseViewController
+@interface DZHomeController : UITableViewController
 
 @end

@@ -45,10 +45,10 @@
     self.alwaysBounceVertical = YES;canRefresh = canLoadmore = YES;
     self.progressHUDMask = SVProgressHUDMaskTypeClear;
 }
-//- (void)layoutSubviews{
-//    [super layoutSubviews];
+- (void)layoutSubviews{
+    [super layoutSubviews];
 //    loadMoreFrame.origin.y = self.contentSize.height +  (self.bounds.size.height - MIN(self.bounds.size.height, self.contentSize.height));
-//}
+}
 #pragma mark 刷新与加载
 - (void)refresh{
     if(!canRefresh)return;

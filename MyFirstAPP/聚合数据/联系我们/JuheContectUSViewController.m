@@ -47,7 +47,7 @@
     [super viewDidLoad];
     self.title = @"联系我们";
     BaseCollectionViewLayout *layout = [BaseCollectionViewLayout sharedFlowlayoutWithCellSize:CGSizeMake(APPW*2/3, 140) groupInset:UIEdgeInsetsMake(10, 10, 0, 10) itemSpace:50 linespace:10];
-    self.collectionView = [[BaseCollectionView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH-TabBarH) collectionViewLayout:layout];
+    self.collectionView = [[BaseCollectionView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH-100) collectionViewLayout:layout];
    
     self.collectionView.dataArray = [NSMutableArray arrayWithObjects:@{@"name":@"进入公众号",@"pic":@"juheintopublic"},@{@"name":@"查看历史消息",@"pic":@"juhelookhistory"},@{@"name":@"关于我们",@"pic":@"juheaboutus"},@{@"name":@"聊天",@"pic":@"juhechart"}, nil];
     [self fillTheCollectionViewDataWithCanMove:NO sectionN:1 itemN:4 itemName:@"JuheContectUSViewCell"];
