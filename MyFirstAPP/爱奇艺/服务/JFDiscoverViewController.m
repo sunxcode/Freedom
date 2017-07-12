@@ -150,8 +150,6 @@
         return cell;
     }
     return nil;
-
-
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

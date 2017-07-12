@@ -7,7 +7,7 @@
 //
 
 #import "TLSettingViewController.h"
-
+#import <MobClick.h>
 #import "TLSettingHeaderTitleView.h"
 #import "TLSettingFooterTitleView.h"
 #import "TLSettingButtonCell.h"

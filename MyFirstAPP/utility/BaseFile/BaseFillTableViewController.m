@@ -122,7 +122,7 @@
 }
 @end
 
-#pragma mark BaseStaticTableView
+#pragma mark BaseFillTableView
 @interface BaseFillTableViewController(){
     NSInteger pictype;
     UIImagePickerController *ipc;
@@ -132,6 +132,7 @@
 @end
 @implementation BaseFillTableViewController
 -(void)viewDidLoad{
+//    [super viewDidLoad];
     self.realname = [[Utility Share]userName];
     self.phone = [[Utility Share]userphone];
     self.areaPickView = [[AreaPickView alloc]init];
@@ -139,10 +140,10 @@
     [self.values setObject:@"" forKey:@"info"];
     self.c1 = [FBaseCell cellWithTableView:(UITableView*)self.tableView];
     self.areaPickView.delegate = self;self.areaPickView.datasource = self;
-    self.tableView = [[BaseTableView alloc]initWithFrame:CGRectMake(0, 10, APPW, APPH-10) style:UITableViewStyleGrouped];
-    self.tableView.backgroundColor = [UIColor whiteColor];
+    self.tableView = [[BaseTableView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH) style:UITableViewStyleGrouped];
+    self.tableView.backgroundColor = gradcolor;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.sectionFooterHeight = 5;
+    self.tableView.sectionFooterHeight = 15;
     self.tableView.sectionHeaderHeight = 0;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -152,6 +153,10 @@
 -(void)setTableFootView:(UIView *)tableFootView{
     _tableFootView = tableFootView;
     self.tableView.tableFooterView = tableFootView;
+}
+-(void)setTableHeadView:(UIView *)tableHeadView{
+    _tableHeadView = tableHeadView;
+    self.tableView.tableHeaderView = tableHeadView;
 }
 - (NSMutableArray *)groups{
     if (_groups == nil) {
@@ -165,13 +170,17 @@
     FBaseGroup *group = self.groups[section];
     return group.items.count;
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 44;
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     FBaseCell *cell = [FBaseCell cellWithTableView:tableView];
     FBaseGroup *group = self.groups[indexPath.section];
     cell = group.items[indexPath.row];
+    cell.backgroundColor = whitecolor;
     cell.indexpath = indexPath;
-    UIImageView *line = [[UIImageView alloc]initWithFrame:CGRectMake(0, H(cell)-1, APPW, 1)];
-    line.image = [UIImage imageNamed:@"userLine"];
+    UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, 43, APPW, 1)];
+    line.backgroundColor = gradcolor;
     [cell addSubview:line];
     if(cell.cellArray){
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -214,6 +223,40 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     FBaseGroup *group = self.groups[section];
     return group.header;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    NSString *sectionTitle = [self tableView:tableView titleForHeaderInSection:section];
+    if (sectionTitle == nil) {return nil;}
+    UILabel *label = [[UILabel alloc] init] ;
+    label.frame = CGRectMake(20, 0, CGRectGetWidth(tableView.frame)-20, 20);
+    label.backgroundColor = [UIColor clearColor];
+    label.textColor = blacktextcolor;
+    label.shadowColor = [UIColor whiteColor];
+    label.shadowOffset = CGSizeMake(0.0, 1.0);
+    label.font = [UIFont boldSystemFontOfSize:16];
+    label.text = sectionTitle;
+    label.textAlignment = NSTextAlignmentCenter;
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.tableView.frame), 20)];
+    view.backgroundColor=gradcolor;
+    [view addSubview:label];
+    return view;
+}
+- (UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    NSString *sectionTitle = [self tableView:tableView titleForFooterInSection:section];
+    if (sectionTitle == nil) {return nil;}
+    UILabel *label = [[UILabel alloc] init] ;
+    label.frame = CGRectMake(20, 0, CGRectGetWidth(tableView.frame)-20, 20);
+    label.backgroundColor = [UIColor clearColor];
+    label.textColor = blacktextcolor;
+    label.shadowColor = [UIColor whiteColor];
+    label.shadowOffset = CGSizeMake(0.0, 1.0);
+    label.font = [UIFont boldSystemFontOfSize:16];
+    label.text = sectionTitle;
+    label.textAlignment = NSTextAlignmentCenter;
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.tableView.frame), 20)];
+    view.backgroundColor=gradcolor;
+    [view addSubview:label];
+    return view;
 }
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -314,4 +357,37 @@
 - (NSArray *)areaPickerData:(AreaPickView *)picker{
     return nil;
 }
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    //注册监听键盘事件
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleKeyboardDidShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleKeyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+}
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
+#pragma mark - keybordAciton
+-(void)handleKeyboardDidShow:(NSNotification *)notification{
+    NSDictionary *info = [notification userInfo];
+    CGRect keyboardFrame;
+    [[info objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardFrame];
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey]CGRectValue].size;
+    CGFloat distanceToMove = kbSize.height;
+    NSLog(@"---->动态键盘高度:%f",distanceToMove);
+    [UIView animateWithDuration:0.3 animations:^{
+        //        self.tableView.frameHeight-=distanceToMove;
+    }];
+}
+- (void)handleKeyboardWillHide:(NSNotification *)notification{
+    NSDictionary *info = [notification userInfo];
+    CGRect keyboardFrame;
+    [[info objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardFrame];
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey]CGRectValue].size;
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        //        self.tableView.frameHeight+=distanceToMove;
+    }];
+}
+
 @end

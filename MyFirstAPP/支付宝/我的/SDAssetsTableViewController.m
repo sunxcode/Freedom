@@ -31,7 +31,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-      self.navigationItem.title = @"我的";
+    self.navigationItem.title = @"我的";
     self.sectionsNumber = 3;
     self.cellClass = [SDAssetsTableViewControllerCell class];
     [self setupModel];

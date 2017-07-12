@@ -18,20 +18,21 @@ static CGFloat const titleHeight = 40;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.titles =[NSMutableArray arrayWithArray:@[@"这个",@"那个",@"好样的",@"么呢",@"打开",@"这个",@"那个",@"好样的",@"么呢"]];
-    self.titleScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, titleHeight)];    //设置头标题栏
-    [self.view addSubview: self.titleScrollView];
-    [self.navigationController.navigationBar addSubview:self.titleScrollView];
-    self.contentScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, YH(self.titleScrollView), kScreenWidth, kScreenHeight)];//设置内容 //添加自控制器
+    self.titles =[NSMutableArray arrayWithArray:@[@"新能源",@"政策",@"新闻",@"国防",@"汽车",@"环保",@"核电",@"节能环保",@"动力"]];
+    self.titleScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, APPW, titleHeight)];    //设置头标题栏
+    self.navigationItem.titleView = self.titleScrollView;
+    self.contentScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];//设置内容 //添加自控制器
     [self.view addSubview:self.contentScrollView];
+    NSArray *tagids = @[@"12",@"13",@"14",@"17",@"19",@"21",@"22",@"24",@"25"];
     for(int i=0;i<self.titles.count;i++){
         ToutiaoHomeSampleViewController *vc = [[ToutiaoHomeSampleViewController alloc]init];
+        vc.tagID = tagids[i];
         [self addChildViewController:vc];
     }
     self.buttons = [NSMutableArray array];//设置标题
     NSUInteger count = self.childViewControllers.count;
     for (int i = 0; i<count; i++) {
-        UIButton * button = [[UIButton alloc]initWithFrame:CGRectMake(i * 50, 0,50, titleHeight)];
+        UIButton * button = [[UIButton alloc]initWithFrame:CGRectMake(i * 80, 0,80, titleHeight)];
         button.tag = i;
         [button setTitle:self.titles[i] forState:UIControlStateNormal];
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -43,7 +44,7 @@ static CGFloat const titleHeight = 40;
             [self click:button];
         }
     }
-    self.titleScrollView.contentSize = CGSizeMake(count * 50, 0);
+    self.titleScrollView.contentSize = CGSizeMake(count * 80, 0);
     self.titleScrollView.showsHorizontalScrollIndicator = NO;
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.contentScrollView.contentSize = CGSizeMake(self.childViewControllers.count * kScreenWidth, 0);
@@ -52,8 +53,6 @@ static CGFloat const titleHeight = 40;
     self.contentScrollView.delegate = self;
     [self.titleScrollView setContentOffset:CGPointMake(0, 0) animated:NO];
 }
-
-
 #pragma mark - 按钮点击时间改变contentScrollView的值
 -(void) click:(UIButton *) button{
     NSUInteger i = button.tag;
@@ -61,8 +60,9 @@ static CGFloat const titleHeight = 40;
     //改变按钮
     [self setTitleBtn:button];
     UIViewController * vc = self.childViewControllers[i];
-    if (vc.view.superview) {return;}
-    vc.view.frame = CGRectMake(x, 0, kScreenWidth, kScreenHeight - YH(self.titleScrollView));
+    if (vc.view.superview) {
+        self.contentScrollView.contentOffset = CGPointMake(x, 0);return;}
+    vc.view.frame = CGRectMake(x, 0, kScreenWidth, kScreenHeight);
     [self.contentScrollView addSubview:vc.view];
     self.contentScrollView.contentOffset = CGPointMake(x, 0);
 }
@@ -88,7 +88,7 @@ static CGFloat const titleHeight = 40;
     CGFloat x = i * kScreenWidth;
     UIViewController * vc = self.childViewControllers[i];
     if (vc.view.superview) {return;}
-    vc.view.frame = CGRectMake(x, 0, kScreenWidth, kScreenHeight - YH(self.titleScrollView));
+    vc.view.frame = CGRectMake(x, 0, kScreenWidth, kScreenHeight);
     [self.contentScrollView addSubview:vc.view];
 }
 #pragma mark - 实现字体颜色大小的渐变
@@ -108,8 +108,8 @@ static CGFloat const titleHeight = 40;
     leftButton.transform = CGAffineTransformMakeScale(scaleL * tranScale + 1, scaleL * tranScale + 1);
     rightButton.transform = CGAffineTransformMakeScale(scaleR * tranScale + 1, scaleR * tranScale + 1);
     //颜色的渐变
-    UIColor * rightColor = [UIColor colorWithRed:scaleR green:250 blue:250 alpha:1];
-    UIColor * leftColor = [UIColor colorWithRed:230 green:230 blue:230 alpha:1];
+    UIColor * rightColor = [UIColor colorWithRed:250 green:250 blue:250 alpha:1];
+    UIColor * leftColor = [UIColor colorWithRed:scaleR green:230 blue:230 alpha:1];
     [leftButton setTitleColor:leftColor forState:UIControlStateNormal];
     [rightButton setTitleColor:rightColor forState:UIControlStateNormal];
     

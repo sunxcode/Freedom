@@ -7,6 +7,7 @@
 //
 
 #import "ToutiaoVideoViewController.h"
+#import "ToutiaoHomeSampleViewController.h"
 static CGFloat const titleHeight = 40;
 @interface ToutiaoVideoViewController()<UIScrollViewDelegate>
 @property (nonatomic,weak) UIScrollView * titleScrollView;//标题ScrollView
@@ -30,7 +31,7 @@ static CGFloat const titleHeight = 40;
     self.navigationController.navigationBarHidden = YES;
     
 //    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
-    self.titles =[NSMutableArray arrayWithArray:@[@"随便",@"大话",@"西游",@"想法",@"思考",@"人间",@"上帝",@"意境"]];
+    self.titles =[NSMutableArray arrayWithArray:@[@"太阳能",@"地方政策",@"报告",@"清洁",@"新能源汽车",@"智联网",@"这个16",@"招聘简章",@"重工  "]];
     //设置头标题栏
     [self setTitleScrollView];
     //设置内容
@@ -62,10 +63,12 @@ static CGFloat const titleHeight = 40;
 }
 #pragma mark - 加入子控制器
 -(void) addChildViewController{
+    NSArray *tagids = @[@"33",@"34",@"36",@"37",@"38",@"40",@"41",@"42",@"43"];
     for(int i=0;i<self.titles.count;i++){
-        UIViewController *con = [[UIViewController alloc]init];
-        con.title = self.titles[i];
-        [self addChildViewController:con];
+        ToutiaoHomeSampleViewController *vc = [[ToutiaoHomeSampleViewController alloc]init];
+        vc.tagID = tagids[i];
+        vc.title = self.titles[i];
+        [self addChildViewController:vc];
     }
 }
 #pragma mark - 设置标题
@@ -73,7 +76,7 @@ static CGFloat const titleHeight = 40;
     self.buttons = [NSMutableArray array];
     NSUInteger count = self.childViewControllers.count;
     CGFloat x = 0;
-    CGFloat w = 50;
+    CGFloat w = 80;
     CGFloat h = titleHeight;
     for (int i = 0; i<count; i++) {
         UIViewController * vc = self.childViewControllers[i];

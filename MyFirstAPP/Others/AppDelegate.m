@@ -68,6 +68,9 @@
     }];
 
     FirstViewController *controller = (FirstViewController *)self.window.rootViewController;
+    
+//    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:controller];
+//    self.window.rootViewController = nav;
     controller.managedObjectContext = self.managedObjectContext;
     //检查初次使用标识
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];

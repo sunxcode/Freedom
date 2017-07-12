@@ -1468,6 +1468,7 @@
 		77DFEC701E20B9090003E192 /* logs in Resources */ = {isa = PBXBuildFile; fileRef = 77DFEC6F1E20B9090003E192 /* logs */; };
 		77ECE0E31D5D5EAF004AE122 /* MyCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 77ECE0E11D5D5EAF004AE122 /* MyCoreData.xcdatamodeld */; };
 		77ECE0E91D5D5F2C004AE122 /* WeixinData.m in Sources */ = {isa = PBXBuildFile; fileRef = 77ECE0E71D5D5F2C004AE122 /* WeixinData.m */; };
+		77F2E8FB1E4967E000C7E9D5 /* ToutiaoHomeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F2E8FA1E4967E000C7E9D5 /* ToutiaoHomeDetailViewController.m */; };
 		77F7A1031E23757D00F91403 /* qylogo_p@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77F7A1021E23757D00F91403 /* qylogo_p@3x.png */; };
 		77FD03BE1E25DEFE00E5099E /* TaobaoMiniViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FD03BD1E25DEFE00E5099E /* TaobaoMiniViewController.m */; };
 		77FD03C11E25DF6800E5099E /* TaobaoMiniDynamicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FD03C01E25DF6800E5099E /* TaobaoMiniDynamicViewController.m */; };
@@ -3620,6 +3621,8 @@
 		77ECE0E21D5D5EAF004AE122 /* MyCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyCoreData.xcdatamodel; sourceTree = "<group>"; };
 		77ECE0E61D5D5F2C004AE122 /* WeixinData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeixinData.h; sourceTree = "<group>"; };
 		77ECE0E71D5D5F2C004AE122 /* WeixinData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeixinData.m; sourceTree = "<group>"; };
+		77F2E8F91E4967E000C7E9D5 /* ToutiaoHomeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToutiaoHomeDetailViewController.h; sourceTree = "<group>"; };
+		77F2E8FA1E4967E000C7E9D5 /* ToutiaoHomeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToutiaoHomeDetailViewController.m; sourceTree = "<group>"; };
 		77F7A1021E23757D00F91403 /* qylogo_p@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qylogo_p@3x.png"; sourceTree = "<group>"; };
 		77FD03BC1E25DEFE00E5099E /* TaobaoMiniViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaobaoMiniViewController.h; sourceTree = "<group>"; };
 		77FD03BD1E25DEFE00E5099E /* TaobaoMiniViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaobaoMiniViewController.m; sourceTree = "<group>"; };
@@ -4557,6 +4560,8 @@
 				77BD16CF1D6ED6B400DE5DB9 /* ToutiaoViewController.m */,
 				77FD03E11E26173B00E5099E /* ToutiaoHomeSampleViewController.h */,
 				77FD03E21E26173B00E5099E /* ToutiaoHomeSampleViewController.m */,
+				77F2E8F91E4967E000C7E9D5 /* ToutiaoHomeDetailViewController.h */,
+				77F2E8FA1E4967E000C7E9D5 /* ToutiaoHomeDetailViewController.m */,
 			);
 			path = "首页";
 			sourceTree = "<group>";
@@ -8384,12 +8389,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7759B6B81D0EA38000AE3A59 /* Build configuration list for PBXNativeTarget "MyFirstAPP" */;
 			buildPhases = (
-				A53E273E080B8DA8D139609C /* [CP] Check Pods Manifest.lock */,
+				A53E273E080B8DA8D139609C /* 📦 Check Pods Manifest.lock */,
 				7759B6871D0EA37F00AE3A59 /* Sources */,
 				7759B6881D0EA37F00AE3A59 /* Frameworks */,
 				7759B6891D0EA37F00AE3A59 /* Resources */,
-				594D8475FD8B79805F499D8A /* [CP] Embed Pods Frameworks */,
-				A09EB6C11F89B3AE5FCB7767 /* [CP] Copy Pods Resources */,
+				594D8475FD8B79805F499D8A /* 📦 Embed Pods Frameworks */,
+				A09EB6C11F89B3AE5FCB7767 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -9326,14 +9331,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		594D8475FD8B79805F499D8A /* [CP] Embed Pods Frameworks */ = {
+		594D8475FD8B79805F499D8A /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "[CP] Embed Pods Frameworks";
+			name = "📦 Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -9341,14 +9346,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MyFirstAPP/Pods-MyFirstAPP-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A09EB6C11F89B3AE5FCB7767 /* [CP] Copy Pods Resources */ = {
+		A09EB6C11F89B3AE5FCB7767 /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "[CP] Copy Pods Resources";
+			name = "📦 Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -9356,19 +9361,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MyFirstAPP/Pods-MyFirstAPP-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A53E273E080B8DA8D139609C /* [CP] Check Pods Manifest.lock */ = {
+		A53E273E080B8DA8D139609C /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "[CP] Check Pods Manifest.lock";
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -9911,6 +9916,7 @@
 				778E93711D699D8C004D899C /* XFEmotionTextView.m in Sources */,
 				779B82251D7D556500B23DFA /* FreedomBooksViewController.m in Sources */,
 				776462871D68445800ACCCAC /* TLChatTableViewController.m in Sources */,
+				77F2E8FB1E4967E000C7E9D5 /* ToutiaoHomeDetailViewController.m in Sources */,
 				778E93A31D69AE99004D899C /* SWCommonCell.m in Sources */,
 				77D165761DACDCE700334044 /* WDMethod.m in Sources */,
 				7788ACAE1D7997EC00376C95 /* NSString+NSString_ILExtension.m in Sources */,

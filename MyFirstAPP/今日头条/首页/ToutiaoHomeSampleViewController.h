@@ -9,5 +9,5 @@
 #import "BaseViewController.h"
 
 @interface ToutiaoHomeSampleViewController : BaseViewController
-
+@property(nonatomic,strong)NSString *tagID;
 @end

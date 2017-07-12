@@ -115,7 +115,7 @@ static TLRootViewController *rootVC = nil;
 /**********************************************************************************/
 - (void)p_initThirdPartSDK{
     // 友盟统计
-//    [MobClick startWithAppkey:UMENG_APPKEY reportPolicy:BATCH channelId:APP_CHANNEL];
+    [MobClick startWithAppkey:UMENG_APPKEY reportPolicy:BATCH channelId:APP_CHANNEL];
     // 网络环境监测
     [[AFNetworkReachabilityManager sharedManager] startMonitoring];
     // JSPatch

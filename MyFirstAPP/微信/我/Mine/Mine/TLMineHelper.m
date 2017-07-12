@@ -28,7 +28,7 @@
     TLMenuItem *item2 = TLCreateMenuItem(PfavoriteHL, @"收藏");
     TLMenuItem *item3 = TLCreateMenuItem(@"MoreMyBankCard", @"钱包");
     TLMenuItem *item4 = TLCreateMenuItem(@"MyCardPackageIcon@2x", @"优惠券");
-    TLMenuItem *item5 = TLCreateMenuItem(@"MoreExpressionShops@2x", @"表情");
+    TLMenuItem *item5 = TLCreateMenuItem(@"MoreExpressionShops@3x", @"表情");
     TLMenuItem *item6 = TLCreateMenuItem(PsetingHL, @"设置");
     [self.mineMenuData addObjectsFromArray:@[@[item0], @[item1, item2, item3, item4], @[item5], @[item6]]];
 }

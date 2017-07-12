@@ -7,7 +7,7 @@
 //
 
 #import "TLWebViewController.h"
-#import <UMMobClick/MobClick.h>
+#import <MobClick.h>
 
 #define     WEBVIEW_NAVBAR_ITEMS_FIXED_SPACE    9
 

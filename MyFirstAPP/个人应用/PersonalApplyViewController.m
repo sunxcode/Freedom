@@ -68,7 +68,7 @@
     
 }
 -(void)loadUI{
-    refTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, W(self.view), kScreenHeight - 64) style:UITableViewStylePlain];
+    refTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, W(self.view), kScreenHeight) style:UITableViewStylePlain];
     refTableView.backgroundColor = RGBCOLOR(246, 246, 246);
     refTableView.delegate = self;
     refTableView.dataSource = self;

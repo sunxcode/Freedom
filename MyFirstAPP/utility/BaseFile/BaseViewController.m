@@ -491,9 +491,22 @@ static BaseViewController *BVC = nil;
     DLog(@"代理通知发现点击了控制器%@", identifier);
     int a = [identifier intValue];
     [radialMenu didTapCenterView:nil];
-    DLog(@"%@",self.items);
-    NSString *s =[NSString stringWithFormat:@"%@ViewController",[self.items[a] valueForKey:@"control"]];
-    UIViewController *con = [[NSClassFromString(s) alloc]init];
+    NSString *controlName = [self.items[a] valueForKey:@"control"];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    if([controlName isEqualToString:@"Sina"]){
+        NSString *s =[NSString stringWithFormat:@"%@TabBarController",controlName];
+        UIViewController *con = [[NSClassFromString(s) alloc]init];
+        CATransition *animation = [CATransition animation];
+        animation.duration = 1;
+        animation.timingFunction = UIViewAnimationCurveEaseInOut;
+        [self.view.window.layer addAnimation:animation forKey:nil];
+        [self presentViewController:con animated:NO completion:^{
+        }];
+        return;
+    }
+    
+    UIStoryboard *StoryBoard = [UIStoryboard storyboardWithName:controlName bundle:nil];
+    UIViewController *con = [StoryBoard instantiateViewControllerWithIdentifier:[NSString stringWithFormat:@"%@TabBarController",controlName]];
     CATransition *animation = [CATransition animation];
     animation.duration = 0.5;
     animation.timingFunction = UIViewAnimationCurveEaseInOut;

@@ -26,7 +26,7 @@ pod 'SDAutoLayout'                      #一行代码搞定自动布局         
 pod 'CocoaAsyncSocket', '~> 7.4.2'
 pod 'Masonry', '~> 0.6.4'
 pod 'FMDB', '~> 2.6'
-pod 'UMengAnalytics'
+pod 'UMengAnalytics', '~> 3.6.6'
 pod 'ReactiveCocoa', '~> 2.5'
 pod 'CocoaLumberjack', '~> 2.2.0'
 pod 'BlocksKit', '~> 2.2.5'

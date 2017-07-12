@@ -89,6 +89,7 @@
     //定时器 下雪
     int count;
     NSTimer *timer;
+    __weak IBOutlet UINavigationBar *firstNavigationBar;
 }
 @end
 static NSString *cellId1 = @"cellId1";
@@ -107,29 +108,25 @@ static FirstViewController *FVC = nil;
     [super viewDidLoad];
     [self readData];
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
-    [[UIApplication sharedApplication].delegate window].rootViewController = self;
-    searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(50, 0, kScreenWidth-110, 44)];
+    searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(50, 0, APPW-110, 44)];
     searchBar.delegate = self;
     searchBar.placeholder = @"搜索";
-//    searchBar.barTintColor = gradcolor;
-//    [self setTitle:nil titleView:searchBar backGroundColor:gradcolor backGroundImage:nil];
-    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:self];
-    
-    nav.title = @"titlesd";
-    UIBarButtonItem *ad = [[UIBarButtonItem alloc]initWithTitle:@"bianji" style:UIBarButtonItemStyleDone actionBlick:^{
-        DLog(@"编辑了");
+    searchBar.barTintColor = gradcolor;
+    UIBarButtonItem *leftNav = [[UIBarButtonItem alloc]initWithTitle:@"设置" style:UIBarButtonItemStyleDone actionBlick:^{
+        [self gotoSettingsView:nil];
     }];
-    self.navigationItem.rightBarButtonItem = ad;
-    self.navigationController.navigationItem.rightBarButtonItem = ad;
-    self.navigationController.navigationItem.titleView = searchBar;
-    nav.navigationItem.rightBarButtonItem = ad;
-    
-//    [self leftBarButtonItemWithTitle:nil Image:[UIImage imageNamed:PuserLogo] customView:nil style:UIBarButtonItemStyleDone target:self action:@selector(gotoSettingsView:)];
-//    [self rightBarButtonItemWithTitle:nil Image:[UIImage imageNamed:@"settings"] customView:nil style:UIBarButtonItemStyleDone target:self action:@selector(showSettingsView:)];
-      // 键盘通知
+    UIBarButtonItem *rightNav = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:Pseting] style:UIBarButtonItemStyleDone actionBlick:^{
+        [self showSettingsView:nil];
+    }];
+    UINavigationItem * navigationItem = [[UINavigationItem alloc] initWithTitle:@"自由主义"];
+//    [firstNavigationBar pushNavigationItem:navigationBarTitle animated:YES];
+    navigationItem.leftBarButtonItem = leftNav;
+    navigationItem.titleView = searchBar;
+    navigationItem.rightBarButtonItem = rightNav;
+    [firstNavigationBar setItems:[NSArray arrayWithObject:navigationItem]];
+    // 键盘通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-    
     transition = [[ElasticTransition alloc] init];
     transition.sticky           = YES;
     transition.showShadow       = YES;
@@ -157,14 +154,16 @@ static FirstViewController *FVC = nil;
     homecollectionView.backgroundColor = RGBACOLOR(230, 230, 230, 1);
     //下雪 每隔1秒下一次
     timer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(snowAnimat:) userInfo:nil repeats:YES];
-    [timer setFireDate:[NSDate distantFuture]];
+    [timer setFireDate:[NSDate dateWithTimeIntervalSinceNow:200]];
     [self switchExample];
 }
 #pragma mark 设置与收藏的跳转
 -(void)gotoSettingsView:(UIButton*)sender{
-//     [((SliderViewController *)[[[self.view superview] superview] nextResponder]) showLeftViewController];
-//    [self.navigationController pushViewController:[[SettingsViewController alloc]init] animated:YES];
-    [self pushController:[SettingsViewController class] withInfo:nil];
+    [timer setFireDate:[NSDate distantFuture]];
+    transition.edge = LEFT;
+    transition.translation    = CGPointMake(320, 15);
+    transition.dragPoint = CGPointMake(230, 170);
+    [self performSegueWithIdentifier:@"settings" sender:transition];
 }
 -(void)gotoSettings:(UIPanGestureRecognizer*)pan{
     if (pan.state != UIGestureRecognizerStateBegan){
@@ -384,12 +383,11 @@ static FirstViewController *FVC = nil;
     //c.动画结束
     //雪花落地的位置 偏屏幕上面一点
     int offset = arc4random()%MAX_OFFSET - 50;
-    snow.center = CGPointMake(snow.center.x+offset, self.view.bounds.size.height-30);
+    snow.center = CGPointMake(snow.center.x+offset, self.view.bounds.size.height-10);
     //动画之后 设置委托 早期语法没有协议
     [UIView setAnimationDelegate:self];
     //动画结束之后发送消息
     [UIView setAnimationDidStopSelector:@selector(snowDisappear:)];
-    
     //提交动画
     [UIView commitAnimations];
 }

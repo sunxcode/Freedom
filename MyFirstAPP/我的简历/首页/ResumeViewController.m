@@ -8,97 +8,38 @@
 
 #import "ResumeViewController.h"
 #import "ResumeDetailViewController.h"
-@interface ResumeViewCell:UITableViewCell
--(void)setdatawithdict:(NSDictionary *)dict;
+@interface ResumeViewCell:BaseTableViewCell
 @end
-@implementation ResumeViewCell{
-    UILabel *titleLable;
-    UIImageView *intoview;
-    UIImageView *line;
-    UIImageView *icon;
-}
--(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        [self initUI];
-    }
-    return self;
-}
+@implementation ResumeViewCell
 -(void)initUI{
-    intoview = [[UIImageView alloc]initWithFrame:CGRectMake(kScreenWidth - Boardseperad - 10, (60 - 20)/2.0, 10, 20)];
-    intoview.contentMode = UIViewContentModeScaleAspectFill;
-    intoview.clipsToBounds = YES;
-    intoview.image = [UIImage imageNamed:@"icon_jt"];
-    [self addSubview:intoview];
-    
-    icon = [[UIImageView alloc]initWithFrame:CGRectMake(Boardseperad, Boardseperad, 50, 40)];
-    icon.contentMode = UIViewContentModeScaleAspectFill;
-    [self addSubview:icon];
-    titleLable = [[UILabel alloc]initWithFrame:CGRectMake(XW(icon)+10, (60 - 20)/2.0, X(intoview) - 2*Boardseperad, 20)];
-    titleLable.font = fontTitle;
-    titleLable.textColor = blacktextcolor;
-    [self addSubview:titleLable];
-    
-    line = [[UIImageView alloc]initWithFrame:CGRectMake(Boardseperad, 59, kScreenWidth - 2*Boardseperad, 1)];
-    line.contentMode = UIViewContentModeScaleAspectFill;
-    line.clipsToBounds = YES;
-    line.image = [UIImage imageNamed:@"userLine"];
-    [self addSubview:line];
-}
 
--(void)setdatawithdict:(NSDictionary *)dict{
-    titleLable.text = [dict valueForJSONKey:@"name"];
-    [icon imageWithURL:[NSString stringWithFormat:@"/upload/%@",[dict valueForJSONStrKey:@"img"]] useProgress:NO useActivity:NO];
 }
-
+-(void)setDataWithDict:(NSDictionary *)dict{
+    
+}
 @end
 @interface ResumeViewController ()<UITableViewDelegate,UITableViewDataSource>{
     UITableView *refTableView;
     UILabel *label;
+    BaseScrollView *ResumeHomeScrollV;
 }
 @end
-
 @implementation ResumeViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self loadUI];
-}
--(void)loadData{
-    
-}
--(void)loadUI{
-    refTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, W(self.view), kScreenHeight - 64) style:UITableViewStylePlain];
-    refTableView.backgroundColor = RGBCOLOR(246, 246, 246);
-    refTableView.delegate = self;
-    refTableView.dataSource = self;
-    [self.view addSubview:refTableView];
-    refTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self loadData];
+    self.title = @"首页";
+    NSArray *titles = @[@"我的成长史",@"我的作品",@"我的经历",@"微页1",@"微页2",@"微页3"];
+    NSArray *controllers = @[@"ResumeDetailViewController",@"ResumeDetailViewController",@"ResumeDetailViewController",@"ResumeDetailViewController",@"ResumeDetailViewController",@"ResumeDetailViewController"];
+    ResumeHomeScrollV = [BaseScrollView sharedContentTitleViewWithFrame:CGRectMake(0, 0, APPW, APPH-TabBarH) titles:titles controllers:controllers inView:self.view];
+    NSArray *urls = @[MicroPage3,ResumeURL,WeChatApplet1,WeChatApplet2,MicroPage1,MicroPage2];
+    ResumeHomeScrollV.selectBlock = ^(NSInteger index, NSDictionary *dict) {
+        ResumeDetailViewController *con = ResumeHomeScrollV.contentScrollView.controllers[index];
+        con.dataurl = urls[index];
+    };
+    [ResumeHomeScrollV selectThePage:0];
 }
 
-#pragma mark - tableviewdelegate
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 20;
-}
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 60;
-}
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    ResumeViewCell *cell = [tableView dequeueReusableCellWithIdentifier: @"cell"];
-    if (cell == nil) {
-        cell = [[ResumeViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
-    [cell setdatawithdict:nil];
-    return cell;
-}
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSDictionary *dict = nil;
-    [self pushController:[ResumeDetailViewController class] withInfo:nil withTitle:[dict valueForJSONKey:@"name"] withOther:dict];
-    
-}
 
 @end
 

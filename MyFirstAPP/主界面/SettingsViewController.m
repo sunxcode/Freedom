@@ -7,7 +7,6 @@
 #import "SettingsViewController.h"
 @interface SettingsViewController ()<UITableViewDelegate,UITableViewDataSource>{
     UITableView *tableView1;
-    NSInteger i;
 }
 @end
 @implementation SettingsViewController
@@ -27,27 +26,23 @@
 -(id)initWithCoder:(NSCoder *)aDecoder{
     self = [super initWithCoder:aDecoder];
     if (self) {
-        self.contentLength = kScreenWidth*0.8;
+        self.contentLength = APPW*0.8;
         self.dismissByBackgroundTouch   = YES;
         self.dismissByBackgroundDrag    = YES;
         self.dismissByForegroundDrag    = YES;
     }return self;
 }
 -(UIView *)getheadView{
-    UIScrollView *s = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, APPW, 200)];
-    s.contentSize = CGSizeMake(0,0);
-    s.backgroundColor = [UIColor clearColor];
-    UIView *headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPW, 200)];
-    headView.backgroundColor = [UIColor yellowColor];
-    [s addSubview:headView];
-    return s;
+    UIView *headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPW*0.8, 200)];
+//    headView.backgroundColor = [UIColor yellowColor];
+    return headView;
 }
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 110;
+    return 20;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
@@ -55,7 +50,7 @@
         cell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, 0, 300, 100)];
     }
     cell.backgroundColor = [UIColor clearColor];
-    cell.textLabel.text = [NSString stringWithFormat:@"%ld",i++];
+    cell.textLabel.text = [NSString stringWithFormat:@"%ld",indexPath.row];
     return cell;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

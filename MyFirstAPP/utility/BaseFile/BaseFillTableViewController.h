@@ -13,6 +13,7 @@
 @property (nonatomic, strong) NSMutableArray *groups;
 @property (nonatomic, strong) NSMutableDictionary *values;
 @property (nonatomic, strong) UIView *tableFootView;
+@property (nonatomic, strong) UIView *tableHeadView;
 @property (nonatomic, strong)FBaseCell *c1;
 @property (nonatomic, strong)NSString *realname;
 @property (nonatomic, strong)NSString *phone;

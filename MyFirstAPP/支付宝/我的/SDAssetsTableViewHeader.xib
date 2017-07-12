@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -23,14 +23,14 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="110"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Opf-Hk-3b4">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userLogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="Opf-Hk-3b4">
                     <rect key="frame" x="10" y="12" width="50" height="50"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="KXc-Lx-6Wm"/>
                         <constraint firstAttribute="width" constant="50" id="iwV-ig-wsv"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="高少东" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DuB-UN-0LS">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="薛超" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DuB-UN-0LS">
                     <rect key="frame" x="78" y="12" width="137" height="23"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="137" id="Yld-LX-hSx"/>
@@ -40,14 +40,14 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ppc_qr" translatesAutoresizingMaskIntoConstraints="NO" id="HhD-cP-2MK">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UserErweima.pnger" translatesAutoresizingMaskIntoConstraints="NO" id="HhD-cP-2MK">
                     <rect key="frame" x="262" y="27" width="20" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="oYv-0M-ScX"/>
                         <constraint firstAttribute="width" constant="20" id="unG-qB-KSu"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15237166348" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rzj-b4-Y9s">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="18721064516" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rzj-b4-Y9s">
                     <rect key="frame" x="78" y="39" width="137" height="23"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="23" id="VQa-Pf-N8R"/>
@@ -209,7 +209,8 @@
         </view>
     </objects>
     <resources>
-        <image name="ppc_qr" width="22" height="22"/>
+        <image name="UserErweima.pnger" width="22" height="22"/>
         <image name="u_cell_right2" width="20" height="30"/>
+        <image name="userLogo.png" width="376" height="333"/>
     </resources>
 </document>

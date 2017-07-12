@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface ToutiaoMeViewController : UIViewController
+#import "BaseFillTableViewController.h"
+@interface ToutiaoMeViewController : BaseFillTableViewController
 
 @end

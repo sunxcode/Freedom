@@ -6,5 +6,5 @@
 //  Copyright © 2016年 薛超. All rights reserved.
 
 @interface ResumeDetailViewController : BaseViewController
-
+@property(nonatomic,strong)NSString *dataurl;
 @end

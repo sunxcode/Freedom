@@ -33,7 +33,7 @@
 #import "UIFont+expanded.h"       // 字体
 #import "TLUIUtility.h"
 #import "Masonry.h"
-#import <UMMobClick/MobClick.h>
+#import <MobClick.h>
 #import "ReactiveCocoa.h"
 #import "CocoaLumberjack.h"
 #import "BlocksKit.h"

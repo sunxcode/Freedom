@@ -29,6 +29,13 @@
 //FIXME:              支         付         宝              *******************/
 //https://doc.open.alipay.com
 //FIXME:           个         人         简         历           *******************/
+#define ResumeURL @"http://u1610639.jisuapp.cn/index.php?r=pc/Index/InvitationPreview&iswhere=2&id=2387216"//个人简历url
+#define WeChatApplet1 @"http://u1610639.jisuapp.cn/app?_app_id=FPNRLS1lOl"//我的微信小程序1
+#define WeChatApplet2 @"http://u1610639.jisuapp.cn/app?_app_id=BAAAFJfnF3"//我的微信小程序2
+#define MicroPage1 @"http://d.eqxiu.com/s/2laMmsfr?userKey=148636102478720979"//我的微页1与命运有约
+#define MicroPage2 @"http://www.rabbitpre.com/m/v6eyraMYd?lc=2&sui=VgLIRGWS#from=share"//我的微页2芳园生日快乐
+#define MicroPage3 @"http://www.rabbitpre.com/m/qUviFRIRP?lc=1&sui=Z9lylffK#from=share"//我的微页3超级说服力
+
 //FIXME:           个         人         应         用           *******************/
 //FIXME:           自         由         主         义           *******************/
 //FIXME:                   淘         宝                    *******************/
@@ -182,6 +189,7 @@
 
 
 //FIXME:           今         日         头         条           *******************/
+#define TTEnergyURL     @"http://api.nengapp.com/v2/info/ios/news/special?tagId=%@"//能见新闻从12到44
 //首页
 #define TTMonV1Settings @"http://mon.snssdk.com/monitor/appmonitor/v1/settings?iid=5464891932&os_version=9.3.5&aid=13&device_id=22794530286&app_name=news_article&channel=App%20Store&device_platform=iphone&idfa=470C6D16-2F27-41F5-A4B1-DEAADC9B491E&live_sdk_version=1.3.0&vid=C0136D0B-9B89-4D42-9AE4-78F96CDC2AFF&openudid=29da7256a52d98281947cb96a6357791c40289b9&device_type=iPhone%206&idfv=C0136D0B-9B89-4D42-9AE4-78F96CDC2AFF&ssmix=a&version_code=5.7.7&resolution=750*1334&ab_client=a1,b1,b7,f2,f7,e1&ac=WIFI&encrypt=close"//域名列表
 #define TTMonSettins    @"http://mon.snssdk.com/monitor/settings/?version_code=5.7.7&app_name=news_article&vid=C0136D0B-9B89-4D42-9AE4-78F96CDC2AFF&device_id=22794530286&channel=App%20Store&resolution=750*1334&aid=13&ab_version=72368,82650,79288&ab_feature=z1&ab_group=z1&openudid=29da7256a52d98281947cb96a6357791c40289b9&live_sdk_version=1.3.0&idfv=C0136D0B-9B89-4D42-9AE4-78F96CDC2AFF&ac=WIFI&os_version=9.3.5&ssmix=a&device_platform=iphone&iid=5464891932&ab_client=a1,b1,b7,f2,f7,e1&device_type=iPhone%206&idfa=470C6D16-2F27-41F5-A4B1-DEAADC9B491E"//新闻库

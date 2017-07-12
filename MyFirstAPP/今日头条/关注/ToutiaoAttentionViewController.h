@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ToutiaoAttentionViewController : UIViewController
+@interface ToutiaoAttentionViewController : BaseViewController
 
 @end
