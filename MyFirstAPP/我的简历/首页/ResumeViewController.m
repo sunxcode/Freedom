@@ -7,6 +7,7 @@
 //
 
 #import "ResumeViewController.h"
+#import "ResumeListViewController.h"
 #import "ResumeDetailViewController.h"
 @interface ResumeViewCell:BaseTableViewCell
 @end
@@ -28,15 +29,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"首页";
-    NSArray *titles = @[@"我的成长史",@"我的作品",@"我的经历",@"微页1",@"微页2",@"微页3"];
-    NSArray *controllers = @[@"ResumeDetailViewController",@"ResumeDetailViewController",@"ResumeDetailViewController",@"ResumeDetailViewController",@"ResumeDetailViewController",@"ResumeDetailViewController"];
-    ResumeHomeScrollV = [BaseScrollView sharedContentTitleViewWithFrame:CGRectMake(0, 0, APPW, APPH-TabBarH) titles:titles controllers:controllers inView:self.view];
-    NSArray *urls = @[MicroPage3,ResumeURL,WeChatApplet1,WeChatApplet2,MicroPage1,MicroPage2];
+    NSArray *a = [NSArray arrayWithObjects:@{@"pic":PuserLogo,@"name":@"我的简历",@"url":ResumeURL},@{@"pic":PuserLogo,@"name":@"微信小程序1",@"url":WeChatApplet1},@{@"pic":PuserLogo,@"name":@"微信小程序2",@"url":WeChatApplet2},
+                  @{@"pic":PuserLogo,@"name":@"微页1",@"url":MicroPage1},@{@"pic":PuserLogo,@"name":@"微页2",@"url":MicroPage2},@{@"pic":PuserLogo,@"name":@"微页3",@"url":MicroPage3}, nil];
+    NSArray *b = [NSArray arrayWithObjects:@{@"pic":PuserLogo,@"name":@"我的简历",@"url":ResumeURL},@{@"pic":PuserLogo,@"name":@"微信小程序1",@"url":WeChatApplet1},@{@"pic":PuserLogo,@"name":@"微信小程序2",@"url":WeChatApplet2},
+                  @{@"pic":PuserLogo,@"name":@"微页1",@"url":MicroPage1},@{@"pic":PuserLogo,@"name":@"微页2",@"url":MicroPage2},@{@"pic":PuserLogo,@"name":@"微页3",@"url":MicroPage3}, nil];
+    NSArray *c = [NSArray arrayWithObjects:@{@"pic":PuserLogo,@"name":@"我的简历",@"url":ResumeURL},@{@"pic":PuserLogo,@"name":@"微信小程序1",@"url":WeChatApplet1},@{@"pic":PuserLogo,@"name":@"微信小程序2",@"url":WeChatApplet2},
+                  @{@"pic":PuserLogo,@"name":@"微页1",@"url":MicroPage1},@{@"pic":PuserLogo,@"name":@"微页2",@"url":MicroPage2},@{@"pic":PuserLogo,@"name":@"微页3",@"url":MicroPage3}, nil];
+    NSArray *lists = @[a,b,c];
+    
+    NSArray *titles = @[@"我的成长史",@"我的作品",@"我的经历"];
+    NSArray *controllers = @[@"ResumeListViewController",@"ResumeListViewController",@"ResumeListViewController"];
+    ResumeHomeScrollV = [BaseScrollView sharedContentTitleViewWithFrame:CGRectMake(0, 0, APPW, APPH-TabBarH) titles:titles controllers:controllers inViewController:self];
+    @weakobj(ResumeHomeScrollV);
     ResumeHomeScrollV.selectBlock = ^(NSInteger index, NSDictionary *dict) {
-        ResumeDetailViewController *con = ResumeHomeScrollV.contentScrollView.controllers[index];
-        con.dataurl = urls[index];
+        ResumeListViewController *con = weak_ResumeHomeScrollV.contentScrollView.pushDelegateVC.childViewControllers[index];
+        con.listArray = lists[index];
     };
-    [ResumeHomeScrollV selectThePage:0];
 }
 
 

@@ -7,24 +7,24 @@
 #define NSLog(...) NSLog(__VA_ARGS__)
 #define ELog(err) {if(err) DLog(@"%@", err)}
 #define DLog(fmt, ...) {NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);}
-//@weakify(self)[self doSomething^{@strongify(self)[self back];}];
+//@weakobj(self)[self doSomething^{@strongobj(self)[self back];}];
 #if __has_feature(objc_arc)
-#define weakify(object) autoreleasepool{} __weak __typeof__(object) weak##_##object = object;
-#define strongify(object) autoreleasepool{} __typeof__(object) object = weak##_##object;
+#define weakobj(object) autoreleasepool{} __weak __typeof__(object) weak##_##object = object;
+#define strongobj(object) autoreleasepool{} __typeof__(object) object = weak##_##object;
 #else
-#define weakify(object) autoreleasepool{} __block __typeof__(object) block##_##object = object;
-#define strongify(object) autoreleasepool{} __typeof__(object) object = block##_##object;
+#define weakobj(object) autoreleasepool{} __block __typeof__(object) block##_##object = object;
+#define strongobj(object) autoreleasepool{} __typeof__(object) object = block##_##object;
 #endif
 #else
 #define NSLog(...)
 #define ELog(err)
 #define DLog(...)
 #if __has_feature(objc_arc)
-#define weakify(object) try{} @finally{} {} __weak __typeof__(object) weak##_##object = object;
-#define strongify(object) try{} @finally{} __typeof__(object) object = weak##_##object;
+#define weakobj(object) try{} @finally{} {} __weak __typeof__(object) weak##_##object = object;
+#define strongobj(object) try{} @finally{} __typeof__(object) object = weak##_##object;
 #else
-#define weakify(object) try{} @finally{} {} __block __typeof__(object) block##_##object = object;
-#define strongify(object) try{} @finally{} __typeof__(object) object = block##_##object;
+#define weakobj(object) try{} @finally{} {} __block __typeof__(object) block##_##object = object;
+#define strongobj(object) try{} @finally{} __typeof__(object) object = block##_##object;
 #endif
 #endif
 /**********************       系       统      **********************/
@@ -60,6 +60,7 @@
 
 
 #define WS(weakSelf)      __weak __typeof(&*self)weakSelf = self;
+
 /**********************     字     符    串     ***********************/
 #define alertErrorTxt     @"服务器异常,请稍后再试"
 /**********************       尺        寸      ***********************/

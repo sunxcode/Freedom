@@ -37,7 +37,7 @@
     [self setupModel];
     
     SDAssetsTableViewHeader *header = [[SDAssetsTableViewHeader alloc] init];
-    header.iconView.image = [UIImage imageNamed:@"tmall_icon"];
+    header.iconView.image = [UIImage imageNamed:PuserLogo];
     self.tableView.tableHeaderView = header;
     
 }

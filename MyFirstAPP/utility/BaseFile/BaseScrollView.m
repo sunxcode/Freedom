@@ -22,11 +22,11 @@
         self.frame = frame;
     } return self;
 }
-- (NSMutableArray *)controllers{
-    if (_controllers == nil) {
-        _controllers = [NSMutableArray array];
+- (NSMutableArray *)contentViews{
+    if (_contentViews == nil) {
+        _contentViews = [NSMutableArray array];
     }
-    return _controllers;
+    return _contentViews;
 }
 //FIXME:分类平分展示视图
 +(BaseScrollView *)sharedSegmentWithFrame:(CGRect)frame Titles:(NSArray*)titles{
@@ -251,12 +251,13 @@
     DLog(@"最终的frameY是：%lf",H(self));
 }
 //FIXME:内容视图滑动，如新闻类
-+(BaseScrollView *)sharedContentViewWithFrame:(CGRect)frame controllers:(NSArray*)controllers{
++(BaseScrollView *)sharedContentViewWithFrame:(CGRect)frame controllers:(NSArray*)controllers inViewController:(BaseViewController *)NVC{
     BaseScrollView *contentView = [[self alloc]initWithFrame:frame];
-    [contentView setContentViewWithControllers:controllers];
+    [contentView setContentViewWithControllers:controllers inViewController:NVC];
+    contentView.pushDelegateVC = NVC;
     return contentView;
 }
--(void)setContentViewWithControllers:(NSArray*)controllers{
+-(void)setContentViewWithControllers:(NSArray*)controllers inViewController:(BaseViewController*)NVC{
     self.delegate = self;count = controllers.count;
     self.contentSize = CGSizeMake(APPW * count, 0);
     self.tag = MyScrollTypeContentView;
@@ -265,9 +266,9 @@
     [self setContentOffset:CGPointMake(0, 0) animated:NO];
     for (int i = 0; i<count; i++) {
         UIViewController *vc = [[NSClassFromString(controllers[i]) alloc]init];
-        [self.controllers addObject:vc];
+        [NVC addChildViewController:vc];
     }
-    UIViewController *vc = self.controllers[0];
+    UIViewController *vc = NVC.childViewControllers[0];
     vc.view.frame = CGRectMake(0, 0, APPW, H(self));
     [self addSubview:vc.view];
 //    for(int i=0;i<count;i++){
@@ -278,11 +279,12 @@
 //    }
 }
 //FIXME:内容视图滑动，如新闻类，同时自带标题的滑动
-+(BaseScrollView *)sharedContentTitleViewWithFrame:(CGRect)frame titles:(NSArray *)titles controllers:(NSArray *)controllers inView:(UIView *)view{
++(BaseScrollView *)sharedContentTitleViewWithFrame:(CGRect)frame titles:(NSArray *)titles controllers:(NSArray *)controllers inViewController:(BaseViewController *)NVC{
     BaseScrollView *contentView = [[self alloc]initWithFrame:frame];
     contentView.tag = MyScrollTypeContentTitleView;
     contentView.titleScrollView = [BaseScrollView sharedSegmentWithFrame:CGRectMake(frame.origin.x, frame.origin.y, W(contentView), 40) Titles:titles];
-    contentView.contentScrollView = [BaseScrollView sharedContentViewWithFrame:CGRectMake(X(contentView),YH(contentView.titleScrollView), W(contentView), H(contentView)-H(contentView.titleScrollView)) controllers:controllers];
+    contentView.contentScrollView = [BaseScrollView sharedContentViewWithFrame:CGRectMake(X(contentView),YH(contentView.titleScrollView), W(contentView), H(contentView)-H(contentView.titleScrollView)) controllers:controllers inViewController:NVC];
+    contentView.pushDelegateVC = NVC;
     __weak __typeof(BaseScrollView*)weakSelf = contentView;
     contentView.titleScrollView.selectBlock = ^(NSInteger index, NSDictionary *dict) {
         weakSelf.selectBlock(index,dict);
@@ -305,7 +307,7 @@
 //        UIColor * leftColor = [UIColor colorWithRed:230 green:230 blue:230 alpha:1];
 //        [leftButton setTitleColor:leftColor forState:UIControlStateNormal];
 //        [rightButton setTitleColor:rightColor forState:UIControlStateNormal];
-        UIViewController * vc = weakSelf.contentScrollView.controllers[index];
+        UIViewController * vc = NVC.childViewControllers[index];
         if (vc.view.superview) {weakSelf.contentScrollView.contentOffset = CGPointMake(APPW * index, 0);return;}
         vc.view.frame = CGRectMake(APPW * index , 0, APPW, H(contentView) - YH(contentView.titleScrollView));
         [weakSelf.contentScrollView addSubview:vc.view];
@@ -328,19 +330,20 @@
         button.backgroundColor = whitecolor;
 //        button.transform = CGAffineTransformMakeScale(1.5, 1.5);//放大的效果,放大1.5倍
     };
-    [view addSubview:contentView.titleScrollView];[view addSubview:contentView.contentScrollView];
+    [NVC.view addSubview:contentView.titleScrollView];[NVC.view addSubview:contentView.contentScrollView];
     return contentView;
 }
 //FIXME:内容视图滑动，如新闻类，同时自带拥有图标的标题的滑动
-+(BaseScrollView *)sharedContentIconViewWithFrame:(CGRect)frame titles:(NSArray *)titles icons:(NSArray *)icons controllers:(NSArray *)controllers inView:(UIView *)view{
++(BaseScrollView *)sharedContentIconViewWithFrame:(CGRect)frame titles:(NSArray *)titles icons:(NSArray *)icons controllers:(NSArray *)controllers inViewController:(BaseViewController *)NVC{
     BaseScrollView *contentView = [[self alloc]initWithFrame:frame];
     contentView.tag = MyScrollTypeContentIconView;
     contentView.titleScrollView = [BaseScrollView sharedTitleIconScrollWithFrame:CGRectMake(frame.origin.x, frame.origin.y, W(contentView), 60)  Titles:titles icons:icons];
-    contentView.contentScrollView = [BaseScrollView sharedContentViewWithFrame:CGRectMake(X(contentView),YH(contentView.titleScrollView), W(contentView), H(contentView)-H(contentView.titleScrollView)) controllers:controllers];
+    contentView.contentScrollView = [BaseScrollView sharedContentViewWithFrame:CGRectMake(X(contentView),YH(contentView.titleScrollView), W(contentView), H(contentView)-H(contentView.titleScrollView)) controllers:controllers inViewController:NVC];
+    contentView.pushDelegateVC = NVC;
     __weak __typeof(BaseScrollView*)weakSelf = contentView;
     contentView.titleScrollView.selectBlock = ^(NSInteger index, NSDictionary *dict) {
         weakSelf.selectBlock(index,dict);
-        UIViewController * vc = weakSelf.contentScrollView.controllers[index];
+        UIViewController * vc = NVC.childViewControllers[index];
         if (vc.view.superview) {weakSelf.contentScrollView.contentOffset = CGPointMake(APPW * index, 0);return;}
         vc.view.frame = CGRectMake(APPW * index , 0, APPW, H(contentView) - YH(contentView.titleScrollView));
         [weakSelf.contentScrollView addSubview:vc.view];
@@ -355,7 +358,7 @@
         UIButton *button = (UIButton *)[weakSelf.titleScrollView viewWithTag:10 + index];
         button.backgroundColor = [UIColor whiteColor];
     };
-    [view addSubview:contentView.titleScrollView];[view addSubview:contentView.contentScrollView];
+    [NVC.view addSubview:contentView.titleScrollView];[NVC.view addSubview:contentView.contentScrollView];
     return contentView;
 }
 //FIXME:横着的滚动视图一般见推荐或广告
@@ -561,14 +564,14 @@
         }else{
             view = block(i-1);
         }
-        [self.controllers addObject:view];
+        [self.contentViews addObject:view];
     }
     float starx=0;
     float stary=0;
-    UIView *view1 = self.controllers[num-1];
+    UIView *view1 = self.contentViews[num-1];
     [self addSubview:view1];
     for (int i = 0; i < num+2; i++) {
-        UIView *view = self.controllers[i];
+        UIView *view = self.contentViews[i];
         view.frame = CGRectMake(starx, stary, view.frameWidth, view.frameHeight);
         if(vertical){
             stary += view.frameHeight;
@@ -623,7 +626,8 @@
             [self setBaseItemWithIcons:icons titles:titles size:size hang:2 round:round];
         }break;
         case MyScrollTypeContentView:{
-            [self setContentViewWithControllers:controllers];
+//            [self setContentViewWithControllers:controllers];
+#warning TOTO
         }break;
         case MyScrollTypeContentTitleView:{
             DLog(@"暂不支持");
@@ -964,7 +968,7 @@
             if(self.selectBlock){
                 _selectBlock(i,nil);
             }
-            UIViewController * vc = self.controllers[i];
+            UIViewController * vc = self.pushDelegateVC.childViewControllers[i];
             if (vc.view.superview) {return;}
             vc.view.frame = CGRectMake(x, 0, APPW,H(self));
             [self addSubview:vc.view];
@@ -975,7 +979,7 @@
             if(self.selectBlock){
                 _selectBlock(i,nil);
             }
-            UIViewController * vc = self.controllers[i];
+            UIViewController * vc = self.pushDelegateVC.childViewControllers[i];
             if (vc.view.superview) {return;}
             vc.view.frame = CGRectMake(x, 0, APPW,H(self));
             [self addSubview:vc.view];
@@ -986,7 +990,7 @@
             if(self.selectBlock){
                 _selectBlock(i,nil);
             }
-            UIViewController * vc = self.controllers[i];
+            UIViewController * vc = self.pushDelegateVC.childViewControllers[i];
             if (vc.view.superview) {return;}
             vc.view.frame = CGRectMake(x, 0, APPW,H(self));
             [self addSubview:vc.view];

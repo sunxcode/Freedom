@@ -190,7 +190,7 @@
 }
 -(void)imageWithURL:(NSString *)url useProgress:(BOOL)useProgress useActivity:(BOOL)useActivity
 {
-    [self imageWithURL:url useProgress:useProgress useActivity:useActivity defaultImage:@"dd_album"];
+    [self imageWithURL:url useProgress:useProgress useActivity:useActivity defaultImage:Palbum_y];
 }
 -(void)imageWithURL:(NSString *)url useProgress:(BOOL)useProgress useActivity:(BOOL)useActivity defaultImage:(NSString *)strImage
 {

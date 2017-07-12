@@ -954,6 +954,19 @@
 		778E93AF1D69B229004D899C /* SWGeneralSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 778E93AE1D69B229004D899C /* SWGeneralSettingViewController.m */; };
 		778E93B21D69CB86004D899C /* XFMessageChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 778E93B11D69CB86004D899C /* XFMessageChartViewController.m */; };
 		778E93B51D69CC24004D899C /* XFMessageChartData.m in Sources */ = {isa = PBXBuildFile; fileRef = 778E93B41D69CC24004D899C /* XFMessageChartData.m */; };
+		7795CC9F1E4AB4AF006ED4F7 /* ResumeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7795CC9E1E4AB4AF006ED4F7 /* ResumeListViewController.m */; };
+		7795CCA21E4B18D1006ED4F7 /* PersonalInternetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7795CCA11E4B18D1006ED4F7 /* PersonalInternetViewController.m */; };
+		7795CCA51E4B18F7006ED4F7 /* PersonalEducationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7795CCA41E4B18F7006ED4F7 /* PersonalEducationViewController.m */; };
+		7795CCA81E4B1906006ED4F7 /* PersonalSoftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7795CCA71E4B1906006ED4F7 /* PersonalSoftViewController.m */; };
+		7795CCAB1E4B1918006ED4F7 /* PersonalHardwareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7795CCAA1E4B1918006ED4F7 /* PersonalHardwareViewController.m */; };
+		7795CCAE1E4B1923006ED4F7 /* PersonalComputerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7795CCAD1E4B1923006ED4F7 /* PersonalComputerViewController.m */; };
+		7795CCB11E4B1934006ED4F7 /* PersonalFoodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7795CCB01E4B1934006ED4F7 /* PersonalFoodViewController.m */; };
+		7795CCB41E4B1958006ED4F7 /* PersonalFastGoodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7795CCB31E4B1958006ED4F7 /* PersonalFastGoodsViewController.m */; };
+		7795CCB71E4B197B006ED4F7 /* PersonalConsumerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7795CCB61E4B197B006ED4F7 /* PersonalConsumerViewController.m */; };
+		7795CCBA1E4B1987006ED4F7 /* PersonalPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7795CCB91E4B1987006ED4F7 /* PersonalPhoneViewController.m */; };
+		7795CCBD1E4B19A6006ED4F7 /* PersonalHouseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7795CCBC1E4B19A6006ED4F7 /* PersonalHouseViewController.m */; };
+		7795CCC01E4B19B1006ED4F7 /* PersonalCarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7795CCBF1E4B19B1006ED4F7 /* PersonalCarViewController.m */; };
+		7795CCC31E4B19D0006ED4F7 /* PersonalLuxuryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7795CCC21E4B19D0006ED4F7 /* PersonalLuxuryViewController.m */; };
 		779937B41E2F1DBC00866968 /* EnergyShopFindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779937B31E2F1DBC00866968 /* EnergyShopFindViewController.m */; };
 		779937B71E2F1DD300866968 /* EnergyShopCarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779937B61E2F1DD300866968 /* EnergyShopCarViewController.m */; };
 		779937BA1E2F1DE100866968 /* EnergyShopMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779937B91E2F1DE100866968 /* EnergyShopMeViewController.m */; };
@@ -1328,8 +1341,6 @@
 		779B81FA1D7D47B500B23DFA /* EnergySuperMarketTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81F91D7D47B500B23DFA /* EnergySuperMarketTabBarController.m */; };
 		779B82001D7D491500B23DFA /* EnergyContactDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81FF1D7D491500B23DFA /* EnergyContactDetailViewController.m */; };
 		779B82031D7D4B2400B23DFA /* PersonalApplyNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B82021D7D4B2400B23DFA /* PersonalApplyNavigationController.m */; };
-		779B82061D7D4C6B00B23DFA /* PersonalIndustryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B82051D7D4C6B00B23DFA /* PersonalIndustryViewController.m */; };
-		779B82091D7D4CC100B23DFA /* PersonalCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B82081D7D4CC100B23DFA /* PersonalCompanyViewController.m */; };
 		779B820C1D7D4F0400B23DFA /* ResumeNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B820B1D7D4F0400B23DFA /* ResumeNavigationController.m */; };
 		779B82131D7D501E00B23DFA /* ResumeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B82121D7D501E00B23DFA /* ResumeViewController.m */; };
 		779B82161D7D506700B23DFA /* ResumeBusinessCooperationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B82151D7D506700B23DFA /* ResumeBusinessCooperationVC.m */; };
@@ -2969,6 +2980,32 @@
 		778E93B11D69CB86004D899C /* XFMessageChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XFMessageChartViewController.m; sourceTree = "<group>"; };
 		778E93B31D69CC24004D899C /* XFMessageChartData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XFMessageChartData.h; sourceTree = "<group>"; };
 		778E93B41D69CC24004D899C /* XFMessageChartData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XFMessageChartData.m; sourceTree = "<group>"; };
+		7795CC9D1E4AB4AF006ED4F7 /* ResumeListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResumeListViewController.h; sourceTree = "<group>"; };
+		7795CC9E1E4AB4AF006ED4F7 /* ResumeListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResumeListViewController.m; sourceTree = "<group>"; };
+		7795CCA01E4B18D1006ED4F7 /* PersonalInternetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalInternetViewController.h; sourceTree = "<group>"; };
+		7795CCA11E4B18D1006ED4F7 /* PersonalInternetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalInternetViewController.m; sourceTree = "<group>"; };
+		7795CCA31E4B18F7006ED4F7 /* PersonalEducationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalEducationViewController.h; sourceTree = "<group>"; };
+		7795CCA41E4B18F7006ED4F7 /* PersonalEducationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalEducationViewController.m; sourceTree = "<group>"; };
+		7795CCA61E4B1906006ED4F7 /* PersonalSoftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalSoftViewController.h; sourceTree = "<group>"; };
+		7795CCA71E4B1906006ED4F7 /* PersonalSoftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalSoftViewController.m; sourceTree = "<group>"; };
+		7795CCA91E4B1918006ED4F7 /* PersonalHardwareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalHardwareViewController.h; sourceTree = "<group>"; };
+		7795CCAA1E4B1918006ED4F7 /* PersonalHardwareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalHardwareViewController.m; sourceTree = "<group>"; };
+		7795CCAC1E4B1923006ED4F7 /* PersonalComputerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalComputerViewController.h; sourceTree = "<group>"; };
+		7795CCAD1E4B1923006ED4F7 /* PersonalComputerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalComputerViewController.m; sourceTree = "<group>"; };
+		7795CCAF1E4B1934006ED4F7 /* PersonalFoodViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalFoodViewController.h; sourceTree = "<group>"; };
+		7795CCB01E4B1934006ED4F7 /* PersonalFoodViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalFoodViewController.m; sourceTree = "<group>"; };
+		7795CCB21E4B1958006ED4F7 /* PersonalFastGoodsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalFastGoodsViewController.h; sourceTree = "<group>"; };
+		7795CCB31E4B1958006ED4F7 /* PersonalFastGoodsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalFastGoodsViewController.m; sourceTree = "<group>"; };
+		7795CCB51E4B197B006ED4F7 /* PersonalConsumerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalConsumerViewController.h; sourceTree = "<group>"; };
+		7795CCB61E4B197B006ED4F7 /* PersonalConsumerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalConsumerViewController.m; sourceTree = "<group>"; };
+		7795CCB81E4B1987006ED4F7 /* PersonalPhoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalPhoneViewController.h; sourceTree = "<group>"; };
+		7795CCB91E4B1987006ED4F7 /* PersonalPhoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalPhoneViewController.m; sourceTree = "<group>"; };
+		7795CCBB1E4B19A6006ED4F7 /* PersonalHouseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalHouseViewController.h; sourceTree = "<group>"; };
+		7795CCBC1E4B19A6006ED4F7 /* PersonalHouseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalHouseViewController.m; sourceTree = "<group>"; };
+		7795CCBE1E4B19B1006ED4F7 /* PersonalCarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCarViewController.h; sourceTree = "<group>"; };
+		7795CCBF1E4B19B1006ED4F7 /* PersonalCarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalCarViewController.m; sourceTree = "<group>"; };
+		7795CCC11E4B19D0006ED4F7 /* PersonalLuxuryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalLuxuryViewController.h; sourceTree = "<group>"; };
+		7795CCC21E4B19D0006ED4F7 /* PersonalLuxuryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalLuxuryViewController.m; sourceTree = "<group>"; };
 		779937B21E2F1DBC00866968 /* EnergyShopFindViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnergyShopFindViewController.h; sourceTree = "<group>"; };
 		779937B31E2F1DBC00866968 /* EnergyShopFindViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnergyShopFindViewController.m; sourceTree = "<group>"; };
 		779937B51E2F1DD300866968 /* EnergyShopCarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnergyShopCarViewController.h; sourceTree = "<group>"; };
@@ -3390,10 +3427,6 @@
 		779B81FF1D7D491500B23DFA /* EnergyContactDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnergyContactDetailViewController.m; sourceTree = "<group>"; };
 		779B82011D7D4B2400B23DFA /* PersonalApplyNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalApplyNavigationController.h; sourceTree = "<group>"; };
 		779B82021D7D4B2400B23DFA /* PersonalApplyNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalApplyNavigationController.m; sourceTree = "<group>"; };
-		779B82041D7D4C6B00B23DFA /* PersonalIndustryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalIndustryViewController.h; sourceTree = "<group>"; };
-		779B82051D7D4C6B00B23DFA /* PersonalIndustryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalIndustryViewController.m; sourceTree = "<group>"; };
-		779B82071D7D4CC100B23DFA /* PersonalCompanyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCompanyViewController.h; sourceTree = "<group>"; };
-		779B82081D7D4CC100B23DFA /* PersonalCompanyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalCompanyViewController.m; sourceTree = "<group>"; };
 		779B820A1D7D4F0400B23DFA /* ResumeNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResumeNavigationController.h; sourceTree = "<group>"; };
 		779B820B1D7D4F0400B23DFA /* ResumeNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResumeNavigationController.m; sourceTree = "<group>"; };
 		779B82111D7D501E00B23DFA /* ResumeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResumeViewController.h; sourceTree = "<group>"; };
@@ -4728,6 +4761,8 @@
 		7745C21B1D671715002212DE /* 房地产行业 */ = {
 			isa = PBXGroup;
 			children = (
+				7795CCBB1E4B19A6006ED4F7 /* PersonalHouseViewController.h */,
+				7795CCBC1E4B19A6006ED4F7 /* PersonalHouseViewController.m */,
 			);
 			path = "房地产行业";
 			sourceTree = "<group>";
@@ -4735,6 +4770,8 @@
 		7745C21C1D671715002212DE /* 个人电脑 */ = {
 			isa = PBXGroup;
 			children = (
+				7795CCAC1E4B1923006ED4F7 /* PersonalComputerViewController.h */,
+				7795CCAD1E4B1923006ED4F7 /* PersonalComputerViewController.m */,
 			);
 			path = "个人电脑";
 			sourceTree = "<group>";
@@ -4742,6 +4779,8 @@
 		7745C21D1D671715002212DE /* 互联网行业 */ = {
 			isa = PBXGroup;
 			children = (
+				7795CCA01E4B18D1006ED4F7 /* PersonalInternetViewController.h */,
+				7795CCA11E4B18D1006ED4F7 /* PersonalInternetViewController.m */,
 			);
 			path = "互联网行业";
 			sourceTree = "<group>";
@@ -4760,6 +4799,8 @@
 		7745C21F1D671715002212DE /* 计算机软件 */ = {
 			isa = PBXGroup;
 			children = (
+				7795CCA61E4B1906006ED4F7 /* PersonalSoftViewController.h */,
+				7795CCA71E4B1906006ED4F7 /* PersonalSoftViewController.m */,
 			);
 			path = "计算机软件";
 			sourceTree = "<group>";
@@ -4767,6 +4808,8 @@
 		7745C2201D671715002212DE /* 计算机硬件 */ = {
 			isa = PBXGroup;
 			children = (
+				7795CCA91E4B1918006ED4F7 /* PersonalHardwareViewController.h */,
+				7795CCAA1E4B1918006ED4F7 /* PersonalHardwareViewController.m */,
 			);
 			path = "计算机硬件";
 			sourceTree = "<group>";
@@ -4774,6 +4817,8 @@
 		7745C2211D671715002212DE /* 教育培训行业 */ = {
 			isa = PBXGroup;
 			children = (
+				7795CCA31E4B18F7006ED4F7 /* PersonalEducationViewController.h */,
+				7795CCA41E4B18F7006ED4F7 /* PersonalEducationViewController.m */,
 			);
 			path = "教育培训行业";
 			sourceTree = "<group>";
@@ -4781,6 +4826,8 @@
 		7745C2221D671715002212DE /* 快消品行业 */ = {
 			isa = PBXGroup;
 			children = (
+				7795CCB21E4B1958006ED4F7 /* PersonalFastGoodsViewController.h */,
+				7795CCB31E4B1958006ED4F7 /* PersonalFastGoodsViewController.m */,
 			);
 			path = "快消品行业";
 			sourceTree = "<group>";
@@ -4788,6 +4835,8 @@
 		7745C2231D671715002212DE /* 耐消品行业 */ = {
 			isa = PBXGroup;
 			children = (
+				7795CCB51E4B197B006ED4F7 /* PersonalConsumerViewController.h */,
+				7795CCB61E4B197B006ED4F7 /* PersonalConsumerViewController.m */,
 			);
 			path = "耐消品行业";
 			sourceTree = "<group>";
@@ -4795,6 +4844,8 @@
 		7745C2241D671715002212DE /* 汽车行业 */ = {
 			isa = PBXGroup;
 			children = (
+				7795CCBE1E4B19B1006ED4F7 /* PersonalCarViewController.h */,
+				7795CCBF1E4B19B1006ED4F7 /* PersonalCarViewController.m */,
 			);
 			path = "汽车行业";
 			sourceTree = "<group>";
@@ -4802,6 +4853,8 @@
 		7745C2251D671715002212DE /* 奢侈品行业 */ = {
 			isa = PBXGroup;
 			children = (
+				7795CCC11E4B19D0006ED4F7 /* PersonalLuxuryViewController.h */,
+				7795CCC21E4B19D0006ED4F7 /* PersonalLuxuryViewController.m */,
 			);
 			path = "奢侈品行业";
 			sourceTree = "<group>";
@@ -4809,6 +4862,8 @@
 		7745C2261D671715002212DE /* 食品连锁 */ = {
 			isa = PBXGroup;
 			children = (
+				7795CCAF1E4B1934006ED4F7 /* PersonalFoodViewController.h */,
+				7795CCB01E4B1934006ED4F7 /* PersonalFoodViewController.m */,
 			);
 			path = "食品连锁";
 			sourceTree = "<group>";
@@ -4816,6 +4871,8 @@
 		7745C2271D671715002212DE /* 手机市场 */ = {
 			isa = PBXGroup;
 			children = (
+				7795CCB81E4B1987006ED4F7 /* PersonalPhoneViewController.h */,
+				7795CCB91E4B1987006ED4F7 /* PersonalPhoneViewController.m */,
 			);
 			path = "手机市场";
 			sourceTree = "<group>";
@@ -7176,10 +7233,6 @@
 				771917461D6599EB002F2BCD /* PersonalApply.storyboard */,
 				771917791D65C2B2002F2BCD /* PersonalApplyViewController.h */,
 				7719177A1D65C2B2002F2BCD /* PersonalApplyViewController.m */,
-				779B82041D7D4C6B00B23DFA /* PersonalIndustryViewController.h */,
-				779B82051D7D4C6B00B23DFA /* PersonalIndustryViewController.m */,
-				779B82071D7D4CC100B23DFA /* PersonalCompanyViewController.h */,
-				779B82081D7D4CC100B23DFA /* PersonalCompanyViewController.m */,
 			);
 			path = "个人应用";
 			sourceTree = "<group>";
@@ -8071,6 +8124,8 @@
 			children = (
 				779B82111D7D501E00B23DFA /* ResumeViewController.h */,
 				779B82121D7D501E00B23DFA /* ResumeViewController.m */,
+				7795CC9D1E4AB4AF006ED4F7 /* ResumeListViewController.h */,
+				7795CC9E1E4AB4AF006ED4F7 /* ResumeListViewController.m */,
 				779B821D1D7D512500B23DFA /* ResumeDetailViewController.h */,
 				779B821E1D7D512500B23DFA /* ResumeDetailViewController.m */,
 			);
@@ -9396,6 +9451,7 @@
 				776461151D6843EC00ACCCAC /* TLTagsViewController.m in Sources */,
 				7741F1E51D6D538D00EED332 /* SDAssetsTableViewHeader.m in Sources */,
 				778E8F311D6961E3004D899C /* XFAccountTool.m in Sources */,
+				7795CCC31E4B19D0006ED4F7 /* PersonalLuxuryViewController.m in Sources */,
 				778E8F751D69633E004D899C /* FXBlurView.m in Sources */,
 				776460FC1D6843EC00ACCCAC /* TLFriendDetailViewController+Delegate.m in Sources */,
 				776461811D6843F900ACCCAC /* TLShoppingViewController.m in Sources */,
@@ -9460,7 +9516,6 @@
 				776462751D68445800ACCCAC /* TLEmoji.m in Sources */,
 				771917601D65C239002F2BCD /* WechartViewController.m in Sources */,
 				776463531D68463600ACCCAC /* TLFriendHelper+Detail.m in Sources */,
-				779B82091D7D4CC100B23DFA /* PersonalCompanyViewController.m in Sources */,
 				771917841D65C2DB002F2BCD /* BooksViewController.m in Sources */,
 				778E93661D699D8C004D899C /* XFComposePhotosView.m in Sources */,
 				774BFB3C1D76744F005CA603 /* KugouTools.m in Sources */,
@@ -9498,6 +9553,7 @@
 				7764625E1D68445800ACCCAC /* TLChatGroupDetailViewController.m in Sources */,
 				779B821C1D7D50B000B23DFA /* ResumeCallMeViewController.m in Sources */,
 				778E8EFF1D696020004D899C /* XFLoadMoreFooter.m in Sources */,
+				7795CCB71E4B197B006ED4F7 /* PersonalConsumerViewController.m in Sources */,
 				776463461D68460B00ACCCAC /* TLMessageManager.m in Sources */,
 				773D56AB1D79564D00A0C615 /* JFSubscribeModel.m in Sources */,
 				7764627B1D68445800ACCCAC /* TLEmojiKeyboard.m in Sources */,
@@ -9514,6 +9570,7 @@
 				7788ACAC1D7997EC00376C95 /* ILRegularExpressionManager.m in Sources */,
 				7788AC721D79972300376C95 /* NJKWebViewProgressView.m in Sources */,
 				7764637D1D68467500ACCCAC /* TLAddMenuHelper.m in Sources */,
+				7795CCAB1E4B1918006ED4F7 /* PersonalHardwareViewController.m in Sources */,
 				776463651D68465400ACCCAC /* TLMineHelper.m in Sources */,
 				7745C2731D672451002212DE /* BooksTabBarController.m in Sources */,
 				776461C61D68440600ACCCAC /* TLExpressionDetailCell.m in Sources */,
@@ -9523,6 +9580,7 @@
 				779937B71E2F1DD300866968 /* EnergyShopCarViewController.m in Sources */,
 				776461711D6843F900ACCCAC /* TLMomentExtensionLikedCell.m in Sources */,
 				778E93471D699D74004D899C /* XFNavigationController.m in Sources */,
+				7795CCC01E4B19B1006ED4F7 /* PersonalCarViewController.m in Sources */,
 				7764627D1D68445800ACCCAC /* TLMoreKeyboardItem.m in Sources */,
 				778E93481D699D74004D899C /* XFSearchBar.m in Sources */,
 				77BD14B61D6E820500DE5DB9 /* UIGestureRecognizer+YYAdd.m in Sources */,
@@ -9637,6 +9695,7 @@
 				776461771D6843F900ACCCAC /* TLMomentsViewController+TableView.m in Sources */,
 				774BFB1F1D767389005CA603 /* LyricsView.m in Sources */,
 				776460A11D6843E100ACCCAC /* TLAddMenuCell.m in Sources */,
+				7795CCB11E4B1934006ED4F7 /* PersonalFoodViewController.m in Sources */,
 				7745C24F1D672336002212DE /* AlipayTabBarController.m in Sources */,
 				7788AC9E1D7997DB00376C95 /* YMTableViewCell.m in Sources */,
 				77BD162E1D6EBDC400DE5DB9 /* UIScrollView+PageControl.m in Sources */,
@@ -9674,6 +9733,7 @@
 				7764610E1D6843EC00ACCCAC /* TLContactsViewController.m in Sources */,
 				778E8F721D696335004D899C /* XFNewFeatureController.m in Sources */,
 				776462801D68445800ACCCAC /* TLExpressionMessageCell.m in Sources */,
+				7795CCA21E4B18D1006ED4F7 /* PersonalInternetViewController.m in Sources */,
 				778E93451D699D74004D899C /* XFDropdownView.m in Sources */,
 				776461791D6843F900ACCCAC /* TLScannerBackgroundView.m in Sources */,
 				779B82191D7D509D00B23DFA /* ResumeTheorySystemViewController.m in Sources */,
@@ -9762,7 +9822,6 @@
 				7764631A1D68452B00ACCCAC /* TLTableViewCell.m in Sources */,
 				7741F1F51D6D53B700EED332 /* SDYuEBaoTableViewController.m in Sources */,
 				77CC4F441D90E07A00DD2EC8 /* BaseTabBarController.m in Sources */,
-				779B82061D7D4C6B00B23DFA /* PersonalIndustryViewController.m in Sources */,
 				7741F1D41D6D530300EED332 /* SDHomeGridView.m in Sources */,
 				7764606D1D68437F00ACCCAC /* TLDBExpressionStore.m in Sources */,
 				779937F51E2F58F600866968 /* UIFont+expanded.m in Sources */,
@@ -9828,6 +9887,7 @@
 				773D56C31D79568C00A0C615 /* JFLoginBtnCell.m in Sources */,
 				778E93721D699D8C004D899C /* XFEmotionTool.m in Sources */,
 				778E8F0C1D696059004D899C /* XFMessageViewController.m in Sources */,
+				7795CCBD1E4B19A6006ED4F7 /* PersonalHouseViewController.m in Sources */,
 				77BD16481D6EC53300DE5DB9 /* SingleOneSectionTableViewController.m in Sources */,
 				776462611D68445800ACCCAC /* TLChatFileViewController.m in Sources */,
 				773D56B41D79565800A0C615 /* JFSubScribeCardView.m in Sources */,
@@ -9863,6 +9923,7 @@
 				7788AC4E1D7996CE00376C95 /* E_MagnifiterView.m in Sources */,
 				7759B7651D0EA3E900AE3A59 /* NSString+expanded.m in Sources */,
 				77D1656C1DACDCE700334044 /* NSArray+jsonstr.m in Sources */,
+				7795CCB41E4B1958006ED4F7 /* PersonalFastGoodsViewController.m in Sources */,
 				778E93491D699D74004D899C /* XFTabBar.m in Sources */,
 				773D568E1D7955AE00A0C615 /* JFSearchHistoryCell.m in Sources */,
 				77CC4F301D90DCB400DD2EC8 /* FogetKeyViewController.m in Sources */,
@@ -9889,6 +9950,7 @@
 				776462C31D68446300ACCCAC /* TLPrivacySettingViewController.m in Sources */,
 				7741F1BF1D6D528E00EED332 /* SDServiceTableViewController.m in Sources */,
 				779937C31E2F1F0300866968 /* EnergySuperMeViewController.m in Sources */,
+				7795CCA51E4B18F7006ED4F7 /* PersonalEducationViewController.m in Sources */,
 				776461D31D68440600ACCCAC /* TLMyQRCodeViewController.m in Sources */,
 				774BFB3A1D76744F005CA603 /* CLConst.m in Sources */,
 				776462B61D68446300ACCCAC /* TLAboutHeaderView.m in Sources */,
@@ -9902,6 +9964,7 @@
 				776461691D6843F900ACCCAC /* TLMomentHeaderCell.m in Sources */,
 				776463831D68471300ACCCAC /* TLBaseDataModel.m in Sources */,
 				776463161D68452B00ACCCAC /* TLSettingViewController.m in Sources */,
+				7795CCA81E4B1906006ED4F7 /* PersonalSoftViewController.m in Sources */,
 				7719176F1D65C27C002F2BCD /* DianpingViewController.m in Sources */,
 				776461011D6843EC00ACCCAC /* TLFriendsViewController+Delegate.m in Sources */,
 				77FD03CD1E25E4E900E5099E /* TaobaoMiniTopicViewController.m in Sources */,
@@ -9930,6 +9993,7 @@
 				779937EC1E2F523800866968 /* MBProgressHUD+expanded.m in Sources */,
 				77ECE0E31D5D5EAF004AE122 /* MyCoreData.xcdatamodeld in Sources */,
 				776461801D6843F900ACCCAC /* TLShakeViewController.m in Sources */,
+				7795CCAE1E4B1923006ED4F7 /* PersonalComputerViewController.m in Sources */,
 				776463131D68452B00ACCCAC /* TLSettingSwitchCell.m in Sources */,
 				774BFB3D1D76744F005CA603 /* TabBarView.m in Sources */,
 				7788AC331D7996B100376C95 /* NSDate+NSDate_E_Date.m in Sources */,
@@ -9976,6 +10040,7 @@
 				7764626C1D68445800ACCCAC /* TLImageExpressionDisplayView.m in Sources */,
 				776463781D68466200ACCCAC /* TLPrivacySettingHelper.m in Sources */,
 				771917691D65C25F002F2BCD /* TaobaoViewController.m in Sources */,
+				7795CC9F1E4AB4AF006ED4F7 /* ResumeListViewController.m in Sources */,
 				778E93681D699D8C004D899C /* XFComposeViewController.m in Sources */,
 				7759B7621D0EA3E900AE3A59 /* NSDictionary+expanded.m in Sources */,
 				773D56A11D79560100A0C615 /* JFClassifyCell.m in Sources */,
@@ -10005,6 +10070,7 @@
 				7788AC4D1D7996CE00376C95 /* E_ListView.m in Sources */,
 				77CC4F211D90DCA400DD2EC8 /* BaseTableViewCell.m in Sources */,
 				776461C71D68440600ACCCAC /* TLExpressionItemCell.m in Sources */,
+				7795CCBA1E4B1987006ED4F7 /* PersonalPhoneViewController.m in Sources */,
 				776461C51D68440600ACCCAC /* TLExpressionChosenViewController.m in Sources */,
 				778E8F041D696020004D899C /* XFStatusPhotoView.m in Sources */,
 				779B81F41D7D45B600B23DFA /* EnergyDetailViewController.m in Sources */,

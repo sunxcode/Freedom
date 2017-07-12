@@ -10,7 +10,6 @@
 
 @interface ResumeDetailViewController ()<UIWebViewDelegate>{
     UIWebView *webView;
-    NSString *title;
 }
 @end
 @implementation ResumeDetailViewController
@@ -18,9 +17,8 @@
     [super viewDidLoad];
     webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight-TopHeight)];
     webView.delegate = self;
-    DLog(@"%@",self.userInfo);
     webView.backgroundColor = [UIColor whiteColor];
-    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.dataurl]]];
+    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.userInfo[@"url"]]]];
     [self.view addSubview:webView];
 }
 @end

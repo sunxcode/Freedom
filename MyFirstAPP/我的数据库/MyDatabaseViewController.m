@@ -8,122 +8,48 @@
 
 #import "MyDatabaseViewController.h"
 #import "MyDatabaseEditViewController.h"
-@interface DatabaseCollectionViewCell : UICollectionViewCell{
-    UIView *view;
-    UIImageView *imageView;
-    UILabel *nameLabel;
-    NSMutableDictionary *thumbnailCache;
-}
--(void)setDataWithDic:(NSDictionary*)dic;
+@interface DatabaseCollectionViewCell : BaseCollectionViewCell
 @end
 @implementation DatabaseCollectionViewCell
--(instancetype)initWithFrame:(CGRect)frame{
-    if (self=[super initWithFrame:frame]) {
-        view = [[UIView alloc]initWithFrame:CGRectMake(0, (H(self)-80)*0.5, 80, 80)];
-        view.backgroundColor = [UIColor clearColor];
-        imageView = [[UIImageView alloc]initWithFrame:view.frame];
-        imageView.layer.borderWidth = 2;
-        imageView.layer.cornerRadius = 40;
-        [view addSubview:imageView];
-        [self.contentView addSubview:view];
-        nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(XW(imageView),(H(self)-20)*0.5,200,20)];
-        [self.contentView addSubview:nameLabel];
-    }return self;
+-(void)initUI{
+    self.icon = [[UIImageView alloc]initWithFrame:CGRectMake(10,0, APPW/5-20,40)];
+    self.title = [[UILabel alloc]initWithFrame:CGRectMake(0,YH(self.icon), APPW/5-12, 20)];
+    self.title.font = fontnomal;self.title.textAlignment = NSTextAlignmentCenter;
+    [self addSubviews:self.title,self.icon,nil];
 }
--(void)setDataWithDic:(NSDictionary*)dic{
-    nameLabel.text = [dic valueForKey:@"name"];
-    NSString *imgURL = [dic valueForKey:@"picture"];
-    [imageView setImage:nil];
-    __block UIImage *imageProduct = [thumbnailCache objectForKey:imgURL];
-    if(imageProduct){
-        imageView.image = imageProduct;
-    }else{
-        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
-        dispatch_async(queue, ^{
-            UIImage *image = [UIImage imageNamed:imgURL];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                imageView.image = image;
-                [thumbnailCache setValue:image forKey:imgURL];
-            });
-        });
-    }
-    imageView.clipsToBounds = YES;
+-(void)setCollectionDataWithDic:(NSDictionary *)dict{
+    self.title.text = @"蚂蚁花呗";
+    self.icon.image = [UIImage imageNamed:@"taobaomini1"];
 }
 @end
-@interface MyDatabaseLayout : UICollectionViewFlowLayout
-@end
-@implementation MyDatabaseLayout
-- (instancetype)init{
-    self = [super init];
-    if (self) {
-        // 设置item的大小
-        self.itemSize = CGSizeMake((kScreenWidth-40)/3.0, 120);
-        // 设置水平滚动
-        self.scrollDirection = UICollectionViewScrollDirectionVertical;
-        // 设置最小行间距和格间距为10
-        self.minimumInteritemSpacing = 10;//格
-        self.minimumLineSpacing = 10;//行
-        // 设置内边距
-        self.sectionInset = UIEdgeInsetsMake(30, 10, 0,10);
-    }return self;
-}
-@end
-
-@interface MyDatabaseViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>{
-    NSMutableArray *FreedomBooks;
-    UICollectionView *FcollectionView;
-}
+@interface MyDatabaseViewController()<UICollectionViewDelegateFlowLayout>{}
 @end
 @implementation MyDatabaseViewController
-
-static NSString * const reuseIdentifier = @"Cell";
 - (void)viewDidLoad {
     [super viewDidLoad];
-    FcollectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 100, kScreenWidth, kScreenHeight-100) collectionViewLayout:[[MyDatabaseLayout alloc]init]];
-    FcollectionView.delegate = self;
-    FcollectionView.dataSource = self;
-    [FcollectionView registerClass:[DatabaseCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
-    
+    self.title = @"个性特色自由主义";
+    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithTitle:@"设置" style:UIBarButtonItemStylePlain actionBlick:^{}];
+    UIBarButtonItem *right = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:Padd] style:UIBarButtonItemStyleDone actionBlick:^{}];
+    self.navigationItem.leftBarButtonItem  = left;
+    self.navigationItem.rightBarButtonItem = right;
+    BaseCollectionViewLayout *layout = [BaseCollectionViewLayout sharedFlowlayoutWithCellSize:CGSizeMake((APPW-50)/4, 60) groupInset:UIEdgeInsetsMake(0, 10, 0, 10) itemSpace:10 linespace:10];
+    layout.headerReferenceSize = CGSizeMake(APPW, 30);layout.footerReferenceSize = CGSizeZero;
+    self.collectionView = [[BaseCollectionView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH-110) collectionViewLayout:layout];
+    self.collectionView.dataArray = [NSMutableArray arrayWithObjects:@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"}, nil];
+    [self fillTheCollectionViewDataWithCanMove:NO sectionN:1 itemN:22 itemName:@"DatabaseCollectionViewCell"];
+    self.collectionView.dataSource = self;
+    self.collectionView.delegate = self;
+    [self.view addSubview:self.collectionView];
 }
-#pragma mark <UICollectionViewDataSource>
-
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 1;
+-(void)viewWillAppear:(BOOL)animated{
+    self.tabBarController.tabBar.hidden = YES;
+    self.collectionView.frame = self.view.bounds;
 }
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return FreedomBooks.count;
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    DatabaseCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    if(!cell){
-        cell = [[DatabaseCollectionViewCell alloc]initWithFrame:CGRectMake(0, 0, 100, 120)];
-    }
-    [cell setDataWithDic:FreedomBooks[indexPath.item]];
-    return cell;
-}
-
-#pragma mark <UICollectionViewDelegate>
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSString *log = [NSString stringWithFormat:@"你选择的是%zd，%zd", indexPath.section, indexPath.row];
+    [SVProgressHUD showSuccessWithStatus:log];DLog(@"%@",log);
+    [self pushController:[MyDatabaseEditViewController class] withInfo:self.collectionView.dataArray[indexPath.row] withTitle:@"数据库编辑详情"];
 }
 
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return NO;
-}
-
-- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-    return NO;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-    
-}
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    return CGSizeMake(240, 100);
-}
 @end
 
