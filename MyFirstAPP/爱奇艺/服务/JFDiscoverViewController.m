@@ -58,7 +58,7 @@
     JFSearchButton *searchButton = [JFSearchButton buttonWithType:UIButtonTypeCustom];
     searchButton.frame = CGRectMake(0, 0, w, 30);
     [searchButton setBackgroundImage:[UIImage imageNamed:@"GroupCell"] forState:UIControlStateNormal];
-    [searchButton setImage:[UIImage imageNamed:@"searchm"] forState:UIControlStateNormal];
+    [searchButton setImage:[UIImage imageNamed:Psearch_small] forState:UIControlStateNormal];
     [searchButton setTitle:@"请输入：港囧，夏洛特烦恼，徐峥等" forState:UIControlStateNormal];
     [searchButton addTarget:self action:@selector(searchButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [searchButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
@@ -66,7 +66,7 @@
     
     
     //取消按钮
-    UIBarButtonItem *rightItem = [UIBarButtonItem initWithNormalImage:@"ic_discover_QR-code" target:self action:@selector(scanningClick) width:25 height:25];
+    UIBarButtonItem *rightItem = [UIBarButtonItem initWithNormalImage:Pwnavi target:self action:@selector(scanningClick) width:25 height:25];
     self.navigationItem.rightBarButtonItem = rightItem;
     
 

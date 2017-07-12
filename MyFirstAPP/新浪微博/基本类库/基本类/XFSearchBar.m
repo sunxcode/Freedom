@@ -18,7 +18,7 @@
         self.background = [UIImage imageNamed:@"searchbar_textfield_background"];
         self.placeholder = @"请输入要搜索的内容";
         self.font = [UIFont systemFontOfSize:13];
-        UIImageView *searchIcon = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"searchbar_textfield_search_icon"]];
+        UIImageView *searchIcon = [[UIImageView alloc]initWithImage:[UIImage imageNamed:Psearch_gray]];
         
         searchIcon.frameWidth = 30;
         

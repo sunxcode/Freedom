@@ -99,19 +99,19 @@ static const CGFloat kMargin = 15;
 
 
     UIButton *topLeft = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, buttonWH, buttonWH)];
-    [topLeft setImage:[UIImage imageNamed:@"scan_1"] forState:UIControlStateNormal];
+    [topLeft setImage:[UIImage imageNamed:@"u_scan_1"] forState:UIControlStateNormal];
     [scanWindow addSubview:topLeft];
     
     UIButton *topRight = [[UIButton alloc] initWithFrame:CGRectMake(scanWindowW - buttonWH, 0, buttonWH, buttonWH)];
-    [topRight setImage:[UIImage imageNamed:@"scan_2"] forState:UIControlStateNormal];
+    [topRight setImage:[UIImage imageNamed:@"u_scan_2"] forState:UIControlStateNormal];
     [scanWindow addSubview:topRight];
     
     UIButton *bottomLeft = [[UIButton alloc] initWithFrame:CGRectMake(0, scanWindowH - buttonWH, buttonWH, buttonWH)];
-    [bottomLeft setImage:[UIImage imageNamed:@"scan_3"] forState:UIControlStateNormal];
+    [bottomLeft setImage:[UIImage imageNamed:@"u_scan_3"] forState:UIControlStateNormal];
     [scanWindow addSubview:bottomLeft];
     
     UIButton *bottomRight = [[UIButton alloc] initWithFrame:CGRectMake(topRight.sd_x, bottomLeft.sd_y, buttonWH, buttonWH)];
-    [bottomRight setImage:[UIImage imageNamed:@"scan_4"] forState:UIControlStateNormal];
+    [bottomRight setImage:[UIImage imageNamed:@"u_scan_4"] forState:UIControlStateNormal];
     [scanWindow addSubview:bottomRight];
 }
 

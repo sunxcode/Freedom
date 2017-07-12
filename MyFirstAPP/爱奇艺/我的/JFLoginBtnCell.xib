@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -11,29 +16,29 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="174"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="173"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="174"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wVM-Rb-mgM">
                         <rect key="frame" x="14" y="30" width="293" height="39"/>
-                        <color key="backgroundColor" red="1" green="0.52095721914632354" blue="0.26033065877884454" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="0.52095721914632354" blue="0.26033065877884454" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="39" id="LMP-aU-DD9"/>
                         </constraints>
                         <state key="normal" title="登陆">
-                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </state>
                         <connections>
                             <action selector="loginBtnClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="YHH-2G-HZS"/>
                         </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ybz-bF-ZXW">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ybz-bF-ZXW">
                         <rect key="frame" x="31" y="92" width="50" height="57"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="7V1-eu-f98"/>
                         </constraints>
                         <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="30"/>
-                        <state key="normal" image="ic_login_qrcode.png">
+                        <state key="normal" image="u_scan_y">
                             <attributedString key="attributedTitle">
                                 <fragment content="扫描登陆">
                                     <attributes>
@@ -49,14 +54,14 @@
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="3HX-Gd-cra"/>
                         </constraints>
-                        <state key="normal" image="ic_login_qq.png"/>
+                        <state key="normal" image="u_icon_QQ"/>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aO8-Nv-dpy">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aO8-Nv-dpy">
                         <rect key="frame" x="135" y="92" width="50" height="57"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="Xoo-4J-2Qu"/>
                         </constraints>
-                        <state key="normal" title="Button" image="ic_login_sina.png"/>
+                        <state key="normal" title="Button" image="u_icon_sina"/>
                         <connections>
                             <action selector="xinlanWeiboBtnClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="dgW-56-AU2"/>
                         </connections>
@@ -82,8 +87,8 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="ic_login_qq.png" width="50" height="50"/>
-        <image name="ic_login_qrcode.png" width="50" height="50"/>
-        <image name="ic_login_sina.png" width="50" height="50"/>
+        <image name="u_icon_QQ" width="120" height="120"/>
+        <image name="u_icon_sina" width="120" height="120"/>
+        <image name="u_scan_y" width="30" height="30"/>
     </resources>
 </document>

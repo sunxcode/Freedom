@@ -45,12 +45,12 @@
     //
     //设置
     UIButton *settingBtn = [[UIButton alloc] initWithFrame:CGRectMake(kScreenWidth-30, 30, 22, 22)];
-    [settingBtn setImage:[UIImage imageNamed:@"mine_setting_icon"] forState:UIControlStateNormal];
+    [settingBtn setImage:[UIImage imageNamed:Pwsetting] forState:UIControlStateNormal];
     [self.view addSubview:settingBtn];
     //消息
     UIButton *msgBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     msgBtn.frame = CGRectMake(kScreenWidth-60, 30, 22, 22);
-    [msgBtn setImage:[UIImage imageNamed:@"ic_my_msg"] forState:UIControlStateNormal];
+    [msgBtn setImage:[UIImage imageNamed:Pwbell] forState:UIControlStateNormal];
     //    [msgBtn addTarget:self action:@selector(OnHisBtn:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:msgBtn];
     //头像
@@ -58,7 +58,7 @@
     userImage.userInteractionEnabled = YES;
     userImage.layer.masksToBounds = YES;
     userImage.layer.cornerRadius = 25;
-    userImage.image = [UIImage imageNamed:@"default_head"];
+    userImage.image = [UIImage imageNamed:PuserLogo];
     [self.view addSubview:userImage];
     
     UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGROnIconClick)];
@@ -86,7 +86,7 @@
     [self.view addSubview:backImage];
     //
     NSArray *titleArrar = @[@"历史",@"收藏",@"上传",@"特权"];
-    NSArray *picArray = @[@"myview_lishi",@"myview_collect",@"myview_upload",@"myview_tequan"];
+    NSArray *picArray = @[Pwhistory,Pwfavourite,Pwcamera,Pwvip];
     for (int i = 0; i < 4; i++) {
         UIButton *segmentBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         segmentBtn.tag = i;

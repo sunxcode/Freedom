@@ -209,7 +209,7 @@ static TLFriendHelper *friendHelper = nil;
     if (_defaultGroup == nil) {
         TLUser *item_new = [[TLUser alloc] init];
         item_new.userID = @"-1";
-        item_new.avatarPath = @"plugins_FriendNotify@2x";
+        item_new.avatarPath = PpersonAddHL;
         item_new.remarkName = @"新的朋友";
         TLUser *item_group = [[TLUser alloc] init];
         item_group.userID = @"-2";

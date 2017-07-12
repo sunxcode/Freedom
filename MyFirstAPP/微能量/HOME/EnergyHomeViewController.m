@@ -26,7 +26,7 @@
 }
 -(void)buildUI{
     self.view.backgroundColor = [UIColor whiteColor];
-    UIBarButtonItem *more = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"addstore_icon_add@2x"] style:UIBarButtonItemStylePlain actionBlick:^{}];
+    UIBarButtonItem *more = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"u_add_y"] style:UIBarButtonItemStylePlain actionBlick:^{}];
     self.navigationItem.rightBarButtonItem = more;
     UISearchBar *searchBar = [[UISearchBar alloc] init];
     searchBar.placeholder = @"输入问题关键字";

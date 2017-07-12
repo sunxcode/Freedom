@@ -54,7 +54,7 @@
     header.backgroundColor = [UIColor colorWithRed:(38 / 255.0) green:(42 / 255.0) blue:(59 / 255.0) alpha:1];
     
     UIButton *scan = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, header.sd_width * 0.5, header.sd_height)];
-    [scan setImage:[UIImage imageNamed:@"home_scan"] forState:UIControlStateNormal];
+    [scan setImage:[UIImage imageNamed:Pscan_y] forState:UIControlStateNormal];
     [scan addTarget:self action:@selector(scanButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     [header addSubview:scan];
     

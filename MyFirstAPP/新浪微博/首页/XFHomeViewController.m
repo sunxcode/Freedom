@@ -25,8 +25,8 @@
     self.statusFrames  = [NSMutableArray array];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(friendSearch) image:@"navigationbar_friendsearch"  heighlightImage:@"navigationbar_friendsearch_highlighted"];
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(pop) image:@"navigationbar_pop"  heighlightImage:@"navigationbar_pop_highlighted"];
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(friendSearch) image:PpersonAdd  heighlightImage:PpersonAddHL];
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(pop) image:Pscan  heighlightImage:Pscan_y];
     // 设置图片和文字
     NSString *name = [XFAccountTool account].name;
     XFTitleButton *homePageBtn = [[XFTitleButton alloc]init];

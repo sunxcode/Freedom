@@ -28,7 +28,7 @@
         leftView.bounds = CGRectMake(0, 0, 35  , 35);
         //        leftView.contentMode = UIViewContentModeCenter;
         
-        leftView.image = [UIImage imageNamed:@"searchm"];
+        leftView.image = [UIImage imageNamed:Psearch_small];
         
         self.leftView = leftView;
         self.leftViewMode = UITextFieldViewModeAlways;

@@ -22,11 +22,11 @@
 
 - (void) p_initTestData
 {
-    TLMenuItem *item1 = TLCreateMenuItem(@"ff_IconShowAlbum", @"朋友圈");
+    TLMenuItem *item1 = TLCreateMenuItem(PfrendsCircle, @"朋友圈");
     item1.rightIconURL = @"http://img4.duitang.com/uploads/item/201510/16/20151016113134_TZye4.thumb.224_0.jpeg";
     item1.showRightRedPoint = YES;
-    TLMenuItem *item2 = TLCreateMenuItem(@"ff_IconQRCode", @"扫一扫");
-    TLMenuItem *item3 = TLCreateMenuItem(@"ff_IconShake", @"摇一摇");
+    TLMenuItem *item2 = TLCreateMenuItem(Pscan_b, @"扫一扫");
+    TLMenuItem *item3 = TLCreateMenuItem(Pshake, @"摇一摇");
     TLMenuItem *item4 = TLCreateMenuItem(@"ff_IconLocationService", @"附近的人");
     TLMenuItem *item5 = TLCreateMenuItem(@"ff_IconBottle", @"漂流瓶");
     TLMenuItem *item6 = TLCreateMenuItem(@"CreditCard_ShoppingBag@2x", @"购物");

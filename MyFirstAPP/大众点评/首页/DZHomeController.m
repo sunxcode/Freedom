@@ -100,7 +100,7 @@
 -(void)setCollectionDataWithDic:(NSDictionary *)dict{
     self.title.text = @"上海海洋水族馆(4A)";
     self.script.text = @"[陆家嘴]4.2分|门票、套餐、线路游 等优惠，欢迎上门体验";
-    self.icon.image = [UIImage imageNamed:@"userlogo"];
+    self.icon.image = [UIImage imageNamed:PuserLogo];
 }
 @end
 @interface DZHomeHeadView1 : UICollectionReusableView{
@@ -118,7 +118,7 @@
         UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPW-50, 60)];
         UIImageView *icon = [[UIImageView alloc]initWithFrame:CGRectMake(10, 10, 40,40)];
         icon.clipsToBounds = YES;icon.layer.cornerRadius = 20;
-        icon.image = [UIImage imageNamed:@"userlogo"];
+        icon.image = [UIImage imageNamed:PuserLogo];
         UILabel *label1 = [Utility labelWithFrame:CGRectMake(XW(icon)+10, 10, APPW/2, 40) font:fontnomal color:blacktextcolor text:@"好友蜂蜜绿茶，吃完这家，还有下一家。地点中环广场店"];
         label1.numberOfLines = 0;
         [view addSubviews:icon,label1,nil];
@@ -157,7 +157,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    UIBarButtonItem *more = [[UIBarButtonItem alloc]initWithImage:[UIImage imageWithRenderingOriginalName:@"addstore_icon_add@2x"] style:UIBarButtonItemStylePlain actionBlick:^{}];
+    UIBarButtonItem *more = [[UIBarButtonItem alloc]initWithImage:[UIImage imageWithRenderingOriginalName:@"u_add_y"] style:UIBarButtonItemStylePlain actionBlick:^{}];
     self.navigationItem.rightBarButtonItem = more;
     UIBarButtonItem *map = [[UIBarButtonItem alloc]initWithTitle:@"北京" style:UIBarButtonItemStylePlain actionBlick:^{}];
     self.navigationItem.leftBarButtonItem = map;

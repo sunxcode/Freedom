@@ -58,7 +58,7 @@
         [self.avatarImageView setImage:[UIImage imageNamed:path]];
     }
     else if (conversation.avatarURL.length > 0){
-        [self.avatarImageView sd_setImageWithURL:TLURL(conversation.avatarURL) placeholderImage:[UIImage imageNamed:DEFAULT_AVATAR_PATH]];
+        [self.avatarImageView sd_setImageWithURL:TLURL(conversation.avatarURL) placeholderImage:[UIImage imageNamed:PuserLogo]];
     }
     else {
         [self.avatarImageView setImage:nil];

@@ -34,7 +34,7 @@
 #define     MIN_MESSAGE_EXPRESSION_WIDTH    WIDTH_SCREEN * 0.2
 
 #define mark - Default
-#define     DEFAULT_AVATAR_PATH    @"default_head"
+
 
 
 #pragma mark - Methods

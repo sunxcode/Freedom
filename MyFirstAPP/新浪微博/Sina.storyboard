@@ -24,7 +24,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ugv-fC-arm" id="pA1-XV-3u6">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -53,7 +53,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LuP-3H-Fuq" id="Hff-xN-EUk">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -82,7 +82,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="100-Bn-7Iz" id="Tyg-J5-Gxd">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -169,7 +169,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Bcf-On-Xh7" id="iQg-Ny-zVp">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -238,7 +238,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gj0-Cu-4E7" userLabel="工具条">
                                 <rect key="frame" x="0.0" y="617" width="375" height="50"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ToolViewBkg_Black" translatesAutoresizingMaskIntoConstraints="NO" id="I7l-7E-boA" userLabel="背景图">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="u_message_face" translatesAutoresizingMaskIntoConstraints="NO" id="I7l-7E-boA" userLabel="背景图">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="esD-9N-kUo" userLabel="表情">
@@ -250,7 +250,7 @@
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="lPt-Ao-8TQ"/>
                                             <constraint firstAttribute="height" constant="40" id="r7v-zj-hty"/>
                                         </constraints>
-                                        <state key="normal" image="ToolViewEmotion"/>
+                                        <state key="normal" image="u_message_face.png"/>
                                         <variation key="default">
                                             <mask key="constraints">
                                                 <exclude reference="Xva-xe-hvD"/>
@@ -263,7 +263,7 @@
                                             <constraint firstAttribute="height" constant="40" id="3Yw-dR-BiY"/>
                                             <constraint firstAttribute="width" constant="40" id="yjd-n2-rdc"/>
                                         </constraints>
-                                        <state key="normal" image="ToolViewInputVoice.png"/>
+                                        <state key="normal" image="u_message_voicek"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9n4-av-7dx" userLabel="更多">
                                         <rect key="frame" x="275" y="5" width="40" height="40"/>
@@ -273,7 +273,7 @@
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="5yq-KF-AoA"/>
                                             <constraint firstAttribute="height" constant="40" id="fy9-G1-9yC"/>
                                         </constraints>
-                                        <state key="normal" image="TypeSelectorBtn_Black.png"/>
+                                        <state key="normal" image="u_message_add"/>
                                     </button>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JPm-da-Uvy" userLabel="inputBox">
                                         <rect key="frame" x="60" y="10" width="205" height="30"/>
@@ -316,20 +316,20 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="weixinIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="CfD-MU-Nu0" userLabel="头像">
-                                                    <rect key="frame" x="557" y="87" width="40" height="40"/>
+                                                    <rect key="frame" x="332" y="87" width="40" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="40" id="PVn-ZC-P5b"/>
                                                         <constraint firstAttribute="height" constant="40" id="dXY-Up-bzD"/>
                                                     </constraints>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hPi-64-DAg" userLabel="容器">
-                                                    <rect key="frame" x="271" y="13" width="281" height="114"/>
+                                                    <rect key="frame" x="81" y="13" width="246" height="114"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="message_i" translatesAutoresizingMaskIntoConstraints="NO" id="h4n-GF-wmY" userLabel="气泡">
-                                                            <rect key="frame" x="0.0" y="0.0" width="281" height="114"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="246" height="114"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="这里是测试文字，大概是某某某" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W8a-f9-ZwO">
-                                                            <rect key="frame" x="8" y="8" width="243" height="98"/>
+                                                            <rect key="frame" x="8" y="8" width="208" height="98"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -391,11 +391,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ToolViewBkg_Black" width="27" height="23"/>
-        <image name="ToolViewEmotion" width="23" height="45"/>
-        <image name="ToolViewInputVoice.png" width="35" height="35"/>
-        <image name="TypeSelectorBtn_Black.png" width="35" height="35"/>
-        <image name="message_i" width="33" height="36"/>
+        <image name="message_i" width="52" height="36"/>
+        <image name="u_message_add" width="27" height="23"/>
+        <image name="u_message_face" width="27" height="23"/>
+        <image name="u_message_face.png" width="27" height="23"/>
+        <image name="u_message_voicek" width="35" height="35"/>
         <image name="weixinIcon.png" width="96" height="96"/>
     </resources>
 </document>

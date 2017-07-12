@@ -47,7 +47,7 @@ static UILabel *hLabel = nil;
             TLUser *user = [group.users objectAtIndex:i];
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, width)];
             [view addSubview:imageView];
-            [imageView sd_setImageWithURL:TLURL(user.avatarURL) placeholderImage:[UIImage imageNamed:DEFAULT_AVATAR_PATH] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            [imageView sd_setImageWithURL:TLURL(user.avatarURL) placeholderImage:[UIImage imageNamed:PuserLogo] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                 count ++;
                 if (count == usersCount) {     // 图片全部下载完成
                     UIGraphicsBeginImageContextWithOptions(view.frame.size, NO, 2.0);

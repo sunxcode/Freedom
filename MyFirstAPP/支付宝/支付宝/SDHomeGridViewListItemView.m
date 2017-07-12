@@ -50,7 +50,7 @@
     _button = button;
     
     UIButton *icon = [[UIButton alloc] init];
-    [icon setImage:[UIImage imageNamed:@"Home_delete_icon"] forState:UIControlStateNormal];
+    [icon setImage:[UIImage imageNamed:Pdelete] forState:UIControlStateNormal];
     [icon addTarget:self action:@selector(iconViewClicked) forControlEvents:UIControlEventTouchUpInside];
     icon.hidden = YES;
     [self addSubview:icon];

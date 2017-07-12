@@ -40,7 +40,7 @@
     NSString *path = [NSFileManager pathUserAvatar:group.groupAvatarPath];
     UIImage *image = [UIImage imageNamed:path];
     if (image == nil) {
-        image = [UIImage imageNamed:DEFAULT_AVATAR_PATH];
+        image = [UIImage imageNamed:PuserLogo];
     }
     [self.avatarImageView setImage:image];
     [self.usernameLabel setText:group.groupName];

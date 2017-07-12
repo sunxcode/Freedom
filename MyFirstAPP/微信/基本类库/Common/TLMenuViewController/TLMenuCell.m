@@ -56,7 +56,7 @@
         [self.rightImageView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(self.rightImageView.mas_height);
         }];
-        [self.rightImageView sd_setImageWithURL:TLURL(menuItem.rightIconURL) placeholderImage:[UIImage imageNamed:DEFAULT_AVATAR_PATH]];
+        [self.rightImageView sd_setImageWithURL:TLURL(menuItem.rightIconURL) placeholderImage:[UIImage imageNamed:PuserLogo]];
     }
     [self.redPointView setHidden:!menuItem.showRightRedPoint];
 }

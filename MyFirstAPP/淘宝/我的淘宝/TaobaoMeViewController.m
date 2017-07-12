@@ -75,7 +75,7 @@
     headView.backgroundColor = RGBCOLOR(252, 50, 50);
     UIImageView *icon = [[UIImageView alloc]initWithFrame:CGRectMake(APPW/2-30, 0, 60, 60)];
     icon.layer.cornerRadius = 30;
-    icon.image = [UIImage imageNamed:@"userLogo"];
+    icon.image = [UIImage imageNamed:PuserLogo];
     icon.clipsToBounds = YES;
     UILabel *name = [Utility labelWithFrame:CGRectMake(10, YH(icon), APPW-20, 20) font:fontSmallTitle color:whitecolor text:@"杨越光" textAlignment:NSTextAlignmentCenter];
     UILabel *taoqi = [Utility labelWithFrame:CGRectMake(APPW/2-40, YH(name), 80, 15) font:fontnomal color:redcolor text:@"淘气值：710" textAlignment:NSTextAlignmentCenter];

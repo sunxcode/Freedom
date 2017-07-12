@@ -50,10 +50,10 @@
     TLSettingItem *idProtect = TLCreateSettingItem(@"账号保护");
     if (1) {
         idProtect.subTitle = @"已保护";
-        idProtect.rightImagePath = @"ProfileLockOn@2x";
+        idProtect.rightImagePath = PprotectHL;
     }else {
         idProtect.subTitle = @"未保护";
-        idProtect.rightImagePath = @"ProfileLockOff@2x";
+        idProtect.rightImagePath = Pprotect;
     }
     TLSettingItem *safetyCenter = TLCreateSettingItem(@"微信安全中心");
     TLSettingGroup *group3 = TLCreateSettingGroup(nil, @"如果遇到账号信息泄露、忘记密码、诈骗等账号问题，可前往微信安全中心。", (@[voiceLock, password, idProtect, safetyCenter]));

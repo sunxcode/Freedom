@@ -45,7 +45,7 @@
     self.navigationController.navigationBar.hidden = NO;
     self.title = @"登陆";
     
-    UIBarButtonItem *leftBarButtonItem = [UIBarButtonItem initWithNormalImage:@"ic_player_back" target:self action:@selector(leftBarButtonItemClick) width:35 height:35];
+    UIBarButtonItem *leftBarButtonItem = [UIBarButtonItem initWithNormalImage:PcellLeft target:self action:@selector(leftBarButtonItemClick) width:35 height:35];
     self.navigationItem.leftBarButtonItem = leftBarButtonItem;
     
 }

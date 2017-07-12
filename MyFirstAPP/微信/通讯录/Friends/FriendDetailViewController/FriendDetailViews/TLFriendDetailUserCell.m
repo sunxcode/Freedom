@@ -77,7 +77,7 @@
         [self.avatarView setImage:[UIImage imageNamed:user.avatarPath] forState:UIControlStateNormal];
     }
     else{
-        [self.avatarView sd_setImageWithURL:TLURL(user.avatarURL) forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:DEFAULT_AVATAR_PATH]];
+        [self.avatarView sd_setImageWithURL:TLURL(user.avatarURL) forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:PuserLogo]];
     }
     [self.shownameLabel setText:user.showName];
     if (user.username.length > 0) {

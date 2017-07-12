@@ -68,7 +68,7 @@
     SWCommonGroup *group = [SWCommonGroup group];
     [self.groups addObject:group];
     // 2.设置组的所有行数据
-    SWCommonSwitchItem *video = [SWCommonSwitchItem itemWithTitle:@"视频" icon:@"video"];
+    SWCommonSwitchItem *video = [SWCommonSwitchItem itemWithTitle:@"视频" icon:Pshok_b];
     video.operation = ^{
         DLog(@"----点击了视频---");
     };

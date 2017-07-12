@@ -1,6 +1,7 @@
 
 #import "Foundation_defines.h"
 #import "Foundation_API.h"
+#import "Foundation_string.h"
 #ifdef DEBUG
 #define NSLog(...) NSLog(__VA_ARGS__)
 #define ELog(err) {if(err) DLog(@"%@", err)}

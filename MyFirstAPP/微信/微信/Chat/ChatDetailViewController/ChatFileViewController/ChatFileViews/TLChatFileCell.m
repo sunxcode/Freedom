@@ -34,7 +34,7 @@
             [self.imageView setImage:[UIImage imageNamed:imagePath]];
         }
         else if ([(TLImageMessage *)message imageURL].length > 0) {
-            [self.imageView sd_setImageWithURL:TLURL([(TLImageMessage *)message imageURL]) placeholderImage:[UIImage imageNamed:DEFAULT_AVATAR_PATH]];
+            [self.imageView sd_setImageWithURL:TLURL([(TLImageMessage *)message imageURL]) placeholderImage:[UIImage imageNamed:PuserLogo]];
         }
         else {
             [self.imageView setImage:nil];

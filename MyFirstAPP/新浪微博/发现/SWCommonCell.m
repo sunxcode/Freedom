@@ -38,7 +38,7 @@
 - (UIImageView *)rightArrow
 {
     if (_rightArrow == nil) {
-        self.rightArrow = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"common_icon_arrow"]];
+        self.rightArrow = [[UIImageView alloc] initWithImage:[UIImage imageNamed:PcellRight]];
     }
     return _rightArrow;
 }

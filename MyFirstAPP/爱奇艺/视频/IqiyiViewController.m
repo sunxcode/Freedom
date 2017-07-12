@@ -57,11 +57,11 @@
     self.navigationItem.leftBarButtonItem = leftBarButtonItem;
     
     
-    UIBarButtonItem *rightUploadBarButtonItem = [UIBarButtonItem initWithNormalImage:@"home_upload" target:nil action:nil width:22 height:22];
+    UIBarButtonItem *rightUploadBarButtonItem = [UIBarButtonItem initWithNormalImage:Pwcamera target:nil action:nil width:22 height:22];
     
-    UIBarButtonItem *rightHistoryBarButtonItem = [UIBarButtonItem initWithNormalImage:@"home_history" target:self action:@selector(rightHistoryBarButtonItemClick) width:22 height:22];
+    UIBarButtonItem *rightHistoryBarButtonItem = [UIBarButtonItem initWithNormalImage:Pwhistory target:self action:@selector(rightHistoryBarButtonItemClick) width:22 height:22];
     
-    UIBarButtonItem *rightSearchBarButtonItem = [UIBarButtonItem initWithNormalImage:@"home_search" target:self action:@selector(rightSearchBarButtonItemClick) width:22 height:22];
+    UIBarButtonItem *rightSearchBarButtonItem = [UIBarButtonItem initWithNormalImage:Pwsearch target:self action:@selector(rightSearchBarButtonItemClick) width:22 height:22];
     
     
     self.navigationItem.rightBarButtonItems = @[rightSearchBarButtonItem,rightUploadBarButtonItem, rightHistoryBarButtonItem];

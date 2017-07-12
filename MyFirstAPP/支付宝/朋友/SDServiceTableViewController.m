@@ -46,7 +46,7 @@
         textField.delegate = self;
         [self addSubview:textField];
         _textField = textField;
-        UIImageView *searchIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"search_logo"]];
+        UIImageView *searchIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:Psearch]];
         searchIcon.contentMode = UIViewContentModeScaleAspectFill;
         [_textField addSubview:searchIcon];
         _textFieldSearchIcon = searchIcon;

@@ -41,7 +41,7 @@
     }
     
     TLSettingItem *qrCode = TLCreateSettingItem(@"我的二维码");
-    qrCode.rightImagePath = @"setting_myQR@2x";
+    qrCode.rightImagePath = PQRCode;
     TLSettingItem *location = TLCreateSettingItem(@"我的地址");
     TLSettingGroup *group1 = TLCreateSettingGroup(nil, nil, (@[avatar, nikename, username, qrCode, location]));
     

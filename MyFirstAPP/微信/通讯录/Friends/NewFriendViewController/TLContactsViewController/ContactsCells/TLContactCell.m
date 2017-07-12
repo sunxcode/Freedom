@@ -49,7 +49,7 @@
         [self.avatarImageView setImage:[UIImage imageNamed:path]];
     }
     else {
-        [self.avatarImageView sd_setImageWithURL:TLURL(contact.avatarURL) placeholderImage:[UIImage imageNamed:DEFAULT_AVATAR_PATH]];
+        [self.avatarImageView sd_setImageWithURL:TLURL(contact.avatarURL) placeholderImage:[UIImage imageNamed:PuserLogo]];
     }
     
     [self.usernameLabel setText:contact.name];

@@ -49,7 +49,7 @@
             imageView = self.imageViewsArray[i];
         }
         [self.contentView addSubview:imageView];
-        [imageView sd_setImageWithURL:TLURL(imageURL) placeholderImage:[UIImage imageNamed:DEFAULT_AVATAR_PATH]];
+        [imageView sd_setImageWithURL:TLURL(imageURL) placeholderImage:[UIImage imageNamed:PuserLogo]];
         [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(self.contentView).mas_offset(spaceY);
             make.bottom.mas_equalTo(self.contentView).mas_offset(-spaceY);

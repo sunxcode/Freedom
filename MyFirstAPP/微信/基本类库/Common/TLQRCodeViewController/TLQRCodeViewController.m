@@ -100,7 +100,7 @@
 - (void)setAvatarURL:(NSString *)avatarURL
 {
     _avatarURL = avatarURL;
-    [self.avatarImageView sd_setImageWithURL:TLURL(avatarURL) placeholderImage:[UIImage imageNamed:DEFAULT_AVATAR_PATH]];
+    [self.avatarImageView sd_setImageWithURL:TLURL(avatarURL) placeholderImage:[UIImage imageNamed:PuserLogo]];
 }
 
 - (void)setAvatarPath:(NSString *)avatarPath

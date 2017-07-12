@@ -124,7 +124,7 @@ static FirstViewController *FVC = nil;
     self.navigationController.navigationItem.titleView = searchBar;
     nav.navigationItem.rightBarButtonItem = ad;
     
-//    [self leftBarButtonItemWithTitle:nil Image:[UIImage imageNamed:@"userLogo"] customView:nil style:UIBarButtonItemStyleDone target:self action:@selector(gotoSettingsView:)];
+//    [self leftBarButtonItemWithTitle:nil Image:[UIImage imageNamed:PuserLogo] customView:nil style:UIBarButtonItemStyleDone target:self action:@selector(gotoSettingsView:)];
 //    [self rightBarButtonItemWithTitle:nil Image:[UIImage imageNamed:@"settings"] customView:nil style:UIBarButtonItemStyleDone target:self action:@selector(showSettingsView:)];
       // 键盘通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillShow:) name:UIKeyboardWillShowNotification object:nil];

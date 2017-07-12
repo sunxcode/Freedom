@@ -75,7 +75,7 @@
         [self.avatarImageView setImage:[UIImage imageNamed:user.avatarPath]];
     }
     else{
-        [self.avatarImageView sd_setImageWithURL:TLURL(user.avatarURL) placeholderImage:[UIImage imageNamed:DEFAULT_AVATAR_PATH]];
+        [self.avatarImageView sd_setImageWithURL:TLURL(user.avatarURL) placeholderImage:[UIImage imageNamed:PuserLogo]];
     }
     [self.nikenameLabel setText:user.nikeName];
     [self.usernameLabel setText:user.username ? [@"微信号：" stringByAppendingString:user.username] : @""];
@@ -114,7 +114,7 @@
 {
     if (_QRImageView == nil) {
         _QRImageView = [[UIImageView alloc] init];
-        [_QRImageView setImage:[UIImage imageNamed:@"setting_myQR@2x"]];
+        [_QRImageView setImage:[UIImage imageNamed:PQRCode]];
     }
     return _QRImageView;
 }
