@@ -4,67 +4,23 @@
 //  Created by 薛超 on 16/6/24.
 //  Copyright © 2016年 薛超. All rights reserved.
 #import "LibraryCollectionViewController.h"
-@interface LibraryCollectionViewCell : UICollectionViewCell{
-    UIView *view;
-    UIImageView *imageView;
-    UILabel *nameLabel;
-    NSMutableDictionary *thumbnailCache;
-}
--(void)setDataWithDic:(NSDictionary*)dic;
+@interface LibraryCollectionViewCell : BaseCollectionViewCell
 @end
 @implementation LibraryCollectionViewCell
--(instancetype)initWithFrame:(CGRect)frame{
-    if (self=[super initWithFrame:frame]) {
-        view = [[UIView alloc]initWithFrame:CGRectMake(0, (H(self)-80)*0.5, 80, 80)];
-        view.backgroundColor = [UIColor clearColor];
-        imageView = [[UIImageView alloc]initWithFrame:view.frame];
-        imageView.layer.borderWidth = 2;
-        imageView.layer.cornerRadius = 40;
-        [view addSubview:imageView];
-        [self.contentView addSubview:view];
-        nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(XW(imageView),(H(self)-20)*0.5,200,20)];
-        [self.contentView addSubview:nameLabel];
-    }return self;
+-(void)initUI{
+    [super initUI];
+    self.icon.frame = CGRectMake(0, 0, APPW/5, 60);
+    self.icon.layer.cornerRadius = 30;
+    self.icon.clipsToBounds = YES;
+    self.title.frame = CGRectMake(0, YH(self.icon), W(self.icon), 20);
+    self.backgroundColor = [UIColor clearColor];
+    [self addSubviews:self.icon,self.title,nil];
 }
--(void)setDataWithDic:(NSDictionary*)dic{
-    nameLabel.text = [dic valueForKey:@"name"];
-    NSString *imgURL = [dic valueForKey:@"picture"];
-    [imageView setImage:nil];
-    __block UIImage *imageProduct = [thumbnailCache objectForKey:imgURL];
-    if(imageProduct){
-        imageView.image = imageProduct;
-    }else{
-        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
-        dispatch_async(queue, ^{
-            UIImage *image = [UIImage imageNamed:imgURL];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                imageView.image = image;
-                [thumbnailCache setValue:image forKey:imgURL];
-            });
-        });
-    }
-    imageView.clipsToBounds = YES;
+-(void)setCollectionDataWithDic:(NSDictionary *)dict{
+    self.title.text = [dict valueForKey:@"name"];
+    self.icon.image = [UIImage imageNamed:dict[@"picture"]];
 }
 @end
-@interface LibraryLayout : UICollectionViewFlowLayout
-@end
-@implementation LibraryLayout
-- (instancetype)init{
-    self = [super init];
-    if (self) {
-        // 设置item的大小
-        self.itemSize = CGSizeMake((kScreenWidth-40)/3.0, 120);
-        // 设置水平滚动
-        self.scrollDirection = UICollectionViewScrollDirectionVertical;
-        // 设置最小行间距和格间距为10
-        self.minimumInteritemSpacing = 10;//格
-        self.minimumLineSpacing = 10;//行
-        // 设置内边距
-        self.sectionInset = UIEdgeInsetsMake(30, 10, 0,10);
-    }return self;
-}
-@end
-
 @interface LibraryCollectionViewController (){
     NSMutableArray *libraryBooks;
 }
@@ -85,7 +41,14 @@
 static NSString * const reuseIdentifier = @"Cell";
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.collectionView.backgroundColor = redcolor;
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
+    layout.itemSize = CGSizeMake(APPW/5, 80);
+    layout.minimumInteritemSpacing = 10;
+    layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    layout.minimumLineSpacing = 10;
+    layout.sectionInset = UIEdgeInsetsMake(30, 10, 0, 10);
+    self.collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH-110) collectionViewLayout:layout];
+    self.collectionView.backgroundColor = whitecolor;
     UIImageView *backView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 100, kScreenWidth, kScreenHeight-100)];
     backView.image = [UIImage imageNamed:@""];
     self.collectionView.backgroundView = backView;
@@ -93,9 +56,8 @@ static NSString * const reuseIdentifier = @"Cell";
     NSLog(@"\ntransition.edge = %@\ntransition.transformType = %@\ntransition.sticky = %@\ntransition.showShadow = %@", [HelperFunctions typeToStringOfEdge:ET.edge], [ET transformTypeToString], ET.sticky ? @"YES" : @"NO", ET.showShadow ? @"YES" : @"NO");
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
-    self.collectionView.collectionViewLayout = [[LibraryLayout alloc]init];
+    libraryBooks = [NSMutableArray arrayWithObjects:@{@"name":@"测试数据",@"picture":@"weixinIcon"},@{@"name":@"测试数据",@"picture":@"weixinIcon"},@{@"name":@"测试数据",@"picture":@"weixinIcon"},@{@"name":@"测试数据",@"picture":@"weixinIcon"},@{@"name":@"测试数据",@"picture":@"weixinIcon"},@{@"name":@"测试数据",@"picture":@"weixinIcon"},@{@"name":@"测试数据",@"picture":@"weixinIcon"},@{@"name":@"测试数据",@"picture":@"weixinIcon"},@{@"name":@"测试数据",@"picture":@"weixinIcon"},@{@"name":@"测试数据",@"picture":@"weixinIcon"},@{@"name":@"测试数据",@"picture":@"weixinIcon"},@{@"name":@"测试数据",@"picture":@"weixinIcon"},@{@"name":@"测试数据",@"picture":@"weixinIcon"},@{@"name":@"测试数据",@"picture":@"weixinIcon"}, nil];
     [self.collectionView registerClass:[LibraryCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
-    
 }
 #pragma mark <UICollectionViewDataSource>
 
@@ -109,9 +71,9 @@ static NSString * const reuseIdentifier = @"Cell";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     LibraryCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     if(!cell){
-        cell = [[LibraryCollectionViewCell alloc]initWithFrame:CGRectMake(0, 0, 100, 120)];
+        cell = [[LibraryCollectionViewCell alloc]initWithFrame:CGRectMake(0, 0, APPW/5, 80)];
     }
-    [cell setDataWithDic:libraryBooks[indexPath.item]];
+    [cell setCollectionDataWithDic:libraryBooks[indexPath.item]];
     return cell;
 }
 

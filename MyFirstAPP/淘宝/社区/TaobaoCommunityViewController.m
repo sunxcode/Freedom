@@ -72,7 +72,6 @@
     self.navigationItem.leftBarButtonItem  = leftI;
     self.navigationItem.rightBarButtonItem = rightI;
     banner = [[BaseScrollView alloc]initWithFrame:CGRectMake(0,30, APPW, 130)];
-    banner.backgroundColor = yellowcolor;
     NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:@"1",@"type", nil];
     [Net GET:GETBanner parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSArray *adViewArr = responseObject[@"data"][@"list"];

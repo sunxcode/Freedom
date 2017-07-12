@@ -7,7 +7,6 @@
 //
 
 #import "BaseTabBarController.h"
-
 @interface MicroEnergyTabBarController : BaseTabBarController
 
 @end

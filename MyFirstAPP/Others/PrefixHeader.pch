@@ -33,7 +33,7 @@
 #import "UIFont+expanded.h"       // 字体
 #import "TLUIUtility.h"
 #import "Masonry.h"
-#import <MobClick.h>
+#import <UMMobClick/MobClick.h>
 #import "ReactiveCocoa.h"
 #import "CocoaLumberjack.h"
 #import "BlocksKit.h"
@@ -44,7 +44,6 @@
 #import "TLActionSheet.h"
 #import "UIButton+expanded.h"
 #import "UITableView+expanded.h"
-#import "UINavigationController+JZExtension.h"
 #import "NSFileManager+expanded.h"
 #import "UIImagePickerController+Fixed.h"
 #import "UIBarButtonItem+expanded.h"

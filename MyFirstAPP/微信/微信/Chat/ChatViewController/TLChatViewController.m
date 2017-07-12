@@ -12,7 +12,7 @@
 #import "TLChatGroupDetailViewController.h"
 #import "TLMoreKBHelper.h"
 #import "TLEmojiKBHelper.h"
-#import <MobClick.h>
+#import <UMMobClick/MobClick.h>
 
 static TLChatViewController *chatVC;
 

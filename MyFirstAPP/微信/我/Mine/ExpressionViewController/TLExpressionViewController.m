@@ -10,7 +10,7 @@
 #import "TLExpressionChosenViewController.h"
 #import "TLExpressionPublicViewController.h"
 #import "TLMyExpressionViewController.h"
-
+#import "UINavigationController+JZExtension.h"
 #define     WIDTH_EXPRESSION_SEGMENT    WIDTH_SCREEN * 0.55
 
 @interface TLExpressionViewController ()

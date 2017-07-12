@@ -26,13 +26,14 @@ pod 'SDAutoLayout'                      #一行代码搞定自动布局         
 pod 'CocoaAsyncSocket', '~> 7.4.2'
 pod 'Masonry', '~> 0.6.4'
 pod 'FMDB', '~> 2.6'
-pod 'UMengAnalytics', '~> 3.6.6'
+pod 'UMengAnalytics'
 pod 'ReactiveCocoa', '~> 2.5'
 pod 'CocoaLumberjack', '~> 2.2.0'
 pod 'BlocksKit', '~> 2.2.5'
 pod 'SDCycleScrollView','~> 1.64'                    #iOS图片、文字轮播器 https://github.com/gsdios/SDCycleScrollView
 pod 'MWPhotoBrowser', '~> 2.1.1'
 pod 'JSPatch'                                        #https://github.com/bang590/JSPatch
+#pod 'JZNavigationExtension'                          #导航栏的扩展  https://github.com/JazysYu/JZNavigationExtension  
 #pod 'TheAmazingAudioEngine'
 #https://github.com/TheAmazingAudioEngine/TheAmazingAudioEngine
 #http://theamazingaudioengine.com/doc/_getting-_started.html

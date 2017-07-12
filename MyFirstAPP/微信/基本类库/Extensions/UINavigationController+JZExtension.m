@@ -1,24 +1,6 @@
 // The MIT License (MIT)
 //
 // Copyright (c) 2015-2016 JazysYu ( https://github.com/JazysYu )
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
 
 #import "UINavigationController+JZExtension.h"
 #import <objc/runtime.h>
@@ -49,7 +31,6 @@ typedef id (*_IMP)(id, SEL, id);
 @end
 
 @implementation UINavigationController (JZExtension)
-
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -59,75 +40,31 @@ typedef id (*_IMP)(id, SEL, id);
             Method _method = class_getInstanceMethod(cls, _sel);
             method_exchangeImplementations(method, _method);
         };
-        /**
-         *  rewrite the implementation for interactivePopGestureRecognizer's delegate.
-         */
+        //重写interactivepopgesturerecognizer的委托实施。
         {
             Class _UINavigationInteractiveTransition = NSClassFromString(@"_UINavigationInteractiveTransition");
-
             {
                 Method gestureShouldReceiveTouch = class_getInstanceMethod(_UINavigationInteractiveTransition, @selector(gestureRecognizer:shouldReceiveTouch:));
                 method_setImplementation(gestureShouldReceiveTouch, imp_implementationWithBlock(^(UIPercentDrivenInteractiveTransition *navTransition,UIGestureRecognizer *gestureRecognizer, UITouch *touch){
                     UINavigationController *navigationController = (UINavigationController *)[navTransition valueForKey:@"__parent"];
                     return navigationController.viewControllers.count != 1 && ![[navigationController valueForKey:@"_isTransitioning"] boolValue];
                 }));
-            }
-            
-            {
+            }{
                 Method gestureShouldSimultaneouslyGesture = class_getInstanceMethod(_UINavigationInteractiveTransition, NSSelectorFromString(@"_gestureRecognizer:shouldBeRequiredToFailByGestureRecognizer:"));
-                method_setImplementation(gestureShouldSimultaneouslyGesture, imp_implementationWithBlock(^{
-                    return NO;
-                }));
-            
+                method_setImplementation(gestureShouldSimultaneouslyGesture, imp_implementationWithBlock(^{return NO;}));
+            }{__method_swizzling([UIPercentDrivenInteractiveTransition class], @selector(updateInteractiveTransition:), @selector(_updateInteractiveTransition:));
+            }{__method_swizzling([UIPercentDrivenInteractiveTransition class], @selector(cancelInteractiveTransition), @selector(_cancelInteractiveTransition));
+            }{__method_swizzling([UIPercentDrivenInteractiveTransition class], @selector(finishInteractiveTransition), @selector(_finishInteractiveTransition));
+            }{__method_swizzling([UINavigationBar class], @selector(sizeThatFits:), NSSelectorFromString(@"_sizeThatFits:"));
+            }{__method_swizzling([UIToolbar class], @selector(sizeThatFits:), NSSelectorFromString(@"_sizeThatFits:"));}
+        }{
+            {__method_swizzling(self, @selector(pushViewController:animated:),@selector(_pushViewController:animated:));
+            }{__method_swizzling(self, @selector(popViewControllerAnimated:), @selector(_popViewControllerAnimated:));
+            }{__method_swizzling(self, @selector(popToViewController:animated:), @selector(_popToViewController:animated:));
+            }{__method_swizzling(self, @selector(popToRootViewControllerAnimated:), @selector(_popToRootViewControllerAnimated:));
+            }{__method_swizzling(self, NSSelectorFromString(@"navigationTransitionView:didEndTransition:fromView:toView:"),@selector(_navigationTransitionView:didEndTransition:fromView:toView:));
+            }{__method_swizzling(self, @selector(setNavigationBarHidden:animated:), @selector(_setNavigationBarHidden:animated:));
             }
-            
-            {
-                __method_swizzling([UIPercentDrivenInteractiveTransition class], @selector(updateInteractiveTransition:), @selector(_updateInteractiveTransition:));
-            }
-            
-            {
-                __method_swizzling([UIPercentDrivenInteractiveTransition class], @selector(cancelInteractiveTransition), @selector(_cancelInteractiveTransition));
-            }
-            
-            {
-                __method_swizzling([UIPercentDrivenInteractiveTransition class], @selector(finishInteractiveTransition), @selector(_finishInteractiveTransition));
-            }
-            
-            {
-                __method_swizzling([UINavigationBar class], @selector(sizeThatFits:), NSSelectorFromString(@"_sizeThatFits:"));
-            }
-            
-            {
-                __method_swizzling([UIToolbar class], @selector(sizeThatFits:), NSSelectorFromString(@"_sizeThatFits:"));
-            }
-        }
-        
-        {
-
-            {
-                __method_swizzling(self, @selector(pushViewController:animated:),@selector(_pushViewController:animated:));
-            }
-            
-            {
-                __method_swizzling(self, @selector(popViewControllerAnimated:), @selector(_popViewControllerAnimated:));
-            }
-            
-            {
-                __method_swizzling(self, @selector(popToViewController:animated:), @selector(_popToViewController:animated:));
-            }
-            
-            {
-                __method_swizzling(self, @selector(popToRootViewControllerAnimated:), @selector(_popToRootViewControllerAnimated:));
-            }
-            
-            {
-                __method_swizzling(self, NSSelectorFromString(@"navigationTransitionView:didEndTransition:fromView:toView:"),@selector(_navigationTransitionView:didEndTransition:fromView:toView:));
-            }
-            
-            {
-                __method_swizzling(self, @selector(setNavigationBarHidden:animated:), @selector(_setNavigationBarHidden:animated:));
-            }
-            
         }
     });
 }
@@ -167,7 +104,6 @@ typedef id (*_IMP)(id, SEL, id);
             }];
         }
     } else self.interactivePopedViewController = viewController;
-    
     return viewController;
 }
 
@@ -233,7 +169,6 @@ typedef id (*_IMP)(id, SEL, id);
 }
 
 #pragma mark - setters
-
 - (void)setFullScreenInteractivePopGestureRecognizer:(BOOL)fullScreenInteractivePopGestureRecognizer {
     if (fullScreenInteractivePopGestureRecognizer) {
         if ([self.interactivePopGestureRecognizer isMemberOfClass:[UIPanGestureRecognizer class]]) return;
@@ -320,48 +255,33 @@ typedef id (*_IMP)(id, SEL, id);
 
 - (UIViewController *)previousViewControllerForViewController:(UIViewController *)viewController {
     NSUInteger index = [self.viewControllers indexOfObject:viewController];
-    
     if (!index) return nil;
-    
     return self.viewControllers[index - 1];
 }
 /**
  *  @brief  寻找Navigation中的某个viewcontroler对象
- *
  *  @param className viewcontroler名称
- *
  *  @return viewcontroler对象
  */
-- (id)findViewController:(NSString*)className
-{
+- (id)findViewController:(NSString*)className{
     for (UIViewController *viewController in self.viewControllers) {
-        if ([viewController isKindOfClass:NSClassFromString(className)]) {
-            return viewController;
-        }
+        if ([viewController isKindOfClass:NSClassFromString(className)]) {return viewController;}
     }
-    
     return nil;
 }
 /**
  *  @brief  判断是否只有一个RootViewController
- *
  *  @return 是否只有一个RootViewController
  */
-- (BOOL)isOnlyContainRootViewController
-{
-    if (self.viewControllers &&
-        self.viewControllers.count == 1) {
-        return YES;
-    }
+- (BOOL)isOnlyContainRootViewController{
+    if (self.viewControllers && self.viewControllers.count == 1){return YES;}
     return NO;
 }
 /**
  *  @brief  RootViewController
- *
  *  @return RootViewController
  */
-- (UIViewController *)rootViewController
-{
+- (UIViewController *)rootViewController{
     if (self.viewControllers && [self.viewControllers count] >0) {
         return [self.viewControllers firstObject];
     }
@@ -369,26 +289,20 @@ typedef id (*_IMP)(id, SEL, id);
 }
 /**
  *  @brief  返回指定的viewcontroler
- *
  *  @param className 指定viewcontroler类名
  *  @param animated  是否动画
- *
  *  @return pop之后的viewcontrolers
  */
-- (NSArray *)popToViewControllerWithClassName:(NSString*)className animated:(BOOL)animated;
-{
+- (NSArray *)popToViewControllerWithClassName:(NSString*)className animated:(BOOL)animated;{
     return [self popToViewController:[self findViewController:className] animated:YES];
 }
 /**
  *  @brief  pop n层
- *
  *  @param level  n层
  *  @param animated  是否动画
- *
  *  @return pop之后的viewcontrolers
  */
-- (NSArray *)popToViewControllerWithLevel:(NSInteger)level animated:(BOOL)animated
-{
+- (NSArray *)popToViewControllerWithLevel:(NSInteger)level animated:(BOOL)animated{
     NSInteger viewControllersCount = self.viewControllers.count;
     if (viewControllersCount > level) {
         NSInteger idx = viewControllersCount - level - 1;
@@ -398,7 +312,6 @@ typedef id (*_IMP)(id, SEL, id);
         return [self popToRootViewControllerAnimated:animated];
     }
 }
-
 @end
 
 @implementation UIViewController (JZExtension)
@@ -434,7 +347,6 @@ typedef id (*_IMP)(id, SEL, id);
 @end
 
 @implementation UIToolbar (JZExtension)
-
 - (CGSize)_sizeThatFits:(CGSize)size {
     CGSize newSize = [self _sizeThatFits:size];
     return CGSizeMake(self.size.width == 0.f ? newSize.width : self.size.width, self.size.height == 0.f ? newSize.height : self.size.height);
@@ -448,7 +360,6 @@ typedef id (*_IMP)(id, SEL, id);
 - (CGSize)size {
     return [objc_getAssociatedObject(self, _cmd) CGSizeValue];
 }
-
 @end
 
 @interface UINavigationBar (JZExtension)
@@ -482,7 +393,6 @@ typedef id (*_IMP)(id, SEL, id);
 @end
 
 @implementation UIPercentDrivenInteractiveTransition (JZExtension)
-
 - (void)_handleInteractiveTransition:(BOOL)isCancel {
     UINavigationController *navigationController = (UINavigationController *)[self valueForKey:@"__parent"];
     UIViewController *adjustViewController = isCancel ? navigationController.interactivePopedViewController : navigationController.visibleViewController;

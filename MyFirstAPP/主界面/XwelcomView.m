@@ -25,7 +25,7 @@
 }
 
 -(void)loadHeadData{
-    bgView=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+    bgView=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH)];
     [bgView setShowsHorizontalScrollIndicator:NO];
     [bgView setPagingEnabled:YES];
     [self addSubview:bgView];

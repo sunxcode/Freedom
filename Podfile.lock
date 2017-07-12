@@ -81,7 +81,7 @@ PODS:
     - SDWebImage/Core (= 3.7.6)
   - SDWebImage/Core (3.7.6)
   - SVProgressHUD (0.9)
-  - UMengAnalytics (3.6.6)
+  - UMengAnalytics (4.2.4)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
@@ -105,7 +105,7 @@ DEPENDENCIES:
   - SDCycleScrollView (~> 1.64)
   - SDWebImage (~> 3.7.4)
   - SVProgressHUD (= 0.9)
-  - UMengAnalytics (~> 3.6.6)
+  - UMengAnalytics
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
@@ -132,8 +132,8 @@ SPEC CHECKSUMS:
   SDCycleScrollView: f72904c77698a7f93a41bcbbc2d78b073bf7326c
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
   SVProgressHUD: 7038ae9d6a0bd2c87560d2699eba642eef82d41e
-  UMengAnalytics: 4bf831415146b9c57cb10be65fbd43462ef8cf65
+  UMengAnalytics: ef8d45f94c0e5771dc364cf6a5731d9d3b101da2
 
-PODFILE CHECKSUM: 514079726a02e9a335d3cfbe2f015bf886d2069d
+PODFILE CHECKSUM: 63dbafe72e9bad91b37e63b338d8b5d1870758ab
 
-COCOAPODS: 1.0.0
+COCOAPODS: 1.2.1

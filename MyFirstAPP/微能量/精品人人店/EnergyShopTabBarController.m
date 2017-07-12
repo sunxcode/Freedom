@@ -47,7 +47,7 @@ static EnergyShopTabBarController *rootVC = nil;
         [self addChildViewController:nav];
     }];
 }
-- (id)childViewControllerAtIndex:(NSUInteger)index{
-    return [[self.childViewControllers objectAtIndex:index] rootViewController];
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
 }
 @end

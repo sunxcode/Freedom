@@ -9,71 +9,38 @@
 #import "MicroEnergyTabBarController.h"
 #import "UIImage+expanded.h"
 #import "EnergyNavigationController.h"
-@interface MicroEnergyTabBarController ()
-
-@property (nonatomic, strong) NSMutableArray *items;
-
-@end
-
-@implementation MicroEnergyTabBarController
-
-- (NSMutableArray *)items{
-    if (_items == nil) {
-        _items = [NSMutableArray array];
-    }return _items;
+#import "EnergySuperMarketTabBarController.h"
+@interface MicroEnergyTabBarController ()<UITabBarControllerDelegate>{
+    EnergySuperMarketTabBarController *myTabBar;
 }
+@end
+@implementation MicroEnergyTabBarController
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    [[UITabBar appearance] setBarTintColor:RGBCOLOR(59, 59, 59)];
     self.tabBar.barTintColor = RGBACOLOR(59, 59, 59,1);
     //通过设置文本属性来设置字体颜色
-    for(UIViewController *s in self.childViewControllers){
+    for(int i=0;i<self.childViewControllers.count;i++){
         NSMutableDictionary *attM = [NSMutableDictionary dictionary];
         [attM setObject:[UIColor orangeColor] forKey:NSForegroundColorAttributeName];
+        UIViewController *s = self.childViewControllers[i];
         [s.tabBarItem setTitleTextAttributes:attM forState:UIControlStateSelected];
         s.tabBarItem.image = [s.tabBarItem.image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         s.tabBarItem.selectedImage = [s.tabBarItem.selectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        s.tabBarItem.tag = i;
     }
-    //管理子控制器
-    //    [self setUpAllChildViewController];
+    myTabBar=[EnergySuperMarketTabBarController sharedRootViewController];
+    myTabBar.hidesBottomBarWhenPushed = YES;
+    myTabBar.superTabbar = self;
 }
-#pragma mark 添加所有子控制器
--(void)setUpAllChildViewController{
-    //首页
-    //    DZHomeController *home = [[DZHomeController alloc] init];
-    //    [self setUpOneChildViewController:home image:@"home_footbar_icon_dianping@2x" selectedImage:@"home_footbar_icon_dianping_pressed@2x" title:@"首页"];
-    //
-    //    //团购
-    //    DZDealController *deal = [[DZDealController alloc] init];
-    //    [self setUpOneChildViewController:deal image:@"home_footbar_icon_group@2x" selectedImage:@"home_footbar_icon_group_pressed@2x" title:@"团购"];
-    //
-    //    //发现
-    //    DZDiscoverController *discover = [[DZDiscoverController alloc] init];
-    //    [self setUpOneChildViewController:discover image:@"home_footbar_icon_found@2x" selectedImage:@"home_footbar_icon_found_pressed@2x" title:@"发现"];
-    //
-    //    //我的
-    //    DZMeController *profile = [[DZMeController alloc] init];
-    //    [self setUpOneChildViewController:profile image:@"home_footbar_icon_my@2x" selectedImage:@"home_footbar_icon_my_pressed@2x" title:@"我的"];
-    
+-(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item{
+    if(item.tag!=3){
+         myTabBar.backTab = item.tag;
+    }else{
+        EnergyNavigationController *navi = self.childViewControllers[3];
+        [navi pushViewController:myTabBar animated:YES];
+    }
 }
-
-#pragma mark 添加一个子控制器
--(void)setUpOneChildViewController:(UIViewController *)viewController image:(NSString *)imageName selectedImage:(NSString *)selectedImageName title:(NSString *)title{
-    //    viewController.tabBarItem.title = title;
-    //    viewController.tabBarItem.image = [UIImage imageNamed:imageName];
-    //    viewController.tabBarItem.selectedImage = [UIImage imageWithRenderingOriginalName:selectedImageName];
-    //
-    //    //通过设置文本属性来设置字体颜色
-    //    NSMutableDictionary *attM = [NSMutableDictionary dictionary];
-    //    [attM setObject:[UIColor orangeColor] forKey:NSForegroundColorAttributeName];
-    //    [viewController.tabBarItem setTitleTextAttributes:attM forState:UIControlStateSelected];
-    //
-    //    // 保存tabBarItem模型到数组
-    //    [self.items addObject:viewController.tabBarItem];
-    //
-    //    DianpingNavigationController *nav = [[DianpingNavigationController alloc] initWithRootViewController:viewController];
-    //
-    //    [self addChildViewController:nav];
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
 }
-
 @end

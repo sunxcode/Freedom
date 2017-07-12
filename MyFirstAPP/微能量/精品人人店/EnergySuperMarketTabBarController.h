@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface EnergySuperMarketTabBarController : UITabBarController
-
+#import "MicroEnergyTabBarController.h"
+@interface EnergySuperMarketTabBarController : BaseTabBarController
++ (EnergySuperMarketTabBarController *)sharedRootViewController;
+@property(nonatomic,assign)NSInteger backTab;
+@property(nonatomic,strong)MicroEnergyTabBarController *superTabbar;
 @end

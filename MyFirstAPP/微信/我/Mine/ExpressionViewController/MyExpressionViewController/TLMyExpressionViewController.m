@@ -10,6 +10,7 @@
 #import "TLExpressionDetailViewController.h"
 #import "TLExpressionHelper.h"
 #import "TLMyExpressionCell.h"
+#import "UINavigationController+JZExtension.h"
 
 @interface TLMyExpressionViewController () <TLMyExpressionCellDelegate>
 

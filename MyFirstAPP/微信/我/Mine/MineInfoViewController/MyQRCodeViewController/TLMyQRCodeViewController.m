@@ -9,7 +9,7 @@
 #import "TLMyQRCodeViewController.h"
 #import "TLScanningViewController.h"
 #import "TLQRCodeViewController.h"
-
+#import "UINavigationController+JZExtension.h"
 #define         ACTIONTAG_SHOW_SCANNER          101
 
 @interface TLMyQRCodeViewController () <TLActionSheetDelegate>

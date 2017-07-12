@@ -7,7 +7,7 @@
 //
 
 #import "TLTableViewController.h"
-#import <MobClick.h>
+
 
 @implementation TLTableViewController
 

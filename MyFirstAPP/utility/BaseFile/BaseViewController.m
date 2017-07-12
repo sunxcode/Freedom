@@ -26,7 +26,7 @@ static BaseViewController *BVC = nil;
     [[Utility Share]setCurrentViewController:self];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:)name:kReachabilityChangedNotification object:nil];
     if (Version7) {
-        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     }
 }
 - (void)viewDidLoad{
@@ -35,13 +35,14 @@ static BaseViewController *BVC = nil;
         self.automaticallyAdjustsScrollViewInsets=NO;
         self.edgesForExtendedLayout = UIRectEdgeNone;
         [self.navigationController.navigationBar setFrame:CGRectMake(0, 0,APPW, TopHeight)];
-        [[UINavigationBar appearance] setBackIndicatorImage:[UIImage imageNamed:PcellLeft]];
-        [[UINavigationBar appearance] setBackIndicatorTransitionMaskImage:[UIImage imageNamed:PcellLeft]];
+        [[UINavigationBar appearance] setBackIndicatorImage:[[UIImage imageNamed:PcellLeft]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+        [[UINavigationBar appearance] setBackIndicatorTransitionMaskImage:[[UIImage imageNamed:PcellLeft]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ]];
         UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
         backItem.title = @"返回";
         self.navigationItem.backBarButtonItem = backItem;
+        
         [self.navigationController.view setBackgroundColor:whitecolor];
-        NSDictionary *dict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[UIColor whiteColor],[UIFont boldSystemFontOfSize:18.0f], nil] forKeys:[NSArray arrayWithObjects: NSForegroundColorAttributeName,NSFontAttributeName, nil]];
+        NSDictionary *dict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[UIColor blackColor],[UIFont boldSystemFontOfSize:18.0f], nil] forKeys:[NSArray arrayWithObjects: NSForegroundColorAttributeName,NSFontAttributeName, nil]];
         self.navigationController.navigationBar.titleTextAttributes = dict;
     }
     [self.view setClipsToBounds:YES];

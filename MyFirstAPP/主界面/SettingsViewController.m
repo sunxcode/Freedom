@@ -4,26 +4,22 @@
 //
 //  Created by 薛超 on 16/6/24.
 //  Copyright © 2016年 薛超. All rights reserved.
-//
-
 #import "SettingsViewController.h"
-
 @interface SettingsViewController ()<UITableViewDelegate,UITableViewDataSource>{
     UITableView *tableView1;
     NSInteger i;
 }
-
 @end
 @implementation SettingsViewController
 @synthesize contentLength, dismissByBackgroundDrag, dismissByBackgroundTouch, dismissByForegroundDrag;
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    self.view.backgroundColor = redcolor;
-    tableView1 = [[UITableView alloc]initWithFrame:CGRectMake(0, 80, 200, kScreenHeight-80)];
+    tableView1 = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH)];
     tableView1.delegate = self;
     tableView1.dataSource = self;
     tableView1.backgroundColor = [UIColor clearColor];
     tableView1.tableHeaderView = [self getheadView];
+    tableView1.showsVerticalScrollIndicator = NO;
     [self.view addSubview:tableView1];
     ElasticTransition *ET = (ElasticTransition*)self.transitioningDelegate;
     NSLog(@"\ntransition.edge = %@\ntransition.transformType = %@\ntransition.sticky = %@\ntransition.showShadow = %@", [HelperFunctions typeToStringOfEdge:ET.edge], [ET transformTypeToString], ET.sticky ? @"YES" : @"NO", ET.showShadow ? @"YES" : @"NO");
@@ -38,10 +34,10 @@
     }return self;
 }
 -(UIView *)getheadView{
-    UIScrollView *s = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, 200, 200)];
-    s.contentSize = CGSizeMake(1000,1000);
+    UIScrollView *s = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, APPW, 200)];
+    s.contentSize = CGSizeMake(0,0);
     s.backgroundColor = [UIColor clearColor];
-    UIView *headView = [[UIView alloc]initWithFrame:CGRectMake(310, 220, 200, 200)];
+    UIView *headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPW, 200)];
     headView.backgroundColor = [UIColor yellowColor];
     [s addSubview:headView];
     return s;

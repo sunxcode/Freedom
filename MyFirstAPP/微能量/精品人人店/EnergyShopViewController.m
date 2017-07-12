@@ -44,11 +44,10 @@
 //    animation.timingFunction = UIViewAnimationCurveEaseInOut;
 //    [self.view.window.layer addAnimation:animation forKey:nil];
 //    [self presentViewController:con animated:NO completion:^{}];
-    
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
     EnergyShopTabBarController *myTabBar=[EnergyShopTabBarController sharedRootViewController];
-    UINavigationController *na=[[UINavigationController alloc] initWithRootViewController:myTabBar];
-    [self.navigationController pushViewController:na animated:YES];
-    
+    myTabBar.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:myTabBar animated:YES];
 }
 
 @end

@@ -12,7 +12,7 @@
 #import "TLFriendsViewController.h"
 #import "TLDiscoverViewController.h"
 #import "TLMineViewController.h"
-
+#import "UINavigationController+JZExtension.h"
 #import "TLRootProxy.h"
 #import "TLExpressionProxy.h"
 #import "TLExpressionHelper.h"
@@ -51,8 +51,7 @@ static TLRootViewController *rootVC = nil;
     [self setViewControllers:self.childVCArray];       // 初始化子控制器
 }
 
-- (id)childViewControllerAtIndex:(NSUInteger)index
-{
+- (id)childViewControllerAtIndex:(NSUInteger)index{
     return [[self.childViewControllers objectAtIndex:index] rootViewController];
 }
 
@@ -116,7 +115,7 @@ static TLRootViewController *rootVC = nil;
 /**********************************************************************************/
 - (void)p_initThirdPartSDK{
     // 友盟统计
-    [MobClick startWithAppkey:UMENG_APPKEY reportPolicy:BATCH channelId:APP_CHANNEL];
+//    [MobClick startWithAppkey:UMENG_APPKEY reportPolicy:BATCH channelId:APP_CHANNEL];
     // 网络环境监测
     [[AFNetworkReachabilityManager sharedManager] startMonitoring];
     // JSPatch

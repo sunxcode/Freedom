@@ -87,25 +87,6 @@
             </objects>
             <point key="canvasLocation" x="1282" y="1394"/>
         </scene>
-        <!--Energy Shop View Controller-->
-        <scene sceneID="zd9-mz-fkt">
-            <objects>
-                <viewController storyboardIdentifier="EnergyShopViewController" id="boc-wI-w6d" customClass="EnergyShopViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="E07-WC-sFB"/>
-                        <viewControllerLayoutGuide type="bottom" id="gO8-6n-TgZ"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="yhI-IS-tri">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="BdU-9G-LPp"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HQx-8b-uIC" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1282" y="758"/>
-        </scene>
         <!--Energy Home View Controller-->
         <scene sceneID="kyf-dn-1cW">
             <objects>
@@ -175,12 +156,31 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="boc-wI-w6d" kind="relationship" relationship="rootViewController" id="UEh-jB-Uie"/>
+                        <segue destination="M9f-Wm-GkT" kind="relationship" relationship="rootViewController" id="eY1-ZX-tEU"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xzu-vq-d94" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="678" y="758"/>
+            <point key="canvasLocation" x="932" y="777"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="bDI-R2-Sdq">
+            <objects>
+                <viewController id="M9f-Wm-GkT" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="W4J-4o-3r8"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ckn-wT-MjU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0vh-Kz-DJ5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="dTi-8O-wV6"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Ah-l1-QdX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1630" y="782"/>
         </scene>
         <!--联系我们-->
         <scene sceneID="at2-fX-EgU">

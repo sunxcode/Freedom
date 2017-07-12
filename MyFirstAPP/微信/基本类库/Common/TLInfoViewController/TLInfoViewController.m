@@ -8,7 +8,7 @@
 
 #import "TLInfoViewController.h"
 #import "TLInfoHeaderFooterView.h"
-#import <MobClick.h>
+
 
 @implementation TLInfoViewController
 
