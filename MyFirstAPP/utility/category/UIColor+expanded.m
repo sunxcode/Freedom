@@ -1,25 +1,13 @@
-#import "UIColor+Expanded.h"
 
+#import "UIColor+Expanded.h"
 
 // Static cache of looked up color names. Used with +colorWithName:
 static NSMutableDictionary *colorNameCache = nil;
 
-#if SUPPORTS_UNDOCUMENTED_API
 // UIColor_Undocumented
 // Undocumented methods of UIColor
-@interface UIColor (UIColor_Undocumented)
-- (NSString *)styleString;
-@end
-#endif // SUPPORTS_UNDOCUMENTED_API
 
-@interface UIColor (UIColor_Expanded_Support)
-+ (UIColor *)searchForColorByName:(NSString *)cssColorName;
-@end
-
-#pragma mark -
-
-@implementation UIColor (UIColor_Expanded)
-
+@implementation UIColor (expanded)
 - (CGColorSpaceModel)colorSpaceModel {
 	return CGColorSpaceGetModel(CGColorGetColorSpace(self.CGColor));
 }
@@ -383,12 +371,75 @@ static NSMutableDictionary *colorNameCache = nil;
 	colorNameCache = [[NSMutableDictionary alloc] init];
 }
 
-@end
+#pragma mark - # 字体
++ (UIColor *)colorTextBlack {
+    return [UIColor blackColor];
+}
 
-#pragma mark -
++ (UIColor *)colorTextGray {
+    return [UIColor grayColor];
+}
 
-#if SUPPORTS_UNDOCUMENTED_API
-@implementation UIColor (UIColor_Undocumented_Expanded)
++ (UIColor *)colorTextGray1 {
+    return TLColor(160, 160, 160, 1.0);
+}
+
+#pragma mark - 灰色
++ (UIColor *)colorGrayBG {
+    return TLColor(239.0, 239.0, 244.0, 1.0);
+}
+
++ (UIColor *)colorGrayCharcoalBG {
+    return TLColor(235.0, 235.0, 235.0, 1.0);
+}
+
++ (UIColor *)colorGrayLine {
+    return [UIColor colorWithWhite:0.5 alpha:0.3];
+}
+
++ (UIColor *)colorGrayForChatBar {
+    return TLColor(245.0, 245.0, 247.0, 1.0);
+}
+
++ (UIColor *)colorGrayForMoment {
+    return TLColor(243.0, 243.0, 245.0, 1.0);
+}
+
+
+
+
+#pragma mark - 绿色
++ (UIColor *)colorGreenDefault {
+    return TLColor(2.0, 187.0, 0.0, 1.0f);
+}
+
+
+#pragma mark - 蓝色
++ (UIColor *)colorBlueMoment {
+    return TLColor(74.0, 99.0, 141.0, 1.0);
+}
+
+#pragma mark - 黑色
++ (UIColor *)colorBlackForNavBar {
+    return TLColor(20.0, 20.0, 20.0, 1.0);
+}
+
++ (UIColor *)colorBlackBG {
+    return TLColor(46.0, 49.0, 50.0, 1.0);
+}
+
++ (UIColor *)colorBlackAlphaScannerBG {
+    return [UIColor colorWithWhite:0 alpha:0.6];
+}
+
++ (UIColor *)colorBlackForAddMenu {
+    return TLColor(71, 70, 73, 1.0);
+}
+
++ (UIColor *)colorBlackForAddMenuHL {
+    return TLColor(65, 64, 67, 1.0);
+}
+
 - (NSString *)fetchStyleString {
 	return [self styleString];
 }
@@ -396,26 +447,23 @@ static NSMutableDictionary *colorNameCache = nil;
 // Convert a color into RGB Color space, courtesy of Poltras
 // via http://ofcodeandmen.poltras.com/2009/01/22/convert-a-cgcolorref-to-another-cgcolorspaceref/
 //
-- (UIColor *)rgbColor {
-	// Call to undocumented method "styleString".
-	NSString *style = [self styleString];
-	NSScanner *scanner = [NSScanner scannerWithString:style];
-	CGFloat red, green, blue;
-	if (![scanner scanString:@"rgb(" intoString:NULL]) return nil;
-	if (![scanner scanFloat:&red]) return nil;
-	if (![scanner scanString:@"," intoString:NULL]) return nil;
-	if (![scanner scanFloat:&green]) return nil;
-	if (![scanner scanString:@"," intoString:NULL]) return nil;
-	if (![scanner scanFloat:&blue]) return nil;
-	if (![scanner scanString:@")" intoString:NULL]) return nil;
-	if (![scanner isAtEnd]) return nil;
-	
-	return [UIColor colorWithRed:red green:green blue:blue alpha:self.alpha];
-}
-@end
-#endif // SUPPORTS_UNDOCUMENTED_API
+//- (UIColor *)rgbColor {
+//	// Call to undocumented method "styleString".
+//	NSString *style = [self styleString];
+//	NSScanner *scanner = [NSScanner scannerWithString:style];
+//	CGFloat red, green, blue;
+//	if (![scanner scanString:@"rgb(" intoString:NULL]) return nil;
+//	if (![scanner scanFloat:&red]) return nil;
+//	if (![scanner scanString:@"," intoString:NULL]) return nil;
+//	if (![scanner scanFloat:&green]) return nil;
+//	if (![scanner scanString:@"," intoString:NULL]) return nil;
+//	if (![scanner scanFloat:&blue]) return nil;
+//	if (![scanner scanString:@")" intoString:NULL]) return nil;
+//	if (![scanner isAtEnd]) return nil;
+//	
+//	return [UIColor colorWithRed:red green:green blue:blue alpha:self.alpha];
+//}
 
-@implementation UIColor (UIColor_Expanded_Support)
 /*
  * Database of color names and hex rgb values, derived
  * from the css 3 color spec:

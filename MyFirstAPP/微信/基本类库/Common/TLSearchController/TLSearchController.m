@@ -7,8 +7,8 @@
 //
 
 #import "TLSearchController.h"
-#import "UIImage+Color.h"
-#import "UIView+Extensions.h"
+#import "UIImage+expanded.h"
+#import "UIView+expanded.h"
 
 @implementation TLSearchController
 

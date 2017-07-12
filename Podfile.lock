@@ -74,6 +74,9 @@ PODS:
   - ReactiveCocoa/UI (2.5):
     - ReactiveCocoa/Core
   - RESideMenu (4.0.7)
+  - SDAutoLayout (2.1.1)
+  - SDCycleScrollView (1.65):
+    - SDWebImage (~> 3.7)
   - SDWebImage (3.7.6):
     - SDWebImage/Core (= 3.7.6)
   - SDWebImage/Core (3.7.6)
@@ -98,6 +101,8 @@ DEPENDENCIES:
   - Reachability (= 3.1.1)
   - ReactiveCocoa (~> 2.5)
   - RESideMenu
+  - SDAutoLayout
+  - SDCycleScrollView (~> 1.64)
   - SDWebImage (~> 3.7.4)
   - SVProgressHUD (= 0.9)
   - UMengAnalytics (~> 3.6.6)
@@ -123,10 +128,12 @@ SPEC CHECKSUMS:
   Reachability: dd9aa4fb6667b9f787690a74f53cb7634ce99893
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
   RESideMenu: f24c508404b49c667344c54aba7e590883533958
+  SDAutoLayout: c18678b6ae28c67d89cb132e770cfbac9ee20d25
+  SDCycleScrollView: f72904c77698a7f93a41bcbbc2d78b073bf7326c
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
   SVProgressHUD: 7038ae9d6a0bd2c87560d2699eba642eef82d41e
   UMengAnalytics: 4bf831415146b9c57cb10be65fbd43462ef8cf65
 
-PODFILE CHECKSUM: 467a4e94a254d0111ddf44cb538f1e2faee3fd8f
+PODFILE CHECKSUM: 514079726a02e9a335d3cfbe2f015bf886d2069d
 
 COCOAPODS: 1.0.0

@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface EnergyShopTabBarController : UITabBarController
-
+#import "BaseTabBarController.h"
+@interface EnergyShopTabBarController : BaseTabBarController
++ (EnergyShopTabBarController *)sharedRootViewController;
 @end
+

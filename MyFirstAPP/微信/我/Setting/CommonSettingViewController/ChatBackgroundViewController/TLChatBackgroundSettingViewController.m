@@ -8,7 +8,7 @@
 
 #import "TLChatBackgroundSettingViewController.h"
 #import "TLCommonSettingHelper.h"
-#import "UIImage+Size.h"
+#import "UIImage+expanded.h"
 
 #import "TLChatBackgroundSelectViewController.h"
 #import "TLChatViewController.h"

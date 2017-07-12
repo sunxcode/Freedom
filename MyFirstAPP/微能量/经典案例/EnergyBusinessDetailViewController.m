@@ -8,6 +8,15 @@
 
 #import "EnergyBusinessDetailViewController.h"
 
-@implementation EnergyBusinessDetailViewController
-
+@implementation EnergyBusinessDetailViewController{
+    UIWebView *web;
+}
+-(void)viewDidLoad{
+    [super viewDidLoad];
+    NSURL *url = [NSURL URLWithString:@"http://www.taobao.com"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    web = [[UIWebView alloc]initWithFrame:self.view.bounds];
+    [web loadRequest:request];
+    [self.view addSubview:web];
+}
 @end

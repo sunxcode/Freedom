@@ -10,8 +10,7 @@
 #import "XFAccountTool.h"
 #import "XFAccount.h"
 #import "XFTextView.h"
-#import "AFNetworking.h"
-#import "MBProgressHUD+MJ.h"
+#import "MBProgressHUD+expanded.h"
 #import "XFComposeToolbar.h"
 #import "XFComposePhotosView.h"
 #import "XFEmotionKeyboard.h"
@@ -370,7 +369,7 @@
     params[@"access_token"] = [XFAccountTool account].access_token;
     params[@"status"] = self.textView.fullText;
     // 3.发送请求
-    [NetEngine POST:@"https://upload.api.weibo.com/2/statuses/upload.json" parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    [NetBase POST:@"https://upload.api.weibo.com/2/statuses/upload.json" parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         // 拼接文件数据
         UIImage *image = [self.photoView.photos firstObject];
         NSData *imageData = UIImageJPEGRepresentation(image,1.0);
@@ -400,7 +399,7 @@
     params[@"status"] = self.textView.fullText;
     
     // 3.发送请求
-    [NetEngine POST:@"https://api.weibo.com/2/statuses/update.json" parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [NetBase POST:@"https://api.weibo.com/2/statuses/update.json" parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [MBProgressHUD showSuccess:@"发送成功"];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
          [MBProgressHUD showError:@"发送失败"];

@@ -264,7 +264,7 @@ static dispatch_once_t utility;
     self.loginSuc = aLoginSuc;
     if ([_userId notEmptyOrNull] && [_userToken notEmptyOrNull]) {
         //登录过-验证token是否过期
-        [NetEngine POST:@"" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [NetBase POST:@"" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             if ([[responseObject valueForJSONKey:@"status"] isEqualToString:@"200"]) {
                 //没过期
                 self.loginSuc?self.loginSuc(1):nil;
@@ -279,7 +279,7 @@ static dispatch_once_t utility;
         NSMutableDictionary *dict=[[NSMutableDictionary alloc] init];
         [dict setValue:[self userId] forKey:@"uid"];
         [dict setValue:[self userToken] forKey:@"token"];
-        [NetEngine POST:@"" parameters:dict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [NetBase POST:@"" parameters:dict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             if ([[responseObject valueForJSONKey:@"status"] isEqualToString:@"200"]) {
                 //没过期
                 self.loginSuc?self.loginSuc(1):nil;
@@ -310,7 +310,7 @@ static dispatch_once_t utility;
     if (![account notEmptyOrNull]){[SVProgressHUD showErrorWithStatus:@"请填写账户"];return;}
     if (![password notEmptyOrNull]){[SVProgressHUD showErrorWithStatus:@"密码不能为空"];return;}
     NSDictionary *dic=[[NSDictionary alloc]initWithObjectsAndKeys:account,@"mobile",password.md5,@"pwd",nil];
-    [NetEngine POST:LOGIN parameters:dic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [NetBase POST:LOGIN parameters:dic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             NSDictionary *defaults = [responseObject objectForJSONKey:@"data"];
             [self setUserAccount:[defaults valueForKey: USERACCOUNT ]];
             [self setUserId:[defaults valueForKey: USERID ]];
@@ -356,7 +356,7 @@ static dispatch_once_t utility;
         [SVProgressHUD showErrorWithStatus:@"密码不能为空"];return;}
     if (![code notEmptyOrNull]){
         [SVProgressHUD showErrorWithStatus:@"验证码不能为空"];return;}
-     [NetEngine POST:@"" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+     [NetBase POST:@"" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
          //               0：参数异常
          //               1：手机账号不正确(包括空和号码错误)
          //               2：密码不能为空
@@ -912,7 +912,7 @@ static dispatch_once_t utility;
     NSMutableDictionary *postdict = [[NSMutableDictionary alloc]init];
     [postdict setValue:@"ios" forKey:@"type"];
     [postdict setValue:version forKey:@"version"];
-    [NetEngine POST:MyFirstAPPUpdate parameters:postdict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [NetBase POST:MyFirstAPPUpdate parameters:postdict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"%@",error]];
     }];

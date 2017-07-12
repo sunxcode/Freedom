@@ -8,7 +8,7 @@
 
 #import "TLPictureCarouselView.h"
 #import "TLPictureCarouselViewCell.h"
-#import "UIScrollView+Pages.h"
+#import "UIScrollView+expanded.h"
 
 @interface TLPictureCarouselView () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 

@@ -88,7 +88,7 @@
     _headImageArray = [[NSMutableArray alloc] init];
     
     NSString *urlStr =  [[GetUrlString sharedManager]urlWithHomeData];
-    [NetWork sendGetUrl:urlStr withParams:nil success:^(id responseBody) {
+    [NetEngine sendGetUrl:urlStr withParams:nil success:^(id responseBody) {
         [self.homeTableView.mj_header endRefreshing];
         [_headImageArray removeAllObjects];
         JFHomeModel *homeModel = [JFHomeModel mj_objectWithKeyValues:responseBody];

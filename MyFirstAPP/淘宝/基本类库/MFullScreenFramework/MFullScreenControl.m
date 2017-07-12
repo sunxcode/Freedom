@@ -8,7 +8,6 @@
 
 #import "MFullScreenControl.h"
 #import "MFullScreenView.h"
-#import "UIImage+Full.h"
 
 #pragma mark --
 #pragma mark -- MFullScreenControl

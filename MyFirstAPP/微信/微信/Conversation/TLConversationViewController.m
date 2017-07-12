@@ -9,7 +9,6 @@
 #import "TLConversationViewController.h"
 #import "TLConversationViewController+Delegate.h"
 #import "TLSearchController.h"
-#import "AFNetworking.h"
 #import "TLMessageManager+ConversationRecord.h"
 
 @interface TLConversationViewController ()
@@ -62,8 +61,7 @@
 }
 
 // 网络情况改变
-- (void)networkStatusChange:(NSNotification *)noti
-{
+- (void)networkStatusChange:(NSNotification *)noti{
     AFNetworkReachabilityStatus status = [noti.userInfo[@"AFNetworkingReachabilityNotificationStatusItem"] longValue];
     switch (status) {
         case AFNetworkReachabilityStatusReachableViaWiFi:

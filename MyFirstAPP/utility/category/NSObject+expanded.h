@@ -12,4 +12,7 @@
 -(void)searchCoreData;
 -(AppDelegate*)getAPPDelegate;
 + (NSString *)getFilePath:(NSString *)fileNameAndType;
+
+// 设置数据
+- (void)setValues:(NSDictionary *)values;
 @end

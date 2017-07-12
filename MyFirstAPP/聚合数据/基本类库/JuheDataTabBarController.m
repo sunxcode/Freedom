@@ -7,7 +7,6 @@
 //
 
 #import "JuheDataTabBarController.h"
-#import "UIImage+DZ.h"
 @interface JuheDataTabBarController ()
 
 @property (nonatomic, strong) NSMutableArray *items;

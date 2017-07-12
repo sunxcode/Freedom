@@ -16,7 +16,6 @@
 #import "TLRootProxy.h"
 #import "TLExpressionProxy.h"
 #import "TLExpressionHelper.h"
-#import "AFNetworking.h"
 #import "JPEngine.h"
 static TLRootViewController *rootVC = nil;
 

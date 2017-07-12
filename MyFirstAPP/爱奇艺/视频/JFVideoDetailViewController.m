@@ -80,7 +80,7 @@
     _videoDM = [[JFVideoDetailModel alloc] init];
     _recommendArray = [[NSMutableArray alloc] init];
     NSString *urlStr =  [[GetUrlString sharedManager]urlWithVideoDetailData:self.iid];
-    [NetWork sendGetUrl:urlStr withParams:nil success:^(id responseBody) {
+    [NetEngine sendGetUrl:urlStr withParams:nil success:^(id responseBody) {
         JFVideoDetailModel *videoDM = [JFVideoDetailModel mj_objectWithKeyValues:[responseBody objectForKey:@"detail"]];
         _videoDM = videoDM;
         NSString *videoUrl = [[GetUrlString sharedManager]urlWithVideo:self.iid];
@@ -94,7 +94,7 @@
 #pragma mark - 推荐视频
 -(void)loadRecommentData{
     NSString *urlStr =  [[GetUrlString sharedManager]urlWithRecommentdata:self.iid];
-    [NetWork sendGetUrl:urlStr withParams:nil success:^(id responseBody) {
+    [NetEngine sendGetUrl:urlStr withParams:nil success:^(id responseBody) {
         //这个地方要先移除模型数组里面数据
         [_recommendArray removeAllObjects];
         NSMutableArray *resultArray = [responseBody objectForKey:@"results"];

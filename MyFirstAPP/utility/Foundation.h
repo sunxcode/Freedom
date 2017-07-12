@@ -48,7 +48,7 @@
 #define JSONWebResource(s) [NSDictionary dictionaryWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.isolar88.com/upload/xuechao/json/%@",s]]];
 #define __async_opt__  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
 #define __async_main__ dispatch_async(dispatch_get_main_queue()
-#define NetEngine         [AFHTTPSessionManager manager]
+#define NetBase         [AFHTTPSessionManager manager]
 #define Net   ({AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];manager.responseSerializer = [AFJSONResponseSerializer serializer];\
               manager.requestSerializer=[AFHTTPRequestSerializer serializer];[manager.requestSerializer setValue:@"text/json"  forHTTPHeaderField:@"Accept"];\
               [manager.requestSerializer setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];\
@@ -92,6 +92,7 @@
 #define gradcolor         RGBACOLOR(224, 225, 226, 1)
 #define redcolor          RGBACOLOR(229, 59, 25, 1)
 #define yellowcolor       [UIColor yellowColor]
+#define greencolor        [UIColor greenColor]
 #define whitecolor        RGBACOLOR(256, 256,256,1)
 #define blacktextcolor    RGBACOLOR(33, 34, 35, 1)
 #define gradtextcolor     RGBACOLOR(116, 117, 118, 1)

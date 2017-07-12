@@ -8,7 +8,7 @@
 
 #import "TLExpressionProxy.h"
 #import "TLEmojiGroup.h"
-#import "NSString+UrlEncode.h"
+
 
 #define     IEXPRESSION_HOST_URL        @"http://123.57.155.230:8080/ibiaoqing/admin/"
 
@@ -25,7 +25,7 @@
                                        failure:(void (^)(NSString *error))failure
 {
     NSString *urlString = [NSString stringWithFormat:IEXPRESSION_NEW_URL, (long)pageIndex];
-    [TLNetworking postUrl:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [NetEngine postUrl:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSArray *respArray = [responseObject mj_JSONObject];
         NSString *status = respArray[0];
         if ([status isEqualToString:@"OK"]) {
@@ -45,7 +45,7 @@
                                      failure:(void (^)(NSString *))failure
 {
     NSString *urlString = IEXPRESSION_BANNER_URL;
-    [TLNetworking postUrl:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [NetEngine postUrl:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSArray *respArray = [responseObject mj_JSONObject];
         NSString *status = respArray[0];
         if ([status isEqualToString:@"OK"]) {
@@ -67,7 +67,7 @@
                                        failure:(void (^)(NSString *error))failure
 {
     NSString *urlString = [NSString stringWithFormat:IEXPRESSION_PUBLIC_URL, (long)pageIndex];
-    [TLNetworking postUrl:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [NetEngine postUrl:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSArray *respArray = [responseObject mj_JSONObject];
         NSString *status = respArray[0];
         if ([status isEqualToString:@"OK"]) {
@@ -88,7 +88,7 @@
                                  failure:(void (^)(NSString *error))failure
 {
     NSString *urlString = [NSString stringWithFormat:IEXPRESSION_SEARCH_URL, [[keyword urlEncode] urlEncode]];
-    [TLNetworking postUrl:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [NetEngine postUrl:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSArray *respArray = [responseObject mj_JSONObject];
         NSString *status = respArray[0];
         if ([status isEqualToString:@"OK"]) {
@@ -110,7 +110,7 @@
                                       failure:(void (^)(NSString *error))failure
 {
     NSString *urlString = [NSString stringWithFormat:IEXPRESSION_DETAIL_URL, (long)pageIndex, groupID];
-    [TLNetworking postUrl:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [NetEngine postUrl:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSArray *respArray = [responseObject mj_JSONObject];
         NSString *status = respArray[0];
         if ([status isEqualToString:@"OK"]) {

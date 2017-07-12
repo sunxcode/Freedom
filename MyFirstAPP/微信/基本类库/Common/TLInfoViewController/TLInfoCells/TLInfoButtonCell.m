@@ -7,7 +7,7 @@
 //
 
 #import "TLInfoButtonCell.h"
-#import "UIImage+Color.h"
+#import "UIImage+expanded.h"
 
 @interface TLInfoButtonCell ()
 

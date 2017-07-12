@@ -7,7 +7,7 @@
 //
 
 #import "TLMoreKeyboardCell.h"
-#import "UIImage+Color.h"
+#import "UIImage+expanded.h"
 
 @interface TLMoreKeyboardCell()
 

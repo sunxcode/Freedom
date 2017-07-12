@@ -2,9 +2,8 @@
 
 #import <UIKit/UIKit.h>
 
-#define SUPPORTS_UNDOCUMENTED_API	0
 
-@interface UIColor (UIColor_Expanded)
+@interface UIColor (expanded)
 @property (nonatomic, readonly) CGColorSpaceModel colorSpaceModel;
 @property (nonatomic, readonly) BOOL canProvideRGBComponents;
 @property (nonatomic, readonly) CGFloat red; // Only valid if canProvideRGBComponents is YES
@@ -47,13 +46,39 @@
 
 + (UIColor *)colorWithName:(NSString *)cssColorName;
 +(UIColor*)colorFromHex:(NSString*)hexString;
+#pragma mark - # 字体
++ (UIColor *)colorTextBlack;
++ (UIColor *)colorTextGray;
++ (UIColor *)colorTextGray1;
+
+
+#pragma mark - 灰色
++ (UIColor *)colorGrayBG;           // 浅灰色默认背景
++ (UIColor *)colorGrayCharcoalBG;   // 较深灰色背景（聊天窗口, 朋友圈用）
++ (UIColor *)colorGrayLine;
++ (UIColor *)colorGrayForChatBar;
++ (UIColor *)colorGrayForMoment;
+
+
+
+#pragma mark - 绿色
++ (UIColor *)colorGreenDefault;
+
+
+#pragma mark - 蓝色
++ (UIColor *)colorBlueMoment;
+
+
+#pragma mark - 黑色
++ (UIColor *)colorBlackForNavBar;
++ (UIColor *)colorBlackBG;
++ (UIColor *)colorBlackAlphaScannerBG;
++ (UIColor *)colorBlackForAddMenu;
++ (UIColor *)colorBlackForAddMenuHL;
+
+- (NSString *)fetchStyleString;
+//- (UIColor *)rgbColor; // Via Poltras
+- (NSString *)styleString;
++ (UIColor *)searchForColorByName:(NSString *)cssColorName;
 @end
 
-#if SUPPORTS_UNDOCUMENTED_API
-// UIColor_Undocumented_Expanded
-// Methods which rely on undocumented methods of UIColor
-@interface UIColor (UIColor_Undocumented_Expanded)
-- (NSString *)fetchStyleString;
-- (UIColor *)rgbColor; // Via Poltras
-@end
-#endif // SUPPORTS_UNDOCUMENTED_API

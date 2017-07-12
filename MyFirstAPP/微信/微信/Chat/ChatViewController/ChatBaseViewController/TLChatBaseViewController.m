@@ -13,7 +13,7 @@
 #import "TLChatBaseViewController+EmojiKBDelegate.h"
 #import "TLChatBaseViewController+ChatTableView.h"
 
-#import "UIImage+Size.h"
+#import "UIImage+expanded.h"
 
 @implementation TLChatBaseViewController
 

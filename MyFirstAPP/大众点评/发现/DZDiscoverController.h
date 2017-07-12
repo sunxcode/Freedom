@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DZDiscoverController : UITableViewController
+@interface DZDiscoverController : BaseViewController
 
 @end

@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TLNetworking.h"
 
 @interface TLBaseProxy : NSObject
 

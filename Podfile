@@ -21,6 +21,7 @@ pod 'PPRevealSideViewController', '~> 1.2.1'         #左界面和右界面     
 #pod 'JSONModel', '0.9.0'                            #jsonmodel                      https://github.com/jsonmodel/jsonmodel
 pod 'AFNetworking', '~> 3.0'                         #轻量级网络请求                   https://github.com/AFNetworking/AFNetworking
 pod 'RESideMenu'                                     #左右视图                        https://github.com/romaonthego/RESideMenu
+pod 'SDAutoLayout'                      #一行代码搞定自动布局              https://github.com/gsdios/SDAutoLayout
 #下面是微信的
 pod 'CocoaAsyncSocket', '~> 7.4.2'
 pod 'Masonry', '~> 0.6.4'
@@ -29,8 +30,9 @@ pod 'UMengAnalytics', '~> 3.6.6'
 pod 'ReactiveCocoa', '~> 2.5'
 pod 'CocoaLumberjack', '~> 2.2.0'
 pod 'BlocksKit', '~> 2.2.5'
+pod 'SDCycleScrollView','~> 1.64'                    #iOS图片、文字轮播器 https://github.com/gsdios/SDCycleScrollView
 pod 'MWPhotoBrowser', '~> 2.1.1'
-pod 'JSPatch'    #https://github.com/bang590/JSPatch
+pod 'JSPatch'                                        #https://github.com/bang590/JSPatch
 #pod 'TheAmazingAudioEngine'
 #https://github.com/TheAmazingAudioEngine/TheAmazingAudioEngine
 #http://theamazingaudioengine.com/doc/_getting-_started.html
@@ -89,4 +91,29 @@ pod 'JSPatch'    #https://github.com/bang590/JSPatch
 #pod 'ShareSDK2/Connection/MingDao'                   # 明道(可选)
 #pod 'ShareSDK2/Connection/YouDaoNote'                # 有道云笔记(可选)
 #pod 'ShareSDK2/Connection/AliPaySocial'              # 支付宝(可选)
+#- AFNetworking, 3.1.0
+#- BlocksKit, 2.2.5
+#- CocoaAsyncSocket, 7.4.3
+#- CocoaLumberjack, 2.2.0
+#- DACircularProgress, 2.3.1
+#- ElasticTransitionObjC, 0.1
+#- FMDB, 2.6.2
+#- JSONKit, 1.4
+#- JSPatch, 1.0
+#- KissXML, 5.0
+#- MBProgressHUD, 0.9.2
+#- MJExtension, 3.0.10
+#- MJRefresh, 3.1.0
+#- MWPhotoBrowser, 2.1.2
+#- Masonry, 0.6.4
+#- PPHelpMe, 1.0.2
+#- PPRevealSideViewController, 1.2.3
+#- RESideMenu, 4.0.7
+#- Reachability, 3.1.1
+#- ReactiveCocoa, 2.5
+#- SDAutoLayout, 2.1.1
+#- SDCycleScrollView, 1.65
+#- SDWebImage, 3.7.6
+#- SVProgressHUD, 0.9
+#- UMengAnalytics, 3.6.6
 end

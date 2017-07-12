@@ -17,7 +17,7 @@
 #import "JFSearchViewController.h"
 #import "JFSearchHistoryViewController.h"
 #import "JFSearchButton.h"
-#import "UIButton+JFButton.h"
+#import "UIButton+expanded.h"
 #import "JFImageScrollView.h"
 #import "JFVideoDetailViewController.h"
 #import "JFWebViewController.h"
@@ -96,7 +96,7 @@
     _dataSource = [[NSMutableArray alloc] init];
     _imageArray = [[NSMutableArray alloc] init];
     NSString *urlStr =[[GetUrlString sharedManager]urlWithDiscoverData];
-    [NetWork sendGetUrl:urlStr withParams:nil success:^(id responseBody) {
+    [NetEngine sendGetUrl:urlStr withParams:nil success:^(id responseBody) {
         NSLog(@"%@",responseBody);
         [self.discoverTableView.mj_header endRefreshing];
         NSString *hotWord = [responseBody objectForKey:@"search_hot_word"];

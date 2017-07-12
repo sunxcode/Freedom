@@ -7,98 +7,40 @@
 //
 #import "EnergyBusinessListViewController.h"
 #import "EnergyBusinessDetailViewController.h"
-@interface EnergyBusinessViewCell:UITableViewCell
--(void)setdatawithdict:(NSDictionary *)dict;
+@interface EnergyBusinessViewCell:BaseTableViewCell
 @end
-@implementation EnergyBusinessViewCell{
-    UILabel *titleLable;
-    UIImageView *intoview;
-    UIImageView *line;
-    UIImageView *icon;
-}
--(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        [self initUI];
-    }
-    return self;
-}
+@implementation EnergyBusinessViewCell
 -(void)initUI{
-    intoview = [[UIImageView alloc]initWithFrame:CGRectMake(kScreenWidth - Boardseperad - 10, (60 - 20)/2.0, 10, 20)];
-    intoview.contentMode = UIViewContentModeScaleAspectFill;
-    intoview.clipsToBounds = YES;
-    intoview.image = [UIImage imageNamed:@"icon_jt"];
-    [self addSubview:intoview];
-    
-    icon = [[UIImageView alloc]initWithFrame:CGRectMake(Boardseperad, Boardseperad, 50, 40)];
-    icon.contentMode = UIViewContentModeScaleAspectFill;
-    [self addSubview:icon];
-    titleLable = [[UILabel alloc]initWithFrame:CGRectMake(XW(icon)+10, (60 - 20)/2.0, X(intoview) - 2*Boardseperad, 20)];
-    titleLable.font = fontTitle;
-    titleLable.textColor = blacktextcolor;
-    [self addSubview:titleLable];
-    
-    line = [[UIImageView alloc]initWithFrame:CGRectMake(Boardseperad, 59, kScreenWidth - 2*Boardseperad, 1)];
-    line.contentMode = UIViewContentModeScaleAspectFill;
-    line.clipsToBounds = YES;
-    line.image = [UIImage imageNamed:@"userLine"];
-    [self addSubview:line];
+    [super initUI];
+    self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    self.icon.frame = CGRectMake(10, 10, 50, 50);
+    self.title.frame = CGRectMake(XW(self.icon)+20,  (70 - 20)/2.0,APPW-XW(self.icon), 20);
+    self.line.frame = CGRectMake(Boardseperad, 69, APPW-2*Boardseperad, 1);
 }
 
--(void)setdatawithdict:(NSDictionary *)dict{
-    titleLable.text = [dict valueForJSONKey:@"name"];
-    [icon imageWithURL:[NSString stringWithFormat:@"/upload/%@",[dict valueForJSONStrKey:@"img"]] useProgress:NO useActivity:NO];
+-(void)setDataWithDict:(NSDictionary *)dict{
+    self.title.text = (NSString*)dict;
+    self.icon.image = [UIImage imageNamed:@"taobaomini3"];
 }
 
 @end
-@interface EnergyBusinessListViewController ()<UITableViewDelegate,UITableViewDataSource>{
-    UITableView *refTableView;
-    UILabel *label;
-}
-@end
-
 @implementation EnergyBusinessListViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
     [self loadUI];
 }
--(void)loadData{
-    
-}
 -(void)loadUI{
-    refTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, W(self.view), kScreenHeight - 64) style:UITableViewStylePlain];
-    refTableView.backgroundColor = RGBCOLOR(246, 246, 246);
-    refTableView.delegate = self;
-    refTableView.dataSource = self;
-    [self.view addSubview:refTableView];
-    refTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self loadData];
+    self.tableView = [[BaseTableView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH-64)];
+    [self fillTheTableDataWithHeadV:nil footV:nil canMove:NO canEdit:NO headH:0 footH:0 rowH:70 sectionN:1 rowN:15 cellName:@"EnergyBusinessViewCell"];
+    self.tableView.dataArray = [NSMutableArray arrayWithObjects:@"桌上美食",@"真心真艺",@"音响科技有限公司",@"智联招聘",@"前程无忧",@"百度百科",@"雅虎中国",@"360",@"布丁酒店",@"如家",@"莫泰168",@"宜家家居",@"微软中国",@"苹果公司",@"IBM",nil];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.view addSubview:self.tableView];
 }
-
-#pragma mark - tableviewdelegate
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 20;
-}
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 60;
-}
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    EnergyBusinessViewCell *cell = [tableView dequeueReusableCellWithIdentifier: @"cell"];
-    if (cell == nil) {
-        cell = [[EnergyBusinessViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
-    [cell setdatawithdict:nil];
-    return cell;
-}
-
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSDictionary *dict = nil;
-    [self pushController:[EnergyBusinessDetailViewController class] withInfo:nil withTitle:[dict valueForJSONKey:@"name"] withOther:dict];
+    NSString *value = self.tableView.dataArray[indexPath.row];
+    [self pushController:[EnergyBusinessDetailViewController class] withInfo:nil withTitle:value withOther:value];
     
 }
-
 @end
 

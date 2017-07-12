@@ -53,7 +53,7 @@
 -(void)initData{
 
     NSString *urlStr = [[GetUrlString sharedManager]urlWithSubscribeData];
-    [NetWork sendGetUrl:urlStr withParams:nil success:^(id responseBody) {
+    [NetEngine sendGetUrl:urlStr withParams:nil success:^(id responseBody) {
         [self.subscribeTableView.mj_header endRefreshing];
         NSMutableArray *array = [responseBody objectForKey:@"results"];
         for (int i = 0; i < array.count; i++) {

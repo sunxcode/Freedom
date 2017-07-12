@@ -8,95 +8,39 @@
 
 #import "EnergyNewsViewController.h"
 #import "EnergyNewsDetailViewController.h"
-@interface EnergyNewsViewCell:UITableViewCell
--(void)setdatawithdict:(NSDictionary *)dict;
+@interface EnergyNewsViewCell:BaseTableViewCell
 @end
-@implementation EnergyNewsViewCell{
-    UILabel *titleLable;
-    UIImageView *intoview;
-    UIImageView *line;
-    UIImageView *icon;
-}
--(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        [self initUI];
-    }
-    return self;
-}
+@implementation EnergyNewsViewCell
 -(void)initUI{
-    intoview = [[UIImageView alloc]initWithFrame:CGRectMake(kScreenWidth - Boardseperad - 10, (60 - 20)/2.0, 10, 20)];
-    intoview.contentMode = UIViewContentModeScaleAspectFill;
-    intoview.clipsToBounds = YES;
-    intoview.image = [UIImage imageNamed:@"icon_jt"];
-    [self addSubview:intoview];
-    
-    icon = [[UIImageView alloc]initWithFrame:CGRectMake(Boardseperad, Boardseperad, 50, 40)];
-    icon.contentMode = UIViewContentModeScaleAspectFill;
-    [self addSubview:icon];
-    titleLable = [[UILabel alloc]initWithFrame:CGRectMake(XW(icon)+10, (60 - 20)/2.0, X(intoview) - 2*Boardseperad, 20)];
-    titleLable.font = fontTitle;
-    titleLable.textColor = blacktextcolor;
-    [self addSubview:titleLable];
-    
-    line = [[UIImageView alloc]initWithFrame:CGRectMake(Boardseperad, 59, kScreenWidth - 2*Boardseperad, 1)];
-    line.contentMode = UIViewContentModeScaleAspectFill;
-    line.clipsToBounds = YES;
-    line.image = [UIImage imageNamed:@"userLine"];
-    [self addSubview:line];
+    [super initUI];
+    self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    self.icon.frame = CGRectMake(10, 10, 50, 50);
+    self.title.frame = CGRectMake(XW(self.icon)+20,  (70 - 20)/2.0,APPW-XW(self.icon), 20);
+    self.line.frame = CGRectMake(Boardseperad, 69, APPW-2*Boardseperad, 1);
 }
 
--(void)setdatawithdict:(NSDictionary *)dict{
-    titleLable.text = [dict valueForJSONKey:@"name"];
-    [icon imageWithURL:[NSString stringWithFormat:@"/upload/%@",[dict valueForJSONStrKey:@"img"]] useProgress:NO useActivity:NO];
-}
-
-@end
-@interface EnergyNewsViewController ()<UITableViewDelegate,UITableViewDataSource>{
-    UITableView *refTableView;
-    UILabel *label;
+-(void)setDataWithDict:(NSDictionary *)dict{
+    self.title.text = (NSString*)dict;
+    self.icon.image = [UIImage imageNamed:@"taobaomini3"];
 }
 @end
-
 @implementation EnergyNewsViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self loadUI];
 }
--(void)loadData{
-    
-}
 -(void)loadUI{
-    refTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, W(self.view), kScreenHeight - 64) style:UITableViewStylePlain];
-    refTableView.backgroundColor = RGBCOLOR(246, 246, 246);
-    refTableView.delegate = self;
-    refTableView.dataSource = self;
-    [self.view addSubview:refTableView];
-    refTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self loadData];
+    self.title = @"新闻动态";
+    self.tableView = [[BaseTableView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH-64)];
+    [self fillTheTableDataWithHeadV:nil footV:nil canMove:NO canEdit:NO headH:0 footH:0 rowH:70 sectionN:1 rowN:10 cellName:@"EnergyNewsViewCell"];
+    self.tableView.dataArray = [NSMutableArray arrayWithObjects:@"人人店分销团队如何持续裂变",@"微营销流量引入的几点思考",@"”微时代 新电商“邀您对话千万资产",@"养出80\%的回购率",@"0.2元低成本吸粉的玩法",@"阿罗古堡人人店，上线当月销量近60万",@"高潮迭起 微巴人人店征战中国",@"微营销对话微市场，新时代的迭起",nil];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.view addSubview:self.tableView];
 }
-
-#pragma mark - tableviewdelegate
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 20;
-}
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 60;
-}
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    EnergyNewsViewCell *cell = [tableView dequeueReusableCellWithIdentifier: @"cell"];
-    if (cell == nil) {
-        cell = [[EnergyNewsViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
-    [cell setdatawithdict:nil];
-    return cell;
-}
-
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSDictionary *dict = nil;
-    [self pushController:[EnergyNewsDetailViewController class] withInfo:nil withTitle:[dict valueForJSONKey:@"name"] withOther:dict];
+    NSString *value = self.tableView.dataArray[indexPath.row];
+    [self pushController:[EnergyNewsDetailViewController class] withInfo:nil withTitle:value withOther:value];
     
 }
 

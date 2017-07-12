@@ -4,101 +4,50 @@
 //
 //  Created by 薛超 on 16/9/5.
 //  Copyright © 2016年 薛超. All rights reserved.
-//
-
 #import "EnergyShopViewController.h"
 #import "EnergyShopTabBarController.h"
-#import "EnergySuperMarketTabBarController.h"
-#import "EnergyDetailShopViewController.h"
-@interface EnergyShopViewCell:UITableViewCell
--(void)setdatawithdict:(NSDictionary *)dict;
+@interface EnergyShopViewCell:BaseTableViewCell
 @end
-@implementation EnergyShopViewCell{
-    UILabel *titleLable;
-    UIImageView *intoview;
-    UIImageView *line;
-    UIImageView *icon;
-}
--(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        [self initUI];
-    }
-    return self;
-}
+@implementation EnergyShopViewCell
 -(void)initUI{
-    intoview = [[UIImageView alloc]initWithFrame:CGRectMake(kScreenWidth - Boardseperad - 10, (60 - 20)/2.0, 10, 20)];
-    intoview.contentMode = UIViewContentModeScaleAspectFill;
-    intoview.clipsToBounds = YES;
-    intoview.image = [UIImage imageNamed:@"icon_jt"];
-    [self addSubview:intoview];
-    
-    icon = [[UIImageView alloc]initWithFrame:CGRectMake(Boardseperad, Boardseperad, 50, 40)];
-    icon.contentMode = UIViewContentModeScaleAspectFill;
-    [self addSubview:icon];
-    titleLable = [[UILabel alloc]initWithFrame:CGRectMake(XW(icon)+10, (60 - 20)/2.0, X(intoview) - 2*Boardseperad, 20)];
-    titleLable.font = fontTitle;
-    titleLable.textColor = blacktextcolor;
-    [self addSubview:titleLable];
-    
-    line = [[UIImageView alloc]initWithFrame:CGRectMake(Boardseperad, 59, kScreenWidth - 2*Boardseperad, 1)];
-    line.contentMode = UIViewContentModeScaleAspectFill;
-    line.clipsToBounds = YES;
-    line.image = [UIImage imageNamed:@"userLine"];
-    [self addSubview:line];
+    [super initUI];
+    self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    self.icon.frame = CGRectMake(10, 10, 60, 60);
+    self.title.frame = CGRectMake(XW(self.icon)+20,  (80 - 20)/2.0,APPW-XW(self.icon), 20);
+    self.line.frame = CGRectMake(Boardseperad, 79, APPW-2*Boardseperad, 1);
 }
-
--(void)setdatawithdict:(NSDictionary *)dict{
-    titleLable.text = [dict valueForJSONKey:@"name"];
-    [icon imageWithURL:[NSString stringWithFormat:@"/upload/%@",[dict valueForJSONStrKey:@"img"]] useProgress:NO useActivity:NO];
-}
-
-@end
-@interface EnergyShopViewController ()<UITableViewDelegate,UITableViewDataSource>{
-    UITableView *refTableView;
-    UILabel *label;
+-(void)setDataWithDict:(NSDictionary *)dict{
+    self.title.text = (NSString*)dict;
+    self.icon.image = [UIImage imageNamed:@"taobaomini3"];
 }
 @end
-
+@interface EnergyShopViewController ()
+@end
 @implementation EnergyShopViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self loadUI];
 }
--(void)loadData{
-    
-}
 -(void)loadUI{
-    refTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, W(self.view), kScreenHeight - 64) style:UITableViewStylePlain];
-    refTableView.backgroundColor = RGBCOLOR(246, 246, 246);
-    refTableView.delegate = self;
-    refTableView.dataSource = self;
-    [self.view addSubview:refTableView];
-    refTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self loadData];
+    self.tableView = [[BaseTableView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH-110)];
+    [self fillTheTableDataWithHeadV:nil footV:nil canMove:NO canEdit:NO headH:0 footH:0 rowH:80 sectionN:1 rowN:18 cellName:@"EnergyShopViewCell"];
+    self.tableView.dataArray = [NSMutableArray arrayWithObjects:@"酒水",@"茶饮",@"水果",@"生鲜",@"土地产",@"旅游",@"美丽人生",@"养生",@"服饰鞋袜",@"百货",@"美食",@"坚果零食",@"饰品",@"手工制品",@"家电家居",@"健身",@"宠品",nil];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.view addSubview:self.tableView];
 }
-
-#pragma mark - tableviewdelegate
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 20;
-}
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 60;
-}
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    EnergyShopViewCell *cell = [tableView dequeueReusableCellWithIdentifier: @"cell"];
-    if (cell == nil) {
-        cell = [[EnergyShopViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
-    [cell setdatawithdict:nil];
-    return cell;
-}
-
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSDictionary *dict = nil;
-    [self pushController:[EnergyDetailShopViewController class] withInfo:nil withTitle:[dict valueForJSONKey:@"name"] withOther:dict];
+//    NSString *s = @"EnergyShopTabBarController";
+//    UIViewController *con = [[NSClassFromString(s) alloc]init];
+//    CATransition *animation = [CATransition animation];
+//    animation.duration = 1;
+//    animation.timingFunction = UIViewAnimationCurveEaseInOut;
+//    [self.view.window.layer addAnimation:animation forKey:nil];
+//    [self presentViewController:con animated:NO completion:^{}];
+    
+    EnergyShopTabBarController *myTabBar=[EnergyShopTabBarController sharedRootViewController];
+    UINavigationController *na=[[UINavigationController alloc] initWithRootViewController:myTabBar];
+    [self.navigationController pushViewController:na animated:YES];
     
 }
 

@@ -8,7 +8,7 @@
 
 #import "TLDBMessageStore.h"
 #import "TLDBMessageStoreSQL.h"
-#import "NSDate+Utilities.h"
+#import "NSDate+expanded.h"
 
 @implementation TLDBMessageStore
 

@@ -8,7 +8,7 @@
 
 #import "TLChatBar.h"
 #import "TLChatMacros.h"
-#import "UIImage+Color.h"
+#import "UIImage+expanded.h"
 
 @interface TLChatBar () <UITextViewDelegate>
 {

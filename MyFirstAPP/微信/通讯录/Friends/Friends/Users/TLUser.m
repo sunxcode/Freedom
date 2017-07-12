@@ -8,7 +8,7 @@
 //
 
 #import "TLUser.h"
-#import "NSString+PinYin.h"
+#import "NSString+expanded.h"
 
 @implementation TLUser
 

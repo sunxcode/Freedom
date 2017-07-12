@@ -7,7 +7,7 @@
 //
 
 #import "MicroEnergyTabBarController.h"
-#import "UIImage+DZ.h"
+#import "UIImage+expanded.h"
 #import "EnergyNavigationController.h"
 @interface MicroEnergyTabBarController ()
 
@@ -24,6 +24,8 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    [[UITabBar appearance] setBarTintColor:RGBCOLOR(59, 59, 59)];
+    self.tabBar.barTintColor = RGBACOLOR(59, 59, 59,1);
     //通过设置文本属性来设置字体颜色
     for(UIViewController *s in self.childViewControllers){
         NSMutableDictionary *attM = [NSMutableDictionary dictionary];

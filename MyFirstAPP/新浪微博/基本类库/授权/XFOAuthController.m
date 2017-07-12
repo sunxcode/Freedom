@@ -7,8 +7,7 @@
 //
 
 #import "XFOAuthController.h"
-#import "AFNetworking.h"
-#import "MBProgressHUD+MJ.h"
+#import "MBProgressHUD+expanded.h"
 #import "XFAccount.h"
 #import "SinaTabBarController.h"
 #import "XFNewFeatureController.h"
@@ -121,7 +120,7 @@
     params[@"redirect_uri"] = @"http://www.sharesdk.cn";
     params[@"code"] = code;
     
-    [NetEngine POST:url parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [NetBase POST:url parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [MBProgressHUD hideHUD];
         
         // 将返回的账号字典数据 --> 模型，存进沙盒

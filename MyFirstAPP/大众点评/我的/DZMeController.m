@@ -7,7 +7,6 @@
 //
 
 #import "DZMeController.h"
-#import "UIImage+DZ.h"
 
 @interface DZMeController ()<UITableViewDataSource,UITableViewDelegate>
 {

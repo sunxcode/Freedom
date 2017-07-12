@@ -19,7 +19,7 @@
 - (UISearchBar*)searchBar{
    UISearchBar *searchBar = [[UISearchBar alloc]init];
     searchBar.frameWidth = 375;
-    searchBar.frameHeight = 30;
+    searchBar.frameHeight = 40;
     searchBar.placeholder = @"大家都在搜：男模遭趴光";
     return searchBar;
 }
@@ -31,9 +31,11 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 50;
+    return 20;
 }
-
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 60;
+}
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *ID = @"cell";

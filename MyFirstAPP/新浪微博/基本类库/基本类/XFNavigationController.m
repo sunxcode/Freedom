@@ -7,7 +7,7 @@
 //
 
 #import "XFNavigationController.h"
-#import "UIBarButtonItem+Extension.h"
+#import "UIBarButtonItem+expanded.h"
 
 @implementation XFNavigationController
 

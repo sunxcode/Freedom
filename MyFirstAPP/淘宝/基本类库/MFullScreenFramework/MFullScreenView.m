@@ -7,7 +7,6 @@
 //
 
 #import "MFullScreenView.h"
-#import "UIImage+Full.h"
 
 #define kMinZoomScale 1.0f
 #define kMaxZoomScale 2.5f

@@ -8,7 +8,7 @@
 
 #import "TLAddThirdPartFriendCell.h"
 #import "TLAddThirdPartFriendItem.h"
-#import "UIView+Extensions.h"
+#import "UIView+expanded.h"
 
 @interface TLAddThirdPartFriendCell ()
 

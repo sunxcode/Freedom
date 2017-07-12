@@ -7,7 +7,7 @@
 //
 
 #import "DianpingTabBarController.h"
-#import "UIImage+DZ.h"
+#import "UIImage+expanded.h"
 #import "DianpingNavigationController.h"
 @interface DianpingTabBarController ()
 

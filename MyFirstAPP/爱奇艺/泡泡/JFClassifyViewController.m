@@ -45,7 +45,7 @@
    
   
     
-    [NetWork sendGetUrl:urlStr withParams:nil success:^(id responseBody) {
+    [NetEngine sendGetUrl:urlStr withParams:nil success:^(id responseBody) {
         [self.classifyTableView.mj_header endRefreshing];
         [_dataSource removeAllObjects];
         NSMutableArray *array = [responseBody objectForKey:@"results"];

@@ -7,7 +7,7 @@
 //
 
 #import "TLContact.h"
-#import "NSString+PinYin.h"
+#import "NSString+expanded.h"
 
 @implementation TLContact
 

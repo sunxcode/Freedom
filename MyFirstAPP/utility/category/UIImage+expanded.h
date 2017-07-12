@@ -58,9 +58,38 @@ NS_INLINE  UIImage *InlineScaledImageToMiniumuSize(UIImage *sourceImage,CGSize t
 -(UIImage*)rotate:(UIImageOrientation)orient;
 - (UIImage*)resizeImageWithNewSize:(CGSize)newSize;
 +(UIImage *)imageName:(NSString *)name;
-/**
- *  根据图片名返回一张能够自由拉伸的图片
- */
-+ (UIImage *)resizedImage:(NSString *)name;
 + (UIImage *)resizableImageWithName:(NSString *)imageName;
+
++ (UIImage *)imageWithColor:(UIColor *)color;
+- (UIImage *)scalingToSize:(CGSize)size;
+
+/**
+ *  加载最原始的图片,没有经过渲染
+ *
+ */
++(instancetype)imageWithRenderingOriginalName:(NSString *)imageName;
+
+/**
+ *  加载全屏的图片
+ *
+ */
++(UIImage *)fullScreenImage:(NSString *)imageName;
+
+/**
+ *  可以自由拉伸的图片
+ *
+ */
++ (UIImage *)resizedImage:(NSString *)imageName xPos:(CGFloat)xPos yPos:(CGFloat)yPos;
+
+/**
+ *  可以自由拉伸不会变形的图片
+ *
+ */
++(UIImage *)resizedImage:(NSString *)imageName;
+
++ (instancetype)imageWithStretchableName:(NSString *)imageName;
+
++ (instancetype)resizableWithImageName:(NSString *)imageName;
+- (CGRect) getRectWithSize:(CGSize) size;
+
 @end

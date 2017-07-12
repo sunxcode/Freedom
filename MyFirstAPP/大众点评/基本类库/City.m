@@ -8,7 +8,7 @@
 
 #import "City.h"
 #import "District.h"
-#import "NSObject+Value.h"
+#import "NSObject+expanded.h"
 
 @implementation City
 

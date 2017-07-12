@@ -7,7 +7,7 @@
 //
 
 #import "TLTextMessage.h"
-#import "NSString+Message.h"
+#import "NSString+expanded.h"
 
 static UILabel *textLabel;
 

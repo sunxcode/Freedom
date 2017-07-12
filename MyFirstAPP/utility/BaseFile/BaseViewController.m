@@ -309,7 +309,8 @@ static BaseViewController *BVC = nil;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if(self.tableView.sectionN == 1){
-        return self.tableView.rowN;
+//        return self.tableView.rowN;
+        return self.tableView.dataArray.count;
     }else{
         NSArray *rows = self.tableView.dataArray[section];
         return rows.count;
@@ -320,7 +321,11 @@ static BaseViewController *BVC = nil;
     if(!self.tableView.cell){
         self.tableView.cell = [NSClassFromString(self.tableView.cellName) getInstance];
     }
-    [self.tableView.cell  setDataWithDict:self.tableView.dataArray[indexPath.row]];
+    if(self.tableView.sectionN==1){
+        [self.tableView.cell  setDataWithDict:self.tableView.dataArray[indexPath.row]];
+    }else{
+        [self.tableView.cell  setDataWithDict:self.tableView.dataArray[indexPath.section][indexPath.row]];
+    }
     return self.tableView.cell;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -404,7 +409,11 @@ static BaseViewController *BVC = nil;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     self.collectionView.cell = [collectionView dequeueReusableCellWithReuseIdentifier:self.collectionReuseId forIndexPath:indexPath];
-    [self.collectionView.cell  setCollectionDataWithDic:self.collectionView.dataArray[indexPath.row]];
+    if(self.collectionView.sectionN==1){
+        [self.collectionView.cell  setCollectionDataWithDic:self.collectionView.dataArray[indexPath.row]];
+    }else{
+        [self.collectionView.cell  setCollectionDataWithDic:self.collectionView.dataArray[indexPath.section][indexPath.row]];
+    }
     return self.collectionView.cell;
 }
 - (BOOL)collectionView:(UICollectionView *)collectionView canMoveItemAtIndexPath:(NSIndexPath *)indexPath{

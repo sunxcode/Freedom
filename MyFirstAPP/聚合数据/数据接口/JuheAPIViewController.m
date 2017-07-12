@@ -61,7 +61,8 @@
                 NSString *url = [adViewArr[i] objectForJSONKey:@"pic"];
                 [urls addObject:url];
             }
-            [banner setWithTitles:nil icons:urls round:NO size:CGSizeZero type:MyScrollBanner controllers:nil selectIndex:^(NSInteger index, NSDictionary *dict) {
+            [banner setWithTitles:nil icons:urls round:NO size:CGSizeZero type:MyScrollTypeBanner controllers:nil selectIndex:^(NSInteger index, NSDictionary *dict) {
+                DLog(@"选中了其中的某个banner：%ld",index);
             }];
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

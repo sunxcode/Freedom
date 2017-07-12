@@ -272,4 +272,11 @@
     } while (next != nil);
     return nil;
 }
+- (void)removeAllSubViews
+{
+    for (id view in self.subviews) {
+        [view removeFromSuperview];
+    }
+}
+
 @end

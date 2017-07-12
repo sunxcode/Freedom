@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DZDealController : UITableViewController
+@interface DZDealController : BaseViewController
 
 @end

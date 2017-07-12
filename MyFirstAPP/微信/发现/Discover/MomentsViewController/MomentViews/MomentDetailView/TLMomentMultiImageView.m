@@ -7,7 +7,7 @@
 //
 
 #import "TLMomentMultiImageView.h"
-#import "UIView+Extensions.h"
+#import "UIView+expanded.h"
 #import "UIButton+WebCache.h"
 
 #define     WIDTH_IMAGE_ONE     (WIDTH_SCREEN - 70) * 0.6

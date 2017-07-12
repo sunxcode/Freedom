@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Taobao Community View Controller-->
         <scene sceneID="sNd-Xh-y4n">
             <objects>
-                <viewController id="YTB-lM-IzH" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TaobaoCommunityViewController" id="YTB-lM-IzH" customClass="TaobaoCommunityViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3nH-ql-oAb"/>
                         <viewControllerLayoutGuide type="bottom" id="DBw-Wf-hls"/>
@@ -28,10 +28,10 @@
             </objects>
             <point key="canvasLocation" x="471" y="150"/>
         </scene>
-        <!--View Controller-->
+        <!--Taobao Me View Controller-->
         <scene sceneID="RwO-qZ-N0a">
             <objects>
-                <viewController id="q4i-GJ-dmh" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TaobaoMeViewController" id="q4i-GJ-dmh" customClass="TaobaoMeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Y2V-dI-FLf"/>
                         <viewControllerLayoutGuide type="bottom" id="hmA-We-Cyh"/>
@@ -47,10 +47,10 @@
             </objects>
             <point key="canvasLocation" x="471" y="1412"/>
         </scene>
-        <!--View Controller-->
+        <!--Taobao Mini View Controller-->
         <scene sceneID="FnL-fE-nmg">
             <objects>
-                <viewController id="XP3-pV-GPR" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TaobaoMiniViewController" id="XP3-pV-GPR" customClass="TaobaoMiniViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ihp-J4-Ike"/>
                         <viewControllerLayoutGuide type="bottom" id="zMk-Un-KSi"/>
@@ -66,10 +66,10 @@
             </objects>
             <point key="canvasLocation" x="471" y="-479"/>
         </scene>
-        <!--View Controller-->
+        <!--Taobao Shop Car View Controller-->
         <scene sceneID="jWt-43-MDa">
             <objects>
-                <viewController id="GbE-Ga-QWk" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TaobaoShopCarViewController" id="GbE-Ga-QWk" customClass="TaobaoShopCarViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Pqa-uR-2en"/>
                         <viewControllerLayoutGuide type="bottom" id="OAg-mP-gs9"/>
@@ -85,10 +85,10 @@
             </objects>
             <point key="canvasLocation" x="471" y="783"/>
         </scene>
-        <!--Taobao View Controller-->
+        <!--Taobao Home View Controller-->
         <scene sceneID="DLM-Cm-dEh">
             <objects>
-                <viewController storyboardIdentifier="TaobaoViewController" id="DNA-KE-KTC" customClass="TaobaoViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TaobaoHomeViewController" id="DNA-KE-KTC" customClass="TaobaoHomeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Kje-HS-fMU"/>
                         <viewControllerLayoutGuide type="bottom" id="a6f-jH-Pfe"/>

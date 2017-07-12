@@ -634,10 +634,6 @@ static CGRect swapWidthAndHeight(CGRect rect)
     return copy;
 }
 
-+ (UIImage *)resizedImage:(NSString *)name{
-    UIImage *image = [UIImage imageNamed:name];
-    return [image stretchableImageWithLeftCapWidth:image.size.width * 0.5 topCapHeight:image.size.height * 0.8];
-}
 +(UIImage *)imageName:(NSString *)name{
     NSString *path = [name lastPathComponent];
     return [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:path ofType:nil]];
@@ -968,5 +964,101 @@ static CGRect swapWidthAndHeight(CGRect rect)
     }
     return image;
 }
++ (UIImage *)imageWithColor:(UIColor *)color
+{
+    CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    UIImage *theImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return theImage;
+}
+- (UIImage *)scalingToSize:(CGSize)size
+{
+    CGFloat scale = 0.0f;
+    CGFloat x = 0.0f;
+    CGFloat y = 0.0f;
+    CGFloat width = size.width;
+    CGFloat height = size.height;
+    if (CGSizeEqualToSize(self.size, size) == NO) {
+        CGFloat widthFactor = size.width / self.size.width;
+        CGFloat heightFactor = size.height / self.size.height;
+        scale = (widthFactor > heightFactor ? widthFactor : heightFactor);
+        width  = self.size.width * scale;
+        height = self.size.height * scale;
+        y = (size.height - height) * 0.5;
+        
+        x = (size.width - width) * 0.5;
+        
+    }
+    // this is actually the interesting part:
+    UIGraphicsBeginImageContext(size);
+    [self drawInRect:CGRectMake(x, y, width, height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    if(newImage == nil) {
+        DDLogError(@"绘制指定大小的图片失败");
+        return self;
+    }
+    return newImage ;
+}
++(instancetype)imageWithRenderingOriginalName:(NSString *)imageName{
+    UIImage *image = [UIImage imageNamed:imageName];
+    //取消按钮图片的默认渲染效果
+    image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    return image;
+}
 
+#pragma mark 加载全屏的图片
++(UIImage *)fullScreenImage:(NSString *)imageName
+{
+    //1.如果是iPhone5，对文件名特殊处理
+    if (iPhone5) {
+        imageName = [imageName fileAppend:@"-568h@2x"];
+        DLog(@"iPhone5");
+    }
+    
+    //加载图片
+    return [self imageNamed:imageName];
+}
+
+#pragma mark 可以自由拉伸不会变形的图片
++(UIImage *)resizedImage:(NSString *)imageName
+{
+    
+    return [self resizedImage:imageName xPos:0.5 yPos:0.5];
+    
+}
+
++ (UIImage *)resizedImage:(NSString *)imageName xPos:(CGFloat)xPos yPos:(CGFloat)yPos
+{
+    UIImage *image = [UIImage imageNamed:imageName];
+    return [image stretchableImageWithLeftCapWidth:image.size.width * xPos topCapHeight:image.size.height * yPos];
+}
+
++ (instancetype)imageWithStretchableName:(NSString *)imageName
+{
+    UIImage *image = [UIImage imageNamed:imageName];
+    return [image stretchableImageWithLeftCapWidth:image.size.width * 0.5 topCapHeight:image.size.height * 0.5];
+}
+
++ (instancetype)resizableWithImageName:(NSString *)imageName
+{
+    UIImage *image = [UIImage imageNamed:imageName];
+    
+    return [image stretchableImageWithLeftCapWidth:image.size.width * 0.5 topCapHeight:image.size.height * 0.5];
+    
+}
+
+- (CGRect) getRectWithSize:(CGSize) size {
+    CGFloat widthRatio = size.width / self.size.width;
+    CGFloat heightRatio = size.height / self.size.height;
+    CGFloat scale = MIN(widthRatio, heightRatio);
+    CGFloat width = scale * self.size.width;
+    CGFloat height = scale * self.size.height;
+    return CGRectMake((size.width - width) / 2, (size.height - height) / 2, width, height);
+}
 @end

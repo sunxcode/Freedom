@@ -8,96 +8,59 @@
 
 #import "EnergyContactUSViewController.h"
 #import "EnergyContactDetailViewController.h"
-@interface EnergyContactUSViewCell:UITableViewCell
--(void)setdatawithdict:(NSDictionary *)dict;
+@interface EnergyContactUSViewCell:BaseTableViewCell
 @end
-@implementation EnergyContactUSViewCell{
-    UILabel *titleLable;
-    UIImageView *intoview;
-    UIImageView *line;
-    UIImageView *icon;
-}
--(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        [self initUI];
-    }
-    return self;
-}
+@implementation EnergyContactUSViewCell
 -(void)initUI{
-    intoview = [[UIImageView alloc]initWithFrame:CGRectMake(kScreenWidth - Boardseperad - 10, (60 - 20)/2.0, 10, 20)];
-    intoview.contentMode = UIViewContentModeScaleAspectFill;
-    intoview.clipsToBounds = YES;
-    intoview.image = [UIImage imageNamed:@"icon_jt"];
-    [self addSubview:intoview];
-    
-    icon = [[UIImageView alloc]initWithFrame:CGRectMake(Boardseperad, Boardseperad, 50, 40)];
-    icon.contentMode = UIViewContentModeScaleAspectFill;
-    [self addSubview:icon];
-    titleLable = [[UILabel alloc]initWithFrame:CGRectMake(XW(icon)+10, (60 - 20)/2.0, X(intoview) - 2*Boardseperad, 20)];
-    titleLable.font = fontTitle;
-    titleLable.textColor = blacktextcolor;
-    [self addSubview:titleLable];
-    
-    line = [[UIImageView alloc]initWithFrame:CGRectMake(Boardseperad, 59, kScreenWidth - 2*Boardseperad, 1)];
-    line.contentMode = UIViewContentModeScaleAspectFill;
-    line.clipsToBounds = YES;
-    line.image = [UIImage imageNamed:@"userLine"];
-    [self addSubview:line];
+    [super initUI];
+    self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    self.icon.frame = CGRectMake(10, 10, 60, 60);
+    self.title.frame = CGRectMake(XW(self.icon)+20,  (80 - 20)/2.0,APPW-XW(self.icon), 20);
+    self.line.frame = CGRectMake(Boardseperad, 79, APPW-2*Boardseperad, 1);
 }
 
--(void)setdatawithdict:(NSDictionary *)dict{
-    titleLable.text = [dict valueForJSONKey:@"name"];
-    [icon imageWithURL:[NSString stringWithFormat:@"/upload/%@",[dict valueForJSONStrKey:@"img"]] useProgress:NO useActivity:NO];
-}
-
-@end
-@interface EnergyContactUSViewController ()<UITableViewDelegate,UITableViewDataSource>{
-    UITableView *refTableView;
-    UILabel *label;
+-(void)setDataWithDict:(NSDictionary *)dict{
+    self.title.text = (NSString*)dict;
+    self.icon.image = [UIImage imageNamed:@"taobaomini3"];
 }
 @end
-
+@interface EnergyContactUSViewController ()
+@end
 @implementation EnergyContactUSViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
-
     [self loadUI];
 }
--(void)loadData{
-    
-}
 -(void)loadUI{
-    refTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, W(self.view), kScreenHeight - 64) style:UITableViewStylePlain];
-    refTableView.backgroundColor = RGBCOLOR(246, 246, 246);
-    refTableView.delegate = self;
-    refTableView.dataSource = self;
-    [self.view addSubview:refTableView];
-    refTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self loadData];
-}
+    self.title = @"联系我们";
+    BaseScrollView *banner = [[BaseScrollView alloc]initWithFrame:CGRectMake(0,0, APPW, 120)];
+    NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:@"1",@"type", nil];
+    [Net GET:GETBanner parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSArray *adViewArr = responseObject[@"data"][@"list"];
+        if (adViewArr != nil && adViewArr.count > 0) {
+            NSMutableArray *urls = [NSMutableArray arrayWithCapacity:10];
+            for(int i=0;i<adViewArr.count;i++){
+                NSString *url = [adViewArr[i] objectForJSONKey:@"pic"];
+                [urls addObject:url];
+            }
+            [banner setWithTitles:nil icons:urls round:NO size:CGSizeZero type:MyScrollTypeBanner controllers:nil selectIndex:^(NSInteger index, NSDictionary *dict) {
+                DLog(@"选中了其中的某个banner：%ld",index);
+            }];
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [SVProgressHUD showErrorWithStatus:alertErrorTxt];
+    }];
 
-#pragma mark - tableviewdelegate
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 20;
+    self.tableView = [[BaseTableView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH-64)];
+    [self fillTheTableDataWithHeadV:banner footV:nil canMove:NO canEdit:NO headH:0 footH:0 rowH:80 sectionN:1 rowN:6 cellName:@"EnergyContactUSViewCell"];
+    self.tableView.dataArray = [NSMutableArray arrayWithObjects:@"一键导航",@"关注公众号",@"查看历史消息",@"微信营销交流",@"客服聊天",@"诚聘精英",nil];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.view addSubview:self.tableView];
 }
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 60;
-}
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    EnergyContactUSViewCell *cell = [tableView dequeueReusableCellWithIdentifier: @"cell"];
-    if (cell == nil) {
-        cell = [[EnergyContactUSViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
-    [cell setdatawithdict:nil];
-    return cell;
-}
-
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSDictionary *dict = nil;
-    [self pushController:[EnergyContactDetailViewController class] withInfo:nil withTitle:[dict valueForJSONKey:@"name"] withOther:dict];
+    NSString *value = self.tableView.dataArray[indexPath.row];
+    [self pushController:[EnergyContactDetailViewController class] withInfo:nil withTitle:value withOther:value];
     
 }
 

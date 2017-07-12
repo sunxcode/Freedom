@@ -8,96 +8,40 @@
 
 #import "EnergySampleViewController.h"
 #import "EnergyBusinessListViewController.h"
-@interface EnergySampleViewCell:UITableViewCell
--(void)setdatawithdict:(NSDictionary *)dict;
+@interface EnergySampleViewCell:BaseTableViewCell
 @end
-@implementation EnergySampleViewCell{
-    UILabel *titleLable;
-    UIImageView *intoview;
-    UIImageView *line;
-    UIImageView *icon;
-}
--(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        [self initUI];
-    }
-    return self;
-}
+@implementation EnergySampleViewCell
 -(void)initUI{
-    intoview = [[UIImageView alloc]initWithFrame:CGRectMake(kScreenWidth - Boardseperad - 10, (60 - 20)/2.0, 10, 20)];
-    intoview.contentMode = UIViewContentModeScaleAspectFill;
-    intoview.clipsToBounds = YES;
-    intoview.image = [UIImage imageNamed:@"icon_jt"];
-    [self addSubview:intoview];
-    
-    icon = [[UIImageView alloc]initWithFrame:CGRectMake(Boardseperad, Boardseperad, 50, 40)];
-    icon.contentMode = UIViewContentModeScaleAspectFill;
-    [self addSubview:icon];
-    titleLable = [[UILabel alloc]initWithFrame:CGRectMake(XW(icon)+10, (60 - 20)/2.0, X(intoview) - 2*Boardseperad, 20)];
-    titleLable.font = fontTitle;
-    titleLable.textColor = blacktextcolor;
-    [self addSubview:titleLable];
-    
-    line = [[UIImageView alloc]initWithFrame:CGRectMake(Boardseperad, 59, kScreenWidth - 2*Boardseperad, 1)];
-    line.contentMode = UIViewContentModeScaleAspectFill;
-    line.clipsToBounds = YES;
-    line.image = [UIImage imageNamed:@"userLine"];
-    [self addSubview:line];
+    [super initUI];
+    self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    self.icon.frame = CGRectMake(10, 10, 50,50);
+    self.title.frame = CGRectMake(XW(self.icon)+20,  (70 - 20)/2.0,APPW-XW(self.icon), 20);
+    self.line.frame = CGRectMake(Boardseperad, 69, APPW-2*Boardseperad, 1);
 }
 
--(void)setdatawithdict:(NSDictionary *)dict{
-    titleLable.text = [dict valueForJSONKey:@"name"];
-    [icon imageWithURL:[NSString stringWithFormat:@"/upload/%@",[dict valueForJSONStrKey:@"img"]] useProgress:NO useActivity:NO];
+-(void)setDataWithDict:(NSDictionary *)dict{
+    self.title.text = (NSString*)dict;
+    self.icon.image = [UIImage imageNamed:@"taobaomini2"];
 }
 
 @end
-@interface EnergySampleViewController ()<UITableViewDelegate,UITableViewDataSource>{
-    UITableView *refTableView;
-    UILabel *label;
-}
-@end
-
 @implementation EnergySampleViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
     [self loadUI];
 }
--(void)loadData{
-
-}
 -(void)loadUI{
-    refTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, W(self.view), kScreenHeight - 64) style:UITableViewStylePlain];
-    refTableView.backgroundColor = RGBCOLOR(246, 246, 246);
-    refTableView.delegate = self;
-    refTableView.dataSource = self;
-    [self.view addSubview:refTableView];
-    refTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self loadData];
+    self.title = @"经典案例";
+    self.tableView = [[BaseTableView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH-110)];
+    [self fillTheTableDataWithHeadV:nil footV:nil canMove:NO canEdit:NO headH:0 footH:0 rowH:70 sectionN:1 rowN:17 cellName:@"EnergySampleViewCell"];
+    self.tableView.dataArray = [NSMutableArray arrayWithObjects:@"政府机构/媒体",@"母婴/儿童",@"教育/培训",@"商场百货",@"电商/商贸/零售",@"金融/投资/保险",@"医疗/健康/保健/养生",@"旅游",@"酒店",@"婚庆",@"房产",@"装饰",@"娱乐",@"金融",@"政务",@"汽车",@"餐饮",nil];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.view addSubview:self.tableView];
 }
-
-#pragma mark - tableviewdelegate
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 20;
-}
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 60;
-}
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    EnergySampleViewCell *cell = [tableView dequeueReusableCellWithIdentifier: @"cell"];
-    if (cell == nil) {
-        cell = [[EnergySampleViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
-    [cell setdatawithdict:nil];
-    return cell;
-}
-
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSDictionary *dict = nil;
-    [self pushController:[EnergyBusinessListViewController class] withInfo:nil withTitle:[dict valueForJSONKey:@"name"] withOther:dict];
+    NSString *value = self.tableView.dataArray[indexPath.row];
+    [self pushController:[EnergyBusinessListViewController class] withInfo:nil withTitle:value withOther:value];
     
 }
 
