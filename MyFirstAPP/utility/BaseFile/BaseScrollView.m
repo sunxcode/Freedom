@@ -210,8 +210,8 @@
     self.tag = MyScrollTypeScrollItem;
     self.showsHorizontalScrollIndicator = NO;
     self.pagingEnabled = YES;
-    NSInteger qnum = (NSInteger)hang * W(self)/size.width;
-    self.contentSize = CGSizeMake(W(self)*(titles.count/qnum + 1), size.height*hang);
+    NSInteger lie = W(self)/size.width;
+    NSInteger qnum = (NSInteger)hang * lie;
     CGFloat starx = 0;
     CGFloat stary = 0;
     for (int i = 0; i < titles.count; i++) {
@@ -220,21 +220,16 @@
         button.tag = 10 + i;
         [button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
         starx = XW(button);
-        if(i % (int)W(self)/W(button)) {//一行放不下的时候换行
+        if((i+1) % lie == 0) {//一行放不下的时候换行
             starx -= W(self);
             stary = YH(button);
-            button.frame = CGRectMake(starx, stary, size.width, size.height);
-            starx = XW(button);
         }
         if(stary/H(button)>=hang){//行数够了，翻页显示
             starx = W(self) * (i+1)/qnum;
             stary = 0;
-            button.frame = CGRectMake(starx, stary, size.width, size.height);
-            starx = XW(button);
         }
-        [self addSubview:button];
         UIImageView *imageview = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, size.height-30,size.height-30)];
-        imageview.center = CGPointMake(button.frameWidth/2, button.frameY/2-15);
+        imageview.center = CGPointMake(button.frameWidth/2, button.frameHeight/2-10);
         imageview.contentMode = UIViewContentModeScaleAspectFill;
         if(round){
             imageview.layer.cornerRadius = imageview.frameWidth/2;
@@ -243,15 +238,17 @@
         imageview.image =[UIImage imageNamed:icons[i]];
         [button addSubview:imageview];
         
-        UILabel *namelable = [[UILabel alloc]initWithFrame:CGRectMake(0, YH(imageview)+8, W(button), 20)];
+        UILabel *namelable = [[UILabel alloc]initWithFrame:CGRectMake(0, YH(imageview)+5, W(button), 20)];
         namelable.font = fontnomal;
         namelable.textColor = blacktextcolor;
         namelable.text = titles[i];
         namelable.textAlignment = NSTextAlignmentCenter;
         [button addSubview:namelable];
+        [self addSubview:button];
     }
     self.frameHeight = size.height * hang;
-    DLog(@"最终的frameY是：%lf",YH(self));
+    self.contentSize = CGSizeMake(W(self)*(titles.count/qnum + (titles.count%qnum?1:0)), self.frameHeight);
+    DLog(@"最终的frameY是：%lf",H(self));
 }
 //FIXME:内容视图滑动，如新闻类
 +(BaseScrollView *)sharedContentViewWithFrame:(CGRect)frame controllers:(NSArray*)controllers{
@@ -552,31 +549,25 @@
     return contentView;
 }
 -(void)setBannerViewWithViewsNumer:(NSInteger)num viewOfIndex:(viewOfIndexBlock)block Vertically:(BOOL)vertical setFire:(BOOL)fire{
-
-    self.pagingEnabled = YES;
+    self.pagingEnabled = YES;count = num+2;
     self.showsHorizontalScrollIndicator = NO;
     self.showsVerticalScrollIndicator = NO;
-    for(int i=0;i<num;i++){
-        UIView *view = block(i);
+    for(int i=0;i<num+2;i++){
+        UIView *view;
+        if(i==0){
+            view = block(num-1);
+        }else if(i==num+1){
+            view = block(0);
+        }else{
+            view = block(i-1);
+        }
         [self.controllers addObject:view];
     }
+    float starx=0;
+    float stary=0;
     UIView *view1 = self.controllers[num-1];
     [self addSubview:view1];
-    float starx;
-    float stary;
-    if(vertical){
-        self.tag = MyScrollTypeVerticallyBanner;
-        starx = 0;stary = H(view1);
-        self.contentSize = CGSizeMake(W(self), H(self)*(num+2));
-        self.contentOffset = CGPointMake(0, H(self));
-    }else{
-        self.tag = MyScrollTypeBanner;
-        starx = W(view1);stary = 0;
-        self.contentSize = CGSizeMake(W(self) * (num + 2), 0);
-        self.contentOffset = CGPointMake(W(self), 0);
-    }
-    
-    for (int i = 0; i < num; i++) {
+    for (int i = 0; i < num+2; i++) {
         UIView *view = self.controllers[i];
         view.frame = CGRectMake(starx, stary, view.frameWidth, view.frameHeight);
         if(vertical){
@@ -585,16 +576,21 @@
             starx += view.frameWidth;
         }
         UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id sender) {
-            if(self.selectBlock){
-                _selectBlock(i,nil);
-            }
+            if(self.selectBlock){_selectBlock(i,nil);}
         }];
         [view addGestureRecognizer:gesture];
         [self addSubview:view];
     }
-    UIView *view = self.controllers[0];
-    view.frame = CGRectMake(starx, stary,view.frameWidth, view.frameHeight);
-    [self addSubview:view];
+    if(vertical){
+        self.tag = MyScrollTypeVerticallyBanner;
+        self.contentSize = CGSizeMake(W(self), H(self)*(num+2));
+        self.contentOffset = CGPointMake(0, H(self));
+    }else{
+        self.tag = MyScrollTypeBanner;
+        self.contentSize = CGSizeMake(W(self) * (num + 2), 0);
+        self.contentOffset = CGPointMake(W(self), 0);
+    }
+    self.delegate = self;
     if(fire){
         _time = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(bannerTimeAction) userInfo:nil repeats:YES];
         [_time setFireDate:[NSDate date]];
@@ -792,6 +788,7 @@
                 index = 0;
             }
             if (self.contentOffset.x < W(self)) {
+//                [self scrollRectToVisible:CGRectMake(W(self)*(count-2), 0, 1, 1) animated:YES];
                 self.contentOffset = CGPointMake(W(self)*(count - 2), 0);
                 index = count - 2;
             }

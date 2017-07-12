@@ -127,41 +127,31 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="Ebm-sX-wEB" kind="relationship" relationship="rootViewController" id="Q8P-Zt-gbn"/>
+                        <segue destination="LJZ-zu-S7V" kind="relationship" relationship="rootViewController" id="FQQ-UZ-d2S"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="So2-vy-Gba" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="418" y="-819"/>
+            <point key="canvasLocation" x="417" y="-882"/>
         </scene>
         <!--Home Controller-->
-        <scene sceneID="tb8-bx-hSX">
+        <scene sceneID="EtM-9Z-4xr">
             <objects>
-                <tableViewController storyboardIdentifier="DZHomeController" id="Ebm-sX-wEB" customClass="DZHomeController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="tEu-q7-KA8">
+                <viewController storyboardIdentifier="DZHomeController" id="LJZ-zu-S7V" customClass="DZHomeController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rUw-2a-4g3"/>
+                        <viewControllerLayoutGuide type="bottom" id="Qza-bJ-ugf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="sz6-i9-nkA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="YKS-xi-cJO">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YKS-xi-cJO" id="C32-3Q-khy">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="Ebm-sX-wEB" id="IJj-aJ-XFF"/>
-                            <outlet property="delegate" destination="Ebm-sX-wEB" id="Uua-Yq-uSm"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" id="O4Z-14-kqu"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="O6x-MD-Ovj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="4D1-Ax-zbM"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ia8-5A-c3j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1033" y="-843"/>
+            <point key="canvasLocation" x="1140" y="-898"/>
         </scene>
         <!--闪惠团购-->
         <scene sceneID="cfD-yb-Kjy">
