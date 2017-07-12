@@ -42,7 +42,7 @@ typedef UIView* (^viewOfIndexBlock)(NSInteger index);
 ///内容视图滑动，如新闻类
 +(BaseScrollView *)sharedContentViewWithFrame:(CGRect)frame controllers:(NSArray*)controllers;
 ///内容视图滑动，如新闻类，同时自带标题的滑动
-+(BaseScrollView *)sharedContentTitleViewWithFrame:(CGRect)frame titles:(NSArray*)titles icons:(NSArray*)icons controllers:(NSArray*)controllers inView:(UIView*)view;
++(BaseScrollView *)sharedContentTitleViewWithFrame:(CGRect)frame titles:(NSArray*)titles controllers:(NSArray*)controllers inView:(UIView*)view;
 ///内容视图滑动，如新闻类，同时自带拥有图标的标题的滑动
 +(BaseScrollView *)sharedContentIconViewWithFrame:(CGRect)frame titles:(NSArray*)titles icons:(NSArray*)icons controllers:(NSArray*)controllers inView:(UIView*)view;
 ///横着的滚动视图一般见推荐或广告

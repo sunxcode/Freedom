@@ -1730,6 +1730,8 @@
 		7745C2701D672445002212DE /* ResumeTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7745C26F1D672445002212DE /* ResumeTabBarController.m */; };
 		7745C2731D672451002212DE /* BooksTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7745C2721D672451002212DE /* BooksTabBarController.m */; };
 		7745C2761D672EE5002212DE /* MyDatabaseTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7745C2751D672EE5002212DE /* MyDatabaseTabBarController.m */; };
+		774BA6431E28DA18007FF686 /* taobaoon.png in Resources */ = {isa = PBXBuildFile; fileRef = 774BA6411E28DA18007FF686 /* taobaoon.png */; };
+		774BA6441E28DA18007FF686 /* taobaono.png in Resources */ = {isa = PBXBuildFile; fileRef = 774BA6421E28DA18007FF686 /* taobaono.png */; };
 		774BFAE41D7672A0005CA603 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 774BFAE31D7672A0005CA603 /* AudioToolbox.framework */; };
 		774BFAE61D7672CA005CA603 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 774BFAE51D7672CA005CA603 /* Accelerate.framework */; };
 		774BFAE81D7672E2005CA603 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 774BFAE71D7672E2005CA603 /* CoreGraphics.framework */; };
@@ -5057,6 +5059,8 @@
 		7745C2721D672451002212DE /* BooksTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BooksTabBarController.m; sourceTree = "<group>"; };
 		7745C2741D672EE5002212DE /* MyDatabaseTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDatabaseTabBarController.h; sourceTree = "<group>"; };
 		7745C2751D672EE5002212DE /* MyDatabaseTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyDatabaseTabBarController.m; sourceTree = "<group>"; };
+		774BA6411E28DA18007FF686 /* taobaoon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = taobaoon.png; sourceTree = "<group>"; };
+		774BA6421E28DA18007FF686 /* taobaono.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = taobaono.png; sourceTree = "<group>"; };
 		774BFAE31D7672A0005CA603 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		774BFAE51D7672CA005CA603 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		774BFAE71D7672E2005CA603 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -13467,6 +13471,8 @@
 		77BD14801D6E7FE500DE5DB9 /* 淘宝 */ = {
 			isa = PBXGroup;
 			children = (
+				774BA6411E28DA18007FF686 /* taobaoon.png */,
+				774BA6421E28DA18007FF686 /* taobaono.png */,
 				77FD03CE1E25F17C00E5099E /* taobaomini1.png */,
 				77FD03CF1E25F17C00E5099E /* taobaomini2.png */,
 				77FD03D01E25F17C00E5099E /* taobaomini3.png */,
@@ -14933,6 +14939,7 @@
 				778E91BE1D69993A004D899C /* d_kelian.png in Resources */,
 				77F7A0E91E2369D900F91403 /* home_search.png in Resources */,
 				772E86951D76BC15004EDF50 /* ktv_occupation_culture@2x.png in Resources */,
+				774BA6431E28DA18007FF686 /* taobaoon.png in Resources */,
 				772E89141D76BC15004EDF50 /* top_arrow_image@2x.png in Resources */,
 				772E84271D76BC15004EDF50 /* fx_giftnum_4@2x.png in Resources */,
 				772E888F1D76BC15004EDF50 /* play_seriation.png in Resources */,
@@ -15821,6 +15828,7 @@
 				772E850F1D76BC15004EDF50 /* fxStartGrid_offLive@2x.png in Resources */,
 				77645F4C1D68259900ACCCAC /* message_voice_sender_playing_1@3x.png in Resources */,
 				772E88A91D76BC15004EDF50 /* playbar_lyrice_bg@3x.png in Resources */,
+				774BA6441E28DA18007FF686 /* taobaono.png in Resources */,
 				772E842D1D76BC15004EDF50 /* fx_giftstore_tag_shadow@2x.png in Resources */,
 				77CC4F331D90DCB400DD2EC8 /* LoginViewController.xib in Resources */,
 				772E84871D76BC15004EDF50 /* fx_mv_playPage_liviing@2x.png in Resources */,

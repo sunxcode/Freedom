@@ -34,6 +34,7 @@
     self = [super initWithFrame:frame style:style];
     if (self) {
         canRefresh = canLoadmore = YES;
+        self.separatorStyle = UITableViewCellSeparatorStyleNone;
         _progressHUDMask = SVProgressHUDMaskTypeClear;
     }return self;
 }
@@ -41,9 +42,10 @@
     [super layoutSubviews];
 //    _footLoadView.frameY = self.contentSize.height + (self.bounds.size.height - MIN(self.bounds.size.height, self.contentSize.height));
 }
+
 #pragma mark 刷新与加载
 - (void)refresh{
-    if(!canRefresh)return;
+    if(!canRefresh){[self stopRefresh]; return;}
     [self stopLoadmore];
     [self loadData:1];
 }
@@ -98,7 +100,6 @@
                     }else{
                         [SVProgressHUD showImage:nil status:self.strNullTitle?self.strNullTitle:@"暂无数据"];
                     }
-                    
                 }
             }
         }
@@ -166,7 +167,7 @@
  
         }];
     }else{
-        block([NSArray array],YES);
+        block([NSArray array],NO);
     }
 }
 #pragma mark 数据源
@@ -215,6 +216,17 @@
 }
 -(void)canRefresh:(BOOL)refresh LoadMore:(BOOL)loadmore{
     canRefresh = refresh;canLoadmore = loadmore;
+    WS(weakSelf);
+    if(canRefresh){
+    self.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [weakSelf refresh];
+    }];
+    }
+    if(canLoadmore){
+    self.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        [weakSelf loadmore];
+    }];
+    }
 }
 - (void)loadWithRefresh:(BOOL)showRefresh withLoadmore:(BOOL)showLoadmore withMask:(SVProgressHUDMaskType)mask Url:(NSString*)url withParam:(NSDictionary*)params data:(BaseTableDataBlock)data_bk offline:(BaseTableDataOfflineBlock)offline_bk loaded:(BaseTableLoadedDataBlock)loaded_bk{
     [self canRefresh:showRefresh LoadMore:showLoadmore];

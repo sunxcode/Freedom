@@ -118,7 +118,7 @@
 //FIXME:标题滑动，有文字和图标的
 +(BaseScrollView *)sharedTitleIconScrollWithFrame:(CGRect)frame Titles:(NSArray *)titles icons:(NSArray *)icons{
     BaseScrollView *titleScroll = [[self alloc]initWithFrame:frame];
-    [titleScroll setTitleScrollWithTitles:titles];
+    [titleScroll setTitleIconScrollWithTitles:titles icons:icons];
     return titleScroll;
 }
 -(void)setTitleIconScrollWithTitles:(NSArray*)titles icons:(NSArray*)icons{
@@ -132,14 +132,20 @@
         UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(starx, 0, W(self)/titles.count, H(self))];
         [button setTitle:titles[i] forState:UIControlStateNormal];
         [button setImage:[UIImage imageNamed:icons[i]] forState:UIControlStateNormal];
-        [button setImageEdgeInsets:UIEdgeInsetsMake(0, 10, 30, 0)];
-        [button setTitleEdgeInsets:UIEdgeInsetsMake(30, -10, 0, 0)];
         button.titleLabel.font = fontTitle;
+        button.titleLabel.textAlignment = NSTextAlignmentCenter;
         button.tag = 10 + i;
         [button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
         [button setTitleColor:blacktextcolor forState:UIControlStateNormal];
         button.backgroundColor = gradcolor;
+        button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+        CGFloat heightSpace = 10.f;
+        [button setImageEdgeInsets:UIEdgeInsetsMake(1, 10, 30, 0)];
+        [button setTitleEdgeInsets:UIEdgeInsetsMake(30, -W(button), 0, 0)];
+        [button setImageEdgeInsets:UIEdgeInsetsMake(heightSpace,0.0,H(button)-H(button.imageView) - heightSpace, - W(button.titleLabel))];
+        [button setTitleEdgeInsets:UIEdgeInsetsMake(H(button.imageView)+heightSpace, -W(button.imageView), 0.0, 0.0)];
         [self addSubview:button];
+        starx += W(button);
         if (i == 0) {
             button.backgroundColor = [UIColor whiteColor];
         }
@@ -275,37 +281,33 @@
 //    }
 }
 //FIXME:内容视图滑动，如新闻类，同时自带标题的滑动
-+(BaseScrollView *)sharedContentTitleViewWithFrame:(CGRect)frame titles:(NSArray *)titles icons:(NSArray *)icons controllers:(NSArray *)controllers inView:(UIView *)view{
++(BaseScrollView *)sharedContentTitleViewWithFrame:(CGRect)frame titles:(NSArray *)titles controllers:(NSArray *)controllers inView:(UIView *)view{
     BaseScrollView *contentView = [[self alloc]initWithFrame:frame];
     contentView.tag = MyScrollTypeContentTitleView;
     contentView.titleScrollView = [BaseScrollView sharedSegmentWithFrame:CGRectMake(frame.origin.x, frame.origin.y, W(contentView), 40) Titles:titles];
     contentView.contentScrollView = [BaseScrollView sharedContentViewWithFrame:CGRectMake(X(contentView),YH(contentView.titleScrollView), W(contentView), H(contentView)-H(contentView.titleScrollView)) controllers:controllers];
     __weak __typeof(BaseScrollView*)weakSelf = contentView;
-
     contentView.titleScrollView.selectBlock = ^(NSInteger index, NSDictionary *dict) {
         weakSelf.selectBlock(index,dict);
-        CGFloat offset = weakSelf.titleScrollView.contentOffset.x;
-        //定义一个两个变量控制左右按钮的渐变
-        NSInteger left = offset/APPW;
-        NSInteger right = 1 + left;
-        UIButton * leftButton = (UIButton *)[weakSelf.titleScrollView viewWithTag:10 + left];
-        UIButton * rightButton = nil;
-        if (right < weakSelf.titleScrollView.titles.count) {rightButton = (UIButton *)[weakSelf.titleScrollView viewWithTag:10 +right];}
-        //切换左右按钮
-        CGFloat scaleR = offset/APPW - left;
-        CGFloat scaleL = 1 - scaleR;
-        CGFloat tranScale = 1.2 - 1 ;//左右按钮的缩放比例
-        //宽和高的缩放(渐变)
-        leftButton.transform = CGAffineTransformMakeScale(scaleL * tranScale + 1, scaleL * tranScale + 1);
-        rightButton.transform = CGAffineTransformMakeScale(scaleR * tranScale + 1, scaleR * tranScale + 1);
-        //    btn.transform = CGAffineTransformIdentity;
-        //颜色的渐变
-        UIColor * rightColor = [UIColor colorWithRed:scaleR green:250 blue:250 alpha:1];
-        UIColor * leftColor = [UIColor colorWithRed:230 green:230 blue:230 alpha:1];
-        [leftButton setTitleColor:leftColor forState:UIControlStateNormal];
-        [rightButton setTitleColor:rightColor forState:UIControlStateNormal];
-        
-        
+//        CGFloat offset = weakSelf.titleScrollView.contentOffset.x;
+//        //定义一个两个变量控制左右按钮的渐变
+//        NSInteger left = offset/APPW;
+//        NSInteger right = 1 + left;
+//        UIButton * leftButton = (UIButton *)[weakSelf.titleScrollView viewWithTag:10 + left];
+//        UIButton * rightButton = nil;
+//        if (right < weakSelf.titleScrollView.titles.count) {rightButton = (UIButton *)[weakSelf.titleScrollView viewWithTag:10 +right];}
+//        //切换左右按钮
+//        CGFloat scaleR = offset/APPW - left;
+//        CGFloat scaleL = 1 - scaleR;
+//        CGFloat tranScale = 1.2 - 1 ;//左右按钮的缩放比例
+//        //宽和高的缩放(渐变)
+//        leftButton.transform = CGAffineTransformMakeScale(scaleL * tranScale + 1, scaleL * tranScale + 1);
+//        rightButton.transform = CGAffineTransformMakeScale(scaleR * tranScale + 1, scaleR * tranScale + 1);
+//        //颜色的渐变
+//        UIColor * rightColor = [UIColor colorWithRed:scaleR green:250 blue:250 alpha:1];
+//        UIColor * leftColor = [UIColor colorWithRed:230 green:230 blue:230 alpha:1];
+//        [leftButton setTitleColor:leftColor forState:UIControlStateNormal];
+//        [rightButton setTitleColor:rightColor forState:UIControlStateNormal];
         UIViewController * vc = weakSelf.contentScrollView.controllers[index];
         if (vc.view.superview) {weakSelf.contentScrollView.contentOffset = CGPointMake(APPW * index, 0);return;}
         vc.view.frame = CGRectMake(APPW * index , 0, APPW, H(contentView) - YH(contentView.titleScrollView));
@@ -677,6 +679,13 @@
             self.titleScrollView.selectBlock(page,nil);
         }break;
         case MyScrollTypeContentIconView:{
+            for (int i = 0; i < self.titleScrollView.titles.count; i++) {
+                UIButton *button = (UIButton *)[self.titleScrollView viewWithTag:10 + i];
+                button.backgroundColor = gradcolor;
+                if(i==page){
+                    button.backgroundColor = whitecolor;
+                }
+            }
             self.titleScrollView.selectBlock(page,nil);
         }break;
         case MyScrollTypeBanner:{
@@ -960,7 +969,7 @@
             }
             UIViewController * vc = self.controllers[i];
             if (vc.view.superview) {return;}
-            vc.view.frame = CGRectMake(x, 0, APPH,H(self));
+            vc.view.frame = CGRectMake(x, 0, APPW,H(self));
             [self addSubview:vc.view];
         }break;
         case MyScrollTypeContentTitleView:{
@@ -971,7 +980,7 @@
             }
             UIViewController * vc = self.controllers[i];
             if (vc.view.superview) {return;}
-            vc.view.frame = CGRectMake(x, 0, APPH,H(self));
+            vc.view.frame = CGRectMake(x, 0, APPW,H(self));
             [self addSubview:vc.view];
         }break;
         case MyScrollTypeContentIconView:{
@@ -982,7 +991,7 @@
             }
             UIViewController * vc = self.controllers[i];
             if (vc.view.superview) {return;}
-            vc.view.frame = CGRectMake(x, 0, APPH,H(self));
+            vc.view.frame = CGRectMake(x, 0, APPW,H(self));
             [self addSubview:vc.view];
         }break;
         case MyScrollTypeBanner:{
