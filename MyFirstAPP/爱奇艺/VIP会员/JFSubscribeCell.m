@@ -32,7 +32,7 @@
     return self;
 }
 -(void)initViews{
-    UIView *backview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 210)];
+    UIView *backview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APPW, 210)];
     backview.backgroundColor = [UIColor whiteColor];
     [self addSubview:backview];
     
@@ -53,13 +53,13 @@
     [backview addSubview:_subedLabel];
     
     _dingyueBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _dingyueBtn.frame = CGRectMake(kScreenWidth-10-70, 10, 70, 29);
+    _dingyueBtn.frame = CGRectMake(APPW-10-70, 10, 70, 29);
     [_dingyueBtn setImage:[UIImage imageNamed:@"search_channel_subscribe_noPlay"] forState:UIControlStateNormal];
     [_dingyueBtn setImage:[UIImage imageNamed:@"search_channel_subscribed"] forState:UIControlStateSelected];
     [backview addSubview:_dingyueBtn];
     
     //
-    _scrollV = [[JFSubImageScrollView alloc] initWithFrame:CGRectMake(0, 55, kScreenWidth, 155)];
+    _scrollV = [[JFSubImageScrollView alloc] initWithFrame:CGRectMake(0, 55, APPW, 155)];
     _scrollV.delegate = self;
     [backview addSubview:_scrollV];
     

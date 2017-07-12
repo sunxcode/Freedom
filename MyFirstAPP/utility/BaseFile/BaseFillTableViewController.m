@@ -85,7 +85,7 @@
 -(void)setValue:(NSString *)value{
     _value = value;
     //    if(!_rightLabel){
-    //       self.rightLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth-self.textLabel.frameWidth, H(self))];
+    //       self.rightLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, APPW-self.textLabel.frameWidth, H(self))];
     //    }self.rightLabel.text = value;
     self.subtitle = value;
 }

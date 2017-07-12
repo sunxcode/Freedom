@@ -56,11 +56,11 @@
 
 -(void)initViews{
     //背景
-    UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 5, kScreenWidth, 40+300)];
+    UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 5, APPW, 40+300)];
     backView.backgroundColor = [UIColor whiteColor];
     [self addSubview:backView];
     //头
-    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 40)];
+    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APPW, 40)];
     [backView addSubview:headView];
     //
     _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 30, 30)];
@@ -70,14 +70,14 @@
     _titleLabel.textColor = blacktextcolor;
     [headView addSubview:_titleLabel];
     //
-    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(5, 38, kScreenWidth-10, 1)];
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(5, 38, APPW-10, 1)];
     lineView.backgroundColor = gradcolor;
     [backView addSubview:lineView];
     //图
-    _cardView1 = [[JFImageCardView alloc] initWithFrame:CGRectMake(0, 40, (kScreenWidth-5)/2, 150)];
-    _cardView2 = [[JFImageCardView alloc] initWithFrame:CGRectMake((kScreenWidth-5)/2, 40, (kScreenWidth-5)/2, 150)];
-    _cardView3 = [[JFImageCardView alloc] initWithFrame:CGRectMake(0, 40+150, (kScreenWidth-5)/2, 150)];
-    _cardView4 = [[JFImageCardView alloc] initWithFrame:CGRectMake((kScreenWidth-5)/2, 40+150, (kScreenWidth-5)/2, 150)];
+    _cardView1 = [[JFImageCardView alloc] initWithFrame:CGRectMake(0, 40, (APPW-5)/2, 150)];
+    _cardView2 = [[JFImageCardView alloc] initWithFrame:CGRectMake((APPW-5)/2, 40, (APPW-5)/2, 150)];
+    _cardView3 = [[JFImageCardView alloc] initWithFrame:CGRectMake(0, 40+150, (APPW-5)/2, 150)];
+    _cardView4 = [[JFImageCardView alloc] initWithFrame:CGRectMake((APPW-5)/2, 40+150, (APPW-5)/2, 150)];
     _cardView1.tag = 100;
     _cardView2.tag = 101;
     _cardView3.tag = 102;

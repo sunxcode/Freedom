@@ -21,7 +21,7 @@ static CGFloat const titleHeight = 40;
     self.titles =[NSMutableArray arrayWithArray:@[@"新能源",@"政策",@"新闻",@"国防",@"汽车",@"环保",@"核电",@"节能环保",@"动力"]];
     self.titleScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, APPW, titleHeight)];    //设置头标题栏
     self.navigationItem.titleView = self.titleScrollView;
-    self.contentScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];//设置内容 //添加自控制器
+    self.contentScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH)];//设置内容 //添加自控制器
     [self.view addSubview:self.contentScrollView];
     NSArray *tagids = @[@"12",@"13",@"14",@"17",@"19",@"21",@"22",@"24",@"25"];
     for(int i=0;i<self.titles.count;i++){
@@ -47,7 +47,7 @@ static CGFloat const titleHeight = 40;
     self.titleScrollView.contentSize = CGSizeMake(count * 80, 0);
     self.titleScrollView.showsHorizontalScrollIndicator = NO;
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.contentScrollView.contentSize = CGSizeMake(self.childViewControllers.count * kScreenWidth, 0);
+    self.contentScrollView.contentSize = CGSizeMake(self.childViewControllers.count * APPW, 0);
     self.contentScrollView.pagingEnabled = YES;
     self.contentScrollView.showsHorizontalScrollIndicator = NO;
     self.contentScrollView.delegate = self;
@@ -56,13 +56,13 @@ static CGFloat const titleHeight = 40;
 #pragma mark - 按钮点击时间改变contentScrollView的值
 -(void) click:(UIButton *) button{
     NSUInteger i = button.tag;
-    CGFloat x = i * kScreenWidth;
+    CGFloat x = i * APPW;
     //改变按钮
     [self setTitleBtn:button];
     UIViewController * vc = self.childViewControllers[i];
     if (vc.view.superview) {
         self.contentScrollView.contentOffset = CGPointMake(x, 0);return;}
-    vc.view.frame = CGRectMake(x, 0, kScreenWidth, kScreenHeight);
+    vc.view.frame = CGRectMake(x, 0, APPW, APPH);
     [self.contentScrollView addSubview:vc.view];
     self.contentScrollView.contentOffset = CGPointMake(x, 0);
 }
@@ -74,21 +74,21 @@ static CGFloat const titleHeight = 40;
     button.transform = CGAffineTransformMakeScale(1.5, 1.5);//放大的效果,放大1.5倍
     self.selTitlebutton = button;
     //实现一个移动后标题居中//判断ScrollView的contentoffset的值
-    CGFloat offset = button.center.x - kScreenWidth * 0.5 ;
+    CGFloat offset = button.center.x - APPW * 0.5 ;
     //在当前的左边
     if(offset < 0){offset = 0;}
-    CGFloat maxOffset = self.titleScrollView.contentSize.width - kScreenWidth;
+    CGFloat maxOffset = self.titleScrollView.contentSize.width - APPW;
     if (offset > maxOffset) {offset = maxOffset;}
     [self.titleScrollView setContentOffset:CGPointMake(offset, 0) animated:YES];
 }
 #pragma mark - 利用协议解决滑动contentViewController
 -(void) scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-    NSUInteger i = self.contentScrollView.contentOffset.x / kScreenWidth;
+    NSUInteger i = self.contentScrollView.contentOffset.x / APPW;
     [self setTitleBtn:self.buttons[i]];
-    CGFloat x = i * kScreenWidth;
+    CGFloat x = i * APPW;
     UIViewController * vc = self.childViewControllers[i];
     if (vc.view.superview) {return;}
-    vc.view.frame = CGRectMake(x, 0, kScreenWidth, kScreenHeight);
+    vc.view.frame = CGRectMake(x, 0, APPW, APPH);
     [self.contentScrollView addSubview:vc.view];
 }
 #pragma mark - 实现字体颜色大小的渐变

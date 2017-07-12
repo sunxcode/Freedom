@@ -20,12 +20,12 @@
     if (self) {
         //
         self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
-        self.scrollView.contentSize = CGSizeMake(2*kScreenWidth, frame.size.height);
+        self.scrollView.contentSize = CGSizeMake(2*APPW, frame.size.height);
         self.scrollView.showsHorizontalScrollIndicator = NO;
         [self addSubview:self.scrollView];
         
         //card
-        float cardWidth = (kScreenWidth*2-15)/3;
+        float cardWidth = (APPW*2-15)/3;
         
         for (int i = 0; i < 3; i++) {
             JFSubScribeCardView *card = [[JFSubScribeCardView alloc] initWithFrame:CGRectMake(cardWidth*i, 0, cardWidth, frame.size.height)];

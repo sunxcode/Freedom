@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIViewController (expanded)
+
+@interface UIViewController (expanded)<CKRadialMenuDelegate>
 - (void)backToLastViewController;
+
 @end

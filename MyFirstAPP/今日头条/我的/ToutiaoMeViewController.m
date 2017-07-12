@@ -65,8 +65,8 @@
         UIButton *buton = [[UIButton alloc]initWithFrame:CGRectMake(i*APPW/3, YH(view), APPW/3, 60)];
         [buton setImage:[UIImage imageNamed:Pwechart] forState:UIControlStateNormal];
         [buton setTitle:titles[i] forState:UIControlStateNormal];
-        [buton setImageEdgeInsets:UIEdgeInsetsMake(5, 50, 20, 50)];
-        [buton setTitleEdgeInsets:UIEdgeInsetsMake(35, -APPW/3+15, 0, 0)];
+        [buton setImageEdgeInsets:UIEdgeInsetsMake(5, 45, 20, 45)];
+        [buton setTitleEdgeInsets:UIEdgeInsetsMake(35, -APPW/3+10, 0, 0)];
         [buton setTitleColor:blacktextcolor forState:UIControlStateNormal];
         buton.titleLabel.font = fontnomal;
         buton.backgroundColor = whitecolor;

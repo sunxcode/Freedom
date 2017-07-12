@@ -41,7 +41,7 @@ static CGFloat const titleHeight = 40;
     //设置标题
     [self setTitle];
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.contentScrollView.contentSize = CGSizeMake(self.childViewControllers.count * kScreenWidth, 0);
+    self.contentScrollView.contentSize = CGSizeMake(self.childViewControllers.count * APPW, 0);
     //支持整页滑动
     self.contentScrollView.pagingEnabled = YES;
     self.contentScrollView.showsHorizontalScrollIndicator = NO;
@@ -49,14 +49,14 @@ static CGFloat const titleHeight = 40;
 }
 #pragma mark - 设置头标题栏
 -(void) setTitleScrollView{
-    CGRect rect = CGRectMake(0, 20, kScreenWidth, titleHeight);
+    CGRect rect = CGRectMake(0, 20, APPW, titleHeight);
     UIScrollView * titleScrollView = [[UIScrollView alloc] initWithFrame:rect];
     [self.view addSubview:titleScrollView];
     self.titleScrollView = titleScrollView;
 }
 #pragma mark - 设置内容
 -(void) setupContentScrollView{
-    CGRect rect = CGRectMake(0, YH(self.titleScrollView), kScreenWidth, kScreenHeight);
+    CGRect rect = CGRectMake(0, YH(self.titleScrollView), APPW, APPH);
     UIScrollView * contentScrollView = [[UIScrollView alloc]initWithFrame:rect];
     [self.view addSubview:contentScrollView];
     self.contentScrollView = contentScrollView;
@@ -101,7 +101,7 @@ static CGFloat const titleHeight = 40;
 #pragma mark - 按钮点击时间改变contentScrollView的值
 -(void) click:(UIButton *) button{
     NSUInteger i = button.tag;
-    CGFloat x = i * kScreenWidth;
+    CGFloat x = i * APPW;
     //改变按钮
     [self setTitleBtn:button];
     //转到下一个viewController
@@ -122,23 +122,23 @@ static CGFloat const titleHeight = 40;
     [self setUpTitleCenter:button];
 }
 -(void) setOnchildViewController:(NSUInteger) i{
-    CGFloat x = i * kScreenWidth;
+    CGFloat x = i * APPW;
     UIViewController * vc = self.childViewControllers[i];
     if (vc.view.superview) {
         return;
     }
-    vc.view.frame = CGRectMake(x, 0, kScreenWidth, kScreenHeight - YH(self.titleScrollView));
+    vc.view.frame = CGRectMake(x, 0, APPW, APPH - YH(self.titleScrollView));
     [self.contentScrollView addSubview:vc.view];
 }
 //实现一个移动后标题居中
 -(void) setUpTitleCenter:(UIButton *) button{
     //判断ScrollView的contentoffset的值
-    CGFloat offset = button.center.x - kScreenWidth * 0.5 ;
+    CGFloat offset = button.center.x - APPW * 0.5 ;
     //在当前的左边
     if(offset < 0){
         offset = 0;
     }
-    CGFloat maxOffset = self.titleScrollView.contentSize.width - kScreenWidth;
+    CGFloat maxOffset = self.titleScrollView.contentSize.width - APPW;
     if (offset > maxOffset) {
         offset = maxOffset;
     }
@@ -146,7 +146,7 @@ static CGFloat const titleHeight = 40;
 }
 #pragma mark - 利用协议解决滑动contentViewController
 -(void) scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-    NSUInteger i = self.contentScrollView.contentOffset.x / kScreenWidth;
+    NSUInteger i = self.contentScrollView.contentOffset.x / APPW;
     [self setTitleBtn:self.buttons[i]];
     [self setOnchildViewController:i];
 }
@@ -154,7 +154,7 @@ static CGFloat const titleHeight = 40;
 -(void) scrollViewDidScroll:(UIScrollView *)scrollView{
     CGFloat offset = scrollView.contentOffset.x;
     //定义一个两个变量控制左右按钮的渐变
-    NSInteger left = offset/kScreenWidth;
+    NSInteger left = offset/APPW;
     NSInteger right = 1 + left;
     UIButton * leftButton = self.buttons[left];
     UIButton * rightButton = nil;
@@ -162,7 +162,7 @@ static CGFloat const titleHeight = 40;
         rightButton = self.buttons[right];
     }
     //切换左右按钮
-    CGFloat scaleR = offset/kScreenWidth - left;
+    CGFloat scaleR = offset/APPW - left;
     CGFloat scaleL = 1 - scaleR;
     //左右按钮的缩放比例
     CGFloat tranScale = 1.2 - 1 ;

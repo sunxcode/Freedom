@@ -4,25 +4,14 @@
 //
 //  Created by 保修一站通 on 15/9/15.
 //  Copyright (c) 2015年 JF团购. All rights reserved.
-////  项目详解：
-//  github:https://github.com/tubie/JFTudou
-//  简书：http://www.jianshu.com/p/2156ec56c55b
-
-
 #import "JFWebViewController.h"
-
-@interface JFWebViewController ()<UIWebViewDelegate>
-{
+@interface JFWebViewController ()<UIWebViewDelegate>{
     UILabel *_titleLabel;
     int _isFirstIn;
     UIActivityIndicatorView *_activityView;
 }
-
-
 @end
-
 @implementation JFWebViewController
-
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -30,34 +19,17 @@
     }
     return self;
 }
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
     self.view.backgroundColor = [UIColor whiteColor];
     _isFirstIn = 0;
-    
-    [self setNav];
-    [self initViews];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
--(void)setNav{
     //返回
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     backBtn.frame = CGRectMake(0, 0, 23, 23);
     [backBtn setImage:[UIImage imageNamed:PcellLeft] forState:UIControlStateNormal];
     [backBtn addTarget:self action:@selector(OnBackBtn:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:backBtn];
-}
-
--(void)initViews{
-    self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight-64)];
+    self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, APPW, APPH-64)];
     self.webView.delegate = self;
     self.webView.scalesPageToFit = YES;
     [self.view addSubview:self.webView];
@@ -67,7 +39,7 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
     [self.webView loadRequest:request];
     
-    _activityView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(kScreenWidth/2-15, kScreenHeight/2-15, 30, 30)];
+    _activityView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(APPW/2-15, APPH/2-15, 30, 30)];
     _activityView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
     _activityView.hidesWhenStopped = YES;
     [self.view addSubview:_activityView];
@@ -84,30 +56,23 @@
     }
     
 }
-
-
 #pragma mark - UIWebViewDelegate
 -(void)webViewDidStartLoad:(UIWebView *)webView{
     NSLog(@"开始加载webview");
 }
-
 -(void)webViewDidFinishLoad:(UIWebView *)webView{
     NSLog(@"加载webview完成");
     NSString *theTitle=[webView stringByEvaluatingJavaScriptFromString:@"document.title"];
     self.title = theTitle;
     [_activityView stopAnimating];
 }
-
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
     NSLog(@"加载webview失败");
 }
-
 -(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
     [_activityView startAnimating];
     _isFirstIn++;
     NSLog(@"第几次加载:%d",_isFirstIn);
     return YES;
 }
-
-
 @end

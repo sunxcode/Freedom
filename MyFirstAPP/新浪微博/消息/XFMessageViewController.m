@@ -18,7 +18,7 @@
 }
 - (UISearchBar*)searchBar{
    UISearchBar *searchBar = [[UISearchBar alloc]init];
-    searchBar.frameWidth = 375;
+    searchBar.frameWidth = APPW;
     searchBar.frameHeight = 40;
     searchBar.placeholder = @"大家都在搜：男模遭趴光";
     return searchBar;

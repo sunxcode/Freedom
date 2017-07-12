@@ -66,7 +66,7 @@
     if (_bageView == nil) {
         self.bageView = [[UIButton alloc] init];
         self.bageView.titleLabel.font = [UIFont systemFontOfSize:11];
-        [self.bageView setBackgroundImage:[UIImage resizableImageWithName:@"main_badge"] forState:UIControlStateNormal];
+        [self.bageView setBackgroundImage:[UIImage resizableImageWithName:@"main_badge@2x"] forState:UIControlStateNormal];
     }
     return _bageView;
 }
@@ -116,20 +116,9 @@
     UIImageView *bgView = (UIImageView *)self.backgroundView;
     UIImageView *selectedBgView = (UIImageView *)self.selectedBackgroundView;
     
-  
-    if (rows == 1) {
-        bgView.image = [UIImage resizableImageWithName:@"common_card_background"];
-        selectedBgView.image = [UIImage resizableImageWithName:@"common_card_top_background_highlighted"];
-    } else if (indexPath.row == 0) { // 首行
-        bgView.image = [UIImage resizableImageWithName:@"common_card_top_background"];
-        selectedBgView.image = [UIImage resizableImageWithName:@"common_card_top_background_highlighted"];
-    } else if (indexPath.row == rows - 1) { // 末行
-        bgView.image = [UIImage resizableImageWithName:@"common_card_bottom_background"];
-        selectedBgView.image = [UIImage resizableImageWithName:@"common_card_bottom_background_highlighted"];
-    } else { // 中间
-        bgView.image = [UIImage resizableImageWithName:@"common_card_middle_background"];
-        selectedBgView.image = [UIImage resizableImageWithName:@"common_card_middle_background_highlighted"];
-    }
+    
+    bgView.image = [UIImage imageWithColor:whitecolor];
+    selectedBgView.image = [UIImage imageWithColor:RGBCOLOR(241, 241, 241)];
 }
 
 - (void)setItem:(SWCommonItem *)item

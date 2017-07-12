@@ -491,7 +491,7 @@ static dispatch_once_t utility;
     if (!_iflyRecognizerView) {
         //+++++++++++++++++++++语音+++++//初始化语音识别控件++++++++++++/
         NSString *initString = [NSString stringWithFormat:@"appid=%@",APPID];
-        _iflyRecognizerView = [[IFlyRecognizerView alloc] initWithCenter:CGPointMake(160, kScreenHeight/2) initParam:initString];
+        _iflyRecognizerView = [[IFlyRecognizerView alloc] initWithCenter:CGPointMake(160, APPH/2) initParam:initString];
         _iflyRecognizerView.delegate = self;
         //asr_ptt：默认为 1，当设置为 0 时，将返回无标点符号文本。
         [_iflyRecognizerView setParameter:@"asr_ptt" value:@"0"];

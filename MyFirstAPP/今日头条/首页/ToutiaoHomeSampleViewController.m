@@ -41,15 +41,15 @@
     source.text = [NSString stringWithFormat:@"%@ %@ %@",[dict valueForJSONKey:@"source"],[dict valueForJSONStrKey:@"author"],[[dict valueForJSONStrKey:@"date"]substringToIndex:10]];
     CGSize size = [self.title.text sizeWithFont:fontTitle maxSize:CGSizeMake(picA.count==1?(APPW-50)*2/3.0 : APPW - 2*Boardseperad, 40)];
     self.title.frame = CGRectMake(Boardseperad, Boardseperad, size.width, size.height);
-    icon1.frame = CGRectMake(X(self.title), YH(self.title)+40,(kScreenWidth-40)/3.0,  picA.count?(kScreenWidth-40)*4/15.0:0);
+    icon1.frame = CGRectMake(X(self.title), YH(self.title)+40,(APPW-40)/3.0,  picA.count?(APPW-40)*4/15.0:0);
     if(picA.count==1){
-        icon1.frame = CGRectMake(Boardseperad, Boardseperad, (kScreenWidth-40)/3.0, (kScreenWidth-40)*4/15.0);
+        icon1.frame = CGRectMake(Boardseperad, Boardseperad, (APPW-40)/3.0, (APPW-40)*4/15.0);
         self.title.frame = CGRectMake(XW(icon1)+Boardseperad, Boardseperad, size.width, size.height);
     }
-    source.frame = CGRectMake(X(self.title), YH(self.title)+Boardseperad, kScreenWidth-100, 20);
+    source.frame = CGRectMake(X(self.title), YH(self.title)+Boardseperad, APPW-100, 20);
     icon2.frame = CGRectMake(XW(icon1)+10, Y(icon1), W(icon1), H(icon1));
     icon3.frame = CGRectMake(XW(icon2)+10, Y(icon1), W(icon1), H(icon1));
-    self.line.frame = CGRectMake(Boardseperad,picA.count?YH(icon1)+8:YH(icon1)-1, kScreenWidth - 2*Boardseperad, 1.5);
+    self.line.frame = CGRectMake(Boardseperad,picA.count?YH(icon1)+8:YH(icon1)-1, APPW - 2*Boardseperad, 1.5);
 }
 @end
 @implementation ToutiaoHomeSampleViewController{

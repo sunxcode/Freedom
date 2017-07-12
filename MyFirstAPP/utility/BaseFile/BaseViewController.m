@@ -402,7 +402,7 @@ static BaseViewController *BVC = nil;
     return self.collectionView.sectionN;
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    if(self.collectionView.sectionN==1) return self.collectionView.itemN;
+    if(self.collectionView.sectionN==1) return self.collectionView.dataArray.count;
     else{
         NSArray *a = self.collectionView.dataArray[section];
         return a.count;
@@ -504,7 +504,6 @@ static BaseViewController *BVC = nil;
         }];
         return;
     }
-    
     UIStoryboard *StoryBoard = [UIStoryboard storyboardWithName:controlName bundle:nil];
     UIViewController *con = [StoryBoard instantiateViewControllerWithIdentifier:[NSString stringWithFormat:@"%@TabBarController",controlName]];
     CATransition *animation = [CATransition animation];
@@ -551,7 +550,7 @@ static BaseViewController *BVC = nil;
 -(void)showRadialMenu{
     if(!self.radialView){
         [self readData];
-        self.radialView = [[CKRadialMenu alloc] initWithFrame:CGRectMake(kScreenWidth/2-25, kScreenHeight/2-25, 50, 50)];
+        self.radialView = [[CKRadialMenu alloc] initWithFrame:CGRectMake(APPW/2-25, APPH/2-25, 50, 50)];
         for(int i = 0;i<self.items.count;i++){
             UIImageView *a = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
             a.image = [UIImage imageNamed:[self.items[i] valueForKey:@"icon"]];

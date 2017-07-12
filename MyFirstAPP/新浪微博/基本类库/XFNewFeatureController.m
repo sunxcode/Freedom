@@ -42,15 +42,15 @@
         imageView.frameY = 0;
         imageView.frameWidth = scrollW;
         imageView.frameHeight = scrollH;
-        NSString *imageName = [NSString stringWithFormat:@"new_feature_%d",i+1];
+        NSString *imageName = [NSString stringWithFormat:@"new_feature_%d@2x",i+1];
         imageView.image = [UIImage imageNamed:imageName];
         [scrollView addSubview:imageView];
         imageView.userInteractionEnabled = YES;
         
         if (i == KCount -1) {
             UIButton *shareBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-            [shareBtn setImage:[UIImage imageNamed:@"new_feature_share_false"] forState:UIControlStateNormal];
-            [shareBtn setImage:[UIImage imageNamed:@"new_feature_share_true"] forState:UIControlStateSelected];
+            [shareBtn setImage:[UIImage imageNamed:Pgou_gray] forState:UIControlStateNormal];
+            [shareBtn setImage:[UIImage imageNamed:Pgou_g] forState:UIControlStateSelected];
             [shareBtn setTitle:@"分享至微博" forState:UIControlStateNormal];
             [shareBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
             shareBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 30);
@@ -64,11 +64,11 @@
             
             
             UIButton *startBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-            [startBtn setBackgroundImage:[UIImage imageNamed:@"new_feature_finish_button"] forState:UIControlStateNormal];
-            [startBtn setBackgroundImage:[UIImage imageNamed:@"new_feature_finish_button_highlighted"] forState:UIControlStateHighlighted];
+            [startBtn setBackgroundImage:[UIImage imageWithColor:yellowcolor] forState:UIControlStateNormal];
+            [startBtn setBackgroundImage:[UIImage imageWithColor:RGBCOLOR(235, 108, 1)] forState:UIControlStateHighlighted];
             [startBtn setTitle:@"开始微博" forState:UIControlStateNormal];
             [startBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-            startBtn.frame = CGRectMake(imageView.frameWidth *0.25, imageView.frameHeight * 0.80, 40, 180);
+            startBtn.frame = CGRectMake(APPW/4, APPH * 0.80, APPW/2, 40);
             [startBtn addTarget:self action:@selector(startClick) forControlEvents:UIControlEventTouchUpInside];
             [imageView addSubview:startBtn];
 

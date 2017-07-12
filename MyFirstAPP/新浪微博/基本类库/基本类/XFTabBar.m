@@ -57,11 +57,11 @@
     
     //设置加号的位置
     
-    self.plusBtn.frameCenterX = kScreenWidth *0.5;
+    self.plusBtn.frameCenterX = APPW *0.5;
     self.plusBtn.frameCenterY = 50 * 0.5;
     
     //设置其他tabbarButton的位置和尺寸
-    CGFloat tabBarButtonW  = kScreenWidth / 5;
+    CGFloat tabBarButtonW  = APPW / 5;
     CGFloat tabbarButtonIndex = 0;
     
     for (UIView *child in self.subviews) {

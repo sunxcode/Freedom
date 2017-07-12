@@ -72,12 +72,12 @@
     BaseCollectionViewLayout *layout = [BaseCollectionViewLayout sharedFlowlayoutWithCellSize:CGSizeMake((APPW-50)/4, 90) groupInset:UIEdgeInsetsMake(YH(banner)+10, 10, 0, 10) itemSpace:10 linespace:10];
     self.collectionView = [[BaseCollectionView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH-100) collectionViewLayout:layout];
     self.collectionView.dataArray = [NSMutableArray arrayWithObjects:
-  @{@"name":@"IP地址",@"pic":@"juheintopublic"},@{@"name":@"手机号码归属地",@"pic":@"juhelookhistory"},@{@"name":@"身份证查询",@"pic":@"juheaboutus"},@{@"name":@"常用快递",@"pic":@"juhechart"},
-  @{@"name":@"餐饮美食",@"pic":@"juhechart"},@{@"name":@"菜谱大全",@"pic":@"juhechart"},@{@"name":@"彩票开奖结果",@"pic":@"juhechart"},@{@"name":@"邮编查询",@"pic":@"juhechart"},
-  @{@"name":@"律师查询",@"pic":@"juhechart"},@{@"name":@"笑话大全",@"pic":@"juhechart"},@{@"name":@"小说大全",@"pic":@"juhechart"},@{@"name":@"恋爱物语",@"pic":@"juhechart"},
-  @{@"name":@"商品比价",@"pic":@"juhechart"},@{@"name":@"新闻",@"pic":@"juhechart"},@{@"name":@"微信精选",@"pic":@"juhechart"},@{@"name":@"经典日至",@"pic":@"juhechart"},
-  @{@"name":@"天气查询",@"pic":@"juhechart"},@{@"name":@"手机话费",@"pic":@"juhechart"},@{@"name":@"个人缴费",@"pic":@"juhechart"},@{@"name":@"移动出行",@"pic":@"juhechart"},
-  @{@"name":@"足球赛事",@"pic":@"juhechart"},@{@"name":@"新闻资讯",@"pic":@"juhechart"},@{@"name":@"视频播放",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"}, nil];
+  @{@"name":@"IP地址",@"pic":@"juheintopublic"},@{@"name":@"手机号码归属地",@"pic":@"juhelookhistory"},@{@"name":@"身份证查询",@"pic":@"juheaboutus"},@{@"name":@"常用快递",@"pic":PuserLogo},
+  @{@"name":@"餐饮美食",@"pic":PuserLogo},@{@"name":@"菜谱大全",@"pic":PuserLogo},@{@"name":@"彩票开奖结果",@"pic":PuserLogo},@{@"name":@"邮编查询",@"pic":PuserLogo},
+  @{@"name":@"律师查询",@"pic":PuserLogo},@{@"name":@"笑话大全",@"pic":PuserLogo},@{@"name":@"小说大全",@"pic":PuserLogo},@{@"name":@"恋爱物语",@"pic":PuserLogo},
+  @{@"name":@"商品比价",@"pic":PuserLogo},@{@"name":@"新闻",@"pic":PuserLogo},@{@"name":@"微信精选",@"pic":PuserLogo},@{@"name":@"经典日至",@"pic":PuserLogo},
+  @{@"name":@"天气查询",@"pic":PuserLogo},@{@"name":@"手机话费",@"pic":PuserLogo},@{@"name":@"个人缴费",@"pic":PuserLogo},@{@"name":@"移动出行",@"pic":PuserLogo},
+  @{@"name":@"足球赛事",@"pic":PuserLogo},@{@"name":@"新闻资讯",@"pic":PuserLogo},@{@"name":@"视频播放",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo}, nil];
     [self fillTheCollectionViewDataWithCanMove:NO sectionN:1 itemN:20 itemName:@"JuheAPICollectionViewCell"];
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;

@@ -19,7 +19,7 @@
 
 #define dataCount 10
 #define kLocationToBottom 20
-#define kAdmin @"小虎-tiger"
+#define kAdmin @"杨越光"
 
 
 @interface WXViewController ()<UITableViewDataSource,UITableViewDelegate,cellDelegate,InputDelegate,UIActionSheetDelegate>

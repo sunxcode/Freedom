@@ -9,5 +9,8 @@
 #import "ResumeCallMeViewController.h"
 
 @implementation ResumeCallMeViewController
-
+-(void)viewDidLoad{
+    [super viewDidLoad];
+    self.title = @"联系我";
+}
 @end

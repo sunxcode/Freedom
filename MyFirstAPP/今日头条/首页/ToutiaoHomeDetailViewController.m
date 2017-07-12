@@ -16,7 +16,7 @@
 @implementation ToutiaoHomeDetailViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
-    webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight-TopHeight)];
+    webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH-TopHeight)];
     webView.delegate = self;
     DLog(@"%@",self.userInfo);
     webView.backgroundColor = [UIColor whiteColor];

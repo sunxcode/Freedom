@@ -5,7 +5,7 @@
 	<array>
 		<dict>
 			<key>icon</key>
-			<string>personal_icon_send@2x.png</string>
+			<string>u_favorites</string>
 			<key>name</key>
 			<string>我的订单</string>
 			<key>row</key>
@@ -13,7 +13,7 @@
 		</dict>
 		<dict>
 			<key>icon</key>
-			<string>personal_icon_send@2x.png</string>
+			<string>u_favorites</string>
 			<key>name</key>
 			<string>我的钱包</string>
 			<key>row</key>
@@ -23,7 +23,7 @@
 	<array>
 		<dict>
 			<key>icon</key>
-			<string>personal_icon_send@2x.png</string>
+			<string>u_favorites</string>
 			<key>name</key>
 			<string>待点评</string>
 			<key>row</key>
@@ -33,7 +33,7 @@
 	<array>
 		<dict>
 			<key>icon</key>
-			<string>personal_icon_send@2x.png</string>
+			<string>u_favorites</string>
 			<key>name</key>
 			<string>找好友</string>
 			<key>row</key>
@@ -41,7 +41,7 @@
 		</dict>
 		<dict>
 			<key>icon</key>
-			<string>personal_icon_send@2x.png</string>
+			<string>u_favorites</string>
 			<key>name</key>
 			<string>每日推荐</string>
 			<key>row</key>
@@ -49,7 +49,7 @@
 		</dict>
 		<dict>
 			<key>icon</key>
-			<string>personal_icon_send@2x.png</string>
+			<string>u_favorites.png</string>
 			<key>name</key>
 			<string>最近浏览</string>
 			<key>row</key>
@@ -59,7 +59,7 @@
 	<array>
 		<dict>
 			<key>icon</key>
-			<string>personal_icon_send@2x.png</string>
+			<string>u_favorites.png</string>
 			<key>name</key>
 			<string>设置</string>
 			<key>row</key>
@@ -69,7 +69,7 @@
 	<array>
 		<dict>
 			<key>icon</key>
-			<string>personal_icon_send@2x.png</string>
+			<string>u_favorites.png</string>
 			<key>name</key>
 			<string>我是商家</string>
 			<key>row</key>

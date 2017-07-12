@@ -18,8 +18,8 @@
     [self addSubviews:self.title,self.icon,nil];
 }
 -(void)setCollectionDataWithDic:(NSDictionary *)dict{
-    self.title.text = @"蚂蚁花呗";
-    self.icon.image = [UIImage imageNamed:@"taobaomini1"];
+    self.title.text = [dict valueForKey:@"title"];
+    self.icon.image = [UIImage imageNamed:[dict valueForKey:@"icon"]];
 }
 @end
 @interface MyDatabaseViewController()<UICollectionViewDelegateFlowLayout>{}
@@ -27,23 +27,31 @@
 @implementation MyDatabaseViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"个性特色自由主义";
+    self.title = @"我的数据库";
     UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithTitle:@"设置" style:UIBarButtonItemStylePlain actionBlick:^{}];
     UIBarButtonItem *right = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:Padd] style:UIBarButtonItemStyleDone actionBlick:^{}];
     self.navigationItem.leftBarButtonItem  = left;
     self.navigationItem.rightBarButtonItem = right;
     BaseCollectionViewLayout *layout = [BaseCollectionViewLayout sharedFlowlayoutWithCellSize:CGSizeMake((APPW-50)/4, 60) groupInset:UIEdgeInsetsMake(0, 10, 0, 10) itemSpace:10 linespace:10];
+    
     layout.headerReferenceSize = CGSizeMake(APPW, 30);layout.footerReferenceSize = CGSizeZero;
     self.collectionView = [[BaseCollectionView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH-110) collectionViewLayout:layout];
-    self.collectionView.dataArray = [NSMutableArray arrayWithObjects:@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"}, nil];
-    [self fillTheCollectionViewDataWithCanMove:NO sectionN:1 itemN:22 itemName:@"DatabaseCollectionViewCell"];
+    AppDelegate *del = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"TotalData"];
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:NO],
+                                [NSSortDescriptor sortDescriptorWithKey:@"icon" ascending:NO]];
+    NSError *error = nil;
+    NSArray *a = [del.managedObjectContext executeFetchRequest:request error:&error];
+    self.collectionView.dataArray = [NSMutableArray arrayWithArray:a];
+    [self fillTheCollectionViewDataWithCanMove:NO sectionN:1 itemN:15 itemName:@"DatabaseCollectionViewCell"];
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
+    self.collectionView.frame = self.view.bounds;
     [self.view addSubview:self.collectionView];
 }
 -(void)viewWillAppear:(BOOL)animated{
     self.tabBarController.tabBar.hidden = YES;
-    self.collectionView.frame = self.view.bounds;
+    self.edgesForExtendedLayout = UIRectEdgeLeft | UIRectEdgeRight|UIRectEdgeBottom;
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSString *log = [NSString stringWithFormat:@"你选择的是%zd，%zd", indexPath.section, indexPath.row];

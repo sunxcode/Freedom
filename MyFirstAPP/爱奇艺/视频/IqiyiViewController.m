@@ -114,7 +114,7 @@
 }
 #pragma amrk - 初始化视图
 -(void)initView{
-    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight  -64) style:UITableViewStylePlain];
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, APPW, APPH  -64) style:UITableViewStylePlain];
     tableView.delegate = self;
     tableView.dataSource = self;
     //将系统的Separator左边不留间隙
@@ -160,7 +160,7 @@
  */
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
-        JFImageScrollCell *cell = [JFImageScrollCell cellWithTableView:tableView frame:CGRectMake(0, 0, kScreenWidth, 180)];
+        JFImageScrollCell *cell = [JFImageScrollCell cellWithTableView:tableView frame:CGRectMake(0, 0, APPW, 180)];
         if (_headImageArray.count>0) {
             [cell setImageArray:_headImageArray];
         }

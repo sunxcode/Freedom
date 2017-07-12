@@ -58,11 +58,11 @@
 
 -(void)initViews{
     //背景
-    UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 5, kScreenWidth, 40+230+230)];
+    UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 5, APPW, 40+230+230)];
     backView.backgroundColor = [UIColor whiteColor];
     [self addSubview:backView];
     //头
-    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 40)];
+    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APPW, 40)];
     [backView addSubview:headView];
     //
     _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 30, 30)];
@@ -72,17 +72,17 @@
     _titleLabel.textColor = gradtextcolor;
     [headView addSubview:_titleLabel];
     //
-    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(5, 38, kScreenWidth-10, 1)];
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(5, 38, APPW-10, 1)];
     lineView.backgroundColor = gradcolor;
     [backView addSubview:lineView];
     //图
-    _cardView1 = [[JFImageCardView alloc] initWithFrame:CGRectMake(0, 40, (kScreenWidth-5)/3, 230)];
-    _cardView2 = [[JFImageCardView alloc] initWithFrame:CGRectMake((kScreenWidth-5)/3, 40, (kScreenWidth-5)/3, 230)];
-    _cardView3 = [[JFImageCardView alloc] initWithFrame:CGRectMake((kScreenWidth-5)*2/3, 40, (kScreenWidth-5)/3, 230)];
+    _cardView1 = [[JFImageCardView alloc] initWithFrame:CGRectMake(0, 40, (APPW-5)/3, 230)];
+    _cardView2 = [[JFImageCardView alloc] initWithFrame:CGRectMake((APPW-5)/3, 40, (APPW-5)/3, 230)];
+    _cardView3 = [[JFImageCardView alloc] initWithFrame:CGRectMake((APPW-5)*2/3, 40, (APPW-5)/3, 230)];
     
-    _cardView4 = [[JFImageCardView alloc] initWithFrame:CGRectMake(0, 40+230, (kScreenWidth-5)/3, 230)];
-    _cardView5 = [[JFImageCardView alloc] initWithFrame:CGRectMake((kScreenWidth-5)/3, 40+230, (kScreenWidth-5)/3, 230)];
-    _cardView6 = [[JFImageCardView alloc] initWithFrame:CGRectMake((kScreenWidth-5)*2/3, 40+230, (kScreenWidth-5)/3, 230)];
+    _cardView4 = [[JFImageCardView alloc] initWithFrame:CGRectMake(0, 40+230, (APPW-5)/3, 230)];
+    _cardView5 = [[JFImageCardView alloc] initWithFrame:CGRectMake((APPW-5)/3, 40+230, (APPW-5)/3, 230)];
+    _cardView6 = [[JFImageCardView alloc] initWithFrame:CGRectMake((APPW-5)*2/3, 40+230, (APPW-5)/3, 230)];
     
     [backView addSubview:_cardView1];
     [backView addSubview:_cardView2];

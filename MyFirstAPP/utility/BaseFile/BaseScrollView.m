@@ -384,13 +384,13 @@
     self.contentSize = CGSizeMake(W(self) * (icons.count + 2), 0);
     UIImageView *imageview = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, W(self),H(self))];
     [imageview imageWithURL:[icons lastObject] useProgress:NO useActivity:NO];
-    imageview.contentMode = UIViewContentModeScaleAspectFill;
+    imageview.contentMode = UIViewContentModeScaleToFill;
     imageview.clipsToBounds = YES;
     [self addSubview:imageview];
     for (int i = 0; i < icons.count; i++) {
         UIImageView *imgv = [[UIImageView alloc]initWithFrame:CGRectMake(W(self) + i*W(self), 0, W(self), H(self))];
         [imgv imageWithURL:icons[i] useProgress:NO useActivity:NO];
-        imgv.contentMode = UIViewContentModeScaleAspectFill;
+        imgv.contentMode = UIViewContentModeScaleToFill;
         imgv.clipsToBounds = YES;
         imgv.userInteractionEnabled = YES;
         imgv.tag = i;
@@ -404,7 +404,7 @@
     }
     UIImageView *lastimage = [[UIImageView alloc]initWithFrame:CGRectMake(W(self)*(icons.count + 1), 0, W(self), H(self))];
     [lastimage imageWithURL:[icons firstObject] useProgress:NO useActivity:NO];
-    lastimage.contentMode = UIViewContentModeScaleAspectFill;
+    lastimage.contentMode = UIViewContentModeScaleToFill;
     lastimage.clipsToBounds = YES;
     [self addSubview:lastimage];
     _time = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(bannerTimeAction) userInfo:nil repeats:YES];
@@ -426,13 +426,13 @@
     self.contentSize = CGSizeMake(0,H(self) * (icons.count + 2));
     UIImageView *imageview = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, W(self), H(self))];
     [imageview imageWithURL:[icons lastObject] useProgress:NO useActivity:NO];;
-    imageview.contentMode = UIViewContentModeScaleAspectFill;
+    imageview.contentMode = UIViewContentModeScaleToFill;
     imageview.clipsToBounds = YES;
     [self addSubview:imageview];
     for (int i = 0; i < icons.count; i++) {
         UIImageView *imgv = [[UIImageView alloc]initWithFrame:CGRectMake(0,H(self) + i*H(self), W(self), H(self))];
         [imgv imageWithURL:icons[i] useProgress:NO useActivity:NO];
-        imgv.contentMode = UIViewContentModeScaleAspectFill;
+        imgv.contentMode = UIViewContentModeScaleToFill;
         imgv.clipsToBounds = YES;
         imgv.userInteractionEnabled = YES;
         imgv.tag = i;
@@ -446,7 +446,7 @@
     }
     UIImageView *lastimage = [[UIImageView alloc]initWithFrame:CGRectMake(0,H(self)*(icons.count + 1), W(self), H(self))];
     [lastimage imageWithURL:[icons firstObject] useProgress:NO useActivity:NO];
-    lastimage.contentMode = UIViewContentModeScaleAspectFill;
+    lastimage.contentMode = UIViewContentModeScaleToFill;
     lastimage.clipsToBounds = YES;
     [self addSubview:lastimage];
     _time = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(bannerTimeAction) userInfo:nil repeats:YES];

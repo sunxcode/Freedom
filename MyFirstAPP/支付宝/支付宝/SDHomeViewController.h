@@ -17,11 +17,8 @@
  * GitHub: https://github.com/gsdios
  *
  *********************************************************************************
- 
  */
-
 #import "SDBasicViewContoller.h"
-
 @interface SDHomeViewController : SDBasicViewContoller
 
 @end

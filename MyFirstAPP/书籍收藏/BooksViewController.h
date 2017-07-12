@@ -6,6 +6,6 @@
 //  Copyright © 2016年 薛超. All rights reserved.
 //
 
-@interface BooksViewController : UIViewController
+@interface BooksViewController : BaseViewController
 
 @end

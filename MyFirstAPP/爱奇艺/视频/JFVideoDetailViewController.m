@@ -42,7 +42,7 @@
 -(void)initNav{
     self.navigationController.navigationBar.hidden = YES;
     
-    UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 20)];
+    UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APPW, 20)];
     backView.backgroundColor = [UIColor blackColor];
     [self.view addSubview:backView];
     
@@ -56,7 +56,7 @@
 
 #pragma mark - 初始化tableView
 -(void)initTableView{
-    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 220, kScreenWidth, kScreenHeight-220) style:UITableViewStylePlain];
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 220, APPW, APPH-220) style:UITableViewStylePlain];
     tableView.delegate = self;
     tableView.dataSource = self;
     //将系统的Separator左边不留间隙
@@ -67,7 +67,7 @@
 }
 #pragma mark - 初始化webView
 -(void)initWebView{
-    self.videoDetailWebView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 20, kScreenWidth, 220)];
+    self.videoDetailWebView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 20, APPW, 220)];
     [self.view addSubview:self.videoDetailWebView];
 }
 

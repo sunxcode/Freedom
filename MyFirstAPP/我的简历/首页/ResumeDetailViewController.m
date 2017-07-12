@@ -15,7 +15,7 @@
 @implementation ResumeDetailViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
-    webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight-TopHeight)];
+    webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH-TopHeight)];
     webView.delegate = self;
     webView.backgroundColor = [UIColor whiteColor];
     [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.userInfo[@"url"]]]];

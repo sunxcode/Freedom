@@ -7,55 +7,65 @@
 ////  项目详解：
 //  github:https://github.com/tubie/JFTudou
 //  简书：http://www.jianshu.com/p/2156ec56c55b
-
-
 #import "JFDiscoverViewController.h"
-#import "JFDiscoverModel.h"
 #import "JFImageScrollCell.h"
-#import "JFDiscoverCell.h"
-#import "JFSearchTextField.h"
-#import "JFSearchViewController.h"
 #import "JFSearchHistoryViewController.h"
-#import "JFSearchButton.h"
 #import "UIButton+expanded.h"
 #import "JFImageScrollView.h"
 #import "JFVideoDetailViewController.h"
 #import "JFWebViewController.h"
+@interface JFDiscoverModel : NSObject
+@property(nonatomic, strong) NSNumber *group_number;
+@property(nonatomic, strong) NSString *title;
+@property(nonatomic, strong) NSMutableArray *items;
+@property(nonatomic, strong) NSString *skip_url;
+@property(nonatomic, strong) NSString *sub_title;
+@property(nonatomic, strong) NSString *module_icon;
+@property(nonatomic, strong) NSString *sub_type;
+@property(nonatomic, strong) NSNumber *group_location;
+@end
+@implementation JFDiscoverModel
+@end
+@class JFDiscoverModel;
+@interface JFDiscoverCell : UITableViewCell
++ (instancetype)cellWithTableView:(UITableView *)tableView;
+@property(nonatomic, strong)JFDiscoverModel *discoverModel;
+@end
+@implementation JFDiscoverCell
++ (instancetype)cellWithTableView:(UITableView *)tableView{
+    static NSString *ID = @"JFDiscoverCell";
+    JFDiscoverCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    if (cell == nil) {
+        cell = [[JFDiscoverCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+    }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    return cell;
+}
+-(void)setDiscoverModel:(JFDiscoverModel *)discoverModel{
+    _discoverModel = discoverModel;
+    self.textLabel.text = discoverModel.title;
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:discoverModel.module_icon]  placeholderImage:[UIImage imageNamed:PcustomService_y]];
+}
+@end
 @interface JFDiscoverViewController ()<UITableViewDataSource, UITableViewDelegate,JFImageScrollViewDelegate>{
     NSMutableArray *_dataSource;
     NSMutableArray *_imageArray;
     UILabel *_searchLabel;
 }
-
 @property(nonatomic, strong)UITableView *discoverTableView;
-
 @end
-
 @implementation JFDiscoverViewController
-
 -(void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBar.hidden = NO;
 }
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initNav];
-    [self initView];
-    [self setUpRefresh];
-}
-
-#pragma mark - 设置普通模式下啦刷新
--(void)setUpRefresh{
-    self.discoverTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [self initData];
-    }];
-    [self.discoverTableView.mj_header beginRefreshing];
-}
-
--(void)initNav{
+    CGFloat w = APPW * 0.8;
+    UIButton *searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    searchButton.imageView.contentMode = UIViewContentModeCenter;
+    searchButton.titleLabel.font = [UIFont systemFontOfSize:11];
+    [searchButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     
-    CGFloat w = kScreenWidth * 0.8;
-    JFSearchButton *searchButton = [JFSearchButton buttonWithType:UIButtonTypeCustom];
     searchButton.frame = CGRectMake(0, 0, w, 30);
     [searchButton setBackgroundImage:[UIImage imageNamed:@"GroupCell"] forState:UIControlStateNormal];
     [searchButton setImage:[UIImage imageNamed:Psearch_small] forState:UIControlStateNormal];
@@ -63,26 +73,11 @@
     [searchButton addTarget:self action:@selector(searchButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [searchButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:searchButton];
-    
-    
     //取消按钮
-    UIBarButtonItem *rightItem = [UIBarButtonItem initWithNormalImage:Pwnavi target:self action:@selector(scanningClick) width:25 height:25];
+    UIBarButtonItem *rightItem = [UIBarButtonItem initWithNormalImage:Pwnavi target:self action:nil width:25 height:25];
     self.navigationItem.rightBarButtonItem = rightItem;
     
-
-}
--(void)scanningClick{
-
-}
--(void)searchButtonClick{
-    JFSearchHistoryViewController *searchVC = [[JFSearchHistoryViewController alloc]init];
-    [self.navigationController pushViewController:searchVC animated:YES];
-
-}
-
-
--(void)initView{
-    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight  -64) style:UITableViewStylePlain];
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, APPW, APPH  -64) style:UITableViewStylePlain];
     tableView.delegate = self;
     tableView.dataSource = self;
     //将系统的Separator左边不留间隙
@@ -90,57 +85,54 @@
     self.discoverTableView = tableView;
     [self.view addSubview:self.discoverTableView];
     
-}
-
--(void)initData{
-    _dataSource = [[NSMutableArray alloc] init];
-    _imageArray = [[NSMutableArray alloc] init];
-    NSString *urlStr =[[GetUrlString sharedManager]urlWithDiscoverData];
-    [NetEngine sendGetUrl:urlStr withParams:nil success:^(id responseBody) {
-        NSLog(@"%@",responseBody);
-        [self.discoverTableView.mj_header endRefreshing];
-        NSString *hotWord = [responseBody objectForKey:@"search_hot_word"];
-        NSString *WordAd = [responseBody objectForKey:@"search_word_ad"];
-        _searchLabel.text = [NSString stringWithFormat:@"%@:%@",WordAd,hotWord];
-        [_dataSource removeAllObjects];
-        NSMutableArray *resultArray = [responseBody objectForKey:@"results"];
-        for (int i = 0; i < resultArray.count; i++) {
-            JFDiscoverModel *disM = [JFDiscoverModel mj_objectWithKeyValues:resultArray[i]];
-            [_dataSource addObject:disM];
-            if (i == 0) {
-                [_imageArray removeAllObjects];
-                NSMutableArray *imgArr = disM.items;
-                for (int j = 0; j < imgArr.count; j++) {
-                    NSString *picStr = [imgArr[j] objectForKey:@"image_350_1408"];
-                    [_imageArray addObject:picStr];
+    self.discoverTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        _dataSource = [[NSMutableArray alloc] init];
+        _imageArray = [[NSMutableArray alloc] init];
+        NSString *urlStr =[[GetUrlString sharedManager]urlWithDiscoverData];
+        [NetEngine sendGetUrl:urlStr withParams:nil success:^(id responseBody) {
+            NSLog(@"%@",responseBody);
+            [self.discoverTableView.mj_header endRefreshing];
+            NSString *hotWord = [responseBody objectForKey:@"search_hot_word"];
+            NSString *WordAd = [responseBody objectForKey:@"search_word_ad"];
+            _searchLabel.text = [NSString stringWithFormat:@"%@:%@",WordAd,hotWord];
+            [_dataSource removeAllObjects];
+            NSMutableArray *resultArray = [responseBody objectForKey:@"results"];
+            for (int i = 0; i < resultArray.count; i++) {
+                JFDiscoverModel *disM = [JFDiscoverModel mj_objectWithKeyValues:resultArray[i]];
+                [_dataSource addObject:disM];
+                if (i == 0) {
+                    [_imageArray removeAllObjects];
+                    NSMutableArray *imgArr = disM.items;
+                    for (int j = 0; j < imgArr.count; j++) {
+                        NSString *picStr = [imgArr[j] objectForKey:@"image_350_1408"];
+                        [_imageArray addObject:picStr];
+                    }
                 }
             }
-        }
-        
-        [self.discoverTableView reloadData];
-
-    } failure:^(NSError *error) {
-        
+            [self.discoverTableView reloadData];
+        } failure:^(NSError *error) {
+        }];
     }];
-
+    [self.discoverTableView.mj_header beginRefreshing];
+}
+-(void)searchButtonClick{
+    JFSearchHistoryViewController *searchVC = [[JFSearchHistoryViewController alloc]init];
+    [self.navigationController pushViewController:searchVC animated:YES];
 }
 #pragma mark - UITableViewDataSource
-//
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-
     return _dataSource.count;
 }
-//
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
-        return 130;
+        return 280;
     }else{
         return 40;
     }
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
-        JFImageScrollCell *cell = [JFImageScrollCell cellWithTableView:tableView frame:CGRectMake(0, 0, kScreenWidth, 130)];
+        JFImageScrollCell *cell = [JFImageScrollCell cellWithTableView:tableView frame:CGRectMake(0, 0, APPW,280)];
         [cell setImageArray:_imageArray];
         cell.imageScrollView.delegate = self;
         return cell;
@@ -151,41 +143,24 @@
     }
     return nil;
 }
-
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row != 0 ) {
         JFWebViewController *webVC = [[JFWebViewController alloc]init];
         webVC.urlStr = [[GetUrlString sharedManager]urlWithJianShuData];
         [self.navigationController pushViewController:webVC animated:YES];
     }
-
-
 }
 
 #pragma mark - JFImageScrollViewDelegate
 -(void)didSelectImageAtIndex:(NSInteger)index{
     JFDiscoverModel *disM = _dataSource[0];
     NSString *code = [disM.items[index] objectForKey:@"video_id"];
-    
     JFVideoDetailViewController  *videoVC = [[JFVideoDetailViewController alloc] init];
     videoVC.iid = code;
     [self.navigationController pushViewController:videoVC animated:YES];
 
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

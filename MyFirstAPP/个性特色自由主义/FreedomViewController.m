@@ -18,8 +18,8 @@
     [self addSubviews:self.title,self.icon,nil];
 }
 -(void)setCollectionDataWithDic:(NSDictionary *)dict{
-    self.title.text = @"蚂蚁花呗";
-    self.icon.image = [UIImage imageNamed:@"taobaomini1"];
+    self.title.text = dict[@"name"];
+    self.icon.image = [UIImage imageNamed:dict[@"pic"]];
 }
 @end
 @interface FreedomViewController()<UICollectionViewDelegateFlowLayout>{}
@@ -35,17 +35,17 @@
     BaseCollectionViewLayout *layout = [BaseCollectionViewLayout sharedFlowlayoutWithCellSize:CGSizeMake((APPW-50)/4, 60) groupInset:UIEdgeInsetsMake(0, 10, 0, 10) itemSpace:10 linespace:10];
     layout.headerReferenceSize = CGSizeMake(APPW, 30);layout.footerReferenceSize = CGSizeZero;
     self.collectionView = [[BaseCollectionView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH-110) collectionViewLayout:layout];
-    self.collectionView.dataArray = [NSMutableArray arrayWithObjects:@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"},@{@"name":@"流量充值",@"pic":@"juhechart"}, nil];
+    self.collectionView.dataArray = [NSMutableArray arrayWithObjects:@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo}, nil];
     [self fillTheCollectionViewDataWithCanMove:NO sectionN:1 itemN:20 itemName:@"FreedomViewCell"];
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
-    
+    self.collectionView.backgroundColor = whitecolor;
+    self.collectionView.frame = self.view.bounds;
+    [self.view addSubview:self.collectionView];
 }
 -(void)viewWillAppear:(BOOL)animated{
     self.tabBarController.tabBar.hidden = YES;
-    self.collectionView.frame = CGRectMake(0, 0, APPW, APPH);
-    [self.view addSubview:self.collectionView];
-    self.view.backgroundColor = redcolor;
+    self.edgesForExtendedLayout = UIRectEdgeLeft | UIRectEdgeRight|UIRectEdgeBottom;
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSString *log = [NSString stringWithFormat:@"你选择的是%zd，%zd", indexPath.section, indexPath.row];

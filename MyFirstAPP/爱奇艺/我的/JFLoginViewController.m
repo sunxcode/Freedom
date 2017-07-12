@@ -28,7 +28,7 @@
     
 }
 -(void)initView{
-    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight) style:UITableViewStylePlain];
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, APPW, APPH) style:UITableViewStylePlain];
     tableView.delegate = self;
     tableView.dataSource = self;
     //将系统的Separator左边不留间隙

@@ -170,7 +170,7 @@
     itemScrollView.backgroundColor = whitecolor;
     BaseCollectionViewLayout *layout = [BaseCollectionViewLayout sharedFlowlayoutWithCellSize:CGSizeMake((APPW-50)/4, 90) groupInset:UIEdgeInsetsMake(10, 10, 0, 10) itemSpace:10 linespace:10];
     self.collectionView = [[BaseCollectionView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH-110) collectionViewLayout:layout];
-    self.collectionView.dataArray = [NSMutableArray arrayWithObjects:@{@"name":@"流量充值",@"pic":@"juhechart"}, nil];
+    self.collectionView.dataArray = [NSMutableArray arrayWithObjects:@{@"name":@"流量充值",@"pic":PuserLogo}, nil];
     [self fillTheCollectionViewDataWithCanMove:NO sectionN:4 itemN:20 itemName:@"DZHomeViewCell1"];
     [self.collectionView registerClass:[DZHomeViewCell2 class] forCellWithReuseIdentifier:@"DZHomeViewCell2"];
     [self.collectionView registerClass:[DZHomeViewCell3 class] forCellWithReuseIdentifier:@"DZHomeViewCell3"];

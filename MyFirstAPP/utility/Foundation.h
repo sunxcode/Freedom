@@ -67,8 +67,6 @@
 #define APPW              [UIScreen mainScreen].bounds.size.width
 #define APPH              [UIScreen mainScreen].bounds.size.height
 #define ApplicationH      [UIScreen mainScreen].applicationFrame.size.height
-#define kScreenWidth      APPW
-#define kScreenHeight     APPH
 #define TopHeight         (Version7?64:44)
 #define NavY              (Version7?20:0)
 #define TabBarH           60

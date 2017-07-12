@@ -35,21 +35,21 @@
 
 -(void)setNav{
     
-    UIImageView *backImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 147)];
+    UIImageView *backImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, APPW, 147)];
     [backImage setImage:[UIImage imageNamed:@"morentu"]];
     [self.view addSubview:backImage];
     //
-    UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 107, kScreenWidth, 40)];
+    UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 107, APPW, 40)];
     backView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"titlebar"]];
     [self.view addSubview:backView];
     //
     //设置
-    UIButton *settingBtn = [[UIButton alloc] initWithFrame:CGRectMake(kScreenWidth-30, 30, 22, 22)];
+    UIButton *settingBtn = [[UIButton alloc] initWithFrame:CGRectMake(APPW-30, 30, 22, 22)];
     [settingBtn setImage:[UIImage imageNamed:Pwsetting] forState:UIControlStateNormal];
     [self.view addSubview:settingBtn];
     //消息
     UIButton *msgBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    msgBtn.frame = CGRectMake(kScreenWidth-60, 30, 22, 22);
+    msgBtn.frame = CGRectMake(APPW-60, 30, 22, 22);
     [msgBtn setImage:[UIImage imageNamed:Pwbell] forState:UIControlStateNormal];
     //    [msgBtn addTarget:self action:@selector(OnHisBtn:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:msgBtn];
@@ -80,7 +80,7 @@
 
 
 -(void)initViews{
-    UIImageView *backImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 150, kScreenWidth, kScreenHeight-150-49)];
+    UIImageView *backImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 150, APPW, APPH-150-49)];
     [backImage setImage:[UIImage imageNamed:@"cache_no_data"]];
     backImage.contentMode = UIViewContentModeScaleAspectFit;
     [self.view addSubview:backImage];
@@ -90,7 +90,7 @@
     for (int i = 0; i < 4; i++) {
         UIButton *segmentBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         segmentBtn.tag = i;
-        segmentBtn.frame = CGRectMake(kScreenWidth/4*i, 107, kScreenWidth/4, 40);
+        segmentBtn.frame = CGRectMake(APPW/4*i, 107, APPW/4, 40);
         [segmentBtn setImage:[UIImage imageNamed:picArray[i]] forState:UIControlStateNormal];
         [segmentBtn setTitle:titleArrar[i] forState:UIControlStateNormal];
         [segmentBtn addTarget:self action:@selector(segmentBtn:) forControlEvents:UIControlEventTouchUpInside];

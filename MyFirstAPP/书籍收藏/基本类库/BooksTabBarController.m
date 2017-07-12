@@ -7,25 +7,19 @@
 //
 
 #import "BooksTabBarController.h"
-#import "NewSliderViewController.h"
-#import "BooksViewController.h"
-#import "WXViewController.h"
-#import "E_ScrollViewController.h"
 @interface BooksTabBarController()
-@property (strong, nonatomic) NewSliderViewController *side;
 @end
 @implementation BooksTabBarController
 -(void)viewDidLoad{
-    BooksViewController *bookshelf = [[BooksViewController alloc]init];
-    UINavigationController *na = [[UINavigationController alloc]initWithRootViewController:bookshelf];
-    WXViewController *left = [[WXViewController alloc]init];
-    UINavigationController *na2 = [[UINavigationController alloc]initWithRootViewController:left];
-    E_ScrollViewController *right = [[E_ScrollViewController alloc]init];
-    UINavigationController *na3 = [[UINavigationController alloc]initWithRootViewController:right];
-    self.side = [[NewSliderViewController alloc]initWithLeftViewController:na2 CenterViewController:na RigthViewController:na3];
-    self.side.leftWidth = 0.8 * [UIScreen mainScreen].bounds.size.width;
-    self.side.rightWidth = [UIScreen mainScreen].bounds.size.width;
-
-    [self addChildViewController:_side];
+    [super viewDidLoad];
+    //通过设置文本属性来设置字体颜色
+    for(UIViewController *s in self.childViewControllers){
+        NSMutableDictionary *attM = [NSMutableDictionary dictionary];
+        [attM setObject:[UIColor orangeColor] forKey:NSForegroundColorAttributeName];
+        [s.tabBarItem setTitleTextAttributes:attM forState:UIControlStateSelected];
+        s.tabBarItem.image = [s.tabBarItem.image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        s.tabBarItem.selectedImage = [s.tabBarItem.selectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    }
+    self.hidesBottomBarWhenPushed = YES;
 }
 @end

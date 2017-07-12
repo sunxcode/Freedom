@@ -21,14 +21,14 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.scrollView = [[UIScrollView alloc]initWithFrame:frame];
-        self.scrollView.contentSize = CGSizeMake(4 * kScreenWidth, frame.size.height);
+        self.scrollView.contentSize = CGSizeMake(4 * APPW, frame.size.height);
         self.scrollView.pagingEnabled = YES;
         self.scrollView.delegate = self;
         self.scrollView.showsHorizontalScrollIndicator = NO;
         //添加图片
         for(int i = 0 ; i < 10; i++){
             UIImageView *imageView = [[UIImageView alloc] init];
-            imageView.frame = CGRectMake(i*kScreenWidth, 0, kScreenWidth, frame.size.height);
+            imageView.frame = CGRectMake(i*APPW, 0, APPW, frame.size.height);
             imageView.tag = i+10;
             UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(OnTapImage:)];
             [imageView addGestureRecognizer:tap];
@@ -38,7 +38,7 @@
         [self addSubview:self.scrollView];
         
         //
-        self.pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(kScreenWidth/2-40, frame.size.height-40, 80, 30)];
+        self.pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(APPW/2-40, frame.size.height-40, 80, 30)];
         self.pageControl.currentPage = 0;
         self.pageControl.numberOfPages = 6;
         [self addSubview:self.pageControl];
@@ -59,7 +59,7 @@
 
 -(void)setImageArray:(NSArray *)imageArray{
     _pageNumber = (int)imageArray.count;
-    self.scrollView.contentSize = CGSizeMake(imageArray.count * kScreenWidth, self.frame.size.height);
+    self.scrollView.contentSize = CGSizeMake(imageArray.count * APPW, self.frame.size.height);
     self.pageControl.numberOfPages = imageArray.count;
     //添加图片
     for(int i = 0 ; i < imageArray.count; i++){

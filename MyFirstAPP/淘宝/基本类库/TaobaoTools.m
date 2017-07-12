@@ -48,7 +48,7 @@
 }
 
 + (void)show:(nullable NSString *)msg {
-    UILabel *_msgLab = [[UILabel alloc] initWithFrame:CGRectMake(0, -64, kScreenWidth, 64)];
+    UILabel *_msgLab = [[UILabel alloc] initWithFrame:CGRectMake(0, -64, APPW, 64)];
     _msgLab.backgroundColor = RGBACOLOR(0, 0, 0, 0.6);
     _msgLab.text = msg;
     _msgLab.textColor = [UIColor whiteColor];

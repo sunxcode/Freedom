@@ -47,8 +47,8 @@
         DLog(@"点击了%ld,%@",index,dict);
     };
     self.tableView.dataArray = [NSMutableArray arrayWithObjects:
-         @{@"name":@"我的充值记录",@"pic":@"juheintopublic"},@{@"name":@"我的消费记录",@"pic":@"juhelookhistory"},@{@"name":@"账户信息",@"pic":@"juheaboutus"},@{@"name":@"密码修改",@"pic":@"juhechart"},
-         @{@"name":@"实名认证",@"pic":@"juhechart"}, nil];
+         @{@"name":@"我的充值记录",@"pic":@"juheintopublic"},@{@"name":@"我的消费记录",@"pic":@"juhelookhistory"},@{@"name":@"账户信息",@"pic":@"juheaboutus"},@{@"name":@"密码修改",@"pic":PuserLogo},
+         @{@"name":@"实名认证",@"pic":PuserLogo}, nil];
     [self fillTheTableDataWithHeadV:headerView footV:v canMove:NO canEdit:NO headH:0 footH:0 rowH:60 sectionN:1 rowN:5 cellName:@"JuheUserViewCell"];
     [self.view addSubview:self.tableView];
     self.tableView.delegate = self;

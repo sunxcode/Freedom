@@ -26,6 +26,7 @@
     [self addleftItem:@""];
     [self addrightItem:@""];
 }
+
 -(void)setTitle:(NSString *)title{
     self.titleLabel.text = title;
 }

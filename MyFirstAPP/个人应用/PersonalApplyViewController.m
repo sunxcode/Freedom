@@ -60,8 +60,7 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [SVProgressHUD showErrorWithStatus:alertErrorTxt];
     }];
-    
-    self.tableView = [[BaseTableView alloc]initWithFrame:CGRectMake(0,0, APPW, APPH) style:UITableViewStylePlain];
+    self.tableView = [[BaseTableView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH-TabBarH) style:UITableViewStylePlain];
     [self fillTheTableDataWithHeadV:nil footV:nil canMove:NO canEdit:NO headH:0 footH:0 rowH:80 sectionN:1 rowN:11 cellName:@"PersonalApplyViewCell"];
     self.tableView.dataArray = [NSMutableArray arrayWithObjects:
   @{@"pic":PuserLogo,@"name":@"互联网行业",@"url":ResumeURL},@{@"pic":PuserLogo,@"name":@"教育培训行业1",@"url":WeChatApplet1},@{@"pic":PuserLogo,@"name":@"计算机软件",@"url":WeChatApplet2},
@@ -79,7 +78,7 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     self.tabBarController.tabBar.hidden = YES;
-    self.tableView.frame = self.view.bounds;
+    self.edgesForExtendedLayout = UIRectEdgeLeft | UIRectEdgeRight|UIRectEdgeBottom;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSDictionary *dict = self.tableView.dataArray[indexPath.row];

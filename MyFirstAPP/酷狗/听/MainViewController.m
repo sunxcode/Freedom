@@ -11,11 +11,13 @@
 #import "LookViewController.h"//看
 #import "SingViewController.h"//唱
 #import "SettingViewController.h"//左侧设置
+#import "TabBarView.h"
 //#import ""//右侧设置
 #import "RESideMenu.h"//自定义转场
 @interface MainViewController ()<UIScrollViewDelegate>
 @property (nonatomic, weak) UIScrollView *contentView;
 @property (nonatomic, strong) TitleScrollView *titleView;
+@property (nonatomic, strong) TabBarView *coustomTabBar;
 @end
 @implementation MainViewController
 - (void)viewDidLoad {
@@ -23,8 +25,16 @@
     [self setupNav];
     [self setupChildViews];
     [self setupContentView];
+    
+    _coustomTabBar = [TabBarView show];
+    _coustomTabBar.frame = CGRectMake(0, APPH-TabBarH, APPW, TabBarH);
+    [self.view addSubview:_coustomTabBar];
 //    [self setupRightGesture];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getMessage) name:ChangeMainVCContentEnable object:nil];
+}
+-(void)viewWillAppear:(BOOL)animated{
+    self.tabBarController.tabBar.hidden = YES;
+    self.edgesForExtendedLayout = UIRectEdgeLeft | UIRectEdgeRight|UIRectEdgeBottom;
 }
 - (void)getMessage{
     self.contentView.userInteractionEnabled = YES;

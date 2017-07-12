@@ -133,10 +133,10 @@
     more.text = @"更多 >";
     mainView = [[UIView alloc]initWithFrame:CGRectMake(0, YH(daren), APPW, H(self)-YH(daren)-30)];
     mainView.backgroundColor = [UIColor whiteColor];
-    CGFloat height = (kScreenWidth-32)/3 +14+3+12+3;
-    view1 = [[TitlesImageViewFull alloc] initWithFrame:CGRectMake(8, 6, (kScreenWidth-32)/3, height)];
-    view2 = [[TitlesImageViewFull alloc] initWithFrame:CGRectMake(8+(kScreenWidth-32)/3+8, 6, (kScreenWidth-32)/3, height)];
-    view3 = [[TitlesImageViewFull alloc] initWithFrame:CGRectMake(8+(kScreenWidth-32)/3+8+(kScreenWidth-32)/3+8, 6, (kScreenWidth-32)/3, height)];
+    CGFloat height = (APPW-32)/3 +14+3+12+3;
+    view1 = [[TitlesImageViewFull alloc] initWithFrame:CGRectMake(8, 6, (APPW-32)/3, height)];
+    view2 = [[TitlesImageViewFull alloc] initWithFrame:CGRectMake(8+(APPW-32)/3+8, 6, (APPW-32)/3, height)];
+    view3 = [[TitlesImageViewFull alloc] initWithFrame:CGRectMake(8+(APPW-32)/3+8+(APPW-32)/3+8, 6, (APPW-32)/3, height)];
     [mainView addSubview:view1];
     [mainView addSubview:view2];
     [mainView addSubview:view3];
@@ -165,7 +165,7 @@
     
 }
 - (CGFloat)getHeight {
-    return (kScreenWidth-32)/3 +8+30+8+42+42;
+    return (APPW-32)/3 +8+30+8+42+42;
 }
 @end
 @interface Cell1 : UICollectionViewCell{
@@ -335,8 +335,8 @@
     more.text = @"更多 >";
     mainView = [[UIView alloc]initWithFrame:CGRectMake(0, YH(titleButton), W(self), H(self)-YH(titleButton)-80)];
     mainView.backgroundColor = [UIColor clearColor];
-    view1 = [[TitlesImageViewFull alloc] initWithFrame:CGRectMake(0, 0, (kScreenWidth-1)/2, 120)];
-    view2 = [[TitlesImageViewFull alloc] initWithFrame:CGRectMake((kScreenWidth-1)/2+1, 0, (kScreenWidth-1)/2, 120)];
+    view1 = [[TitlesImageViewFull alloc] initWithFrame:CGRectMake(0, 0, (APPW-1)/2, 120)];
+    view2 = [[TitlesImageViewFull alloc] initWithFrame:CGRectMake((APPW-1)/2+1, 0, (APPW-1)/2, 120)];
     view1.backgroundColor = view2.backgroundColor = [UIColor whiteColor];
     [mainView addSubview:view1];[mainView addSubview:view2];
     [view1 setTitle:@"家具" subTitle:@"尖货推荐" size1:14 size2:12 color1:[UIColor blackColor] color2:[UIColor lightGrayColor]];
@@ -365,7 +365,7 @@
     float y = 0;
     int row = 0;
     int col = 0;
-    float width  = (kScreenWidth-3)/4; //间隔为1，4列，总间隔3
+    float width  = (APPW-3)/4; //间隔为1，4列，总间隔3
     float height = 100;
     for (int i=0; i<self.dataArr.count; i++) {
         NSDictionary *dic = self.dataArr[i];
@@ -373,7 +373,7 @@
         view.userInteractionEnabled = YES;
         if (i%4 == 0) {row = (i/4); DLog(@"行 %zd", (i/4));}
         col = (i%4);     DLog(@" 列 %zd", (i%4));
-        x = (kScreenWidth-3)/4*i + col - row*(kScreenWidth-3);
+        x = (APPW-3)/4*i + col - row*(APPW-3);
         y = 120 +row*1+1 +row*height;//顶部 间隔 行高
         view.frame = CGRectMake(x, y, width, height);
         if (i == _dataArr.count-1 || i == _dataArr.count -2) {
@@ -403,12 +403,12 @@
 }
 -(void)initUI{
     scroll = [[UIScrollView alloc]initWithFrame:self.bounds];
-    scroll.contentSize = CGSizeMake(kScreenWidth *2, kScreenWidth/4);
+    scroll.contentSize = CGSizeMake(APPW *2, APPW/4);
     scroll.pagingEnabled = YES;
     scroll.showsHorizontalScrollIndicator = NO;
     scroll.showsVerticalScrollIndicator   = NO;
-    UIImageView *image1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenWidth/4)];
-    UIImageView *image2 = [[UIImageView alloc] initWithFrame:CGRectMake(kScreenWidth, 0, kScreenWidth, kScreenWidth/4)];
+    UIImageView *image1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, APPW, APPW/4)];
+    UIImageView *image2 = [[UIImageView alloc] initWithFrame:CGRectMake(APPW, 0, APPW, APPW/4)];
     image1.image = [UIImage imageNamed:@"image2.jpg"];
     image2.image = [UIImage imageNamed:@"image4.jpg"];
     [scroll addSubview:image1];
@@ -485,7 +485,7 @@
     _dataArr = @[@"111尼玛xx门又出现了啊，为什么没有我啊",@"222淘宝开新店了优惠多多，速度购",@"333好吧你又被骗了哈哈, 好笨啊"];
     _currentIndex = 0;
     sHeight = 50;
-    sWidth = kScreenWidth -sHeight*3/2;
+    sWidth = APPW -sHeight*3/2;
     scroll = [[UIScrollView alloc] init];
     scroll.frame = CGRectMake(0, 0, sWidth, sHeight);
     scroll.pagingEnabled = YES;
@@ -736,33 +736,33 @@
 //item 宽高
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {//9宫格组//减1去除误差//DLog(@"########%f", (SCREEN_W-4-4-1)/5;
-        return CGSizeMake((kScreenWidth-4-4-1)/5 , kScreenWidth/5 + 20);
+        return CGSizeMake((APPW-4-4-1)/5 , APPW/5 + 20);
     }
     if (indexPath.section == 1) {//乱七八糟组
-        if (indexPath.row == 0)return CGSizeMake(kScreenWidth, cell_height(190)+8);
-        if (indexPath.row == 4)return CGSizeMake(kScreenWidth, 8+30+1+120+1+70 +2*101);
-        if (indexPath.row == 5)return CGSizeMake(kScreenWidth, (kScreenWidth-32)/3 +8+30+8+42+40);
-        return CGSizeMake(kScreenWidth, cell_height(190)+8);
+        if (indexPath.row == 0)return CGSizeMake(APPW, cell_height(190)+8);
+        if (indexPath.row == 4)return CGSizeMake(APPW, 8+30+1+120+1+70 +2*101);
+        if (indexPath.row == 5)return CGSizeMake(APPW, (APPW-32)/3 +8+30+8+42+40);
+        return CGSizeMake(APPW, cell_height(190)+8);
     }
     if (indexPath.section == 2) {//喜欢组
-        return CGSizeMake(kScreenWidth/2-4/2, (kScreenWidth/2-4/2)*2/3 +48);
+        return CGSizeMake(APPW/2-4/2, (APPW/2-4/2)*2/3 +48);
     }
     if (indexPath.section == 3) {//推荐组
-        return CGSizeMake(kScreenWidth/2-4/2, kScreenWidth/2-4/2 +80);
+        return CGSizeMake(APPW/2-4/2, APPW/2-4/2 +80);
     }
     return CGSizeMake(0, 0);
 }
 //head 宽高
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
-    if (section == 0) {return CGSizeMake(kScreenWidth, kScreenWidth/4);} //图片滚动的宽高
-    if (section == 2) {return CGSizeMake(kScreenWidth, 50);}    //猜你喜欢的宽高
-    if (section == 3) {return CGSizeMake(kScreenWidth, 35);}    //推荐适合的宽高
+    if (section == 0) {return CGSizeMake(APPW, APPW/4);} //图片滚动的宽高
+    if (section == 2) {return CGSizeMake(APPW, 50);}    //猜你喜欢的宽高
+    if (section == 3) {return CGSizeMake(APPW, 35);}    //推荐适合的宽高
     return CGSizeMake(0, 0);
 }
 //foot 宽高
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section {
-    if (section == 0) {return CGSizeMake(kScreenWidth, 50);}  //淘宝头条的宽高
-    if (section == 3) {return CGSizeMake(kScreenWidth, 110);} //最底部view的宽高
+    if (section == 0) {return CGSizeMake(APPW, 50);}  //淘宝头条的宽高
+    if (section == 3) {return CGSizeMake(APPW, 110);} //最底部view的宽高
     return CGSizeZero;
 }
 //边缘间距

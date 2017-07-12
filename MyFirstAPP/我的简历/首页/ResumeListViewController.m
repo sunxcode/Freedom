@@ -27,7 +27,7 @@
 @implementation ResumeListViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.tableView = [[BaseTableView alloc]initWithFrame:CGRectMake(0,0, kScreenWidth, kScreenHeight) style:UITableViewStylePlain];
+    self.tableView = [[BaseTableView alloc]initWithFrame:CGRectMake(0,0, APPW, APPH) style:UITableViewStylePlain];
     [self fillTheTableDataWithHeadV:nil footV:nil canMove:NO canEdit:NO headH:0 footH:0 rowH:60 sectionN:1 rowN:11 cellName:@"ResumeListViewCell"];
     self.tableView.dataArray = [NSMutableArray arrayWithArray:self.listArray];
     self.tableView.dataSource = self;

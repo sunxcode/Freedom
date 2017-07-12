@@ -9,5 +9,8 @@
 #import "ResumeTheorySystemViewController.h"
 
 @implementation ResumeTheorySystemViewController
-
+-(void)viewDidLoad{
+    [super viewDidLoad];
+    self.title = @"理论体系";
+}
 @end

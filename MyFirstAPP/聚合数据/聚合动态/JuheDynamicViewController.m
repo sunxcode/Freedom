@@ -70,12 +70,13 @@
     BaseCollectionViewLayout *layout = [BaseCollectionViewLayout sharedFlowlayoutWithCellSize:CGSizeMake((APPW-50)/4, 110) groupInset:UIEdgeInsetsMake(10, 10, 0, 10) itemSpace:10 linespace:10];
     self.collectionView = [[BaseCollectionView alloc]initWithFrame:CGRectMake(0, APPH-360, APPW, 300) collectionViewLayout:layout];
     self.collectionView.dataArray = [NSMutableArray arrayWithObjects:
-                                     @{@"name":@"身份证认证",@"pic":@"juheintopublic"},@{@"name":@"手机归属地",@"pic":@"juhelookhistory"},@{@"name":@"身份证查询",@"pic":@"juheaboutus"},@{@"name":@"常用快递",@"pic":@"juhechart"},
-                                     @{@"name":@"餐饮美食",@"pic":@"juhechart"},@{@"name":@"菜谱大全",@"pic":@"juhechart"},@{@"name":@"彩票开奖",@"pic":@"juhechart"},@{@"name":@"邮编查询",@"pic":@"juhechart"}, nil];
+                                     @{@"name":@"身份证认证",@"pic":@"juheintopublic"},@{@"name":@"手机归属地",@"pic":@"juhelookhistory"},@{@"name":@"身份证查询",@"pic":@"juheaboutus"},@{@"name":@"常用快递",@"pic":PuserLogo},
+                                     @{@"name":@"餐饮美食",@"pic":PuserLogo},@{@"name":@"菜谱大全",@"pic":PuserLogo},@{@"name":@"彩票开奖",@"pic":PuserLogo},@{@"name":@"邮编查询",@"pic":PuserLogo}, nil];
     [self fillTheCollectionViewDataWithCanMove:NO sectionN:1 itemN:8 itemName:@"JuheDynamicCollectionViewCell"];
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
     self.collectionView.backgroundColor = clearcolor;
+    self.collectionView.scrollEnabled = NO;
     [self.view addSubviews:self.collectionView,nil];
 }
 

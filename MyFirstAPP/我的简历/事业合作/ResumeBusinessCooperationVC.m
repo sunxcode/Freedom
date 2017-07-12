@@ -9,5 +9,8 @@
 #import "ResumeBusinessCooperationVC.h"
 
 @implementation ResumeBusinessCooperationVC
-
+-(void)viewDidLoad{
+    [super viewDidLoad];
+    self.title = @"事业合作";
+}
 @end

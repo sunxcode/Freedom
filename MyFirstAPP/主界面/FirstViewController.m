@@ -194,7 +194,7 @@ static FirstViewController *FVC = nil;
     exampleSwitch =  [[UISwitch alloc]initWithFrame:CGRectMake(30, 30, 200, 20)];
     [exampleSwitch addTarget:self action:@selector(switchExample) forControlEvents:UIControlEventValueChanged];
     exampleSwitch.on = true;
-    radiusLabel = [[UILabel alloc]initWithFrame:CGRectMake(30, YH(exampleSwitch)+20, kScreenWidth-60, 20)];
+    radiusLabel = [[UILabel alloc]initWithFrame:CGRectMake(30, YH(exampleSwitch)+20, APPW-60, 20)];
     radiusSlider = [[UISlider alloc]initWithFrame:CGRectMake(30, YH(radiusLabel)+10, W(settingsView)-60, 20)];
     [radiusSlider addTarget:self action:@selector(updateDialSettings) forControlEvents:UIControlEventValueChanged];
     

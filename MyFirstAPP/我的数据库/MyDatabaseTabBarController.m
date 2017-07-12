@@ -19,5 +19,6 @@
         s.tabBarItem.image = [s.tabBarItem.image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         s.tabBarItem.selectedImage = [s.tabBarItem.selectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     }
+    self.hidesBottomBarWhenPushed = YES;
 }
 @end

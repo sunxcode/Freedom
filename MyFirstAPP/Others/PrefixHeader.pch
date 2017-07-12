@@ -63,7 +63,7 @@ static const DDLogLevel ddLogLevel = DDLogLevelVerbose;
 #import "GetPlistArray.h"
 #import "GetUrlString.h"
 /***************************************************************                ***************************************************************/
-
+#import "UIViewController+expanded.h"
 #endif
 #endif /* PrefixHeader_pch */
 

@@ -52,7 +52,7 @@
         account.name = name;
         [XFAccountTool saveAccount:account];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        DLog(@"请求失败");
+//        DLog(@"请求失败");
     }];
     [self refreshData]; //刷新数据
     XFLoadMoreFooter *load = [[XFLoadMoreFooter alloc]init];
@@ -81,7 +81,7 @@
             [UIApplication sharedApplication].applicationIconBadgeNumber = status.intValue;
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-         DLog(@"请求失败-%@", error);
+//         DLog(@"请求失败-%@", error);
     }];
 }
  //刷新数据

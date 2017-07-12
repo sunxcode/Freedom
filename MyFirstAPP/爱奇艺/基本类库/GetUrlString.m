@@ -59,7 +59,7 @@
 
 }
 -(NSString *)urlWithJianShuData{
-    NSString *urlStr = @"http://www.jianshu.com/users/be0e45643dcf/latest_articles";
+    NSString *urlStr = ResumeURL;
     return urlStr;
 }
 @end

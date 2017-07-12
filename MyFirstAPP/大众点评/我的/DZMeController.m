@@ -37,7 +37,7 @@
 #pragma mark 设置tableview属性
 -(void)buildTableView
 {
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight) style:UITableViewStyleGrouped];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, APPW, APPH) style:UITableViewStyleGrouped];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
@@ -114,14 +114,14 @@
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     if (section == 0) {
-        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 5)];
+        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APPW, 5)];
         //        headerView.backgroundColor = [UIColor greenColor];
         headerView.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"bg_login"]];
         //头像
         UIImageView *userImage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 55, 55)];
         userImage.layer.masksToBounds = YES;
         userImage.layer.cornerRadius = 27;
-        [userImage setImage:[UIImage imageNamed:@"icon_mine_default_portrait"]];
+        [userImage setImage:[UIImage imageNamed:PuserLogo]];
         [headerView addSubview:userImage];
         //用户名
         UILabel *userNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(10+55+5, 15, 200, 30)];
@@ -134,13 +134,13 @@
         moneyLabel.text = @"余额：0.00元";
         [headerView addSubview:moneyLabel];
         
-        UIImageView *arrowImg = [[UIImageView alloc] initWithFrame:CGRectMake(kScreenWidth-10-24, 30, 12, 24)];
+        UIImageView *arrowImg = [[UIImageView alloc] initWithFrame:CGRectMake(APPW-10-24, 30, 12, 24)];
         [arrowImg setImage:[UIImage imageNamed:@"icon_mine_accountViewRightArrow"]];
         [headerView addSubview: arrowImg];
         
         return headerView;
     }else{
-        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 5)];
+        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APPW, 5)];
         headerView.backgroundColor = RGBCOLOR(239, 239, 244);
 
         return headerView;
