@@ -80,31 +80,36 @@
     _videoDM = [[JFVideoDetailModel alloc] init];
     _recommendArray = [[NSMutableArray alloc] init];
     NSString *urlStr =  [[GetUrlString sharedManager]urlWithVideoDetailData:self.iid];
-    [NetEngine sendGetUrl:urlStr withParams:nil success:^(id responseBody) {
-        JFVideoDetailModel *videoDM = [JFVideoDetailModel mj_objectWithKeyValues:[responseBody objectForKey:@"detail"]];
+    
+    NSString *url = [urlStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    [NetBase GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        JFVideoDetailModel *videoDM = [JFVideoDetailModel mj_objectWithKeyValues:[responseObject objectForKey:@"detail"]];
         _videoDM = videoDM;
         NSString *videoUrl = [[GetUrlString sharedManager]urlWithVideo:self.iid];
         [self.videoDetailWebView loadRequest:[[NSURLRequest alloc] initWithURL:[NSURL URLWithString:videoUrl]]];
         [self.videoDetailTableView reloadData];
-    } failure:^(NSError *error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
     }];
+    
 }
 
 #pragma mark - 推荐视频
 -(void)loadRecommentData{
     NSString *urlStr =  [[GetUrlString sharedManager]urlWithRecommentdata:self.iid];
-    [NetEngine sendGetUrl:urlStr withParams:nil success:^(id responseBody) {
+    
+    NSString *url = [urlStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    [NetBase GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         //这个地方要先移除模型数组里面数据
         [_recommendArray removeAllObjects];
-        NSMutableArray *resultArray = [responseBody objectForKey:@"results"];
+        NSMutableArray *resultArray = [responseObject objectForKey:@"results"];
         for (int i = 0; i < resultArray.count; i++) {
             JFRecommentModel  *recommendM = [JFRecommentModel mj_objectWithKeyValues:resultArray[i]];
             recommendM.time = [self convertTime:[recommendM.duration integerValue]];
             [_recommendArray addObject:recommendM];
         }
         [self.videoDetailTableView reloadData];
-    } failure:^(NSError *error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
     }];
 

@@ -13,6 +13,7 @@
 #import "NSData+expanded.h"
 #import "NSDate+expanded.h"
 #import "NSDictionary+expanded.h"
+#import "NSFileManager+expanded.h"
 #import "NSMutableArray+expanded.h"
 #import "NSObject+expanded.h"
 #import "NSString+expanded.h"

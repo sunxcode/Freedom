@@ -8,7 +8,7 @@
 
 #import "TLPictureCarouselView.h"
 #import "TLPictureCarouselViewCell.h"
-#import "UIScrollView+expanded.h"
+//#import "UIScrollView+expanded.h"
 
 @interface TLPictureCarouselView () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
@@ -39,7 +39,10 @@
     _data = data;
     [self.collectionView reloadData];
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.collectionView setPageX:1 animated:NO];
+        
+        CGPoint offset = CGPointMake(self.collectionView.frame.size.width * 1,self.collectionView.contentOffset.y);
+        [self.collectionView setContentOffset:offset animated:NO];
+        
         if (self.timer == nil && self.data.count > 1) {
             __weak typeof(self) weakSelf = self;
             self.timer = [NSTimer bk_scheduledTimerWithTimeInterval:2.0 block:^(NSTimer *tm) {
@@ -101,14 +104,15 @@
     }
 }
 
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     // 轮播实现
-    if (scrollView.currentPageX == 0) {
-        [scrollView setPageX:self.data.count animated:NO];
-    }
-    else if (scrollView.currentPageX == self.data.count + 1) {
-        [scrollView setPageX:1 animated:NO];
+    
+    if (scrollView.contentOffset.x / scrollView.frame.size.width == 0) {
+        CGPoint offset = CGPointMake(self.collectionView.frame.size.width * self.data.count,self.collectionView.contentOffset.y);
+        [scrollView setContentOffset:offset animated:NO];
+    }else if (scrollView.contentOffset.x / scrollView.frame.size.width == self.data.count + 1) {
+        CGPoint offset = CGPointMake(self.collectionView.frame.size.width * 1,self.collectionView.contentOffset.y);
+        [scrollView setContentOffset:offset animated:NO];
     }
 }
 
@@ -116,14 +120,15 @@
 - (void)scrollToNextPage
 {
     NSInteger nextPage;
-    if (self.collectionView.currentPageX == self.data.count) {
-        [self.collectionView setPageX:0 animated:NO];
+    if (self.collectionView.contentOffset.x / self.collectionView.frame.size.width == self.data.count) {
+        CGPoint offset = CGPointMake(self.collectionView.frame.size.width * 0,self.collectionView.contentOffset.y);
+        [self.collectionView setContentOffset:offset animated:NO];
         nextPage = 1;
+    }else {
+        nextPage = self.collectionView.contentOffset.x / self.collectionView.frame.size.width + 1;
     }
-    else {
-        nextPage = self.collectionView.currentPageX + 1;
-    }
-    [self.collectionView setPageX:nextPage animated:YES];
+    CGPoint offset = CGPointMake(self.collectionView.frame.size.width * nextPage,self.collectionView.contentOffset.y);
+    [self.collectionView setContentOffset:offset animated:YES];
 }
 
 #pragma mark - # Private Methods

@@ -7,7 +7,7 @@
 //
 
 #import "DZHomeController.h"
-
+#import <XCategory/UILabel+expanded.h>
 @interface DZHomeViewCell1 : BaseCollectionViewCell
 @end
 @implementation DZHomeViewCell1
@@ -28,9 +28,9 @@
 }
 -(UIView*)getViewWithFrame:(CGRect)rect{
     UIView *view = [[UIView alloc]initWithFrame:rect];
-    UILabel *a = [Utility labelWithFrame:CGRectMake(10, 0, APPW/2-20, 18) font:fontnomal color:redcolor text:@"外卖贺新春"];
-    UILabel *b = [Utility labelWithFrame:CGRectMake(X(a), YH(a), W(a), H(a)) font:fontnomal color:blacktextcolor text:@"省事省力又省心"];
-    UILabel *c = [Utility labelWithFrame:CGRectMake(X(a), YH(b), 100, 15) font:fontnomal color:yellowcolor text:@"用外卖订年夜饭"];
+    UILabel *a = [UILabel labelWithFrame:CGRectMake(10, 0, APPW/2-20, 18) font:fontnomal color:redcolor text:@"外卖贺新春"];
+    UILabel *b = [UILabel labelWithFrame:CGRectMake(X(a), YH(a), W(a), H(a)) font:fontnomal color:blacktextcolor text:@"省事省力又省心"];
+    UILabel *c = [UILabel labelWithFrame:CGRectMake(X(a), YH(b), 100, 15) font:fontnomal color:yellowcolor text:@"用外卖订年夜饭"];
     c.layer.cornerRadius = 7;c.layer.borderWidth=1;c.layer.borderColor = redcolor.CGColor;
     [view addSubviews:a,b,c,nil];
     return view;
@@ -119,7 +119,7 @@
         UIImageView *icon = [[UIImageView alloc]initWithFrame:CGRectMake(10, 10, 40,40)];
         icon.clipsToBounds = YES;icon.layer.cornerRadius = 20;
         icon.image = [UIImage imageNamed:PuserLogo];
-        UILabel *label1 = [Utility labelWithFrame:CGRectMake(XW(icon)+10, 10, APPW/2, 40) font:fontnomal color:blacktextcolor text:@"好友蜂蜜绿茶，吃完这家，还有下一家。地点中环广场店"];
+        UILabel *label1 = [UILabel labelWithFrame:CGRectMake(XW(icon)+10, 10, APPW/2, 40) font:fontnomal color:blacktextcolor text:@"好友蜂蜜绿茶，吃完这家，还有下一家。地点中环广场店"];
         label1.numberOfLines = 0;
         [view addSubviews:icon,label1,nil];
         view.backgroundColor = redcolor;

@@ -10,6 +10,7 @@
 #endif
 #endif
 
+#import "SDAutoLayout.h"
 #import "UITableView+SDAutoTableViewCellHeight.h"
 #import "UIView+SDAutoLayout.h"
 

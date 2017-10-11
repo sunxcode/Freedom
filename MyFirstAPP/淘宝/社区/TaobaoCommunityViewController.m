@@ -111,7 +111,7 @@
         cell.frame=CGRectMake(0, 0, APPW, 100);
         [cell addSubview:banner];
     }else if (indexPath.section == 1) {
-        cell =  [collectionView dequeueReusableCellWithReuseIdentifier:self.collectionReuseId forIndexPath:indexPath];
+        cell =  [collectionView dequeueReusableCellWithReuseIdentifier:@"basecell" forIndexPath:indexPath];
         [cell  setCollectionDataWithDic:nil];
         
     }else{

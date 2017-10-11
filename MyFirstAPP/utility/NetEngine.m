@@ -1,17 +1,11 @@
 //
-//  NetEngine.m
-//  MyFirstAPP
-//
-//  Created by 薛超 on 17/1/18.
-//  Copyright © 2017年 薛超. All rights reserved.
-//
-
 #import "NetEngine.h"
-#import "AFImageDownloader.h"
 #import "SDDataCache.h"
-#import "JSONKit.h"
-#import "Utility.h"
-#import "DDXML.h"
+//#import "NSString+expanded.h"
+//#import "UIView+expanded.h"
+//#import "NSDictionary+expanded.h"
+#import <AFNetworking/AFNetworking.h>
+//#import <AFNetworking/AFImageDownloader.h>
 @implementation NetEngine
 static NSString *cacheDirectoryName = nil;
 static NSString *baseURL = @"http://www.isolar88.com/app/";
@@ -42,17 +36,9 @@ static NSString *baseURL = @"http://www.isolar88.com/app/";
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:[url getURLParameters]];
     NSRange range = [url rangeOfString:@"?"];
     NSString *baseURL = range.length?[url substringToIndex:range.location]:url;
-    //    NSMutableString *realURL = [NSMutableString stringWithString:range.length?[url substringToIndex:range.location+1]:url];
-    //    for(NSString *ss in dict.allKeys){
-    //        [dict setObject:[dict[ss] urlEncodedString] forKey:ss];
-    //        [realURL appendFormat:@"%@=%@&",ss,dict[ss]];
-    //    }
-    //    DLog(@"\n\nbaseURL= %@",realURL);
     NSURLSessionDataTask *task = [[self Share] GET:baseURL parameters:dict progress:^(NSProgress * _Nonnull downloadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [SVProgressHUD dismiss];
-        //        NSString *jsonString = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
-        //        NSDictionary *ddd=[jsonString objectFromJSONString];
         completion(responseObject,NO);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [SVProgressHUD showErrorWithStatus:alertErrorTxt];//@"暂无数据"
@@ -77,20 +63,6 @@ static NSString *baseURL = @"http://www.isolar88.com/app/";
     return task;
 }
 
-
-//FIXME:下载图片
-+ (NSURLSessionDataTask*)imageAtURL:(NSString *)url onCompletion:(ResponseImageBlock) imageFetchedBlock{
-    if (url) {
-        NSString *picPath =[url rangeOfString:@"http://"].length?url:[NSString stringWithFormat:@"http://www.isolar88.com/%@",url];
-        [[AFImageDownloader defaultInstance]downloadImageForURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:picPath]] success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull responseObject) {
-            imageFetchedBlock(responseObject,request.URL,NO);
-        } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error) {
-            
-        }];
-    }
-    return nil;
-}
-
 //FIXME:文件下载
 +(NSURLSessionTask *)createFileAction:(NSString *)url onCompletion:(ResponseBlock)completionBlock onError:(ErrorBlock)errorBlock withMask:(SVProgressHUDMaskType)mask{
     return [[self Share]createFileAction:url onCompletion:completionBlock onError:errorBlock withMask:mask];
@@ -103,11 +75,10 @@ static NSString *baseURL = @"http://www.isolar88.com/app/";
     id storedata=[[SDDataCache sharedDataCache] dataFromKey:storeKey fromDisk:YES];
     if(storedata){
         NSString *datastring=[[NSString alloc] initWithData:storedata encoding:NSUTF8StringEncoding];
-        completionBlock([datastring objectFromJSONString],YES);return nil;
+        completionBlock(datastring,YES);return nil;
     }else{
         [[SDDataCache sharedDataCache] removeDataForKey:storeKey];
     }
-    if ([[Utility Share] offline]){[SVProgressHUD dismiss];errorBlock?errorBlock(nil):nil;return nil;}
     if(mask!=SVProgressHUDMaskTypeNone)[SVProgressHUD showWithStatus:@"数据初始化,请稍候..."];
     // 获得临时文件的路径
     NSString *tempFilePath = [cacheDirectoryName stringByAppendingPathComponent:url.lastPathComponent];
@@ -151,7 +122,7 @@ static NSString *baseURL = @"http://www.isolar88.com/app/";
 }
 -(NSURLSessionDataTask*) uploadAllFileAction:(NSString*)url withParams:(NSDictionary*)params fileArray:(NSMutableArray *)fileArray onCompletion:(ResponseBlock)completionBlock onError:(ErrorBlock)errorBlock withMask:(SVProgressHUDMaskType)mask{
     
-    if ([[Utility Share] offline]){[SVProgressHUD dismiss];errorBlock?errorBlock(nil):nil;return nil;}
+//    if (AFNetworkReachabilityStatusReachableViaWiFi){[SVProgressHUD dismiss];errorBlock?errorBlock(nil):nil;return nil;}
     if(mask!=SVProgressHUDMaskTypeNone)[SVProgressHUD showWithMaskType:mask];
     
     NSURLSessionDataTask *task = [self POST:url parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
@@ -163,11 +134,6 @@ static NSString *baseURL = @"http://www.isolar88.com/app/";
         DLog(@"responseData:%@",responseObject);
         if (!responseObject) {errorBlock?errorBlock(nil):nil;
         }else{
-            if ([[responseObject valueForJSONKey:@"status"] isEqualToString:@"502"]) {
-                [SVProgressHUD showErrorWithStatus:[responseObject valueForJSONKey:@"info"] ];
-                [self performSelector:@selector(backLogin) withObject:nil afterDelay:1.0];
-                completionBlock(nil,NO);
-            }
             completionBlock(responseObject,NO);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -176,38 +142,6 @@ static NSString *baseURL = @"http://www.isolar88.com/app/";
     return task;
 }
 
-+(void)sendGetUrl:(NSString *)url withParams:(NSDictionary *)params success:(successBlock) success failure:(ErrorBlock)failure
-{
-    NSString *urlStr = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    [NetBase GET:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        success(responseObject);
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        failure(error);
-    }];
-    
-}
-
-+(void)sendGetByReplacingUrl:(NSString *)url withParams:(NSDictionary *)params success:(successBlock) success failure:(ErrorBlock)failure
-{
-    NSString *urlStr = [url stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    [NetBase GET:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        success(responseObject);
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        failure(error);
-    }];
-    
-}
-
-+ (NSURLSessionDataTask *)postUrl:(NSString *)urlString
-                       parameters:(id)parameters
-                          success:(void (^)(NSURLSessionDataTask *, id))success
-                          failure:(void (^)(NSURLSessionDataTask *, NSError *))failure
-{
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    return [manager POST:urlString parameters:parameters progress:nil success:success failure:failure];
-}
 +(void)emptyCacheDefault{
     NSError *error = nil;
     NSArray *directoryContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:cacheDirectoryName error:&error];
@@ -219,36 +153,4 @@ static NSString *baseURL = @"http://www.isolar88.com/app/";
         if(error) DLog(@"%@", error);
     }
 }
--(void)backLogin{
-    [[Utility Share] clearUserInfoInDefault];
-//    [[Utility Share] showLoginAlert:YES];
-}
 @end
-/*
- task = [self GET:urlInfo parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
- } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
- DDXMLDocument *doc = [[DDXMLDocument alloc] initWithXMLString:responseObject options:0 error:nil];
- NSString *jsonString=nil;
- NSArray *items = [doc nodesForXPath:@"//soap:Body" error:nil];
- for (DDXMLElement *obj in items) {//循环查询的每条记录
- for(DDXMLNode *node in obj.children){//取得每个字段的值
- for (DDXMLNode *item in node.children) {
- jsonString=item.stringValue;break;
- }
- }
- }
- if (!doc || !items) {[SVProgressHUD showErrorWithStatus:@"数据有误"];errorBlock?errorBlock(nil):nil;
- }else{
- DLog(@"%@",[jsonString objectFromJSONString]);[SVProgressHUD dismiss];
- completionBlock([jsonString objectFromJSONString],NO);
- if (usecache && storeKey) {
- if (!jsonString){
- [[SDDataCache sharedDataCache] removeDataForKey:storeKey];
- }else{
- [[SDDataCache sharedDataCache] storeData:[jsonString dataUsingEncoding:NSUTF8StringEncoding] forKey:storeKey toDisk:YES];
- }
- }
- }
- } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
- }];
- */

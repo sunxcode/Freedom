@@ -8,6 +8,7 @@
 
 #import "MyDatabaseViewController.h"
 #import "MyDatabaseEditViewController.h"
+#import "User.h"
 @interface DatabaseCollectionViewCell : BaseCollectionViewCell
 @end
 @implementation DatabaseCollectionViewCell
@@ -36,13 +37,7 @@
     
     layout.headerReferenceSize = CGSizeMake(APPW, 30);layout.footerReferenceSize = CGSizeZero;
     self.collectionView = [[BaseCollectionView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH-110) collectionViewLayout:layout];
-    AppDelegate *del = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"TotalData"];
-    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:NO],
-                                [NSSortDescriptor sortDescriptorWithKey:@"icon" ascending:NO]];
-    NSError *error = nil;
-    NSArray *a = [del.managedObjectContext executeFetchRequest:request error:&error];
-    self.collectionView.dataArray = [NSMutableArray arrayWithArray:a];
+    self.collectionView.dataArray = [NSMutableArray arrayWithArray:[User getControllerData]];
     [self fillTheCollectionViewDataWithCanMove:NO sectionN:1 itemN:15 itemName:@"DatabaseCollectionViewCell"];
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;

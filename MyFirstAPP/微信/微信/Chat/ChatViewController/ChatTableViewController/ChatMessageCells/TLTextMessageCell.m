@@ -13,6 +13,7 @@
 #define     MSG_SPACE_LEFT      19
 #define     MSG_SPACE_RIGHT     22
 
+#import "UIFont+expanded.h"       // 字体
 @interface TLTextMessageCell ()
 
 @property (nonatomic, strong) UILabel *messageLabel;

@@ -25,7 +25,9 @@
 - (void)setImages:(NSArray *)images
 {
     _images = images;
-    [self removeAllSubViews];
+    for(UIView *v in self.subviews){
+        [v removeFromSuperview];
+    }
    
     if (images.count == 0) {
         return;

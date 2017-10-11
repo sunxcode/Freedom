@@ -4,6 +4,7 @@
 //  Created by 薛超 on 16/6/24.
 //  Copyright © 2016年 薛超. All rights reserved.
 #import "LibraryCollectionViewController.h"
+#import "User.h"
 @interface LibraryCollectionViewCell : BaseCollectionViewCell
 @end
 @implementation LibraryCollectionViewCell
@@ -55,13 +56,8 @@ static NSString * const reuseIdentifier = @"Cell";
     self.collectionView.backgroundView = backView;
     ElasticTransition *ET = (ElasticTransition*)self.transitioningDelegate;
     NSLog(@"\ntransition.edge = %@\ntransition.transformType = %@\ntransition.sticky = %@\ntransition.showShadow = %@", [HelperFunctions typeToStringOfEdge:ET.edge], [ET transformTypeToString], ET.sticky ? @"YES" : @"NO", ET.showShadow ? @"YES" : @"NO");
-    AppDelegate *del = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"TotalData"];
-    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:NO],
-                                [NSSortDescriptor sortDescriptorWithKey:@"icon" ascending:NO]];
-    NSError *error = nil;
-    NSArray *a = [del.managedObjectContext executeFetchRequest:request error:&error];
-    libraryBooks = [NSMutableArray arrayWithArray:a];
+    
+    libraryBooks = [NSMutableArray arrayWithArray:[User getControllerData]];
     [self.collectionView registerClass:[LibraryCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;

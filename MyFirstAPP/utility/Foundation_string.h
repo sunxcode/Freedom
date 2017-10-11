@@ -124,8 +124,6 @@
 #define Pwallet @"u_wallet"
 #define PwatchMV @"u_watch_mv"
 #define Pzan @"u_zan_r"
-
-
 #define Pwadd @"u_white_add"
 #define PwaddFriend @"u_white_addfriend"
 #define Pwbell @"u_white_bell"
@@ -148,33 +146,6 @@
 #define Pwstar @"u_white_star"
 #define Pwvip @"u_white_vip"
 #define Pwwifi @"u_white_wifi"
-
-
-
-
-
-
-
 #define PuserLogo @"userLogo"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 #endif

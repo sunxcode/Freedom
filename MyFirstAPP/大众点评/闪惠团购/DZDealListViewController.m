@@ -8,6 +8,7 @@
 
 #import "DZDealListViewController.h"
 #import "DZDealDetailViewController.h"
+#import <XCategory/UILabel+expanded.h>
 //FIXME:横着的cell
 @interface DZDealListViewTransverseCell:BaseTableViewCell
 @end
@@ -36,12 +37,12 @@
 -(void)initUI{
     [super initUI];
     self.icon.frame = CGRectMake(10, 10, 70, 70);
-    name = [Utility labelWithFrame:CGRectMake(XW(self.icon)+10, 10, APPW-XW(self.icon)-30, 20) font:fontSmallTitle color:RGBCOLOR(0, 111, 255) text:nil];
-    times = [Utility labelWithFrame:CGRectMake(APPW-100, Y(name), 80, 15) font:Font(11) color:graycolor text:nil];
+    name = [UILabel labelWithFrame:CGRectMake(XW(self.icon)+10, 10, APPW-XW(self.icon)-30, 20) font:fontSmallTitle color:RGBCOLOR(0, 111, 255) text:nil];
+    times = [UILabel labelWithFrame:CGRectMake(APPW-100, Y(name), 80, 15) font:Font(11) color:graycolor text:nil];
     times.textAlignment = NSTextAlignmentRight;
     self.title.frame = CGRectMake(X(name),YH(name)+5, W(name), 20);self.title.font = fontnomal;
     self.script.frame = CGRectMake(X(self.title), YH(self.title)+5, 80, 20);
-    sees = [Utility labelWithFrame:CGRectMake(X(times), Y(self.script),W(times), 15) font:Font(11) color:graycolor text:nil];
+    sees = [UILabel labelWithFrame:CGRectMake(X(times), Y(self.script),W(times), 15) font:Font(11) color:graycolor text:nil];
     sees.textAlignment = NSTextAlignmentRight;
     self.line.frame = CGRectMake(0, 100-1, APPW, 1);
     self.script.backgroundColor = redcolor;self.script.textColor = whitecolor;

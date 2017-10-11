@@ -9,7 +9,7 @@
 #import "TLChatFileViewController.h"
 #import "TLChatFileCell.h"
 #import "TLChatFileHeaderView.h"
-#import "NSDate+add.h"
+#import <XCategory/NSDate+expanded.h>
 #import "TLMessageManager+MessageRecord.h"
 #import "MWPhotoBrowser.h"
 

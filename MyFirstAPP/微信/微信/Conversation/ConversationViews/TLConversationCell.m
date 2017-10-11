@@ -7,8 +7,10 @@
 //
 
 #import "TLConversationCell.h"
-#import "NSDate+add.h"
 
+#import <XCategory/NSDate+expanded.h>
+
+#import "UIFont+expanded.h"       // 字体
 #define     CONV_SPACE_X            10.0f
 #define     CONV_SPACE_Y            9.5f
 #define     REDPOINT_WIDTH          10.0f

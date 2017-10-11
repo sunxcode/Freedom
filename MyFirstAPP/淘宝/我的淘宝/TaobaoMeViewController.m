@@ -7,6 +7,7 @@
 //
 
 #import "TaobaoMeViewController.h"
+#import <XCategory/UILabel+expanded.h>
 @interface TaobaoMeViewCell1 : BaseCollectionViewCell
 @end
 @implementation TaobaoMeViewCell1
@@ -77,8 +78,8 @@
     icon.layer.cornerRadius = 30;
     icon.image = [UIImage imageNamed:PuserLogo];
     icon.clipsToBounds = YES;
-    UILabel *name = [Utility labelWithFrame:CGRectMake(10, YH(icon), APPW-20, 20) font:fontSmallTitle color:whitecolor text:@"杨越光" textAlignment:NSTextAlignmentCenter];
-    UILabel *taoqi = [Utility labelWithFrame:CGRectMake(APPW/2-40, YH(name), 80, 15) font:fontnomal color:redcolor text:@"淘气值：710" textAlignment:NSTextAlignmentCenter];
+    UILabel *name = [UILabel labelWithFrame:CGRectMake(10, YH(icon), APPW-20, 20) font:fontSmallTitle color:whitecolor text:@"杨越光" textAlignment:NSTextAlignmentCenter];
+    UILabel *taoqi = [UILabel labelWithFrame:CGRectMake(APPW/2-40, YH(name), 80, 15) font:fontnomal color:redcolor text:@"淘气值：710" textAlignment:NSTextAlignmentCenter];
     taoqi.clipsToBounds = YES;taoqi.layer.cornerRadius = 7;taoqi.backgroundColor = yellowcolor;
     [headView addSubviews:icon,name,taoqi,nil];
     BaseCollectionViewLayout *layout = [BaseCollectionViewLayout sharedFlowlayoutWithCellSize:CGSizeMake((APPW-50)/4, 90) groupInset:UIEdgeInsetsMake(10, 10, 0, 10) itemSpace:10 linespace:10];

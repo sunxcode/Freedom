@@ -10,7 +10,6 @@
 #import "XFAccountTool.h"
 #import "XFAccount.h"
 #import "XFTextView.h"
-#import "MBProgressHUD+expanded.h"
 #import "XFComposeToolbar.h"
 #import "XFComposePhotosView.h"
 #import "XFEmotionKeyboard.h"
@@ -377,9 +376,9 @@
     } progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-         [MBProgressHUD showSuccess:@"发送成功"];
+         [SVProgressHUD showSuccessWithStatus:@"发送成功"];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-           [MBProgressHUD showError:@"发送失败"];
+           [SVProgressHUD showErrorWithStatus:@"发送失败"];
     }];
 }
 
@@ -400,9 +399,9 @@
     
     // 3.发送请求
     [NetBase POST:@"https://api.weibo.com/2/statuses/update.json" parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        [MBProgressHUD showSuccess:@"发送成功"];
+        [SVProgressHUD showSuccessWithStatus:@"发送成功"];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-         [MBProgressHUD showError:@"发送失败"];
+         [SVProgressHUD showErrorWithStatus:@"发送失败"];
     }];
 }
 

@@ -5,8 +5,7 @@
 #import "SettingsViewController.h"
 #import "LibraryCollectionViewController.h"
 #import "UIColor+expanded.h"
-//#import "AppDelegate.h"
-//#import "SliderViewController.h"
+#import "User.h"
 @interface CollectionViewCell1 : UICollectionViewCell{
     UIView *view;
     UIImageView *imageView;
@@ -316,13 +315,8 @@ static FirstViewController *FVC = nil;
         [self readData];
         return;
     }
-    AppDelegate *del = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"TotalData"];
-    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:NO],
-                                [NSSortDescriptor sortDescriptorWithKey:@"icon" ascending:NO]];
-    request.predicate = [NSPredicate predicateWithFormat:@"title CONTAINS %@ OR icon CONTAINS[c] %@ OR icon MATCHES %@", searchText, searchText,@"[F-j]+"];
-    NSError *error = nil;
-    NSArray *b = [del.managedObjectContext executeFetchRequest:request error:&error];
+    NSPredicate *pre = [NSPredicate predicateWithFormat:@"title CONTAINS %@ OR icon CONTAINS[c] %@ OR icon MATCHES %@", searchText, searchText,@"[F-j]+"];
+    NSArray *b = [[User getControllerData]filteredArrayUsingPredicate:pre];
     self.items = [[NSMutableArray alloc] initWithArray:b];
     [homecollectionView reloadData];
 }

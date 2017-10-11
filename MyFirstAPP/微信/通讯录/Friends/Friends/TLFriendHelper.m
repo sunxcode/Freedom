@@ -180,7 +180,7 @@ static TLFriendHelper *friendHelper = nil;
     // 更新好友数据到数据库
     BOOL ok = [self.friendStore updateFriendsData:self.friendsData forUid:[TLUserHelper sharedHelper].userID];
     if (!ok) {
-        DDLogError(@"保存好友数据到数据库失败!");
+        DLog(@"保存好友数据到数据库失败!");
     }
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         [self p_resetFriendData];
@@ -195,7 +195,7 @@ static TLFriendHelper *friendHelper = nil;
     [self.groupsData addObjectsFromArray:arr];
     ok = [self.groupStore updateGroupsData:self.groupsData forUid:[TLUserHelper sharedHelper].userID];
     if (!ok) {
-        DDLogError(@"保存群数据到数据库失败!");
+        DLog(@"保存群数据到数据库失败!");
     }
     // 生成Group Icon
     for (TLGroup *group in self.groupsData) {

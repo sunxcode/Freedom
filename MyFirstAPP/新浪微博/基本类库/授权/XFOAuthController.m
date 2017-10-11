@@ -7,7 +7,6 @@
 //
 
 #import "XFOAuthController.h"
-#import "MBProgressHUD+expanded.h"
 #import "XFAccount.h"
 #import "SinaTabBarController.h"
 #import "XFNewFeatureController.h"
@@ -47,19 +46,18 @@
 
 
 -(void)webViewDidStartLoad:(UIWebView *)webView{
-    
-    [MBProgressHUD showMessage:@"正在加载..."];
+    [SVProgressHUD showWithStatus:@"正在加载..."];
     
 }
 
 -(void)webViewDidFinishLoad:(UIWebView *)webView {
     
-    [MBProgressHUD hideHUD];
+    [SVProgressHUD dismiss];
 }
 
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
     
-    [MBProgressHUD hideHUD];
+    [SVProgressHUD dismiss];
     
 }
 
@@ -121,7 +119,7 @@
     params[@"code"] = code;
     
     [NetBase POST:url parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        [MBProgressHUD hideHUD];
+        [SVProgressHUD dismiss];
         
         // 将返回的账号字典数据 --> 模型，存进沙盒
         XFAccount *account = [XFAccount accountWithDict:responseObject];
@@ -138,24 +136,4 @@
     }];
 }
 
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 @end
-// 版权属于原作者
-// http://code4app.com (cn) http://code4app.net (en)
-// 发布代码于最专业的源码分享网站: Code4App.com

@@ -7,6 +7,7 @@
 //
 
 #import "TaobaoShopCarViewController.h"
+#import <XCategory/UILabel+expanded.h>
 @interface TaobaoShopCarViewCell:BaseTableViewCell
 @end
 @implementation TaobaoShopCarViewCell
@@ -22,16 +23,18 @@
     self.line = [[UIView alloc]initWithFrame:CGRectMake(0, 99, APPW, 1)];
     self.line.backgroundColor = gradcolor;
     UIView *headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPW, 20)];
-    UIButton *selecth = [Utility buttonWithFrame:CGRectMake(10, 2.5, 15, 15) title:nil image:nil bgimage:nil];
+    UIButton *selecth = [[UIButton alloc]initWithFrame:CGRectMake(10, 2.5, 15, 15)];
     [selecth setImage:[UIImage imageNamed:@"taobaono"] forState:UIControlStateNormal];
     [selecth setImage:[UIImage imageNamed:@"taobaoon"] forState:UIControlStateSelected];
-    UILabel *headTitle = [Utility labelWithFrame:CGRectMake(XW(selecth), 0, APPW-150, 20) font:fontnomal color:gradtextcolor text:@"🍞中华精品城 >"];
-    UIButton *lingquan = [Utility buttonWithFrame:CGRectMake(APPW-100, 0, 40, 20) title:@"领券" image:nil bgimage:nil];
-    UIButton *edit = [Utility buttonWithFrame:CGRectMake(XW(lingquan)+10, 0, 40, 20) title:@"编辑" image:nil bgimage:nil];
+    UILabel *headTitle = [UILabel labelWithFrame:CGRectMake(XW(selecth), 0, APPW-150, 20) font:fontnomal color:gradtextcolor text:@"🍞中华精品城 >"];
+    UIButton *lingquan = [[UIButton alloc]initWithFrame:CGRectMake(APPW-100, 0, 40, 20)];
+    [lingquan setTitle:@"领券" forState:UIWindowLevelNormal];
+    UIButton *edit = [[UIButton alloc]initWithFrame:CGRectMake(XW(lingquan)+10, 0, 40, 20)];
+    [edit setTitle:@"编辑" forState:UIControlStateNormal];
     lingquan.titleLabel.font = edit.titleLabel.font = fontnomal;
     [headView addSubviews:selecth,headTitle,lingquan,edit,nil];
     UIView *contentV = [[UIView alloc]initWithFrame:CGRectMake(0, YH(headView), APPW, 80)];
-    UIButton *selectc = [Utility buttonWithFrame:CGRectMake(10, 32, 15,15) title:nil image:nil bgimage:nil];
+    UIButton *selectc = [[UIButton alloc]initWithFrame:CGRectMake(10, 32, 15,15)];
     [selectc setImage:[UIImage imageNamed:@"taobaono"] forState:UIControlStateNormal];
     [selectc setImage:[UIImage imageNamed:@"taobaoon"] forState:UIControlStateSelected];
     self.icon.frame = CGRectMake(XW(selectc)+10, 5, 60, 70);
@@ -40,9 +43,9 @@
     self.title.font = fontnomal;
     self.script.textColor = graycolor;
     self.script.frame = CGRectMake(X(self.title), YH(self.title), W(self.title), 20);
-    UILabel *newPrice = [Utility labelWithFrame:CGRectMake(X(self.script), YH(self.script), 60, 20) font:fontnomal color:redcolor text:@"￥199"];
-    UILabel *oldPrice = [Utility labelWithFrame:CGRectMake(XW(newPrice), Y(newPrice), 80, H(newPrice)) font:fontnomal color:graycolor text:@"￥299"];
-    UILabel *num = [Utility labelWithFrame:CGRectMake(APPW-50, Y(newPrice), 40, 20) font:fontnomal color:graycolor text:@"x1"];
+    UILabel *newPrice = [UILabel labelWithFrame:CGRectMake(X(self.script), YH(self.script), 60, 20) font:fontnomal color:redcolor text:@"￥199"];
+    UILabel *oldPrice = [UILabel labelWithFrame:CGRectMake(XW(newPrice), Y(newPrice), 80, H(newPrice)) font:fontnomal color:graycolor text:@"￥299"];
+    UILabel *num = [UILabel labelWithFrame:CGRectMake(APPW-50, Y(newPrice), 40, 20) font:fontnomal color:graycolor text:@"x1"];
     num.textAlignment = NSTextAlignmentRight;
     [contentV addSubviews:selectc,self.icon,self.title,self.script,newPrice,oldPrice,num,nil];
     [self addSubviews:headView,contentV,self.line,nil];

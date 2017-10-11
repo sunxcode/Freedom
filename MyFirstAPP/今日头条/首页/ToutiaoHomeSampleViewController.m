@@ -8,6 +8,7 @@
 
 #import "ToutiaoHomeSampleViewController.h"
 #import "ToutiaoHomeDetailViewController.h"
+#import <XCategory/UILabel+expanded.h>
 @interface ToutiaoHomeSampleViewCell:BaseTableViewCell{
     UIImageView *icon1, *icon2, *icon3;
     UILabel *source;
@@ -116,7 +117,7 @@
         UIImageView *imageV = [[UIImageView alloc]initWithFrame:view.bounds];
         NSArray *medias = [tops[index]objectForJSONKey:@"media"];
         [imageV imageWithURL:[medias[0]valueForJSONKey:@"url"]];
-        UILabel *label = [Utility labelWithFrame:CGRectMake(0, H(view)-20, APPW, 20) font:fontnomal color:blacktextcolor text:[tops[index] valueForJSONKey:@"title"]];
+        UILabel *label = [UILabel labelWithFrame:CGRectMake(0, H(view)-20, APPW, 20) font:fontnomal color:blacktextcolor text:[tops[index] valueForJSONKey:@"title"]];
         [view addSubviews:imageV,label,nil];
         return view;
     } Vertically:NO setFire:YES];

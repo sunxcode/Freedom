@@ -18,7 +18,7 @@
         self.dbQueue = [TLDBManager sharedInstance].commonQueue;
         BOOL ok = [self createTable];
         if (!ok) {
-            DDLogError(@"DB: 好友表创建失败");
+            DLog(@"DB: 好友表创建失败");
         }
     }
     return self;
@@ -58,7 +58,7 @@
             if ([newDataHash objectForKey:user.userID] == nil) {
                 BOOL ok = [self deleteFriendByFid:user.userID forUid:uid];
                 if (!ok) {
-                    DDLogError(@"DBError: 删除过期好友失败");
+                    DLog(@"DBError: 删除过期好友失败");
                 }
             }
         }

@@ -8,6 +8,7 @@
 
 #import "TLSettingHeaderTitleView.h"
 
+#import "UIFont+expanded.h"       // 字体
 @implementation TLSettingHeaderTitleView
 
 - (id) initWithReuseIdentifier:(NSString *)reuseIdentifier

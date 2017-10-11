@@ -8,6 +8,7 @@
 
 #import "TLContactCell.h"
 
+#import "UIFont+expanded.h"       // 字体
 #define     FRIENDS_SPACE_X         10.0f
 #define     FRIENDS_SPACE_Y         9.5f
 

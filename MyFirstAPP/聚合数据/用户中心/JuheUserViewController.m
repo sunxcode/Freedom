@@ -6,6 +6,7 @@
 //  Copyright © 2016年 薛超. All rights reserved.
 //
 #import "JuheUserViewController.h"
+#import <XCategory/UILabel+expanded.h>
 @interface JuheUserViewCell:BaseTableViewCell
 @end
 @implementation JuheUserViewCell
@@ -29,14 +30,15 @@
     UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPW, 260)];
     UIImageView *icon = [[UIImageView alloc]initWithFrame:CGRectMake(10, 15, 60, 60)];
     icon.layer.cornerRadius = H(icon)/2.0;icon.layer.masksToBounds = YES;
-    UILabel *name = [Utility labelWithFrame:CGRectMake(XW(icon)+10, 10,300, 20) font:fontTitle color:blacktextcolor text:@"用户名：18326891683  👑已认证"];
-    UILabel *openid = [Utility labelWithFrame:CGRectMake(X(name), YH(name), 400, 20) font:fontTitle color:blacktextcolor text:@"OpenId:JH12bd23ef316e3d8a9dfe7402ef8bc453"];
-    UILabel *email = [Utility labelWithFrame:CGRectMake(X(name), YH(openid), 300, 20) font:fontTitle color:blacktextcolor text:@"绑定邮箱:1069106050@qq.com"];
-    UILabel *phone = [Utility labelWithFrame:CGRectMake(X(name), YH(email), 300, 20) font:fontTitle color:blacktextcolor text:@"手机号码:18721064516"];
+    UILabel *name = [UILabel labelWithFrame:CGRectMake(XW(icon)+10, 10,300, 20) font:fontTitle color:blacktextcolor text:@"用户名：18326891683  👑已认证"];
+    UILabel *openid = [UILabel labelWithFrame:CGRectMake(X(name), YH(name), 400, 20) font:fontTitle color:blacktextcolor text:@"OpenId:JH12bd23ef316e3d8a9dfe7402ef8bc453"];
+    UILabel *email = [UILabel labelWithFrame:CGRectMake(X(name), YH(openid), 300, 20) font:fontTitle color:blacktextcolor text:@"绑定邮箱:1069106050@qq.com"];
+    UILabel *phone = [UILabel labelWithFrame:CGRectMake(X(name), YH(email), 300, 20) font:fontTitle color:blacktextcolor text:@"手机号码:18721064516"];
     [headerView addSubviews:icon,name,openid,email,phone,nil];
-    [icon imageWithURL:[[Utility Share] userLogo] useProgress:NO useActivity:NO];
+    [icon imageWithURL:@"" useProgress:NO useActivity:NO];
     UIView *v = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPW, 50)];
-    UIButton *quit = [Utility buttonWithFrame:CGRectMake(APPW/2-50, 10, 100, 30) title:@"退      出" image:nil bgimage:nil];
+    UIButton *quit = [[UIButton alloc]initWithFrame:CGRectMake(APPW/2-50, 10, 100, 30)];
+    [quit setTitle:@"退      出" forState:UIControlStateNormal];
     [quit setTitleColor:whitecolor forState:UIControlStateNormal];
     quit.backgroundColor = redcolor;[v addSubview:quit];
     NSArray *titles = @[@"我的聚合",@"我的数据",@"我的收藏",@"我的余额",@"聚合币",@"优惠券",@"发票管理",@"其他信息"];

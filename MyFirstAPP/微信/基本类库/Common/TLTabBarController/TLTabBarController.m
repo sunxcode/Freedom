@@ -10,10 +10,8 @@
 
 @implementation TLTabBarController
 
-- (void) viewDidLoad
-{
+- (void) viewDidLoad{
     [super viewDidLoad];
-
     [self.tabBar setBackgroundColor:[UIColor colorGrayBG]];
     [self.tabBar setTintColor:[UIColor colorGreenDefault]];
 }

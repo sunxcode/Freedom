@@ -2,19 +2,10 @@
 #import "BaseViewController.h"
 #import "Reachability.h"
 #include <objc/runtime.h>
-static BaseViewController *BVC = nil;
+#import "User.h"
 @interface BaseViewController ()
-@property (nonatomic,strong) UILabel *sizeLabel;
-@property (nonatomic,strong) UITextView *sizeTextView;
 @end
 @implementation BaseViewController
-+ (BaseViewController *) sharedViewController{
-    static dispatch_once_t once;
-    dispatch_once(&once, ^{
-        BVC = [[BaseViewController alloc] initWithNavStyle:1];
-    });
-    return BVC;
-}
 - (id)initWithNavStyle:(NSInteger)style{
     self = [super init];
     if (self) {
@@ -23,129 +14,30 @@ static BaseViewController *BVC = nil;
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [[Utility Share]setCurrentViewController:self];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:)name:kReachabilityChangedNotification object:nil];
-    if (Version7) {
-        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
-    }
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
 }
 - (void)viewDidLoad{
     [super viewDidLoad];
-    if (Version7) {
-        self.automaticallyAdjustsScrollViewInsets=NO;
-        self.edgesForExtendedLayout = UIRectEdgeNone;
-        [self.navigationController.navigationBar setFrame:CGRectMake(0, 0,APPW, TopHeight)];
-        [[UINavigationBar appearance] setBackIndicatorImage:[[UIImage imageNamed:PcellLeft]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-        [[UINavigationBar appearance] setBackIndicatorTransitionMaskImage:[[UIImage imageNamed:PcellLeft]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ]];
-        UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
-        backItem.title = @"返回";
-        self.navigationItem.backBarButtonItem = backItem;
-        
-        [self.navigationController.view setBackgroundColor:whitecolor];
-        NSDictionary *dict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[UIColor blackColor],[UIFont boldSystemFontOfSize:18.0f], nil] forKeys:[NSArray arrayWithObjects: NSForegroundColorAttributeName,NSFontAttributeName, nil]];
-        self.navigationController.navigationBar.titleTextAttributes = dict;
-    }
+    self.automaticallyAdjustsScrollViewInsets=NO;
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    [self.navigationController.navigationBar setFrame:CGRectMake(0, 0,APPW, TopHeight)];
+    [[UINavigationBar appearance] setBackIndicatorImage:[[UIImage imageNamed:PcellLeft]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    [[UINavigationBar appearance] setBackIndicatorTransitionMaskImage:[[UIImage imageNamed:PcellLeft]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ]];
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
+    backItem.title = @"返回";
+    self.navigationItem.backBarButtonItem = backItem;
+    
+    [self.navigationController.view setBackgroundColor:whitecolor];
+    NSDictionary *dict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[UIColor blackColor],[UIFont boldSystemFontOfSize:18.0f], nil] forKeys:[NSArray arrayWithObjects: NSForegroundColorAttributeName,NSFontAttributeName, nil]];
+    self.navigationController.navigationBar.titleTextAttributes = dict;
     [self.view setClipsToBounds:YES];
     [self.view setBackgroundColor:whitecolor];
     [self.navigationController.navigationBar setBarTintColor:gradcolor];
 }
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
-    if (Version7) {
-        CGFloat topBarOffset = [[self performSelector:@selector(topLayoutGuide)] length];
-        DLog(@"viewDidLayoutSubviews_topBarOffset:%f",topBarOffset);
-    }
     self.automaticallyAdjustsScrollViewInsets=NO;
-}
-- (UIBarButtonItem*)leftBarButtonItemWithTitle:(NSString*)title Image:(UIImage *)image customView:(UIView*)view style:(UIBarButtonItemStyle)style target:(id)target action:(SEL)sel{
-    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]init];
-    leftItem.style = style;
-    if(image){
-        leftItem.image = image;
-    }else if(title){
-        leftItem.title = title;
-    }else if(view){
-        leftItem.customView = view;
-    }
-    leftItem.target = target;
-    leftItem.action = sel;
-    self.navigationItem.leftBarButtonItem = leftItem;
-    return leftItem;
-}
-- (UIBarButtonItem*)rightBarButtonItemWithTitle:(NSString*)title Image:(UIImage *)image customView:(UIView*)view style:(UIBarButtonItemStyle)style target:(id)target action:(SEL)sel{
-    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]init];
-    rightItem.style = style;
-    if(image){
-        rightItem.image = image;
-    }else if(title){
-        rightItem.title = title;
-    }else if(view){
-        rightItem.customView = view;
-    }
-    rightItem.target = target;
-    rightItem.action = sel;
-    self.navigationItem.rightBarButtonItem = rightItem;
-    return rightItem;
-}
-
-- (void)setTitle:(NSString *)title titleView:(UIView *)titleV backGroundColor:(UIColor *)color backGroundImage:(NSString *)image{
-    if(titleV){
-        self.navigationItem.titleView = titleV;
-    }else{
-        self.navigationItem.titleView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPW-140, 44)];
-    }
-    if (title.length) {
-        CAGradientLayer* gradientMask = [CAGradientLayer layer];
-        gradientMask.bounds = self.navigationItem.titleView.layer.bounds;
-        gradientMask.position = CGPointMake([self.navigationItem.titleView bounds].size.width / 2, [self.navigationItem.titleView bounds].size.height / 2);
-        NSObject *transparent = (NSObject*) [[UIColor clearColor] CGColor];
-        NSObject *opaque = (NSObject*) [[UIColor blackColor] CGColor];
-        gradientMask.startPoint = CGPointMake(0.0, CGRectGetMidY(self.navigationItem.titleView.frame));
-        gradientMask.endPoint = CGPointMake(1.0, CGRectGetMidY(self.navigationItem.titleView.frame));
-        float fadePoint = (float)10/self.navigationItem.titleView.frame.size.width;
-        [gradientMask setColors: [NSArray arrayWithObjects: transparent, opaque, opaque, transparent, nil]];
-        [gradientMask setLocations:[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.0],[NSNumber numberWithFloat:fadePoint],[NSNumber numberWithFloat:1-fadePoint],[NSNumber numberWithFloat:1.0],nil]];
-        self.navigationItem.titleView.layer.mask = gradientMask;
-
-        UILabel *label = [[UILabel alloc] initWithFrame:self.navigationItem.titleView.bounds];
-        label.backgroundColor = [UIColor clearColor];
-        label.font = BoldFont(18);
-        label.textColor  = [UIColor blackColor];
-        label.shadowOffset = CGSizeMake(0, 0);
-        label.text = title;
-        label.textAlignment = NSTextAlignmentCenter;
-        [self.navigationItem.titleView addSubview:label];
-        CGSize size = [label sizeThatFits:CGSizeMake(MAXFLOAT, 20)];
-        if (label.frame.size.width<size.width) {
-            label.frameWidth=size.width;
-            [self performSelector:@selector(startScrollAnimateWithLabel:) withObject:label afterDelay:3.0];
-        }
-    }
-    if(image.length){
-        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:image] forBarMetrics:UIBarMetricsDefault];
-    }
-    if(color){
-         [self.navigationController.navigationBar setBackgroundImage:[[Utility Share]imageFromColor:color size:CGSizeMake(APPW, 64)] forBarMetrics:UIBarMetricsDefault];
-//        self.navigationController.navigationBar.backgroundColor = color;
-    }
-}
-
--(void)startScrollAnimateWithLabel:(UILabel*)label{
-    CGRect frame=label.frame;
-    UIView *nBGv=self.navigationItem.titleView;
-    [UIView animateWithDuration:5.4 delay:0.0 options:UIViewAnimationOptionCurveLinear animations:^{
-        label.frameX = -frame.size.width;
-    } completion:^(BOOL finished) {
-        [self EntertainingDiversionsAnimation:10.8 aView:label supView:nBGv];
-    }];
-}
--(void)EntertainingDiversionsAnimation:(NSTimeInterval)interval aView:(UIView *)av supView:(UIView *)sv{
-    CGRect frame =av.frame;
-    av.frame=CGRectMake(W(av), frame.origin.y, frame.size.width, frame.size.height);
-    [UIView animateWithDuration:interval delay:0.0 options:UIViewAnimationOptionRepeat|UIViewAnimationOptionCurveLinear animations:^{
-         av.frame = frame;
-     }completion:^(BOOL finished) {
-     }];
 }
 #pragma mark - Methods
 - (BaseViewController*)pushController:(Class)controller withInfo:(id)info{
@@ -162,9 +54,7 @@ static BaseViewController *BVC = nil;
     return [self pushController:[[controller alloc]init] withInfo:info withTitle:title withOther:other tabBarHid:abool];
 }
 - (BaseViewController*)pushController:(BaseViewController*)controller withInfo:(id)info withTitle:(NSString*)title withOther:(id)other tabBarHid:(BOOL)abool{
-    DLog(@"\n跳转到 %@ 页面",title);
-    DLog(@"\nBase UserInfo:%@",info);
-    DLog(@"\nBase OtherInfo:%@",other);
+    DLog(@"\n跳转到 %@ 页面\nBase UserInfo:%@\nBase OtherInfo:%@",title,info,other);
     if ([(NSObject*)controller respondsToSelector:@selector(setUserInfo:)]) {
         controller.userInfo = info;
         controller.otherInfo = other;
@@ -206,65 +96,7 @@ static BaseViewController *BVC = nil;
         }
     }
 }
-/**
- *	根据文字计算Label高度
- *	@param	_width	限制宽度
- *	@param	_font	字体
- *	@param	_text	文字内容
- *	@param	_aLine	文字内容换行行间距
- *	@return	Label高度
- */
-- (CGFloat)heightForLabel:(CGFloat)_width font:(UIFont*)_font text:(NSString*)_text lineSpace:(CGFloat)_aLine{
-    if (!self.sizeLabel) {
-        self.sizeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 1, 1)];
-    }
-    self.sizeLabel.numberOfLines = 0;
-    self.sizeLabel.baselineAdjustment=UIBaselineAdjustmentAlignCenters;
-    [self.sizeLabel setLineBreakMode:NSLineBreakByTruncatingTail|NSLineBreakByWordWrapping];
-    self.sizeLabel.font = _font;
-    if (_text) {
-        self.sizeLabel.text = _text;
-        if (_aLine) {
-            NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:_text];
-            NSMutableParagraphStyle *paragraphStyleT = [[NSMutableParagraphStyle alloc] init];
-            [paragraphStyleT setLineSpacing:_aLine];//调整行间距
-            paragraphStyleT.lineBreakMode = NSLineBreakByWordWrapping;
-            [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyleT range:NSMakeRange(0, [_text length])];
-            self.sizeLabel.attributedText = attributedString;
-        }
-        return [self.sizeLabel sizeThatFits:CGSizeMake(_width, MAXFLOAT)].height;
-    }else{
-        return 0;
-    }
-}
-- (CGFloat)heightForTextView:(CGFloat)_width font:(UIFont*)_font text:(NSString*)_text lineSpace:(CGFloat)_aLine{
-    if (!self.sizeTextView) {
-        self.sizeTextView = [[UITextView alloc] init];
-    }
-    [self.sizeTextView setEditable:NO];
-    self.sizeTextView.frame=CGRectMake(0,0, _width, 20);
-    self.sizeTextView.font = _font;
-    if (_text) {
-        self.sizeTextView.text = _text;
-        if (_aLine) {
-            NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
-            paragraphStyle.lineSpacing = _aLine;
-            NSDictionary *attributes = @{ NSFontAttributeName:_font, NSParagraphStyleAttributeName:paragraphStyle};
-            paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
-            self.sizeTextView.attributedText =[[NSAttributedString alloc]initWithString:_text attributes:attributes];
-             if (Version7) {
-                CGSize size = [_text boundingRectWithSize:CGSizeMake(_width, 0) options: NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attributes context:nil].size;
-                DLog(@"TextView的高度:%f",size.height);
-                return  size.height;
-            }else{
-                return self.sizeTextView.contentSize.height-16;
-            }
-        }
-        return [self.sizeTextView sizeThatFits:CGSizeMake(_width, MAXFLOAT)].height;
-    }else{
-        return 0;
-    }
-}
+
 #pragma mark - Actions
 - (void)backToHomeViewController{
     NSArray *controllers = [(UITabBarController*)[(UIWindow*)[[UIApplication sharedApplication] windows][0] rootViewController] viewControllers];//首页的controllers
@@ -436,52 +268,7 @@ static BaseViewController *BVC = nil;
     
 }
 - (void)readData {
-    AppDelegate *del = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"TotalData"];
-    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:NO],
-                                [NSSortDescriptor sortDescriptorWithKey:@"icon" ascending:NO]];
-    NSError *error = nil;
-    NSArray *a = [del.managedObjectContext executeFetchRequest:request error:&error];
-    DLog(@"%@", error);
-    if (!a || ([a isKindOfClass:[NSArray class]] && [a count] <= 0)) {
-        // 添加数据到数据库
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            NSString *strPath = [[NSBundle mainBundle] pathForResource:@"icons" ofType:@"txt"];
-            NSString *text = [NSString stringWithContentsOfFile:strPath encoding:NSUTF16StringEncoding error:nil];
-            NSArray *lineArr = [text componentsSeparatedByString:@"\n"];
-            AppDelegate *del = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-            NSEntityDescription *description = [NSEntityDescription entityForName:@"TotalData" inManagedObjectContext:del.managedObjectContext];
-            for (NSString *line in lineArr) {
-                NSArray *icons = [line componentsSeparatedByString:@"\t"];
-                /*items[0],items[1], items[2], items[3], items[4], items[5]*/
-                TotalData *icon = [[TotalData alloc] initWithEntity:description insertIntoManagedObjectContext:self.managedObjectContext];
-                icon.title = icons[0];
-                icon.icon = icons[1];
-                DLog(@"%@===%@",icons,icons[2]);
-                icon.control = icons[2];
-            }
-            [del saveContext];
-            //从数据库中读
-            NSError *error = nil;
-            NSArray *b = [del.managedObjectContext executeFetchRequest:request error:&error];
-            if (error) {
-                DLog(@"%@", error);
-            } else {
-                self.items = [NSArray arrayWithArray:b];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    //                    [collectionView reloadData];
-                });
-            }
-        });
-    } else {
-        self.items = [NSArray arrayWithArray:a];
-        //        [collectionView reloadData];
-    }
-    //     删除所有数据
-    //                for (TotalData *postcode in a) {
-    //                    [del.managedObjectContext deleteObject:postcode];
-    //                }
-    //                [del saveContext];
+    self.items = [NSMutableArray arrayWithArray:[User getControllerData]];
 }
 
 -(void)radialMenu:(CKRadialMenu *)radialMenu didSelectPopoutWithIndentifier:(NSString *)identifier{

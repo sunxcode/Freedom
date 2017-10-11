@@ -11,7 +11,7 @@
 #import "KugouTabBarController.h"
 #import "LocalMusicCell.h"
 #import <AVFoundation/AVFoundation.h>
-#import "NSMutableArray+add.h"
+
 @interface LocalMusicViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,strong) MPMusicPlayerController *musicController;
 @property (nonatomic,weak) UITableView *tableView;
@@ -58,15 +58,15 @@
     MPMediaQuery *everyMusic = [[MPMediaQuery alloc] init];
     self.musicArr = [everyMusic items];
     for (MPMediaItem *mediaItem in self.musicArr) {
-        [self.songArr addSafeObject:mediaItem.title];
-        [self.singerArr addSafeObject:mediaItem.albumArtist];
-        [self.assetURLArr addSafeObject:mediaItem.assetURL];
-        [self.timerArr addSafeObject:@(mediaItem.playbackDuration)];
+        [self.songArr addObject:mediaItem.title];
+        [self.singerArr addObject:mediaItem.albumArtist];
+        [self.assetURLArr addObject:mediaItem.assetURL];
+        [self.timerArr addObject:@(mediaItem.playbackDuration)];
         if (mediaItem.artwork) {
             UIImage *image = [mediaItem.artwork imageWithSize:CGSizeMake(50, 50)];
-            [self.iconArr addSafeObject:image];
+            [self.iconArr addObject:image];
         } else {
-            [self.iconArr addSafeObject:[UIImage imageNamed:@"placeHoder-128"]];
+            [self.iconArr addObject:[UIImage imageNamed:@"placeHoder-128"]];
         }
     }
 }

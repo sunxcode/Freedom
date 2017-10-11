@@ -47,8 +47,8 @@
  
  
  SDAutoLayout
- 版本：2.1.0
- 发布：2016.05.25
+ 版本：2.1.7
+ 发布：2016.08.12
  
  */
 
@@ -61,12 +61,12 @@
 
 @class SDAutoLayoutModel, SDUIViewCategoryManager;
 
-typedef SDAutoLayoutModel *(^MarginToView)(UIView *toView, CGFloat value);
+typedef SDAutoLayoutModel *(^MarginToView)(id viewOrViewsArray, CGFloat value);
 typedef SDAutoLayoutModel *(^Margin)(CGFloat value);
 typedef SDAutoLayoutModel *(^MarginEqualToView)(UIView *toView);
 typedef SDAutoLayoutModel *(^WidthHeight)(CGFloat value);
 typedef SDAutoLayoutModel *(^WidthHeightEqualToView)(UIView *toView, CGFloat ratioValue);
-typedef SDAutoLayoutModel *(^AutoHeight)(CGFloat ratioValue);
+typedef SDAutoLayoutModel *(^AutoHeightWidth)(CGFloat ratioValue);
 typedef SDAutoLayoutModel *(^SameWidthHeight)();
 typedef SDAutoLayoutModel *(^Offset)(CGFloat value);
 typedef void (^SpaceToSuperView)(UIEdgeInsets insets);
@@ -87,11 +87,11 @@ typedef void (^SpaceToSuperView)(UIEdgeInsets insets);
 
 /* 设置距离其它view的间距 */
 
-/** 左边到其参照view之间的间距，参数为“(View, CGFloat)”  */
+/** 左边到其参照view之间的间距，参数为“(View 或者 view数组, CGFloat)”  */
 @property (nonatomic, copy, readonly) MarginToView leftSpaceToView;
 /** 右边到其参照view之间的间距，参数为“(View, CGFloat)”  */
 @property (nonatomic, copy, readonly) MarginToView rightSpaceToView;
-/** 顶部到其参照view之间的间距，参数为“(View, CGFloat)”  */
+/** 顶部到其参照view之间的间距，参数为“(View 或者 view数组, CGFloat)”  */
 @property (nonatomic, copy, readonly) MarginToView topSpaceToView;
 /** 底部到其参照view之间的间距，参数为“(View, CGFloat)”  */
 @property (nonatomic, copy, readonly) MarginToView bottomSpaceToView;
@@ -156,7 +156,10 @@ typedef void (^SpaceToSuperView)(UIEdgeInsets insets);
 /** 设置一个view的高度和它的宽度相同，参数为空“()” */
 @property (nonatomic, copy, readonly) SameWidthHeight heightEqualToWidth;
 /** 自适应高度，传入高宽比值，label可以传0实现文字高度自适应 */
-@property (nonatomic, copy, readonly) AutoHeight autoHeightRatio;
+@property (nonatomic, copy, readonly) AutoHeightWidth autoHeightRatio;
+
+/** 自适应宽度，参数为宽高比值 */
+@property (nonatomic, copy, readonly) AutoHeightWidth autoWidthRatio;
 
 
 
@@ -213,7 +216,7 @@ typedef void (^SpaceToSuperView)(UIEdgeInsets insets);
 
 
 
-#pragma mark - UIView 设置圆角半径、九宫格浮动效果、自动布局回调block等相关方法
+#pragma mark - UIView 设置圆角半径、自动布局回调block等相关方法
 
 @interface UIView (SDLayoutExtention)
 
@@ -235,14 +238,37 @@ typedef void (^SpaceToSuperView)(UIEdgeInsets insets);
 /** 设置等宽子view（子view需要在同一水平方向） */
 @property (nonatomic, strong) NSArray *sd_equalWidthSubviews;
 
-/** 设置类似collectionView效果的固定间距自动宽度浮动子view */
-- (void)setupAutoWidthFlowItems:(NSArray *)viewsArray withPerRowItemsCount:(NSInteger)perRowItemsCount verticalMargin:(CGFloat)verticalMargin horizontalMargin:(CGFloat)horizontalMagin;
+@end
+
+
+
+#pragma mark - UIView 九宫格浮动布局效果
+
+@interface UIView (SDAutoFlowItems)
+
+/** 
+ * 设置类似collectionView效果的固定间距自动宽度浮动子view 
+ * viewsArray       : 需要浮动布局的所有视图
+ * perRowItemsCount : 每行显示的视图个数
+ * verticalMargin   : 视图之间的垂直间距
+ * horizontalMargin : 视图之间的水平间距
+ * vInset           : 上下缩进值
+ * hInset           : 左右缩进值
+ */
+- (void)setupAutoWidthFlowItems:(NSArray *)viewsArray withPerRowItemsCount:(NSInteger)perRowItemsCount verticalMargin:(CGFloat)verticalMargin horizontalMargin:(CGFloat)horizontalMagin verticalEdgeInset:(CGFloat)vInset horizontalEdgeInset:(CGFloat)hInset;
 
 /** 清除固定间距自动宽度浮动子view设置 */
 - (void)clearAutoWidthFlowItemsSettings;
 
-/** 设置类似collectionView效果的固定宽带自动间距浮动子view */
-- (void)setupAutoMarginFlowItems:(NSArray *)viewsArray withPerRowItemsCount:(NSInteger)perRowItemsCount itemWidth:(CGFloat)itemWidth verticalMargin:(CGFloat)verticalMargin;
+/** 
+ * 设置类似collectionView效果的固定宽带自动间距浮动子view 
+ * viewsArray       : 需要浮动布局的所有视图
+ * perRowItemsCount : 每行显示的视图个数
+ * verticalMargin   : 视图之间的垂直间距
+ * vInset           : 上下缩进值
+ * hInset           : 左右缩进值
+ */
+- (void)setupAutoMarginFlowItems:(NSArray *)viewsArray withPerRowItemsCount:(NSInteger)perRowItemsCount itemWidth:(CGFloat)itemWidth verticalMargin:(CGFloat)verticalMargin verticalEdgeInset:(CGFloat)vInset horizontalEdgeInset:(CGFloat)hInset;
 
 /** 清除固定宽带自动间距浮动子view设置 */
 - (void)clearAutoMarginFlowItemsSettings;
@@ -265,7 +291,7 @@ typedef void (^SpaceToSuperView)(UIEdgeInsets insets);
 - (SDAutoLayoutModel *)sd_resetNewLayout;
 
 /** 是否关闭自动布局  */
-@property (nonatomic, getter = sd_isClosingAotuLayout) BOOL sd_closeAotuLayout;
+@property (nonatomic, getter = sd_isClosingAutoLayout) BOOL sd_closeAutoLayout;
 
 /** 从父view移除并清空约束  */
 - (void)removeFromSuperviewAndClearAutoLayoutSettings;
@@ -294,13 +320,12 @@ typedef void (^SpaceToSuperView)(UIEdgeInsets insets);
 /** cell的indexPath（目前为cell专用属性，后期会扩展到cell的其他子view） */
 @property (nonatomic) NSIndexPath *sd_indexPath;
 
-// -------------------库内部使用-----------------------
 - (NSMutableArray *)autoLayoutModelsArray;
 - (void)addAutoLayoutModel:(SDAutoLayoutModel *)model;
 @property (nonatomic) SDAutoLayoutModel *ownLayoutModel;
 @property (nonatomic, strong) NSNumber *sd_maxWidth;
 @property (nonatomic, strong) NSNumber *autoHeightRatioValue;
-// -------------------库内部使用-----------------------
+@property (nonatomic, strong) NSNumber *autoWidthRatioValue;
 
 @end
 
@@ -378,17 +403,14 @@ typedef void (^SpaceToSuperView)(UIEdgeInsets insets);
 
 #pragma mark - 其他方法（如果有需要可以自己利用以下接口拓展更多功能）
 
-// ----------------- 以下为此库内部需要用到的类和方法（可以不用看）----------------
-
 @interface SDAutoLayoutModelItem : NSObject
 
 @property (nonatomic, strong) NSNumber *value;
 @property (nonatomic, weak) UIView *refView;
 @property (nonatomic, assign) CGFloat offset;
+@property (nonatomic, strong) NSArray *refViewsArray;
 
 @end
-
-
 
 
 @interface UIView (SDChangeFrame)
@@ -437,7 +459,7 @@ typedef void (^SpaceToSuperView)(UIEdgeInsets insets);
 
 @property (nonatomic) BOOL shouldReadjustFrameBeforeStoreCache;
 
-@property (nonatomic, assign, getter = sd_isClosingAotuLayout) BOOL sd_closeAotuLayout;
+@property (nonatomic, assign, getter = sd_isClosingAutoLayout) BOOL sd_closeAutoLayout;
 
 
 /** 设置类似collectionView效果的固定间距自动宽度浮动子view */
@@ -453,6 +475,10 @@ typedef void (^SpaceToSuperView)(UIEdgeInsets insets);
 
 @property (nonatomic, assign) CGFloat flowItemWidth;
 @property (nonatomic, assign) BOOL shouldShowAsAutoMarginViews;
+
+
+@property (nonatomic) CGFloat horizontalEdgeInset;
+@property (nonatomic) CGFloat verticalEdgeInset;
 
 @end
 

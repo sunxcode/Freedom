@@ -7,11 +7,8 @@
 //
 
 #import "BaseNavigationController.h"
-
 @interface BaseNavigationController ()
-
 @end
-
 @implementation BaseNavigationController
 //第一次使用这个类的时候调用一次
 +(void)initialize{
@@ -21,21 +18,10 @@
     NSMutableDictionary *titleAttr = [NSMutableDictionary dictionary];
     titleAttr[NSForegroundColorAttributeName] = [UIColor blackColor];
     [item setTitleTextAttributes:titleAttr forState:UIControlStateNormal];
-    
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = redcolor;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
 @end

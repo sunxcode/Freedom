@@ -7,6 +7,7 @@
 //
 
 #import "JuheDynamicViewController.h"
+#import <XCategory/UILabel+expanded.h>
 @interface JuheDynamicCollectionViewCell : BaseCollectionViewCell{
     NSMutableDictionary *thumbnailCache;
 }
@@ -22,7 +23,7 @@
     self.title.textColor = whitecolor;
     self.title.layer.cornerRadius = 5;
     self.title.clipsToBounds = YES;
-    UILabel *labe = [Utility labelWithFrame:CGRectMake(5, 5, 40, 20) font:fontnomal color:whitecolor text:@"VIP"];
+    UILabel *labe = [UILabel labelWithFrame:CGRectMake(5, 5, 40, 20) font:fontnomal color:whitecolor text:@"VIP"];
     labe.numberOfLines = 0;
     [self addSubviews:self.icon,self.title,labe,nil];
 }

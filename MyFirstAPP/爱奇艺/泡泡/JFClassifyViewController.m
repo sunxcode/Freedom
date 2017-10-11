@@ -44,19 +44,16 @@
 -(void)initData{
    
   
-    
-    [NetEngine sendGetUrl:urlStr withParams:nil success:^(id responseBody) {
+    [NetBase GET:urlStr parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [self.classifyTableView.mj_header endRefreshing];
         [_dataSource removeAllObjects];
-        NSMutableArray *array = [responseBody objectForKey:@"results"];
+        NSMutableArray *array = [responseObject objectForKey:@"results"];
         for (int i = 0; i < array.count; i++) {
             JFClassifyModel *classM = [JFClassifyModel mj_objectWithKeyValues:array[i]];
             [_dataSource addObject:classM];
         }
         [self.classifyTableView reloadData];
-    } failure:^(NSError *error) {
-        
-    }];
+    } failure:nil];
     
 }
 -(void)initView{

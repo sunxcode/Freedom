@@ -53,17 +53,17 @@
 -(void)initData{
 
     NSString *urlStr = [[GetUrlString sharedManager]urlWithSubscribeData];
-    [NetEngine sendGetUrl:urlStr withParams:nil success:^(id responseBody) {
+    
+    [NetBase GET:urlStr parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [self.subscribeTableView.mj_header endRefreshing];
-        NSMutableArray *array = [responseBody objectForKey:@"results"];
+        NSMutableArray *array = [responseObject objectForKey:@"results"];
         for (int i = 0; i < array.count; i++) {
             JFSubscribeModel *subM = [JFSubscribeModel mj_objectWithKeyValues:array[i]];
             [_dataSource addObject:subM];
             
         }
         [self.subscribeTableView reloadData];
-
-    } failure:^(NSError *error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
     }];
     

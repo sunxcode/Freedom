@@ -88,10 +88,10 @@
     _headImageArray = [[NSMutableArray alloc] init];
     
     NSString *urlStr =  [[GetUrlString sharedManager]urlWithHomeData];
-    [NetEngine sendGetUrl:urlStr withParams:nil success:^(id responseBody) {
+    [NetBase GET:urlStr parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [self.homeTableView.mj_header endRefreshing];
         [_headImageArray removeAllObjects];
-        JFHomeModel *homeModel = [JFHomeModel mj_objectWithKeyValues:responseBody];
+        JFHomeModel *homeModel = [JFHomeModel mj_objectWithKeyValues:responseObject];
         NSMutableArray *boxesArray = [[NSMutableArray alloc] init];
         NSMutableArray *bannerArray = [[NSMutableArray alloc] init];
         for (int i = 0; i < homeModel.boxes.count; i ++) {
@@ -108,9 +108,7 @@
         _boxesSource = boxesArray;
         _bannerSource = bannerArray;
         [self.homeTableView reloadData];
-    } failure:^(NSError *error) {
-        
-    }];
+    } failure:nil];
 }
 #pragma amrk - 初始化视图
 -(void)initView{

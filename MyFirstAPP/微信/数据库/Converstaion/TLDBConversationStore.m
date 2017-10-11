@@ -26,7 +26,7 @@
         self.dbQueue = [TLDBManager sharedInstance].messageQueue;
         BOOL ok = [self createTable];
         if (!ok) {
-            DDLogError(@"DB: 聊天记录表创建失败");
+            DLog(@"DB: 聊天记录表创建失败");
         }
     }
     return self;

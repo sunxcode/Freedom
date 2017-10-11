@@ -5,6 +5,7 @@
 //  Created by 薛超 on 16/8/25.
 //  Copyright © 2016年 薛超. All rights reserved.
 #import "ToutiaoMeViewController.h"
+#import <XCategory/UILabel+expanded.h>
 @interface ToutiaoMeViewController ()
 @end
 @implementation ToutiaoMeViewController
@@ -57,7 +58,7 @@
         [view addSubview:button];
     }
     view.backgroundColor = RGBCOLOR(10, 10, 10);
-    UILabel *label = [Utility labelWithFrame:CGRectMake(10, H(view)-30, APPW-20, 20) font:fontnomal color:whitecolor text:@"登录推荐更精准" textAlignment:NSTextAlignmentCenter];
+    UILabel *label = [UILabel labelWithFrame:CGRectMake(10, H(view)-30, APPW-20, 20) font:fontnomal color:whitecolor text:@"登录推荐更精准" textAlignment:NSTextAlignmentCenter];
     [view addSubview:label];
     [head addSubview:view];
     NSArray *titles = @[@"收藏",@"历史",@"夜间"];

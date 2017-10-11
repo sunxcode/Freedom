@@ -35,4 +35,5 @@
 @property (nonatomic, strong) NSString *userSystem;//手机系统
 @property (nonatomic, strong) NSString *userIP;//手机登录的IP地址
 @property (nonatomic, strong) NSString *userRealName;//真实姓名
++(NSArray*)getControllerData;
 @end

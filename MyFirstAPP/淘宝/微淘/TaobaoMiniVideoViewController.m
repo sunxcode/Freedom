@@ -7,6 +7,7 @@
 //
 
 #import "TaobaoMiniVideoViewController.h"
+#import <XCategory/UILabel+expanded.h>
 @interface TaobaoMiniVideoViewCell:BaseTableViewCell{
     UILabel *name,*sees,*times;
     UIButton *zan,*pinglun;
@@ -17,8 +18,8 @@
 -(void)initUI{
     [super initUI];
     self.icon.frame = CGRectMake(10, 10, 30, 30);
-    name = [Utility labelWithFrame:CGRectMake(XW(self.icon)+10, Y(self.icon)-5, APPW-XW(self.icon)-20, 20) font:fontSmallTitle color:RGBCOLOR(0, 111, 255) text:nil];
-    times = [Utility labelWithFrame:CGRectMake(X(name), YH(name), W(name), 15) font:fontnomal color:graycolor text:nil];
+    name = [UILabel labelWithFrame:CGRectMake(XW(self.icon)+10, Y(self.icon)-5, APPW-XW(self.icon)-20, 20) font:fontSmallTitle color:RGBCOLOR(0, 111, 255) text:nil];
+    times = [UILabel labelWithFrame:CGRectMake(X(name), YH(name), W(name), 15) font:fontnomal color:graycolor text:nil];
     self.picV = [[UIImageView alloc]initWithFrame:CGRectMake(X(self.icon), YH(self.icon)+10, APPW-20, 130)];
     self.cellContentView = [[UIView alloc]initWithFrame:CGRectMake(X(self.picV), YH(self.picV), W(self.picV), 60)];
     self.cellContentView.backgroundColor = gradcolor;
@@ -29,9 +30,9 @@
     self.script.frame = CGRectMake(X(self.title), YH(self.title), W(self.title), 40);
     self.script.numberOfLines = 0;
     [self.cellContentView addSubviews:self.title,self.script,nil];
-    sees = [Utility labelWithFrame:CGRectMake(10, YH(self.cellContentView)+10,100, 15) font:fontnomal color:graycolor text:nil];
-    zan = [Utility buttonWithFrame:CGRectMake(APPW-130, Y(sees)-2, 55, 19) title:@"" image:nil bgimage:nil];
-    pinglun = [Utility buttonWithFrame:CGRectMake(XW(zan)+10, Y(zan), W(zan), H(zan)) title:@"" image:nil bgimage:nil];
+    sees = [UILabel labelWithFrame:CGRectMake(10, YH(self.cellContentView)+10,100, 15) font:fontnomal color:graycolor text:nil];
+    zan = [[UIButton alloc]initWithFrame:CGRectMake(APPW-130, Y(sees)-2, 55, 19)];
+    pinglun = [[UIButton alloc]initWithFrame:CGRectMake(XW(zan)+10, Y(zan), W(zan), H(zan))];
     zan.layer.cornerRadius = 7.5;zan.layer.borderWidth = 0.5;zan.clipsToBounds = YES;
     pinglun.layer.cornerRadius = 7.5;pinglun.layer.borderWidth = 0.5;pinglun.clipsToBounds = YES;
     sees.font = Font(12);

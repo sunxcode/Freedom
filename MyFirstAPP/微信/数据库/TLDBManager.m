@@ -35,7 +35,7 @@ static TLDBManager *manager;
 
 - (id)init
 {
-    DDLogError(@"TLDBManager：请使用 initWithUserID: 方法初始化");
+    DLog(@"TLDBManager：请使用 initWithUserID: 方法初始化");
     return nil;
 }
 

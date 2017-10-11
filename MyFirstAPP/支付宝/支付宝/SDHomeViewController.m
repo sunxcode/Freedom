@@ -3,7 +3,6 @@
 //  GSD_ZHIFUBAO
 #import "SDHomeViewController.h"
 #import "UIView+SDExtension.h"
-#import "UIView+Addition.h"
 #import "SDAddItemViewController.h"
 #import "AlipayTools.h"
 #import "SDHomeGridViewListItemView.h"
@@ -39,6 +38,16 @@
 - (void)scanButtonClicked{
     SDBasicViewContoller *desVc = [[SDScanViewController alloc] init];
     [[self getCurrentViewController].navigationController pushViewController:desVc animated:YES];
+}
+-(UIViewController *)getCurrentViewController{
+    UIResponder *next = [self nextResponder];
+    do {
+        if ([next isKindOfClass:[UIViewController class]]) {
+            return (UIViewController *)next;
+        }
+        next = [next nextResponder];
+    } while (next != nil);
+    return nil;
 }
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {

@@ -10,7 +10,6 @@
 #import "JFDiscoverViewController.h"
 #import "JFImageScrollCell.h"
 #import "JFSearchHistoryViewController.h"
-#import "UIButton+expanded.h"
 #import "JFImageScrollView.h"
 #import "JFVideoDetailViewController.h"
 #import "JFWebViewController.h"
@@ -89,14 +88,13 @@
         _dataSource = [[NSMutableArray alloc] init];
         _imageArray = [[NSMutableArray alloc] init];
         NSString *urlStr =[[GetUrlString sharedManager]urlWithDiscoverData];
-        [NetEngine sendGetUrl:urlStr withParams:nil success:^(id responseBody) {
-            NSLog(@"%@",responseBody);
+        [NetBase GET:urlStr parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             [self.discoverTableView.mj_header endRefreshing];
-            NSString *hotWord = [responseBody objectForKey:@"search_hot_word"];
-            NSString *WordAd = [responseBody objectForKey:@"search_word_ad"];
+            NSString *hotWord = [responseObject objectForKey:@"search_hot_word"];
+            NSString *WordAd = [responseObject objectForKey:@"search_word_ad"];
             _searchLabel.text = [NSString stringWithFormat:@"%@:%@",WordAd,hotWord];
             [_dataSource removeAllObjects];
-            NSMutableArray *resultArray = [responseBody objectForKey:@"results"];
+            NSMutableArray *resultArray = [responseObject objectForKey:@"results"];
             for (int i = 0; i < resultArray.count; i++) {
                 JFDiscoverModel *disM = [JFDiscoverModel mj_objectWithKeyValues:resultArray[i]];
                 [_dataSource addObject:disM];
@@ -110,8 +108,10 @@
                 }
             }
             [self.discoverTableView reloadData];
-        } failure:^(NSError *error) {
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            
         }];
+      
     }];
     [self.discoverTableView.mj_header beginRefreshing];
 }

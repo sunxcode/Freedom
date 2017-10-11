@@ -14,6 +14,10 @@
 #import "TLImageMessage.h"
 #import "TLExpressionMessage.h"
 
+@interface UITableView (expanded)
+
+- (void)scrollToBottomWithAnimation:(BOOL)animation;
+@end
 
 @interface TLChatTableViewController : UITableViewController
 

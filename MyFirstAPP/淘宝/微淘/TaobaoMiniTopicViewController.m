@@ -7,6 +7,7 @@
 //
 
 #import "TaobaoMiniTopicViewController.h"
+#import <XCategory/UILabel+expanded.h>
 @interface TaobaoMiniTopicViewCell:BaseTableViewCell{
     UILabel *sees;
 }
@@ -17,7 +18,7 @@
     self.icon.frame = CGRectMake(10, 10, 70, 70);
     self.title.frame = CGRectMake(XW(self.icon)+10,Y(self.icon), APPW-XW(self.icon)-10, 20);
     self.script.frame = CGRectMake(X(self.title), YH(self.title)+10, W(self.title), 20);
-    sees = [Utility labelWithFrame:CGRectMake(X(self.script), YH(self.script),W(self.script), 15) font:Font(12) color:graycolor text:nil];
+    sees = [UILabel labelWithFrame:CGRectMake(X(self.script), YH(self.script),W(self.script), 15) font:Font(12) color:graycolor text:nil];
     self.line.frame = CGRectMake(0, 90-1, APPW, 1);
     DLog(@"==%lf",H(self));
     [self addSubviews:sees,nil];

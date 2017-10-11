@@ -126,7 +126,7 @@
 }
 -(void)initUI{
     UIButton *daren = [[UIButton alloc]initWithFrame:CGRectMake(APPW/2-50, 0, 100, 20)];
-    [daren setImage:[UIImage imageNamed:@"mini01.jpg"] imageHL:nil];
+    [daren setImage:[UIImage imageNamed:@"mini01.jpg"] forState:UIControlStateNormal];
     [daren setTitle:@"达人淘" forState:UIControlStateNormal];
     [daren setTitleColor:redcolor forState:UIControlStateNormal];
     UILabel *more = [[UILabel alloc]initWithFrame:CGRectMake(APPW-80, 0, 60, 20)];

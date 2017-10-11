@@ -9,7 +9,6 @@
 #import "CKRadialMenu.h"
 #import "FirstViewController.h"
 #import "UIView+expanded.h"
-#import "UIView+Addition.h"
 @interface CKRadialMenu()
 @property (nonatomic, strong) NSMutableDictionary *poputIDs;
 @property (nonatomic, strong) UIView *positionView;
@@ -82,6 +81,16 @@
     win.rootViewController = vc;
     [win makeKeyAndVisible];
 //    [[self getCurrentViewController] presentViewController:vc animated:NO completion:^{vc.view.alpha = 1;}];
+}
+-(UIViewController *)getCurrentViewController{
+    UIResponder *next = [self nextResponder];
+    do {
+        if ([next isKindOfClass:[UIViewController class]]) {
+            return (UIViewController *)next;
+        }
+        next = [next nextResponder];
+    } while (next != nil);
+    return nil;
 }
 -(void)setFrame:(CGRect)frame{
   [super setFrame:frame];

@@ -25,7 +25,7 @@
                                        failure:(void (^)(NSString *error))failure
 {
     NSString *urlString = [NSString stringWithFormat:IEXPRESSION_NEW_URL, (long)pageIndex];
-    [NetEngine postUrl:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [NetBase POST:urlString parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSArray *respArray = [responseObject mj_JSONObject];
         NSString *status = respArray[0];
         if ([status isEqualToString:@"OK"]) {
@@ -36,7 +36,7 @@
         else {
             failure(status);
         }
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         failure([error description]);
     }];
 }
@@ -45,7 +45,7 @@
                                      failure:(void (^)(NSString *))failure
 {
     NSString *urlString = IEXPRESSION_BANNER_URL;
-    [NetEngine postUrl:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [NetBase POST:urlString parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSArray *respArray = [responseObject mj_JSONObject];
         NSString *status = respArray[0];
         if ([status isEqualToString:@"OK"]) {
@@ -56,8 +56,8 @@
         else {
             failure(status);
         }
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        failure([error description]);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+          failure([error description]);
     }];
 
 }
@@ -67,7 +67,7 @@
                                        failure:(void (^)(NSString *error))failure
 {
     NSString *urlString = [NSString stringWithFormat:IEXPRESSION_PUBLIC_URL, (long)pageIndex];
-    [NetEngine postUrl:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [NetBase POST:urlString parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSArray *respArray = [responseObject mj_JSONObject];
         NSString *status = respArray[0];
         if ([status isEqualToString:@"OK"]) {
@@ -78,8 +78,8 @@
         else {
             failure(status);
         }
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        failure([error description]);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+         failure([error description]);
     }];
 }
 
@@ -88,7 +88,7 @@
                                  failure:(void (^)(NSString *error))failure
 {
     NSString *urlString = [NSString stringWithFormat:IEXPRESSION_SEARCH_URL, [[keyword urlEncode] urlEncode]];
-    [NetEngine postUrl:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [NetBase POST:urlString parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSArray *respArray = [responseObject mj_JSONObject];
         NSString *status = respArray[0];
         if ([status isEqualToString:@"OK"]) {
@@ -99,8 +99,8 @@
         else {
             failure(status);
         }
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        failure([error description]);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+         failure([error description]);
     }];
 }
 
@@ -110,7 +110,7 @@
                                       failure:(void (^)(NSString *error))failure
 {
     NSString *urlString = [NSString stringWithFormat:IEXPRESSION_DETAIL_URL, (long)pageIndex, groupID];
-    [NetEngine postUrl:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [NetBase POST:urlString parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSArray *respArray = [responseObject mj_JSONObject];
         NSString *status = respArray[0];
         if ([status isEqualToString:@"OK"]) {
@@ -121,7 +121,7 @@
         else {
             failure(status);
         }
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         failure([error description]);
     }];
 }

@@ -8,6 +8,7 @@
 
 #import "UIImagePickerController+Fixed.h"
 
+#import "UIFont+expanded.h"       // 字体
 @implementation UIImagePickerController (Fixed)
 - (void)viewDidLoad{
     [super viewDidLoad];

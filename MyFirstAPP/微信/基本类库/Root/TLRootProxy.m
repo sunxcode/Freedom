@@ -14,10 +14,10 @@
                              failure:(void (^)(NSString *))error
 {
     NSString *urlString = [TLHost clientInitInfoURL];
-    [NetEngine postUrl:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"OK");
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"NO");
+    [NetBase POST:urlString parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+           NSLog(@"OK");
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+           NSLog(@"OK");
     }];
 }
 

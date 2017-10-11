@@ -89,7 +89,7 @@
             NSError *error;
             ok = [[NSFileManager defaultManager] removeItemAtPath:group.path error:&error];
             if (!ok) {
-                DDLogError(@"删除表情文件失败\n路径:%@\n原因:%@", group.path, [error description]);
+                DLog(@"删除表情文件失败\n路径:%@\n原因:%@", group.path, [error description]);
             }
         }
         

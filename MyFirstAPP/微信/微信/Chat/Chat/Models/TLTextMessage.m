@@ -9,6 +9,7 @@
 #import "TLTextMessage.h"
 #import "NSString+expanded.h"
 
+#import "UIFont+expanded.h"       // 字体
 static UILabel *textLabel;
 
 @implementation TLTextMessage

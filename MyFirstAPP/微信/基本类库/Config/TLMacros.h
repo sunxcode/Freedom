@@ -8,14 +8,11 @@
 
 #ifndef TLMacros_h
 #define TLMacros_h
-
 #define     APP_CHANNEL         @"Github"
-
 #pragma mark - Debug
 #define     DEBUG_LOCAL_SERVER      // 使用本地测试服务器
 //#define     DEBUG_MEMERY            // 内存测试
 //#define     DEBUG_JSPATCH           // JSPatch本地测试
-
 #pragma mark - SIZE
 #define     SIZE_SCREEN                 [UIScreen mainScreen].bounds.size
 #define     WIDTH_SCREEN                [UIScreen mainScreen].bounds.size.width
@@ -24,26 +21,17 @@
 #define     HEIGHT_TABBAR               49.0f
 #define     HEIGHT_NAVBAR               44.0f
 #define     NAVBAR_ITEM_FIXED_SPACE     5.0f
-
 #define     BORDER_WIDTH_1PX            ([[UIScreen mainScreen] scale] > 0.0 ? 1.0 / [[UIScreen mainScreen] scale] : 1.0)
-
 #define     MAX_MESSAGE_WIDTH               WIDTH_SCREEN * 0.58
 #define     MAX_MESSAGE_IMAGE_WIDTH         WIDTH_SCREEN * 0.45
 #define     MIN_MESSAGE_IMAGE_WIDTH         WIDTH_SCREEN * 0.25
 #define     MAX_MESSAGE_EXPRESSION_WIDTH    WIDTH_SCREEN * 0.35
 #define     MIN_MESSAGE_EXPRESSION_WIDTH    WIDTH_SCREEN * 0.2
-
 #define mark - Default
-
-
-
 #pragma mark - Methods
 #define     TLURL(urlString)    [NSURL URLWithString:urlString]
 #define     TLNoNilString(str)  (str.length > 0 ? str : @"")
 #define     TLTimeStamp(date)   ([NSString stringWithFormat:@"%lf", [date timeIntervalSince1970]])
-#define     TLColor(r, g, b, a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:a]
-
-
 #pragma mark - ThirdPart KEY
 // UMeng
 #define     UMENG_APPKEY        @"56b8ba33e0f55a15480020b0"
