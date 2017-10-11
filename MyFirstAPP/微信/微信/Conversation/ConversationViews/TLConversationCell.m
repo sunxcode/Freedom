@@ -7,7 +7,7 @@
 //
 
 #import "TLConversationCell.h"
-#import "NSDate+expanded.h"
+#import "NSDate+add.h"
 
 #define     CONV_SPACE_X            10.0f
 #define     CONV_SPACE_Y            9.5f

@@ -19,7 +19,7 @@
     for (NSDictionary *dict in districts) {
         District *districts = [[District alloc] init];
         
-        [districts setValues:dict];
+        [districts setValuesForKeysWithDictionary:dict];
         
         [arrayM addObject:districts];
     }

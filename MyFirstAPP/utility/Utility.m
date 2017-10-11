@@ -7,7 +7,7 @@
 #import "NSDictionary+expanded.h"
 #import "AFNetworking.h"
 #import "AppDelegate.h"
-#import "LoginViewController.h"
+//#import "LoginViewController.h"
 #include <sys/sysctl.h>
 #include <net/if.h>
 #include <net/if_dl.h>
@@ -248,10 +248,10 @@ static dispatch_once_t utility;
 
 - (void)showLoginAlert{
     UINavigationController *curNav = [[[[Utility Share] CustomTabBar_zk] viewControllers] objectAtIndex:[[[Utility Share] CustomTabBar_zk]selectedIndex]];
-    LoginViewController *login=[[LoginViewController alloc]init];
-    login.userInfo=@"againLogin";
-    UINavigationController *nav=[[UINavigationController alloc]initWithRootViewController:login];
-    [curNav presentViewController:nav animated:YES completion:nil];
+//    LoginViewController *login=[[LoginViewController alloc]init];
+//    login.userInfo=@"againLogin";
+//    UINavigationController *nav=[[UINavigationController alloc]initWithRootViewController:login];
+//    [curNav presentViewController:nav animated:YES completion:nil];
 }
 
 - (void)hiddenLoginAlert{

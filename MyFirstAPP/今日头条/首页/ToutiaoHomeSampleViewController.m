@@ -39,7 +39,7 @@
     }
     self.title.text = [dict valueForJSONStrKey:@"title"];
     source.text = [NSString stringWithFormat:@"%@ %@ %@",[dict valueForJSONKey:@"source"],[dict valueForJSONStrKey:@"author"],[[dict valueForJSONStrKey:@"date"]substringToIndex:10]];
-    CGSize size = [self.title.text sizeWithFont:fontTitle maxSize:CGSizeMake(picA.count==1?(APPW-50)*2/3.0 : APPW - 2*Boardseperad, 40)];
+    CGSize size = [self.title.text sizeOfFont:fontTitle maxSize:CGSizeMake(picA.count==1?(APPW-50)*2/3.0 : APPW - 2*Boardseperad, 40)];
     self.title.frame = CGRectMake(Boardseperad, Boardseperad, size.width, size.height);
     icon1.frame = CGRectMake(X(self.title), YH(self.title)+40,(APPW-40)/3.0,  picA.count?(APPW-40)*4/15.0:0);
     if(picA.count==1){
@@ -105,7 +105,7 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSDictionary *d =self.tableView.dataArray[indexPath.row];
-    CGSize size = [d[@"title"] sizeWithFont:fontTitle maxSize:CGSizeMake([d[@"media"]count]==1?(APPW-50)*2/3.0 : APPW - 2*Boardseperad, 40)];
+    CGSize size = [d[@"title"] sizeOfFont:fontTitle maxSize:CGSizeMake([d[@"media"]count]==1?(APPW-50)*2/3.0 : APPW - 2*Boardseperad, 40)];
     if([d[@"media"]count]==0)return 50+size.height;// 70;
     else if([d[@"media"]count]==1)return 110;
     else return 150+size.height;

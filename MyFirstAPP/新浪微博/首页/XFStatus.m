@@ -10,7 +10,7 @@
 #import "XFUser.h"
 #import "MJExtension.h"
 #import "XFPhoto.h"
-#import "NSDate+expanded.h"
+#import "NSDate+add.h"
 
 @implementation XFStatus
 -(NSDictionary *)objectClassInArray {

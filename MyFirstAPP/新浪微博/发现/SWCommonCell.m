@@ -156,7 +156,7 @@
         // 设置文字
         self.rightLabel.text = labelItem.text;
         // 根据文字计算尺寸
-        self.rightLabel.frameSize = [labelItem.text sizeWithFont:self.rightLabel.font maxSize:CGSizeMake(MAXFLOAT, MAXFLOAT)];
+        self.rightLabel.frameSize = [labelItem.text sizeOfFont:self.rightLabel.font maxSize:CGSizeMake(MAXFLOAT, MAXFLOAT)];
         self.accessoryView = self.rightLabel;
     } else { // 取消右边的内容
         self.accessoryView = nil;

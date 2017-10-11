@@ -96,9 +96,7 @@
     
     CGRect newFrame = [from.superview convertRect:from.frame toView:window];
     
-    self.containerView.frameCenterX = CGRectGetMidX(newFrame);
-    
-    self.containerView.frameCenterY = CGRectGetMaxY(newFrame);
+    self.containerView.center = CGPointMake(CGRectGetMidX(newFrame),CGRectGetMaxY(newFrame));
     
     // 通知外界，自己显示了
     if ([self.delegate respondsToSelector:@selector(dropdownMenuDidShow:)]) {

@@ -16,8 +16,9 @@
 #import "UIControl+expanded.h"
 #import "NSString+expanded.h"
 #import "UIView+expanded.h"
-#import "UIView+AutoLayout.h"
+#import "UIView+Addition.h"
 #import "UIImage+expanded.h"
+#import "UIImage+add.h"
 #import "SVProgressHUD.h"
 #import "UIImageView+WebCache.h"
 #import "MJRefresh.h"
@@ -30,6 +31,7 @@
 #import "TLEventStatistics.h"   // 数据统计
 #import "TLHost.h"              // 网络地址
 #import "UIColor+expanded.h"      // 颜色
+#import "UIColor+add.h"
 #import "UIFont+expanded.h"       // 字体
 #import "TLUIUtility.h"
 #import "Masonry.h"

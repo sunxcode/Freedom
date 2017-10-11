@@ -33,7 +33,7 @@
         
         City *city = [[City alloc] init];
         
-        [city setValues:dict];
+        [city setValuesForKeysWithDictionary:dict];
         
         [arrayM addObject:city];
     }

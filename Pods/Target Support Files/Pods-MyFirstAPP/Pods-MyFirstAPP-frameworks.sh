@@ -6,6 +6,10 @@ mkdir -p "${CONFIGURATION_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}"
 
 SWIFT_STDLIB_PATH="${DT_TOOLCHAIN_DIR}/usr/lib/swift/${PLATFORM_NAME}"
 
+# This protects against multiple targets copying the same framework dependency at the same time. The solution
+# was originally proposed here: https://lists.samba.org/archive/rsync/2008-February/020158.html
+RSYNC_PROTECT_TMP_FILES=(--filter "P .*.??????")
+
 install_framework()
 {
   if [ -r "${BUILT_PRODUCTS_DIR}/$1" ]; then
@@ -23,9 +27,9 @@ install_framework()
       source="$(readlink "${source}")"
   fi
 
-  # use filter instead of exclude so missing patterns dont' throw errors
-  echo "rsync -av --filter \"- CVS/\" --filter \"- .svn/\" --filter \"- .git/\" --filter \"- .hg/\" --filter \"- Headers\" --filter \"- PrivateHeaders\" --filter \"- Modules\" \"${source}\" \"${destination}\""
-  rsync -av --filter "- CVS/" --filter "- .svn/" --filter "- .git/" --filter "- .hg/" --filter "- Headers" --filter "- PrivateHeaders" --filter "- Modules" "${source}" "${destination}"
+  # Use filter instead of exclude so missing patterns don't throw errors.
+  echo "rsync --delete -av "${RSYNC_PROTECT_TMP_FILES[@]}" --filter \"- CVS/\" --filter \"- .svn/\" --filter \"- .git/\" --filter \"- .hg/\" --filter \"- Headers\" --filter \"- PrivateHeaders\" --filter \"- Modules\" \"${source}\" \"${destination}\""
+  rsync --delete -av "${RSYNC_PROTECT_TMP_FILES[@]}" --filter "- CVS/" --filter "- .svn/" --filter "- .git/" --filter "- .hg/" --filter "- Headers" --filter "- PrivateHeaders" --filter "- Modules" "${source}" "${destination}"
 
   local basename
   basename="$(basename -s .framework "$1")"
@@ -54,13 +58,27 @@ install_framework()
   fi
 }
 
+# Copies the dSYM of a vendored framework
+install_dsym() {
+  local source="$1"
+  if [ -r "$source" ]; then
+    echo "rsync --delete -av "${RSYNC_PROTECT_TMP_FILES[@]}" --filter \"- CVS/\" --filter \"- .svn/\" --filter \"- .git/\" --filter \"- .hg/\" --filter \"- Headers\" --filter \"- PrivateHeaders\" --filter \"- Modules\" \"${source}\" \"${DWARF_DSYM_FOLDER_PATH}\""
+    rsync --delete -av "${RSYNC_PROTECT_TMP_FILES[@]}" --filter "- CVS/" --filter "- .svn/" --filter "- .git/" --filter "- .hg/" --filter "- Headers" --filter "- PrivateHeaders" --filter "- Modules" "${source}" "${DWARF_DSYM_FOLDER_PATH}"
+  fi
+}
+
 # Signs a framework with the provided identity
 code_sign_if_enabled() {
   if [ -n "${EXPANDED_CODE_SIGN_IDENTITY}" -a "${CODE_SIGNING_REQUIRED}" != "NO" -a "${CODE_SIGNING_ALLOWED}" != "NO" ]; then
     # Use the current code_sign_identitiy
     echo "Code Signing $1 with Identity ${EXPANDED_CODE_SIGN_IDENTITY_NAME}"
-    echo "/usr/bin/codesign --force --sign ${EXPANDED_CODE_SIGN_IDENTITY} ${OTHER_CODE_SIGN_FLAGS} --preserve-metadata=identifier,entitlements \"$1\""
-    /usr/bin/codesign --force --sign ${EXPANDED_CODE_SIGN_IDENTITY} ${OTHER_CODE_SIGN_FLAGS} --preserve-metadata=identifier,entitlements "$1"
+    local code_sign_cmd="/usr/bin/codesign --force --sign ${EXPANDED_CODE_SIGN_IDENTITY} ${OTHER_CODE_SIGN_FLAGS} --preserve-metadata=identifier,entitlements '$1'"
+
+    if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
+      code_sign_cmd="$code_sign_cmd &"
+    fi
+    echo "$code_sign_cmd"
+    eval "$code_sign_cmd"
   fi
 }
 
@@ -71,7 +89,7 @@ strip_invalid_archs() {
   archs="$(lipo -info "$binary" | rev | cut -d ':' -f1 | rev)"
   stripped=""
   for arch in $archs; do
-    if ! [[ "${VALID_ARCHS}" == *"$arch"* ]]; then
+    if ! [[ "${ARCHS}" == *"$arch"* ]]; then
       # Strip non-valid architectures in-place
       lipo -remove "$arch" -output "$binary" "$binary" || exit 1
       stripped="$stripped $arch"
@@ -84,54 +102,73 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "$BUILT_PRODUCTS_DIR/AFNetworking/AFNetworking.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/BlocksKit/BlocksKit.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/CocoaAsyncSocket/CocoaAsyncSocket.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/CocoaLumberjack/CocoaLumberjack.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/DACircularProgress/DACircularProgress.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/ElasticTransitionObjC/ElasticTransitionObjC.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/FMDB/FMDB.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/JSONKit/JSONKit.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/JSPatch/JSPatch.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/KissXML/KissXML.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/MBProgressHUD/MBProgressHUD.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/MJExtension/MJExtension.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/MJRefresh/MJRefresh.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/MWPhotoBrowser/MWPhotoBrowser.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/Masonry/Masonry.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/PPHelpMe/PPHelpMe.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/PPRevealSideViewController/PPRevealSideViewController.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/RESideMenu/RESideMenu.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/Reachability/Reachability.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/ReactiveCocoa/ReactiveCocoa.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/SDAutoLayout/SDAutoLayout.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/SDCycleScrollView/SDCycleScrollView.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/SDWebImage/SDWebImage.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/SVProgressHUD/SVProgressHUD.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/BaseCollectionView/BaseCollectionView.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/BaseFillTableViewController/BaseFillTableViewController.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/BaseScrollView/BaseScrollView.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/BaseStaticTableView/BaseStaticTableView.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/BaseTableView/BaseTableView.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/BlocksKit/BlocksKit.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/CocoaAsyncSocket/CocoaAsyncSocket.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/DACircularProgress/DACircularProgress.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/ElasticTransitionObjC/ElasticTransitionObjC.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/JSONKit/JSONKit.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/JSPatch/JSPatch.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/KissXML/KissXML.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/MWPhotoBrowser/MWPhotoBrowser.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/ObjectDictionary/ObjectDictionary.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/PPHelpMe/PPHelpMe.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/PPRevealSideViewController/PPRevealSideViewController.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/RESideMenu/RESideMenu.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Reachability/Reachability.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SDAutoLayout/SDAutoLayout.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SDCycleScrollView/SDCycleScrollView.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/XCarryOn/XCarryOn.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/XCategory/XCategory.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "$BUILT_PRODUCTS_DIR/AFNetworking/AFNetworking.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/BlocksKit/BlocksKit.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/CocoaAsyncSocket/CocoaAsyncSocket.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/CocoaLumberjack/CocoaLumberjack.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/DACircularProgress/DACircularProgress.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/ElasticTransitionObjC/ElasticTransitionObjC.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/FMDB/FMDB.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/JSONKit/JSONKit.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/JSPatch/JSPatch.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/KissXML/KissXML.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/MBProgressHUD/MBProgressHUD.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/MJExtension/MJExtension.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/MJRefresh/MJRefresh.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/MWPhotoBrowser/MWPhotoBrowser.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/Masonry/Masonry.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/PPHelpMe/PPHelpMe.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/PPRevealSideViewController/PPRevealSideViewController.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/RESideMenu/RESideMenu.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/Reachability/Reachability.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/ReactiveCocoa/ReactiveCocoa.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/SDAutoLayout/SDAutoLayout.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/SDCycleScrollView/SDCycleScrollView.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/SDWebImage/SDWebImage.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/SVProgressHUD/SVProgressHUD.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/BaseCollectionView/BaseCollectionView.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/BaseFillTableViewController/BaseFillTableViewController.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/BaseScrollView/BaseScrollView.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/BaseStaticTableView/BaseStaticTableView.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/BaseTableView/BaseTableView.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/BlocksKit/BlocksKit.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/CocoaAsyncSocket/CocoaAsyncSocket.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/DACircularProgress/DACircularProgress.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/ElasticTransitionObjC/ElasticTransitionObjC.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/JSONKit/JSONKit.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/JSPatch/JSPatch.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/KissXML/KissXML.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/MWPhotoBrowser/MWPhotoBrowser.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/ObjectDictionary/ObjectDictionary.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/PPHelpMe/PPHelpMe.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/PPRevealSideViewController/PPRevealSideViewController.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/RESideMenu/RESideMenu.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Reachability/Reachability.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SDAutoLayout/SDAutoLayout.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SDCycleScrollView/SDCycleScrollView.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/XCarryOn/XCarryOn.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/XCategory/XCategory.framework"
+fi
+if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
+  wait
 fi

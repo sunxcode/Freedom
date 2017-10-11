@@ -186,7 +186,7 @@ static TLEmojiKeyboard *emojiKB;
 {
     if (_pageControl == nil) {
         _pageControl = [[UIPageControl alloc] init];
-        _pageControl.frameCenterX = self.frameCenterX;
+        _pageControl.center = CGPointMake(self.center.x, _pageControl.center.y);
         [_pageControl setPageIndicatorTintColor:[UIColor colorGrayLine]];
         [_pageControl setCurrentPageIndicatorTintColor:[UIColor grayColor]];
         [_pageControl addTarget:self action:@selector(pageControlChanged:) forControlEvents:UIControlEventValueChanged];

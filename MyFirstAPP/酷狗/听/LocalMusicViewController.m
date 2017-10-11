@@ -11,7 +11,7 @@
 #import "KugouTabBarController.h"
 #import "LocalMusicCell.h"
 #import <AVFoundation/AVFoundation.h>
-#import "NSMutableArray+expanded.h"
+#import "NSMutableArray+add.h"
 @interface LocalMusicViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,strong) MPMusicPlayerController *musicController;
 @property (nonatomic,weak) UITableView *tableView;

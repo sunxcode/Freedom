@@ -71,14 +71,14 @@
     
     CGFloat timeX = nameX;
     CGFloat timeY = CGRectGetMaxY(self.nameLabelF) + XFStatusCellBorderH;
-    CGSize timeSize = [status.created_at sizeWithFont:XFStatusCellTimeFont];
+    CGSize timeSize = [status.created_at sizeOfFont:XFStatusCellTimeFont];
     self.timeLabelF = (CGRect){{timeX, timeY}, timeSize};
     
     
     /** 来源 */
     CGFloat sourceX = CGRectGetMaxX(self.timeLabelF) + XFStatusCellBorderW;
     CGFloat sourceY = timeY;
-    CGSize sourceSize = [status.source sizeWithFont:XFStatusCellSourceFont];
+    CGSize sourceSize = [status.source sizeOfFont:XFStatusCellSourceFont];
     self.sourceLabelF = (CGRect){{sourceX, sourceY}, sourceSize};
 
     
@@ -87,7 +87,7 @@
     CGFloat contentX = XFStatusCellBorderW;
     CGFloat contentY = CGRectGetMaxY(self.iconViewF) + XFStatusCellBorderW;
     CGFloat maxW = cellW - 2 * contentX;
-    CGSize contentSize = [status.text sizeWithFont:XFStatusCellContentFont maxW:maxW];
+    CGSize contentSize = [status.text sizeOfFont:XFStatusCellContentFont maxW:maxW];
     self.contentLabelF = (CGRect){{contentX, contentY}, contentSize};
     
     
@@ -122,7 +122,7 @@
         CGFloat retweetContentX = XFStatusCellBorderW;
         CGFloat retweetContentY = XFStatusCellBorderW;
         NSString *retweetContent = [NSString stringWithFormat:@"@%@ : %@", retweeted_status_user.name, retweeted_status.text];
-        CGSize retweetContentSize = [retweetContent sizeWithFont:XFStatusCellRetweetContentFont maxW:maxW];
+        CGSize retweetContentSize = [retweetContent sizeOfFont:XFStatusCellRetweetContentFont maxW:maxW];
         self.retweetContentLabelF = (CGRect){{retweetContentX, retweetContentY}, retweetContentSize};
         
         /** 被转发微博配图 */

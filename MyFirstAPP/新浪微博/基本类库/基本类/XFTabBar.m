@@ -57,8 +57,7 @@
     
     //设置加号的位置
     
-    self.plusBtn.frameCenterX = APPW *0.5;
-    self.plusBtn.frameCenterY = 50 * 0.5;
+    self.plusBtn.center = CGPointMake(APPW *0.5, 50 * 0.5);
     
     //设置其他tabbarButton的位置和尺寸
     CGFloat tabBarButtonW  = APPW / 5;

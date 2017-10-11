@@ -52,7 +52,7 @@
         if (self.hiddenScannerIndicator) {
             return;
         }
-        self.scannerLine.frameCenterX = self.bgView.frameCenterX;
+        self.scannerLine.center = CGPointMake(self.bgView.center.x,self.scannerLine.center.y);
         self.scannerLine.frameWidth = self.bgView.frameWidth * 1.4;
         self.scannerLine.frameHeight = 10;
         if (self.scannerLine.frameY + self.scannerLine.frameHeight >= self.frameHeight) {

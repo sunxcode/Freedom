@@ -8,7 +8,7 @@
 
 #import "TLMessageBaseCell.h"
 #import "UIButton+WebCache.h"
-#import "NSDate+expanded.h"
+#import "NSDate+add.h"
 
 #define     TIMELABEL_HEIGHT    20.0f
 #define     TIMELABEL_SPACE_Y   10.0f

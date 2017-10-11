@@ -36,14 +36,14 @@
     
     UIImageView *img = [[UIImageView alloc] initWithFrame:CGRectMake(15, 0, 40, 40)];
     img.image = [UIImage imageNamed:@"placeHoder-128"];
-    img.frameCenterY = self.topView.frameCenterY;
+    img.center = CGPointMake(img.center.x,self.topView.center.y);
     img.layer.cornerRadius = img.frameWidth*0.5;
     img.layer.masksToBounds = YES;
     [self.topView addSubview:img];
     
     UIImageView *img2 = [[UIImageView alloc] initWithFrame:CGRectMake(APPW-80, 0, 40, 40)];
     img2.image = [UIImage imageNamed:@"placeHoder-128"];
-    img2.frameCenterY = self.topView.frameCenterY;
+    img2.center = CGPointMake(img2.center.x,self.topView.center.y);
     img2.layer.cornerRadius = img.frameWidth*0.5;
     img2.layer.masksToBounds = YES;
     [self.topView addSubview:img2];

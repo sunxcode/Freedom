@@ -3,6 +3,7 @@
 //  GSD_ZHIFUBAO
 #import "SDHomeViewController.h"
 #import "UIView+SDExtension.h"
+#import "UIView+Addition.h"
 #import "SDAddItemViewController.h"
 #import "AlipayTools.h"
 #import "SDHomeGridViewListItemView.h"

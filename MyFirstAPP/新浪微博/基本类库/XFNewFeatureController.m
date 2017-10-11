@@ -54,8 +54,7 @@
             [shareBtn setTitle:@"分享至微博" forState:UIControlStateNormal];
             [shareBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
             shareBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 30);
-            shareBtn.frameCenterX = imageView.frameWidth *0.24;
-            shareBtn.frameCenterY = imageView.frameHeight * 0.70;
+            shareBtn.center = CGPointMake(imageView.frameWidth *0.24,imageView.frameHeight * 0.70);
             shareBtn.frameHeight = 30;
             shareBtn.frameWidth = 200;
             [shareBtn addTarget:self action:@selector(shareClick) forControlEvents:UIControlEventTouchUpInside];

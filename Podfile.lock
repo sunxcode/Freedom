@@ -14,6 +14,31 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - BaseCollectionView (0.1.6):
+    - AFNetworking (~> 3.0)
+    - MJRefresh (~> 3.1.0)
+    - SDWebImage
+    - SVProgressHUD (~> 0.9)
+  - BaseFillTableViewController (0.1.6):
+    - AFNetworking (~> 3.0)
+    - MJRefresh (~> 3.1.0)
+    - SDWebImage
+    - SVProgressHUD (~> 0.9)
+  - BaseScrollView (0.1.8):
+    - AFNetworking
+    - MJRefresh
+    - SDWebImage
+    - SVProgressHUD
+  - BaseStaticTableView (0.1.8):
+    - AFNetworking (~> 3.0)
+    - MJRefresh (~> 3.1.0)
+    - SDWebImage
+    - SVProgressHUD (~> 0.9)
+  - BaseTableView (0.1.7):
+    - AFNetworking (~> 3.0)
+    - MJRefresh (~> 3.1.0)
+    - SDWebImage
+    - SVProgressHUD (~> 0.9)
   - BlocksKit (2.2.5):
     - BlocksKit/All (= 2.2.5)
   - BlocksKit/All (2.2.5):
@@ -62,6 +87,9 @@ PODS:
     - DACircularProgress (~> 2.3)
     - MBProgressHUD (~> 0.9)
     - SDWebImage (!= 3.7.2, ~> 3.7)
+  - ObjectDictionary (0.1.4):
+    - ObjectDictionary/JSONKit (= 0.1.4)
+  - ObjectDictionary/JSONKit (0.1.4)
   - PPHelpMe (1.0.2)
   - PPRevealSideViewController (1.2.3):
     - PPHelpMe
@@ -82,9 +110,24 @@ PODS:
   - SDWebImage/Core (3.7.6)
   - SVProgressHUD (0.9)
   - UMengAnalytics (3.6.6)
+  - XCarryOn (0.1.6):
+    - AFNetworking (~> 3.0)
+    - MJRefresh (~> 3.1.0)
+    - SDWebImage
+    - SVProgressHUD (~> 0.9)
+  - XCategory (0.2.3):
+    - AFNetworking
+    - MJRefresh
+    - SDWebImage
+    - SVProgressHUD
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
+  - BaseCollectionView (~> 0.1.6)
+  - BaseFillTableViewController (~> 0.1.6)
+  - BaseScrollView (~> 0.1.8)
+  - BaseStaticTableView (~> 0.1.8)
+  - BaseTableView (~> 0.1.7)
   - BlocksKit (~> 2.2.5)
   - CocoaAsyncSocket (~> 7.4.2)
   - CocoaLumberjack (~> 2.2.0)
@@ -97,6 +140,7 @@ DEPENDENCIES:
   - MJExtension (~> 3.0.10)
   - MJRefresh (~> 3.1.0)
   - MWPhotoBrowser (~> 2.1.1)
+  - ObjectDictionary (~> 0.1.4)
   - PPRevealSideViewController (~> 1.2.1)
   - Reachability (= 3.1.1)
   - ReactiveCocoa (~> 2.5)
@@ -106,9 +150,16 @@ DEPENDENCIES:
   - SDWebImage (~> 3.7.4)
   - SVProgressHUD (= 0.9)
   - UMengAnalytics (~> 3.6.6)
+  - XCarryOn (~> 0.1.6)
+  - XCategory (~> 0.2.3)
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  BaseCollectionView: 09ecd7dc455d03df54eba49d02c117bfa48e27c3
+  BaseFillTableViewController: 92ea969d44ba6db6f7cf2b6587ac31c99b737861
+  BaseScrollView: b1ce916c098b2e54a32eb5f13b9ecdc03cba066c
+  BaseStaticTableView: 0f3cf946747c6fa92f01589c84fa6588b919f939
+  BaseTableView: 3b1d42ae41b083b5cf13ccf2f3c029bbf7d26f98
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
   CocoaAsyncSocket: a18c75dca4b08723628a0bacca6e94803d90be91
   CocoaLumberjack: 17fe8581f84914d5d7e6360f7c70022b173c3ae0
@@ -123,6 +174,7 @@ SPEC CHECKSUMS:
   MJExtension: d86aacb740c87519d20e3cca55b6fa4be6cc7548
   MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
   MWPhotoBrowser: 5836d7aa041dc05a13de380c246826578adc5ea5
+  ObjectDictionary: 0c2cd262eab9faf2488aea2ae52469887fb4ffbb
   PPHelpMe: 243c40d2fad33ebdcc6b158c0db54893e0cc2d14
   PPRevealSideViewController: e74d7b490738b39388f3ab9166f89dbe751560b4
   Reachability: dd9aa4fb6667b9f787690a74f53cb7634ce99893
@@ -133,7 +185,9 @@ SPEC CHECKSUMS:
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
   SVProgressHUD: 7038ae9d6a0bd2c87560d2699eba642eef82d41e
   UMengAnalytics: 4bf831415146b9c57cb10be65fbd43462ef8cf65
+  XCarryOn: f54b749e8716b90bb9c01cc12441dc9174dcb02a
+  XCategory: bcf6e42aa01be4d175765ef0f2bad9a6b56153f1
 
-PODFILE CHECKSUM: 514079726a02e9a335d3cfbe2f015bf886d2069d
+PODFILE CHECKSUM: 92dce3d2451cbc897c7121ff2a8b6d68481e017d
 
-COCOAPODS: 1.0.0
+COCOAPODS: 1.3.1

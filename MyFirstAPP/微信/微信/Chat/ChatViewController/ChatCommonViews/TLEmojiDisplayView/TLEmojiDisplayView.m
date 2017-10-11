@@ -60,8 +60,7 @@
 
 - (void)setRect:(CGRect)rect
 {
-    [self setFrameCenterX:rect.origin.x + rect.size.width / 2];
-    [self setFrameY:rect.origin.y + rect.size.height - self.frameHeight + 15.0];
+    self.center = CGPointMake(rect.origin.x + rect.size.width / 2, rect.origin.y + rect.size.height - self.frameHeight + 15.0+self.frameHeight/2);
 }
 
 #pragma mark - Private Methods -

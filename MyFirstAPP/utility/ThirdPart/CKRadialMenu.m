@@ -9,6 +9,7 @@
 #import "CKRadialMenu.h"
 #import "FirstViewController.h"
 #import "UIView+expanded.h"
+#import "UIView+Addition.h"
 @interface CKRadialMenu()
 @property (nonatomic, strong) NSMutableDictionary *poputIDs;
 @property (nonatomic, strong) UIView *positionView;
