@@ -17,14 +17,14 @@
     [[UINavigationBar appearance]setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
     self.navigationController.navigationBarHidden = YES;
     // 1.创建组
-    FBaseGroup *group1 = [[FBaseGroup alloc]init];
-    FBaseGroup *group2 = [[FBaseGroup alloc]init];
-    FBaseGroup *group3 = [[FBaseGroup alloc]init];
-    FBaseCell *c2 = [FBaseCell cellWithTableView:(UITableView *)self.tableView];
-    FBaseCell *c3 = [FBaseCell cellWithTableView:(UITableView *)self.tableView];
-    FBaseCell *c4 = [FBaseCell cellWithTableView:(UITableView *)self.tableView];
-    FBaseCell *c5 = [FBaseCell cellWithTableView:(UITableView *)self.tableView];
-    FBaseCell *c6 = [FBaseCell cellWithTableView:(UITableView *)self.tableView];
+    SBaseGroup *group1 = [[SBaseGroup alloc]init];
+    SBaseGroup *group2 = [[SBaseGroup alloc]init];
+    SBaseGroup *group3 = [[SBaseGroup alloc]init];
+    SBaseCell *c2 = [SBaseCell cellWithTableView:(UITableView *)self.tableView];
+    SBaseCell *c3 = [SBaseCell cellWithTableView:(UITableView *)self.tableView];
+    SBaseCell *c4 = [SBaseCell cellWithTableView:(UITableView *)self.tableView];
+    SBaseCell *c5 = [SBaseCell cellWithTableView:(UITableView *)self.tableView];
+    SBaseCell *c6 = [SBaseCell cellWithTableView:(UITableView *)self.tableView];
     self.c1.title = @"消息通知";
     __weak __typeof__(self) weakSelf = self;
     self.c1.operation = ^{
@@ -42,7 +42,7 @@
     group2.items = @[c2,c3];
     group3.items = @[c4,c5,c6];
     [self.groups addObjectsFromArray:@[group1,group2,group3]];
-    self.tableHeadView = [self creatTableHeadView];
+    self.tableView.tableHeaderView = [self creatTableHeadView];
     self.tableView.frame = CGRectMake(0, 0, APPW, APPH);
     self.tableView.bounces = NO;
 }

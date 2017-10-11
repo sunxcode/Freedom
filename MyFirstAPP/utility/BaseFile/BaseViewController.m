@@ -293,7 +293,6 @@ static BaseViewController *BVC = nil;
     self.tableView.rowH = rowH;
     self.tableView.sectionN = sectionN;
     self.tableView.rowN = rowN;
-    self.tableView.cellName = cell;
     self.tableView.cell = [NSClassFromString(cell) getInstance];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -318,9 +317,10 @@ static BaseViewController *BVC = nil;
     }
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    self.tableView.cell = [tableView dequeueReusableCellWithIdentifier:[NSClassFromString(self.tableView.cellName) getTableCellIdentifier]];
+    NSString *cellName = NSStringFromClass(self.tableView.cell.class);
+    self.tableView.cell = [tableView dequeueReusableCellWithIdentifier:[NSClassFromString(cellName) getTableCellIdentifier]];
     if(!self.tableView.cell){
-        self.tableView.cell = [NSClassFromString(self.tableView.cellName) getInstance];
+        self.tableView.cell = [NSClassFromString(cellName) getInstance];
     }
     if(self.tableView.sectionN==1){
         [self.tableView.cell  setDataWithDict:self.tableView.dataArray[indexPath.row]];
@@ -370,10 +370,7 @@ static BaseViewController *BVC = nil;
     return @[deleteRowAction,topRowAction];
 }
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
-    //return UITableViewCellEditingStyleDelete;
-    //return UITableViewCellEditingStyleInsert;
-//    return UITableViewCellEditingStyleNone;
-      return self.tableView.editingStyle;
+    return UITableViewCellEditingStyleNone;
 }
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     NSUInteger row = [indexPath row];
