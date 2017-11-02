@@ -503,7 +503,6 @@
 		77645FEE1D68260A00ACCCAC /* Moments.json in Resources */ = {isa = PBXBuildFile; fileRef = 77645FE81D68260A00ACCCAC /* Moments.json */; };
 		77645FEF1D68260A00ACCCAC /* SystemEmoji.json in Resources */ = {isa = PBXBuildFile; fileRef = 77645FE91D68260A00ACCCAC /* SystemEmoji.json */; };
 		77645FF11D68384600ACCCAC /* Wechart.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77645FF01D68384600ACCCAC /* Wechart.storyboard */; };
-		776460091D68429C00ACCCAC /* TLUIUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 776460001D68429C00ACCCAC /* TLUIUtility.m */; };
 		7764606A1D68437F00ACCCAC /* TLDBBaseStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 776460541D68437F00ACCCAC /* TLDBBaseStore.m */; };
 		7764606B1D68437F00ACCCAC /* TLDBMessageStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 776460571D68437F00ACCCAC /* TLDBMessageStore.m */; };
 		7764606C1D68437F00ACCCAC /* TLDBConversationStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 7764605C1D68437F00ACCCAC /* TLDBConversationStore.m */; };
@@ -511,13 +510,6 @@
 		7764606E1D68437F00ACCCAC /* TLDBFriendStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 776460641D68437F00ACCCAC /* TLDBFriendStore.m */; };
 		7764606F1D68437F00ACCCAC /* TLDBGroupStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 776460671D68437F00ACCCAC /* TLDBGroupStore.m */; };
 		776460701D68437F00ACCCAC /* TLDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 776460691D68437F00ACCCAC /* TLDBManager.m */; };
-		776460811D6843BE00ACCCAC /* TLImageBrowserController.m in Sources */ = {isa = PBXBuildFile; fileRef = 776460741D6843BE00ACCCAC /* TLImageBrowserController.m */; };
-		776460821D6843BE00ACCCAC /* TLImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 776460771D6843BE00ACCCAC /* TLImagePickerController.m */; };
-		776460831D6843BE00ACCCAC /* TLPictureCarouselView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7764607B1D6843BE00ACCCAC /* TLPictureCarouselView.m */; };
-		776460841D6843BE00ACCCAC /* TLPictureCarouselViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7764607D1D6843BE00ACCCAC /* TLPictureCarouselViewCell.m */; };
-		776460851D6843BE00ACCCAC /* TLQRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 776460801D6843BE00ACCCAC /* TLQRCodeViewController.m */; };
-		7764608F1D6843CF00ACCCAC /* TLLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 776460891D6843CF00ACCCAC /* TLLoginViewController.m */; };
-		776460901D6843CF00ACCCAC /* TLRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7764608C1D6843CF00ACCCAC /* TLRegisterViewController.m */; };
 		776460911D6843CF00ACCCAC /* TLRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7764608E1D6843CF00ACCCAC /* TLRootViewController.m */; };
 		776460A11D6843E100ACCCAC /* TLAddMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 776460951D6843E100ACCCAC /* TLAddMenuCell.m */; };
 		776460A21D6843E100ACCCAC /* TLAddMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 776460971D6843E100ACCCAC /* TLAddMenuItem.m */; };
@@ -573,8 +565,6 @@
 		776461731D6843F900ACCCAC /* TLMomentExtensionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 776461401D6843F900ACCCAC /* TLMomentExtensionView.m */; };
 		776461741D6843F900ACCCAC /* TLMomentBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 776461421D6843F900ACCCAC /* TLMomentBaseView.m */; };
 		776461751D6843F900ACCCAC /* TLMomentImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 776461441D6843F900ACCCAC /* TLMomentImageView.m */; };
-		776461761D6843F900ACCCAC /* TLMomentsViewController+Proxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 776461471D6843F900ACCCAC /* TLMomentsViewController+Proxy.m */; };
-		776461771D6843F900ACCCAC /* TLMomentsViewController+TableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 776461491D6843F900ACCCAC /* TLMomentsViewController+TableView.m */; };
 		776461781D6843F900ACCCAC /* TLMomentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7764614B1D6843F900ACCCAC /* TLMomentsViewController.m */; };
 		776461791D6843F900ACCCAC /* TLScannerBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7764614F1D6843F900ACCCAC /* TLScannerBackgroundView.m */; };
 		7764617A1D6843F900ACCCAC /* TLScannerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 776461511D6843F900ACCCAC /* TLScannerButton.m */; };
@@ -672,32 +662,7 @@
 		776462C21D68446300ACCCAC /* TLNewMessageSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 776462AF1D68446300ACCCAC /* TLNewMessageSettingViewController.m */; };
 		776462C31D68446300ACCCAC /* TLPrivacySettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 776462B21D68446300ACCCAC /* TLPrivacySettingViewController.m */; };
 		776462C41D68446300ACCCAC /* TLMineSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 776462B51D68446300ACCCAC /* TLMineSettingViewController.m */; };
-		776463061D68452B00ACCCAC /* TLActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 776462C71D68452B00ACCCAC /* TLActionSheet.m */; };
-		776463071D68452B00ACCCAC /* TLInfoButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 776462CB1D68452B00ACCCAC /* TLInfoButtonCell.m */; };
-		776463081D68452B00ACCCAC /* TLInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 776462CD1D68452B00ACCCAC /* TLInfoCell.m */; };
-		776463091D68452B00ACCCAC /* TLInfoHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 776462CF1D68452B00ACCCAC /* TLInfoHeaderFooterView.m */; };
-		7764630A1D68452B00ACCCAC /* TLInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 776462D31D68452B00ACCCAC /* TLInfo.m */; };
-		7764630B1D68452B00ACCCAC /* TLInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 776462D51D68452B00ACCCAC /* TLInfoViewController.m */; };
-		7764630C1D68452B00ACCCAC /* TLMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 776462D81D68452B00ACCCAC /* TLMenuCell.m */; };
-		7764630D1D68452B00ACCCAC /* TLMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 776462DA1D68452B00ACCCAC /* TLMenuItem.m */; };
-		7764630E1D68452B00ACCCAC /* TLMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 776462DC1D68452B00ACCCAC /* TLMenuViewController.m */; };
-		7764630F1D68452B00ACCCAC /* TLNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 776462DF1D68452B00ACCCAC /* TLNavigationController.m */; };
-		776463101D68452B00ACCCAC /* TLSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 776462E21D68452B00ACCCAC /* TLSearchController.m */; };
-		776463111D68452B00ACCCAC /* TLSettingButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 776462E61D68452B00ACCCAC /* TLSettingButtonCell.m */; };
-		776463121D68452B00ACCCAC /* TLSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 776462E81D68452B00ACCCAC /* TLSettingCell.m */; };
-		776463131D68452B00ACCCAC /* TLSettingSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 776462EA1D68452B00ACCCAC /* TLSettingSwitchCell.m */; };
-		776463141D68452B00ACCCAC /* TLSettingGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 776462ED1D68452B00ACCCAC /* TLSettingGroup.m */; };
-		776463151D68452B00ACCCAC /* TLSettingItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 776462EF1D68452B00ACCCAC /* TLSettingItem.m */; };
-		776463161D68452B00ACCCAC /* TLSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 776462F11D68452B00ACCCAC /* TLSettingViewController.m */; };
-		776463171D68452B00ACCCAC /* TLSettingFooterTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 776462F41D68452B00ACCCAC /* TLSettingFooterTitleView.m */; };
-		776463181D68452B00ACCCAC /* TLSettingHeaderTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 776462F61D68452B00ACCCAC /* TLSettingHeaderTitleView.m */; };
-		776463191D68452B00ACCCAC /* TLTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 776462F91D68452B00ACCCAC /* TLTabBarController.m */; };
-		7764631A1D68452B00ACCCAC /* TLTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 776462FC1D68452B00ACCCAC /* TLTableViewCell.m */; };
-		7764631B1D68452B00ACCCAC /* TLTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 776462FF1D68452B00ACCCAC /* TLTableViewController.m */; };
-		7764631C1D68452B00ACCCAC /* TLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 776463021D68452B00ACCCAC /* TLViewController.m */; };
-		7764631D1D68452B00ACCCAC /* TLWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 776463051D68452B00ACCCAC /* TLWebViewController.m */; };
 		776463241D68455300ACCCAC /* TLHost.m in Sources */ = {isa = PBXBuildFile; fileRef = 776463221D68455300ACCCAC /* TLHost.m */; };
-		776463281D6845ED00ACCCAC /* TLAppHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 776463271D6845ED00ACCCAC /* TLAppHelper.m */; };
 		7764633F1D68460B00ACCCAC /* TLChatDetailHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7764632B1D68460B00ACCCAC /* TLChatDetailHelper.m */; };
 		776463401D68460B00ACCCAC /* TLEmojiKBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7764632E1D68460B00ACCCAC /* TLEmojiKBHelper.m */; };
 		776463411D68460B00ACCCAC /* TLMoreKBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 776463301D68460B00ACCCAC /* TLMoreKBHelper.m */; };
@@ -721,9 +686,6 @@
 		776463771D68466200ACCCAC /* TLNewMessageSettingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7764636F1D68466200ACCCAC /* TLNewMessageSettingHelper.m */; };
 		776463781D68466200ACCCAC /* TLPrivacySettingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 776463711D68466200ACCCAC /* TLPrivacySettingHelper.m */; };
 		776463791D68466200ACCCAC /* TLSettingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 776463731D68466200ACCCAC /* TLSettingHelper.m */; };
-		7764637D1D68467500ACCCAC /* TLAddMenuHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7764637C1D68467500ACCCAC /* TLAddMenuHelper.m */; };
-		776463831D68471300ACCCAC /* TLBaseDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 776463801D68471300ACCCAC /* TLBaseDataModel.m */; };
-		776463841D68471300ACCCAC /* TLBaseProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 776463821D68471300ACCCAC /* TLBaseProxy.m */; };
 		776463871D68476600ACCCAC /* TLRootProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 776463861D68476600ACCCAC /* TLRootProxy.m */; };
 		776463961D68478500ACCCAC /* TLGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 7764638A1D68478500ACCCAC /* TLGroup.m */; };
 		776463971D68478500ACCCAC /* TLUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 7764638D1D68478500ACCCAC /* TLUser.m */; };
@@ -736,11 +698,6 @@
 		776463AB1D68479900ACCCAC /* TLMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 776463A31D68479900ACCCAC /* TLMessage.m */; };
 		776463AC1D68479900ACCCAC /* TLMessageFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 776463A51D68479900ACCCAC /* TLMessageFrame.m */; };
 		776463AD1D68479900ACCCAC /* TLTextMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 776463A81D68479900ACCCAC /* TLTextMessage.m */; };
-		776463BA1D6847C000ACCCAC /* TLMoment.m in Sources */ = {isa = PBXBuildFile; fileRef = 776463B11D6847C000ACCCAC /* TLMoment.m */; };
-		776463BB1D6847C000ACCCAC /* TLMomentComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 776463B31D6847C000ACCCAC /* TLMomentComment.m */; };
-		776463BC1D6847C000ACCCAC /* TLMomentDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 776463B51D6847C000ACCCAC /* TLMomentDetail.m */; };
-		776463BD1D6847C000ACCCAC /* TLMomentExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 776463B71D6847C000ACCCAC /* TLMomentExtension.m */; };
-		776463BE1D6847C000ACCCAC /* TLMomentsProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 776463B91D6847C000ACCCAC /* TLMomentsProxy.m */; };
 		776463C21D6847DD00ACCCAC /* TLExpressionProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 776463C11D6847DD00ACCCAC /* TLExpressionProxy.m */; };
 		776463C61D6867A400ACCCAC /* UserErweima.png in Resources */ = {isa = PBXBuildFile; fileRef = 776463C51D6867A400ACCCAC /* UserErweima.png */; };
 		7772A7F41D64434200444973 /* CKRadialMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 7772A7F31D64434200444973 /* CKRadialMenu.m */; };
@@ -1428,6 +1385,32 @@
 		BF5B9B7F1F8E67B900BD885E /* WidomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5B9B7E1F8E67B900BD885E /* WidomViewController.swift */; };
 		BF5B9B811F8E67C000BD885E /* PowerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5B9B801F8E67C000BD885E /* PowerViewController.swift */; };
 		BF5B9B831F8E67CC00BD885E /* HappyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5B9B821F8E67CC00BD885E /* HappyViewController.swift */; };
+		BF6E566F1FAAEBA3005F7DF8 /* TLUIUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6E566E1FAAEBA2005F7DF8 /* TLUIUtility.m */; };
+		BF6E56721FAAEBCB005F7DF8 /* TLRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6E56711FAAEBCB005F7DF8 /* TLRegisterViewController.m */; };
+		BF6E56961FAAF341005F7DF8 /* TLPictureCarouselView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6E567F1FAAEE5F005F7DF8 /* TLPictureCarouselView.m */; };
+		BF6E56971FAAF374005F7DF8 /* TLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6E568E1FAAEE62005F7DF8 /* TLViewController.m */; };
+		BF6E56981FAAF3F7005F7DF8 /* TLWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6E56801FAAEE5F005F7DF8 /* TLWebViewController.m */; };
+		BF6E56991FAAF451005F7DF8 /* TLNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6E56861FAAEE60005F7DF8 /* TLNavigationController.m */; };
+		BF6E569A1FAAF45A005F7DF8 /* TLSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6E567E1FAAEE5E005F7DF8 /* TLSearchController.m */; };
+		BF6E569B1FAAF475005F7DF8 /* TLQRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6E56881FAAEE61005F7DF8 /* TLQRCodeViewController.m */; };
+		BF6E569C1FAAF480005F7DF8 /* TLMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6E567B1FAAEE5E005F7DF8 /* TLMenuItem.m */; };
+		BF6E569D1FAAF48A005F7DF8 /* TLMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6E56911FAAEE63005F7DF8 /* TLMenuViewController.m */; };
+		BF6E569E1FAAF4B8005F7DF8 /* TLTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6E56821FAAEE5F005F7DF8 /* TLTableViewController.m */; };
+		BF6E569F1FAAF4C9005F7DF8 /* TLAddMenuHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6E56841FAAEE60005F7DF8 /* TLAddMenuHelper.m */; };
+		BF6E56A01FAAF4D1005F7DF8 /* TLAppHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6E56771FAAEE5D005F7DF8 /* TLAppHelper.m */; };
+		BF6E56A11FAAF501005F7DF8 /* TLInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6E568D1FAAEE62005F7DF8 /* TLInfo.m */; };
+		BF6E56A21FAAF510005F7DF8 /* TLInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6E56851FAAEE60005F7DF8 /* TLInfoViewController.m */; };
+		BF6E56A31FAAF51B005F7DF8 /* TLTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6E56891FAAEE61005F7DF8 /* TLTabBarController.m */; };
+		BF6E56A41FAAF524005F7DF8 /* TLTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6E568F1FAAEE62005F7DF8 /* TLTableViewCell.m */; };
+		BF6E56A51FAAF559005F7DF8 /* TLActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6E56931FAAEE63005F7DF8 /* TLActionSheet.m */; };
+		BF6E56A61FAAF563005F7DF8 /* TLImageBrowserController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6E567D1FAAEE5E005F7DF8 /* TLImageBrowserController.m */; };
+		BF6E56AD1FAAF7D6005F7DF8 /* TLSettingGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6E56A81FAAF7D4005F7DF8 /* TLSettingGroup.m */; };
+		BF6E56AE1FAAF7D6005F7DF8 /* TLSettingItem.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6E56AA1FAAF7D5005F7DF8 /* TLSettingItem.m */; };
+		BF6E56AF1FAAF7D6005F7DF8 /* TLSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6E56AC1FAAF7D6005F7DF8 /* TLSettingViewController.m */; };
+		BF6E56B91FAAFC18005F7DF8 /* TLMoment.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6E56B21FAAFBBF005F7DF8 /* TLMoment.m */; };
+		BF6E56BA1FAAFC2C005F7DF8 /* TLMomentComment.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6E56B41FAAFBBF005F7DF8 /* TLMomentComment.m */; };
+		BF6E56BB1FAAFC33005F7DF8 /* TLMomentDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6E56B61FAAFBBF005F7DF8 /* TLMomentDetail.m */; };
+		BF6E56BC1FAAFC3B005F7DF8 /* TLMomentExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6E56B81FAAFBBF005F7DF8 /* TLMomentExtension.m */; };
 		CE7D3D02561A884A24654308 /* Pods_Freedom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60338462214883C1C05F8646 /* Pods_Freedom.framework */; };
 /* End PBXBuildFile section */
 
@@ -2064,8 +2047,6 @@
 		77645FE81D68260A00ACCCAC /* Moments.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Moments.json; sourceTree = "<group>"; };
 		77645FE91D68260A00ACCCAC /* SystemEmoji.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SystemEmoji.json; sourceTree = "<group>"; };
 		77645FF01D68384600ACCCAC /* Wechart.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Wechart.storyboard; sourceTree = "<group>"; };
-		77645FFF1D68429C00ACCCAC /* TLUIUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLUIUtility.h; sourceTree = "<group>"; };
-		776460001D68429C00ACCCAC /* TLUIUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLUIUtility.m; sourceTree = "<group>"; };
 		776460531D68437F00ACCCAC /* TLDBBaseStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLDBBaseStore.h; sourceTree = "<group>"; };
 		776460541D68437F00ACCCAC /* TLDBBaseStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLDBBaseStore.m; sourceTree = "<group>"; };
 		776460561D68437F00ACCCAC /* TLDBMessageStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLDBMessageStore.h; sourceTree = "<group>"; };
@@ -2085,21 +2066,6 @@
 		776460671D68437F00ACCCAC /* TLDBGroupStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLDBGroupStore.m; sourceTree = "<group>"; };
 		776460681D68437F00ACCCAC /* TLDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLDBManager.h; sourceTree = "<group>"; };
 		776460691D68437F00ACCCAC /* TLDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLDBManager.m; sourceTree = "<group>"; };
-		776460731D6843BE00ACCCAC /* TLImageBrowserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLImageBrowserController.h; sourceTree = "<group>"; };
-		776460741D6843BE00ACCCAC /* TLImageBrowserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLImageBrowserController.m; sourceTree = "<group>"; };
-		776460761D6843BE00ACCCAC /* TLImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLImagePickerController.h; sourceTree = "<group>"; };
-		776460771D6843BE00ACCCAC /* TLImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLImagePickerController.m; sourceTree = "<group>"; };
-		776460791D6843BE00ACCCAC /* TLPictureCarouselProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLPictureCarouselProtocol.h; sourceTree = "<group>"; };
-		7764607A1D6843BE00ACCCAC /* TLPictureCarouselView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLPictureCarouselView.h; sourceTree = "<group>"; };
-		7764607B1D6843BE00ACCCAC /* TLPictureCarouselView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLPictureCarouselView.m; sourceTree = "<group>"; };
-		7764607C1D6843BE00ACCCAC /* TLPictureCarouselViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLPictureCarouselViewCell.h; sourceTree = "<group>"; };
-		7764607D1D6843BE00ACCCAC /* TLPictureCarouselViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLPictureCarouselViewCell.m; sourceTree = "<group>"; };
-		7764607F1D6843BE00ACCCAC /* TLQRCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLQRCodeViewController.h; sourceTree = "<group>"; };
-		776460801D6843BE00ACCCAC /* TLQRCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLQRCodeViewController.m; sourceTree = "<group>"; };
-		776460881D6843CF00ACCCAC /* TLLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLLoginViewController.h; sourceTree = "<group>"; };
-		776460891D6843CF00ACCCAC /* TLLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLLoginViewController.m; sourceTree = "<group>"; };
-		7764608B1D6843CF00ACCCAC /* TLRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLRegisterViewController.h; sourceTree = "<group>"; };
-		7764608C1D6843CF00ACCCAC /* TLRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLRegisterViewController.m; sourceTree = "<group>"; };
 		7764608D1D6843CF00ACCCAC /* TLRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLRootViewController.h; sourceTree = "<group>"; };
 		7764608E1D6843CF00ACCCAC /* TLRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLRootViewController.m; sourceTree = "<group>"; };
 		776460941D6843E100ACCCAC /* TLAddMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLAddMenuCell.h; sourceTree = "<group>"; };
@@ -2211,10 +2177,6 @@
 		776461431D6843F900ACCCAC /* TLMomentImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLMomentImageView.h; sourceTree = "<group>"; };
 		776461441D6843F900ACCCAC /* TLMomentImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLMomentImageView.m; sourceTree = "<group>"; };
 		776461451D6843F900ACCCAC /* TLMomentViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLMomentViewDelegate.h; sourceTree = "<group>"; };
-		776461461D6843F900ACCCAC /* TLMomentsViewController+Proxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TLMomentsViewController+Proxy.h"; sourceTree = "<group>"; };
-		776461471D6843F900ACCCAC /* TLMomentsViewController+Proxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TLMomentsViewController+Proxy.m"; sourceTree = "<group>"; };
-		776461481D6843F900ACCCAC /* TLMomentsViewController+TableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TLMomentsViewController+TableView.h"; sourceTree = "<group>"; };
-		776461491D6843F900ACCCAC /* TLMomentsViewController+TableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TLMomentsViewController+TableView.m"; sourceTree = "<group>"; };
 		7764614A1D6843F900ACCCAC /* TLMomentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLMomentsViewController.h; sourceTree = "<group>"; };
 		7764614B1D6843F900ACCCAC /* TLMomentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLMomentsViewController.m; sourceTree = "<group>"; };
 		7764614E1D6843F900ACCCAC /* TLScannerBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLScannerBackgroundView.h; sourceTree = "<group>"; };
@@ -2418,62 +2380,10 @@
 		776462B21D68446300ACCCAC /* TLPrivacySettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLPrivacySettingViewController.m; sourceTree = "<group>"; };
 		776462B41D68446300ACCCAC /* TLMineSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLMineSettingViewController.h; sourceTree = "<group>"; };
 		776462B51D68446300ACCCAC /* TLMineSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLMineSettingViewController.m; sourceTree = "<group>"; };
-		776462C61D68452B00ACCCAC /* TLActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLActionSheet.h; sourceTree = "<group>"; };
-		776462C71D68452B00ACCCAC /* TLActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLActionSheet.m; sourceTree = "<group>"; };
-		776462CA1D68452B00ACCCAC /* TLInfoButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLInfoButtonCell.h; sourceTree = "<group>"; };
-		776462CB1D68452B00ACCCAC /* TLInfoButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLInfoButtonCell.m; sourceTree = "<group>"; };
-		776462CC1D68452B00ACCCAC /* TLInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLInfoCell.h; sourceTree = "<group>"; };
-		776462CD1D68452B00ACCCAC /* TLInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLInfoCell.m; sourceTree = "<group>"; };
-		776462CE1D68452B00ACCCAC /* TLInfoHeaderFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLInfoHeaderFooterView.h; sourceTree = "<group>"; };
-		776462CF1D68452B00ACCCAC /* TLInfoHeaderFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLInfoHeaderFooterView.m; sourceTree = "<group>"; };
-		776462D01D68452B00ACCCAC /* TLInfoMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLInfoMacros.h; sourceTree = "<group>"; };
-		776462D21D68452B00ACCCAC /* TLInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLInfo.h; sourceTree = "<group>"; };
-		776462D31D68452B00ACCCAC /* TLInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLInfo.m; sourceTree = "<group>"; };
-		776462D41D68452B00ACCCAC /* TLInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLInfoViewController.h; sourceTree = "<group>"; };
-		776462D51D68452B00ACCCAC /* TLInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLInfoViewController.m; sourceTree = "<group>"; };
-		776462D71D68452B00ACCCAC /* TLMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLMenuCell.h; sourceTree = "<group>"; };
-		776462D81D68452B00ACCCAC /* TLMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLMenuCell.m; sourceTree = "<group>"; };
-		776462D91D68452B00ACCCAC /* TLMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLMenuItem.h; sourceTree = "<group>"; };
-		776462DA1D68452B00ACCCAC /* TLMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLMenuItem.m; sourceTree = "<group>"; };
-		776462DB1D68452B00ACCCAC /* TLMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLMenuViewController.h; sourceTree = "<group>"; };
-		776462DC1D68452B00ACCCAC /* TLMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLMenuViewController.m; sourceTree = "<group>"; };
-		776462DE1D68452B00ACCCAC /* TLNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLNavigationController.h; sourceTree = "<group>"; };
-		776462DF1D68452B00ACCCAC /* TLNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLNavigationController.m; sourceTree = "<group>"; };
-		776462E11D68452B00ACCCAC /* TLSearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLSearchController.h; sourceTree = "<group>"; };
-		776462E21D68452B00ACCCAC /* TLSearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLSearchController.m; sourceTree = "<group>"; };
-		776462E51D68452B00ACCCAC /* TLSettingButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLSettingButtonCell.h; sourceTree = "<group>"; };
-		776462E61D68452B00ACCCAC /* TLSettingButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLSettingButtonCell.m; sourceTree = "<group>"; };
-		776462E71D68452B00ACCCAC /* TLSettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLSettingCell.h; sourceTree = "<group>"; };
-		776462E81D68452B00ACCCAC /* TLSettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLSettingCell.m; sourceTree = "<group>"; };
-		776462E91D68452B00ACCCAC /* TLSettingSwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLSettingSwitchCell.h; sourceTree = "<group>"; };
-		776462EA1D68452B00ACCCAC /* TLSettingSwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLSettingSwitchCell.m; sourceTree = "<group>"; };
-		776462EC1D68452B00ACCCAC /* TLSettingGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLSettingGroup.h; sourceTree = "<group>"; };
-		776462ED1D68452B00ACCCAC /* TLSettingGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLSettingGroup.m; sourceTree = "<group>"; };
-		776462EE1D68452B00ACCCAC /* TLSettingItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLSettingItem.h; sourceTree = "<group>"; };
-		776462EF1D68452B00ACCCAC /* TLSettingItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLSettingItem.m; sourceTree = "<group>"; };
-		776462F01D68452B00ACCCAC /* TLSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLSettingViewController.h; sourceTree = "<group>"; };
-		776462F11D68452B00ACCCAC /* TLSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLSettingViewController.m; sourceTree = "<group>"; };
-		776462F31D68452B00ACCCAC /* TLSettingFooterTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLSettingFooterTitleView.h; sourceTree = "<group>"; };
-		776462F41D68452B00ACCCAC /* TLSettingFooterTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLSettingFooterTitleView.m; sourceTree = "<group>"; };
-		776462F51D68452B00ACCCAC /* TLSettingHeaderTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLSettingHeaderTitleView.h; sourceTree = "<group>"; };
-		776462F61D68452B00ACCCAC /* TLSettingHeaderTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLSettingHeaderTitleView.m; sourceTree = "<group>"; };
-		776462F81D68452B00ACCCAC /* TLTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTabBarController.h; sourceTree = "<group>"; };
-		776462F91D68452B00ACCCAC /* TLTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTabBarController.m; sourceTree = "<group>"; };
-		776462FB1D68452B00ACCCAC /* TLTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTableViewCell.h; sourceTree = "<group>"; };
-		776462FC1D68452B00ACCCAC /* TLTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTableViewCell.m; sourceTree = "<group>"; };
-		776462FE1D68452B00ACCCAC /* TLTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTableViewController.h; sourceTree = "<group>"; };
-		776462FF1D68452B00ACCCAC /* TLTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTableViewController.m; sourceTree = "<group>"; };
-		776463011D68452B00ACCCAC /* TLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLViewController.h; sourceTree = "<group>"; };
-		776463021D68452B00ACCCAC /* TLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLViewController.m; sourceTree = "<group>"; };
-		776463041D68452B00ACCCAC /* TLWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLWebViewController.h; sourceTree = "<group>"; };
-		776463051D68452B00ACCCAC /* TLWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLWebViewController.m; sourceTree = "<group>"; };
 		7764631F1D68455300ACCCAC /* TLEnumerate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLEnumerate.h; sourceTree = "<group>"; };
-		776463201D68455300ACCCAC /* TLEventStatistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLEventStatistics.h; sourceTree = "<group>"; };
 		776463211D68455300ACCCAC /* TLHost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLHost.h; sourceTree = "<group>"; };
 		776463221D68455300ACCCAC /* TLHost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLHost.m; sourceTree = "<group>"; };
 		776463231D68455300ACCCAC /* TLMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLMacros.h; sourceTree = "<group>"; };
-		776463261D6845ED00ACCCAC /* TLAppHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLAppHelper.h; sourceTree = "<group>"; };
-		776463271D6845ED00ACCCAC /* TLAppHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLAppHelper.m; sourceTree = "<group>"; };
 		7764632A1D68460B00ACCCAC /* TLChatDetailHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLChatDetailHelper.h; sourceTree = "<group>"; };
 		7764632B1D68460B00ACCCAC /* TLChatDetailHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLChatDetailHelper.m; sourceTree = "<group>"; };
 		7764632D1D68460B00ACCCAC /* TLEmojiKBHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLEmojiKBHelper.h; sourceTree = "<group>"; };
@@ -2522,12 +2432,6 @@
 		776463711D68466200ACCCAC /* TLPrivacySettingHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLPrivacySettingHelper.m; sourceTree = "<group>"; };
 		776463721D68466200ACCCAC /* TLSettingHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLSettingHelper.h; sourceTree = "<group>"; };
 		776463731D68466200ACCCAC /* TLSettingHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLSettingHelper.m; sourceTree = "<group>"; };
-		7764637B1D68467500ACCCAC /* TLAddMenuHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLAddMenuHelper.h; sourceTree = "<group>"; };
-		7764637C1D68467500ACCCAC /* TLAddMenuHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLAddMenuHelper.m; sourceTree = "<group>"; };
-		7764637F1D68471300ACCCAC /* TLBaseDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLBaseDataModel.h; sourceTree = "<group>"; };
-		776463801D68471300ACCCAC /* TLBaseDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLBaseDataModel.m; sourceTree = "<group>"; };
-		776463811D68471300ACCCAC /* TLBaseProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLBaseProxy.h; sourceTree = "<group>"; };
-		776463821D68471300ACCCAC /* TLBaseProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLBaseProxy.m; sourceTree = "<group>"; };
 		776463851D68476600ACCCAC /* TLRootProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLRootProxy.h; sourceTree = "<group>"; };
 		776463861D68476600ACCCAC /* TLRootProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLRootProxy.m; sourceTree = "<group>"; };
 		776463891D68478500ACCCAC /* TLGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLGroup.h; sourceTree = "<group>"; };
@@ -2553,16 +2457,6 @@
 		776463A61D68479900ACCCAC /* TLMessageProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLMessageProtocol.h; sourceTree = "<group>"; };
 		776463A71D68479900ACCCAC /* TLTextMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTextMessage.h; sourceTree = "<group>"; };
 		776463A81D68479900ACCCAC /* TLTextMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTextMessage.m; sourceTree = "<group>"; };
-		776463B01D6847C000ACCCAC /* TLMoment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLMoment.h; sourceTree = "<group>"; };
-		776463B11D6847C000ACCCAC /* TLMoment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLMoment.m; sourceTree = "<group>"; };
-		776463B21D6847C000ACCCAC /* TLMomentComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLMomentComment.h; sourceTree = "<group>"; };
-		776463B31D6847C000ACCCAC /* TLMomentComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLMomentComment.m; sourceTree = "<group>"; };
-		776463B41D6847C000ACCCAC /* TLMomentDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLMomentDetail.h; sourceTree = "<group>"; };
-		776463B51D6847C000ACCCAC /* TLMomentDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLMomentDetail.m; sourceTree = "<group>"; };
-		776463B61D6847C000ACCCAC /* TLMomentExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLMomentExtension.h; sourceTree = "<group>"; };
-		776463B71D6847C000ACCCAC /* TLMomentExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLMomentExtension.m; sourceTree = "<group>"; };
-		776463B81D6847C000ACCCAC /* TLMomentsProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLMomentsProxy.h; sourceTree = "<group>"; };
-		776463B91D6847C000ACCCAC /* TLMomentsProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLMomentsProxy.m; sourceTree = "<group>"; };
 		776463C01D6847DD00ACCCAC /* TLExpressionProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLExpressionProxy.h; sourceTree = "<group>"; };
 		776463C11D6847DD00ACCCAC /* TLExpressionProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLExpressionProxy.m; sourceTree = "<group>"; };
 		776463C51D6867A400ACCCAC /* UserErweima.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UserErweima.png; sourceTree = "<group>"; };
@@ -3484,6 +3378,59 @@
 		BF5B9B871F8E693600BD885E /* d.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = d.png; sourceTree = "<group>"; };
 		BF5B9B881F8E693C00BD885E /* e.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = e.png; sourceTree = "<group>"; };
 		BF5B9B891F8E694000BD885E /* f.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = f.png; sourceTree = "<group>"; };
+		BF6E566D1FAAEBA2005F7DF8 /* TLUIUtility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TLUIUtility.h; sourceTree = "<group>"; };
+		BF6E566E1FAAEBA2005F7DF8 /* TLUIUtility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TLUIUtility.m; sourceTree = "<group>"; };
+		BF6E56701FAAEBCB005F7DF8 /* TLRegisterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TLRegisterViewController.h; sourceTree = "<group>"; };
+		BF6E56711FAAEBCB005F7DF8 /* TLRegisterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TLRegisterViewController.m; sourceTree = "<group>"; };
+		BF6E56731FAAEE5C005F7DF8 /* TLTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TLTabBarController.h; sourceTree = "<group>"; };
+		BF6E56741FAAEE5C005F7DF8 /* TLTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TLTableViewController.h; sourceTree = "<group>"; };
+		BF6E56751FAAEE5C005F7DF8 /* TLViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TLViewController.h; sourceTree = "<group>"; };
+		BF6E56761FAAEE5D005F7DF8 /* TLInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TLInfo.h; sourceTree = "<group>"; };
+		BF6E56771FAAEE5D005F7DF8 /* TLAppHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TLAppHelper.m; sourceTree = "<group>"; };
+		BF6E56781FAAEE5D005F7DF8 /* TLNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TLNavigationController.h; sourceTree = "<group>"; };
+		BF6E56791FAAEE5D005F7DF8 /* TLPictureCarouselView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TLPictureCarouselView.h; sourceTree = "<group>"; };
+		BF6E567A1FAAEE5E005F7DF8 /* TLWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TLWebViewController.h; sourceTree = "<group>"; };
+		BF6E567B1FAAEE5E005F7DF8 /* TLMenuItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TLMenuItem.m; sourceTree = "<group>"; };
+		BF6E567C1FAAEE5E005F7DF8 /* TLSearchController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TLSearchController.h; sourceTree = "<group>"; };
+		BF6E567D1FAAEE5E005F7DF8 /* TLImageBrowserController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TLImageBrowserController.m; sourceTree = "<group>"; };
+		BF6E567E1FAAEE5E005F7DF8 /* TLSearchController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TLSearchController.m; sourceTree = "<group>"; };
+		BF6E567F1FAAEE5F005F7DF8 /* TLPictureCarouselView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TLPictureCarouselView.m; sourceTree = "<group>"; };
+		BF6E56801FAAEE5F005F7DF8 /* TLWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TLWebViewController.m; sourceTree = "<group>"; };
+		BF6E56811FAAEE5F005F7DF8 /* TLAppHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TLAppHelper.h; sourceTree = "<group>"; };
+		BF6E56821FAAEE5F005F7DF8 /* TLTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TLTableViewController.m; sourceTree = "<group>"; };
+		BF6E56831FAAEE60005F7DF8 /* TLActionSheet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TLActionSheet.h; sourceTree = "<group>"; };
+		BF6E56841FAAEE60005F7DF8 /* TLAddMenuHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TLAddMenuHelper.m; sourceTree = "<group>"; };
+		BF6E56851FAAEE60005F7DF8 /* TLInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TLInfoViewController.m; sourceTree = "<group>"; };
+		BF6E56861FAAEE60005F7DF8 /* TLNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TLNavigationController.m; sourceTree = "<group>"; };
+		BF6E56871FAAEE60005F7DF8 /* TLMenuItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TLMenuItem.h; sourceTree = "<group>"; };
+		BF6E56881FAAEE61005F7DF8 /* TLQRCodeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TLQRCodeViewController.m; sourceTree = "<group>"; };
+		BF6E56891FAAEE61005F7DF8 /* TLTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TLTabBarController.m; sourceTree = "<group>"; };
+		BF6E568A1FAAEE61005F7DF8 /* TLImageBrowserController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TLImageBrowserController.h; sourceTree = "<group>"; };
+		BF6E568B1FAAEE61005F7DF8 /* TLTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TLTableViewCell.h; sourceTree = "<group>"; };
+		BF6E568C1FAAEE62005F7DF8 /* TLAddMenuHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TLAddMenuHelper.h; sourceTree = "<group>"; };
+		BF6E568D1FAAEE62005F7DF8 /* TLInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TLInfo.m; sourceTree = "<group>"; };
+		BF6E568E1FAAEE62005F7DF8 /* TLViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TLViewController.m; sourceTree = "<group>"; };
+		BF6E568F1FAAEE62005F7DF8 /* TLTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TLTableViewCell.m; sourceTree = "<group>"; };
+		BF6E56901FAAEE62005F7DF8 /* TLMenuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TLMenuViewController.h; sourceTree = "<group>"; };
+		BF6E56911FAAEE63005F7DF8 /* TLMenuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TLMenuViewController.m; sourceTree = "<group>"; };
+		BF6E56921FAAEE63005F7DF8 /* TLPictureCarouselProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TLPictureCarouselProtocol.h; sourceTree = "<group>"; };
+		BF6E56931FAAEE63005F7DF8 /* TLActionSheet.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TLActionSheet.m; sourceTree = "<group>"; };
+		BF6E56941FAAEE63005F7DF8 /* TLInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TLInfoViewController.h; sourceTree = "<group>"; };
+		BF6E56951FAAEE64005F7DF8 /* TLQRCodeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TLQRCodeViewController.h; sourceTree = "<group>"; };
+		BF6E56A71FAAF7D4005F7DF8 /* TLSettingGroup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TLSettingGroup.h; sourceTree = "<group>"; };
+		BF6E56A81FAAF7D4005F7DF8 /* TLSettingGroup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TLSettingGroup.m; sourceTree = "<group>"; };
+		BF6E56A91FAAF7D5005F7DF8 /* TLSettingItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TLSettingItem.h; sourceTree = "<group>"; };
+		BF6E56AA1FAAF7D5005F7DF8 /* TLSettingItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TLSettingItem.m; sourceTree = "<group>"; };
+		BF6E56AB1FAAF7D5005F7DF8 /* TLSettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TLSettingViewController.h; sourceTree = "<group>"; };
+		BF6E56AC1FAAF7D6005F7DF8 /* TLSettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TLSettingViewController.m; sourceTree = "<group>"; };
+		BF6E56B11FAAFBBF005F7DF8 /* TLMoment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TLMoment.h; sourceTree = "<group>"; };
+		BF6E56B21FAAFBBF005F7DF8 /* TLMoment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TLMoment.m; sourceTree = "<group>"; };
+		BF6E56B31FAAFBBF005F7DF8 /* TLMomentComment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TLMomentComment.h; sourceTree = "<group>"; };
+		BF6E56B41FAAFBBF005F7DF8 /* TLMomentComment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TLMomentComment.m; sourceTree = "<group>"; };
+		BF6E56B51FAAFBBF005F7DF8 /* TLMomentDetail.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TLMomentDetail.h; sourceTree = "<group>"; };
+		BF6E56B61FAAFBBF005F7DF8 /* TLMomentDetail.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TLMomentDetail.m; sourceTree = "<group>"; };
+		BF6E56B71FAAFBBF005F7DF8 /* TLMomentExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TLMomentExtension.h; sourceTree = "<group>"; };
+		BF6E56B81FAAFBBF005F7DF8 /* TLMomentExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TLMomentExtension.m; sourceTree = "<group>"; };
 		CF6599DF222DA1221C0BD6DC /* Pods-Freedom.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Freedom.release.xcconfig"; path = "Pods/Target Support Files/Pods-Freedom/Pods-Freedom.release.xcconfig"; sourceTree = "<group>"; };
 		ECEF9FF4F388896C86BFA3B3 /* Pods-MyFirstAPP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyFirstAPP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyFirstAPP/Pods-MyFirstAPP.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -3842,13 +3789,11 @@
 		7745C1E21D6713CD002212DE /* 基本类库 */ = {
 			isa = PBXGroup;
 			children = (
-				776463AE1D6847C000ACCCAC /* Moments */,
-				7764637E1D68471300ACCCAC /* Base */,
+				BF6E56B01FAAFBBF005F7DF8 /* Models */,
 				7764631E1D68455300ACCCAC /* Config */,
 				776460861D6843CF00ACCCAC /* Root */,
 				776460711D6843BE00ACCCAC /* Common */,
 				7764600C1D6842AB00ACCCAC /* Extensions */,
-				77645FF21D68429C00ACCCAC /* Utilities */,
 				7745C2411D67188C002212DE /* WechartNavigationController.h */,
 				7745C2421D67188C002212DE /* WechartNavigationController.m */,
 				7745C2431D67188C002212DE /* WechartTabBarController.h */,
@@ -5175,23 +5120,6 @@
 			path = TestData;
 			sourceTree = "<group>";
 		};
-		77645FF21D68429C00ACCCAC /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-				77645FFE1D68429C00ACCCAC /* UIUtilities */,
-			);
-			path = Utilities;
-			sourceTree = "<group>";
-		};
-		77645FFE1D68429C00ACCCAC /* UIUtilities */ = {
-			isa = PBXGroup;
-			children = (
-				77645FFF1D68429C00ACCCAC /* TLUIUtility.h */,
-				776460001D68429C00ACCCAC /* TLUIUtility.m */,
-			);
-			path = UIUtilities;
-			sourceTree = "<group>";
-		};
 		7764600C1D6842AB00ACCCAC /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -5279,95 +5207,62 @@
 		776460711D6843BE00ACCCAC /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				7764637A1D68467500ACCCAC /* Other */,
-				776463251D6845ED00ACCCAC /* Common */,
-				776462C51D68452B00ACCCAC /* TLActionSheet */,
-				776462C81D68452B00ACCCAC /* TLInfoViewController */,
-				776462D61D68452B00ACCCAC /* TLMenuViewController */,
-				776462DD1D68452B00ACCCAC /* TLNavigationController */,
-				776462E01D68452B00ACCCAC /* TLSearchController */,
-				776462E31D68452B00ACCCAC /* TLSettingViewController */,
-				776462F71D68452B00ACCCAC /* TLTabBarController */,
-				776462FA1D68452B00ACCCAC /* TLTableViewCell */,
-				776462FD1D68452B00ACCCAC /* TLTableViewController */,
-				776463001D68452B00ACCCAC /* TLViewController */,
-				776463031D68452B00ACCCAC /* TLWebViewController */,
-				776460721D6843BE00ACCCAC /* TLImageBrowser */,
-				776460751D6843BE00ACCCAC /* TLImagePicker */,
-				776460781D6843BE00ACCCAC /* TLPictureCarouselView */,
-				7764607E1D6843BE00ACCCAC /* TLQRCodeViewController */,
+				BF6E56831FAAEE60005F7DF8 /* TLActionSheet.h */,
+				BF6E56931FAAEE63005F7DF8 /* TLActionSheet.m */,
+				BF6E568C1FAAEE62005F7DF8 /* TLAddMenuHelper.h */,
+				BF6E56841FAAEE60005F7DF8 /* TLAddMenuHelper.m */,
+				BF6E56811FAAEE5F005F7DF8 /* TLAppHelper.h */,
+				BF6E56771FAAEE5D005F7DF8 /* TLAppHelper.m */,
+				BF6E568A1FAAEE61005F7DF8 /* TLImageBrowserController.h */,
+				BF6E567D1FAAEE5E005F7DF8 /* TLImageBrowserController.m */,
+				BF6E56761FAAEE5D005F7DF8 /* TLInfo.h */,
+				BF6E568D1FAAEE62005F7DF8 /* TLInfo.m */,
+				BF6E56941FAAEE63005F7DF8 /* TLInfoViewController.h */,
+				BF6E56851FAAEE60005F7DF8 /* TLInfoViewController.m */,
+				BF6E56871FAAEE60005F7DF8 /* TLMenuItem.h */,
+				BF6E567B1FAAEE5E005F7DF8 /* TLMenuItem.m */,
+				BF6E56901FAAEE62005F7DF8 /* TLMenuViewController.h */,
+				BF6E56911FAAEE63005F7DF8 /* TLMenuViewController.m */,
+				BF6E56781FAAEE5D005F7DF8 /* TLNavigationController.h */,
+				BF6E56861FAAEE60005F7DF8 /* TLNavigationController.m */,
+				BF6E56921FAAEE63005F7DF8 /* TLPictureCarouselProtocol.h */,
+				BF6E56791FAAEE5D005F7DF8 /* TLPictureCarouselView.h */,
+				BF6E567F1FAAEE5F005F7DF8 /* TLPictureCarouselView.m */,
+				BF6E56951FAAEE64005F7DF8 /* TLQRCodeViewController.h */,
+				BF6E56881FAAEE61005F7DF8 /* TLQRCodeViewController.m */,
+				BF6E567C1FAAEE5E005F7DF8 /* TLSearchController.h */,
+				BF6E567E1FAAEE5E005F7DF8 /* TLSearchController.m */,
+				BF6E56731FAAEE5C005F7DF8 /* TLTabBarController.h */,
+				BF6E56891FAAEE61005F7DF8 /* TLTabBarController.m */,
+				BF6E568B1FAAEE61005F7DF8 /* TLTableViewCell.h */,
+				BF6E568F1FAAEE62005F7DF8 /* TLTableViewCell.m */,
+				BF6E56741FAAEE5C005F7DF8 /* TLTableViewController.h */,
+				BF6E56821FAAEE5F005F7DF8 /* TLTableViewController.m */,
+				BF6E56751FAAEE5C005F7DF8 /* TLViewController.h */,
+				BF6E568E1FAAEE62005F7DF8 /* TLViewController.m */,
+				BF6E567A1FAAEE5E005F7DF8 /* TLWebViewController.h */,
+				BF6E56801FAAEE5F005F7DF8 /* TLWebViewController.m */,
+				BF6E56A71FAAF7D4005F7DF8 /* TLSettingGroup.h */,
+				BF6E56A81FAAF7D4005F7DF8 /* TLSettingGroup.m */,
+				BF6E56A91FAAF7D5005F7DF8 /* TLSettingItem.h */,
+				BF6E56AA1FAAF7D5005F7DF8 /* TLSettingItem.m */,
+				BF6E56AB1FAAF7D5005F7DF8 /* TLSettingViewController.h */,
+				BF6E56AC1FAAF7D6005F7DF8 /* TLSettingViewController.m */,
 			);
 			path = Common;
-			sourceTree = "<group>";
-		};
-		776460721D6843BE00ACCCAC /* TLImageBrowser */ = {
-			isa = PBXGroup;
-			children = (
-				776460731D6843BE00ACCCAC /* TLImageBrowserController.h */,
-				776460741D6843BE00ACCCAC /* TLImageBrowserController.m */,
-			);
-			path = TLImageBrowser;
-			sourceTree = "<group>";
-		};
-		776460751D6843BE00ACCCAC /* TLImagePicker */ = {
-			isa = PBXGroup;
-			children = (
-				776460761D6843BE00ACCCAC /* TLImagePickerController.h */,
-				776460771D6843BE00ACCCAC /* TLImagePickerController.m */,
-			);
-			path = TLImagePicker;
-			sourceTree = "<group>";
-		};
-		776460781D6843BE00ACCCAC /* TLPictureCarouselView */ = {
-			isa = PBXGroup;
-			children = (
-				776460791D6843BE00ACCCAC /* TLPictureCarouselProtocol.h */,
-				7764607A1D6843BE00ACCCAC /* TLPictureCarouselView.h */,
-				7764607B1D6843BE00ACCCAC /* TLPictureCarouselView.m */,
-				7764607C1D6843BE00ACCCAC /* TLPictureCarouselViewCell.h */,
-				7764607D1D6843BE00ACCCAC /* TLPictureCarouselViewCell.m */,
-			);
-			path = TLPictureCarouselView;
-			sourceTree = "<group>";
-		};
-		7764607E1D6843BE00ACCCAC /* TLQRCodeViewController */ = {
-			isa = PBXGroup;
-			children = (
-				7764607F1D6843BE00ACCCAC /* TLQRCodeViewController.h */,
-				776460801D6843BE00ACCCAC /* TLQRCodeViewController.m */,
-			);
-			path = TLQRCodeViewController;
 			sourceTree = "<group>";
 		};
 		776460861D6843CF00ACCCAC /* Root */ = {
 			isa = PBXGroup;
 			children = (
-				776460871D6843CF00ACCCAC /* LoginViewController */,
-				7764608A1D6843CF00ACCCAC /* RegisterViewController */,
+				BF6E56701FAAEBCB005F7DF8 /* TLRegisterViewController.h */,
+				BF6E56711FAAEBCB005F7DF8 /* TLRegisterViewController.m */,
 				776463851D68476600ACCCAC /* TLRootProxy.h */,
 				776463861D68476600ACCCAC /* TLRootProxy.m */,
 				7764608D1D6843CF00ACCCAC /* TLRootViewController.h */,
 				7764608E1D6843CF00ACCCAC /* TLRootViewController.m */,
 			);
 			path = Root;
-			sourceTree = "<group>";
-		};
-		776460871D6843CF00ACCCAC /* LoginViewController */ = {
-			isa = PBXGroup;
-			children = (
-				776460881D6843CF00ACCCAC /* TLLoginViewController.h */,
-				776460891D6843CF00ACCCAC /* TLLoginViewController.m */,
-			);
-			path = LoginViewController;
-			sourceTree = "<group>";
-		};
-		7764608A1D6843CF00ACCCAC /* RegisterViewController */ = {
-			isa = PBXGroup;
-			children = (
-				7764608B1D6843CF00ACCCAC /* TLRegisterViewController.h */,
-				7764608C1D6843CF00ACCCAC /* TLRegisterViewController.m */,
-			);
-			path = RegisterViewController;
 			sourceTree = "<group>";
 		};
 		776460921D6843E100ACCCAC /* Conversation */ = {
@@ -5691,10 +5586,6 @@
 				776461241D6843F900ACCCAC /* MomentCells */,
 				7764612B1D6843F900ACCCAC /* MomentDetailViewController */,
 				7764612E1D6843F900ACCCAC /* MomentViews */,
-				776461461D6843F900ACCCAC /* TLMomentsViewController+Proxy.h */,
-				776461471D6843F900ACCCAC /* TLMomentsViewController+Proxy.m */,
-				776461481D6843F900ACCCAC /* TLMomentsViewController+TableView.h */,
-				776461491D6843F900ACCCAC /* TLMomentsViewController+TableView.m */,
 				7764614A1D6843F900ACCCAC /* TLMomentsViewController.h */,
 				7764614B1D6843F900ACCCAC /* TLMomentsViewController.m */,
 			);
@@ -6442,191 +6333,17 @@
 			path = SettingViewController;
 			sourceTree = "<group>";
 		};
-		776462C51D68452B00ACCCAC /* TLActionSheet */ = {
-			isa = PBXGroup;
-			children = (
-				776462C61D68452B00ACCCAC /* TLActionSheet.h */,
-				776462C71D68452B00ACCCAC /* TLActionSheet.m */,
-			);
-			path = TLActionSheet;
-			sourceTree = "<group>";
-		};
-		776462C81D68452B00ACCCAC /* TLInfoViewController */ = {
-			isa = PBXGroup;
-			children = (
-				776462C91D68452B00ACCCAC /* TLInfoCells */,
-				776462D01D68452B00ACCCAC /* TLInfoMacros.h */,
-				776462D11D68452B00ACCCAC /* TLInfoModel */,
-				776462D41D68452B00ACCCAC /* TLInfoViewController.h */,
-				776462D51D68452B00ACCCAC /* TLInfoViewController.m */,
-			);
-			path = TLInfoViewController;
-			sourceTree = "<group>";
-		};
-		776462C91D68452B00ACCCAC /* TLInfoCells */ = {
-			isa = PBXGroup;
-			children = (
-				776462CA1D68452B00ACCCAC /* TLInfoButtonCell.h */,
-				776462CB1D68452B00ACCCAC /* TLInfoButtonCell.m */,
-				776462CC1D68452B00ACCCAC /* TLInfoCell.h */,
-				776462CD1D68452B00ACCCAC /* TLInfoCell.m */,
-				776462CE1D68452B00ACCCAC /* TLInfoHeaderFooterView.h */,
-				776462CF1D68452B00ACCCAC /* TLInfoHeaderFooterView.m */,
-			);
-			path = TLInfoCells;
-			sourceTree = "<group>";
-		};
-		776462D11D68452B00ACCCAC /* TLInfoModel */ = {
-			isa = PBXGroup;
-			children = (
-				776462D21D68452B00ACCCAC /* TLInfo.h */,
-				776462D31D68452B00ACCCAC /* TLInfo.m */,
-			);
-			path = TLInfoModel;
-			sourceTree = "<group>";
-		};
-		776462D61D68452B00ACCCAC /* TLMenuViewController */ = {
-			isa = PBXGroup;
-			children = (
-				776462D71D68452B00ACCCAC /* TLMenuCell.h */,
-				776462D81D68452B00ACCCAC /* TLMenuCell.m */,
-				776462D91D68452B00ACCCAC /* TLMenuItem.h */,
-				776462DA1D68452B00ACCCAC /* TLMenuItem.m */,
-				776462DB1D68452B00ACCCAC /* TLMenuViewController.h */,
-				776462DC1D68452B00ACCCAC /* TLMenuViewController.m */,
-			);
-			path = TLMenuViewController;
-			sourceTree = "<group>";
-		};
-		776462DD1D68452B00ACCCAC /* TLNavigationController */ = {
-			isa = PBXGroup;
-			children = (
-				776462DE1D68452B00ACCCAC /* TLNavigationController.h */,
-				776462DF1D68452B00ACCCAC /* TLNavigationController.m */,
-			);
-			path = TLNavigationController;
-			sourceTree = "<group>";
-		};
-		776462E01D68452B00ACCCAC /* TLSearchController */ = {
-			isa = PBXGroup;
-			children = (
-				776462E11D68452B00ACCCAC /* TLSearchController.h */,
-				776462E21D68452B00ACCCAC /* TLSearchController.m */,
-			);
-			path = TLSearchController;
-			sourceTree = "<group>";
-		};
-		776462E31D68452B00ACCCAC /* TLSettingViewController */ = {
-			isa = PBXGroup;
-			children = (
-				776462E41D68452B00ACCCAC /* TLSettingCells */,
-				776462EB1D68452B00ACCCAC /* TLSettingModels */,
-				776462F01D68452B00ACCCAC /* TLSettingViewController.h */,
-				776462F11D68452B00ACCCAC /* TLSettingViewController.m */,
-				776462F21D68452B00ACCCAC /* TLSettingViews */,
-			);
-			path = TLSettingViewController;
-			sourceTree = "<group>";
-		};
-		776462E41D68452B00ACCCAC /* TLSettingCells */ = {
-			isa = PBXGroup;
-			children = (
-				776462E51D68452B00ACCCAC /* TLSettingButtonCell.h */,
-				776462E61D68452B00ACCCAC /* TLSettingButtonCell.m */,
-				776462E71D68452B00ACCCAC /* TLSettingCell.h */,
-				776462E81D68452B00ACCCAC /* TLSettingCell.m */,
-				776462E91D68452B00ACCCAC /* TLSettingSwitchCell.h */,
-				776462EA1D68452B00ACCCAC /* TLSettingSwitchCell.m */,
-			);
-			path = TLSettingCells;
-			sourceTree = "<group>";
-		};
-		776462EB1D68452B00ACCCAC /* TLSettingModels */ = {
-			isa = PBXGroup;
-			children = (
-				776462EC1D68452B00ACCCAC /* TLSettingGroup.h */,
-				776462ED1D68452B00ACCCAC /* TLSettingGroup.m */,
-				776462EE1D68452B00ACCCAC /* TLSettingItem.h */,
-				776462EF1D68452B00ACCCAC /* TLSettingItem.m */,
-			);
-			path = TLSettingModels;
-			sourceTree = "<group>";
-		};
-		776462F21D68452B00ACCCAC /* TLSettingViews */ = {
-			isa = PBXGroup;
-			children = (
-				776462F31D68452B00ACCCAC /* TLSettingFooterTitleView.h */,
-				776462F41D68452B00ACCCAC /* TLSettingFooterTitleView.m */,
-				776462F51D68452B00ACCCAC /* TLSettingHeaderTitleView.h */,
-				776462F61D68452B00ACCCAC /* TLSettingHeaderTitleView.m */,
-			);
-			path = TLSettingViews;
-			sourceTree = "<group>";
-		};
-		776462F71D68452B00ACCCAC /* TLTabBarController */ = {
-			isa = PBXGroup;
-			children = (
-				776462F81D68452B00ACCCAC /* TLTabBarController.h */,
-				776462F91D68452B00ACCCAC /* TLTabBarController.m */,
-			);
-			path = TLTabBarController;
-			sourceTree = "<group>";
-		};
-		776462FA1D68452B00ACCCAC /* TLTableViewCell */ = {
-			isa = PBXGroup;
-			children = (
-				776462FB1D68452B00ACCCAC /* TLTableViewCell.h */,
-				776462FC1D68452B00ACCCAC /* TLTableViewCell.m */,
-			);
-			path = TLTableViewCell;
-			sourceTree = "<group>";
-		};
-		776462FD1D68452B00ACCCAC /* TLTableViewController */ = {
-			isa = PBXGroup;
-			children = (
-				776462FE1D68452B00ACCCAC /* TLTableViewController.h */,
-				776462FF1D68452B00ACCCAC /* TLTableViewController.m */,
-			);
-			path = TLTableViewController;
-			sourceTree = "<group>";
-		};
-		776463001D68452B00ACCCAC /* TLViewController */ = {
-			isa = PBXGroup;
-			children = (
-				776463011D68452B00ACCCAC /* TLViewController.h */,
-				776463021D68452B00ACCCAC /* TLViewController.m */,
-			);
-			path = TLViewController;
-			sourceTree = "<group>";
-		};
-		776463031D68452B00ACCCAC /* TLWebViewController */ = {
-			isa = PBXGroup;
-			children = (
-				776463041D68452B00ACCCAC /* TLWebViewController.h */,
-				776463051D68452B00ACCCAC /* TLWebViewController.m */,
-			);
-			path = TLWebViewController;
-			sourceTree = "<group>";
-		};
 		7764631E1D68455300ACCCAC /* Config */ = {
 			isa = PBXGroup;
 			children = (
+				BF6E566D1FAAEBA2005F7DF8 /* TLUIUtility.h */,
+				BF6E566E1FAAEBA2005F7DF8 /* TLUIUtility.m */,
 				7764631F1D68455300ACCCAC /* TLEnumerate.h */,
-				776463201D68455300ACCCAC /* TLEventStatistics.h */,
 				776463211D68455300ACCCAC /* TLHost.h */,
 				776463221D68455300ACCCAC /* TLHost.m */,
 				776463231D68455300ACCCAC /* TLMacros.h */,
 			);
 			path = Config;
-			sourceTree = "<group>";
-		};
-		776463251D6845ED00ACCCAC /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				776463261D6845ED00ACCCAC /* TLAppHelper.h */,
-				776463271D6845ED00ACCCAC /* TLAppHelper.m */,
-			);
-			path = Common;
 			sourceTree = "<group>";
 		};
 		776463291D68460B00ACCCAC /* ChatDetailHelper */ = {
@@ -6750,26 +6467,6 @@
 			path = Setting;
 			sourceTree = "<group>";
 		};
-		7764637A1D68467500ACCCAC /* Other */ = {
-			isa = PBXGroup;
-			children = (
-				7764637B1D68467500ACCCAC /* TLAddMenuHelper.h */,
-				7764637C1D68467500ACCCAC /* TLAddMenuHelper.m */,
-			);
-			path = Other;
-			sourceTree = "<group>";
-		};
-		7764637E1D68471300ACCCAC /* Base */ = {
-			isa = PBXGroup;
-			children = (
-				7764637F1D68471300ACCCAC /* TLBaseDataModel.h */,
-				776463801D68471300ACCCAC /* TLBaseDataModel.m */,
-				776463811D68471300ACCCAC /* TLBaseProxy.h */,
-				776463821D68471300ACCCAC /* TLBaseProxy.m */,
-			);
-			path = Base;
-			sourceTree = "<group>";
-		};
 		776463881D68478500ACCCAC /* Groups */ = {
 			isa = PBXGroup;
 			children = (
@@ -6818,31 +6515,6 @@
 				776463A61D68479900ACCCAC /* TLMessageProtocol.h */,
 				776463A71D68479900ACCCAC /* TLTextMessage.h */,
 				776463A81D68479900ACCCAC /* TLTextMessage.m */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		776463AE1D6847C000ACCCAC /* Moments */ = {
-			isa = PBXGroup;
-			children = (
-				776463AF1D6847C000ACCCAC /* Models */,
-				776463B81D6847C000ACCCAC /* TLMomentsProxy.h */,
-				776463B91D6847C000ACCCAC /* TLMomentsProxy.m */,
-			);
-			path = Moments;
-			sourceTree = "<group>";
-		};
-		776463AF1D6847C000ACCCAC /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				776463B01D6847C000ACCCAC /* TLMoment.h */,
-				776463B11D6847C000ACCCAC /* TLMoment.m */,
-				776463B21D6847C000ACCCAC /* TLMomentComment.h */,
-				776463B31D6847C000ACCCAC /* TLMomentComment.m */,
-				776463B41D6847C000ACCCAC /* TLMomentDetail.h */,
-				776463B51D6847C000ACCCAC /* TLMomentDetail.m */,
-				776463B61D6847C000ACCCAC /* TLMomentExtension.h */,
-				776463B71D6847C000ACCCAC /* TLMomentExtension.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -8037,6 +7709,21 @@
 			path = "哲学";
 			sourceTree = "<group>";
 		};
+		BF6E56B01FAAFBBF005F7DF8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BF6E56B11FAAFBBF005F7DF8 /* TLMoment.h */,
+				BF6E56B21FAAFBBF005F7DF8 /* TLMoment.m */,
+				BF6E56B31FAAFBBF005F7DF8 /* TLMomentComment.h */,
+				BF6E56B41FAAFBBF005F7DF8 /* TLMomentComment.m */,
+				BF6E56B51FAAFBBF005F7DF8 /* TLMomentDetail.h */,
+				BF6E56B61FAAFBBF005F7DF8 /* TLMomentDetail.m */,
+				BF6E56B71FAAFBBF005F7DF8 /* TLMomentExtension.h */,
+				BF6E56B81FAAFBBF005F7DF8 /* TLMomentExtension.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		FCCABADD517AF7901A18F7B1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -9126,6 +8813,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF6E56BC1FAAFC3B005F7DF8 /* TLMomentExtension.m in Sources */,
+				BF6E56BB1FAAFC33005F7DF8 /* TLMomentDetail.m in Sources */,
+				BF6E56BA1FAAFC2C005F7DF8 /* TLMomentComment.m in Sources */,
+				BF6E56B91FAAFC18005F7DF8 /* TLMoment.m in Sources */,
+				BF6E56A61FAAF563005F7DF8 /* TLImageBrowserController.m in Sources */,
+				BF6E56A51FAAF559005F7DF8 /* TLActionSheet.m in Sources */,
+				BF6E56A41FAAF524005F7DF8 /* TLTableViewCell.m in Sources */,
+				BF6E56A31FAAF51B005F7DF8 /* TLTabBarController.m in Sources */,
+				BF6E56A21FAAF510005F7DF8 /* TLInfoViewController.m in Sources */,
+				BF6E56A11FAAF501005F7DF8 /* TLInfo.m in Sources */,
+				BF6E56A01FAAF4D1005F7DF8 /* TLAppHelper.m in Sources */,
+				BF6E569F1FAAF4C9005F7DF8 /* TLAddMenuHelper.m in Sources */,
+				BF6E569E1FAAF4B8005F7DF8 /* TLTableViewController.m in Sources */,
+				BF6E569D1FAAF48A005F7DF8 /* TLMenuViewController.m in Sources */,
+				BF6E569C1FAAF480005F7DF8 /* TLMenuItem.m in Sources */,
+				BF6E569B1FAAF475005F7DF8 /* TLQRCodeViewController.m in Sources */,
+				BF6E569A1FAAF45A005F7DF8 /* TLSearchController.m in Sources */,
+				BF6E56991FAAF451005F7DF8 /* TLNavigationController.m in Sources */,
+				BF6E56981FAAF3F7005F7DF8 /* TLWebViewController.m in Sources */,
+				BF6E56971FAAF374005F7DF8 /* TLViewController.m in Sources */,
+				BF6E56961FAAF341005F7DF8 /* TLPictureCarouselView.m in Sources */,
 				778913901D0FDDDB0096AB3B /* AppDelegate.m in Sources */,
 				7788ACAD1D7997EC00376C95 /* NSArray+NSArray_ILExtension.m in Sources */,
 				BF5B9B731F8E676500BD885E /* CareerViewController.swift in Sources */,
@@ -9146,7 +8854,6 @@
 				776462741D68445800ACCCAC /* TLEmojiGroupControl.m in Sources */,
 				778E939D1D69AA92004D899C /* DiscoverDetailViewController.m in Sources */,
 				7764616B1D6843F900ACCCAC /* TLMomentDetailViewController.m in Sources */,
-				7764631C1D68452B00ACCCAC /* TLViewController.m in Sources */,
 				778E93811D69A3F2004D899C /* SWCommonArrowItem.m in Sources */,
 				773D56141D7953A100A0C615 /* JFVideoDetailViewController.m in Sources */,
 				776461661D6843F900ACCCAC /* TLBottleViewController.m in Sources */,
@@ -9165,7 +8872,6 @@
 				776462C01D68446300ACCCAC /* TLCommonSettingViewController.m in Sources */,
 				779B82161D7D506700B23DFA /* ResumeBusinessCooperationVC.m in Sources */,
 				778913921D0FDDDB0096AB3B /* main.m in Sources */,
-				776463101D68452B00ACCCAC /* TLSearchController.m in Sources */,
 				779B82131D7D501E00B23DFA /* ResumeViewController.m in Sources */,
 				7764617D1D6843F900ACCCAC /* TLScanningViewController.m in Sources */,
 				776462681D68445800ACCCAC /* TLChatBaseViewController+UIDelegate.m in Sources */,
@@ -9175,7 +8881,6 @@
 				778E936A1D699D8C004D899C /* XFEmotionAttachment.m in Sources */,
 				77DE73401D1CC7E600F39FDB /* LibraryCollectionViewController.m in Sources */,
 				776462661D68445800ACCCAC /* TLChatBaseViewController+DataDelegate.m in Sources */,
-				776463191D68452B00ACCCAC /* TLTabBarController.m in Sources */,
 				BF5B9B5E1F8E636E00BD885E /* EconomicsViewController.swift in Sources */,
 				7788AC311D7996B100376C95 /* E_Paging.mm in Sources */,
 				77BD16D61D6EEED500DE5DB9 /* ToutiaoAttentionViewController.m in Sources */,
@@ -9187,7 +8892,6 @@
 				774BFB1D1D767389005CA603 /* KugouLyricsManage.m in Sources */,
 				BF5B9B051F8E1FB600BD885E /* UIFont+expanded.m in Sources */,
 				779B82281D7D557300B23DFA /* FreedomBooksEditViewController.m in Sources */,
-				776463111D68452B00ACCCAC /* TLSettingButtonCell.m in Sources */,
 				778E93691D699D8C004D899C /* XFEmotion.m in Sources */,
 				779937F71E2F5E7100866968 /* EnergyNavigationController.m in Sources */,
 				77BD16461D6EC53300DE5DB9 /* DetailTableViewController.m in Sources */,
@@ -9196,7 +8900,6 @@
 				776463751D68466200ACCCAC /* TLAccountAndSafetyHelper.m in Sources */,
 				778E936D1D699D8C004D899C /* XFEmotionListView.m in Sources */,
 				778E8EFE1D696020004D899C /* XFHomeViewController.m in Sources */,
-				776463BD1D6847C000ACCCAC /* TLMomentExtension.m in Sources */,
 				77FD03DD1E25FC3B00E5099E /* TaobaoShopCarViewController.m in Sources */,
 				776462751D68445800ACCCAC /* TLEmoji.m in Sources */,
 				771917601D65C239002F2BCD /* WechartViewController.m in Sources */,
@@ -9207,8 +8910,6 @@
 				774BFB3C1D76744F005CA603 /* KugouTools.m in Sources */,
 				776462B81D68446300ACCCAC /* TLAccountAndSafetyViewController.m in Sources */,
 				776461CA1D68440600ACCCAC /* TLExpressionPublicCell.m in Sources */,
-				776463BE1D6847C000ACCCAC /* TLMomentsProxy.m in Sources */,
-				7764631D1D68452B00ACCCAC /* TLWebViewController.m in Sources */,
 				773D56A51D79564600A0C615 /* JFSubscribeViewController.m in Sources */,
 				7764639B1D68478500ACCCAC /* TLUserSetting.m in Sources */,
 				776462C11D68446300ACCCAC /* TLHelpAndFeedbackViewController.m in Sources */,
@@ -9219,7 +8920,6 @@
 				776462701D68445800ACCCAC /* TLEmojiImageItemCell.m in Sources */,
 				778E93701D699D8C004D899C /* XFEmotionTabBarButton.m in Sources */,
 				774BFB171D767389005CA603 /* PlayAudioViewController.m in Sources */,
-				7764630A1D68452B00ACCCAC /* TLInfo.m in Sources */,
 				776461081D6843EC00ACCCAC /* TLAddThirdPartFriendItem.m in Sources */,
 				776462831D68445800ACCCAC /* TLMessageImageView.m in Sources */,
 				778E8F031D696020004D899C /* XFStatusPhotosView.m in Sources */,
@@ -9248,7 +8948,6 @@
 				776463661D68465400ACCCAC /* TLMineInfoHelper.m in Sources */,
 				7788ACAC1D7997EC00376C95 /* ILRegularExpressionManager.m in Sources */,
 				7788AC721D79972300376C95 /* NJKWebViewProgressView.m in Sources */,
-				7764637D1D68467500ACCCAC /* TLAddMenuHelper.m in Sources */,
 				7795CCAB1E4B1918006ED4F7 /* PersonalHardwareViewController.m in Sources */,
 				BF5B9ADF1F8DBE1300BD885E /* User.m in Sources */,
 				776463651D68465400ACCCAC /* TLMineHelper.m in Sources */,
@@ -9256,7 +8955,6 @@
 				7745C2731D672451002212DE /* BooksTabBarController.m in Sources */,
 				776461C61D68440600ACCCAC /* TLExpressionDetailCell.m in Sources */,
 				7780D8D81E237FD500807502 /* TaobaoHomeViewController.m in Sources */,
-				7764630E1D68452B00ACCCAC /* TLMenuViewController.m in Sources */,
 				776461141D6843EC00ACCCAC /* TLTagsViewController+Delegate.m in Sources */,
 				779937B71E2F1DD300866968 /* EnergyShopCarViewController.m in Sources */,
 				776461711D6843F900ACCCAC /* TLMomentExtensionLikedCell.m in Sources */,
@@ -9277,8 +8975,6 @@
 				779B81D91D7D3F3100B23DFA /* EnergyNewsViewController.m in Sources */,
 				779B81FA1D7D47B500B23DFA /* EnergySuperMarketTabBarController.m in Sources */,
 				779B81A91D7D0D4000B23DFA /* JuheNavigationController.m in Sources */,
-				776463151D68452B00ACCCAC /* TLSettingItem.m in Sources */,
-				776460851D6843BE00ACCCAC /* TLQRCodeViewController.m in Sources */,
 				7788AC641D7996E000376C95 /* E_ScrollViewController.m in Sources */,
 				77BFCC001E1F413C00C95B5E /* notes.md in Sources */,
 				776463A91D68479900ACCCAC /* TLExpressionMessage.m in Sources */,
@@ -9302,7 +8998,6 @@
 				779B81E81D7D424900B23DFA /* EnergyBusinessListViewController.m in Sources */,
 				779B820C1D7D4F0400B23DFA /* ResumeNavigationController.m in Sources */,
 				BF5B9B6F1F8E674B00BD885E /* FreedomViewController.swift in Sources */,
-				776463091D68452B00ACCCAC /* TLInfoHeaderFooterView.m in Sources */,
 				776461C81D68440600ACCCAC /* TLExpressionDetailViewController+CollectionView.m in Sources */,
 				776462721D68445800ACCCAC /* TLEmojiItemCell.m in Sources */,
 				773D56271D7953C400A0C615 /* JFRecommentModel.m in Sources */,
@@ -9316,12 +9011,10 @@
 				77BD16A71D6EC9E600DE5DB9 /* CitySection.m in Sources */,
 				776460FD1D6843EC00ACCCAC /* TLFriendDetailViewController.m in Sources */,
 				776463241D68455300ACCCAC /* TLHost.m in Sources */,
-				776463181D68452B00ACCCAC /* TLSettingHeaderTitleView.m in Sources */,
 				776461021D6843EC00ACCCAC /* TLFriendsViewController.m in Sources */,
 				7764610C1D6843EC00ACCCAC /* TLContactsSearchViewController.m in Sources */,
 				BF5B9B771F8E677F00BD885E /* RelativeViewController.swift in Sources */,
 				776462791D68445800ACCCAC /* TLEmojiKeyboard+GroupControlDelegate.m in Sources */,
-				776463061D68452B00ACCCAC /* TLActionSheet.m in Sources */,
 				7764625B1D68445800ACCCAC /* TLUserGroupCell.m in Sources */,
 				776461D11D68440600ACCCAC /* TLExpressionViewController.m in Sources */,
 				7745C2671D672409002212DE /* MicroEnergyTabBarController.m in Sources */,
@@ -9335,21 +9028,19 @@
 				779B822E1D7D574500B23DFA /* MyDatabaseEditViewController.m in Sources */,
 				77BD16CD1D6ECBB800DE5DB9 /* DianpingNavigationController.m in Sources */,
 				7764635B1D68464700ACCCAC /* TLShakeHelper.m in Sources */,
-				776460811D6843BE00ACCCAC /* TLImageBrowserController.m in Sources */,
 				776462BB1D68446300ACCCAC /* TLChatBackgroundSelectViewController+Proxy.m in Sources */,
 				7745C2701D672445002212DE /* ResumeTabBarController.m in Sources */,
 				779B81CD1D7D12BC00B23DFA /* JuheDetailQuestion.m in Sources */,
 				776463411D68460B00ACCCAC /* TLMoreKBHelper.m in Sources */,
+				BF6E566F1FAAEBA3005F7DF8 /* TLUIUtility.m in Sources */,
 				776462631D68445800ACCCAC /* TLChatBar.m in Sources */,
 				778E936F1D699D8C004D899C /* XFEmotionTabBar.m in Sources */,
 				778E8F321D6961E3004D899C /* XFOAuthController.m in Sources */,
-				776463841D68471300ACCCAC /* TLBaseProxy.m in Sources */,
 				776462B71D68446300ACCCAC /* TLAboutViewController.m in Sources */,
 				7788AC4A1D7996CE00376C95 /* E_CursorView.m in Sources */,
 				BF5B9B691F8E671500BD885E /* ThinkDevelopmentViewController.swift in Sources */,
 				779937E31E2F4B9200866968 /* UIImagePickerController+Fixed.m in Sources */,
 				776460A31D6843E100ACCCAC /* TLAddMenuView.m in Sources */,
-				776463281D6845ED00ACCCAC /* TLAppHelper.m in Sources */,
 				778E936E1D699D8C004D899C /* XFEmotionPageView.m in Sources */,
 				772E896F1D76BC75004EDF50 /* NSData+KRCParse.m in Sources */,
 				776460FE1D6843EC00ACCCAC /* TLFriendSearchViewController.m in Sources */,
@@ -9360,7 +9051,6 @@
 				7764627A1D68445800ACCCAC /* TLEmojiKeyboard+Gusture.m in Sources */,
 				7764625D1D68445800ACCCAC /* TLChatDetailViewController.m in Sources */,
 				7764617B1D6843F900ACCCAC /* TLScannerView.m in Sources */,
-				776461771D6843F900ACCCAC /* TLMomentsViewController+TableView.m in Sources */,
 				774BFB1F1D767389005CA603 /* LyricsView.m in Sources */,
 				776460A11D6843E100ACCCAC /* TLAddMenuCell.m in Sources */,
 				7795CCB11E4B1934006ED4F7 /* PersonalFoodViewController.m in Sources */,
@@ -9381,7 +9071,6 @@
 				776463451D68460B00ACCCAC /* TLMessageManager+MessageRecord.m in Sources */,
 				773D563A1D79540000A0C615 /* JFHomeBoxCell.m in Sources */,
 				7741F1AD1D6D524400EED332 /* SDDiscoverTableViewHeaderItemButton.m in Sources */,
-				776460091D68429C00ACCCAC /* TLUIUtility.m in Sources */,
 				7764616A1D6843F900ACCCAC /* TLMomentImagesCell.m in Sources */,
 				7764606A1D68437F00ACCCAC /* TLDBBaseStore.m in Sources */,
 				7788AC521D7996CE00376C95 /* E_SettingBottomBar.m in Sources */,
@@ -9401,8 +9090,8 @@
 				776461791D6843F900ACCCAC /* TLScannerBackgroundView.m in Sources */,
 				779B82191D7D509D00B23DFA /* ResumeTheorySystemViewController.m in Sources */,
 				7764617A1D6843F900ACCCAC /* TLScannerButton.m in Sources */,
-				7764630F1D68452B00ACCCAC /* TLNavigationController.m in Sources */,
 				776461CD1D68440600ACCCAC /* TLExpressionPublicViewController.m in Sources */,
+				BF6E56AD1FAAF7D6005F7DF8 /* TLSettingGroup.m in Sources */,
 				7741F1E41D6D538D00EED332 /* SDAssetsTableViewControllerCellModel.m in Sources */,
 				771917631D65C247002F2BCD /* KugouViewController.m in Sources */,
 				778E8F091D696020004D899C /* XFUser.m in Sources */,
@@ -9411,6 +9100,7 @@
 				7745C2551D67235E002212DE /* IqiyiTabBarController.m in Sources */,
 				77FD03C71E25E49100E5099E /* TaobaoMiniVideoViewController.m in Sources */,
 				7719176C1D65C26C002F2BCD /* SinaViewController.m in Sources */,
+				BF6E56721FAAEBCB005F7DF8 /* TLRegisterViewController.m in Sources */,
 				77BD16D31D6EEE8A00DE5DB9 /* ToutiaoVideoViewController.m in Sources */,
 				779937C01E2F1EF500866968 /* EnergySuperHomeViewController.m in Sources */,
 				776462781D68445800ACCCAC /* TLEmojiKeyboard+CollectionViewDelegate.m in Sources */,
@@ -9418,7 +9108,6 @@
 				7741F1E21D6D538D00EED332 /* SDAssetsTableViewController.m in Sources */,
 				776463961D68478500ACCCAC /* TLGroup.m in Sources */,
 				776461C91D68440600ACCCAC /* TLExpressionDetailViewController.m in Sources */,
-				776463171D68452B00ACCCAC /* TLSettingFooterTitleView.m in Sources */,
 				7745C2451D67188C002212DE /* WechartNavigationController.m in Sources */,
 				776461121D6843EC00ACCCAC /* TLPublicServerViewController.m in Sources */,
 				779B821F1D7D512500B23DFA /* ResumeDetailViewController.m in Sources */,
@@ -9470,7 +9159,6 @@
 				BF5B9B791F8E678900BD885E /* FriendViewController.swift in Sources */,
 				7745C2611D6723DF002212DE /* ToutiaoTabBarController.m in Sources */,
 				7764639A1D68478500ACCCAC /* TLUserGroup.m in Sources */,
-				7764630D1D68452B00ACCCAC /* TLMenuItem.m in Sources */,
 				776461051D6843EC00ACCCAC /* TLGroupViewController+Delegate.m in Sources */,
 				778E934A1D699D74004D899C /* XFTextView.m in Sources */,
 				776463AD1D68479900ACCCAC /* TLTextMessage.m in Sources */,
@@ -9479,7 +9167,6 @@
 				779B81B51D7D0E7300B23DFA /* JuheDynamicViewController.m in Sources */,
 				776462C41D68446300ACCCAC /* TLMineSettingViewController.m in Sources */,
 				773D56291D7953C400A0C615 /* JFVideosModel.m in Sources */,
-				7764631A1D68452B00ACCCAC /* TLTableViewCell.m in Sources */,
 				7741F1F51D6D53B700EED332 /* SDYuEBaoTableViewController.m in Sources */,
 				77CC4F441D90E07A00DD2EC8 /* BaseTabBarController.m in Sources */,
 				7764606D1D68437F00ACCCAC /* TLDBExpressionStore.m in Sources */,
@@ -9488,7 +9175,6 @@
 				7719177B1D65C2B2002F2BCD /* PersonalApplyViewController.m in Sources */,
 				779937BA1E2F1DE100866968 /* EnergyShopMeViewController.m in Sources */,
 				77CC4F3E1D90E03200DD2EC8 /* BaseNavigationController.m in Sources */,
-				776460831D6843BE00ACCCAC /* TLPictureCarouselView.m in Sources */,
 				7764635C1D68464700ACCCAC /* TLDiscoverHelper.m in Sources */,
 				778E93461D699D74004D899C /* XFIconView.m in Sources */,
 				77BD16D91D6EF25900DE5DB9 /* ToutiaoMeViewController.m in Sources */,
@@ -9497,7 +9183,6 @@
 				776461701D6843F900ACCCAC /* TLMomentExtensionCommentCell.m in Sources */,
 				779B81E21D7D3F7D00B23DFA /* EnergyContactUSViewController.m in Sources */,
 				776463AB1D68479900ACCCAC /* TLMessage.m in Sources */,
-				776463081D68452B00ACCCAC /* TLInfoCell.m in Sources */,
 				7745C2521D67234B002212DE /* KugouTabBarController.m in Sources */,
 				779B81AF1D7D0E2800B23DFA /* JuheQuestionViewController.m in Sources */,
 				BF5B9B7F1F8E67B900BD885E /* WidomViewController.swift in Sources */,
@@ -9521,7 +9206,6 @@
 				7788AC9A1D7997DB00376C95 /* WFTextView.m in Sources */,
 				7764626E1D68445800ACCCAC /* TLEmojiBaseCell.m in Sources */,
 				778913A51D101DB10096AB3B /* FirstViewController.m in Sources */,
-				776460841D6843BE00ACCCAC /* TLPictureCarouselViewCell.m in Sources */,
 				776463871D68476600ACCCAC /* TLRootProxy.m in Sources */,
 				773D563F1D79540000A0C615 /* JFRecommentVideoCell.m in Sources */,
 				776460A21D6843E100ACCCAC /* TLAddMenuItem.m in Sources */,
@@ -9546,7 +9230,6 @@
 				776463981D68478500ACCCAC /* TLUserChatSetting.m in Sources */,
 				776462711D68445800ACCCAC /* TLEmojiImageTitleItemCell.m in Sources */,
 				776462641D68445800ACCCAC /* TLChatBaseViewController+ChatBarDelegate.m in Sources */,
-				776461761D6843F900ACCCAC /* TLMomentsViewController+Proxy.m in Sources */,
 				776461641D6843F900ACCCAC /* TLDiscoverViewController.m in Sources */,
 				778E93AF1D69B229004D899C /* SWGeneralSettingViewController.m in Sources */,
 				7788AC501D7996CE00376C95 /* E_ReaderView.m in Sources */,
@@ -9563,11 +9246,10 @@
 				7788AC511D7996CE00376C95 /* E_SearchTableViewCell.m in Sources */,
 				776462BF1D68446300ACCCAC /* TLChatFontViewController.m in Sources */,
 				776461D61D68440600ACCCAC /* TLMineViewController.m in Sources */,
-				776460821D6843BE00ACCCAC /* TLImagePickerController.m in Sources */,
+				BF6E56AF1FAAF7D6005F7DF8 /* TLSettingViewController.m in Sources */,
 				779B81C11D7D11BE00B23DFA /* JuheAboutUSViewController.m in Sources */,
 				77FD03C11E25DF6800E5099E /* TaobaoMiniDynamicViewController.m in Sources */,
 				773D569D1D7955F800A0C615 /* JFClassifyModel.m in Sources */,
-				776463BC1D6847C000ACCCAC /* TLMomentDetail.m in Sources */,
 				7764627F1D68445800ACCCAC /* TLMoreKeyboard.m in Sources */,
 				7788AC4E1D7996CE00376C95 /* E_MagnifiterView.m in Sources */,
 				7795CCB41E4B1958006ED4F7 /* PersonalFastGoodsViewController.m in Sources */,
@@ -9575,7 +9257,6 @@
 				776462C21D68446300ACCCAC /* TLNewMessageSettingViewController.m in Sources */,
 				7764606C1D68437F00ACCCAC /* TLDBConversationStore.m in Sources */,
 				77BD16451D6EC53300DE5DB9 /* DetailScrollViewController.m in Sources */,
-				776463071D68452B00ACCCAC /* TLInfoButtonCell.m in Sources */,
 				776462671D68445800ACCCAC /* TLChatBaseViewController+EmojiKBDelegate.m in Sources */,
 				779B81DC1D7D3F3F00B23DFA /* EnergyHomeViewController.m in Sources */,
 				7788AC611D7996E000376C95 /* DetailViewController.m in Sources */,
@@ -9604,18 +9285,13 @@
 				7764610A1D6843EC00ACCCAC /* TLContactCell.m in Sources */,
 				779B81B21D7D0E3500B23DFA /* JuheAPIViewController.m in Sources */,
 				776461691D6843F900ACCCAC /* TLMomentHeaderCell.m in Sources */,
-				776463831D68471300ACCCAC /* TLBaseDataModel.m in Sources */,
-				776463161D68452B00ACCCAC /* TLSettingViewController.m in Sources */,
 				77F0D75B1E4C59120036F5F9 /* BooksNavigationController.m in Sources */,
 				7795CCA81E4B1906006ED4F7 /* PersonalSoftViewController.m in Sources */,
 				7719176F1D65C27C002F2BCD /* DianpingViewController.m in Sources */,
 				776461011D6843EC00ACCCAC /* TLFriendsViewController+Delegate.m in Sources */,
 				77FD03CD1E25E4E900E5099E /* TaobaoMiniTopicViewController.m in Sources */,
-				776463BB1D6847C000ACCCAC /* TLMomentComment.m in Sources */,
 				776463431D68460B00ACCCAC /* TLConversation.m in Sources */,
 				7764625C1D68445800ACCCAC /* TLUserGroupItemCell.m in Sources */,
-				7764630C1D68452B00ACCCAC /* TLMenuCell.m in Sources */,
-				776460901D6843CF00ACCCAC /* TLRegisterViewController.m in Sources */,
 				776461D01D68440600ACCCAC /* TLMyExpressionViewController.m in Sources */,
 				776462BA1D68446300ACCCAC /* TLChatBackgroundSelectViewController+CollectionView.m in Sources */,
 				77F0D75E1E4C5AC80036F5F9 /* BooksMainViewController.m in Sources */,
@@ -9635,14 +9311,13 @@
 				776461801D6843F900ACCCAC /* TLShakeViewController.m in Sources */,
 				BF5B9B621F8E641000BD885E /* PhilosophyViewController.swift in Sources */,
 				7795CCAE1E4B1923006ED4F7 /* PersonalComputerViewController.m in Sources */,
-				776463131D68452B00ACCCAC /* TLSettingSwitchCell.m in Sources */,
 				774BFB3D1D76744F005CA603 /* TabBarView.m in Sources */,
 				7788AC331D7996B100376C95 /* NSDate+NSDate_E_Date.m in Sources */,
 				7764634A1D68462300ACCCAC /* TLUserHelper.m in Sources */,
 				77BD16C31D6ECA5E00DE5DB9 /* DZHomeController.m in Sources */,
+				BF6E56AE1FAAF7D6005F7DF8 /* TLSettingItem.m in Sources */,
 				7788AC9D1D7997DB00376C95 /* YMShowImageView.m in Sources */,
 				778E8F011D696020004D899C /* XFStatus.m in Sources */,
-				776463BA1D6847C000ACCCAC /* TLMoment.m in Sources */,
 				7764606F1D68437F00ACCCAC /* TLDBGroupStore.m in Sources */,
 				774BFB1C1D767389005CA603 /* KRC.m in Sources */,
 				774BFB451D767618005CA603 /* KugouBaseViewController.m in Sources */,
@@ -9672,7 +9347,6 @@
 				BF5B9B711F8E675100BD885E /* LoveViewController.swift in Sources */,
 				7788AC4B1D7996CE00376C95 /* E_DrawerView.m in Sources */,
 				7741F1AC1D6D524400EED332 /* SDDiscoverTableViewHeader.m in Sources */,
-				7764630B1D68452B00ACCCAC /* TLInfoViewController.m in Sources */,
 				776460A51D6843E100ACCCAC /* TLConversationViewController+Delegate.m in Sources */,
 				7764626C1D68445800ACCCAC /* TLImageExpressionDisplayView.m in Sources */,
 				776463781D68466200ACCCAC /* TLPrivacySettingHelper.m in Sources */,
@@ -9690,10 +9364,7 @@
 				776461D21D68440600ACCCAC /* TLMineInfoAvatarCell.m in Sources */,
 				7741F1941D6D514100EED332 /* SDBasicTableViewController.m in Sources */,
 				776463771D68466200ACCCAC /* TLNewMessageSettingHelper.m in Sources */,
-				7764608F1D6843CF00ACCCAC /* TLLoginViewController.m in Sources */,
 				779B81EE1D7D438C00B23DFA /* EnergyNewsDetailViewController.m in Sources */,
-				776463141D68452B00ACCCAC /* TLSettingGroup.m in Sources */,
-				7764631B1D68452B00ACCCAC /* TLTableViewController.m in Sources */,
 				773D56251D7953C400A0C615 /* JFBoxesModel.m in Sources */,
 				774BFB281D767389005CA603 /* SettingViewController.m in Sources */,
 				7741F1961D6D514100EED332 /* SDBasicViewContoller.m in Sources */,
@@ -9706,7 +9377,6 @@
 				776461C51D68440600ACCCAC /* TLExpressionChosenViewController.m in Sources */,
 				778E8F041D696020004D899C /* XFStatusPhotoView.m in Sources */,
 				779B81F41D7D45B600B23DFA /* EnergyDetailViewController.m in Sources */,
-				776463121D68452B00ACCCAC /* TLSettingCell.m in Sources */,
 				BF5B9B7B1F8E679300BD885E /* HealthViewController.swift in Sources */,
 				773D56261D7953C400A0C615 /* JFHomeModel.m in Sources */,
 				776461731D6843F900ACCCAC /* TLMomentExtensionView.m in Sources */,

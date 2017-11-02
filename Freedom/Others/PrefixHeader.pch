@@ -26,7 +26,6 @@
 /*****************************   微   信   的   头   文   件  *******************************/
 #import "TLMacros.h"            // 宏
 #import "TLEnumerate.h"         // 枚举
-#import "TLEventStatistics.h"   // 数据统计
 #import "TLHost.h"              // 网络地址
 #import "UIColor+expanded.h"      // 颜色
 #import "UIColor+add.h"
@@ -40,7 +39,6 @@
 #import "TLNavigationController.h"
 #import "TLUserHelper.h"
 #import "TLFriendHelper.h"
-#import "TLActionSheet.h"
 #import "NSFileManager+expanded.h"
 #import "UIImagePickerController+Fixed.h"
 #import "UIBarButtonItem+expanded.h"

@@ -5,13 +5,11 @@
 //  Created by 李伯坤 on 16/1/23.
 //  Copyright © 2016年 李伯坤. All rights reserved.
 //
-
-#import "TLBaseDataModel.h"
 #import "TLUserDetail.h"
 #import "TLUserSetting.h"
 #import "TLUserChatSetting.h"
 
-@interface TLUser : TLBaseDataModel
+@interface TLUser : NSObject
 
 /// 用户ID
 @property (nonatomic, strong) NSString *userID;

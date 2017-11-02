@@ -8,7 +8,7 @@
 
 #import "TLShakeSettingViewController.h"
 #import "TLShakeHelper.h"
-
+#import "TLSettingItem.h"
 @interface TLShakeSettingViewController ()
 
 @property (nonatomic, strong) TLShakeHelper *helper;

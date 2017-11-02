@@ -39,7 +39,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    float footerHeight = HEIGHT_SCREEN - self.tableView.contentSize.height - HEIGHT_NAVBAR - HEIGHT_SETTING_TOP_SPACE;
+    float footerHeight = HEIGHT_SCREEN - self.tableView.contentSize.height - HEIGHT_NAVBAR - 15;
     [self.tableView.tableFooterView setFrameHeight:footerHeight];
 }
 

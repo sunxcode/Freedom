@@ -9,12 +9,11 @@
 #import "TLCommonSettingViewController.h"
 #import "TLCommonSettingHelper.h"
 #import "TLMessageManager.h"
-
 #import "TLChatViewController.h"
 #import "TLChatFontViewController.h"
 #import "TLChatBackgroundSettingViewController.h"
 #import "TLMyExpressionViewController.h"
-
+#import "TLActionSheet.h"
 #define     TAG_ACTIONSHEET_EMPTY_REC       1001
 
 @interface TLCommonSettingViewController () <TLActionSheetDelegate>

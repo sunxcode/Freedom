@@ -10,7 +10,7 @@
 #import "TLChatDetailHelper.h"
 #import "TLMessageManager+MessageRecord.h"
 #import "TLUserGroupCell.h"
-
+#import "TLActionSheet.h"
 #import "TLChatViewController.h"
 
 #import "TLFriendDetailViewController.h"

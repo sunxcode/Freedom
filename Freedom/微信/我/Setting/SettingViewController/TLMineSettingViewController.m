@@ -8,7 +8,7 @@
 
 #import "TLMineSettingViewController.h"
 #import "TLSettingHelper.h"
-
+#import "TLActionSheet.h"
 #import "TLAccountAndSafetyViewController.h"
 #import "TLNewMessageSettingViewController.h"
 #import "TLPrivacySettingViewController.h"

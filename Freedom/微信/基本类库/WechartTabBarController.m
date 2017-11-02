@@ -3,37 +3,12 @@
 //  WechartTabBarController.m
 //  Created by 薛超 on 16/8/19.
 //  Copyright © 2016年 薛超. All rights reserved.
-/**********************************************************************************
- *
- * GSD_WeiXin
- *
- * QQ交流群: 362419100(2群) 459274049（1群已满）
- * Email : gsdios@126.com
- * GitHub: https://github.com/gsdios/GSD_WeiXin
- * 新浪微博:GSD_iOS
- *
- * 此“高仿微信”用到了很高效方便的自动布局库SDAutoLayout（一行代码搞定自动布局）
- * SDAutoLayout地址：https://github.com/gsdios/SDAutoLayout
- * SDAutoLayout视频教程：http://www.letv.com/ptv/vplay/24038772.html
- * SDAutoLayout用法示例：https://github.com/gsdios/SDAutoLayout/blob/master/README.md
- *
- **********************************************************************************/
 #import "WechartTabBarController.h"
 #import "WechartNavigationController.h"
-//#import "SDHomeTableViewController.h"
-//#import "SDContactsTableViewController.h"
-//#import "SDDiscoverTableViewController.h"
-//#import "SDMeTableViewController.h"
-//#import "GlobalDefines.h"
-//#import "TLConversationViewController.h"
-//#import "TLFriendsViewController.h"
-//#import "TLDiscoverViewController.h"
-//#import "TLMineViewController.h"
 #define kClassKey   @"rootVCClassString"
 #define kTitleKey   @"title"
 #define kImgKey     @"imageName"
 #define kSelImgKey  @"selectedImageName"
-
 #import "SVProgressHUD.h"
 #import "TLRootViewController.h"
 #import "TLRootProxy.h"
@@ -41,16 +16,8 @@
 #import "TLExpressionHelper.h"
 #import "JPEngine.h"
 static WechartTabBarController *rootVC = nil;
-
 @interface WechartTabBarController ()
-
 @property (nonatomic, strong) NSArray *childVCArray;
-
-//@property (nonatomic, strong) TLConversationViewController *conversationVC;
-//@property (nonatomic, strong) TLFriendsViewController *friendsVC;
-//@property (nonatomic, strong) TLDiscoverViewController *discoverVC;
-//@property (nonatomic, strong) TLMineViewController *mineVC;
-
 @end
 @implementation WechartTabBarController
 - (void)viewDidLoad {
@@ -94,102 +61,15 @@ static WechartTabBarController *rootVC = nil;
     }];
 }
 
-//+ (WechartTabBarController *) sharedRootViewController
-//{
-//    static dispatch_once_t once;
-//    dispatch_once(&once, ^{
-//        rootVC = [[TLRootViewController alloc] init];
-//    });
-//    return rootVC;
-//}
-//
-//- (void)viewDidLoad {
-//    [super viewDidLoad];
-//    
-//    [self setViewControllers:self.childVCArray];       // 初始化子控制器
-//}
-//
-//- (id)childViewControllerAtIndex:(NSUInteger)index
-//{
-//    return [[self.childViewControllers objectAtIndex:index] rootViewController];
-//}
-//
-//#pragma mark - Getters
-//- (NSArray *) childVCArray
-//{
-//    if (_childVCArray == nil) {
-//        TLNavigationController *convNavC = [[TLNavigationController alloc] initWithRootViewController:self.conversationVC];
-//        TLNavigationController *friendNavC = [[TLNavigationController alloc] initWithRootViewController:self.friendsVC];
-//        TLNavigationController *discoverNavC = [[TLNavigationController alloc] initWithRootViewController:self.discoverVC];
-//        TLNavigationController *mineNavC = [[TLNavigationController alloc] initWithRootViewController:self.mineVC];
-//        _childVCArray = @[convNavC, friendNavC, discoverNavC, mineNavC];
-//    }
-//    return _childVCArray;
-//}
-//
-//- (TLConversationViewController *) conversationVC
-//{
-//    if (_conversationVC == nil) {
-//        _conversationVC = [[TLConversationViewController alloc] init];
-//        [_conversationVC.tabBarItem setTitle:@"消息"];
-//        [_conversationVC.tabBarItem setImage:[UIImage imageNamed:@"tabbar_mainframe"]];
-//        [_conversationVC.tabBarItem setSelectedImage:[UIImage imageNamed:@"tabbar_mainframeHL"]];
-//    }
-//    return _conversationVC;
-//}
-//
-//- (TLFriendsViewController *) friendsVC
-//{
-//    if (_friendsVC == nil) {
-//        _friendsVC = [[TLFriendsViewController alloc] init];
-//        [_friendsVC.tabBarItem setTitle:@"通讯录"];
-//        [_friendsVC.tabBarItem setImage:[UIImage imageNamed:@"tabbar_contacts"]];
-//        [_friendsVC.tabBarItem setSelectedImage:[UIImage imageNamed:@"tabbar_contactsHL"]];
-//    }
-//    return _friendsVC;
-//}
-//
-//- (TLDiscoverViewController *) discoverVC
-//{
-//    if (_discoverVC == nil) {
-//        _discoverVC = [[TLDiscoverViewController alloc] init];
-//        [_discoverVC.tabBarItem setTitle:@"发现"];
-//        [_discoverVC.tabBarItem setImage:[UIImage imageNamed:@"tabbar_discover"]];
-//        [_discoverVC.tabBarItem setSelectedImage:[UIImage imageNamed:@"tabbar_discoverHL"]];
-//    }
-//    return _discoverVC;
-//}
-//
-//- (TLMineViewController *) mineVC
-//{
-//    if (_mineVC == nil) {
-//        _mineVC = [[TLMineViewController alloc] init];
-//        [_mineVC.tabBarItem setTitle:@"我"];
-//        [_mineVC.tabBarItem setImage:[UIImage imageNamed:@"tabbar_me"]];
-//        [_mineVC.tabBarItem setSelectedImage:[UIImage imageNamed:@"tabbar_meHL"]];
-//    }
-//    return _mineVC;
-//}
 
-/**********************************************************************************/
 - (void)p_initThirdPartSDK{
     // 友盟统计
     [MobClick startWithAppkey:UMENG_APPKEY reportPolicy:BATCH channelId:APP_CHANNEL];
     // 网络环境监测
     [[AFNetworkReachabilityManager sharedManager] startMonitoring];
     // JSPatch
-#ifdef DEBUG_JSPATCH
-    [JSPatch testScriptInBundle];
-#else
-//    [JSPatch startWithAppKey:JSPATCH_APPKEY];
-//    [JSPatch sync];
-#endif
-    // Mob SMS
-    //    [SMSSDK registerApp:MOB_SMS_APPKEY withSecret:MOB_SMS_SECRET];
-    // 提示框
-//    [SVProgressHUD setDefaultAnimationType:SVProgressHUDAnimationTypeNative];
-//    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
-    // 日志
+//    [JSPatch testScriptInBundle];
+
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
     [DDLog addLogger:[DDASLLogger sharedInstance]];
     DDFileLogger *fileLogger = [[DDFileLogger alloc] init];

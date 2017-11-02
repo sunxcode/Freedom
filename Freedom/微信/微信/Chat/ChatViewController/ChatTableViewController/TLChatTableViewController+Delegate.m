@@ -141,7 +141,7 @@
         if (ok) {
             [self.data removeObject:message];
             [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
-            [MobClick event:EVENT_DELETE_MESSAGE];
+            [MobClick event:@"e_delete_message"];
         }
         else {
             [UIAlertView bk_alertViewWithTitle:@"错误" message:@"从数据库中删除消息失败。"];
