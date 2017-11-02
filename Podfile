@@ -1,5 +1,5 @@
 platform:ios, '8.1'
-target 'MyFirstAPP' do
+target 'Freedom' do
     use_frameworks!
     pod 'JSONKit'                                        #json解析                      https://github.com/johnezang/JSONKit
     pod 'SVProgressHUD', '0.9'                           #提示性信息展示                  https://github.com/SVProgressHUD/SVProgressHUD

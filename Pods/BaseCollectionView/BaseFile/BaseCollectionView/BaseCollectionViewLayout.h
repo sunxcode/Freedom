@@ -1,6 +1,6 @@
 //
 //  BaseCollectionViewLayout.h
-//  MyFirstAPP
+//  Freedom
 //
 //  Created by 薛超 on 17/1/6.
 //  Copyright © 2017年 薛超. All rights reserved.

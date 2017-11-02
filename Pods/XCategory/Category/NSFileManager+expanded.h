@@ -1,6 +1,6 @@
 //
 //  NSFileManager+expanded.h
-//  MyFirstAPP
+//  Freedom
 #import <Foundation/Foundation.h>
 @interface NSFileManager (expanded)
 + (NSURL *)documentsURL;
