@@ -6,7 +6,8 @@
 //  Copyright © 2016年 李伯坤. All rights reserved.
 //
 
-
+#import "TLSettingGroup.h"
+#import "TLGroup.h"
 
 @interface TLRootProxy : NSObject
 
@@ -18,5 +19,8 @@
                       success:(void (^)(id))userInfo
                       failure:(void (^)(NSString *))error;
 
+- (NSMutableArray *)chatDetailDataByUserInfo:(TLUser *)userInfo;
+
+- (NSMutableArray *)chatDetailDataByGroupInfo:(TLGroup *)groupInfo;
 
 @end

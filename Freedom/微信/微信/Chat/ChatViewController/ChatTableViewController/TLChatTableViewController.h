@@ -7,25 +7,65 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TLChatCellMenuView.h"
-
-#import "TLTextMessage.h"
 #import "TLImageMessage.h"
-#import "TLExpressionMessage.h"
-
-#import "TLTextMessageCell.h"
-#import "TLImageMessageCell.h"
-#import "TLExpressionMessageCell.h"
 #import "TLActionSheet.h"
-//  TLChatTableViewControllerDelegate.h
-//  TLChat
-//
-//  Created by 李伯坤 on 16/3/23.
-//  Copyright © 2016年 李伯坤. All rights reserved.
-//
-
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSInteger, TLChatMenuItemType) {
+    TLChatMenuItemTypeCancel,
+    TLChatMenuItemTypeCopy,
+    TLChatMenuItemTypeDelete,
+};
+#import "TLEmoji.h"
+#import "TLImageMessage.h"
+#import "NSString+expanded.h"
+#import "TLMessageBaseCell.h"
+#import "UIFont+expanded.h"       // 字体
+@interface TLTextMessage : TLMessage
+
+@property (nonatomic, strong) NSString *text;                       // 文字信息
+
+@property (nonatomic, strong) NSAttributedString *attrText;         // 格式化的文字信息（仅展示用）
+
+@end
+
+
+@interface TLTextMessageCell : TLMessageBaseCell
+
+
+@end
+@interface TLImageMessageCell : TLMessageBaseCell
+
+@end
+@interface TLExpressionMessage : TLMessage
+
+@property (nonatomic, strong) TLEmoji *emoji;
+
+@property (nonatomic, strong, readonly) NSString *path;
+
+@property (nonatomic, strong, readonly) NSString *url;
+
+@property (nonatomic, assign, readonly) CGSize emojiSize;
+
+@end
+@interface TLExpressionMessageCell : TLMessageBaseCell
+
+@end
+@interface TLChatCellMenuView : UIView
+
+@property (nonatomic, assign, readonly) BOOL isShow;
+
+@property (nonatomic, assign) TLMessageType messageType;
+
+@property (nonatomic, copy) void (^actionBlcok)();
+
++ (TLChatCellMenuView *)sharedMenuView;
+
+- (void)showInView:(UIView *)view withMessageType:(TLMessageType)messageType rect:(CGRect)rect actionBlock:(void (^)(TLChatMenuItemType))actionBlock;
+
+- (void)dismiss;
+
+@end
 @class TLMessage;
 @class TLChatTableViewController;
 @protocol TLChatTableViewControllerDelegate <NSObject>

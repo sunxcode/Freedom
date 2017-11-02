@@ -11,6 +11,618 @@
 #import "TLTextDisplayView.h"
 
 #define     PAGE_MESSAGE_COUNT      15
+#import "UIImage+GIF.h"
+
+#define     MSG_SPACE_TOP       2
+
+#define     MSG_SPACE_TOP       14
+#define     MSG_SPACE_BTM       20
+#define     MSG_SPACE_LEFT      19
+#define     MSG_SPACE_RIGHT     22
+
+#import "UIFont+expanded.h"       // 字体
+@interface TLMessageImageView : UIImageView
+
+@property (nonatomic, strong) UIImage *backgroundImage;
+
+/**
+ *  设置消息图片（规则：收到消息时，先下载缩略图到本地，再添加到列表显示，并自动下载大图）
+ *
+ *  @param imagePath    缩略图Path
+ *  @param imageURL     高清图URL
+ */
+- (void)setThumbnailPath:(NSString *)imagePath highDefinitionImageURL:(NSString *)imageURL;
+
+
+@property (nonatomic, strong) CAShapeLayer *maskLayer;
+
+@property (nonatomic, strong) CALayer *contentLayer;
+
+@end
+
+@implementation TLMessageImageView
+
+- (id)initWithFrame:(CGRect)frame
+{
+    if (self = [super initWithFrame:frame]) {
+        [self.layer addSublayer:self.contentLayer];
+    }
+    return self;
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    [self.maskLayer setFrame:CGRectMake(0, 0, self.frameWidth, self.frameHeight)];
+    [self.contentLayer setFrame:CGRectMake(0, 0, self.frameWidth, self.frameHeight)];
+}
+
+- (void)setThumbnailPath:(NSString *)imagePath highDefinitionImageURL:(NSString *)imageURL
+{
+    if (imagePath == nil) {
+        [self.contentLayer setContents:nil];
+    }
+    else {
+        [self.contentLayer setContents:(id)[UIImage imageNamed:imagePath].CGImage];
+    }
+}
+
+- (void)setBackgroundImage:(UIImage *)backgroundImage
+{
+    _backgroundImage = backgroundImage;
+    [self.maskLayer setContents:(id)backgroundImage.CGImage];
+}
+
+#pragma mark - Getter -
+- (CAShapeLayer *)maskLayer
+{
+    if (_maskLayer == nil) {
+        _maskLayer = [CAShapeLayer layer];
+        _maskLayer.contentsCenter = CGRectMake(0.5, 0.6, 0.1, 0.1);
+        _maskLayer.contentsScale = [UIScreen mainScreen].scale;                 //非常关键设置自动拉伸的效果且不变形
+    }
+    return _maskLayer;
+}
+
+- (CALayer *)contentLayer
+{
+    if (_contentLayer == nil) {
+        _contentLayer = [[CALayer alloc] init];
+        [_contentLayer setMask:self.maskLayer];
+    }
+    return _contentLayer;
+}
+
+
+@end
+static UILabel *textLabel;
+
+@implementation TLTextMessage
+@synthesize text = _text;
+
+- (id)init
+{
+    if (self = [super init]) {
+        textLabel = [[UILabel alloc] init];
+        [textLabel setFont:[UIFont fontTextMessageText]];
+        [textLabel setNumberOfLines:0];
+    }
+    return self;
+}
+
+- (NSString *)text
+{
+    if (_text == nil) {
+        _text = [self.content objectForKey:@"text"];
+    }
+    return _text;
+}
+- (void)setText:(NSString *)text
+{
+    _text = text;
+    [self.content setObject:text forKey:@"text"];
+}
+
+- (NSAttributedString *)attrText
+{
+    if (_attrText == nil) {
+        _attrText = [self.text toMessageString];
+    }
+    return _attrText;
+}
+
+- (TLMessageFrame *)messageFrame
+{
+    if (kMessageFrame == nil) {
+        kMessageFrame = [[TLMessageFrame alloc] init];
+        kMessageFrame.height = 20 + (self.showTime ? 30 : 0) + (self.showName ? 15 : 0);
+        if (self.messageType == TLMessageTypeText) {
+            kMessageFrame.height += 20;
+            [textLabel setAttributedText:self.attrText];
+            kMessageFrame.contentSize = [textLabel sizeThatFits:CGSizeMake(MAX_MESSAGE_WIDTH, MAXFLOAT)];
+        }
+        kMessageFrame.height += kMessageFrame.contentSize.height;
+    }
+    return kMessageFrame;
+}
+
+- (NSString *)conversationContent
+{
+    return self.text;
+}
+
+- (NSString *)messageCopy
+{
+    return self.text;
+}
+
+@end
+@interface TLTextMessageCell ()
+
+@property (nonatomic, strong) UILabel *messageLabel;
+
+@end
+
+@implementation TLTextMessageCell
+
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        [self.contentView addSubview:self.messageLabel];
+    }
+    return self;
+}
+
+- (void)setMessage:(TLTextMessage *)message
+{
+    if (self.message && [self.message.messageID isEqualToString:message.messageID]) {
+        return;
+    }
+    TLMessageOwnerType lastOwnType = self.message ? self.message.ownerTyper : -1;
+    [super setMessage:message];
+    [self.messageLabel setAttributedText:[message attrText]];
+    
+    [self.messageLabel setContentCompressionResistancePriority:500 forAxis:UILayoutConstraintAxisHorizontal];
+    [self.messageBackgroundView setContentCompressionResistancePriority:100 forAxis:UILayoutConstraintAxisHorizontal];
+    if (lastOwnType != message.ownerTyper) {
+        if (message.ownerTyper == TLMessageOwnerTypeSelf) {
+            [self.messageBackgroundView setImage:[UIImage imageNamed:@"message_sender_bg"]];
+            [self.messageBackgroundView setHighlightedImage:[UIImage imageNamed:@"message_sender_bgHL"]];
+            
+            [self.messageLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.right.mas_equalTo(self.messageBackgroundView).mas_offset(-MSG_SPACE_RIGHT);
+                make.top.mas_equalTo(self.messageBackgroundView).mas_offset(MSG_SPACE_TOP);
+            }];
+            [self.messageBackgroundView mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.left.mas_equalTo(self.messageLabel).mas_offset(-MSG_SPACE_LEFT);
+                make.bottom.mas_equalTo(self.messageLabel).mas_offset(MSG_SPACE_BTM);
+            }];
+        }
+        else if (message.ownerTyper == TLMessageOwnerTypeFriend){
+            [self.messageBackgroundView setImage:[UIImage imageNamed:@"message_receiver_bg"]];
+            [self.messageBackgroundView setHighlightedImage:[UIImage imageNamed:@"message_receiver_bgHL"]];
+            
+            [self.messageLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.mas_equalTo(self.messageBackgroundView).mas_offset(MSG_SPACE_LEFT);
+                make.top.mas_equalTo(self.messageBackgroundView).mas_offset(MSG_SPACE_TOP);
+            }];
+            [self.messageBackgroundView mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.right.mas_equalTo(self.messageLabel).mas_offset(MSG_SPACE_RIGHT);
+                make.bottom.mas_equalTo(self.messageLabel).mas_offset(MSG_SPACE_BTM);
+            }];
+        }
+    }
+    
+    [self.messageLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(message.messageFrame.contentSize);
+    }];
+}
+
+#pragma mark - Getter -
+- (UILabel *)messageLabel
+{
+    if (_messageLabel == nil) {
+        _messageLabel = [[UILabel alloc] init];
+        [_messageLabel setFont:[UIFont fontTextMessageText]];
+        [_messageLabel setNumberOfLines:0];
+    }
+    return _messageLabel;
+}
+
+@end
+
+@interface TLImageMessageCell ()
+
+@property (nonatomic, strong) TLMessageImageView *msgImageView;
+
+@end
+
+@implementation TLImageMessageCell
+
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        [self.contentView addSubview:self.msgImageView];
+    }
+    return self;
+}
+
+- (void)setMessage:(TLImageMessage *)message
+{
+    [self.msgImageView setAlpha:1.0];       // 取消长按效果
+    if (self.message && [self.message.messageID isEqualToString:message.messageID]) {
+        return;
+    }
+    TLMessageOwnerType lastOwnType = self.message ? self.message.ownerTyper : -1;
+    [super setMessage:message];
+    
+    if ([message imagePath]) {
+        NSString *imagePath = [NSFileManager pathUserChatImage:[message imagePath]];
+        [self.msgImageView setThumbnailPath:imagePath highDefinitionImageURL:[message imagePath]];
+    }
+    else {
+        [self.msgImageView setThumbnailPath:nil highDefinitionImageURL:[message imagePath]];
+    }
+    
+    if (lastOwnType != message.ownerTyper) {
+        if (message.ownerTyper == TLMessageOwnerTypeSelf) {
+            [self.msgImageView setBackgroundImage:[UIImage imageNamed:@"message_sender_bg"]];
+            [self.msgImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.top.mas_equalTo(self.messageBackgroundView);
+                make.right.mas_equalTo(self.messageBackgroundView);
+            }];
+        }
+        else if (message.ownerTyper == TLMessageOwnerTypeFriend){
+            [self.msgImageView setBackgroundImage:[UIImage imageNamed:@"message_receiver_bg"]];
+            [self.msgImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.top.mas_equalTo(self.messageBackgroundView);
+                make.left.mas_equalTo(self.messageBackgroundView);
+            }];
+        }
+    }
+    [self.msgImageView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(message.messageFrame.contentSize);
+    }];
+}
+
+#pragma mark - Event Response -
+- (void)tapMessageView
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(messageCellTap:)]) {
+        [self.delegate messageCellTap:self.message];
+    }
+}
+
+- (void)longPressMsgBGView
+{
+    [self.msgImageView setAlpha:0.7];   // 比较low的选中效果
+    if (self.delegate && [self.delegate respondsToSelector:@selector(messageCellLongPress:rect:)]) {
+        CGRect rect = self.msgImageView.frame;
+        rect.size.height -= 10;     // 北京图片底部空白区域
+        [self.delegate messageCellLongPress:self.message rect:rect];
+    }
+}
+
+- (void)doubleTabpMsgBGView
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(messageCellDoubleClick:)]) {
+        [self.delegate messageCellDoubleClick:self.message];
+    }
+}
+
+#pragma mark - Getter -
+- (TLMessageImageView *)msgImageView
+{
+    if (_msgImageView == nil) {
+        _msgImageView = [[TLMessageImageView alloc] init];
+        [_msgImageView setUserInteractionEnabled:YES];
+        
+        UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapMessageView)];
+        [_msgImageView addGestureRecognizer:tapGR];
+        
+        UILongPressGestureRecognizer *longPressGR = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressMsgBGView)];
+        [_msgImageView addGestureRecognizer:longPressGR];
+        
+        UITapGestureRecognizer *doubleTapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTabpMsgBGView)];
+        [doubleTapGR setNumberOfTapsRequired:2];
+        [_msgImageView addGestureRecognizer:doubleTapGR];
+    }
+    return _msgImageView;
+}
+
+@end
+
+@implementation TLExpressionMessage
+@synthesize emoji = _emoji;
+
+- (void)setEmoji:(TLEmoji *)emoji
+{
+    _emoji = emoji;
+    [self.content setObject:emoji.groupID forKey:@"groupID"];
+    [self.content setObject:emoji.emojiID forKey:@"emojiID"];
+    CGSize imageSize = [UIImage imageNamed:self.path].size;
+    [self.content setObject:[NSNumber numberWithDouble:imageSize.width] forKey:@"w"];
+    [self.content setObject:[NSNumber numberWithDouble:imageSize.height] forKey:@"h"];
+}
+- (TLEmoji *)emoji
+{
+    if (_emoji == nil) {
+        _emoji = [[TLEmoji alloc] init];
+        _emoji.groupID = self.content[@"groupID"];
+        _emoji.emojiID = self.content[@"emojiID"];
+    }
+    return _emoji;
+}
+
+- (NSString *)path
+{
+    return self.emoji.emojiPath;
+}
+
+- (NSString *)url
+{
+    return [TLHost expressionDownloadURLWithEid:self.emoji.emojiID];
+}
+
+- (CGSize)emojiSize
+{
+    CGFloat width = [self.content[@"w"] doubleValue];
+    CGFloat height = [self.content[@"h"] doubleValue];
+    return CGSizeMake(width, height);
+}
+
+#pragma mark -
+- (TLMessageFrame *)messageFrame
+{
+    if (kMessageFrame == nil) {
+        kMessageFrame = [[TLMessageFrame alloc] init];
+        kMessageFrame.height = 20 + (self.showTime ? 30 : 0) + (self.showName ? 15 : 0);
+        
+        kMessageFrame.height += 5;
+        
+        CGSize emojiSize = self.emojiSize;
+        if (CGSizeEqualToSize(emojiSize, CGSizeZero)) {
+            kMessageFrame.contentSize = CGSizeMake(80, 80);
+        }
+        else if (emojiSize.width > emojiSize.height) {
+            CGFloat height = WIDTH_SCREEN * 0.35 * emojiSize.height / emojiSize.width;
+            height = height < WIDTH_SCREEN * 0.2 ? WIDTH_SCREEN * 0.2 : height;
+            kMessageFrame.contentSize = CGSizeMake(WIDTH_SCREEN * 0.35, height);
+        }
+        else {
+            CGFloat width = WIDTH_SCREEN * 0.35 * emojiSize.width / emojiSize.height;
+            width = width < WIDTH_SCREEN * 0.2 ? WIDTH_SCREEN * 0.2 : width;
+            kMessageFrame.contentSize = CGSizeMake(width, WIDTH_SCREEN * 0.35);
+        }
+        
+        kMessageFrame.height += kMessageFrame.contentSize.height;
+    }
+    return kMessageFrame;
+}
+
+- (NSString *)conversationContent
+{
+    return @"[表情]";
+}
+
+- (NSString *)messageCopy
+{
+    return [self.content mj_JSONString];
+}
+
+@end
+@interface TLExpressionMessageCell ()
+
+@property (nonatomic, strong) UIImageView *msgImageView;
+
+@end
+
+@implementation TLExpressionMessageCell
+
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        [self.contentView addSubview:self.msgImageView];
+    }
+    return self;
+}
+
+- (void)setMessage:(TLExpressionMessage *)message
+{
+    [self.msgImageView setAlpha:1.0];       // 取消长按效果
+    TLMessageOwnerType lastOwnType = self.message ? self.message.ownerTyper : -1;
+    [super setMessage:message];
+    
+    NSData *data = [NSData dataWithContentsOfFile:message.path];
+    if (data) {
+        [self.msgImageView setImage:[UIImage imageNamed:message.path]];
+        [self.msgImageView setImage:[UIImage sd_animatedGIFWithData:data]];
+    }
+    else {      // 表情组被删掉，先从缓存目录中查找，没有的话在下载并存入缓存目录
+        NSString *MycachePath = [NSFileManager cacheForFile:[NSString stringWithFormat:@"%@_%@.gif", message.emoji.groupID, message.emoji.emojiID]];
+        NSData *data = [NSData dataWithContentsOfFile:MycachePath];
+        if (data) {
+            [self.msgImageView setImage:[UIImage imageNamed:MycachePath]];
+            [self.msgImageView setImage:[UIImage sd_animatedGIFWithData:data]];
+        }
+        else {
+            __weak typeof(self) weakSelf = self;
+            [self.msgImageView sd_setImageWithURL:TLURL(message.url) completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                if ([[imageURL description] isEqualToString:[(TLExpressionMessage *)weakSelf.message url]]) {
+                    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+                        NSData *data = [NSData dataWithContentsOfURL:imageURL];
+                        [data writeToFile:cachePath atomically:NO];      // 再写入到缓存中
+                        if ([[imageURL description] isEqualToString:[(TLExpressionMessage *)weakSelf.message url]]) {
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                [self.msgImageView setImage:[UIImage sd_animatedGIFWithData:data]];
+                            });
+                        }
+                    });
+                }
+            }];
+        }
+    }
+    
+    if (lastOwnType != message.ownerTyper) {
+        if (message.ownerTyper == TLMessageOwnerTypeSelf) {
+            [self.msgImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.top.mas_equalTo(self.usernameLabel.mas_bottom).mas_offset(5);
+                make.right.mas_equalTo(self.messageBackgroundView).mas_offset(-10);
+            }];
+        }
+        else if (message.ownerTyper == TLMessageOwnerTypeFriend){
+            [self.msgImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.top.mas_equalTo(self.usernameLabel.mas_bottom).mas_offset(5);
+                make.left.mas_equalTo(self.messageBackgroundView).mas_offset(10);
+            }];
+        }
+    }
+    [self.msgImageView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(message.messageFrame.contentSize);
+    }];
+}
+
+#pragma mark - Event Response -
+- (void)longPressMsgBGView
+{
+    [self.msgImageView setAlpha:0.7];   // 比较low的选中效果
+    if (self.delegate && [self.delegate respondsToSelector:@selector(messageCellLongPress:rect:)]) {
+        CGRect rect = self.msgImageView.frame;
+        [self.delegate messageCellLongPress:self.message rect:rect];
+    }
+}
+
+- (void)doubleTabpMsgBGView
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(messageCellDoubleClick:)]) {
+        [self.delegate messageCellDoubleClick:self.message];
+    }
+}
+
+#pragma mark - Getter -
+- (UIImageView *)msgImageView
+{
+    if (_msgImageView == nil) {
+        _msgImageView = [[UIImageView alloc] init];
+        [_msgImageView setUserInteractionEnabled:YES];
+        
+        UILongPressGestureRecognizer *longPressGR = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressMsgBGView)];
+        [_msgImageView addGestureRecognizer:longPressGR];
+        
+        UITapGestureRecognizer *doubleTapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTabpMsgBGView)];
+        [doubleTapGR setNumberOfTapsRequired:2];
+        [_msgImageView addGestureRecognizer:doubleTapGR];
+    }
+    return _msgImageView;
+}
+
+@end
+
+
+
+@interface TLChatCellMenuView ()
+
+@property (nonatomic, strong) UIMenuController *menuController;
+
+@end
+
+@implementation TLChatCellMenuView
+
++ (TLChatCellMenuView *)sharedMenuView
+{
+    static TLChatCellMenuView *menuView;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        menuView = [[TLChatCellMenuView alloc] init];
+    });
+    return menuView;
+}
+
+- (id)initWithFrame:(CGRect)frame
+{
+    if (self = [super initWithFrame:frame]) {
+        [self setBackgroundColor:[UIColor clearColor]];
+        self.menuController = [UIMenuController sharedMenuController];
+        
+        UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismiss)];
+        [self addGestureRecognizer:tapGR];
+    }
+    return self;
+}
+
+- (void)showInView:(UIView *)view withMessageType:(TLMessageType)messageType rect:(CGRect)rect actionBlock:(void (^)(TLChatMenuItemType))actionBlock
+{
+    if (_isShow) {
+        return;
+    }
+    _isShow = YES;
+    [self setFrame:view.bounds];
+    [view addSubview:self];
+    [self setActionBlcok:actionBlock];
+    [self setMessageType:messageType];
+    
+    [self.menuController setTargetRect:rect inView:self];
+    [self becomeFirstResponder];
+    [self.menuController setMenuVisible:YES animated:YES];
+}
+
+- (void)setMessageType:(TLMessageType)messageType
+{
+    UIMenuItem *copy = [[UIMenuItem alloc] initWithTitle:@"复制" action:@selector(copyButtonDown:)];
+    UIMenuItem *transmit = [[UIMenuItem alloc] initWithTitle:@"转发" action:@selector(transmitButtonDown:)];
+    UIMenuItem *collect = [[UIMenuItem alloc] initWithTitle:@"收藏" action:@selector(collectButtonDown:)];
+    UIMenuItem *del = [[UIMenuItem alloc] initWithTitle:@"删除" action:@selector(deleteButtonDown:)];
+    [self.menuController setMenuItems:@[copy, transmit, collect, del]];
+}
+
+- (void)dismiss
+{
+    _isShow = NO;
+    if (self.actionBlcok) {
+        self.actionBlcok(TLChatMenuItemTypeCancel);
+    }
+    [self.menuController setMenuVisible:NO animated:YES];
+    [self removeFromSuperview];
+}
+
+- (BOOL)canBecomeFirstResponder
+{
+    return YES;
+}
+
+#pragma mark - Event Response -
+- (void)copyButtonDown:(UIMenuController *)sender
+{
+    [self p_clickedMenuItemType:TLChatMenuItemTypeCopy];
+}
+
+- (void)transmitButtonDown:(UIMenuController *)sender
+{
+    [self p_clickedMenuItemType:TLChatMenuItemTypeCopy];
+}
+
+- (void)collectButtonDown:(UIMenuController *)sender
+{
+    [self p_clickedMenuItemType:TLChatMenuItemTypeCopy];
+}
+
+- (void)deleteButtonDown:(UIMenuController *)sender
+{
+    [self p_clickedMenuItemType:TLChatMenuItemTypeDelete];
+}
+
+#pragma mark - Private Methods -
+- (void)p_clickedMenuItemType:(TLChatMenuItemType)type
+{
+    _isShow = NO;
+    [self removeFromSuperview];
+    if (self.actionBlcok) {
+        self.actionBlcok(type);
+    }
+}
+
+@end
+
 @implementation UITableView (expanded)
 
 - (void)scrollToBottomWithAnimation:(BOOL)animation

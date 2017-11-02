@@ -8,9 +8,24 @@
 
 #import <UIKit/UIKit.h>
 #import "TLKeyboardDelegate.h"
-#import "TLMoreKeyboardDelegate.h"
-#import "TLMoreKeyboardItem.h"
 
+
+@interface TLMoreKeyboardItem : NSObject
+
+@property (nonatomic, assign) TLMoreKeyboardItemType type;
+
+@property (nonatomic, strong) NSString *title;
+
+@property (nonatomic, strong) NSString *imagePath;
+
++ (TLMoreKeyboardItem *)createByType:(TLMoreKeyboardItemType)type title:(NSString *)title imagePath:(NSString *)imagePath;
+
+@end
+@protocol TLMoreKeyboardDelegate <NSObject>
+@optional
+- (void) moreKeyboard:(id)keyboard didSelectedFunctionItem:(TLMoreKeyboardItem *)funcItem;
+
+@end
 @interface TLMoreKeyboard : UIView<UICollectionViewDataSource, UICollectionViewDelegate>
 
 - (void)registerCellClass;

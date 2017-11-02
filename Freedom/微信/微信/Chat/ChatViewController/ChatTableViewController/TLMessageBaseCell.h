@@ -7,9 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TLMessageCellDelegate.h"
 #import "TLMessage.h"
+@protocol TLChatUserProtocol;
+@class TLMessage;
+@protocol TLMessageCellDelegate <NSObject>
 
+- (void)messageCellDidClickAvatarForUser:(id<TLChatUserProtocol>)user;
+
+- (void)messageCellTap:(TLMessage *)message;
+
+- (void)messageCellLongPress:(TLMessage *)message rect:(CGRect)rect;
+
+- (void)messageCellDoubleClick:(TLMessage *)message;
+
+@end
 @interface TLMessageBaseCell : UITableViewCell
 
 @property (nonatomic, assign) id<TLMessageCellDelegate>delegate;

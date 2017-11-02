@@ -7,7 +7,9 @@
 //
 
 #import "TLMessage.h"
+@implementation TLMessageFrame
 
+@end
 @implementation TLMessage
 
 + (TLMessage *)createMessageByType:(TLMessageType)type

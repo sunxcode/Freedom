@@ -9,7 +9,7 @@
 #import "TLChatDetailViewController.h"
 #import "TLFriendDetailViewController.h"
 #import "TLMessageManager.h"
-#import "TLChatDetailHelper.h"
+#import "TLRootProxy.h"
 #import "TLUserGroupCell.h"
 #import "TLActionSheet.h"
 #import "TLChatViewController.h"
@@ -20,7 +20,7 @@
 
 @interface TLChatDetailViewController () <TLUserGroupCellDelegate, TLActionSheetDelegate>
 
-@property (nonatomic, strong) TLChatDetailHelper *helper;
+@property (nonatomic, strong) TLRootProxy *helper;
 
 @end
 
@@ -30,7 +30,7 @@
     [super viewDidLoad];
     [self.navigationItem setTitle:@"聊天详情"];
     
-    self.helper = [[TLChatDetailHelper alloc] init];
+    self.helper = [[TLRootProxy alloc] init];
     self.data = [self.helper chatDetailDataByUserInfo:self.user];
     
     [self.tableView registerClass:[TLUserGroupCell class] forCellReuseIdentifier:@"TLUserGroupCell"];

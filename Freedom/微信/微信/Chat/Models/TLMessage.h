@@ -42,6 +42,13 @@ typedef NS_ENUM(NSInteger, TLMessageReadState) {
     TLMessageUnRead,            // 消息未读
     TLMessageReaded,            // 消息已读
 };
+@interface TLMessageFrame : NSObject
+
+@property (nonatomic, assign) CGFloat height;
+
+@property (nonatomic, assign) CGSize contentSize;
+
+@end
 
 @interface TLMessage : NSObject <TLMessageProtocol>
 {

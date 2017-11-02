@@ -8,12 +8,20 @@
 
 #import <UIKit/UIKit.h>
 #import "TLChatTableViewController.h"
-#import "TLEmojiDisplayView.h"
 #import "TLImageExpressionDisplayView.h"
-
-#import "TLMoreKeyboardDelegate.h"
 #import "TLMoreKeyboard.h"
 #import "TLEmojiKeyboard.h"
+#import "TLEmoji.h"
+
+@interface TLEmojiDisplayView : UIImageView
+
+@property (nonatomic, strong) TLEmoji *emoji;
+
+@property (nonatomic, assign) CGRect rect;
+
+- (void)displayEmoji:(TLEmoji *)emoji atRect:(CGRect)rect;
+
+@end
 
 @class TLChatBar;
 @protocol TLChatBarDelegate <NSObject>
