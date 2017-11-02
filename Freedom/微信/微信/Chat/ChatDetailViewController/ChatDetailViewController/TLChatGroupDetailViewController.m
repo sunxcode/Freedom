@@ -8,11 +8,10 @@
 
 #import "TLChatGroupDetailViewController.h"
 #import "TLChatDetailHelper.h"
-#import "TLMessageManager+MessageRecord.h"
 #import "TLUserGroupCell.h"
 #import "TLActionSheet.h"
 #import "TLChatViewController.h"
-
+#import "TLMessageManager.h"
 #import "TLFriendDetailViewController.h"
 #import "TLGroupQRCodeViewController.h"
 #import "TLChatFileViewController.h"

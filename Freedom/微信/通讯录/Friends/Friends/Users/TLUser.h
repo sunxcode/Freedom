@@ -9,7 +9,8 @@
 #import "TLUserSetting.h"
 #import "TLUserChatSetting.h"
 
-@interface TLUser : NSObject
+#import "TLChatUserProtocol.h"
+@interface TLUser : NSObject<TLChatUserProtocol>
 
 /// 用户ID
 @property (nonatomic, strong) NSString *userID;

@@ -82,4 +82,22 @@ typedef NS_ENUM(NSInteger, TLAddMneuType) {
     TLAddMneuTypeWallet,
 };
 
+
+typedef NS_ENUM(NSInteger, TLEmojiType) {
+    TLEmojiTypeEmoji,
+    TLEmojiTypeFavorite,
+    TLEmojiTypeFace,
+    TLEmojiTypeImage,
+    TLEmojiTypeImageWithTitle,
+    TLEmojiTypeOther,
+};
+
+typedef NS_ENUM(NSInteger, TLChatBarStatus) {
+    TLChatBarStatusInit,
+    TLChatBarStatusVoice,
+    TLChatBarStatusEmoji,
+    TLChatBarStatusMore,
+    TLChatBarStatusKeyboard,
+};
+
 #endif /* TLEnumerate_h */

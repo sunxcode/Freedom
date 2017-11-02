@@ -63,14 +63,14 @@
             kMessageFrame.contentSize = CGSizeMake(100, 100);
         }
         else if (imageSize.width > imageSize.height) {
-            CGFloat height = MAX_MESSAGE_IMAGE_WIDTH * imageSize.height / imageSize.width;
-            height = height < MIN_MESSAGE_IMAGE_WIDTH ? MIN_MESSAGE_IMAGE_WIDTH : height;
-            kMessageFrame.contentSize = CGSizeMake(MAX_MESSAGE_IMAGE_WIDTH, height);
+            CGFloat height = WIDTH_SCREEN * 0.45 * imageSize.height / imageSize.width;
+            height = height < WIDTH_SCREEN * 0.25 ? WIDTH_SCREEN * 0.25 : height;
+            kMessageFrame.contentSize = CGSizeMake(WIDTH_SCREEN * 0.45, height);
         }
         else {
-            CGFloat width = MAX_MESSAGE_IMAGE_WIDTH * imageSize.width / imageSize.height;
-            width = width < MIN_MESSAGE_IMAGE_WIDTH ? MIN_MESSAGE_IMAGE_WIDTH : width;
-            kMessageFrame.contentSize = CGSizeMake(width, MAX_MESSAGE_IMAGE_WIDTH);
+            CGFloat width = WIDTH_SCREEN * 0.45 * imageSize.width / imageSize.height;
+            width = width < WIDTH_SCREEN * 0.25 ? WIDTH_SCREEN * 0.25 : width;
+            kMessageFrame.contentSize = CGSizeMake(width, WIDTH_SCREEN * 0.45);
         }
         
         kMessageFrame.height += kMessageFrame.contentSize.height;

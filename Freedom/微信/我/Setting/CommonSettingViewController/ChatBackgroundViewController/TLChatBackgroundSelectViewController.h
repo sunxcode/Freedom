@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TLChatBackgroundSelectViewController : UIViewController
+@interface TLChatBackgroundSelectViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+
+- (void)registerCellForCollectionView:(UICollectionView *)collectionView;
+
 
 @property (nonatomic, strong) NSMutableArray *data;
 

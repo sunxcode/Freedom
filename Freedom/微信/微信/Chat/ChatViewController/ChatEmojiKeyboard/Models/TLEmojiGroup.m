@@ -84,5 +84,8 @@
     }
     return _groupIconPath;
 }
-
+- (NSString *)pictureURL
+{
+    return self.bannerURL;
+}
 @end

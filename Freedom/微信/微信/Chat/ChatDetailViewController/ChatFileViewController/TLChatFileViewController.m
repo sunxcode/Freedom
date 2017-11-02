@@ -7,15 +7,139 @@
 //
 
 #import "TLChatFileViewController.h"
-#import "TLChatFileCell.h"
-#import "TLChatFileHeaderView.h"
 #import <XCategory/NSDate+expanded.h>
-#import "TLMessageManager+MessageRecord.h"
 #import "MWPhotoBrowser.h"
-
+#import "TLMessageManager.h"
 #define     HEIGHT_COLLECTIONVIEW_HEADER    28
 #define     WIDTH_COLLECTIONVIEW_CELL       WIDTH_SCREEN / 4 * 0.98
 #define     SPACE_COLLECTIONVIEW_CELL       (WIDTH_SCREEN - WIDTH_COLLECTIONVIEW_CELL * 4) / 3
+#import <UIKit/UIKit.h>
+#import "TLImageMessage.h"
+
+@interface TLChatFileCell : UICollectionViewCell
+
+@property (nonatomic, strong) TLMessage * message;
+
+@end
+@interface TLChatFileCell ()
+
+@property (nonatomic, strong) UIImageView *imageView;
+
+@end
+
+@implementation TLChatFileCell
+
+- (id)initWithFrame:(CGRect)frame
+{
+    if (self = [super initWithFrame:frame]) {
+        [self.contentView addSubview:self.imageView];
+        [self p_addMasonry];
+    }
+    return self;
+}
+
+- (void)setMessage:(TLMessage *)message
+{
+    _message = message;
+    if (message.messageType == TLMessageTypeImage) {
+        if ([(TLImageMessage *)message imagePath].length > 0) {
+            NSString *imagePath = [NSFileManager pathUserChatImage:[(TLImageMessage *)message imagePath]];
+            [self.imageView setImage:[UIImage imageNamed:imagePath]];
+        }
+        else if ([(TLImageMessage *)message imageURL].length > 0) {
+            [self.imageView sd_setImageWithURL:TLURL([(TLImageMessage *)message imageURL]) placeholderImage:[UIImage imageNamed:PuserLogo]];
+        }
+        else {
+            [self.imageView setImage:nil];
+        }
+    }
+}
+
+#pragma mark - Private Methods -
+- (void)p_addMasonry
+{
+    [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(self.contentView);
+    }];
+}
+
+#pragma mark - Getter -
+- (UIImageView *)imageView
+{
+    if (_imageView == nil) {
+        _imageView = [[UIImageView alloc] init];
+    }
+    return _imageView;
+}
+
+@end
+
+@interface TLChatFileHeaderView : UICollectionReusableView
+
+@property (nonatomic, strong) NSString *title;
+
+@end
+
+@interface TLChatFileHeaderView ()
+
+@property (nonatomic, strong) UIView *bgView;
+
+@property (nonatomic, strong) UILabel *titleLabel;
+
+@end
+
+@implementation TLChatFileHeaderView
+
+- (id)initWithFrame:(CGRect)frame
+{
+    if (self = [super initWithFrame:frame]) {
+        [self setBackgroundColor:[UIColor clearColor]];
+        [self addSubview:self.bgView];
+        [self addSubview:self.titleLabel];
+        [self p_addMasonry];
+    }
+    return self;
+}
+
+- (void)setTitle:(NSString *)title
+{
+    _title = title;
+    [self.titleLabel setText:title];
+}
+
+#pragma mark - Private Methods -
+- (void)p_addMasonry
+{
+    [self.bgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(self);
+    }];
+    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(self).mas_offset(UIEdgeInsetsMake(0, 10, 0, 10));
+    }];
+}
+
+#pragma mark - Getter -
+- (UIView *)bgView
+{
+    if (_bgView == nil) {
+        _bgView = [[UIView alloc] init];
+        [_bgView setBackgroundColor:[UIColor colorBlackBG]];
+        [_bgView setAlpha:0.8f];
+    }
+    return _bgView;
+}
+
+- (UILabel *)titleLabel
+{
+    if (_titleLabel == nil) {
+        _titleLabel = [[UILabel alloc] init];
+        [_titleLabel setTextColor:[UIColor whiteColor]];
+        [_titleLabel setFont:[UIFont systemFontOfSize:14.0f]];
+    }
+    return _titleLabel;
+}
+
+@end
 
 @interface TLChatFileViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 

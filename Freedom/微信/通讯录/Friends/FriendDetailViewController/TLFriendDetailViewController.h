@@ -7,9 +7,16 @@
 //
 
 #import "TLInfoViewController.h"
+#import "TLFriendDetailUserCell.h"
+
+#define     HEIGHT_USER_CELL           90.0f
+#define     HEIGHT_ALBUM_CELL          80.0f
 
 @class TLUser;
-@interface TLFriendDetailViewController : TLInfoViewController
+@interface TLFriendDetailViewController : TLInfoViewController <TLFriendDetailUserCellDelegate>
+
+- (void)registerCellClass;
+
 
 @property (nonatomic, strong) TLUser *user;
 

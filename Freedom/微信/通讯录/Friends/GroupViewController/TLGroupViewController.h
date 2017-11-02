@@ -15,4 +15,6 @@
 
 @property (nonatomic, strong) TLGroupSearchViewController *searchVC;
 
+- (void)registerCellClass;
+
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "TLMessageManager.h"
-#import "TLMessageManager+ConversationRecord.h"
+#import "TLChatViewController.h"
 
 static TLMessageManager *messageManager;
 
@@ -60,6 +60,83 @@ static TLMessageManager *messageManager;
 - (NSString *)userID
 {
     return [TLUserHelper sharedHelper].userID;
+}
+
+- (BOOL)addConversationByMessage:(TLMessage *)message
+{
+    NSString *partnerID = message.friendID;
+    NSInteger type = 0;
+    if (message.partnerType == TLPartnerTypeGroup) {
+        partnerID = message.groupID;
+        type = 1;
+    }
+    BOOL ok = [self.conversationStore addConversationByUid:message.userID fid:partnerID type:type date:message.date];
+    
+    return ok;
+}
+
+- (void)conversationRecord:(void (^)(NSArray *))complete
+{
+    NSArray *data = [self.conversationStore conversationsByUid:self.userID];
+    complete(data);
+}
+
+- (BOOL)deleteConversationByPartnerID:(NSString *)partnerID
+{
+    BOOL ok = [self deleteMessagesByPartnerID:partnerID];
+    if (ok) {
+        ok = [self.conversationStore deleteConversationByUid:self.userID fid:partnerID];
+    }
+    return ok;
+}
+
+- (void)messageRecordForPartner:(NSString *)partnerID
+                       fromDate:(NSDate *)date
+                          count:(NSUInteger)count
+                       complete:(void (^)(NSArray *, BOOL))complete
+{
+    [self.messageStore messagesByUserID:self.userID partnerID:partnerID fromDate:date count:count complete:^(NSArray *data, BOOL hasMore) {
+        complete(data, hasMore);
+    }];
+}
+
+- (void)chatFilesForPartnerID:(NSString *)partnerID
+                    completed:(void (^)(NSArray *))completed
+{
+    NSArray *data = [self.messageStore chatFilesByUserID:self.userID partnerID:partnerID];
+    completed(data);
+}
+
+- (void)chatImagesAndVideosForPartnerID:(NSString *)partnerID
+                              completed:(void (^)(NSArray *))completed
+
+{
+    NSArray *data = [self.messageStore chatImagesAndVideosByUserID:self.userID partnerID:partnerID];
+    completed(data);
+}
+
+- (BOOL)deleteMessageByMsgID:(NSString *)msgID
+{
+    return [self.messageStore deleteMessageByMessageID:msgID];
+}
+
+- (BOOL)deleteMessagesByPartnerID:(NSString *)partnerID
+{
+    BOOL ok = [self.messageStore deleteMessagesByUserID:self.userID partnerID:partnerID];
+    if (ok) {
+        [[TLChatViewController sharedChatVC] resetChatVC];
+    }
+    return ok;
+}
+
+- (BOOL)deleteAllMessages
+{
+    BOOL ok = [self.messageStore deleteMessagesByUserID:self.userID];
+    if (ok) {
+        [[TLChatViewController sharedChatVC] resetChatVC];
+        ok = [self.conversationStore deleteConversationsByUid:self.userID];
+    }
+    return ok;
 }
 
 @end

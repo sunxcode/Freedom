@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TLChatMacros.h"
 #import "TLEmoji.h"
+
+#import "TLPictureCarouselProtocol.h"
 
 typedef NS_ENUM(NSInteger, TLEmojiGroupStatus) {
     TLEmojiGroupStatusUnDownload,
@@ -16,7 +17,8 @@ typedef NS_ENUM(NSInteger, TLEmojiGroupStatus) {
     TLEmojiGroupStatusDownloading,
 };
 
-@interface TLEmojiGroup : NSObject
+@interface TLEmojiGroup : NSObject<TLPictureCarouselProtocol>
+
 
 @property (nonatomic, assign) TLEmojiType type;
 

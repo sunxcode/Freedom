@@ -8,11 +8,39 @@
 
 #import <UIKit/UIKit.h>
 #import "TLKeyboardDelegate.h"
-#import "TLEmojiKeyboardDelegate.h"
 #import "TLEmojiGroupControl.h"
+#import "TLEmojiItemCell.h"
+#import "TLEmojiFaceItemCell.h"
+#import "TLEmojiImageItemCell.h"
+#import "TLEmojiImageTitleItemCell.h"
+#define     HEIGHT_TOP_SPACE            10
+#define     HEIGHT_EMOJIVIEW            (HEIGHT_CHAT_KEYBOARD * 0.75 - HEIGHT_TOP_SPACE)
+#define     HEIGHT_PAGECONTROL          HEIGHT_CHAT_KEYBOARD * 0.1
+#define     HEIGHT_GROUPCONTROL         HEIGHT_CHAT_KEYBOARD * 0.17
+#import "TLEmoji.h"
 
-@interface TLEmojiKeyboard : UIView
-{
+@class TLEmojiKeyboard;
+@protocol TLEmojiKeyboardDelegate <NSObject>
+
+- (BOOL)chatInputViewHasText;
+
+@optional
+- (void)emojiKeyboard:(TLEmojiKeyboard *)emojiKB didTouchEmojiItem:(TLEmoji *)emoji atRect:(CGRect)rect;
+
+- (void)emojiKeyboardCancelTouchEmojiItem:(TLEmojiKeyboard *)emojiKB;
+
+- (void)emojiKeyboard:(TLEmojiKeyboard *)emojiKB didSelectedEmojiItem:(TLEmoji *)emoji;
+
+- (void)emojiKeyboardSendButtonDown;
+
+- (void)emojiKeyboardEmojiEditButtonDown;
+
+- (void)emojiKeyboardMyEmojiEditButtonDown;
+
+- (void)emojiKeyboard:(TLEmojiKeyboard *)emojiKB selectedEmojiGroupType:(TLEmojiType)type;
+
+@end
+@interface TLEmojiKeyboard : UIView<UICollectionViewDataSource,UICollectionViewDelegate, UICollectionViewDelegateFlowLayout,TLEmojiGroupControlDelegate>{
     CGSize cellSize;
     CGSize headerReferenceSize;
     CGSize footerReferenceSize;
@@ -20,6 +48,16 @@
     CGFloat minimumInteritemSpacing;
     UIEdgeInsets sectionInsets;
 }
+- (void)registerCellClass;
+
+- (NSUInteger)transformCellIndex:(NSInteger)index;
+
+- (NSUInteger)transformModelIndex:(NSInteger)index;
+
+- (void)resetCollectionSize;
+
+- (void)addGusture;
+- (void)updateSendButtonStatus;
 
 @property (nonatomic, assign) NSMutableArray *emojiGroupData;
 

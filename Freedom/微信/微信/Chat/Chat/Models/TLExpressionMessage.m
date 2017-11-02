@@ -61,14 +61,14 @@
             kMessageFrame.contentSize = CGSizeMake(80, 80);
         }
         else if (emojiSize.width > emojiSize.height) {
-            CGFloat height = MAX_MESSAGE_EXPRESSION_WIDTH * emojiSize.height / emojiSize.width;
-            height = height < MIN_MESSAGE_EXPRESSION_WIDTH ? MIN_MESSAGE_EXPRESSION_WIDTH : height;
-            kMessageFrame.contentSize = CGSizeMake(MAX_MESSAGE_EXPRESSION_WIDTH, height);
+            CGFloat height = WIDTH_SCREEN * 0.35 * emojiSize.height / emojiSize.width;
+            height = height < WIDTH_SCREEN * 0.2 ? WIDTH_SCREEN * 0.2 : height;
+            kMessageFrame.contentSize = CGSizeMake(WIDTH_SCREEN * 0.35, height);
         }
         else {
-            CGFloat width = MAX_MESSAGE_EXPRESSION_WIDTH * emojiSize.width / emojiSize.height;
-            width = width < MIN_MESSAGE_EXPRESSION_WIDTH ? MIN_MESSAGE_EXPRESSION_WIDTH : width;
-            kMessageFrame.contentSize = CGSizeMake(width, MAX_MESSAGE_EXPRESSION_WIDTH);
+            CGFloat width = WIDTH_SCREEN * 0.35 * emojiSize.width / emojiSize.height;
+            width = width < WIDTH_SCREEN * 0.2 ? WIDTH_SCREEN * 0.2 : width;
+            kMessageFrame.contentSize = CGSizeMake(width, WIDTH_SCREEN * 0.35);
         }
     
         kMessageFrame.height += kMessageFrame.contentSize.height;

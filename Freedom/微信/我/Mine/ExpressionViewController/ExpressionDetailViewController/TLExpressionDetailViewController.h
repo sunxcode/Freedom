@@ -9,8 +9,17 @@
 #import "TLViewController.h"
 #import "TLImageExpressionDisplayView.h"
 #import "TLEmojiGroup.h"
+#import "TLExpressionDetailCell.h"
 
-@interface TLExpressionDetailViewController : TLViewController
+@interface TLExpressionDetailViewController : TLViewController<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, TLExpressionDetailCellDelegate>
+
+- (void)registerCellForCollectionView:(UICollectionView *)collectionView;
+
+- (void)didLongPressScreen:(UILongPressGestureRecognizer *)sender;
+
+- (void)didTap5TimesScreen:(UITapGestureRecognizer *)sender;
+
+
 
 @property (nonatomic, strong) TLEmojiGroup *group;
 

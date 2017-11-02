@@ -74,4 +74,28 @@
     return _detailInfo;
 }
 
+- (NSString *)chat_userID
+{
+    return self.userID;
+}
+
+- (NSString *)chat_username
+{
+    return self.showName;
+}
+
+- (NSString *)chat_avatarURL
+{
+    return self.avatarURL;
+}
+
+- (NSString *)chat_avatarPath
+{
+    return self.avatarPath;
+}
+
+- (NSInteger)chat_userType
+{
+    return TLChatUserTypeUser;
+}
 @end

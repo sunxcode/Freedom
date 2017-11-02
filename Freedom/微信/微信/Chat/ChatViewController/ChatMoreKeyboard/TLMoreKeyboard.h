@@ -11,7 +11,10 @@
 #import "TLMoreKeyboardDelegate.h"
 #import "TLMoreKeyboardItem.h"
 
-@interface TLMoreKeyboard : UIView
+@interface TLMoreKeyboard : UIView<UICollectionViewDataSource, UICollectionViewDelegate>
+
+- (void)registerCellClass;
+
 
 @property (nonatomic, assign) id<TLKeyboardDelegate> keyboardDelegate;
 

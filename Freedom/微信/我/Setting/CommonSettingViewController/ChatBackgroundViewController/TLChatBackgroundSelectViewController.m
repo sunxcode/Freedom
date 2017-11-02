@@ -7,9 +7,6 @@
 //
 
 #import "TLChatBackgroundSelectViewController.h"
-#import "TLChatBackgroundSelectViewController+CollectionView.h"
-#import "TLChatBackgroundSelectViewController+Proxy.h"
-
 #define     SPACE_EDGE                      10
 #define     WIDTH_COLLECTIONVIEW_CELL       (WIDTH_SCREEN - SPACE_EDGE * 2) / 3 * 0.98
 #define     SPACE_COLLECTIONVIEW_CELL       (WIDTH_SCREEN - SPACE_EDGE * 2 - WIDTH_COLLECTIONVIEW_CELL * 3) / 2
@@ -60,4 +57,20 @@
     return _collectionView;
 }
 
+- (void)registerCellForCollectionView:(UICollectionView *)collectionView
+{
+    [collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"TLChatBackgroundSelectCell"];
+}
+
+#pragma mark - # Delegate
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return self.data.count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"TLChatBackgroundSelectCell" forIndexPath:indexPath];
+    return cell;
+}
 @end

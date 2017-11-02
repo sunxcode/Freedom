@@ -7,21 +7,76 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TLChatViewControllerProxy.h"
 #import "TLChatTableViewController.h"
 #import "TLEmojiDisplayView.h"
 #import "TLImageExpressionDisplayView.h"
 
 #import "TLMoreKeyboardDelegate.h"
-#import "TLMessageManager+MessageRecord.h"
-
-#import "TLChatBar.h"
 #import "TLMoreKeyboard.h"
 #import "TLEmojiKeyboard.h"
 
-#import "TLChatUserProtocol.h"
+@class TLChatBar;
+@protocol TLChatBarDelegate <NSObject>
 
-@interface TLChatBaseViewController : UIViewController <TLChatViewControllerProxy, TLMoreKeyboardDelegate>
+/**
+ *  chatBar状态改变
+ */
+- (void)chatBar:(TLChatBar *)chatBar changeStatusFrom:(TLChatBarStatus)fromStatus to:(TLChatBarStatus)toStatus;
+
+/**
+ *  输入框高度改变
+ */
+- (void)chatBar:(TLChatBar *)chatBar didChangeTextViewHeight:(CGFloat)height;
+
+@end
+
+
+
+@protocol TLChatBarDataDelegate <NSObject>
+/**
+ *  发送文字
+ */
+- (void)chatBar:(TLChatBar *)chatBar sendText:(NSString *)text;
+
+
+// 录音控制
+- (void)chatBarRecording:(TLChatBar *)chatBar;
+
+- (void)chatBarWillCancelRecording:(TLChatBar *)chatBar;
+
+- (void)chatBarDidCancelRecording:(TLChatBar *)chatBar;
+
+- (void)chatBarFinishedRecoding:(TLChatBar *)chatBar;
+
+@end
+@interface TLChatBar : UIView
+
+@property (nonatomic, assign) id<TLChatBarDelegate> delegate;
+
+@property (nonatomic, assign) id<TLChatBarDataDelegate> dataDelegate;
+
+@property (nonatomic, assign) TLChatBarStatus status;
+
+@property (nonatomic, strong, readonly) NSString *curText;
+
+@property (nonatomic, assign) BOOL activity;
+
+- (void)addEmojiString:(NSString *)emojiString;
+
+- (void)sendCurrentText;
+
+@end
+
+@class TLImageMessage;
+@protocol TLChatViewControllerProxy <NSObject>
+
+@optional;
+- (void)didClickedUserAvatar:(TLUser *)user;
+
+- (void)didClickedImageMessages:(NSArray *)imageMessages atIndex:(NSInteger)index;
+
+@end
+@interface TLChatBaseViewController : UIViewController <TLChatViewControllerProxy, TLMoreKeyboardDelegate,TLChatBarDelegate, TLKeyboardDelegate,TLEmojiKeyboardDelegate,TLChatBarDataDelegate,TLChatTableViewControllerDelegate>
 {
     TLChatBarStatus lastStatus;
     TLChatBarStatus curStatus;
@@ -70,5 +125,22 @@
  *  发送图片信息
  */
 - (void)sendImageMessage:(UIImage *)image;
+/**
+ *  发送消息
+ */
+- (void)sendMessage:(TLMessage *)message;
+/**
+ *  展示消息（添加到chatVC）
+ */
+- (void)addToShowMessage:(TLMessage *)message;
+/**
+ *  1、处理各种键盘（系统、自定义表情、自定义更多）回调
+ *  2、响应chatBar的按钮点击事件
+ */
+- (void)resetChatTVC;
+
+- (void)keyboardWillHide:(NSNotification *)notification;
+- (void)keyboardFrameWillChange:(NSNotification *)notification;
+- (void)keyboardDidShow:(NSNotification *)notification;
 
 @end

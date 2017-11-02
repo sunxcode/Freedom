@@ -9,7 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "TLMomentExtension.h"
 
-@interface TLMomentExtensionView : UIView
+@interface TLMomentExtensionView : UIView<UITableViewDelegate, UITableViewDataSource>
+
+- (void)registerCellForTableView:(UITableView *)tableView;
+
 
 @property (nonatomic, strong) TLMomentExtension *extension;
 

@@ -7,7 +7,10 @@
 //
 
 #import "TLTableViewController.h"
+#import "TLAddThirdPartFriendCell.h"
+#import "TLAddThirdPartFriendCell.h"
+@interface TLNewFriendViewController : TLTableViewController<UISearchBarDelegate, TLAddThirdPartFriendCellDelegate>
 
-@interface TLNewFriendViewController : TLTableViewController
+- (void)registerCellClass;
 
 @end

@@ -12,4 +12,6 @@
 
 @property (nonatomic, strong) NSMutableArray *data;
 
+- (void)registerCellClass;
+
 @end

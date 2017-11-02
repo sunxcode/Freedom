@@ -23,10 +23,6 @@
 #define     NAVBAR_ITEM_FIXED_SPACE     5.0f
 #define     BORDER_WIDTH_1PX            ([[UIScreen mainScreen] scale] > 0.0 ? 1.0 / [[UIScreen mainScreen] scale] : 1.0)
 #define     MAX_MESSAGE_WIDTH               WIDTH_SCREEN * 0.58
-#define     MAX_MESSAGE_IMAGE_WIDTH         WIDTH_SCREEN * 0.45
-#define     MIN_MESSAGE_IMAGE_WIDTH         WIDTH_SCREEN * 0.25
-#define     MAX_MESSAGE_EXPRESSION_WIDTH    WIDTH_SCREEN * 0.35
-#define     MIN_MESSAGE_EXPRESSION_WIDTH    WIDTH_SCREEN * 0.2
 #define mark - Default
 #pragma mark - Methods
 #define     TLURL(urlString)    [NSURL URLWithString:urlString]
@@ -43,5 +39,8 @@
 // Mob SMS
 #define     MOB_SMS_APPKEY      @"1133dc881b63b"
 #define     MOB_SMS_SECRET      @"b4882225b9baee69761071c8cfa848f3"
+#define     HEIGHT_CHATBAR_TEXTVIEW         36.0f
+#define     HEIGHT_MAX_CHATBAR_TEXTVIEW     111.5f
+#define     HEIGHT_CHAT_KEYBOARD            215.0f
 
 #endif /* TLMacros_h */

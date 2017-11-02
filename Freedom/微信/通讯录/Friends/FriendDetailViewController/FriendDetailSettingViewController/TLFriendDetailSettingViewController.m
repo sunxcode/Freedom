@@ -7,7 +7,6 @@
 //
 
 #import "TLFriendDetailSettingViewController.h"
-#import "TLFriendHelper+Detail.h"
 
 @interface TLFriendDetailSettingViewController ()
 

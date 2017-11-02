@@ -9,11 +9,17 @@
 #import "TLViewController.h"
 #import "TLExpressionProxy.h"
 
-@interface TLExpressionPublicViewController : TLViewController
+@interface TLExpressionPublicViewController : TLViewController<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+
+
 {
     NSInteger kPageIndex;
 }
+- (void)registerCellForCollectionView:(UICollectionView *)collectionView;
 
+- (void)loadDataWithLoadingView:(BOOL)showLoadingView;
+
+- (void)loadMoreData;
 @property (nonatomic, strong) NSMutableArray *data;
 
 @property (nonatomic, strong) TLExpressionProxy *proxy;

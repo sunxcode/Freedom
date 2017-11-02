@@ -22,4 +22,6 @@
 
 @property (nonatomic, strong) TLContactsSearchViewController *searchVC;
 
+- (void)registerCellClass;
+
 @end

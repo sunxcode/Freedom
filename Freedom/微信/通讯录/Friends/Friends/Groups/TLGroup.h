@@ -9,7 +9,9 @@
 
 #import "TLUser.h"
 
-@interface TLGroup : NSObject
+#import "TLChatUserProtocol.h"
+
+@interface TLGroup : NSObject <TLChatUserProtocol>
 
 /**
  *  讨论组名称

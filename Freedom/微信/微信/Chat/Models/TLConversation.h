@@ -64,5 +64,8 @@
  */
 @property (nonatomic, assign) NSInteger unreadCount;
 
+- (void)updateUserInfo:(TLUser *)user;
+
+- (void)updateGroupInfo:(TLGroup *)group;
 
 @end

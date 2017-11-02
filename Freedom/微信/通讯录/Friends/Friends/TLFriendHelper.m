@@ -9,7 +9,10 @@
 #import "TLFriendHelper.h"
 #import "TLDBFriendStore.h"
 #import "TLDBGroupStore.h"
-
+#import "TLSettingGroup.h"
+#import "TLInfo.h"
+#import <AddressBookUI/AddressBookUI.h>
+#import "TLContact.h"
 static TLFriendHelper *friendHelper = nil;
 
 @interface TLFriendHelper ()
@@ -247,6 +250,289 @@ static TLFriendHelper *friendHelper = nil;
         _groupStore = [[TLDBGroupStore alloc] init];
     }
     return _groupStore;
+}
+
+- (NSMutableArray *)friendDetailArrayByUserInfo:(TLUser *)userInfo
+{
+    NSMutableArray *data = [[NSMutableArray alloc] init];
+    NSMutableArray *arr = [[NSMutableArray alloc] init];
+    
+    // 1
+    TLInfo *user = TLCreateInfo(@"个人", nil);
+    user.type = TLInfoTypeOther;
+    user.userInfo = userInfo;
+    [arr addObject:user];
+    [data addObject:arr];
+    
+    // 2
+    arr = [[NSMutableArray alloc] init];
+    if (userInfo.detailInfo.phoneNumber.length > 0) {
+        TLInfo *tel = TLCreateInfo(@"电话号码", userInfo.detailInfo.phoneNumber);
+        tel.showDisclosureIndicator = NO;
+        [arr addObject:tel];
+    }
+    if (userInfo.detailInfo.tags.count == 0) {
+        TLInfo *remark = TLCreateInfo(@"设置备注和标签" , nil);
+        [arr insertObject:remark atIndex:0];
+    }
+    else {
+        NSString *str = [userInfo.detailInfo.tags componentsJoinedByString:@","];
+        TLInfo *remark = TLCreateInfo(@"标签", str);
+        [arr addObject:remark];
+    }
+    [data addObject:arr];
+    arr = [[NSMutableArray alloc] init];
+    
+    // 3
+    if (userInfo.detailInfo.location.length > 0) {
+        TLInfo *location = TLCreateInfo(@"地区", userInfo.detailInfo.location);
+        location.showDisclosureIndicator = NO;
+        location.disableHighlight = YES;
+        [arr addObject:location];
+    }
+    TLInfo *album = TLCreateInfo(@"个人相册", nil);
+    album.userInfo = userInfo.detailInfo.albumArray;
+    album.type = TLInfoTypeOther;
+    [arr addObject:album];
+    TLInfo *more = TLCreateInfo(@"更多", nil);
+    [arr addObject:more];
+    [data addObject:arr];
+    arr = [[NSMutableArray alloc] init];
+    
+    // 4
+    TLInfo *sendMsg = TLCreateInfo(@"发消息", nil);
+    sendMsg.type = TLInfoTypeButton;
+    sendMsg.titleColor = [UIColor whiteColor];
+    sendMsg.buttonBorderColor = [UIColor colorGrayLine];
+    [arr addObject:sendMsg];
+    if (![userInfo.userID isEqualToString:[TLUserHelper sharedHelper].userID]) {
+        TLInfo *video = TLCreateInfo(@"视频聊天", nil);
+        video.type = TLInfoTypeButton;
+        video.buttonBorderColor = [UIColor colorGrayLine];
+        video.buttonColor = [UIColor whiteColor];
+        [arr addObject:video];
+    }
+    [data addObject:arr];
+    
+    return data;
+}
+
+- (NSMutableArray *)friendDetailSettingArrayByUserInfo:(TLUser *)userInfo
+{
+    TLSettingItem *remark = TLCreateSettingItem(@"设置备注及标签");
+    if (userInfo.remarkName.length > 0) {
+        remark.subTitle = userInfo.remarkName;
+    }
+    TLSettingGroup *group1 = TLCreateSettingGroup(nil, nil, @[remark]);
+    
+    TLSettingItem *recommand = TLCreateSettingItem(@"把他推荐给朋友");
+    TLSettingGroup *group2 = TLCreateSettingGroup(nil, nil, @[recommand]);
+    
+    TLSettingItem *starFriend = TLCreateSettingItem(@"设为星标朋友");
+    starFriend.type = TLSettingItemTypeSwitch;
+    TLSettingGroup *group3 = TLCreateSettingGroup(nil, nil, @[starFriend]);
+    
+    TLSettingItem *prohibit = TLCreateSettingItem(@"不让他看我的朋友圈");
+    prohibit.type = TLSettingItemTypeSwitch;
+    TLSettingItem *dismiss = TLCreateSettingItem(@"不看他的朋友圈");
+    dismiss.type = TLSettingItemTypeSwitch;
+    TLSettingGroup *group4 = TLCreateSettingGroup(nil, nil, (@[prohibit, dismiss]));
+    
+    TLSettingItem *blackList = TLCreateSettingItem(@"加入黑名单");
+    blackList.type = TLSettingItemTypeSwitch;
+    TLSettingItem *report = TLCreateSettingItem(@"举报");
+    TLSettingGroup *group5 = TLCreateSettingGroup(nil, nil, (@[blackList, report]));
+    
+    return [NSMutableArray arrayWithObjects:group1, group2, group3, group4, group5, nil];
+}
+
++ (void)tryToGetAllContactsSuccess:(void (^)(NSArray *data, NSArray *formatData, NSArray *headers))success
+                            failed:(void (^)())failed
+{
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        // 1、获取通讯录信息
+        ABAddressBookRef addressBooks = nil;
+        if ([[UIDevice currentDevice].systemVersion floatValue] >= 6.0) {
+            addressBooks =  ABAddressBookCreateWithOptions(NULL, NULL);
+            dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+            ABAddressBookRequestAccessWithCompletion(addressBooks, ^(bool granted, CFErrorRef error){
+                dispatch_semaphore_signal(sema);
+            });
+            dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+        }
+        else {
+            addressBooks = ABAddressBookCreate();
+        }
+        
+        CFArrayRef allPeople = ABAddressBookCopyArrayOfAllPeople(addressBooks);
+        CFIndex nPeople = ABAddressBookGetPersonCount(addressBooks);
+        
+        // 2、加载缓存
+        if (allPeople != nil &&  CFArrayGetCount(allPeople) > 0) {
+            NSString *path = [NSFileManager pathContactsData];
+            NSDictionary *dic = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+            if (dic) {
+                NSArray *data = dic[@"data"];
+                NSArray *formatData = dic[@"formatData"];
+                NSArray *headers = dic[@"headers"];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    success(data, formatData, headers);
+                });
+            }
+        }
+        else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                failed();
+            });
+            return;
+        }
+        
+        // 3、格式转换
+        NSMutableArray *data = [[NSMutableArray alloc] init];
+        for (NSInteger i = 0; i < nPeople; i++) {
+            TLContact  *contact = [[TLContact  alloc] init];
+            ABRecordRef person = CFArrayGetValueAtIndex(allPeople, i);
+            CFTypeRef abName = ABRecordCopyValue(person, kABPersonFirstNameProperty);
+            CFTypeRef abLastName = ABRecordCopyValue(person, kABPersonLastNameProperty);
+            CFStringRef abFullName = ABRecordCopyCompositeName(person);
+            NSString *nameString = (__bridge NSString *)abName;
+            NSString *lastNameString = (__bridge NSString *)abLastName;
+            
+            if ((__bridge id)abFullName != nil) {
+                nameString = (__bridge NSString *)abFullName;
+            }
+            else {
+                if ((__bridge id)abLastName != nil) {
+                    nameString = [NSString stringWithFormat:@"%@ %@", nameString, lastNameString];
+                }
+            }
+            contact.name = nameString;
+            contact.recordID = (int)ABRecordGetRecordID(person);;
+            
+            if(ABPersonHasImageData(person)) {
+                NSData *imageData = (__bridge NSData *)ABPersonCopyImageDataWithFormat(person, kABPersonImageFormatThumbnail);
+                NSString *imageName = [NSString stringWithFormat:@"%.0lf.jpg", [NSDate date].timeIntervalSince1970 * 10000];
+                NSString *imagePath = [NSFileManager pathContactsAvatar:imageName];
+                [imageData writeToFile:imagePath atomically:YES];
+                contact.avatarPath = imageName;
+            }
+            
+            ABPropertyID multiProperties[] = {
+                kABPersonPhoneProperty,
+                kABPersonEmailProperty
+            };
+            NSInteger multiPropertiesTotal = sizeof(multiProperties) / sizeof(ABPropertyID);
+            for (NSInteger j = 0; j < multiPropertiesTotal; j++) {
+                ABPropertyID property = multiProperties[j];
+                ABMultiValueRef valuesRef = ABRecordCopyValue(person, property);
+                NSInteger valuesCount = 0;
+                if (valuesRef != nil) valuesCount = ABMultiValueGetCount(valuesRef);
+                if (valuesCount == 0) {
+                    CFRelease(valuesRef);
+                    continue;
+                }
+                for (NSInteger k = 0; k < valuesCount; k++) {
+                    CFTypeRef value = ABMultiValueCopyValueAtIndex(valuesRef, k);
+                    switch (j) {
+                        case 0: {// Phone number
+                            contact.tel = (__bridge NSString*)value;
+                            break;
+                        }
+                        case 1: {// Email
+                            contact.email = (__bridge NSString*)value;
+                            break;
+                        }
+                    }
+                    CFRelease(value);
+                }
+                CFRelease(valuesRef);
+            }
+            [data addObject:contact];
+            
+            if (abName) CFRelease(abName);
+            if (abLastName) CFRelease(abLastName);
+            if (abFullName) CFRelease(abFullName);
+        }
+        
+        // 4、排序
+        NSArray *serializeArray = [data sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+            int i;
+            NSString *strA = ((TLContact *)obj1).pinyin;
+            NSString *strB = ((TLContact *)obj2).pinyin;
+            for (i = 0; i < strA.length && i < strB.length; i ++) {
+                char a = toupper([strA characterAtIndex:i]);
+                char b = toupper([strB characterAtIndex:i]);
+                if (a > b) {
+                    return (NSComparisonResult)NSOrderedDescending;
+                }
+                else if (a < b) {
+                    return (NSComparisonResult)NSOrderedAscending;
+                }
+            }
+            if (strA.length > strB.length) {
+                return (NSComparisonResult)NSOrderedDescending;
+            }
+            else if (strA.length < strB.length){
+                return (NSComparisonResult)NSOrderedAscending;
+            }
+            return (NSComparisonResult)NSOrderedSame;
+        }];
+        
+        // 5、分组
+        data = [[NSMutableArray alloc] init];
+        NSMutableArray *headers = [[NSMutableArray alloc] initWithObjects:UITableViewIndexSearch, nil];
+        char lastC = '1';
+        TLUserGroup *curGroup;
+        TLUserGroup *othGroup = [[TLUserGroup alloc] init];
+        [othGroup setGroupName:@"#"];
+        for (TLContact *contact in serializeArray) {
+            // 获取拼音失败
+            if (contact.pinyin == nil || contact.pinyin.length == 0) {
+                [othGroup addObject:contact];
+                continue;
+            }
+            
+            char c = toupper([contact.pinyin characterAtIndex:0]);
+            if (!isalpha(c)) {      // #组
+                [othGroup addObject:contact];
+            }
+            else if (c != lastC){
+                if (curGroup && curGroup.count > 0) {
+                    [data addObject:curGroup];
+                    [headers addObject:curGroup.groupName];
+                }
+                lastC = c;
+                curGroup = [[TLUserGroup alloc] init];
+                [curGroup setGroupName:[NSString stringWithFormat:@"%c", c]];
+                [curGroup addObject:contact];
+            }
+            else {
+                [curGroup addObject:contact];
+            }
+        }
+        if (curGroup && curGroup.count > 0) {
+            [data addObject:curGroup];
+            [headers addObject:curGroup.groupName];
+        }
+        if (othGroup.count > 0) {
+            [data addObject:othGroup];
+            [headers addObject:othGroup.groupName];
+        }
+        
+        // 6、数据返回
+        dispatch_async(dispatch_get_main_queue(), ^{
+            success(serializeArray, data, headers);
+        });
+        
+        // 7、存入本地缓存
+        NSDictionary *dic = @{@"data": serializeArray,
+                              @"formatData": data,
+                              @"headers": headers};
+        NSString *path = [NSFileManager pathContactsData];
+        if(![NSKeyedArchiver archiveRootObject:dic toFile:path]){
+            DLog(@"缓存联系人数据失败");
+        }
+    });
 }
 
 @end
