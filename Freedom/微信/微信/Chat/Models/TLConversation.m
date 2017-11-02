@@ -7,7 +7,7 @@
 //
 
 #import "TLConversation.h"
-
+#import "TLGroup.h"
 @implementation TLConversation
 
 - (void)setConvType:(TLConversationType)convType

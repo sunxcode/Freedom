@@ -9,10 +9,110 @@
 #import "TLScanningViewController.h"
 #import "TLScannerViewController.h"
 #import "TLWebViewController.h"
-#import "TLScannerButton.h"
 #import "TLMyQRCodeViewController.h"
 #import "UINavigationController+JZExtension.h"
 #define     HEIGHT_BOTTOM_VIEW      82
+
+@interface TLScannerButton : UIButton
+
+@property (nonatomic, strong) NSString *title;
+
+@property (nonatomic, strong) NSString *iconPath;
+
+@property (nonatomic, strong) NSString *iconHLPath;
+
+@property (nonatomic, assign) TLScannerType type;
+
+@property (nonatomic, assign) NSUInteger msgNumber;
+
+- (id) initWithType:(TLScannerType)type title:(NSString *)title iconPath:(NSString *)iconPath iconHLPath:(NSString *)iconHLPath;
+
+@end
+
+@interface TLScannerButton ()
+
+@property (nonatomic, strong) UIImageView *iconImageView;
+
+@property (nonatomic, strong) UILabel *textLabel;
+
+@end
+
+@implementation TLScannerButton
+
+- (id) initWithType:(TLScannerType)type title:(NSString *)title iconPath:(NSString *)iconPath iconHLPath:(NSString *)iconHLPath
+{
+    if (self = [super init]) {
+        [self addSubview:self.iconImageView];
+        [self addSubview:self.textLabel];
+        [self p_addMasonry];
+        self.type = type;
+        self.title = title;
+        self.iconPath = iconPath;
+        self.iconHLPath = iconHLPath;
+    }
+    return self;
+}
+
+- (void)setTitle:(NSString *)title
+{
+    _title = title;
+    [self.textLabel setText:title];
+}
+
+- (void)setIconPath:(NSString *)iconPath
+{
+    _iconPath = iconPath;
+    [self.iconImageView setImage:[UIImage imageNamed:iconPath]];
+}
+
+- (void)setIconHLPath:(NSString *)iconHLPath
+{
+    _iconHLPath = iconHLPath;
+    [self.iconImageView setHighlightedImage:[UIImage imageNamed:iconHLPath]];
+}
+
+- (void)setSelected:(BOOL)selected
+{
+    [super setSelected:selected];
+    [self.iconImageView setHighlighted:selected];
+    [self.textLabel setHighlighted:selected];
+}
+
+#pragma mark - Private Methods -
+- (void)p_addMasonry
+{
+    [self.iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.and.left.and.right.mas_equalTo(self);
+        make.height.mas_equalTo(self.iconImageView.mas_width);
+    }];
+    [self.textLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.and.right.mas_equalTo(self);
+        make.bottom.mas_equalTo(self);
+    }];
+}
+
+#pragma mark - Getter -
+- (UIImageView *)iconImageView
+{
+    if (_iconImageView == nil) {
+        _iconImageView = [[UIImageView alloc] init];
+    }
+    return _iconImageView;
+}
+
+- (UILabel *)textLabel
+{
+    if (_textLabel == nil) {
+        _textLabel = [[UILabel alloc] init];
+        [_textLabel setFont:[UIFont systemFontOfSize:12.0f]];
+        [_textLabel setTextAlignment:NSTextAlignmentCenter];
+        [_textLabel setTextColor:[UIColor whiteColor]];
+        [_textLabel setHighlightedTextColor:[UIColor colorGreenDefault]];
+    }
+    return _textLabel;
+}
+
+@end
 
 @interface TLScanningViewController () <TLScannerDelegate>
 

@@ -9,7 +9,16 @@
 
 #import "TLUser.h"
 #import "NSString+expanded.h"
+@implementation TLUserChatSetting
 
+@end
+@implementation TLUserDetail
+
+@end
+
+@implementation TLUserSetting
+
+@end
 @implementation TLUser
 
 - (id)init

@@ -7,8 +7,12 @@
 //
 
 #import "TLTableViewController.h"
-#import "TLContactsSearchViewController.h"
 
+@interface TLContactsSearchViewController : TLTableViewController <UISearchResultsUpdating>
+
+@property (nonatomic, strong) NSArray *contactsData;
+
+@end
 @interface TLContactsViewController : TLTableViewController
 
 /// 通讯录好友（初始数据）

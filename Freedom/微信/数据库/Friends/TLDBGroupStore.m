@@ -8,7 +8,7 @@
 
 #import "TLDBGroupStore.h"
 #import "TLDBGroupSQL.h"
-
+#import "TLGroup.h"
 @implementation TLDBGroupStore
 
 - (id)init

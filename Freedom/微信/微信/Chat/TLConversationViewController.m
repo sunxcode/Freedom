@@ -18,6 +18,7 @@
 #import "TLConversation.h"
 #define     WIDTH_TABLEVIEW             140.0f
 #define     HEIGHT_TABLEVIEW_CELL       45.0f
+#import "TLFriendHelper.h"
 @interface TLAddMenuCell : TLTableViewCell
 
 @property (nonatomic, strong) TLAddMenuItem *item;

@@ -12,7 +12,7 @@
 #import "TLAddFriendViewController.h"
 #import "TLFriendHeaderView.h"
 #import "TLFriendCell.h"
-
+#import "TLFriendHelper.h"
 #import "TLNewFriendViewController.h"
 #import "TLGroupViewController.h"
 #import "TLTagsViewController.h"
