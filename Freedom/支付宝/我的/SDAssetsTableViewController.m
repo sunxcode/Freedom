@@ -21,11 +21,28 @@
  */
 
 #import "SDAssetsTableViewController.h"
-#import "SDAssetsTableViewControllerCell.h"
 #import "SDAssetsTableViewControllerCellModel.h"
-#import "SDAssetsTableViewHeader.h"
 #import "SDYuEBaoTableViewController.h"
 
+#import "SDAssetsTableViewControllerCellModel.h"
+#import "SDBasicTableViewControllerCell.h"
+@interface SDAssetsTableViewControllerCell : SDBasicTableViewControllerCell
+@end
+@implementation SDAssetsTableViewControllerCell
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        self.textLabel.textColor = [UIColor darkGrayColor];
+        self.textLabel.font = [UIFont systemFontOfSize:15];
+    }return self;
+}
+- (void)setModel:(NSObject *)model{
+    [super setModel:model];
+    SDAssetsTableViewControllerCellModel *cellModel = (SDAssetsTableViewControllerCellModel *)model;
+    self.textLabel.text = cellModel.title;
+    self.imageView.image = [UIImage imageNamed:cellModel.iconImageName];
+    self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+}
+@end
 @implementation SDAssetsTableViewController
 
 - (void)viewDidLoad
@@ -36,8 +53,8 @@
     self.cellClass = [SDAssetsTableViewControllerCell class];
     [self setupModel];
     
-    SDAssetsTableViewHeader *header = [[SDAssetsTableViewHeader alloc] init];
-    header.iconView.image = [UIImage imageNamed:PuserLogo];
+    UIView *header = [[UIView alloc] init];
+    
     self.tableView.tableHeaderView = header;
     
 }

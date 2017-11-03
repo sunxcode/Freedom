@@ -47,9 +47,6 @@
 #import "UIGestureRecognizer+YYAdd.h"
 #import "TaobaoTools.h"
 /****************************       酷          狗         *************************************/
-#import "TitleScrollHelper.h"
-#import "TitleScrollView.h"
-#import "KugouTools.h"
 #import "CLConst.h"
 #import "UIBarButtonItem+expanded.h"
 #import "GetPlistArray.h"

@@ -4,27 +4,65 @@
 //
 //  Created by aier on 15-6-4.
 //  Copyright (c) 2015年 GSD. All rights reserved.
-//
-
-/*
- 
- *********************************************************************************
- *
- * 在您使用此自动布局库的过程中如果出现bug请及时以以下任意一种方式联系我们，我们会及时修复bug并
- * 帮您解决问题。
- * 新浪微博:GSD_iOS
- * Email : gsdios@126.com
- * GitHub: https://github.com/gsdios
- *
- *********************************************************************************
- 
- */
-
-
 #import "SDServiceTableViewController.h"
-#import "SDServiceTableViewCell.h"
-#import "SDServiceTableViewCellModel.h"
 #import "UIView+SDExtension.h"
+#import "UIImageView+WebCache.h"
+#import "SDBasicTableViewControllerCell.h"
+
+@interface SDServiceTableViewCellModel : NSObject
+
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSString *detailString;
+@property (nonatomic, copy) NSString *iconImageURLString;
+
++ (instancetype)modelWithTitle:(NSString *)title detailString:(NSString *)detailString iconImageURLString:(NSString *)iconImageURLString;
+
+@end
+@implementation SDServiceTableViewCellModel
+
++ (instancetype)modelWithTitle:(NSString *)title detailString:(NSString *)detailString iconImageURLString:(NSString *)iconImageURLString{
+    SDServiceTableViewCellModel *model = [[SDServiceTableViewCellModel alloc] init];
+    model.title = title;
+    model.detailString = detailString;
+    model.iconImageURLString = iconImageURLString;
+    return model;
+}
+
+@end
+@interface SDServiceTableViewCell : SDBasicTableViewControllerCell
+@property (strong, nonatomic) UIImageView *iconView;
+@property (strong, nonatomic) UILabel *titleLabel;
+@property (strong, nonatomic) UILabel *detailLabel;
+
+@end
+@implementation SDServiceTableViewCell
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+    self= [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    self.iconView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 10, 100, 80)];
+    self.titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(120, 10, 200, 20)];
+    self.detailLabel = [[UILabel alloc]initWithFrame:CGRectMake(120, 40, 200, 20)];
+    self.iconView.layer.cornerRadius = 4;
+    self.iconView.clipsToBounds = YES;
+    self.titleLabel.font = Font(16);
+    self.detailLabel.font = Font(14);
+    self.detailLabel.textColor = [UIColor grayColor];
+    [self addSubviews:self.iconView,self.titleLabel,self.detailLabel,nil];
+    return self;
+}
+
+- (void)setModel:(NSObject *)model
+{
+    [super setModel:model];
+    
+    SDServiceTableViewCellModel *cellModel = (SDServiceTableViewCellModel *)model;
+    
+    self.titleLabel.text = cellModel.title;
+    self.detailLabel.text = cellModel.detailString;
+    [self.iconView sd_setImageWithURL:[NSURL URLWithString:cellModel.iconImageURLString] placeholderImage:nil];
+}
+
+@end
+
 @interface SDServiceTableViewHeader : UIView <UITextFieldDelegate>
 @property (nonatomic, copy) NSString *placeholderText;
 @end

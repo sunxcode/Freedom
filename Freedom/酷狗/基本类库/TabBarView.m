@@ -10,6 +10,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import "PlayAudioViewController.h"
+#import "KugouTools.h"
 @interface TabBarView()<AVAudioPlayerDelegate>
 @property(nonatomic,strong) AVAudioPlayer *avPlayer;
 @property(nonatomic,weak) NSTimer *timer;

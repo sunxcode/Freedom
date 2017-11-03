@@ -9,9 +9,30 @@
 #import "LocalMusicViewController.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import "KugouTabBarController.h"
-#import "LocalMusicCell.h"
 #import <AVFoundation/AVFoundation.h>
-
+#import "KugouTools.h"
+@interface LocalMusicCell : UITableViewCell
++ (instancetype)cellWithTableView:(UITableView *)tableView;
+@property (strong, nonatomic) UIImageView *iconView;
+@property (strong, nonatomic) UILabel *mainLable;
+@property (strong, nonatomic) UILabel *subLable;
+@property (strong, nonatomic) UILabel *timerLable;
+@end
+@implementation LocalMusicCell
++ (instancetype)cellWithTableView:(UITableView *)tableView{
+    static NSString *setId = @"songCell";
+    LocalMusicCell *cell = [tableView dequeueReusableCellWithIdentifier:setId];
+    if (!cell) {
+        cell = [[LocalMusicCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:setId];
+        cell.iconView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 5, 50, 50)];
+        cell.mainLable = [[UILabel alloc]initWithFrame:CGRectMake(60, 10, 200, 20)];
+        cell.subLable = [[UILabel alloc]initWithFrame:CGRectMake(60, 40,200, 20)];
+        cell.timerLable = [[UILabel alloc]initWithFrame:CGRectMake(APPW-100, 20, 80, 20)];
+        [cell addSubviews:cell.imageView,cell.subLable,cell.timerLable,cell.mainLable,nil];
+    }
+    return cell;
+}
+@end
 @interface LocalMusicViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,strong) MPMusicPlayerController *musicController;
 @property (nonatomic,weak) UITableView *tableView;

@@ -1,34 +1,164 @@
 //
 //  SDDiscoverTableViewController.m
 //  GSD_ZHIFUBAO
-//
-//  Created by aier on 15-6-4.
-//  Copyright (c) 2015年 GSD. All rights reserved.
-//
-
-/*
- 
- *********************************************************************************
- *
- * 在您使用此自动布局库的过程中如果出现bug请及时以以下任意一种方式联系我们，我们会及时修复bug并
- * 帮您解决问题。
- * 新浪微博:GSD_iOS
- * Email : gsdios@126.com
- * GitHub: https://github.com/gsdios
- *
- *********************************************************************************
- 
- */
-
-
 #import "SDDiscoverTableViewController.h"
-// 重用 SDAssetsTableViewController 的 cell 和 model
-#import "SDAssetsTableViewControllerCell.h"
 #import "SDAssetsTableViewControllerCellModel.h"
-
-#import "SDDiscoverTableViewHeader.h"
 #import "UIView+SDExtension.h"
+#import "SDAssetsTableViewControllerCellModel.h"
+#import "SDBasicTableViewControllerCell.h"
+@interface SDDiscoverTableViewHeaderItemButton : UIButton
 
+@property (nonatomic, copy) NSString *imageName;
+@property (nonatomic, copy) NSString *title;
+
+@end
+
+
+@implementation SDDiscoverTableViewHeaderItemButton
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    if (self = [super initWithFrame:frame]) {
+        [self setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        self.titleLabel.textAlignment = NSTextAlignmentCenter;
+        self.titleLabel.font = [UIFont systemFontOfSize:14];
+        self.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    }
+    return self;
+}
+
+- (CGRect)imageRectForContentRect:(CGRect)contentRect
+{
+    CGFloat x = contentRect.size.width * 0.2;
+    CGFloat y = contentRect.size.height * 0.15;
+    CGFloat w = contentRect.size.width - x * 2;
+    CGFloat h = contentRect.size.height * 0.5;
+    CGRect rect = CGRectMake(x, y, w, h);
+    return rect;
+}
+
+- (CGRect)titleRectForContentRect:(CGRect)contentRect
+{
+    CGRect rect = CGRectMake(0, contentRect.size.height * 0.65, contentRect.size.width, contentRect.size.height * 0.3);
+    return rect;
+}
+
+- (void)setTitle:(NSString *)title
+{
+    _title = title;
+    
+    [self setTitle:title forState:UIControlStateNormal];
+}
+
+- (void)setImageName:(NSString *)imageName
+{
+    _imageName = imageName;
+    
+    [self setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
+    
+}
+
+
+
+@end
+
+@interface SDDiscoverTableViewHeader : UIView
+
+@property (nonatomic, strong) NSArray *headerItemModelsArray;
+
+@property (nonatomic, copy) void (^buttonClickedOperationBlock)(NSInteger index);
+
+@end
+
+// --------------------------SDDiscoverTableViewHeaderItemModel-----------
+
+@interface SDDiscoverTableViewHeaderItemModel : NSObject
+
+@property (nonatomic, copy) NSString *imageName;
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) Class destinationControllerClass;
+
++ (instancetype)modelWithTitle:(NSString *)title imageName:(NSString *)imageName destinationControllerClass:(Class)destinationControllerClass;
+
+@end
+
+
+@implementation SDDiscoverTableViewHeader
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    if (self = [super initWithFrame:frame]) {
+        self.backgroundColor = [UIColor whiteColor];
+    }
+    return self;
+}
+
+- (void)setHeaderItemModelsArray:(NSArray *)headerItemModelsArray
+{
+    _headerItemModelsArray = headerItemModelsArray;
+    
+    [headerItemModelsArray enumerateObjectsUsingBlock:^(SDDiscoverTableViewHeaderItemModel *model, NSUInteger idx, BOOL *stop) {
+        SDDiscoverTableViewHeaderItemButton *button = [[SDDiscoverTableViewHeaderItemButton alloc] init];
+        button.tag = idx;
+        button.title = model.title;
+        button.imageName = model.imageName;
+        [button addTarget:self action:@selector(buttonClickd:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:button];
+    }];
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+    if (self.subviews.count == 0) return;
+    CGFloat w = self.sd_width / self.subviews.count;
+    CGFloat h = self.sd_height;
+    [self.subviews enumerateObjectsUsingBlock:^(UIView *button, NSUInteger idx, BOOL *stop) {
+        button.frame = CGRectMake(idx * w, 0, w, h);
+    }];
+}
+
+- (void)buttonClickd:(SDDiscoverTableViewHeaderItemButton *)button
+{
+    if (self.buttonClickedOperationBlock) {
+        self.buttonClickedOperationBlock(button.tag);
+    }
+}
+
+@end
+
+
+@implementation SDDiscoverTableViewHeaderItemModel
+
++ (instancetype)modelWithTitle:(NSString *)title imageName:(NSString *)imageName destinationControllerClass:(Class)destinationControllerClass
+{
+    SDDiscoverTableViewHeaderItemModel *model = [[SDDiscoverTableViewHeaderItemModel alloc] init];
+    model.title = title;
+    model.imageName = imageName;
+    model.destinationControllerClass = destinationControllerClass;
+    return model;
+}
+
+@end
+
+@interface SDDiscoverTableViewControllerCell : SDBasicTableViewControllerCell
+@end
+@implementation SDDiscoverTableViewControllerCell
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        self.textLabel.textColor = [UIColor darkGrayColor];
+        self.textLabel.font = [UIFont systemFontOfSize:15];
+    }return self;
+}
+- (void)setModel:(NSObject *)model{
+    [super setModel:model];
+    SDAssetsTableViewControllerCellModel *cellModel = (SDAssetsTableViewControllerCellModel *)model;
+    self.textLabel.text = cellModel.title;
+    self.imageView.image = [UIImage imageNamed:cellModel.iconImageName];
+    self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+}
+@end
 @interface SDDiscoverTableViewController ()
 
 @property (nonatomic, strong) NSArray *headerDataArray;
@@ -41,7 +171,7 @@
 {
     [super viewDidLoad];
       self.navigationItem.title = @"口碑";
-    self.cellClass = [SDAssetsTableViewControllerCell class];
+    self.cellClass = [SDDiscoverTableViewControllerCell class];
     
     [self setupHeader];
     
