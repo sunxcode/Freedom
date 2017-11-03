@@ -13,6 +13,7 @@
 #define     USER_CELL_COLSPACE      ((WIDTH_SCREEN - USER_CELL_WIDTH * 4) / 5)
 #import "UIButton+WebCache.h"
 
+#import "TLUserHelper.h"
 @interface TLUserGroupItemCell : UICollectionViewCell
 
 @property (nonatomic, strong) TLUser *user;

@@ -17,6 +17,8 @@
 #import "TLExpressionHelper.h"
 #import "JPEngine.h"
 #import "TLFriendHelper.h"
+
+#import "TLUserHelper.h"
 static TLRootViewController *rootVC = nil;
 
 @interface TLRootViewController ()

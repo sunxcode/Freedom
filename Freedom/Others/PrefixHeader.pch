@@ -37,7 +37,6 @@
 #import "BlocksKit.h"
 #import "BlocksKit+UIKit.h"
 #import "TLNavigationController.h"
-#import "TLUserHelper.h"
 #import "NSFileManager+expanded.h"
 #import "UIImagePickerController+Fixed.h"
 #import "UIBarButtonItem+expanded.h"

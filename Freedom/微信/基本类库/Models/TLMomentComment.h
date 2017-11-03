@@ -7,7 +7,7 @@
 //
 
 
-
+#import "TLUser.h"
 @interface TLMomentCommentFrame : NSObject
 
 @property (nonatomic, assign) CGFloat height;

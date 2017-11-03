@@ -16,6 +16,8 @@
 #import "TLExpressionHelper.h"
 #import "JPEngine.h"
 #import "TLFriendHelper.h"
+
+#import "TLUserHelper.h"
 static WechartTabBarController *rootVC = nil;
 @interface WechartTabBarController ()
 @property (nonatomic, strong) NSArray *childVCArray;

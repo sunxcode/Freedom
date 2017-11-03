@@ -13,6 +13,7 @@
 #import "TLMomentsViewController.h"
 #import "UIButton+WebCache.h"
 
+#import "TLUserHelper.h"
 #define         WIDTH_AVATAR        65
 
 #import "TLMomentImageView.h"

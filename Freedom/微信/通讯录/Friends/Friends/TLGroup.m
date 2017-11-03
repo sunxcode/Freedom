@@ -9,6 +9,7 @@
 #import "TLGroup.h"
 
 
+#import "TLUserHelper.h"
 @implementation TLGroup
 
 - (id)init

@@ -15,6 +15,8 @@
 #import "TLMyExpressionViewController.h"
 #import "TLFriendDetailViewController.h"
 #import "MWPhotoBrowser.h"
+
+#import "TLUserHelper.h"
 @interface TLMoreKBHelper : NSObject
 
 @property (nonatomic, strong) NSMutableArray *chatMoreKeyboardData;

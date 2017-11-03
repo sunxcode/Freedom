@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "TLUser.h"
 @interface TLConversation : NSObject
 
 

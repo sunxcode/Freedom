@@ -7,7 +7,7 @@
 //
 
 #import "TLDBBaseStore.h"
-
+#import "TLUser.h"
 @interface TLDBFriendStore : TLDBBaseStore
 
 - (BOOL)updateFriendsData:(NSArray *)friendData

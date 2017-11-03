@@ -11,6 +11,7 @@
 #import "TLDBGroupStore.h"
 #import "TLSettingGroup.h"
 #import "TLInfo.h"
+#import "TLUserHelper.h"
 #import <AddressBookUI/AddressBookUI.h>
 #import "TLContact.h"
 static TLFriendHelper *friendHelper = nil;

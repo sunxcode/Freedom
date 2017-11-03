@@ -8,6 +8,7 @@
 
 #import "TLDBManager.h"
 
+#import "TLUserHelper.h"
 static TLDBManager *manager;
 
 @implementation TLDBManager

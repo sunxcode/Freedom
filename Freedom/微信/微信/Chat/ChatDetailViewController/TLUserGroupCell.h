@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class TLUser;
 @protocol TLUserGroupCellDelegate <NSObject>
 
 - (void)userGroupCellDidSelectUser:(TLUser *)user;
