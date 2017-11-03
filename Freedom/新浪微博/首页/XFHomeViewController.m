@@ -1,20 +1,13 @@
 #import "XFHomeViewController.h"
-#import "XFDropdownView.h"
 #import "XFTitleMenuViewController.h"
 #import "XFAccount.h"
 #import "XFAccountTool.h"
-#import "XFTitleButton.h"
-#import "SDWebImage/UIImageView+WebCache.h"
-#import "XFStatus.h"
-#import "XFUser.h"
-#import "XFLoadMoreFooter.h"
 #import "MJExtension.h"
-#import "XFStatusViewCell.h"
-#import "XFStatusFrame.h"
+#import "UIImageView+WebCache.h"
+#import "MJExtension.h"
+#import "XFHomeViewController+Views.h"
 @interface XFHomeViewController ()<XFDropdownViewDelegate,UITableViewDataSource,UITableViewDelegate>
-/**
- *  微博数组（里面放的都是XFStatusFrame模型，一个XFStatusFrame对象就代表一条微博）
- */
+//微博数组（里面放的都是XFStatusFrame模型，一个XFStatusFrame对象就代表一条微博）
 @property (nonatomic,strong) NSMutableArray *statusFrames;
 @property (nonatomic,strong) NSMutableArray *refreshArray;
 @end

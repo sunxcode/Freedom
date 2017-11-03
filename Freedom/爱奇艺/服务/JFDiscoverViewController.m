@@ -10,7 +10,6 @@
 #import "JFDiscoverViewController.h"
 #import "JFImageScrollCell.h"
 #import "JFSearchHistoryViewController.h"
-#import "JFImageScrollView.h"
 #import "JFVideoDetailViewController.h"
 #import "JFWebViewController.h"
 @interface JFDiscoverModel : NSObject

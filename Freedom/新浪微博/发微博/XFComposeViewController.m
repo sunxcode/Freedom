@@ -9,13 +9,9 @@
 #import "XFComposeViewController.h"
 #import "XFAccountTool.h"
 #import "XFAccount.h"
-#import "XFTextView.h"
-#import "XFComposeToolbar.h"
-#import "XFComposePhotosView.h"
-#import "XFEmotionKeyboard.h"
+#import "MJExtension.h"
 #import "XFEmotion.h"
-#import "XFEmotionTextView.h"
-
+#import <Foundation/Foundation.h>
 
 @interface XFComposeViewController ()<UITextViewDelegate,XFComposeToolbarDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 /** 输入控件 */
@@ -28,10 +24,7 @@
 @property (nonatomic, strong) XFEmotionKeyboard *emotionKeyboard;
 /** 是否正在切换键盘 */
 @property (nonatomic, assign) BOOL switchingKeybaord;
-
-
 @end
-
 @implementation XFComposeViewController
 
 - (XFEmotionKeyboard *)emotionKeyboard
@@ -242,120 +235,68 @@
             [self switchkeyBoard];
             break;
     }
-  
-    
 }
-
 //切换键盘
 -(void)switchkeyBoard {
-    
     if (self.textView.inputView == nil) {
         self.textView.inputView = self.emotionKeyboard;
         // 显示键盘按钮
         self.toolbar.showKeyboardButton = YES;
-
     }else {
         self.textView.inputView = nil;
         // 显示表情按钮
         self.toolbar.showKeyboardButton = NO;
-
     }
     // 开始切换键盘
     self.switchingKeybaord = YES;
-    
     // 退出键盘
     [self.textView endEditing:YES];
-
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        
         //弹出键盘
         [self.textView becomeFirstResponder];
         
         // 结束切换键盘
         self.switchingKeybaord = NO;
     });
-    
-    
 }
-
 #pragma mark - 其他方法
-
-
 -(void)openCamera {
-    
     [self openImagePickerController:UIImagePickerControllerSourceTypeCamera];
-    
 }
-
 -(void)openAlbum {
-    
-    
     [self openImagePickerController:UIImagePickerControllerSourceTypePhotoLibrary];
-    
 }
-
-
 - (void)openImagePickerController:(UIImagePickerControllerSourceType)type {
-    
     if (![UIImagePickerController isSourceTypeAvailable:type]) return;
-    
     UIImagePickerController *picker = [[UIImagePickerController alloc]init];
     picker.sourceType = type;
     picker.delegate = self;
     [self presentViewController:picker animated:YES completion:nil];
     
 }
-
-
-
-
 #pragma mark - UIImagePickerControllerDelegate
 /**
  * 从UIImagePickerController选择完图片后就调用（拍照完毕或者选择相册图片完毕）
  */
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    
     [picker dismissViewControllerAnimated:YES completion:nil];
-    
     UIImage *image = info[UIImagePickerControllerOriginalImage];
-    
     //添加图片
     [self.photoView addPhoto:image];
-    
-    
 }
-
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    
-    
     [self dismissViewControllerAnimated:YES completion:nil];
-    
-    
 }
-
-
-
-
-
 -(void)textDidChange {
-    
     self.navigationItem.rightBarButtonItem.enabled = self.textView.hasText;
-    
 }
-
-
 -(void)cancel {
-    
     [self dismissViewControllerAnimated:YES completion:nil];
-    
 }
-
-
 /**
  * 发布带有图片的微博
  */
-- (void)sendWithImage
-{
+- (void)sendWithImage{
     // URL: https://upload.api.weibo.com/2/statuses/upload.json
     // 参数:
     /**	status true string 要发布的微博文本内容，必须做URLencode，内容不超过140个汉字。*/
@@ -404,10 +345,6 @@
          [SVProgressHUD showErrorWithStatus:@"发送失败"];
     }];
 }
-
-
-
-
 //发微博
 -(void)send {
    
@@ -419,10 +356,5 @@
     
     //dismiss
     [self dismissViewControllerAnimated:YES completion:nil];
-    
-    
 }
 @end
-// 版权属于原作者
-// http://code4app.com (cn) http://code4app.net (en)
-// 发布代码于最专业的源码分享网站: Code4App.com

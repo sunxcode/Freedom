@@ -62,4 +62,5 @@
     NSString *urlStr = ResumeURL;
     return urlStr;
 }
+
 @end

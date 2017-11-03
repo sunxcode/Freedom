@@ -5,7 +5,30 @@
 //
 
 #import "XFMessageChartViewController.h"
-#import "XFMessageChartData.h"
+@interface XFMessageChartData : NSObject
+@property(nonatomic,strong)NSString *content;
+@property(nonatomic)BOOL fromMe;
++(NSArray*)getChartData;
+@end
+@implementation XFMessageChartData
++(NSArray *)getChartData{
+    XFMessageChartData *m1=[[XFMessageChartData alloc]init];
+    m1.content=@"你好啊，美女！约吗？❤️";
+    m1.fromMe=YES;
+    XFMessageChartData *m2=[[XFMessageChartData alloc]init];
+    m2.content=@"约在哪里？你家我家还是如家？今天明天还是七天？/害羞";
+    m2.fromMe=NO;
+    XFMessageChartData *m3=[[XFMessageChartData alloc]init];
+    m3.content=@"那就来我家吧！👌！";
+    m3.fromMe=YES;
+    XFMessageChartData *m4=[[XFMessageChartData alloc]init];
+    m4.content=@"好的！";
+    m4.fromMe=NO;
+    return @[m1,m2,m3,m4];
+}
+
+@end
+
 @interface MessageCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 

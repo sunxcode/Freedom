@@ -10,10 +10,175 @@
 
 
 #import "JFVideoDetailViewController.h"
-#import "JFVideoDetailModel.h"
-#import "JFRecommentModel.h"
-#import "JFVideoDetailCell.h"
-#import "JFRecommentVideoCell.h"
+@interface JFVideoDetailModel : NSObject
+
+@property(nonatomic, strong) NSString *total_vv;
+@property(nonatomic, strong) NSNumber *duration;
+@property(nonatomic, strong) NSNumber *total_comment;
+@property(nonatomic, strong) NSString *img;
+@property(nonatomic, strong) NSString *title;
+
+@property(nonatomic, strong) NSString *play_url;
+@property(nonatomic, strong) NSString *channel_pic;
+@property(nonatomic, strong) NSString *cats;
+@property(nonatomic, strong) NSString *plid;
+@property(nonatomic, strong) NSString *isVuser;
+
+@property(nonatomic, strong) NSString *type;
+@property(nonatomic, strong) NSString *username;
+@property(nonatomic, strong) NSNumber *format_flag;
+@property(nonatomic, strong) NSString *img_hd;
+@property(nonatomic, strong) NSString *iid;
+
+@property(nonatomic, strong) NSNumber *subed_num;
+@property(nonatomic, strong) NSString *item_id;
+@property(nonatomic, strong) NSString *user_desc;
+@property(nonatomic, strong) NSString *desc;
+@property(nonatomic, strong) NSString *user_play_times;
+
+@property(nonatomic, strong) NSString *stripe_bottom;
+@property(nonatomic, strong) NSNumber *cid;
+@property(nonatomic, strong) NSNumber *userid;
+@property(nonatomic, strong) NSNumber *total_fav;
+@property(nonatomic, strong) NSNumber *limit;
+
+@property(nonatomic, strong) NSString *item_media_type;
+
+@end
+
+@implementation JFVideoDetailModel
+
+@end
+
+@interface JFRecommentModel : NSObject
+
+@property(nonatomic, strong) NSNumber *total_pv;
+@property(nonatomic, strong) NSString *pubdate;
+@property(nonatomic, strong) NSString *img_16_9;
+@property(nonatomic, strong) NSString *pv_pr;
+@property(nonatomic, strong) NSNumber *duration;
+
+@property(nonatomic, strong) NSString *pv;
+@property(nonatomic, strong) NSNumber *total_comment;
+@property(nonatomic, strong) NSString *img;
+@property(nonatomic, strong) NSString *title;
+@property(nonatomic, strong) NSString *state;
+
+@property(nonatomic, strong) NSString *cats;
+@property(nonatomic, strong) NSString *username;
+@property(nonatomic, strong) NSMutableArray *tags;
+@property(nonatomic, strong) NSString *img_hd;
+@property(nonatomic, strong) NSString *itemCode;
+
+@property(nonatomic, strong) NSString *total_down;
+@property(nonatomic, strong) NSString *total_up;
+@property(nonatomic, strong) NSString *desc;
+@property(nonatomic, strong) NSString *stripe_bottom;
+@property(nonatomic, strong) NSString *userid;
+
+@property(nonatomic, strong) NSNumber *total_fav;
+@property(nonatomic, strong) NSString *reputation;
+@property(nonatomic, strong) NSString *limit;
+
+@property(nonatomic, strong) NSString *time;
+
+
+@end
+
+@implementation JFRecommentModel
+
+@end
+
+@interface JFRecommentVideoCell : UITableViewCell
+
++ (instancetype)cellWithTableView:(UITableView *)tableView;
+
+@property (strong, nonatomic) UIImageView *iconImageView;
+@property (strong, nonatomic) UILabel *timeLabel;
+@property (strong, nonatomic) UILabel *titleLabel;
+@property (strong, nonatomic) UILabel *PVLabel;
+@property(nonatomic, strong)JFRecommentModel *recommentModel;
+@end
+@implementation JFRecommentVideoCell
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+    
+    // Configure the view for the selected state
+}
++ (instancetype)cellWithTableView:(UITableView *)tableView
+{
+    static NSString *ID = @"JFRecommentVideoCell";
+    JFRecommentVideoCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    if (cell == nil) {
+        // 从xib中加载cell
+        cell = [[JFRecommentVideoCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+        cell.iconImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 80, 80)];
+        cell.titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(100, 10, 200, 20)];
+        cell.timeLabel = [[UILabel alloc]initWithFrame:CGRectMake(100, 40, 200, 20)];
+        cell.PVLabel = [[UILabel alloc]initWithFrame:CGRectMake(APPW-100, 20, 80, 20)];
+        cell.iconImageView.image = [UIImage imageNamed:PuserLogo];
+        cell.titleLabel.text = @"title";
+        cell.timeLabel.text = @"time";
+        cell.PVLabel.text = @"pvlabel";
+        [cell addSubviews:cell.iconImageView,cell.titleLabel,cell.timeLabel,cell.PVLabel,nil];
+    }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    return cell;
+}
+-(void)setRecommentModel:(JFRecommentModel *)recommentModel{
+    _recommentModel = recommentModel;
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:recommentModel.img] placeholderImage:[UIImage imageNamed:@"rec_holder"]];
+    _titleLabel.text = recommentModel.title;
+    self.PVLabel.text = recommentModel.pv_pr;
+    _timeLabel.text = recommentModel.time;
+}
+@end
+@interface JFVideoDetailCell : UITableViewCell
+@property (strong, nonatomic) UIImageView *iconImageView;
+@property (strong, nonatomic) UILabel *userNameLabel;
+@property (strong, nonatomic) UILabel *playItemsLabel;
+@property (strong, nonatomic) UILabel *userDesLabel;
+@property (strong, nonatomic) UIButton *subscribeButton;
+@property (strong, nonatomic) UILabel *subedNumberLabel;
+@property (strong, nonatomic) UILabel *titleLabel;
+@property (strong, nonatomic) UILabel *descLabel;
+@property(nonatomic, strong)JFVideoDetailModel *videoDetailModel;
++ (instancetype)cellWithTableView:(UITableView *)tableView;
+@end
+@implementation JFVideoDetailCell
++ (instancetype)cellWithTableView:(UITableView *)tableView{
+    static NSString *ID = @"JFVideoDetailCell";
+    JFVideoDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    if (cell == nil) {
+        cell = [[JFVideoDetailCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+        cell.iconImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 80, 80)];
+        cell.userNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(80, 0, 200, 20)];
+        cell.playItemsLabel = [[UILabel alloc]initWithFrame:CGRectMake(80, 20, 200, 20)];
+        cell.userDesLabel = [[UILabel alloc]initWithFrame:CGRectMake(200, 10, 100, 20)];
+        cell.subscribeButton = [[UIButton alloc]initWithFrame:CGRectMake(200, 30, 100, 30)];
+        cell.subedNumberLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 100, 100, 20)];
+        cell.titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 120, 100, 20)];
+        cell.descLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 140, 100, 20)];
+        cell.subscribeButton.backgroundColor = [UIColor greenColor];
+        [cell addSubviews:cell.iconImageView,cell.userNameLabel,cell.playItemsLabel,cell.userDesLabel,cell.subscribeButton,cell.subedNumberLabel,cell.titleLabel,cell.descLabel,nil];
+    }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    return cell;
+}
+-(void)setVideoDetailModel:(JFVideoDetailModel *)videoDetailModel{
+    _videoDetailModel = videoDetailModel;
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:videoDetailModel.channel_pic] placeholderImage:[UIImage imageNamed:@"tudoulogo"]];
+    _userNameLabel.text = videoDetailModel.username;
+    _playItemsLabel.text = [NSString stringWithFormat:@"播放：%@",videoDetailModel.user_play_times];
+    _userDesLabel.text = videoDetailModel.user_desc;
+    self.subedNumberLabel.text = [NSString stringWithFormat:@"%d人订阅",[videoDetailModel.subed_num intValue]];
+    //    CGSize contentSize = [videoDetailModel.desc sizeWithFont:[UIFont systemFontOfSize:13] constrainedToSize:CGSizeMake(SCREENWIDTH-30, 60) lineBreakMode:NSLineBreakByTruncatingTail];
+    _titleLabel.text = videoDetailModel.title;
+    _descLabel.text = videoDetailModel.desc;
+}
+@end
+
 @interface JFVideoDetailViewController ()<UITableViewDataSource, UITableViewDelegate>
 {
 

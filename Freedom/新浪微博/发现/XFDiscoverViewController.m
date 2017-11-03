@@ -58,7 +58,7 @@
     SWCommonLabelItem *near = [SWCommonLabelItem itemWithTitle:@"周边" icon:@"near"];
     near.text = @"测试文字";
     near.destVcClass = [DiscoverDetailViewController class];
-    SWCommonSwitchItem *app = [SWCommonSwitchItem itemWithTitle:@"应用" icon:@"app"];
+    SWCommonItem *app = [SWCommonItem itemWithTitle:@"应用" icon:@"app"];
     app.badgeValue = @"10";
     app.destVcClass = [DiscoverDetailViewController class];
     group.items = @[gameCenter, near, app];
@@ -68,11 +68,11 @@
     SWCommonGroup *group = [SWCommonGroup group];
     [self.groups addObject:group];
     // 2.设置组的所有行数据
-    SWCommonSwitchItem *video = [SWCommonSwitchItem itemWithTitle:@"视频" icon:Pshok_b];
+    SWCommonItem *video = [SWCommonItem itemWithTitle:@"视频" icon:Pshok_b];
     video.operation = ^{
         DLog(@"----点击了视频---");
     };
-    SWCommonSwitchItem *music = [SWCommonSwitchItem itemWithTitle:@"音乐" icon:@"music"];
+    SWCommonItem *music = [SWCommonItem itemWithTitle:@"音乐" icon:@"music"];
     
     SWCommonItem *movie = [SWCommonItem itemWithTitle:@"电影" icon:@"movie"];
     movie.operation = ^{

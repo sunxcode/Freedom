@@ -8,12 +8,28 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SWCommonGroup.h"
 #import "SWCommonItem.h"
-#import "SWCommonCell.h"
-#import "SWCommonArrowItem.h"
-#import "SWCommonSwitchItem.h"
-#import "SWCommonLabelItem.h"
+
+@interface SWCommonLabelItem : SWCommonItem
+/** 右边label显示的内容 */
+@property (nonatomic, copy) NSString *text;
+@end
+
+
+@interface SWCommonArrowItem : SWCommonItem
+
+@end
+@interface SWCommonGroup : NSObject
+/** 组头 */
+@property (nonatomic, copy) NSString *header;
+/** 组尾 */
+@property (nonatomic, copy) NSString *footer;
+/** 这组的所有行模型(数组中存放的都是HMCommonItem模型) */
+@property (nonatomic, strong) NSArray *items;
+
++ (instancetype)group;
+@end
+
 @interface SWCommonTableViewController : UITableViewController
 
 - (NSMutableArray *)groups;

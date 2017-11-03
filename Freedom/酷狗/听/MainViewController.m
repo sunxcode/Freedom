@@ -206,7 +206,7 @@ typedef void (^SelectBlock)(NSInteger index);
     _coustomTabBar.frame = CGRectMake(0, APPH-TabBarH, APPW, TabBarH);
     [self.view addSubview:_coustomTabBar];
 //    [self setupRightGesture];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getMessage) name:ChangeMainVCContentEnable object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getMessage) name:@"ChangeMainVCContentEnable" object:nil];
 }
 -(void)viewWillAppear:(BOOL)animated{
     self.tabBarController.tabBar.hidden = YES;

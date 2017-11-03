@@ -10,8 +10,80 @@
 
 
 #import "JFLoginViewController.h"
-#import "JFTextFieldCell.h"
-#import "JFLoginBtnCell.h"
+@protocol JFLoginBtnCellDelegate <NSObject>
+@optional
+-(void)loginBtnClick:(UIButton *)sender;
+
+@end
+@interface JFLoginBtnCell : UITableViewCell
++ (instancetype)cellWithTableView:(UITableView *)tableView;
+- (void)loginBtnClick:(id)sender;
+- (void)xinlanWeiboBtnClick:(id)sender;
+
+@property(nonatomic, weak)id <JFLoginBtnCellDelegate>delegate;
+
+
+@end
+
+@implementation JFLoginBtnCell
++ (instancetype)cellWithTableView:(UITableView *)tableView
+{
+    static NSString *ID = @"JFLoginBtnCell";
+    JFLoginBtnCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    if (cell == nil) {
+        // 从xib中加载cell
+        cell = [[JFLoginBtnCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+        cell.backgroundColor = [UIColor redColor];
+    }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    return cell;
+}
+
+- (void)loginBtnClick:(id)sender {
+    if ([self.delegate respondsToSelector:@selector(loginBtnClick:)]) {
+        [self.delegate loginBtnClick:sender];
+    }
+}
+
+- (void)xinlanWeiboBtnClick:(id)sender {
+    if ([self.delegate respondsToSelector:@selector(loginBtnClick:)]) {
+        [self.delegate loginBtnClick:sender];
+    }
+}
+@end
+
+@interface JFTextFieldCell : UITableViewCell
+
++ (instancetype)cellWithTableView:(UITableView *)tableView;
+
+
+@end
+@implementation JFTextFieldCell
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+    
+    // Configure the view for the selected state
+}
++ (instancetype)cellWithTableView:(UITableView *)tableView
+{
+    static NSString *ID = @"JFTextFieldCell";
+    JFTextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    if (cell == nil) {
+        // 从xib中加载cell
+        cell = [[JFTextFieldCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+        cell.backgroundColor = [UIColor greenColor];
+    }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    return cell;
+}
+@end
+
 @interface JFLoginViewController ()<UITableViewDataSource, UITableViewDelegate,JFLoginBtnCellDelegate>
 
 @property (nonatomic, strong)UITableView *loginTableView;

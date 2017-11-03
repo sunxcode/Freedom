@@ -12,14 +12,103 @@
 #import "XFProfileViewController.h"
 #import "XFDiscoverViewController.h"
 #import "XFNavigationController.h"
-#import "XFTabBar.h"
 #import "FXBlurView.h"
 #import "XFComposeViewController.h"
-//#import "XFNewFeatureController.h"
 #import "XFOAuthController.h"
 #import "XFAccount.h"
 #import "XFAccountTool.h"
-#import "UIWindow+Extension.h"
+#import "XFNewFeatureController.h"
+@class XFTabBar;
+@protocol XFTabBarDelegate <UITabBarDelegate>
+
+@optional
+
+- (void)tabBarDidClickPlusButton:(XFTabBar *)tabBar;
+@end
+
+@interface XFTabBar : UITabBar
+
+@property(nonatomic,weak)id <XFTabBarDelegate> delegate;
+
+@end
+@interface XFTabBar ()
+@property (nonatomic, weak) UIButton *plusBtn;
+@end
+@implementation XFTabBar
+@dynamic delegate;
+-(id)initWithFrame:(CGRect)frame {
+    
+    self = [super initWithFrame:frame];
+    
+    if (self) {
+        
+        // 添加一个按钮到tabbar中
+        UIButton *plusBtn = [[UIButton alloc] init];
+        [plusBtn setBackgroundImage:[UIImage imageNamed:@"tabbar_compose_button"] forState:UIControlStateNormal];
+        [plusBtn setBackgroundImage:[UIImage imageNamed:@"tabbar_compose_button_highlighted"] forState:UIControlStateHighlighted];
+        [plusBtn setImage:[UIImage imageNamed:@"tabbar_compose_icon_add"] forState:UIControlStateNormal];
+        [plusBtn setImage:[UIImage imageNamed:@"tabbar_compose_icon_add_highlighted"] forState:UIControlStateHighlighted];
+        plusBtn.frameSize = plusBtn.currentBackgroundImage.size;
+        [plusBtn addTarget:self action:@selector(plusClick) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:plusBtn];
+        self.plusBtn = plusBtn;
+        
+    }
+    
+    
+    return self;
+    
+}
+
+
+-(void)plusClick {
+    
+    //通知代理
+    
+    if ([self.delegate respondsToSelector:@selector(tabBarDidClickPlusButton:)]) {
+        [self.delegate tabBarDidClickPlusButton:self];
+    }
+    
+}
+
+
+
+-(void)layoutSubviews {
+    
+    [super layoutSubviews];
+    
+    
+    //设置加号的位置
+    
+    self.plusBtn.center = CGPointMake(APPW *0.5, 50 * 0.5);
+    
+    //设置其他tabbarButton的位置和尺寸
+    CGFloat tabBarButtonW  = APPW / 5;
+    CGFloat tabbarButtonIndex = 0;
+    
+    for (UIView *child in self.subviews) {
+        Class class = NSClassFromString(@"UITabBarButton");
+        if ([child isKindOfClass:class]) {
+            child.frameWidth = tabBarButtonW;
+            child.frameX = tabbarButtonIndex *tabBarButtonW;
+            
+            //增加索引
+            tabbarButtonIndex ++;
+            
+            if (tabbarButtonIndex == 2) {
+                tabbarButtonIndex ++;
+            }
+        }
+    }
+    
+    
+}
+
+@end
+// 版权属于原作者
+// http://code4app.com (cn) http://code4app.net (en)
+// 发布代码于最专业的源码分享网站: Code4App.com
+
 @interface SinaTabBarController ()<XFTabBarDelegate>
 @property (nonatomic,weak)UIButton *plus;
 @property (nonatomic,weak)FXBlurView *blurView;
@@ -61,7 +150,22 @@
     XFAccount *account = [XFAccountTool account];
     //设置根控制器
     if (account) {//第三方登录状态
-        [[UIApplication sharedApplication].delegate.window switchRootViewController];
+        // 切换窗口的根控制器
+        NSString *key = @"version";
+        // 上一次的使用版本（存储在沙盒中的版本号）
+        NSString *lastVersion = [[NSUserDefaults standardUserDefaults] objectForKey:key];
+        // 当前软件的版本号（从Info.plist中获得）
+        NSString *currentVersion = [NSBundle mainBundle].infoDictionary[@"CFBundleShortVersionString"];
+        if ([currentVersion isEqualToString:lastVersion]) { // 版本号相同：这次打开和上次打开的是同一个版本
+            return;
+        } else { // 这次打开的版本和上一次不一样，显示新特性
+            [[UIApplication sharedApplication].delegate.window.rootViewController presentViewController:[[XFNewFeatureController alloc] init] animated:YES completion:^{
+            }];
+            // 将当前的版本号存进沙盒
+            [[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:key];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        }
+        
     } else{
 #pragma mark 假数据
         NSDictionary *acont = @{@"access_token":@"2.00IjAFKG0H7CVc7e020836340bdlSS",

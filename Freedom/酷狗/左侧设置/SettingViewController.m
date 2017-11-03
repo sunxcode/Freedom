@@ -136,7 +136,7 @@
                     self.bottomView.transform = CGAffineTransformMakeScale(1,1);
                 } completion:^(BOOL finished) {
                     [self dismissViewControllerAnimated:YES completion:nil];
-                    [[NSNotificationCenter defaultCenter] postNotificationName:ChangeMainVCContentEnable object:nil];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"ChangeMainVCContentEnable" object:nil];
                 }];
             } else {
                 [UIView animateWithDuration:0.3 animations:^{
@@ -155,7 +155,7 @@
 }
 - (void)clickMainVC{
     [self dismissViewControllerAnimated:YES completion:^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:ChangeMainVCContentEnable object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"ChangeMainVCContentEnable" object:nil];
     }];
 }
 @end

@@ -11,8 +11,6 @@
 #import "SinaTabBarController.h"
 #import "XFNewFeatureController.h"
 #import "XFAccountTool.h"
-#import "UIWindow+Extension.h"
-
 
 @interface XFOAuthController ()<UIWebViewDelegate>
 

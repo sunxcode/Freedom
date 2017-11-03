@@ -73,7 +73,7 @@ static NSString *urls[] = {
         cellItem = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 370)];
         cellItem.userInteractionEnabled = YES;
         cellItem.backgroundColor  = [UIColor colorWithWhite:0.7f alpha:0.4f];
-        cellItem.reuseIdentifier = @"reuse";
+//        cellItem.reuseIdentifier = @"reuse";
         label = [[UILabel alloc] initWithFrame:CGRectMake(0, 50, self.view.bounds.size.width, 100)];
         reuse = @"=====新生成的";
         label.textAlignment = NSTextAlignmentCenter;

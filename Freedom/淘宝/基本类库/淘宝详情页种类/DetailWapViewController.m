@@ -86,7 +86,7 @@ static NSString *urls[] = {
         cellItem.clipsToBounds = YES;
         cellItem.contentMode = UIViewContentModeScaleAspectFill;
         cellItem.backgroundColor  = [UIColor colorWithWhite:0.7f alpha:0.4f];
-        cellItem.reuseIdentifier = @"reuse";
+//        cellItem.reuseIdentifier = @"reuse";
         [cellItem  addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageViewDidTaped:)]];
     }
     UIImage *image = [UIImage imageNamed:images[index % 4]];
@@ -99,7 +99,7 @@ static NSString *urls[] = {
     if (!cellItem) {
         cellItem = [[MFullScreenView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
         cellItem.userInteractionEnabled = YES;
-        cellItem.reuseIdentifier = @"reuse";
+//        cellItem.reuseIdentifier = @"reuse";
         [cellItem enableDoubleTap:YES];
         __weak typeof(self) blockSelf = self;
         cellItem.singleTapBlock = ^(UIGestureRecognizer * recognizer) {

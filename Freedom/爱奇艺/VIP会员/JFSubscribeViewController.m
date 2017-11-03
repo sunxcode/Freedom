@@ -6,14 +6,10 @@
 //  Copyright © 2015年 JF. All rights reserved.
 ////  项目详解：
 //  github:https://github.com/tubie/JFTudou
-//  简书：http://www.jianshu.com/p/2156ec56c55b
-
-
+//  简书：http://www.jianshu.com/p/2156ec56c55
 #import "JFSubscribeViewController.h"
-#import "JFSubscribeModel.h"
-#import "JFSubscribeCell.h"
 #import "JFVideoDetailViewController.h"
-#import "JFSubItemModel.h"
+#import "JFSubscribeCell.h"
 @interface JFSubscribeViewController ()<UITableViewDataSource,UITableViewDelegate,JFSubscribeCellDelagate>
 {
     NSMutableArray *_dataSource;
