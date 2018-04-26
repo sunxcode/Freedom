@@ -6,7 +6,7 @@
 #import "TLActionSheet.h"
 #import <BlocksKit/BlocksKit+UIKit.h>
 #import "TLChatViewController.h"
-#import "TLSettingItem.h"
+#import "WechartModes.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "TLCommonSettingViewController.h"
 #define     SPACE_EDGE                      10

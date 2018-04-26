@@ -2,7 +2,7 @@
 //  Freedom
 // Created by Super
 #import "TLPrivacySettingViewController.h"
-#import "TLSettingGroup.h"
+#import "WechartModes.h"
 @interface TLPrivacySettingHelper : NSObject
 @property (nonatomic, strong) NSMutableArray *minePrivacySettingData;
 @end

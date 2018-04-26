@@ -2,9 +2,8 @@
 //  Freedom
 // Created by Super
 #import "TLAboutViewController.h"
-#import "TLAppHelper.h"
 #define     HEIGHT_TOPVIEW      100.0f
-#import "TLSettingGroup.h"
+#import "WechartModes.h"
 @interface TLAboutHelper : NSObject
 @property (nonatomic, strong) NSMutableArray *abouSettingtData;
 @end
@@ -108,7 +107,7 @@
     if (section == 0) {
         TLAboutHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"TLAboutHeaderView"];
         [headerView setImagePath:@"AppLogo"];
-        [headerView setTitle:[NSString stringWithFormat:@"微信 TLChat %@", [TLAppHelper sharedHelper].version]];
+        [headerView setTitle:[NSString stringWithFormat:@"微信 TLChat %@", [FreedomTools sharedManager].version]];
         return headerView;
     }
     return nil;

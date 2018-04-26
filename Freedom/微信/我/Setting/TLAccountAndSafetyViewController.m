@@ -4,9 +4,7 @@
 #import "TLAccountAndSafetyViewController.h"
 #import "TLWebViewController.h"
 #import "TLUserHelper.h"
-#import "TLUser.h"
-#import "TLSettingGroup.h"
-#import "TLUser.h"
+#import "WechartModes.h"
 @interface TLAccountAndSafetyHelper : NSObject
 - (NSMutableArray *)mineAccountAndSafetyDataByUserInfo:(TLUser *)userInfo;
 @end

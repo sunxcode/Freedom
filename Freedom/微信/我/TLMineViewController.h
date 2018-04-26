@@ -2,7 +2,7 @@
 //  Freedom
 // Created by Super
 #import "TLMenuViewController.h"
-#import "TLUser.h"
+#import "TLUserHelper.h"
 @interface TLMineInfoHelper : NSObject
 - (NSMutableArray *)mineInfoDataByUserInfo:(TLUser *)userInfo;
 @end

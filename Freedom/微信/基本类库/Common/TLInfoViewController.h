@@ -3,7 +3,7 @@
 // Created by Super
 #import <UIKit/UIKit.h>
 #import "TLTableViewCell.h"
-#import "TLInfo.h"
+#import "WechartModes.h"
 @protocol TLInfoButtonCellDelegate <NSObject>
 - (void)infoButtonCellClicked:(TLInfo *)info;
 @end

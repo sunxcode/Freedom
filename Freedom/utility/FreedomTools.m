@@ -4,7 +4,7 @@
 //  Copyright © 2018年 Super. All rights reserved.
 //
 #import "FreedomTools.h"
-#import "TLGroup.h"
+#import "TLUserHelper.h"
 static UILabel *hLabel = nil;
 @implementation FreedomTools
 + (CGFloat) getTextHeightOfText:(NSString *)text
@@ -187,6 +187,14 @@ static UILabel *hLabel = nil;
 -(NSString *)urlWithJianShuData{
     NSString *urlStr = ResumeURL;
     return urlStr;
+}
+- (NSString *)version{
+    if (_version == nil) {
+        NSString *shortVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+        NSString *buildID = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+        _version = [NSString stringWithFormat:@"%@ (%@)", shortVersion, buildID];
+    }
+    return _version;
 }
 @end
 @implementation TLNavigationController

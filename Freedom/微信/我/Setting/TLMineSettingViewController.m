@@ -9,7 +9,7 @@
 #import "TLCommonSettingViewController.h"
 #import "TLHelpAndFeedbackViewController.h"
 #import "TLAboutViewController.h"
-#import "TLSettingGroup.h"
+#import "WechartModes.h"
 typedef void (^ CompleteBlock)(NSMutableArray *data);
 @interface TLSettingHelper : NSObject
 @property (nonatomic, strong) NSMutableArray *mineSettingData;

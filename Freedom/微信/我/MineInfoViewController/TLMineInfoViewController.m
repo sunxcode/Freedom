@@ -5,7 +5,7 @@
 #import "TLMyQRCodeViewController.h"
 #import "TLUserHelper.h"
 #import "TLMineViewController.h"
-#import "TLSettingItem.h"
+#import "WechartModes.h"
 @interface TLMineInfoAvatarCell : UITableViewCell
 @property (nonatomic, strong) TLSettingItem *item;
 @end

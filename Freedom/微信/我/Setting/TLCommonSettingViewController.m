@@ -14,8 +14,7 @@
 #define     MIN_FONT_SIZE           15.0f
 #define     STANDARD_FONT_SZIE      16.0f
 #define     MAX_FONT_SZIE           20.0f
-#import "TLSettingItem.h"
-#import "TLSettingGroup.h"
+#import "WechartModes.h"
 @interface TLChatFontSettingView : UIView
 @property (nonatomic, assign) CGFloat curFontSize;
 @property (nonatomic, copy) void (^fontSizeChangeTo)(CGFloat size);

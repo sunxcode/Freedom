@@ -2,7 +2,6 @@
 //  Freedom
 // Created by Super
 #import "TLExpressionDetailViewController.h"
-#import "TLExpressionProxy.h"
 #import "TLExpressionHelper.h"
 #import <BlocksKit/BlocksKit+UIKit.h>
 #define         EDGE                20.0
@@ -10,8 +9,7 @@
 #define         WIDTH_CELL          ((WIDTH_SCREEN - EDGE * 2 - SPACE_CELL * 3.0) / 4.0)
 #import "UIImage+GIF.h"
 #import "UIImage+expanded.h"
-#import "TLEmoji.h"
-#import "TLEmojiGroup.h"
+#import "TLEmojiBaseCell.h"
 #define         HEIGHT_EXP_BANNER       (WIDTH_SCREEN * 0.45)
 @protocol TLExpressionDetailCellDelegate <NSObject>
 - (void)expressionDetailCellDownloadButtonDown:(TLEmojiGroup *)group;
@@ -207,7 +205,7 @@
 @interface TLExpressionDetailViewController ()<TLExpressionDetailCellDelegate>{
     NSInteger kPageIndex;
 }
-@property (nonatomic, strong) TLExpressionProxy *proxy;
+@property (nonatomic, strong) TLExpressionHelper *proxy;
 @end
 @implementation TLExpressionDetailViewController
 - (void)viewDidLoad{
@@ -253,9 +251,9 @@
     }];
 }
 #pragma mark - Getter
-- (TLExpressionProxy *)proxy{
+- (TLExpressionHelper *)proxy{
     if (_proxy == nil) {
-        _proxy = [[TLExpressionProxy alloc] init];
+        _proxy = [TLExpressionHelper sharedHelper];
     }
     return _proxy;
 }

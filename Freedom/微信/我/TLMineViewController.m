@@ -8,14 +8,10 @@
 #import "TLMineInfoViewController.h"
 #import "TLExpressionViewController.h"
 #import "TLMineSettingViewController.h"
-#import <Foundation/Foundation.h>
-#import "TLSettingGroup.h"
-#import "TLUser.h"
-#import "TLMenuItem.h"
+#import "WechartModes.h"
 #define     MINE_SPACE_X        14.0f
 #define     MINE_SPACE_Y        12.0f
 #import <UIKit/UIKit.h>
-#import "TLUser.h"
 @interface TLMineHeaderCell : UITableViewCell
 @property (nonatomic, strong) TLUser *user;
 @end

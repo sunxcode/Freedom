@@ -3,12 +3,11 @@
 //  Created by Super on 16/4/4.
 #import "TLExpressionSearchViewController.h"
 #import "TLExpressionDetailViewController.h"
-#import "TLExpressionProxy.h"
 #import "TLExpressionHelper.h"
-#import "TLExpressionCell.h"
+#import "TLExpressionChosenViewController.h"
 #define         HEGIHT_EXPCELL      80
 @interface TLExpressionSearchViewController () <TLExpressionCellDelegate>
-@property (nonatomic, strong) TLExpressionProxy *proxy;
+@property (nonatomic, strong) TLExpressionHelper *proxy;
 @property (nonatomic, strong) NSArray *data;
 @end
 @implementation TLExpressionSearchViewController
@@ -101,9 +100,9 @@
 - (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
 }
 #pragma mark - Getter
-- (TLExpressionProxy *)proxy{
+- (TLExpressionHelper *)proxy{
     if (_proxy == nil) {
-        _proxy = [[TLExpressionProxy alloc] init];
+        _proxy = [TLExpressionHelper sharedHelper];
     }
     return _proxy;
 }

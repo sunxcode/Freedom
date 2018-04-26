@@ -10,11 +10,9 @@
 #define kSelImgKey  @"selectedImageName"
 #import "SVProgressHUD.h"
 #import "TLRootViewController.h"
-#import "TLRootProxy.h"
-#import "TLExpressionProxy.h"
+#import "TLMessageManager.h"
 #import "TLExpressionHelper.h"
 #import "JPEngine.h"
-#import "TLFriendHelper.h"
 #import "CocoaLumberjack.h"
 #import "TLUserHelper.h"
 #import <MobClick.h>
@@ -95,7 +93,7 @@ static WechartTabBarController *rootVC = nil;
     [SVProgressHUD show];
     __block NSInteger count = 0;
     __block NSInteger successCount = 0;
-    TLExpressionProxy *proxy = [[TLExpressionProxy alloc] init];
+    TLExpressionHelper *proxy = [TLExpressionHelper sharedHelper];
     TLEmojiGroup *group = [[TLEmojiGroup alloc] init];
     group.groupID = @"241";
     group.groupName = @"婉转的骂人";
@@ -160,7 +158,7 @@ static WechartTabBarController *rootVC = nil;
     }];
 }
 - (void)p_initAppData{
-    TLRootProxy *proxy = [[TLRootProxy alloc] init];
+    TLMessageManager *proxy = [TLMessageManager sharedInstance];
     [proxy requestClientInitInfoSuccess:^(id data) {
         
     } failure:^(NSString *error) {

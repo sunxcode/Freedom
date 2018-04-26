@@ -3,8 +3,7 @@
 // Created by Super
 #import "TLSettingViewController.h"
 #import <MobClick.h>
-#import "TLSettingItem.h"
-#import "TLSettingGroup.h"
+#import "WechartModes.h"
 @interface TLSettingSwitchCell : UITableViewCell
 @property (nonatomic, assign) id<TLSettingSwitchCellDelegate>delegate;
 @property (nonatomic, strong) TLSettingItem *item;

@@ -3,10 +3,17 @@
 //  Created by Super on 16/4/4.
 #import "TLTableViewController.h"
 #import "TLExpressionHelper.h"
-#import "TLExpressionProxy.h"
-#import "TLExpressionCell.h"
 #define         HEIGHT_BANNERCELL       140.0f
 #define         HEGIHT_EXPCELL          80.0f
+#import "TLEmojiBaseCell.h"
+#import "TLTableViewCell.h"
+@protocol TLExpressionCellDelegate <NSObject>
+- (void)expressionCellDownloadButtonDown:(TLEmojiGroup *)group;
+@end
+@interface TLExpressionCell : TLTableViewCell
+@property (nonatomic, assign) id<TLExpressionCellDelegate> delegate;
+@property (nonatomic, strong) TLEmojiGroup *group;
+@end
 @protocol TLExpressionBannerCellDelegate <NSObject>
 - (void)expressionBannerCellDidSelectBanner:(id)item;
 @end
@@ -22,5 +29,5 @@
 - (void)loadMoreData;
 @property (nonatomic, strong) NSMutableArray *data;
 @property (nonatomic, strong) NSArray *bannerData;
-@property (nonatomic, strong) TLExpressionProxy *proxy;
+@property (nonatomic, strong) TLExpressionHelper *proxy;
 @end

@@ -2,7 +2,7 @@
 //  Freedom
 // Created by Super
 #import "TLViewController.h"
-#import "TLExpressionProxy.h"
+#import "TLExpressionHelper.h"
 @interface TLExpressionPublicViewController : TLViewController<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 {
     NSInteger kPageIndex;
@@ -11,6 +11,6 @@
 - (void)loadDataWithLoadingView:(BOOL)showLoadingView;
 - (void)loadMoreData;
 @property (nonatomic, strong) NSMutableArray *data;
-@property (nonatomic, strong) TLExpressionProxy *proxy;
+@property (nonatomic, strong) TLExpressionHelper *proxy;
 @property (nonatomic, strong) UICollectionView *collectionView;
 @end

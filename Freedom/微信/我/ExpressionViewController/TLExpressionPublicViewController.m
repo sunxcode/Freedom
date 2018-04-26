@@ -4,17 +4,15 @@
 #import "TLExpressionPublicViewController.h"
 #import "TLExpressionSearchViewController.h"
 #import "TLSearchController.h"
-#import "MJRefresh.h"
 #import "TLExpressionDetailViewController.h"
 #define         EDGE                20.0
 #define         SPACE_CELL          EDGE
 #define         WIDTH_CELL          ((WIDTH_SCREEN - EDGE * 2 - SPACE_CELL * 2.0) / 3.0)
 #define         HEIGHT_CELL         (WIDTH_CELL + 20)
 #import "TLExpressionHelper.h"
-#import "MJRefresh.h"
 #import "UIImage+expanded.h"
 #import <UIKit/UIKit.h>
-#import "TLEmojiGroup.h"
+#import "TLEmojiBaseCell.h"
 @interface TLExpressionPublicCell : UICollectionViewCell
 @property (nonatomic, strong) TLEmojiGroup *group;
 @end
@@ -122,9 +120,9 @@
     }
     return _searchVC;
 }
-- (TLExpressionProxy *)proxy{
+- (TLExpressionHelper *)proxy{
     if (_proxy == nil) {
-        _proxy = [[TLExpressionProxy alloc] init];
+        _proxy = [TLExpressionHelper sharedHelper];
     }
     return _proxy;
 }

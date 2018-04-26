@@ -3,7 +3,7 @@
 // Created by Super
 #import "TLViewController.h"
 #import "TLImageExpressionDisplayView.h"
-#import "TLEmojiGroup.h"
+#import "TLEmojiBaseCell.h"
 @interface TLExpressionDetailViewController : TLViewController<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 - (void)registerCellForCollectionView:(UICollectionView *)collectionView;
 - (void)didLongPressScreen:(UILongPressGestureRecognizer *)sender;

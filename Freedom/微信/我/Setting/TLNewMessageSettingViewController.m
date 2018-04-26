@@ -2,7 +2,7 @@
 //  Freedom
 //  Created by Super on 16/2/8.
 #import "TLNewMessageSettingViewController.h"
-#import "TLSettingGroup.h"
+#import "WechartModes.h"
 @interface TLNewMessageSettingHelper : NSObject
 @property (nonatomic, strong) NSMutableArray *mineNewMessageSettingData;
 @end

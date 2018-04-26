@@ -6,7 +6,7 @@
 #import "TLExpressionHelper.h"
 #import "UINavigationController+JZExtension.h"
 #import "UIImage+expanded.h"
-#import "TLEmojiGroup.h"
+#import "TLEmojiBaseCell.h"
 @protocol TLMyExpressionCellDelegate <NSObject>
 - (void)myExpressionCellDeleteButtonDown:(TLEmojiGroup *)group;
 @end

@@ -40,6 +40,7 @@
 -(NSString *)urlWithRecommentdata:(NSString *)iid;
 /*简书数据*/
 -(NSString *)urlWithJianShuData;
+@property (nonatomic, strong) NSString *version;
 @end
 @interface TLNavigationController : UINavigationController
 @end

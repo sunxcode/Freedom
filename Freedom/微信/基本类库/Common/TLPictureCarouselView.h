@@ -2,8 +2,10 @@
 //  Freedom
 // Created by Super
 #import <UIKit/UIKit.h>
-#import "TLPictureCarouselProtocol.h"
 #define         DEFAULT_TIMEINTERVAL        5.0f
+@protocol TLPictureCarouselProtocol <NSObject>
+- (NSString *)pictureURL;
+@end
 @class TLPictureCarouselView;
 @protocol TLPictureCarouselDelegate <NSObject>
 - (void)pictureCarouselView:(TLPictureCarouselView *)pictureCarouselView
