@@ -1,13 +1,9 @@
-//
 //  ZHX_HUDView.m
 //  ZHX
+//  Created by Super on 14-1-6.
+//  Copyright (c) 2014年 Super. All rights reserved.
 //
-//  Created by 阿虎 on 14-1-6.
-//  Copyright (c) 2014年 阿虎. All rights reserved.
-//
-
 #import "E_HUDView.h"
-
 @implementation E_HUDView
 @synthesize msg;
 @synthesize leftMargin;
@@ -16,7 +12,6 @@
 @synthesize animationTopScale;
 @synthesize totalDuration;
 @synthesize labelText;
-
 - (id)initWithFrame:(CGRect)frame{
     
     self = [super initWithFrame:frame];
@@ -25,7 +20,6 @@
     }
     return self;
 }
-
 + (void)showMsg:(NSString *)msg inView:(UIView*)theView{
     
     E_HUDView *alert = [[E_HUDView alloc] initWithMsg:msg];
@@ -38,7 +32,6 @@
     [alert showAlert];
    
 }
-
 - (void)showAlert{
     
     self.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.8];
@@ -105,8 +98,6 @@
     [self.layer addAnimation:group forKey:@"group"];
     
 }
-
-
 - (id)initWithMsg:(NSString*)_msg{
     
     if (self = [super init]) {
@@ -138,7 +129,6 @@
     }
     return self;
 }
-
 + (UIWindow *) getUnhiddenFrontWindowOfApplication{
     
     NSArray *windows = [[UIApplication sharedApplication] windows];
@@ -154,7 +144,6 @@
     }
     return NULL;
 }
-
 + (UIWindow*)getWindow{
     
     UIWindow* window = [UIApplication sharedApplication].keyWindow;
@@ -163,7 +152,6 @@
     }
     return window;
 }
-
 - (CGSize)getSizeFromString:(NSString*)_theString{
     
     UIFont *theFont = msgFont;
@@ -173,6 +161,4 @@
     CGSize tempSize = [_theString boundingRectWithSize:size options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attributes context:nil].size;
     return tempSize;
 }
-
-
 @end

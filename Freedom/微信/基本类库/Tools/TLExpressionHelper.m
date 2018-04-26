@@ -1,29 +1,18 @@
-//
 //  TLExpressionHelper.m
-//  TLChat
-//
-//  Created by 李伯坤 on 16/3/11.
-//  Copyright © 2016年 李伯坤. All rights reserved.
-//
-
+//  Freedom
+// Created by Super
 #import "TLExpressionHelper.h"
 #import "TLDBExpressionStore.h"
 #import "TLEmojiKBHelper.h"
-
 #import "TLUserHelper.h"
 @interface TLExpressionHelper ()
-
 @property (nonatomic, strong) TLDBExpressionStore *store;
-
 @end
-
 @implementation TLExpressionHelper
 @synthesize defaultFaceGroup = _defaultFaceGroup;
 @synthesize defaultSystemEmojiGroup = _defaultSystemEmojiGroup;
 @synthesize userEmojiGroups = _userEmojiGroups;
-
-+ (TLExpressionHelper *)sharedHelper
-{
++ (TLExpressionHelper *)sharedHelper{
     static TLExpressionHelper *helper;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -31,38 +20,28 @@
     });
     return helper;
 }
-
-- (NSArray *)userEmojiGroups
-{
+- (NSArray *)userEmojiGroups{
     return [self.store expressionGroupsByUid:[TLUserHelper sharedHelper].userID];
 }
-
-- (BOOL)addExpressionGroup:(TLEmojiGroup *)emojiGroup
-{
+- (BOOL)addExpressionGroup:(TLEmojiGroup *)emojiGroup{
     BOOL ok = [self.store addExpressionGroup:emojiGroup forUid:[TLUserHelper sharedHelper].userID];
     if (ok) {       // 通知表情键盘
         [[TLEmojiKBHelper sharedKBHelper] updateEmojiGroupData];
     }
     return ok;
 }
-
-- (BOOL)deleteExpressionGroupByID:(NSString *)groupID
-{
+- (BOOL)deleteExpressionGroupByID:(NSString *)groupID{
     BOOL ok = [self.store deleteExpressionGroupByID:groupID forUid:[TLUserHelper sharedHelper].userID];
     if (ok) {       // 通知表情键盘
         [[TLEmojiKBHelper sharedKBHelper] updateEmojiGroupData];
     }
     return ok;
 }
-
-- (BOOL)didExpressionGroupAlwaysInUsed:(NSString *)groupID
-{
+- (BOOL)didExpressionGroupAlwaysInUsed:(NSString *)groupID{
     NSInteger count = [self.store countOfUserWhoHasExpressionGroup:groupID];
     return count > 0;
 }
-
-- (TLEmojiGroup *)emojiGroupByID:(NSString *)groupID;
-{
+- (TLEmojiGroup *)emojiGroupByID:(NSString *)groupID;{
     for (TLEmojiGroup *group in self.userEmojiGroups) {
         if ([group.groupID isEqualToString:groupID]) {
             return group;
@@ -70,12 +49,10 @@
     }
     return nil;
 }
-
 - (void)downloadExpressionsWithGroupInfo:(TLEmojiGroup *)group
                                 progress:(void (^)(CGFloat))progress
                                  success:(void (^)(TLEmojiGroup *))success
-                                 failure:(void (^)(TLEmojiGroup *, NSString *))failure
-{
+                                 failure:(void (^)(TLEmojiGroup *, NSString *))failure{
     dispatch_queue_t downloadQueue = dispatch_queue_create([group.groupID UTF8String], nil);
     dispatch_group_t downloadGroup = dispatch_group_create();
     
@@ -87,13 +64,12 @@
             if (i == group.data.count) {
                 emojiPath = [NSString stringWithFormat:@"%@icon_%@", groupPath, group.groupID];
                 data = [NSData dataWithContentsOfURL:TLURL(group.groupIconURL)];
-            }
-            else {
+            }else{
                 TLEmoji *emoji = group.data[i];
-                NSString *urlString = [TLHost expressionDownloadURLWithEid:emoji.emojiID];
+                NSString *urlString = [NSString stringWithFormat:@"http://123.57.155.230:8080/ibiaoqing/admin/expre/download.do?pId=%@",emoji.emojiID];
                 data = [NSData dataWithContentsOfURL:TLURL(urlString)];
                 if (data == nil) {
-                    urlString = [TLHost expressionURLWithEid:emoji.emojiID];
+                    urlString = [NSString stringWithFormat:@"http://123.57.155.230:8080/ibiaoqing/admin/expre/downloadsuo.do?pId=%@", emoji.emojiID];
                     data = [NSData dataWithContentsOfURL:TLURL(urlString)];
                 }
                 emojiPath = [NSString stringWithFormat:@"%@%@", groupPath, emoji.emojiID];
@@ -106,18 +82,14 @@
         success(group);
     });
 }
-
-#pragma mark - # Getter
-- (TLDBExpressionStore *)store
-{
+#pragma mark - 
+- (TLDBExpressionStore *)store{
     if (_store == nil) {
         _store = [[TLDBExpressionStore alloc] init];
     }
     return _store;
 }
-
-- (NSMutableArray *)myExpressionListData
-{
+- (NSMutableArray *)myExpressionListData{
     NSMutableArray *data = [[NSMutableArray alloc] init];
     NSMutableArray *myEmojiGroups = [NSMutableArray arrayWithArray:[self.store expressionGroupsByUid:[TLUserHelper sharedHelper].userID]];
     if (myEmojiGroups.count > 0) {
@@ -132,9 +104,7 @@
     
     return data;
 }
-
-- (TLEmojiGroup *)defaultFaceGroup
-{
+- (TLEmojiGroup *)defaultFaceGroup{
     if (_defaultFaceGroup == nil) {
         _defaultFaceGroup = [[TLEmojiGroup alloc] init];
         _defaultFaceGroup.type = TLEmojiTypeFace;
@@ -145,9 +115,7 @@
     }
     return _defaultFaceGroup;
 }
-
-- (TLEmojiGroup *)defaultSystemEmojiGroup
-{
+- (TLEmojiGroup *)defaultSystemEmojiGroup{
     if (_defaultSystemEmojiGroup == nil) {
         _defaultSystemEmojiGroup = [[TLEmojiGroup alloc] init];
         _defaultSystemEmojiGroup.type = TLEmojiTypeEmoji;
@@ -158,5 +126,4 @@
     }
     return _defaultSystemEmojiGroup;
 }
-
 @end

@@ -1,8 +1,6 @@
-//
 //  DZDiscoverController.m
-//  Shop
-//
-//  Created by dengwei on 15/12/1.
+//  Freedom
+//  Created by Super on 15/12/1.
 //  Copyright (c) 2015年 dengw. All rights reserved.
 #import "DZDiscoverController.h"
 @interface DZDiscoverController (){
@@ -30,7 +28,4 @@
     };
     
 }
-
-
-
 @end

@@ -1,17 +1,9 @@
-//
 //  TLMomentComment.m
-//  TLChat
-//
-//  Created by libokun on 16/4/8.
-//  Copyright © 2016年 李伯坤. All rights reserved.
-//
-
+//  Freedom
+// Created by Super
 #import "TLMomentComment.h"
-
 @implementation TLMomentComment
-
-- (id)init
-{
+- (id)init{
     if (self = [super init]) {
         [TLMomentComment mj_setupObjectClassInArray:^NSDictionary *{
             return @{ @"user" : @"TLUser",
@@ -20,21 +12,14 @@
     }
     return self;
 }
-
-#pragma mark - # Getter
-- (TLMomentCommentFrame *)commentFrame
-{
+#pragma mark - 
+- (TLMomentCommentFrame *)commentFrame{
     if (_commentFrame == nil) {
         _commentFrame = [[TLMomentCommentFrame alloc] init];
         _commentFrame.height = 35.0f;
     }
     return _commentFrame;
 }
-
 @end
-
-
-
 @implementation TLMomentCommentFrame
-
 @end

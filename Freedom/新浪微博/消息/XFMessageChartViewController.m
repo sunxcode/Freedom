@@ -1,9 +1,7 @@
-//
 //  XFMessageChartViewController.m
-//  Created by 薛超 on 16/8/21.
-//  Copyright © 2016年 薛超. All rights reserved.
+//  Created by Super on 16/8/21.
+//  Copyright © 2016年 Super. All rights reserved.
 //
-
 #import "XFMessageChartViewController.h"
 @interface XFMessageChartData : NSObject
 @property(nonatomic,strong)NSString *content;
@@ -26,15 +24,11 @@
     m4.fromMe=NO;
     return @[m1,m2,m3,m4];
 }
-
 @end
-
 @interface MessageCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
-
 @end
 @implementation MessageCell
-
 @end
 @interface XFMessageChartViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *textField;
@@ -42,14 +36,12 @@
 @property(nonatomic,strong)NSMutableArray *allMessage;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end
-
 @implementation XFMessageChartViewController
 -(NSMutableArray *)allMessage{
     if(!_allMessage){
         _allMessage = [[XFMessageChartData getChartData]mutableCopy];
     }return _allMessage;
 }
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     //为了让tableView自适应高度，需要设置如下两个属性
@@ -59,8 +51,6 @@
     // self.tableView.contentInset=UIEdgeInsetsMake(64, 0, 0, 0);
     
 }
-
-
 //在view即将显示时添加对系统发出的键盘通知的监听。
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -70,15 +60,12 @@
     
     
 }
-
-
 //在view即将消失时取消键盘通知的监听。
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter]removeObserver:self name:UIKeyboardWillHideNotification object:nil];
     [[NSNotificationCenter defaultCenter]removeObserver:self name:UIKeyboardWillShowNotification object:nil];
 }
-
 -(void)OpenKeyBoard:(NSNotification*)notification{
     //读取弹起的键盘的高度
     CGFloat keyboardHeight=[notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
@@ -90,7 +77,7 @@
     [UIView animateWithDuration:duration
                           delay:0 options:option animations:^{
                               [self.view layoutIfNeeded];
-                              NSLog(@"%@",notification.userInfo);
+                              DLog(@"%@",notification.userInfo);
                               [self scrollToTableViewLastRow];
                           } completion:nil];
     
@@ -111,7 +98,6 @@
     
     
 }
-
 - (IBAction)clickReturnKey:(UITextField *)sender {//点击右下角返回键，发消息，手键盘。
     //构建message对象
     NSString *newContent=self.textField.text;

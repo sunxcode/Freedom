@@ -1,53 +1,31 @@
-//
 //  TLActionSheet.m
-//  TLChat
-//
-//  Created by 李伯坤 on 16/5/1.
-//  Copyright © 2016年 李伯坤. All rights reserved.
-//
-
+//  Freedom
+// Created by Super
 #import "TLActionSheet.h"
 #import "UIImage+expanded.h"
-
 #define     TITLE_FONT_SIZE             13.0f
 #define     BUTTON_FONT_SIZE            18.0f
 #define     HEIGHT_BUTTON               48.0f
 #define     SPACE_MIDDEL                8.0f
 #define     SPACE_TITLE_LEFT            22.0f
 #define     SPACE_TITLE_TOP             20.0f
-
 #define     COLOR_BACKGROUND            [UIColor colorWithWhite:0.0 alpha:0.4]
 #define     COLOR_DESTRUCTIVE_TITLE     [UIColor redColor]
-
-@interface TLActionSheet() <UITableViewDataSource, UITableViewDelegate>
-{
+@interface TLActionSheet() <UITableViewDataSource, UITableViewDelegate>{
     NSInteger tableViewButtonCount;
 }
-
 @property (nonatomic, strong) NSString *title;
-
 @property (nonatomic, strong) NSString *cancelButtonTitle;
-
 @property (nonatomic, strong) NSString *destructiveButtonTitle;
-
 @property (nonatomic, strong) NSMutableArray *otherButtonTitles;
-
 @property (nonatomic, strong) UIButton *backgroudView;
-
 @property (nonatomic, strong) UIView *actionSheetView;
-
 @property (nonatomic, strong) UITableView *tableView;
-
 @property (nonatomic, strong) UIButton *cancelButton;
-
 @property (nonatomic, strong) UILabel *headerTitleLabel;
-
 @end
-
 @implementation TLActionSheet
-
-- (instancetype)initWithTitle:(NSString *)title delegate:(id<TLActionSheetDelegate>)delegate cancelButtonTitle:(NSString *)cancelButtonTitle destructiveButtonTitle:(NSString *)destructiveButtonTitle otherButtonTitles:(NSString *)otherButtonTitles, ...
-{
+- (instancetype)initWithTitle:(NSString *)title delegate:(id<TLActionSheetDelegate>)delegate cancelButtonTitle:(NSString *)cancelButtonTitle destructiveButtonTitle:(NSString *)destructiveButtonTitle otherButtonTitles:(NSString *)otherButtonTitles, ...{
     if (self = [super init]) {
         [self setDelegate:delegate];
         [self setTitle:title];
@@ -76,15 +54,11 @@
     }
     return self;
 }
-
-#pragma mark - # Public Methods
-- (void)show
-{
+#pragma mark - Public Methods
+- (void)show{
     [self showInView:[UIApplication sharedApplication].delegate.window];
 }
-
-- (void)showInView:(UIView *)view
-{
+- (void)showInView:(UIView *)view{
     if (view == nil) {
         view = [UIApplication sharedApplication].delegate.window;
     }
@@ -98,47 +72,35 @@
         [self.backgroudView setBackgroundColor:COLOR_BACKGROUND];
     }];
 }
-
-- (NSString *)buttonTitleAtIndex:(NSInteger)buttonIndex
-{
+- (NSString *)buttonTitleAtIndex:(NSInteger)buttonIndex{
     buttonIndex -= self.destructiveButtonTitle ? 1 : 0;
     if (buttonIndex == -1) {
         return self.destructiveButtonTitle;
-    }
-    else if (buttonIndex >= 0 &&  buttonIndex < self.otherButtonTitles.count) {
+    }else if (buttonIndex >= 0 &&  buttonIndex < self.otherButtonTitles.count) {
         return self.otherButtonTitles[buttonIndex];
-    }
-    else if (buttonIndex == self.otherButtonTitles.count) {
+    }else if (buttonIndex == self.otherButtonTitles.count) {
         return self.cancelButtonTitle;
     }
     return nil;
 }
-
-#pragma mark - # Event Response
-- (void)didTapBackground:(id)sender
-{
+#pragma mark - Event Response
+- (void)didTapBackground:(id)sender{
     if (self.cancelButtonTitle && self.delegate && [self.delegate respondsToSelector:@selector(actionSheet:clickedButtonAtIndex:)]) {
         [self.delegate actionSheet:self clickedButtonAtIndex:self.cancelButtonIndex];
     }
     [self dismissWithClickedButtonIndex:self.cancelButtonIndex animated:YES];
 }
-
-- (void)cancelButtonClicked:(id)sender
-{
+- (void)cancelButtonClicked:(id)sender{
     if (self.delegate && [self.delegate respondsToSelector:@selector(actionSheet:clickedButtonAtIndex:)]) {
         [self.delegate actionSheet:self clickedButtonAtIndex:self.cancelButtonIndex];
     }
     [self dismissWithClickedButtonIndex:self.cancelButtonIndex animated:YES];
 }
-
-#pragma mark - # Delegate
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+#pragma mark - 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return tableViewButtonCount;
 }
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"TLActionSheetCell"];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"TLActionSheetCell"];
@@ -150,31 +112,25 @@
         if (indexPath.row == 0) {
             [cell.textLabel setTextColor:COLOR_DESTRUCTIVE_TITLE];
             [cell.textLabel setText:self.destructiveButtonTitle];
-        }
-        else {
+        }else{
             [cell.textLabel setTextColor:[UIColor blackColor]];
             [cell.textLabel setText:self.otherButtonTitles[indexPath.row - 1]];
         }
-    }
-    else {
+    }else{
         [cell.textLabel setTextColor:[UIColor blackColor]];
         [cell.textLabel setText:self.otherButtonTitles[indexPath.row]];
     }
     
     return cell;
 }
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (self.delegate && [self.delegate respondsToSelector:@selector(actionSheet:clickedButtonAtIndex:)]) {
         [self.delegate actionSheet:self clickedButtonAtIndex:indexPath.row];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self dismissWithClickedButtonIndex:indexPath.row animated:YES];
 }
-
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
     UIEdgeInsets edgeInset = UIEdgeInsetsZero;
     if ((self.destructiveButtonTitle && indexPath.row >= self.otherButtonTitles.count) || (!self.destructiveButtonTitle && indexPath.row >= self.otherButtonTitles.count - 1)) {
         edgeInset = UIEdgeInsetsMake(0, 0, 0, self.frameWidth);
@@ -186,10 +142,8 @@
         [cell setLayoutMargins:UIEdgeInsetsZero];
     }
 }
-
-#pragma mark - # Private Methods
-- (void)p_initSubViews
-{
+#pragma mark - 
+- (void)p_initSubViews{
     [self setFrame:[UIScreen mainScreen].bounds];
     [self addSubview:self.backgroudView];
     [self addSubview:self.actionSheetView];
@@ -205,8 +159,7 @@
         
         bottomHeight += HEIGHT_BUTTON;
         tableHeight += SPACE_MIDDEL;
-    }
-    else {
+    }else{
         [self.cancelButton removeFromSuperview];
     }
     
@@ -214,8 +167,7 @@
         if (tableViewButtonCount * HEIGHT_BUTTON > self.frame.size.height - bottomHeight - 20) {
             tableHeight += (self.frame.size.height - bottomHeight - 20);
             [self.tableView setBounces:YES];
-        }
-        else {
+        }else{
             tableHeight += (tableViewButtonCount * HEIGHT_BUTTON);
             [self.tableView setBounces:NO];
         }
@@ -233,10 +185,9 @@
             
             if (self.destructiveButtonTitle || tableViewButtonCount > 0) {
                 UIView * lineView = [[UIView alloc] initWithFrame:CGRectMake(0, hightHeader - 0.5, self.frameWidth, 0.5)];
-                [lineView setBackgroundColor:[UIColor colorGrayLine]];
+                [lineView setBackgroundColor:colorGrayLine];
                 [headerView addSubview:lineView];
             }
-
             [self.tableView setTableHeaderView:headerView];
             tableHeight += hightHeader;
         }
@@ -246,9 +197,7 @@
     [self.tableView setFrame:CGRectMake(0, 0, self.frameWidth, tableHeight)];
     [self.cancelButton setFrame:CGRectMake(0, tableHeight, self.frameWidth, HEIGHT_BUTTON)];
 }
-
-- (void)dismissWithClickedButtonIndex:(NSInteger)buttonIndex animated:(BOOL)animated
-{
+- (void)dismissWithClickedButtonIndex:(NSInteger)buttonIndex animated:(BOOL)animated{
     if (self.delegate && [self.delegate respondsToSelector:@selector(actionSheet:willDismissWithButtonIndex:)]) {
         [self.delegate actionSheet:self willDismissWithButtonIndex:buttonIndex];
     }
@@ -264,18 +213,16 @@
                 [self.delegate actionSheet:self didDismissWithButtonIndex:buttonIndex];
             }
         }];
-    }
-    else {
+    }else{
         [self removeFromSuperview];
         if (self.delegate && [self.delegate respondsToSelector:@selector(actionSheet:didDismissWithButtonIndex:)]) {
             [self.delegate actionSheet:self didDismissWithButtonIndex:buttonIndex];
         }
     }
 }
-
-#pragma mark - # Getter 
-- (UIButton *)backgroudView
-{
+#pragma mark - 
+ 
+- (UIButton *)backgroudView{
     if (_backgroudView == nil) {
         _backgroudView = [[UIButton alloc] init];
         [_backgroudView setBackgroundColor:[UIColor blueColor]];
@@ -283,23 +230,19 @@
     }
     return _backgroudView;
 }
-
-- (UIView *)actionSheetView
-{
+- (UIView *)actionSheetView{
     if (_actionSheetView == nil) {
         _actionSheetView = [[UIView alloc] init];
         [_actionSheetView setBackgroundColor:[UIColor whiteColor]];
     }
     return _actionSheetView;
 }
-
-- (UITableView *)tableView
-{
+- (UITableView *)tableView{
     if (_tableView == nil) {
         _tableView = [[UITableView alloc] init];
         [_tableView setRowHeight:HEIGHT_BUTTON];
-        [_tableView setBackgroundColor:[UIColor colorGrayBG]];
-        [_tableView setSeparatorColor:[UIColor colorGrayLine]];
+        [_tableView setBackgroundColor:colorGrayBG];
+        [_tableView setSeparatorColor:colorGrayLine];
         [_tableView setTableFooterView:[UIView new]];
         [_tableView setDataSource:self];
         [_tableView setDelegate:self];
@@ -312,9 +255,7 @@
     }
     return _tableView;
 }
-
-- (UIButton *)cancelButton
-{
+- (UIButton *)cancelButton{
     if (_cancelButton == nil) {
         _cancelButton = [[UIButton alloc] init];
         [_cancelButton setBackgroundColor:[UIColor whiteColor]];
@@ -322,21 +263,18 @@
         [_cancelButton.titleLabel setFont:[UIFont systemFontOfSize:BUTTON_FONT_SIZE]];
         [_cancelButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
         [_cancelButton addTarget:self action:@selector(cancelButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-        [_cancelButton setBackgroundImage:[UIImage imageWithColor:[UIColor colorGrayLine]] forState:UIControlStateHighlighted];
+        [_cancelButton setBackgroundImage:[UIImage imageWithColor:colorGrayLine] forState:UIControlStateHighlighted];
     }
     return _cancelButton;
 }
-
-- (UILabel *)headerTitleLabel
-{
+- (UILabel *)headerTitleLabel{
     if (_headerTitleLabel == nil) {
         _headerTitleLabel = [[UILabel alloc] init];
-        [_headerTitleLabel setTextColor:[UIColor colorTextGray]];
+        [_headerTitleLabel setTextColor:[UIColor grayColor]];
         [_headerTitleLabel setFont:[UIFont systemFontOfSize:TITLE_FONT_SIZE]];
         [_headerTitleLabel setNumberOfLines:0];
         [_headerTitleLabel setTextAlignment:NSTextAlignmentCenter];
     }
     return _headerTitleLabel;
 }
-
 @end

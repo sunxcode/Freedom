@@ -1,6 +1,6 @@
+
 #import "JuheAPIViewController.h"
 #import "JuheAPIDetailViewController.h"
-
 @interface JuheAPICollectionViewCell : BaseCollectionViewCell{
     NSMutableDictionary *thumbnailCache;
 }
@@ -84,7 +84,6 @@
     [self.collectionView addSubview:banner];
     [self.view addSubviews:self.collectionView,nil];
 }
-
 -(void)moreAction{
     DLog(@"更多");
 }
@@ -92,8 +91,3 @@
     [self pushController:[JuheAPIDetailViewController class] withInfo:self.collectionView.dataArray[indexPath.row] withTitle:self.collectionView.dataArray[indexPath.row][@"name"]];
 }
 @end
-
-
-
-
-

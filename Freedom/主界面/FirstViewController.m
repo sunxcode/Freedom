@@ -1,6 +1,5 @@
 
 #import "FirstViewController.h"
-#import "XCollectionViewDialLayout.h"
 #import "ElasticTransition.h"
 #import "SettingsViewController.h"
 #import "LibraryCollectionViewController.h"
@@ -65,6 +64,87 @@
 -(void)setDataWithDic:(NSDictionary *)dic andColor:(UIColor *)color{
     nameLabel.text = [dic valueForKey:@"title"];
     nameLabel.textColor = color;
+}
+@end
+//FIXME:Layout
+@implementation XCollectionViewDialLayout
+- (id)init{
+    if ((self = [super init]) != NULL){
+        [self setup];
+    }return self;
+}
+-(id)initWithRadius: (CGFloat) radius andAngularSpacing: (CGFloat) spacing andCellSize: (CGSize) cell andAlignment:(WheelAlignmentType)alignment andItemHeight:(CGFloat)height andXOffset: (CGFloat) xOff{
+    if ((self = [super init]) != NULL){
+        self.dialRadius = radius;//420.0f;
+        self.cellSize = cell;//(CGSize){ 220.0f, 80.0f };
+        self.itemHeight = height;
+        self.AngularSpacing = spacing;//8.0f;
+        self.xOffset = xOff;
+        self.wheelType = alignment;
+        [self setup];
+    }return self;
+}
+- (void)setup{
+    self.offset = 0.0f;
+}
+- (void)prepareLayout{
+    [super prepareLayout];
+    self.cellCount = (int)[self.collectionView numberOfItemsInSection:0];
+    self.offset = -self.collectionView.contentOffset.y / self.itemHeight;
+}
+- (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds{
+    return YES;
+}
+- (NSArray *)layoutAttributesForElementsInRect:(CGRect)rect{
+    NSMutableArray *theLayoutAttributes = [[NSMutableArray alloc] init];
+    float minY = CGRectGetMinY(rect);
+    float maxY = CGRectGetMaxY(rect);
+    int firstIndex = floorf(minY / self.itemHeight);
+    int lastIndex = floorf(maxY / self.itemHeight);
+    int activeIndex = (int)(firstIndex + lastIndex)/2;
+    int maxVisibleOnScreen = 180 / self.AngularSpacing + 2;
+    int firstItem = fmax(0, activeIndex - (int)(maxVisibleOnScreen/2) );
+    int lastItem = fmin( self.cellCount-1 , activeIndex + (int)(maxVisibleOnScreen/2) );
+    for( int i = firstItem; i <= lastItem; i++ ){
+        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
+        UICollectionViewLayoutAttributes *theAttributes = [self layoutAttributesForItemAtIndexPath:indexPath];
+        [theLayoutAttributes addObject:theAttributes];
+    }
+    return [theLayoutAttributes copy];
+}
+- (CGSize)collectionViewContentSize{
+    const CGSize theSize = {
+        .width = self.collectionView.bounds.size.width,
+        .height = (self.cellCount-1) * self.itemHeight + self.collectionView.bounds.size.height,
+    };
+    return(theSize);
+}
+- (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath{
+    double newIndex = (indexPath.item + self.offset);
+    UICollectionViewLayoutAttributes *theAttributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
+    theAttributes.size = self.cellSize;
+    float scaleFactor;
+    float deltaX;
+    CGAffineTransform translationT;
+    CGAffineTransform rotationT = CGAffineTransformMakeRotation(self.AngularSpacing* newIndex *M_PI/180);
+    if(indexPath.item == 3){
+    }
+    if( self.wheelType == WHEELALIGNMENTLEFT){
+        scaleFactor = fmax(0.6, 1 - fabs( newIndex *0.25));
+        deltaX = self.cellSize.width/2;
+        theAttributes.center = CGPointMake(-self.dialRadius + self.xOffset  , self.collectionView.bounds.size.height/2 + self.collectionView.contentOffset.y);
+        translationT =CGAffineTransformMakeTranslation(self.dialRadius + (deltaX*scaleFactor) , 0);
+    }else  {
+        scaleFactor = fmax(0.4, 1 - fabs( newIndex *0.50));
+        deltaX =  self.collectionView.bounds.size.width/2;
+        theAttributes.center = CGPointMake(-self.dialRadius + self.xOffset , self.collectionView.bounds.size.height/2 + self.collectionView.contentOffset.y);
+        translationT =CGAffineTransformMakeTranslation(self.dialRadius  + ((1 - scaleFactor) * -30) , 0);
+    }
+    CGAffineTransform scaleT = CGAffineTransformMakeScale(scaleFactor, scaleFactor);
+    theAttributes.alpha = scaleFactor;
+    theAttributes.transform = CGAffineTransformConcat(scaleT, CGAffineTransformConcat(translationT, rotationT));
+    theAttributes.zIndex = indexPath.item;
+    return(theAttributes);
 }
 @end
 #pragma mark ViewController
@@ -172,7 +252,6 @@ static FirstViewController *FVC = nil;
         [transition startInteractiveTransitionFromViewController:self SegueIdentifier:@"settings" GestureRecognizer:pan];
     }
 }
-
 -(void)gotoLibrary:(UIPanGestureRecognizer*)pan{
     if (pan.state == UIGestureRecognizerStateBegan){
         transition.edge = RIGHT;
@@ -210,7 +289,6 @@ static FirstViewController *FVC = nil;
     dialLayout = [[XCollectionViewDialLayout alloc] initWithRadius:radiusSlider.value * 1000 andAngularSpacing:angularSpacingSlider.value * 90 andCellSize:CGSizeMake(240, 100) andAlignment:WHEELALIGNMENTCENTER andItemHeight:100 andXOffset:xOffsetSlider.value * 320];
     [homecollectionView setCollectionViewLayout:dialLayout];
 }
-
 -(void)switchExample{
     radiusSlider.value = 0.3;
     angularSpacingSlider.value = 0.2;
@@ -254,7 +332,6 @@ static FirstViewController *FVC = nil;
     }];
     showingSettings = !showingSettings;
 }
-
 #pragma mark - UICollectionViewDelegate methods
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     NSString *controlName = [self.items[indexPath.row] valueForKey:@"control"];
@@ -296,7 +373,7 @@ static FirstViewController *FVC = nil;
     }
 }
 -(void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath{
-   // NSLog(@"didEndDisplayingCell:%i", (int)indexPath.item);
+   // DLog(@"didEndDisplayingCell:%i", (int)indexPath.item);
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     return CGSizeMake(240, 100);
@@ -309,7 +386,6 @@ static FirstViewController *FVC = nil;
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     [searchBar resignFirstResponder];
 }
-
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     if (!searchText.length) {
         [self readData];
@@ -320,7 +396,6 @@ static FirstViewController *FVC = nil;
     self.items = [[NSMutableArray alloc] initWithArray:b];
     [homecollectionView reloadData];
 }
-
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBa{
     [searchBar resignFirstResponder];
 }
@@ -338,8 +413,6 @@ static FirstViewController *FVC = nil;
 //        _tableView.frame = CGRectMake(0, 20, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame)-20);
     }];
 }
-
-
 #pragma mark 下雪相关内容
 -(void)tingzhixiaxue{
     [timer setFireDate:[NSDate distantFuture]];
@@ -354,8 +427,8 @@ static FirstViewController *FVC = nil;
 #define DISAPPEAR_DURATION 2 //雪花融化的时长
 -(void)snowAnimat:(NSTimer *)timer{
     count++;
-    //    NSLog(@"create:%d",self.count);
-    //    NSLog(@"view counts:%d",[self.view.subviews count]);
+    //    DLog(@"create:%d",self.count);
+    //    DLog(@"view counts:%d",[self.view.subviews count]);
     //1.创建雪花
     UIImageView *snow = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"snow.png"]];
     snow.tag = count;//区分不同的视图
@@ -387,7 +460,7 @@ static FirstViewController *FVC = nil;
 }
 //区分不同的雪花动画
 -(void)snowDisappear:(NSString *)animatedID{
-    //    NSLog(@"动画结束 雪花:%@",animatedID);
+    //    DLog(@"动画结束 雪花:%@",animatedID);
     //创建雪花消失动画
     [UIView beginAnimations:animatedID context:nil];
     [UIView setAnimationDuration:arc4random()%DISAPPEAR_DURATION+2];//2秒~4秒
@@ -409,12 +482,12 @@ static FirstViewController *FVC = nil;
 -(void)snowRemove:(NSString*)animatedID{
     UIView *snow = [self.view viewWithTag:[animatedID intValue]];
     //转换动画标识 刚好与 视图标识相符合
-    //    NSLog(@"remove:%d",[animatedID intValue]);
+    //    DLog(@"remove:%d",[animatedID intValue]);
     //查看view视图中 有多少子视图
-    //    NSLog(@"Remove before view counts:%d",[self.view.subviews count]);
+    //    DLog(@"Remove before view counts:%d",[self.view.subviews count]);
     //将某个视图从父视图删除
     [snow removeFromSuperview];
-    //    NSLog(@"Remove after view counts:%d",[self.view.subviews count]);
+    //    DLog(@"Remove after view counts:%d",[self.view.subviews count]);
 }
 #pragma mark View生存周期
 -(void)viewWillAppear:(BOOL)animated{
@@ -424,6 +497,5 @@ static FirstViewController *FVC = nil;
     [timer setFireDate:[NSDate distantFuture]];
     [timer invalidate];
     timer = nil;
-
 }
 @end

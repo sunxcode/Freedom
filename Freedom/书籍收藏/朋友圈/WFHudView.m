@@ -1,13 +1,9 @@
-//
 //  ZHX_HUDView.m
 //  ZHX
+//  Created by Super on 14-1-6.
+//  Copyright (c) 2014年 Super. All rights reserved.
 //
-//  Created by 阿虎 on 14-1-6.
-//  Copyright (c) 2014年 阿虎. All rights reserved.
-//
-
 #import "WFHudView.h"
-
 @implementation WFHudView
 @synthesize msg;
 @synthesize leftMargin;
@@ -16,18 +12,14 @@
 @synthesize animationTopScale;
 @synthesize totalDuration;
 @synthesize labelText;
-
-- (id)initWithFrame:(CGRect)frame
-{
+- (id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
     }
     return self;
 }
-
-+(void)showMsg:(NSString *)msg inView:(UIView*)theView
-{
++(void)showMsg:(NSString *)msg inView:(UIView*)theView{
     WFHudView *alert = [[WFHudView alloc] initWithMsg:msg];
     if (!theView){
         [[self getUnhiddenFrontWindowOfApplication] addSubview:alert];
@@ -38,8 +30,7 @@
     [alert showAlert];
    
 }
--(void)showAlert
-{
+-(void)showAlert{
     self.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.8];
     self.alpha = 0.0;
     CGPoint center = [WFHudView getWindow].center;
@@ -104,10 +95,7 @@
     [self.layer addAnimation:group forKey:@"group"];
     
 }
-
-
--(id)initWithMsg:(NSString*)_msg
-{
+-(id)initWithMsg:(NSString*)_msg{
     if (self = [super init]) {
         
         self.msg = _msg;
@@ -155,18 +143,14 @@
     }
     return NULL;
 }
-
-+(UIWindow*)getWindow
-{
++(UIWindow*)getWindow{
     UIWindow* window = [UIApplication sharedApplication].keyWindow;
     if (!window) {
         window = [[UIApplication sharedApplication].windows objectAtIndex:0];
     }
     return window;
 }
-
--(CGSize)getSizeFromString:(NSString*)_theString
-{
+-(CGSize)getSizeFromString:(NSString*)_theString{
     UIFont *theFont = msgFont;
     CGSize size = CGSizeMake(160, 2000);
 //    CGSize tempSize = [_theString sizeWithFont:theFont constrainedToSize:size lineBreakMode:NSLineBreakByWordWrapping];
@@ -175,9 +159,7 @@
  
     return tempSize;
 }
-
--(void)dealloc
-{
+-(void)dealloc{
    
 }
 @end

@@ -1,7 +1,5 @@
 // main.js
-
 var key = 'JSPatch_ShowDBCrashAlert2';
-
 defineClass("TLAppDelegate : UIResponse <UIAlertViewDelegate>", {
 	p__urgentMethod : function() {
 		var title = 'JSPatch提示';

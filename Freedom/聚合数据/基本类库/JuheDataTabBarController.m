@@ -1,18 +1,12 @@
-//
 //  JuheDataTabBarController.m
-//  Created by 薛超 on 16/8/19.
-//  Copyright © 2016年 薛超. All rights reserved.
+//  Created by Super on 16/8/19.
+//  Copyright © 2016年 Super. All rights reserved.
 //
-
 #import "JuheDataTabBarController.h"
 @interface JuheDataTabBarController ()
-
 @property (nonatomic, strong) NSMutableArray *items;
-
 @end
-
 @implementation JuheDataTabBarController
-
 - (NSMutableArray *)items{
     if (_items == nil) {
         _items = [NSMutableArray array];
@@ -50,7 +44,6 @@
     //    [self setUpOneChildViewController:profile image:@"home_footbar_icon_my@2x" selectedImage:@"home_footbar_icon_my_pressed@2x" title:@"我的"];
     
 }
-
 #pragma mark 添加一个子控制器
 -(void)setUpOneChildViewController:(UIViewController *)viewController image:(NSString *)imageName selectedImage:(NSString *)selectedImageName title:(NSString *)title{
     //    viewController.tabBarItem.title = title;
@@ -69,5 +62,4 @@
     //    
     //    [self addChildViewController:nav];
 }
-
 @end

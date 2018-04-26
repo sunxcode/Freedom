@@ -1,61 +1,38 @@
-//
 //  TLSettingGroup.m
-//  TLChat
-//
-//  Created by 李伯坤 on 16/2/7.
-//  Copyright © 2016年 李伯坤. All rights reserved.
-//
-
+//  Freedom
+// Created by Super
 #import "TLSettingGroup.h"
-
-#import "UIFont+expanded.h"       // 字体
 @implementation TLSettingGroup
-
 + (TLSettingGroup *) createGroupWithHeaderTitle:(NSString *)headerTitle
                                     footerTitle:(NSString *)footerTitle
-                                          items:(NSMutableArray *)items
-{
+                                          items:(NSMutableArray *)items{
     TLSettingGroup *group= [[TLSettingGroup alloc] init];
     group.headerTitle = headerTitle;
     group.footerTitle = footerTitle;
     group.items = items;
     return group;
 }
-
 #pragma mark - Public Mthods
-- (id) objectAtIndex:(NSUInteger)index
-{
+- (id) objectAtIndex:(NSUInteger)index{
     return [self.items objectAtIndex:index];
 }
-
-- (NSUInteger)indexOfObject:(id)obj
-{
+- (NSUInteger)indexOfObject:(id)obj{
     return [self.items indexOfObject:obj];
 }
-
-
-- (void)removeObject:(id)obj
-{
+- (void)removeObject:(id)obj{
     [self.items removeObject:obj];
 }
-
 #pragma mark - Setter
-- (void) setHeaderTitle:(NSString *)headerTitle
-{
+- (void) setHeaderTitle:(NSString *)headerTitle{
     _headerTitle = headerTitle;
-    _headerHeight = [TLUIUtility getTextHeightOfText:headerTitle font:[UIFont fontSettingHeaderAndFooterTitle] width:WIDTH_SCREEN - 30];
+    _headerHeight = [FreedomTools getTextHeightOfText:headerTitle font:[UIFont fontSettingHeaderAndFooterTitle] width:WIDTH_SCREEN - 30];
 }
-
-- (void) setFooterTitle:(NSString *)footerTitle
-{
+- (void) setFooterTitle:(NSString *)footerTitle{
     _footerTitle = footerTitle;
-    _footerHeight = [TLUIUtility getTextHeightOfText:footerTitle font:[UIFont fontSettingHeaderAndFooterTitle] width:WIDTH_SCREEN - 30];
+    _footerHeight = [FreedomTools getTextHeightOfText:footerTitle font:[UIFont fontSettingHeaderAndFooterTitle] width:WIDTH_SCREEN - 30];
 }
-
 #pragma mark - Getter
-- (NSUInteger) count
-{
+- (NSUInteger) count{
     return self.items.count;
 }
-
 @end

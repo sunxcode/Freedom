@@ -1,28 +1,17 @@
 
-//
 //  TLUser.m
-//  TLChat
-//
-//  Created by 李伯坤 on 16/1/23.
-//  Copyright © 2016年 李伯坤. All rights reserved.
-//
-
+//  Freedom
+// Created by Super
 #import "TLUser.h"
 #import "NSString+expanded.h"
 @implementation TLUserChatSetting
-
 @end
 @implementation TLUserDetail
-
 @end
-
 @implementation TLUserSetting
-
 @end
 @implementation TLUser
-
-- (id)init
-{
+- (id)init{
     if (self = [super init]) {
         [TLUser mj_setupObjectClassInArray:^NSDictionary *{
             return @{ @"detailInfo" : @"TLUserDetail",
@@ -32,9 +21,7 @@
     }
     return self;
 }
-
-- (void)setUsername:(NSString *)username
-{
+- (void)setUsername:(NSString *)username{
     if ([username isEqualToString:_username]) {
         return;
     }
@@ -44,9 +31,7 @@
         self.pinyinInitial = username.pinyinInitial;
     }
 }
-
-- (void)setNikeName:(NSString *)nikeName
-{
+- (void)setNikeName:(NSString *)nikeName{
     if ([nikeName isEqualToString:_nikeName]) {
         return;
     }
@@ -56,9 +41,7 @@
         self.pinyinInitial = nikeName.pinyinInitial;
     }
 }
-
-- (void)setRemarkName:(NSString *)remarkName
-{
+- (void)setRemarkName:(NSString *)remarkName{
     if ([remarkName isEqualToString:_remarkName]) {
         return;
     }
@@ -68,43 +51,29 @@
         self.pinyinInitial = remarkName.pinyinInitial;
     }
 }
-
 #pragma mark - Getter
-- (NSString *)showName
-{
+- (NSString *)showName{
     return self.remarkName.length > 0 ? self.remarkName : (self.nikeName.length > 0 ? self.nikeName : self.username);
 }
-
-- (TLUserDetail *)detailInfo
-{
+- (TLUserDetail *)detailInfo{
     if (_detailInfo == nil) {
         _detailInfo = [[TLUserDetail alloc] init];
     }
     return _detailInfo;
 }
-
-- (NSString *)chat_userID
-{
+- (NSString *)chat_userID{
     return self.userID;
 }
-
-- (NSString *)chat_username
-{
+- (NSString *)chat_username{
     return self.showName;
 }
-
-- (NSString *)chat_avatarURL
-{
+- (NSString *)chat_avatarURL{
     return self.avatarURL;
 }
-
-- (NSString *)chat_avatarPath
-{
+- (NSString *)chat_avatarPath{
     return self.avatarPath;
 }
-
-- (NSInteger)chat_userType
-{
+- (NSInteger)chat_userType{
     return TLChatUserTypeUser;
 }
 @end

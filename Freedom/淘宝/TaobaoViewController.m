@@ -1,9 +1,7 @@
-//
 //  TaobaoViewController.m
-//  Created by 薛超 on 16/8/18.
-//  Copyright © 2016年 薛超. All rights reserved.
+//  Created by Super on 16/8/18.
+//  Copyright © 2016年 Super. All rights reserved.
 //
-
 #import "TaobaoViewController.h"
 #import "TaobaoHomeViewController.h"
 @implementation TaobaoViewController
@@ -11,6 +9,4 @@
     [super viewDidLoad];
     [self.navigationController pushViewController:[[TaobaoHomeViewController alloc]init] animated:YES];
 }
-
-
 @end

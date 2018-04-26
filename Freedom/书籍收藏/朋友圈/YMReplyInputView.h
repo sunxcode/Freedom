@@ -1,22 +1,12 @@
-//
 //  HXReplyInputView.h
-//  Hongxiu
-//
-//  Created by 阿虎 on 14-8-18.
-//  Copyright (c) 2014年 FeeTan. All rights reserved.
-//
-
+//  Super
+//  Created by Super on 14-8-18.
 #import <UIKit/UIKit.h>
-
 @protocol InputDelegate <NSObject>
-
 - (void)YMReplyInputWithReply:(NSString *)replyText appendTag:(NSInteger)inputTag;
 - (void)destorySelf;
-
 @end
-
-@interface YMReplyInputView : UIView<UITextViewDelegate>
-{
+@interface YMReplyInputView : UIView<UITextViewDelegate>{
     CGFloat topGap;
     CGFloat keyboardAnimationDuration;
     UIViewAnimationCurve keyboardAnimationCurve;
@@ -28,8 +18,6 @@
    
     
 }
-
-
 @property (strong, nonatomic) UIButton* sendButton;
 @property (strong, nonatomic) UITextView* textView;
 @property (strong, nonatomic) UILabel* lblPlaceholder;
@@ -39,15 +27,10 @@
 @property (readwrite, nonatomic) CGFloat keyboardHeight;
 @property (assign, nonatomic) id<InputDelegate>delegate;
 @property (assign, nonatomic) NSInteger replyTag;
-
-
-
 - (NSString*)text;
 - (void)setText:(NSString*)text;
 - (void)setPlaceholder:(NSString*)text;
 - (void)showCommentView;
 - (id) initWithFrame:(CGRect)frame andAboveView:(UIView *)bgView;
 - (void)disappear;
-
-
 @end

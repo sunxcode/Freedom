@@ -1,18 +1,10 @@
-//
 //  E_CommonManager.m
-//  E_Reader
-//
-//  Created by 阿虎 on 14-8-8.
-//  Copyright (c) 2014年 tiger. All rights reserved.
-//
-
+//   Freedom
+//  Created by Super on 14-8-8.
 #import "E_CommonManager.h"
 #import "E_ContantFile.h"
 #import "E_Mark.h"
-
 @implementation E_CommonManager
-
-
 + (NSInteger)Manager_getReadTheme{
    
     NSString *themeID = [[NSUserDefaults standardUserDefaults] objectForKey:SAVETHEME];
@@ -26,17 +18,12 @@
         return [themeID integerValue];
         
     }
-
 }
-
-
 + (void)saveCurrentThemeID:(NSInteger)currentThemeID{
     
     [[NSUserDefaults standardUserDefaults] setValue:@(currentThemeID) forKey:SAVETHEME];
     [[NSUserDefaults standardUserDefaults] synchronize];
-
 }
-
 + (NSUInteger)Manager_getPageBefore{
     
     NSString *pageID = [[NSUserDefaults standardUserDefaults] objectForKey:SAVEPAGE];
@@ -50,19 +37,14 @@
         return [pageID integerValue];
         
     }
-
 }
-
 + (void)saveCurrentPage:(NSInteger)currentPage{
     
     [[NSUserDefaults standardUserDefaults] setValue:@(currentPage) forKey:SAVEPAGE];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
 }
-
-
-+ (NSUInteger)Manager_getChapterBefore
-{
++ (NSUInteger)Manager_getChapterBefore{
     NSString *chapterID = [[NSUserDefaults standardUserDefaults] objectForKey:OPEN];
     
     if (chapterID == nil) {
@@ -74,36 +56,24 @@
         return [chapterID integerValue];
     
     }
-
 }
-
 + (void)saveCurrentChapter:(NSInteger)currentChapter{
    
     [[NSUserDefaults standardUserDefaults] setValue:@(currentChapter) forKey:OPEN];
     [[NSUserDefaults standardUserDefaults] synchronize];
-
 }
-
-
-
-+ (NSUInteger)fontSize
-{
++ (NSUInteger)fontSize{
     NSUInteger fontSize = [[NSUserDefaults standardUserDefaults] integerForKey:FONT_SIZE];
     if (fontSize == 0) {
         fontSize = 20;
     }
     return fontSize;
 }
-
-+ (void)saveFontSize:(NSUInteger)fontSize
-{
++ (void)saveFontSize:(NSUInteger)fontSize{
     [[NSUserDefaults standardUserDefaults] setValue:@(fontSize) forKey:FONT_SIZE];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
-
-
 #pragma mark- 书签保存
-
 + (void)saveCurrentMark:(NSInteger)currentChapter andChapterRange:(NSRange)chapterRange byChapterContent:(NSString *)chapterContent{
     
     NSDate *senddate=[NSDate date];
@@ -117,7 +87,7 @@
     eMark.markContent = [chapterContent substringWithRange:chapterRange];
     eMark.markTime    = locationString;
     
-  //  NSLog(@"chapterRange == %@",NSStringFromRange(chapterRange));
+  //  DLog(@"chapterRange == %@",NSStringFromRange(chapterRange));
     
     if (![self checkIfHasBookmark:chapterRange withChapter:currentChapter]) {//没加书签
        
@@ -155,7 +125,6 @@
     }
     
 }
-
 + (BOOL)checkIfHasBookmark:(NSRange)currentRange withChapter:(NSInteger)currentChapter{
     
         NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:epubBookName];
@@ -176,9 +145,7 @@
            return NO;
         }
 }
-
 + (NSMutableArray *)Manager_getMark{
-
     NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:epubBookName];
     NSMutableArray *oldSaveArray = [NSKeyedUnarchiver unarchiveObjectWithData:data];
     if (oldSaveArray.count == 0) {
@@ -187,7 +154,5 @@
         return oldSaveArray;
     
     }
-
 }
-
 @end

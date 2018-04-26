@@ -1,21 +1,13 @@
-//
 //  JFImageScrollCell.m
-//  JF团购
-//
-//  Created by 保修一站通 on 15/8/22.
-//  Copyright (c) 2015年 JF团购. All rights reserved.
-//
-
+//  Freedom
+//  Created by Freedom on 15/8/22.
 #import "JFImageScrollCell.h"
 @interface JFImageScrollView ()<UIScrollViewDelegate>{
     NSTimer *_timer;
     int _pageNumber;
 }
-
 @end
-
 @implementation JFImageScrollView
-
 -(JFImageScrollView * )initWithFrame:(CGRect)frame imageArray:(NSArray *)imageArray{
     self = [super initWithFrame:frame];
     if (self) {
@@ -49,13 +41,11 @@
     return self;
     
 }
-
 -(void)OnTapImage:(UITapGestureRecognizer *)sender{
     UIImageView *imageView = (UIImageView *)sender.view;
     int tag = (int)imageView.tag-10;
     [self.delegate didSelectImageAtIndex:tag];
 }
-
 -(void)setImageArray:(NSArray *)imageArray{
     _pageNumber = (int)imageArray.count;
     self.scrollView.contentSize = CGSizeMake(imageArray.count * APPW, self.frame.size.height);
@@ -71,12 +61,10 @@
     _timer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(netxPage) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
 }
-
 -(void)removeTimer{
     [_timer invalidate];
     _timer = nil;
 }
-
 -(void)netxPage{
     int page = (int)self.pageControl.currentPage;
     if (page == _pageNumber-1) {
@@ -88,7 +76,6 @@
     CGFloat x = page * self.scrollView.frame.size.width;
     self.scrollView.contentOffset = CGPointMake(x, 0);
 }
-
 #pragma mark - UIScrollViewDelegate
 //滑动时
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
@@ -105,40 +92,28 @@
 -(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
     [self addTimer];
 }
-
-/**
- *  移除定时器
- */
+/*移除定时器*/
 -(void)dealloc{
     [self removeTimer];
 }
-
 @end
-
 @implementation JFImageScrollCell
-
 - (void)awakeFromNib {
     [super awakeFromNib];
 }
-
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
     // Configure the view for the selected state
 }
-
-+ (instancetype)cellWithTableView:(UITableView *)tableView frame:(CGRect)frame;
-{
++ (instancetype)cellWithTableView:(UITableView *)tableView frame:(CGRect)frame;{
     static NSString *menuID = @"menu";
     JFImageScrollCell *cell = [tableView dequeueReusableCellWithIdentifier:menuID];
     if (cell == nil) {
         cell = [[JFImageScrollCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:menuID frame:(CGRect)frame ];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
     }
     return cell;
 }
-
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier frame:(CGRect)frame {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier ];
     if (self) {
@@ -148,9 +123,7 @@
     }
     return self;
 }
-
 -(void)setImageArray:(NSArray *)imageArray{
     [self.imageScrollView setImageArray:imageArray];
 }
-
 @end

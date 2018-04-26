@@ -1,14 +1,9 @@
-//
 //  NSData+KRCParse.m
-//  Created by 薛超 on 16/8/31.
-//  Copyright © 2016年 薛超. All rights reserved.
+//  Created by Super on 16/8/31.
+//  Copyright © 2016年 Super. All rights reserved.
 //
-
 #import "NSData+KRCParse.h"
-
-
 #import <zlib.h>
-
 #define kChunkSize 1024
 #define _GTMDevAssert(condition, ...)                                       \
 do {                                                                      \
@@ -26,7 +21,6 @@ description:__VA_ARGS__];                             \
                       compressionLevel:(int)level
                                useGzip:(BOOL)useGzip;
 @end
-
 @implementation NSData (KRCParse)
 + (NSData *)gtm_dataByCompressingBytes:(const void *)bytes
                                 length:(NSUInteger)length
@@ -115,13 +109,8 @@ description:__VA_ARGS__];                             \
     
     return result;
 } // gtm_dataByCompressingBytes:length:compressionLevel:useGzip:
-
-
 @end
-
-
 @implementation NSData (GTMZLibAdditions)
-
 + (NSData *)gtm_dataByGzippingBytes:(const void *)bytes
                              length:(NSUInteger)length {
     return [self gtm_dataByCompressingBytes:bytes
@@ -129,14 +118,12 @@ description:__VA_ARGS__];                             \
                            compressionLevel:Z_DEFAULT_COMPRESSION
                                     useGzip:YES];
 } // gtm_dataByGzippingBytes:length:
-
 + (NSData *)gtm_dataByGzippingData:(NSData *)data {
     return [self gtm_dataByCompressingBytes:[data bytes]
                                      length:[data length]
                            compressionLevel:Z_DEFAULT_COMPRESSION
                                     useGzip:YES];
 } // gtm_dataByGzippingData:
-
 + (NSData *)gtm_dataByGzippingBytes:(const void *)bytes
                              length:(NSUInteger)length
                    compressionLevel:(int)level {
@@ -145,7 +132,6 @@ description:__VA_ARGS__];                             \
                            compressionLevel:level
                                     useGzip:YES];
 } // gtm_dataByGzippingBytes:length:level:
-
 + (NSData *)gtm_dataByGzippingData:(NSData *)data
                   compressionLevel:(int)level {
     return [self gtm_dataByCompressingBytes:[data bytes]
@@ -153,7 +139,6 @@ description:__VA_ARGS__];                             \
                            compressionLevel:level
                                     useGzip:YES];
 } // gtm_dataByGzippingData:level:
-
 + (NSData *)gtm_dataByDeflatingBytes:(const void *)bytes
                               length:(NSUInteger)length {
     return [self gtm_dataByCompressingBytes:bytes
@@ -161,14 +146,12 @@ description:__VA_ARGS__];                             \
                            compressionLevel:Z_DEFAULT_COMPRESSION
                                     useGzip:NO];
 } // gtm_dataByDeflatingBytes:length:
-
 + (NSData *)gtm_dataByDeflatingData:(NSData *)data {
     return [self gtm_dataByCompressingBytes:[data bytes]
                                      length:[data length]
                            compressionLevel:Z_DEFAULT_COMPRESSION
                                     useGzip:NO];
 } // gtm_dataByDeflatingData:
-
 + (NSData *)gtm_dataByDeflatingBytes:(const void *)bytes
                               length:(NSUInteger)length
                     compressionLevel:(int)level {
@@ -177,7 +160,6 @@ description:__VA_ARGS__];                             \
                            compressionLevel:level
                                     useGzip:NO];
 } // gtm_dataByDeflatingBytes:length:level:
-
 + (NSData *)gtm_dataByDeflatingData:(NSData *)data
                    compressionLevel:(int)level {
     return [self gtm_dataByCompressingBytes:[data bytes]
@@ -185,7 +167,6 @@ description:__VA_ARGS__];                             \
                            compressionLevel:level
                                     useGzip:NO];
 } // gtm_dataByDeflatingData:level:
-
 + (NSData *)gtm_dataByInflatingBytes:(const void *)bytes
                               length:(NSUInteger)length {
     if (!bytes || !length) {
@@ -256,10 +237,8 @@ description:__VA_ARGS__];                             \
     
     return result;
 } // gtm_dataByInflatingBytes:length:
-
 + (NSData *)gtm_dataByInflatingData:(NSData *)data {
     return [self gtm_dataByInflatingBytes:[data bytes]
                                    length:[data length]];
 } // gtm_dataByInflatingData:
-
 @end

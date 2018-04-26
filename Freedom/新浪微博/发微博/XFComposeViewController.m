@@ -1,18 +1,14 @@
 //
 //  XFComposeViewController.m
-//  Weibo
+//  Freedom
 //
 //  Created by Fay on 15/10/9.
-//  Copyright (c) 2015年 Fay. All rights reserved.
-//
-
 #import "XFComposeViewController.h"
 #import "XFAccountTool.h"
 #import "XFAccount.h"
 #import "MJExtension.h"
 #import "XFEmotion.h"
 #import <Foundation/Foundation.h>
-
 @interface XFComposeViewController ()<UITextViewDelegate,XFComposeToolbarDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 /** 输入控件 */
 @property (nonatomic, weak) XFEmotionTextView *textView;
@@ -26,7 +22,6 @@
 @property (nonatomic, assign) BOOL switchingKeybaord;
 @end
 @implementation XFComposeViewController
-
 - (XFEmotionKeyboard *)emotionKeyboard
 {
     if (!_emotionKeyboard) {
@@ -35,9 +30,7 @@
         self.emotionKeyboard.frameHeight = 256;
     }
     return _emotionKeyboard;
-
 }
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -52,8 +45,6 @@
     [self setupPhotoView];
     
 }
-
-
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -61,15 +52,11 @@
     // 成为第一响应者（能输入文本的控件一旦成为第一响应者，就会叫出相应的键盘）
     [self.textView becomeFirstResponder];
 }
-
 //移除通知
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
-
-
-
 //设置导航栏内容
 -(void)setupNav {
     
@@ -80,9 +67,7 @@
     
     NSString *name = [XFAccountTool account].name;
     NSString *prefix = @"发微博";
-
     if (name) {
-
     UILabel *titleView = [[UILabel alloc]init];
     titleView.frameHeight = 100;
     titleView.frameWidth = 200;
@@ -103,10 +88,8 @@
     
     
 }
-
 //添加工具条
 -(void)setupToolbar {
-
     XFComposeToolbar *toolbar = [[XFComposeToolbar alloc]init];
     toolbar.frameHeight = 44;
     toolbar.frameX = 0;
@@ -115,10 +98,7 @@
     toolbar.delegate = self;
     [self.view addSubview:toolbar];
     self.toolbar = toolbar;
-
 }
-
-
 //设置输入框
 -(void)setupInput {
     
@@ -141,7 +121,6 @@
     //键盘删除的通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteBtn) name:@"EmotionDidDeleteNotification" object:nil];
 }
-
 //添加相册
 -(void)setupPhotoView {
     
@@ -153,32 +132,22 @@
     self.photoView = photoView;
     
 }
-
-
 #pragma mark - 监听方法
-/**
- *  表情被选中了
- */
+/*表情被选中了*/
 - (void)emotionDidSelect:(NSNotification *)notification
 {
     XFEmotion *emotion = notification.userInfo[@"SelectEmotionKey"];
     [self.textView insertEmotion:emotion];
     
 }
-
-/**
- *  键盘删除按钮
- */
+/*键盘删除按钮*/
 -(void)deleteBtn {
     
     [self.textView deleteBackward];
     
 }
-
-
 /**
- * 键盘的frame发生改变时调用（显示、隐藏等）
- */
+ * 键盘的frame发生改变时调用（显示、隐藏等）*/
 -(void)keyboardWillChangeFrame:(NSNotification *)notification {
     
     
@@ -197,19 +166,15 @@
         } else {
             self.toolbar.frameY = keyboardF.origin.y - self.toolbar.frameHeight;
         }
-
     }];
     
 }
-
 #pragma mark - UITextViewDelegate
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
     [self.view endEditing:YES];
 }
-
 #pragma mark - XFComposeToolbarDelegate
-
 -(void)composeToolbar:(XFComposeToolbar *)toolbar didClickButton:(XFComposeToolbarButtonType)buttonType {
     
     
@@ -276,8 +241,7 @@
 }
 #pragma mark - UIImagePickerControllerDelegate
 /**
- * 从UIImagePickerController选择完图片后就调用（拍照完毕或者选择相册图片完毕）
- */
+ * 从UIImagePickerController选择完图片后就调用（拍照完毕或者选择相册图片完毕）*/
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     [picker dismissViewControllerAnimated:YES completion:nil];
     UIImage *image = info[UIImagePickerControllerOriginalImage];
@@ -294,8 +258,7 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 /**
- * 发布带有图片的微博
- */
+ * 发布带有图片的微博*/
 - (void)sendWithImage{
     // URL: https://upload.api.weibo.com/2/statuses/upload.json
     // 参数:
@@ -322,10 +285,8 @@
            [SVProgressHUD showErrorWithStatus:@"发送失败"];
     }];
 }
-
 /**
- * 发布没有图片的微博
- */
+ * 发布没有图片的微博*/
 - (void)sendWithNoImage
 {
     // URL: https://api.weibo.com/2/statuses/update.json

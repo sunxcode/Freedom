@@ -1,7 +1,6 @@
-//
 //  JuheUserViewController.m
-//  Created by 薛超 on 16/9/5.
-//  Copyright © 2016年 薛超. All rights reserved.
+//  Created by Super on 16/9/5.
+//  Copyright © 2016年 Super. All rights reserved.
 //
 #import "JuheUserViewController.h"
 #import <XCategory/UILabel+expanded.h>
@@ -19,7 +18,6 @@
     self.title.text = dict[@"name"];
 }
 @end
-
 @implementation JuheUserViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -54,9 +52,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
 }
-
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     DLog(@"点击了第%ld个单元格",indexPath.row);
 }
-
 @end

@@ -1,56 +1,35 @@
-//
 //  TLFriendSearchViewController.m
-//  TLChat
-//
-//  Created by 李伯坤 on 16/1/25.
-//  Copyright © 2016年 李伯坤. All rights reserved.
-//
-
+//  Freedom
+//  Created by Super on 16/1/25.
 #import "TLFriendSearchViewController.h"
 #import "TLFriendCell.h"
-
 @interface TLFriendSearchViewController ()
-
 @property (nonatomic, strong) NSMutableArray *data;
-
 @end
-
 @implementation TLFriendSearchViewController
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
     
     self.data = [[NSMutableArray alloc] init];;
     [self.tableView registerClass:[TLFriendCell class] forCellReuseIdentifier:@"FriendCell"];
     [self setAutomaticallyAdjustsScrollViewInsets:NO];
 }
-
-- (void) viewWillAppear:(BOOL)animated
-{
+- (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.tableView.frameY = HEIGHT_NAVBAR + HEIGHT_STATUSBAR;
     self.tableView.frameHeight = HEIGHT_SCREEN - self.tableView.frameY;
 }
-
 #pragma mark - UITableViewDataSource
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.data.count;
 }
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     return @"联系人";
 }
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     TLFriendCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FriendCell"];
     
     TLUser *user = [self.data objectAtIndex:indexPath.row];
@@ -59,14 +38,11 @@
     [cell setBottomLineStyle:(indexPath.row == self.data.count - 1 ? TLCellLineStyleFill : TLCellLineStyleDefault)];
     return cell;
 }
-
 #pragma mark - Delegate -
 //MARK: UITableViewDelegate
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return HEIGHT_FRIEND_CELL;
 }
-
 //MARK: UISearchResultsUpdating
 - (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
     NSString *searchText = [searchController.searchBar.text lowercaseString];
@@ -78,5 +54,4 @@
     }
     [self.tableView reloadData];
 }
-
 @end

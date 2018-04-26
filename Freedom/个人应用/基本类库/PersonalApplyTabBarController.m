@@ -1,21 +1,14 @@
-//
 //  PersonalApplyTabBarController.m
 //  Freedom
+//  Created by Super on 16/8/19.
+//  Copyright © 2016年 Super. All rights reserved.
 //
-//  Created by 薛超 on 16/8/19.
-//  Copyright © 2016年 薛超. All rights reserved.
-//
-
 #import "PersonalApplyTabBarController.h"
 #import "PersonalApplyNavigationController.h"
 @interface PersonalApplyTabBarController ()
-
 @property (nonatomic, strong) NSMutableArray *items;
-
 @end
-
 @implementation PersonalApplyTabBarController
-
 - (NSMutableArray *)items{
     if (_items == nil) {
         _items = [NSMutableArray array];
@@ -32,5 +25,4 @@
         s.tabBarItem.selectedImage = [s.tabBarItem.selectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     }
 }
-
 @end

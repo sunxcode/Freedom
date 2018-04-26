@@ -1,3 +1,4 @@
+
 #import "TaobaoCommunityViewController.h"
 @interface TaobaoCommunityViewCell1 : BaseCollectionViewCell
 @end
@@ -86,7 +87,6 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [SVProgressHUD showErrorWithStatus:alertErrorTxt];
     }];
-
     BaseCollectionViewLayout *layout = [BaseCollectionViewLayout sharedFlowlayoutWithCellSize:CGSizeMake((APPW-50)/4, 90) groupInset:UIEdgeInsetsMake(10, 10, 0, 10) itemSpace:10 linespace:10];
 //    layout.headerReferenceSize = CGSizeMake(320, 40);layout.footerReferenceSize = CGSizeMake(APPW, 30);
     self.collectionView = [[BaseCollectionView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH-110) collectionViewLayout:layout];
@@ -100,7 +100,6 @@
     self.collectionView.delegate = self;
     [self.view addSubview:self.collectionView];
 }
-
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     if (section == 0)return 1;if (section == 1)return 5;if (section == 2)return 10;return 0;
 }
@@ -120,7 +119,6 @@
     }
     return cell;
 }
-
 //FIXME: collectionViewDelegate
 //item 尺寸
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -154,13 +152,4 @@
     NSString *log = [NSString stringWithFormat:@"你选择的是%zd，%zd", indexPath.section, indexPath.row];
     [SVProgressHUD showSuccessWithStatus:log];DLog(@"%@",log);
 }
-
-
 @end
-
-
-
-
-
-
-

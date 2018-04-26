@@ -1,13 +1,6 @@
-//
 //  TLBottleViewController.h
-//  TLChat
-//
-//  Created by 李伯坤 on 16/2/22.
-//  Copyright © 2016年 李伯坤. All rights reserved.
-//
-
+//  Freedom
+// Created by Super
 #import "TLViewController.h"
-
 @interface TLBottleViewController : TLViewController
-
 @end

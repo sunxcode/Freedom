@@ -1,4 +1,3 @@
-//
 //  SDHomeViewController.m
 //  GSD_ZHIFUBAO
 #import "SDHomeViewController.h"
@@ -85,11 +84,9 @@
     }
     return self;
 }
-
 #pragma mark - properties
 /*
- *  暂时用scrollview实现，随后用collectionview优化性能
- */
+ *  暂时用scrollview实现，随后用collectionview优化性能*/
 - (void)setGridModelsArray:(NSArray *)gridModelsArray{
     _gridModelsArray = gridModelsArray;
     [_itemsArray removeAllObjects];
@@ -327,5 +324,4 @@
 - (void)homeGrideViewDidChangeItems:(SDHomeGridView *)gridView{
     [self setupDataArray];
 }
-
 @end

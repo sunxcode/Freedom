@@ -1,43 +1,25 @@
-//
 //  TLBottleViewController.m
-//  TLChat
-//
-//  Created by 李伯坤 on 16/2/22.
-//  Copyright © 2016年 李伯坤. All rights reserved.
-//
-
+//  Freedom
+// Created by Super
 #import "TLBottleViewController.h"
 typedef NS_ENUM(NSUInteger, TLBottleButtonType) {
     TLBottleButtonTypeThrow,
     TLBottleButtonTypePickUp,
     TLBottleButtonTypeMine,
 };
-
 @interface TLBottleButton : UIButton
-
 @property (nonatomic, strong) NSString *title;
-
 @property (nonatomic, strong) NSString *iconPath;
-
 @property (nonatomic, assign) TLBottleButtonType type;
-
 @property (nonatomic, assign) NSUInteger msgNumber;
-
 - (id) initWithType:(TLBottleButtonType)type title:(NSString *)title iconPath:(NSString *)iconPath;
-
 @end
 @interface TLBottleButton ()
-
 @property (nonatomic, strong) UIImageView *iconImageView;
-
 @property (nonatomic, strong) UILabel *textLabel;
-
 @end
-
 @implementation TLBottleButton
-
-- (id)initWithType:(TLBottleButtonType)type title:(NSString *)title iconPath:(NSString *)iconPath
-{
+- (id)initWithType:(TLBottleButtonType)type title:(NSString *)title iconPath:(NSString *)iconPath{
     if (self = [super init]) {
         [self addSubview:self.iconImageView];
         [self addSubview:self.textLabel];
@@ -48,22 +30,16 @@ typedef NS_ENUM(NSUInteger, TLBottleButtonType) {
     }
     return self;
 }
-
-- (void)setTitle:(NSString *)title
-{
+- (void)setTitle:(NSString *)title{
     _title = title;
     [self.textLabel setText:title];
 }
-
-- (void)setIconPath:(NSString *)iconPath
-{
+- (void)setIconPath:(NSString *)iconPath{
     _iconPath = iconPath;
     [self.iconImageView setImage:[UIImage imageNamed:iconPath]];
 }
-
 #pragma mark - Private Methods -
-- (void)p_addMasonry
-{
+- (void)p_addMasonry{
     [self.iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.and.left.and.right.mas_equalTo(self);
         make.bottom.mas_equalTo(self.textLabel.mas_top).mas_offset(9);
@@ -73,18 +49,14 @@ typedef NS_ENUM(NSUInteger, TLBottleButtonType) {
         make.bottom.mas_equalTo(self).mas_offset(-3);
     }];
 }
-
 #pragma mark - Getter -
-- (UIImageView *)iconImageView
-{
+- (UIImageView *)iconImageView{
     if (_iconImageView == nil) {
         _iconImageView = [[UIImageView alloc] init];
     }
     return _iconImageView;
 }
-
-- (UILabel *)textLabel
-{
+- (UILabel *)textLabel{
     if (_textLabel == nil) {
         _textLabel = [[UILabel alloc] init];
         [_textLabel setFont:[UIFont systemFontOfSize:12.0f]];
@@ -93,31 +65,19 @@ typedef NS_ENUM(NSUInteger, TLBottleButtonType) {
     }
     return _textLabel;
 }
-
 @end
-
-@interface TLBottleViewController ()
-{
+@interface TLBottleViewController (){
     NSTimer *timer;
     UITapGestureRecognizer *tapGes;
 }
-
 @property (nonatomic, strong) UIImageView *backgroundView;
-
 @property (nonatomic, strong) UIImageView *bottomBoard;
-
 @property (nonatomic, strong) TLBottleButton *throwButton;
-
 @property (nonatomic, strong) TLBottleButton *pickUpButton;
-
 @property (nonatomic, strong) TLBottleButton *mineButton;
-
 @end
-
 @implementation TLBottleViewController
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
     [self.navigationItem setTitle:@"漂流瓶"];
     
@@ -131,9 +91,7 @@ typedef NS_ENUM(NSUInteger, TLBottleButtonType) {
     [self.view addSubview:self.mineButton];
     [self p_addMasonry];
 }
-
-- (void) viewWillAppear:(BOOL)animated
-{
+- (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
     [timer invalidate];
@@ -144,37 +102,26 @@ typedef NS_ENUM(NSUInteger, TLBottleButtonType) {
     tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapView)];
     [self.view addGestureRecognizer:tapGes];
 }
-
-- (void) viewWillDisappear:(BOOL)animated
-{
+- (void) viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     
     [self p_setNavBarHidden:NO];
     [timer invalidate];
     [self.view removeGestureRecognizer:tapGes];
 }
-
 #pragma mark - Event Response
-- (void)boardButtonDown:(TLBottleButton *)sender
-{
+- (void)boardButtonDown:(TLBottleButton *)sender{
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:sender.title message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
     [alert show];
 }
-
-- (void) didTapView
-{
+- (void) didTapView{
     [timer invalidate];
     [self p_setNavBarHidden:![self.navigationController.navigationBar isHidden]];
 }
-
-- (void) rightBarButtonDown:(UIBarButtonItem *)sender
-{
-
+- (void) rightBarButtonDown:(UIBarButtonItem *)sender{
 }
-
 #pragma mark - Private Methods
-- (void) p_setNavBarHidden:(BOOL)hidden
-{
+- (void) p_setNavBarHidden:(BOOL)hidden{
     if (hidden) {
         [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
         [UIView animateWithDuration:0.5 animations:^{
@@ -182,8 +129,7 @@ typedef NS_ENUM(NSUInteger, TLBottleButtonType) {
         } completion:^(BOOL finished) {
             [self.navigationController.navigationBar setHidden:YES];
         }];
-    }
-    else {
+    }else{
         [self.navigationController.navigationBar setHidden:NO];
         [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
         [UIView animateWithDuration:0.2 animations:^{
@@ -191,9 +137,7 @@ typedef NS_ENUM(NSUInteger, TLBottleButtonType) {
         }];
     }
 }
-
-- (void)p_addMasonry
-{
+- (void)p_addMasonry{
     [self.bottomBoard mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.and.right.and.bottom.mas_equalTo(self.view);
     }];
@@ -213,10 +157,8 @@ typedef NS_ENUM(NSUInteger, TLBottleButtonType) {
         make.left.mas_equalTo(self.pickUpButton.mas_right).mas_offset(space);
     }];
 }
-
 #pragma mark - Getter -
-- (UIImageView *)backgroundView
-{
+- (UIImageView *)backgroundView{
     if (_backgroundView == nil) {
         _backgroundView = [[UIImageView alloc] initWithFrame:self.view.bounds];
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -224,47 +166,37 @@ typedef NS_ENUM(NSUInteger, TLBottleButtonType) {
         int hour = [dateFormatter stringFromDate:[NSDate date]].intValue;
         if (hour >= 6 && hour <= 18) {
             [_backgroundView setImage:[UIImage imageNamed:@"bottle_backgroud_day"]];
-        }
-        else {
+        }else{
             [_backgroundView setImage:[UIImage imageNamed:@"bottle_backgroud_night"]];
         }
     }
     return _backgroundView;
 }
-
-- (UIImageView *)bottomBoard
-{
+- (UIImageView *)bottomBoard{
     if (_bottomBoard == nil) {
         _bottomBoard = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bottle_board"]];
     }
     return _bottomBoard;
 }
-
-- (TLBottleButton *)throwButton
-{
+- (TLBottleButton *)throwButton{
     if (_throwButton == nil) {
         _throwButton = [[TLBottleButton alloc] initWithType:TLBottleButtonTypeThrow title:@"扔一个" iconPath:@"bottle_button_throw"];
         [_throwButton addTarget:self action:@selector(boardButtonDown:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _throwButton;
 }
-
-- (TLBottleButton *)pickUpButton
-{
+- (TLBottleButton *)pickUpButton{
     if (_pickUpButton == nil) {
         _pickUpButton = [[TLBottleButton alloc] initWithType:TLBottleButtonTypePickUp title:@"捡一个" iconPath:@"bottle_button_pickup"];
         [_pickUpButton addTarget:self action:@selector(boardButtonDown:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _pickUpButton;
 }
-
-- (TLBottleButton *)mineButton
-{
+- (TLBottleButton *)mineButton{
     if (_mineButton == nil) {
         _mineButton = [[TLBottleButton alloc] initWithType:TLBottleButtonTypeMine title:@"我的瓶子" iconPath:@"bottle_button_mine"];
         [_mineButton addTarget:self action:@selector(boardButtonDown:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _mineButton;
 }
-
 @end

@@ -1,25 +1,17 @@
-//
 //  SDServiceTableViewController.m
 //  GSD_ZHIFUBAO
-//
-//  Created by aier on 15-6-4.
-//  Copyright (c) 2015年 GSD. All rights reserved.
+//  Created by Super on 15-6-4.
 #import "SDServiceTableViewController.h"
 #import "UIView+SDExtension.h"
 #import "UIImageView+WebCache.h"
 #import "SDBasicTableViewControllerCell.h"
-
 @interface SDServiceTableViewCellModel : NSObject
-
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *detailString;
 @property (nonatomic, copy) NSString *iconImageURLString;
-
 + (instancetype)modelWithTitle:(NSString *)title detailString:(NSString *)detailString iconImageURLString:(NSString *)iconImageURLString;
-
 @end
 @implementation SDServiceTableViewCellModel
-
 + (instancetype)modelWithTitle:(NSString *)title detailString:(NSString *)detailString iconImageURLString:(NSString *)iconImageURLString{
     SDServiceTableViewCellModel *model = [[SDServiceTableViewCellModel alloc] init];
     model.title = title;
@@ -27,13 +19,11 @@
     model.iconImageURLString = iconImageURLString;
     return model;
 }
-
 @end
 @interface SDServiceTableViewCell : SDBasicTableViewControllerCell
 @property (strong, nonatomic) UIImageView *iconView;
 @property (strong, nonatomic) UILabel *titleLabel;
 @property (strong, nonatomic) UILabel *detailLabel;
-
 @end
 @implementation SDServiceTableViewCell
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
@@ -49,9 +39,7 @@
     [self addSubviews:self.iconView,self.titleLabel,self.detailLabel,nil];
     return self;
 }
-
-- (void)setModel:(NSObject *)model
-{
+- (void)setModel:(NSObject *)model{
     [super setModel:model];
     
     SDServiceTableViewCellModel *cellModel = (SDServiceTableViewCellModel *)model;
@@ -60,9 +48,7 @@
     self.detailLabel.text = cellModel.detailString;
     [self.iconView sd_setImageWithURL:[NSURL URLWithString:cellModel.iconImageURLString] placeholderImage:nil];
 }
-
 @end
-
 @interface SDServiceTableViewHeader : UIView <UITextFieldDelegate>
 @property (nonatomic, copy) NSString *placeholderText;
 @end
@@ -161,8 +147,6 @@
     self.sectionsNumber = 1;
     self.dataArray = [temp copy];
 }
-
-
 #pragma mark - delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     SDServiceTableViewCellModel *model = self.dataArray[indexPath.row];
@@ -170,7 +154,6 @@
     vc.title = model.title;
     [self.navigationController pushViewController:vc animated:YES];
 }
-
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     [self.tableView endEditing:YES];
 }
@@ -193,5 +176,4 @@
         [self.refreshControl endRefreshing];
     });
 }
-
 @end

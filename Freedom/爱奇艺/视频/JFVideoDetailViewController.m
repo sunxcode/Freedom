@@ -1,98 +1,69 @@
-//
 //  JFVideoDetailViewController.m
-//  JFTudou
-//
-//  Created by 保修一站通 on 15/10/17.
-//  Copyright © 2015年 JF. All rights reserved.
-////  项目详解：
+//  Freedom
+//  Created by Freedom on 15/10/17.//  项目详解：
 //  github:https://github.com/tubie/JFTudou
 //  简书：http://www.jianshu.com/p/2156ec56c55b
-
-
 #import "JFVideoDetailViewController.h"
 @interface JFVideoDetailModel : NSObject
-
 @property(nonatomic, strong) NSString *total_vv;
 @property(nonatomic, strong) NSNumber *duration;
 @property(nonatomic, strong) NSNumber *total_comment;
 @property(nonatomic, strong) NSString *img;
 @property(nonatomic, strong) NSString *title;
-
 @property(nonatomic, strong) NSString *play_url;
 @property(nonatomic, strong) NSString *channel_pic;
 @property(nonatomic, strong) NSString *cats;
 @property(nonatomic, strong) NSString *plid;
 @property(nonatomic, strong) NSString *isVuser;
-
 @property(nonatomic, strong) NSString *type;
 @property(nonatomic, strong) NSString *username;
 @property(nonatomic, strong) NSNumber *format_flag;
 @property(nonatomic, strong) NSString *img_hd;
 @property(nonatomic, strong) NSString *iid;
-
 @property(nonatomic, strong) NSNumber *subed_num;
 @property(nonatomic, strong) NSString *item_id;
 @property(nonatomic, strong) NSString *user_desc;
 @property(nonatomic, strong) NSString *desc;
 @property(nonatomic, strong) NSString *user_play_times;
-
 @property(nonatomic, strong) NSString *stripe_bottom;
 @property(nonatomic, strong) NSNumber *cid;
 @property(nonatomic, strong) NSNumber *userid;
 @property(nonatomic, strong) NSNumber *total_fav;
 @property(nonatomic, strong) NSNumber *limit;
-
 @property(nonatomic, strong) NSString *item_media_type;
-
 @end
-
 @implementation JFVideoDetailModel
-
 @end
-
 @interface JFRecommentModel : NSObject
-
 @property(nonatomic, strong) NSNumber *total_pv;
 @property(nonatomic, strong) NSString *pubdate;
 @property(nonatomic, strong) NSString *img_16_9;
 @property(nonatomic, strong) NSString *pv_pr;
 @property(nonatomic, strong) NSNumber *duration;
-
 @property(nonatomic, strong) NSString *pv;
 @property(nonatomic, strong) NSNumber *total_comment;
 @property(nonatomic, strong) NSString *img;
 @property(nonatomic, strong) NSString *title;
 @property(nonatomic, strong) NSString *state;
-
 @property(nonatomic, strong) NSString *cats;
 @property(nonatomic, strong) NSString *username;
 @property(nonatomic, strong) NSMutableArray *tags;
 @property(nonatomic, strong) NSString *img_hd;
 @property(nonatomic, strong) NSString *itemCode;
-
 @property(nonatomic, strong) NSString *total_down;
 @property(nonatomic, strong) NSString *total_up;
 @property(nonatomic, strong) NSString *desc;
 @property(nonatomic, strong) NSString *stripe_bottom;
 @property(nonatomic, strong) NSString *userid;
-
 @property(nonatomic, strong) NSNumber *total_fav;
 @property(nonatomic, strong) NSString *reputation;
 @property(nonatomic, strong) NSString *limit;
-
 @property(nonatomic, strong) NSString *time;
-
-
 @end
-
 @implementation JFRecommentModel
-
 @end
-
 @interface JFRecommentVideoCell : UITableViewCell
-
 + (instancetype)cellWithTableView:(UITableView *)tableView;
-
 @property (strong, nonatomic) UIImageView *iconImageView;
 @property (strong, nonatomic) UILabel *timeLabel;
 @property (strong, nonatomic) UILabel *titleLabel;
@@ -100,14 +71,12 @@
 @property(nonatomic, strong)JFRecommentModel *recommentModel;
 @end
 @implementation JFRecommentVideoCell
-
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
     
     // Configure the view for the selected state
 }
-+ (instancetype)cellWithTableView:(UITableView *)tableView
-{
++ (instancetype)cellWithTableView:(UITableView *)tableView{
     static NSString *ID = @"JFRecommentVideoCell";
     JFRecommentVideoCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     if (cell == nil) {
@@ -178,22 +147,14 @@
     _descLabel.text = videoDetailModel.desc;
 }
 @end
-
-@interface JFVideoDetailViewController ()<UITableViewDataSource, UITableViewDelegate>
-{
-
+@interface JFVideoDetailViewController ()<UITableViewDataSource, UITableViewDelegate>{
     JFVideoDetailModel *_videoDM;
     NSMutableArray *_recommendArray;
-
 }
-
 @property(nonatomic, strong)UITableView *videoDetailTableView;
 @property(nonatomic, strong)UIWebView *videoDetailWebView;
-
 @end
-
 @implementation JFVideoDetailViewController
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.hidesBottomBarWhenPushed = YES;//用push方法推出时，Tabbar隐藏
@@ -203,7 +164,6 @@
     [self initWebView];
     [self initNav];
 }
-
 -(void)initNav{
     self.navigationController.navigationBar.hidden = YES;
     
@@ -218,7 +178,6 @@
     [self.view addSubview:backBtn];
     
 }
-
 #pragma mark - 初始化tableView
 -(void)initTableView{
     UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 220, APPW, APPH-220) style:UITableViewStylePlain];
@@ -228,29 +187,26 @@
     tableView.separatorInset = UIEdgeInsetsZero;
     self.videoDetailTableView = tableView;
     [self.view addSubview:self.videoDetailTableView];
-
 }
 #pragma mark - 初始化webView
 -(void)initWebView{
     self.videoDetailWebView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 20, APPW, 220)];
     [self.view addSubview:self.videoDetailWebView];
 }
-
 -(void)OnBackBtn:(UIButton *)sender{
     [self.navigationController popViewControllerAnimated:YES];
 }
-
 #pragma mark－视频详细信息
 -(void)loadVideoDetailData{
     _videoDM = [[JFVideoDetailModel alloc] init];
     _recommendArray = [[NSMutableArray alloc] init];
-    NSString *urlStr =  [[GetUrlString sharedManager]urlWithVideoDetailData:self.iid];
+    NSString *urlStr =  [[FreedomTools sharedManager]urlWithVideoDetailData:self.iid];
     
     NSString *url = [urlStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [NetBase GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         JFVideoDetailModel *videoDM = [JFVideoDetailModel mj_objectWithKeyValues:[responseObject objectForKey:@"detail"]];
         _videoDM = videoDM;
-        NSString *videoUrl = [[GetUrlString sharedManager]urlWithVideo:self.iid];
+        NSString *videoUrl = [[FreedomTools sharedManager]urlWithVideo:self.iid];
         [self.videoDetailWebView loadRequest:[[NSURLRequest alloc] initWithURL:[NSURL URLWithString:videoUrl]]];
         [self.videoDetailTableView reloadData];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -258,10 +214,9 @@
     }];
     
 }
-
 #pragma mark - 推荐视频
 -(void)loadRecommentData{
-    NSString *urlStr =  [[GetUrlString sharedManager]urlWithRecommentdata:self.iid];
+    NSString *urlStr =  [[FreedomTools sharedManager]urlWithRecommentdata:self.iid];
     
     NSString *url = [urlStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [NetBase GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -277,7 +232,6 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
     }];
-
 }
 -(NSString *)convertTime:(NSInteger)time{
     Float64 currentSeconds = time;
@@ -321,9 +275,7 @@
         cell.recommentModel = _recommendArray[indexPath.row-1];
         return cell;
     }
-
 }
-
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row>0) {
         JFRecommentModel *recommendM = _recommendArray[indexPath.row-1];
@@ -333,11 +285,8 @@
             [self loadRecommentData];
         });
     }
-
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
-
-
 @end

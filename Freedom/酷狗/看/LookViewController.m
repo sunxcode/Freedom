@@ -1,11 +1,6 @@
-//
 //  LookViewController.m
 //  CLKuGou
-//
 //  Created by Darren on 16/7/29.
-//  Copyright © 2016年 darren. All rights reserved.
-//
-
 #define headerH 280
 #import "LookViewController.h"
 #import "CoustomButtom.h"
@@ -72,7 +67,6 @@
     cell.textLabel.text = self.titlesArr[indexPath.row];
     return cell;
 }
-
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     

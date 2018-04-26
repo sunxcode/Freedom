@@ -1,11 +1,15 @@
 //
 #import "NetEngine.h"
 #import "SDDataCache.h"
-//#import "NSString+expanded.h"
-//#import "UIView+expanded.h"
-//#import "NSDictionary+expanded.h"
+//
+#import "NSString+expanded.h"
+//
+#import "UIView+expanded.h"
+//
+#import "NSDictionary+expanded.h"
 #import <AFNetworking/AFNetworking.h>
-//#import <AFNetworking/AFImageDownloader.h>
+//
+#import <AFNetworking/AFImageDownloader.h>
 @implementation NetEngine
 static NSString *cacheDirectoryName = nil;
 static NSString *baseURL = @"http://www.isolar88.com/app/";
@@ -45,7 +49,6 @@ static NSString *baseURL = @"http://www.isolar88.com/app/";
     }];
     return task;
 }
-
 //FIXME:普通post请求数据
 +(NSURLSessionDataTask*) createPostAction:(NSString*)url withParams:(NSDictionary*)params onCompletion:(ResponseBlock) completion{
     [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeClear];
@@ -62,7 +65,6 @@ static NSString *baseURL = @"http://www.isolar88.com/app/";
     }];
     return task;
 }
-
 //FIXME:文件下载
 +(NSURLSessionTask *)createFileAction:(NSString *)url onCompletion:(ResponseBlock)completionBlock onError:(ErrorBlock)errorBlock withMask:(SVProgressHUDMaskType)mask{
     return [[self Share]createFileAction:url onCompletion:completionBlock onError:errorBlock withMask:mask];
@@ -90,7 +92,7 @@ static NSString *baseURL = @"http://www.isolar88.com/app/";
     // 判断之前是否下载过 如果有下载重新构造Header
     if ([fileManager fileExistsAtPath:tempFilePath]) {
         NSError *error = nil;
-        unsigned long long fileSize = [[fileManager attributesOfItemAtPath:tempFilePath error:&error]fileSize];if (error) {NSLog(@"获取 %@ 文件的大小失败!\nError:%@", tempFilePath, error);}
+        unsigned long long fileSize = [[fileManager attributesOfItemAtPath:tempFilePath error:&error]fileSize];if (error) {DLog(@"获取 %@ 文件的大小失败!\nError:%@", tempFilePath, error);}
         NSMutableURLRequest *mutableURLRequest = [request mutableCopy];
         NSString *requestRange = [NSString stringWithFormat:@"bytes=%llu-", fileSize];
         [mutableURLRequest setValue:requestRange forHTTPHeaderField:@"Range"];
@@ -141,7 +143,6 @@ static NSString *baseURL = @"http://www.isolar88.com/app/";
     }];
     return task;
 }
-
 +(void)emptyCacheDefault{
     NSError *error = nil;
     NSArray *directoryContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:cacheDirectoryName error:&error];

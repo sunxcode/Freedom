@@ -1,33 +1,22 @@
-//
 //  DetailWapViewController.m
-//  B5MDetailFramework
-//
+//  Freedom
 //  Created by boguang on 15/8/21.
-//  Copyright (c) 2015年 micker. All rights reserved.
-//
-
 #import "DetailWapViewController.h"
 #import "DetailView.h"
 #import "UIImage+expanded.h"
-
 static NSUInteger __totalNumber = 3;
-
 static NSString * images[] = {@"1.jpg", @"l.jpg", @"w.jpg",@"xt.jpg"};
 static NSString *titles[] = {@"图文详情",@"商品评论",@"百度"};
 static NSString *urls[] = {
     @"http://m.b5m.com/item.html?tid=2614676&mps=____&type=content",
     @"http://m.b5m.com/item.html?tid=2614676&mps=____&type=comment",
     @"http://m.baidu.com"};
-
 @interface DetailWapViewController () <DetailViewSectionDelegate, UIScrollPageControlViewDelegate>
 @property (nonatomic, strong) DetailView *detailView;
 @property (nonatomic, strong) UIWebView *topWebView;
-
 @property (nonatomic, strong) MFullScreenControl *control;
 @end
-
 @implementation DetailWapViewController
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -36,12 +25,9 @@ static NSString *urls[] = {
     [self.topWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://m.b5m.com/item.html?tid=2614676&mps=____&type=index"]]];
     [self.detailView reloadData];
 }
-
 - (void) dealloc {
-    NSLog(@"DetailWapViewController dealloc");
-
+    DLog(@"DetailWapViewController dealloc");
 }
-
 - (DetailView *) detailView {
     if (!_detailView) {
         _detailView = [[DetailView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height-64)];
@@ -52,7 +38,6 @@ static NSString *urls[] = {
     }
     return _detailView;
 }
-
 - (UIWebView *) topWebView {
     if (!_topWebView) {
         _topWebView = [[UIWebView alloc] initWithFrame:_detailView.bounds];
@@ -62,7 +47,6 @@ static NSString *urls[] = {
     }
     return _topWebView;
 }
-
 - (MFullScreenControl *) control {
     if(!_control) {
         _control = self.detailView.fullScreencontrol;
@@ -70,14 +54,10 @@ static NSString *urls[] = {
     }
     return _control;
 }
-
-
 #pragma mark UIScrollPageControlViewDelegate
-
 - (NSUInteger) numberOfView:(UIScrollPageControlView *) control {
     return 4;
 }
-
 - (UIView *) configBannerItemOfControl:(UIScrollPageControlView *) control at:(NSUInteger) index {
     UIImageView *cellItem = (UIImageView *)[control dequeueReusableViewWithIdentifier:@"reuse"];
     if (!cellItem) {
@@ -93,7 +73,6 @@ static NSString *urls[] = {
     cellItem.image = image;
     return cellItem;
 }
-
 - (UIView *) configFullItemOfControl:(UIScrollPageControlView *) control at:(NSUInteger) index {
     MFullScreenView *cellItem = (MFullScreenView *)[control dequeueReusableViewWithIdentifier:@"reuse"];
     if (!cellItem) {
@@ -110,27 +89,21 @@ static NSString *urls[] = {
     [cellItem reloadData];
     return cellItem;
 }
-
 - (void) reconfigItemOfControl:(UIScrollPageControlView *)control at:(NSUInteger) index withView:(UIView *)view {
     if (control == _control.screenPageView) {
         MFullScreenView *cellItem = (MFullScreenView *)view;
         [cellItem reloadData];
     }
 }
-
 - (UIView *) configItemOfControl:(UIScrollPageControlView *) control at:(NSUInteger) index  {
     if (control == _control.screenPageView) {
         return [self configFullItemOfControl:_control.screenPageView at:index];
     }
     return [self configBannerItemOfControl:control at:index];
 }
-
-
 - (CGFloat) minimumRowSpacing:(UIScrollPageControlView *) control {
     return (control == _control.screenPageView) ? 20.0f : 0.0f;
 }
-
-
 - (void) imageViewDidTaped:(UIGestureRecognizer *) recognizer {
     if (self.control.isAppear) {
         [self.detailView hideFullScreenOnView:recognizer.view];
@@ -138,29 +111,20 @@ static NSString *urls[] = {
     }
     [self.detailView showFullScreenOnView:recognizer.view];
 }
-
-
 #pragma mark DetailViewSectionDelegate
-
-
 - (UIView *) viewAtTop {
     return self.topWebView;
 }
-
 - (NSUInteger ) numberOfSections {
     return __totalNumber;
 }
-
-
 - (NSString *) titleOfSectionAt:(NSUInteger )index {
     return titles[index];
 }
-
 - (UIView *) viewOfSectionAt:(NSUInteger ) index {
     UIWebView *webview = [[UIWebView alloc] initWithFrame:CGRectZero];
     return webview;
 }
-
 - (void) didChangeToSection:(NSUInteger) index view:(UIView *) view {
     NSString *url = urls[index];
     UIWebView *webView = (UIWebView *) view;
@@ -169,9 +133,7 @@ static NSString *urls[] = {
         [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
     }
 }
-
 - (void) floatViewIsGoingTo:(BOOL) appear {
-    NSLog(@"floatViewIsGoingTo = %d", appear);
+    DLog(@"floatViewIsGoingTo = %d", appear);
 }
-
 @end

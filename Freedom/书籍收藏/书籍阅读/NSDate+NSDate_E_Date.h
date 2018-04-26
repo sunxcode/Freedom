@@ -1,25 +1,13 @@
 //
-
-//  WFReader
-//
-//  Created by 阿虎 on 15/3/3.
-//  Copyright (c) 2015年 tigerwf. All rights reserved.
-//
-
+//  Freedom
+//  Created by Super on 15/3/3.
 #import <Foundation/Foundation.h>
-
 @interface NSDate (NSDate_E_Date)
-
 /*
- 是否是今天
- */
+ 是否是今天*/
 - (BOOL)isToday;
-
 /*
- 时间差
- */
+ 时间差*/
 - (NSInteger) minutesAfterDate : (NSDate *) aDate;
 - (NSInteger) minutesBeforeDate: (NSDate *) aDate;
-
-
 @end

@@ -1,23 +1,13 @@
-//
 //  JFSearchHistoryViewController.m
-//  JF团购
-//
-//  Created by 保修一站通 on 15/9/21.
-//  Copyright (c) 2015年 JF团购. All rights reserved.
-////  项目详解：
+//  Freedom
+//  Created by Freedom on 15/9/21.//  项目详解：
 //  github:https://github.com/tubie/JFTudou
 //  简书：http://www.jianshu.com/p/2156ec56c55b
-
-
 #import "JFSearchHistoryViewController.h"
 @interface JFSearchTextField : UITextField
-
 @end
-
 @implementation JFSearchTextField
-
-- (id)initWithFrame:(CGRect)frame
-{
+- (id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
         self.placeholder = @"大家都在搜琅琊榜";
@@ -42,11 +32,8 @@
     
     return self;
 }
-
 @end
-
 @interface JFSearchHotCell : UITableViewCell
-
 @property(nonatomic, strong)NSArray *array;
 + (instancetype)cellWithTableView:(UITableView *)tableView ;
 @end
@@ -81,12 +68,10 @@
     }
     
 }
-
 @end
 @interface JFSearchHistoryCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *searchHistoryLabel;
 - (IBAction)cancelSearchBtnClick:(id)sender;
-
 + (instancetype)cellWithTableView:(UITableView *)tableView IndexPath:(NSIndexPath *)indexPath atNSMutableArr:(NSMutableArray *)datas;
 /** 底部的线 */
 @property (weak, nonatomic) IBOutlet UIView *bottomLineView;
@@ -185,7 +170,6 @@
     }
     return _datas;
 }
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.hidesBottomBarWhenPushed = YES;//用push方法推出时，Tabbar隐藏
@@ -197,7 +181,6 @@
     self.searchTableView = tableView;
     self.searchTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.searchTableView];
-
     JFSearchTextField *search = [[JFSearchTextField alloc] init];
     CGFloat w = APPW * 0.7;
     search.frame = CGRectMake(0, 0, w, 30);
@@ -208,8 +191,7 @@
     UIBarButtonItem *rightItem = [UIBarButtonItem initWithTitle:@"取消" titleColor:[UIColor whiteColor] target:self action:@selector(backClick)];
     self.navigationItem.rightBarButtonItem = rightItem;
 }
-- (void)viewDidAppear:(BOOL)animated
-{
+- (void)viewDidAppear:(BOOL)animated{
     //文本框获取焦点
     [super viewDidAppear:animated];
     [self.searchTF becomeFirstResponder];

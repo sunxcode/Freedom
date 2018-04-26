@@ -1,10 +1,8 @@
 
-//
 //  TaobaoMiniViewController.m
-//  Created by 薛超 on 17/1/11.
-//  Copyright © 2017年 薛超. All rights reserved.
+//  Created by Super on 17/1/11.
+//  Copyright © 2017年 Super. All rights reserved.
 //
-
 #import "TaobaoMiniViewController.h"
 #import "TaobaoMiniDynamicViewController.h"
 #import "TaobaoMiniNewViewController.h"
@@ -14,11 +12,8 @@
 @interface TaobaoMiniViewController (){
     BaseScrollView *TaobaoMiniScrollV;
 }
-
 @end
-
 @implementation TaobaoMiniViewController
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     UIBarButtonItem *leftI = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"TaobaoScanner@2x"] style:UIBarButtonItemStyleDone actionBlick:^{
@@ -39,12 +34,4 @@
     };
     [TaobaoMiniScrollV selectThePage:3];
 }
-
-
-
-
-
-
-
-
 @end

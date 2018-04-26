@@ -1,28 +1,15 @@
-//
 //  TLPictureCarouselView.m
-//  TLChat
-//
-//  Created by 李伯坤 on 16/4/20.
-//  Copyright © 2016年 李伯坤. All rights reserved.
-//
-
+//  Freedom
+// Created by Super
 #import "TLPictureCarouselView.h"
 @interface TLPictureCarouselViewCell : UICollectionViewCell
-
 @property (nonatomic, strong) id<TLPictureCarouselProtocol> model;
-
 @end
-
 @interface TLPictureCarouselViewCell ()
-
 @property (nonatomic, strong) UIImageView *imageView;
-
 @end
-
 @implementation TLPictureCarouselViewCell
-
-- (id)initWithFrame:(CGRect)frame
-{
+- (id)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         [self.contentView addSubview:self.imageView];
         
@@ -30,44 +17,29 @@
     }
     return self;
 }
-
-- (void)setModel:(id<TLPictureCarouselProtocol>)model
-{
+- (void)setModel:(id<TLPictureCarouselProtocol>)model{
     [self.imageView sd_setImageWithURL:TLURL([model pictureURL])];
 }
-
-#pragma mark - # Private Methods
-- (void)p_addMasonry
-{
+#pragma mark - 
+- (void)p_addMasonry{
     [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(self.contentView);
     }];
 }
-
-#pragma mark - # Getter
-- (UIImageView *)imageView
-{
+#pragma mark - 
+- (UIImageView *)imageView{
     if (_imageView == nil) {
         _imageView = [[UIImageView alloc] init];
     }
     return _imageView;
 }
-
 @end
-
 @interface TLPictureCarouselView () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
-
 @property (nonatomic, strong) NSTimer *timer;
-
-
 @property (nonatomic, strong) UICollectionView *collectionView;
-
 @end
-
 @implementation TLPictureCarouselView
-
-- (id)initWithFrame:(CGRect)frame
-{
+- (id)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         self.timeInterval = DEFAULT_TIMEINTERVAL;
         [self addSubview:self.collectionView];
@@ -78,9 +50,7 @@
     }
     return self;
 }
-
-- (void)setData:(NSArray *)data
-{
+- (void)setData:(NSArray *)data{
     _data = data;
     [self.collectionView reloadData];
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -96,51 +66,37 @@
         }
     });
 }
-
-- (void)dealloc
-{
+- (void)dealloc{
     [self.timer invalidate];
     self.timer = nil;
 }
-
-#pragma mark - # Delegate
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
+#pragma mark - 
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     return self.data.count == 0 ? 0 : self.data.count + 2;
 }
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     NSInteger row = indexPath.row == 0 ? self.data.count - 1 : (indexPath.row == self.data.count + 1 ? 0 : indexPath.row - 1);
     id<TLPictureCarouselProtocol> model = self.data[row];
     TLPictureCarouselViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"TLPictureCarouselViewCell" forIndexPath:indexPath];
     [cell setModel:model];
     return cell;
 }
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     NSInteger row = indexPath.row == 0 ? self.data.count - 1 : (indexPath.row == self.data.count - 1 ? 0 : indexPath.row - 1);
     id<TLPictureCarouselProtocol> model = self.data[row];
     if (self.delegate && [self.delegate respondsToSelector:@selector(pictureCarouselView:didSelectItem:)]) {
         [self.delegate pictureCarouselView:self didSelectItem:model];
     }
 }
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     return collectionView.frameSize;
 }
-
 //MARK: UIScrollViewDelegate
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
-{
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     [self.timer invalidate];
     self.timer = nil;
 }
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-{
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
     if (self.timer == nil && self.data.count > 1) {
         __weak typeof(self) weakSelf = self;
         self.timer = [NSTimer bk_scheduledTimerWithTimeInterval:2.0 block:^(NSTimer *tm) {
@@ -148,7 +104,6 @@
         } repeats:YES];
     }
 }
-
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     // 轮播实现
     
@@ -160,10 +115,8 @@
         [scrollView setContentOffset:offset animated:NO];
     }
 }
-
-#pragma mark - # Event Response
-- (void)scrollToNextPage
-{
+#pragma mark - Event Response
+- (void)scrollToNextPage{
     NSInteger nextPage;
     if (self.collectionView.contentOffset.x / self.collectionView.frame.size.width == self.data.count) {
         CGPoint offset = CGPointMake(self.collectionView.frame.size.width * 0,self.collectionView.contentOffset.y);
@@ -175,18 +128,14 @@
     CGPoint offset = CGPointMake(self.collectionView.frame.size.width * nextPage,self.collectionView.contentOffset.y);
     [self.collectionView setContentOffset:offset animated:YES];
 }
-
-#pragma mark - # Private Methods
-- (void)p_addMasonry
-{
+#pragma mark - 
+- (void)p_addMasonry{
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(self);
     }];
 }
-
-#pragma mark - # Getter
-- (UICollectionView *)collectionView
-{
+#pragma mark - 
+- (UICollectionView *)collectionView{
     if (_collectionView == nil) {
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         [layout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
@@ -204,5 +153,4 @@
     }
     return _collectionView;
 }
-
 @end

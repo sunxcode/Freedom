@@ -1,15 +1,10 @@
-//
 //  TLConversationViewController.m
-//  TLChat
-//
-//  Created by 李伯坤 on 16/1/23.
-//  Copyright © 2016年 李伯坤. All rights reserved.
-//
-
+//  Freedom
+// Created by Super
 #import "TLConversationViewController.h"
 #import "TLSearchController.h"
+#import <BlocksKit/BlocksKit+UIKit.h>
 #import <XCategory/NSDate+expanded.h>
-#import "UIFont+expanded.h"       // 字体
 #import "TLTableViewCell.h"
 #define     CONV_SPACE_X            10.0f
 #define     CONV_SPACE_Y            9.5f
@@ -20,28 +15,19 @@
 #define     HEIGHT_TABLEVIEW_CELL       45.0f
 #import "TLFriendHelper.h"
 @interface TLAddMenuCell : TLTableViewCell
-
 @property (nonatomic, strong) TLAddMenuItem *item;
-
 @end
-
 @interface TLAddMenuCell()
-
 @property (nonatomic, strong) UIImageView *iconImageView;
-
 @property (nonatomic, strong) UILabel *titleLabel;
-
 @end
-
 @implementation TLAddMenuCell
-
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self.rightSeparatorSpace = 16;
-        [self setBackgroundColor:[UIColor colorBlackForAddMenu]];
+        [self setBackgroundColor:RGBACOLOR(71, 70, 73, 1.0)];
         UIView *selectedView = [[UIView alloc] init];
-        [selectedView setBackgroundColor:[UIColor colorBlackForAddMenuHL]];
+        [selectedView setBackgroundColor:RGBACOLOR(65, 64, 67, 1.0)];
         [self setSelectedBackgroundView:selectedView];
         
         [self.contentView addSubview:self.iconImageView];
@@ -51,17 +37,13 @@
     }
     return self;
 }
-
-- (void)setItem:(TLAddMenuItem *)item
-{
+- (void)setItem:(TLAddMenuItem *)item{
     _item = item;
     [self.iconImageView setImage:[UIImage imageNamed:item.iconPath]];
     [self.titleLabel setText:item.title];
 }
-
 #pragma mark - Private Methods -
-- (void)p_addMasonry
-{
+- (void)p_addMasonry{
     [self.iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self).mas_offset(15.0f);
         make.centerY.mas_equalTo(self);
@@ -72,18 +54,14 @@
         make.centerY.mas_equalTo(self.iconImageView);
     }];
 }
-
 #pragma mark - Getter
-- (UIImageView *)iconImageView
-{
+- (UIImageView *)iconImageView{
     if (_iconImageView == nil) {
         _iconImageView = [[UIImageView alloc] init];
     }
     return _iconImageView;
 }
-
-- (UILabel *)titleLabel
-{
+- (UILabel *)titleLabel{
     if (_titleLabel == nil) {
         _titleLabel = [[UILabel alloc] init];
         [_titleLabel setTextColor:[UIColor whiteColor]];
@@ -91,23 +69,14 @@
     }
     return _titleLabel;
 }
-
 @end
-
 @interface TLAddMenuView () <UITableViewDataSource, UITableViewDelegate>
-
 @property (nonatomic, strong) TLAddMenuHelper *helper;
-
 @property (nonatomic, strong) UITableView *tableView;
-
 @property (nonatomic, strong) NSMutableArray *data;
-
 @end
-
 @implementation TLAddMenuView
-
-- (id)init
-{
+- (id)init{
     if (self = [super init]) {
         [self setBackgroundColor:[UIColor clearColor]];
         [self addSubview:self.tableView];
@@ -120,9 +89,7 @@
     }
     return self;
 }
-
-- (void)showInView:(UIView *)view
-{
+- (void)showInView:(UIView *)view{
     [view addSubview:self];
     [self setNeedsDisplay];
     [self setFrame:view.bounds];
@@ -130,14 +97,10 @@
     CGRect rect = CGRectMake(view.frameWidth - WIDTH_TABLEVIEW - 5, HEIGHT_NAVBAR + HEIGHT_STATUSBAR + 10, WIDTH_TABLEVIEW, self.data.count * HEIGHT_TABLEVIEW_CELL);
     [self.tableView setFrame:rect];
 }
-
-- (BOOL)isShow
-{
+- (BOOL)isShow{
     return self.superview != nil;
 }
-
-- (void)dismiss
-{
+- (void)dismiss{
     [UIView animateWithDuration:0.2 animations:^{
         [self setAlpha:0.0f];
     } completion:^(BOOL finished) {
@@ -147,30 +110,22 @@
         }
     }];
 }
-
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
-{
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [self dismiss];
 }
-
 #pragma mark - Delegate -
 //MARK: UITableViewDataSource
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.data.count;
 }
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     TLAddMenuItem *item = [self.data objectAtIndex:indexPath.row];
     TLAddMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TLAddMenuCell"];
     [cell setItem:item];
     return cell;
 }
-
 //MARK: UITableViewDelegate
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     TLAddMenuItem *item = [self.data objectAtIndex:indexPath.row];
     if (_delegate && [_delegate respondsToSelector:@selector(addMenuView:didSelectedItem:)]) {
         [_delegate addMenuView:self didSelectedItem:item];
@@ -178,15 +133,11 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     [self dismiss];
 }
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return HEIGHT_TABLEVIEW_CELL;
 }
-
 #pragma mark - Private Methods -
-- (void)drawRect:(CGRect)rect
-{
+- (void)drawRect:(CGRect)rect{
     CGFloat startX = self.frameWidth - 27;
     CGFloat startY = HEIGHT_STATUSBAR + HEIGHT_NAVBAR + 3;
     CGFloat endY = HEIGHT_STATUSBAR + HEIGHT_NAVBAR + 10;
@@ -196,74 +147,50 @@
     CGContextAddLineToPoint(context, startX + width, endY);
     CGContextAddLineToPoint(context, startX - width, endY);
     CGContextClosePath(context);
-    [[UIColor colorBlackForAddMenu] setFill];
-    [[UIColor colorBlackForAddMenu] setStroke];
+    [RGBACOLOR(71, 70, 73, 1.0) setFill];
+    [RGBACOLOR(71, 70, 73, 1.0) setStroke];
     CGContextDrawPath(context, kCGPathFillStroke);
 }
-
 #pragma mark - Getter -
-- (UITableView *)tableView
-{
+- (UITableView *)tableView{
     if (_tableView == nil) {
         _tableView = [[UITableView alloc] init];
         [_tableView setScrollEnabled:NO];
         [_tableView setDelegate:self];
         [_tableView setDataSource:self];
-        [_tableView setBackgroundColor:[UIColor colorBlackForAddMenu]];
+        [_tableView setBackgroundColor:RGBACOLOR(71, 70, 73, 1.0)];
         [_tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
         [_tableView.layer setMasksToBounds:YES];
         [_tableView.layer setCornerRadius:3.0f];
     }
     return _tableView;
 }
-
-- (TLAddMenuHelper *)helper
-{
+- (TLAddMenuHelper *)helper{
     if (_helper == nil) {
         _helper = [[TLAddMenuHelper alloc] init];
     }
     return _helper;
 }
-
 @end
-
 @interface TLConversationCell : TLTableViewCell
-
 /// 会话Model
 @property (nonatomic, strong) TLConversation *conversation;
-
 #pragma mark - Public Methods
-/**
- *  标记为未读
- */
+/*标记为未读*/
 - (void) markAsUnread;
-
-/**
- *  标记为已读
- */
+/*标记为已读*/
 - (void) markAsRead;
-
 @end
 @interface TLConversationCell()
-
 @property (nonatomic, strong) UIImageView *avatarImageView;
-
 @property (nonatomic, strong) UILabel *usernameLabel;
-
 @property (nonatomic, strong) UILabel *detailLabel;
-
 @property (nonatomic, strong) UILabel *timeLabel;
-
 @property (nonatomic, strong) UIImageView *remindImageView;
-
 @property (nonatomic, strong) UIView *redPointView;
-
 @end
-
 @implementation TLConversationCell
-
-- (id) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
+- (id) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self.leftSeparatorSpace = CONV_SPACE_X;
         
@@ -278,20 +205,16 @@
     }
     return self;
 }
-
 #pragma mark - Public Methods
-- (void) setConversation:(TLConversation *)conversation
-{
+- (void) setConversation:(TLConversation *)conversation{
     _conversation = conversation;
     
     if (conversation.avatarPath.length > 0) {
         NSString *path = [NSFileManager pathUserAvatar:conversation.avatarPath];
         [self.avatarImageView setImage:[UIImage imageNamed:path]];
-    }
-    else if (conversation.avatarURL.length > 0){
+    }else if (conversation.avatarURL.length > 0){
         [self.avatarImageView sd_setImageWithURL:TLURL(conversation.avatarURL) placeholderImage:[UIImage imageNamed:PuserLogo]];
-    }
-    else {
+    }else{
         [self.avatarImageView setImage:nil];
     }
     [self.usernameLabel setText:conversation.partnerName];
@@ -319,13 +242,8 @@
     
     self.conversation.isRead ? [self markAsRead] : [self markAsUnread];
 }
-
-
-/**
- *  标记为未读
- */
-- (void) markAsUnread
-{
+/*标记为未读*/
+- (void) markAsUnread{
     if (_conversation) {
         switch (_conversation.clueType) {
             case TLClueTypePointWithNumber:
@@ -342,12 +260,8 @@
         }
     }
 }
-
-/**
- *  标记为已读
- */
-- (void) markAsRead
-{
+/*标记为已读*/
+- (void) markAsRead{
     if (_conversation) {
         switch (_conversation.clueType) {
             case TLClueTypePointWithNumber:
@@ -364,10 +278,8 @@
         }
     }
 }
-
 #pragma mark - Private Methods -
-- (void)p_addMasonry
-{
+- (void)p_addMasonry{
     [self.avatarImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(CONV_SPACE_X);
         make.top.mas_equalTo(CONV_SPACE_Y);
@@ -407,10 +319,8 @@
         make.width.and.height.mas_equalTo(REDPOINT_WIDTH);
     }];
 }
-
 #pragma mark - Getter
-- (UIImageView *)avatarImageView
-{
+- (UIImageView *)avatarImageView{
     if (_avatarImageView == nil) {
         _avatarImageView = [[UIImageView alloc] init];
         [_avatarImageView.layer setMasksToBounds:YES];
@@ -418,47 +328,37 @@
     }
     return _avatarImageView;
 }
-
-- (UILabel *)usernameLabel
-{
+- (UILabel *)usernameLabel{
     if (_usernameLabel == nil) {
         _usernameLabel = [[UILabel alloc] init];
         [_usernameLabel setFont:[UIFont fontConversationUsername]];
     }
     return _usernameLabel;
 }
-
-- (UILabel *)detailLabel
-{
+- (UILabel *)detailLabel{
     if (_detailLabel == nil) {
         _detailLabel = [[UILabel alloc] init];
         [_detailLabel setFont:[UIFont fontConversationDetail]];
-        [_detailLabel setTextColor:[UIColor colorTextGray]];
+        [_detailLabel setTextColor:[UIColor grayColor]];
     }
     return _detailLabel;
 }
-
-- (UILabel *)timeLabel
-{
+- (UILabel *)timeLabel{
     if (_timeLabel == nil) {
         _timeLabel = [[UILabel alloc] init];
         [_timeLabel setFont:[UIFont fontConversationTime]];
-        [_timeLabel setTextColor:[UIColor colorTextGray1]];
+        [_timeLabel setTextColor:RGBACOLOR(160, 160, 160, 1.0)];
     }
     return _timeLabel;
 }
-
-- (UIImageView *)remindImageView
-{
+- (UIImageView *)remindImageView{
     if (_remindImageView == nil) {
         _remindImageView = [[UIImageView alloc] init];
         [_remindImageView setAlpha:0.4];
     }
     return _remindImageView;
 }
-
-- (UIView *)redPointView
-{
+- (UIView *)redPointView{
     if (_redPointView == nil) {
         _redPointView = [[UIView alloc] init];
         [_redPointView setBackgroundColor:[UIColor redColor]];
@@ -469,19 +369,13 @@
     }
     return _redPointView;
 }
-
 @end
-
 @interface TLConversationViewController ()
 @property (nonatomic, strong) UIImageView *scrollTopView;
 @property (nonatomic, strong) TLSearchController *searchController;
-
 @property (nonatomic, strong) TLAddMenuView *addMenuView;
-
 @end
-
 @implementation TLConversationViewController
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationItem setTitle:@"微信"];
@@ -493,34 +387,26 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkStatusChange:) name:AFNetworkingReachabilityDidChangeNotification object:nil];
 }
-
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
     //TODO: 临时写法
     [self updateConversationData];
 }
-
-- (void)viewWillDisappear:(BOOL)animated
-{
+- (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     if (self.addMenuView.isShow) {
         [self.addMenuView dismiss];
     }
 }
-
 #pragma mark - Event Response
-- (void)rightBarButtonDown:(UIBarButtonItem *)sender
-{
+- (void)rightBarButtonDown:(UIBarButtonItem *)sender{
     if (self.addMenuView.isShow) {
         [self.addMenuView dismiss];
-    }
-    else {
+    }else{
         [self.addMenuView showInView:self.navigationController.view];
     }
 }
-
 // 网络情况改变
 - (void)networkStatusChange:(NSNotification *)noti{
     AFNetworkReachabilityStatus status = [noti.userInfo[@"AFNetworkingReachabilityNotificationStatusItem"] longValue];
@@ -537,10 +423,8 @@
             break;
     }
 }
-
 #pragma mark - Private Methods -
-- (void)p_initUI
-{
+- (void)p_initUI{
     [self.tableView setBackgroundColor:[UIColor whiteColor]];
     [self.tableView setTableHeaderView:self.searchController.searchBar];
     [self.tableView addSubview:self.scrollTopView];
@@ -552,10 +436,8 @@
     UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav_add"] style:UIBarButtonItemStyleDone target:self action:@selector(rightBarButtonDown:)];
     [self.navigationItem setRightBarButtonItem:rightBarButtonItem];
 }
-
 #pragma mark - Getter -
-- (TLSearchController *) searchController
-{
+- (TLSearchController *) searchController{
     if (_searchController == nil) {
         _searchController = [[TLSearchController alloc] initWithSearchResultsController:self.searchVC];
         [_searchController setSearchResultsUpdater:self.searchVC];
@@ -565,25 +447,19 @@
     }
     return _searchController;
 }
-
-- (TLFriendSearchViewController *) searchVC
-{
+- (TLFriendSearchViewController *) searchVC{
     if (_searchVC == nil) {
         _searchVC = [[TLFriendSearchViewController alloc] init];
     }
     return _searchVC;
 }
-
-- (UIImageView *)scrollTopView
-{
+- (UIImageView *)scrollTopView{
     if (_scrollTopView == nil) {
         _scrollTopView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"conv_wechat_icon"]];
     }
     return _scrollTopView;
 }
-
-- (TLAddMenuView *)addMenuView
-{
+- (TLAddMenuView *)addMenuView{
     if (_addMenuView == nil) {
         _addMenuView = [[TLAddMenuView alloc] init];
         [_addMenuView setDelegate:self];
@@ -591,22 +467,18 @@
     return _addMenuView;
 }
 #pragma mark - Public Methods -
-- (void)registerCellClass
-{
+- (void)registerCellClass{
     [self.tableView registerClass:[TLConversationCell class] forCellReuseIdentifier:@"TLConversationCell"];
 }
-
 #pragma mark - Delegate -
 //MARK: TLMessageManagerConvVCDelegate
-- (void)updateConversationData
-{
+- (void)updateConversationData{
     [[TLMessageManager sharedInstance] conversationRecord:^(NSArray *data) {
         for (TLConversation *conversation in data) {
             if (conversation.convType == TLConversationTypePersonal) {
                 TLUser *user = [[TLFriendHelper sharedFriendHelper] getFriendInfoByUserID:conversation.partnerID];
                 [conversation updateUserInfo:user];
-            }
-            else if (conversation.convType == TLConversationTypeGroup) {
+            }else if (conversation.convType == TLConversationTypeGroup) {
                 TLGroup *group = [[TLFriendHelper sharedFriendHelper] getGroupInfoByGroupID:conversation.partnerID];
                 [conversation updateGroupInfo:group];
             }
@@ -615,15 +487,11 @@
         [self.tableView reloadData];
     }];
 }
-
 //MARK: UITableViewDataSource
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.data.count;
 }
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     TLConversation *conversation = [self.data objectAtIndex:indexPath.row];
     TLConversationCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TLConversationCell"];
     [cell setConversation:conversation];
@@ -631,15 +499,11 @@
     
     return cell;
 }
-
 //MARK: UITableViewDelegate
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return HEIGHT_CONVERSATION_CELL;
 }
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
     TLChatViewController *chatVC = [TLChatViewController sharedChatVC];
@@ -652,8 +516,7 @@
             return;
         }
         [chatVC setPartner:user];
-    }
-    else if (conversation.convType == TLConversationTypeGroup){
+    }else if (conversation.convType == TLConversationTypeGroup){
         TLGroup *group = [[TLFriendHelper sharedFriendHelper] getGroupInfoByGroupID:conversation.partnerID];
         if (group == nil) {
             [UIAlertView bk_alertViewWithTitle:@"错误" message:@"您不存在该讨论组"];
@@ -668,9 +531,7 @@
     // 标为已读
     [(TLConversationCell *)[self.tableView cellForRowAtIndexPath:indexPath] markAsRead];
 }
-
-- (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath{
     TLConversation *conversation = [self.data objectAtIndex:indexPath.row];
     __weak typeof(self) weakSelf = self;
     UITableViewRowAction *delAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault
@@ -700,44 +561,32 @@
     moreAction.backgroundColor = [UIColor colorWithRed:0.85 green:0.85 blue:0.85 alpha:1.0];
     return @[delAction, moreAction];
 }
-
 //MARK: UISearchBarDelegate
-- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
-{
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
     [self.searchVC setFriendsData:[TLFriendHelper sharedFriendHelper].friendsData];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
 }
-
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
-{
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
     [self.tabBarController.tabBar setHidden:YES];
 }
-
-- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
-{
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
     [self.tabBarController.tabBar setHidden:NO];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
 }
-
-- (void)searchBarBookmarkButtonClicked:(UISearchBar *)searchBar
-{
+- (void)searchBarBookmarkButtonClicked:(UISearchBar *)searchBar{
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"语音搜索按钮" message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
     [alert show];
 }
-
 //MARK: TLAddMenuViewDelegate
 // 选中了addMenu的某个菜单项
-- (void)addMenuView:(TLAddMenuView *)addMenuView didSelectedItem:(TLAddMenuItem *)item
-{
+- (void)addMenuView:(TLAddMenuView *)addMenuView didSelectedItem:(TLAddMenuItem *)item{
     if (item.className.length > 0) {
         id vc = [[NSClassFromString(item.className) alloc] init];
         [self setHidesBottomBarWhenPushed:YES];
         [self.navigationController pushViewController:vc animated:YES];
         [self setHidesBottomBarWhenPushed:NO];
-    }
-    else {
+    }else{
         [UIAlertView bk_alertViewWithTitle:item.title message:@"功能暂未实现"];
     }
 }
-
 @end

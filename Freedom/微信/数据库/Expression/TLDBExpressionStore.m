@@ -1,19 +1,11 @@
-//
 //  TLDBExpressionStore.m
-//  TLChat
-//
-//  Created by 李伯坤 on 16/4/9.
-//  Copyright © 2016年 李伯坤. All rights reserved.
-//
-
+//  Freedom
+//  Created by Super on 16/4/9.
 #import "TLDBExpressionStore.h"
 #import "TLDBExpressionSQL.h"
 #import "TLDBManager.h"
-
 @implementation TLDBExpressionStore
-
-- (id)init
-{
+- (id)init{
     if (self = [super init]) {
         self.dbQueue = [TLDBManager sharedInstance].commonQueue;
         BOOL ok = [self createTable];
@@ -23,9 +15,7 @@
     }
     return self;
 }
-
-- (BOOL)createTable
-{
+- (BOOL)createTable{
     NSString *sqlString = [NSString stringWithFormat:SQL_CREATE_EXP_GROUP_TABLE, EXP_GROUP_TABLE_NAME];
     BOOL ok = [self createTable:EXP_GROUP_TABLE_NAME withSQL:sqlString];
     if (!ok) {
@@ -35,10 +25,8 @@
     ok = [self createTable:EXPS_TABLE_NAME withSQL:sqlString];
     return ok;
 }
-
-#pragma mark - # 表情组
-- (BOOL)addExpressionGroup:(TLEmojiGroup *)group forUid:(NSString *)uid
-{
+#pragma mark - 表情组
+- (BOOL)addExpressionGroup:(TLEmojiGroup *)group forUid:(NSString *)uid{
     // 添加表情包
     NSString *sqlString = [NSString stringWithFormat:SQL_ADD_EXP_GROUP, EXP_GROUP_TABLE_NAME];
     NSArray *arr = [NSArray arrayWithObjects:
@@ -61,9 +49,7 @@
     ok = [self addExpressions:group.data toGroupID:group.groupID];
     return ok;
 }
-
-- (NSArray *)expressionGroupsByUid:(NSString *)uid
-{
+- (NSArray *)expressionGroupsByUid:(NSString *)uid{
     __block NSMutableArray *data = [[NSMutableArray alloc] init];
     NSString *sqlString = [NSString stringWithFormat: SQL_SELECT_EXP_GROUP, EXP_GROUP_TABLE_NAME, uid];
     
@@ -92,27 +78,20 @@
     
     return data;
 }
-
-- (BOOL)deleteExpressionGroupByID:(NSString *)gid forUid:(NSString *)uid
-{
+- (BOOL)deleteExpressionGroupByID:(NSString *)gid forUid:(NSString *)uid{
     NSString *sqlString = [NSString stringWithFormat:SQL_DELETE_EXP_GROUP, EXP_GROUP_TABLE_NAME, uid, gid];
     return [self excuteSQL:sqlString, nil];
 }
-
-- (NSInteger)countOfUserWhoHasExpressionGroup:(NSString *)gid
-{
+- (NSInteger)countOfUserWhoHasExpressionGroup:(NSString *)gid{
     NSString *sqlString = [NSString stringWithFormat:SQL_SELECT_COUNT_EXP_GROUP_USERS, EXP_GROUP_TABLE_NAME, gid];
     __block NSInteger count = 0;
     [self.dbQueue inDatabase:^(FMDatabase *db) {
         count = [db intForQuery:sqlString];
     }];
-
     return count;
 }
-
-#pragma mark - # 表情 
-- (BOOL)addExpressions:(NSArray *)expressions toGroupID:(NSString *)groupID
-{
+#pragma mark - 表情 
+- (BOOL)addExpressions:(NSArray *)expressions toGroupID:(NSString *)groupID{
     for (TLEmoji *emoji in expressions) {
         NSString *sqlString = [NSString stringWithFormat:SQL_ADD_EXP, EXPS_TABLE_NAME];
         NSArray *arr = [NSArray arrayWithObjects:
@@ -127,9 +106,7 @@
     }
     return YES;
 }
-
-- (NSMutableArray *)expressionsForGroupID:(NSString *)groupID
-{
+- (NSMutableArray *)expressionsForGroupID:(NSString *)groupID{
     __block NSMutableArray *data = [[NSMutableArray alloc] init];
     NSString *sqlString = [NSString stringWithFormat: SQL_SELECT_EXPS, EXPS_TABLE_NAME, groupID];
     
@@ -146,5 +123,4 @@
     
     return data;
 }
-
 @end

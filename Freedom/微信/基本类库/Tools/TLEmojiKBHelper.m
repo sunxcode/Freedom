@@ -1,47 +1,29 @@
-//
 //  TLEmojiKBHelper.m
-//  TLChat
-//
-//  Created by 李伯坤 on 16/2/20.
-//  Copyright © 2016年 李伯坤. All rights reserved.
-//
-
+//  Freedom
+// Created by Super
 #import "TLEmojiKBHelper.h"
 #import "TLExpressionHelper.h"
 #import "TLEmojiGroup.h"
-
 static TLEmojiKBHelper *helper;
-
 @interface TLEmojiKBHelper ()
-
 @property (nonatomic, strong) NSString *userID;
-
 @property (nonatomic, strong) NSMutableArray *systemEmojiGroups;
-
 @property (nonatomic, strong) void (^complete)(NSMutableArray *);
-
 @end
-
 @implementation TLEmojiKBHelper
-
-+ (TLEmojiKBHelper *)sharedKBHelper
-{
++ (TLEmojiKBHelper *)sharedKBHelper{
     static dispatch_once_t once;
     dispatch_once(&once, ^{
         helper = [[TLEmojiKBHelper alloc] init];
     });
     return helper;
 }
-
-- (void)updateEmojiGroupData
-{
+- (void)updateEmojiGroupData{
     if (self.userID && self.complete) {
         [self emojiGroupDataByUserID:self.userID complete:self.complete];
     }
 }
-
-- (void)emojiGroupDataByUserID:(NSString *)userID complete:(void (^)(NSMutableArray *))complete
-{
+- (void)emojiGroupDataByUserID:(NSString *)userID complete:(void (^)(NSMutableArray *))complete{
     self.userID = userID;
     self.complete = complete;
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
@@ -72,10 +54,8 @@ static TLEmojiKBHelper *helper;
         });
     });
 }
-
 #pragma mark - Getter -
-- (NSMutableArray *)systemEmojiGroups
-{
+- (NSMutableArray *)systemEmojiGroups{
     if (_systemEmojiGroups == nil) {
         TLEmojiGroup *editGroup = [[TLEmojiGroup alloc] init];
         editGroup.type = TLEmojiTypeOther;
@@ -84,6 +64,4 @@ static TLEmojiKBHelper *helper;
     }
     return _systemEmojiGroups;
 }
-
-
 @end

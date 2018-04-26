@@ -1,5 +1,4 @@
 
-
 #ifdef _foundation_defines
 #else
 #define Padd_b @"u_add_b"
@@ -147,5 +146,4 @@
 #define Pwvip @"u_white_vip"
 #define Pwwifi @"u_white_wifi"
 #define PuserLogo @"userLogo"
-
 #endif

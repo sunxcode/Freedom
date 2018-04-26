@@ -1,11 +1,6 @@
-//
 //  TabBarView.m
 //  CLKuGou
-//
 //  Created by Darren on 16/7/30.
-//  Copyright © 2016年 darren. All rights reserved.
-//
-
 #import "TabBarView.h"
 #import <AVFoundation/AVFoundation.h>
 #import <MediaPlayer/MediaPlayer.h>
@@ -42,7 +37,6 @@
         [self Pause];
     }
 }
-
 - (void)awakeFromNib{
     [super awakeFromNib];
     self.backgroundColor = [UIColor whiteColor];
@@ -128,7 +122,6 @@
 - (void)stopIconRotion{
     [self.IconView.layer removeAllAnimations];
 }
-
 #pragma mark - AVAudioPlayerDelegate
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag{
     [self stopIconRotion];

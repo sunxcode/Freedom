@@ -1,11 +1,6 @@
-//
 //  DetailView.m
 //  DW
-//
 //  Created by boguang on 15/6/23.
-//  Copyright (c) 2015年 micker. All rights reserved.
-//
-
 #import "DetailView.h"
 #include <objc/runtime.h>
 #define kMinZoomScale 1.0f
@@ -15,17 +10,13 @@ typedef NS_ENUM(NSInteger, DetailRefreshState) {
     DetailRefreshStateLoading,
     DetailRefreshStateTriggerd
 };
-
 typedef NS_ENUM(NSInteger, DetailRefreshViewAnimateType) {
     DetailRefreshViewAnimateTypeAttachTop,          //吸顶, 默认值
     DetailRefreshViewAnimateTypeAttachBottom,       //跟随底部
     DetailRefreshViewAnimateTypeSpeed1,             //差速，速度是底部的1/3速度；难于滑动
     DetailRefreshViewAnimateTypeSpeed2,             //差速，是底部的1/2速度；易于滑动
 };
-
-
 @implementation MFullScreenView
-
 - (instancetype) initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor clearColor];
@@ -33,7 +24,6 @@ typedef NS_ENUM(NSInteger, DetailRefreshViewAnimateType) {
     }
     return self;
 }
-
 - (UIScrollView *) scrollview {
     if (!_scrollView) {
         _scrollView = [[UIScrollView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -47,7 +37,6 @@ typedef NS_ENUM(NSInteger, DetailRefreshViewAnimateType) {
     }
     return _scrollView;
 }
-
 - (UIImageView *) imageView {
     if (!_imageView) {
         _imageView = [[UIImageView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -58,7 +47,6 @@ typedef NS_ENUM(NSInteger, DetailRefreshViewAnimateType) {
     }
     return _imageView;
 }
-
 - (UITapGestureRecognizer *) doubleTap {
     if (!_doubleTap) {
         _doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onDoubleTap:)];
@@ -67,7 +55,6 @@ typedef NS_ENUM(NSInteger, DetailRefreshViewAnimateType) {
     }
     return _doubleTap;
 }
-
 - (UITapGestureRecognizer *) singleTap {
     if (!_singleTap) {
         _singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onSingleTap:)];
@@ -78,7 +65,6 @@ typedef NS_ENUM(NSInteger, DetailRefreshViewAnimateType) {
     }
     return _singleTap;
 }
-
 - (void) onDoubleTap:(UITapGestureRecognizer *)recognizer {
     if (!self.isDoubleTapEnabled) {
         return;
@@ -93,13 +79,11 @@ typedef NS_ENUM(NSInteger, DetailRefreshViewAnimateType) {
         [self.scrollview setZoomScale:1.0 animated:YES];
     }
 }
-
 - (void) onSingleTap:(UITapGestureRecognizer *)recognizer {
     if (self.singleTapBlock) {
         self.singleTapBlock(recognizer);
     }
 }
-
 - (void) enableDoubleTap:(BOOL)isDoubleTapEnabled {
     _isDoubleTapEnabled = isDoubleTapEnabled;
     if (_isDoubleTapEnabled) {
@@ -107,13 +91,11 @@ typedef NS_ENUM(NSInteger, DetailRefreshViewAnimateType) {
         [self addGestureRecognizer:self.singleTap];
     }
 }
-
 - (void) layoutSubviews {
     [super layoutSubviews];
     _scrollView.frame = self.bounds;
     [self adjustFrame];
 }
-
 - (void) adjustFrame {
     CGRect frame = self.scrollview.frame;
     if (self.imageView.image) {
@@ -142,15 +124,12 @@ typedef NS_ENUM(NSInteger, DetailRefreshViewAnimateType) {
     }
     self.scrollview.contentOffset = CGPointZero;
 }
-
 - (void) reloadData {
     _scrollView.frame = self.bounds;
     [self adjustFrame];
 }
-
 #pragma mark ==
 #pragma mark UIScrollViewDelegate
-
 - (CGPoint) centerOfScrollViewContent:(UIScrollView *)scrollView {
     CGFloat offsetX = (scrollView.bounds.size.width > scrollView.contentSize.width) ?
     (scrollView.bounds.size.width - scrollView.contentSize.width) * 0.5 : 0.0;
@@ -160,18 +139,14 @@ typedef NS_ENUM(NSInteger, DetailRefreshViewAnimateType) {
                                        scrollView.contentSize.height * 0.5 + offsetY);
     return actualCenter;
 }
-
 #pragma mark UIScrollViewDelegate
 - (UIView *) viewForZoomingInScrollView:(UIScrollView *)scrollView {
     return self.imageView;
 }
-
 - (void) scrollViewDidZoom:(UIScrollView *)scrollView {
     self.imageView.center = [self centerOfScrollViewContent:scrollView];
 }
-
 @end
-
 @interface DetailRefreshView : UIView
 @property (nonatomic, strong) UILabel               *bottomLabel;
 @property (nonatomic, strong) UIImageView           *topImageView;
@@ -179,31 +154,18 @@ typedef NS_ENUM(NSInteger, DetailRefreshViewAnimateType) {
 @property (nonatomic, assign) DetailRefreshState    state;
 @property (nonatomic, assign) DetailRefreshViewAnimateType    animateType;
 @property (nonatomic, copy)  void (^handler)(void);
-
 @end
-
-
 #pragma mark --
 #pragma mark __DetailRefreshView
-
-
 @interface UIScrollView(__DetailRefreshView)
-
 @property (nonatomic, strong, readonly) DetailRefreshView *refreshView;
-
 - (void) addDetailRefreshWithHandler:(void (^)(void)) handler;
-
 @end
-
 @interface DetailRefreshView()
 @property (nonatomic, assign) CGFloat originalTopInset;
 @property (nonatomic, assign) CGFloat thresHold;
-
 @end
-
 @implementation DetailRefreshView
-
-
 - (id) initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
@@ -215,7 +177,6 @@ typedef NS_ENUM(NSInteger, DetailRefreshViewAnimateType) {
     }
     return self;
 }
-
 - (UILabel *) bottomLabel {
     if (!_bottomLabel) {
         _bottomLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 35, self.bounds.size.width, 18)];
@@ -226,7 +187,6 @@ typedef NS_ENUM(NSInteger, DetailRefreshViewAnimateType) {
     }
     return _bottomLabel;
 }
-
 - (UIImageView *) topImageView {
     if (!_topImageView) {
         _topImageView = [[UIImageView alloc] initWithFrame:CGRectMake((self.bounds.size.width - 25) / 2, 9, 22, 22)];
@@ -235,7 +195,6 @@ typedef NS_ENUM(NSInteger, DetailRefreshViewAnimateType) {
     }
     return _topImageView;
 }
-
 - (void) didMoveToSuperview {
     if (!self.superview) {
         [_scrollView removeObserver:self forKeyPath:@"contentOffset"];
@@ -243,35 +202,28 @@ typedef NS_ENUM(NSInteger, DetailRefreshViewAnimateType) {
         [_scrollView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
     }
 }
-
 - (void) setScrollView:(UIScrollView *)scrollView {
     _scrollView = scrollView;
     self.originalTopInset = scrollView.contentInset.top;
     [self setState:DetailRefreshStateNormal];
 }
-
 #pragma mark - Observing
-
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if([keyPath isEqualToString:@"contentOffset"])
         [self scrollViewDidScroll:[[change valueForKey:NSKeyValueChangeNewKey] CGPointValue]];
 }
-
-
 - (void)scrollViewDidScroll:(CGPoint)contentOffset {
     if (contentOffset.y > 0) {
         return;
     }
     CGFloat scrollOffsetThreshold = self.bottomLabel.bounds.size.height - self.thresHold  - self.scrollView.contentInset.top;
     if(!self.scrollView.isDragging && self.state == DetailRefreshStateLoading)
-        self.state = DetailRefreshStateTriggerd;
-    else if(contentOffset.y < scrollOffsetThreshold && self.scrollView.isDragging && self.state != DetailRefreshStateLoading)
-        self.state = DetailRefreshStateLoading;
-    else if(contentOffset.y >= scrollOffsetThreshold && self.state != DetailRefreshStateNormal)
+        self.state = DetailRefreshStateTriggerd;else if(contentOffset.y < scrollOffsetThreshold && self.scrollView.isDragging && self.state != DetailRefreshStateLoading)
+        self.state = DetailRefreshStateLoading;else if(contentOffset.y >= scrollOffsetThreshold && self.state != DetailRefreshStateNormal)
         self.state = DetailRefreshStateNormal;
     
     CGFloat offset = contentOffset.y + self.scrollView.contentInset.top;
-    //    NSLog(@"offset = %f | contentOffset= %f", offset, contentOffset.y);
+    //    DLog(@"offset = %f | contentOffset= %f", offset, contentOffset.y);
     
     //move when cross the points
     if (offset <= -self.bounds.size.height && contentOffset.y <= -self.bounds.size.height) {
@@ -295,8 +247,6 @@ typedef NS_ENUM(NSInteger, DetailRefreshViewAnimateType) {
                             self.bounds.size.width, self.bounds.size.height);
     self.alpha = (offset < 0) ? (fabs(offset * 1.5f)/self.bounds.size.height) : 0;
 }
-
-
 - (void) setState:(DetailRefreshState)state {
     if (_state != state) {
         _state = state;
@@ -331,21 +281,15 @@ typedef NS_ENUM(NSInteger, DetailRefreshViewAnimateType) {
     }
 }
 @end
-
-
 #pragma mark --
 #pragma mark -- __DetailRefreshView
-
 @implementation UIScrollView(__DetailRefreshView)
-
 - (void)setRefreshView:(DetailRefreshView *)refreshView{
     objc_setAssociatedObject(self, @selector(refreshView), refreshView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
-
 - (DetailRefreshView *) refreshView {
     return objc_getAssociatedObject(self, _cmd);
 }
-
 - (void) addDetailRefreshWithHandler:(void (^)(void)) handler {
     if (!self.refreshView) {
         DetailRefreshView *detailRefreshView = [[DetailRefreshView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, 64)];
@@ -357,38 +301,23 @@ typedef NS_ENUM(NSInteger, DetailRefreshViewAnimateType) {
     [self addSubview:self.refreshView];
     [self sendSubviewToBack:self.refreshView];
 }
-
-
 @end
-
 @interface UIScrollView (PageControl)
-
 @property (nonatomic, strong, readonly) UIPageControl *pageControl;
-
-/**
- *  显示Page控件
+/*显示Page控件
  *
  *  @return
- *
- */
+ **/
 - (void) showPageControl;
-
-/**
- *  根据当前的contentSize 及 frame.size.width,计算页数
+/*根据当前的contentSize 及 frame.size.width,计算页数
  *
  *  @return
- *
- */
+ **/
 - (void) computePageControlPages;
-
 @end
-
 @interface DetailPageControl : UIPageControl
-
 @end
-
 @implementation DetailPageControl
-
 - (void) setCurrentPage:(NSInteger)currentPage {
     [super setCurrentPage:currentPage];
     for (NSUInteger subViewIndex = 0 ; subViewIndex < [self.subviews count]; subViewIndex ++) {
@@ -400,24 +329,18 @@ typedef NS_ENUM(NSInteger, DetailRefreshViewAnimateType) {
         [imageView setFrame:rect];
     }
 }
-
 @end
-
 #pragma mark --
 #pragma mark UIScrollView (PageControl)
-
 @implementation UIScrollView (PageControl)
-
 - (UIPageControl *) pageControl {
     return  objc_getAssociatedObject(self, _cmd);
 }
-
 - (void) setPageControl:(UIPageControl *)pageControl {
     [self willChangeValueForKey:@"pageControl"];
     objc_setAssociatedObject(self, @selector(pageControl), pageControl, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     [self didChangeValueForKey:@"pageControl"];
 }
-
 - (void) showPageControl {
     if (!self.pageControl) {
         UIPageControl *control = [[DetailPageControl alloc]
@@ -431,26 +354,19 @@ typedef NS_ENUM(NSInteger, DetailRefreshViewAnimateType) {
     }
     [self.superview bringSubviewToFront:self.pageControl];
 }
-
-
 - (void) computePageControlPages {
     self.pageControl.numberOfPages = self.contentSize.width / self.frame.size.width;
     [self.pageControl setCurrentPage:(self.contentOffset.x + self.frame.size.width/2)/ self.frame.size.width];
 }
-
 @end
-
-
 @implementation MFullScreenControl {
     BOOL _isGoingOut;
     CGRect _originRect;
 }
-
 - (void) dealloc {
     _screenPageView.delegate = nil;
     _screenPageView = nil;
 }
-
 - (UIView *) contentView {
     if (!_contentView) {
         _contentView = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -458,35 +374,27 @@ typedef NS_ENUM(NSInteger, DetailRefreshViewAnimateType) {
     }
     return _contentView;
 }
-
 - (UIWindow *) screenWindow {
     if (!_screenWindow) {
         _screenWindow = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     }
     return _screenWindow;
 }
-
 - (UIImageView *) sourceImageView {
     if(!_sourceImageView) {
         _sourceImageView =  [[UIImageView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     }
     return _sourceImageView;
 }
-
-
 - (UIScrollPageControlView *) screenPageView {
     if(!_screenPageView) {
         _screenPageView = [[UIScrollPageControlView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     }
     return _screenPageView;
 }
-
-
 - (void) disAppearOnView:(UIView *) view {
     [self __imageViewHideTapAction:(UIView *) view];
 }
-
-
 - (void) appearOnView:(UIView *) view {
     self.isAppear = YES;
     self.fromView = (UIView *)view;;
@@ -518,8 +426,6 @@ typedef NS_ENUM(NSInteger, DetailRefreshViewAnimateType) {
         [_sourceImageView removeFromSuperview];
     }];
 }
-
-
 - (void) __imageViewHideTapAction:(UIView *) view {
     self.isAppear = NO;
     if(_screenWindow && !_isGoingOut) {
@@ -527,8 +433,7 @@ typedef NS_ENUM(NSInteger, DetailRefreshViewAnimateType) {
         if(view) {
             if ([view isKindOfClass:[UIImageView class]]) {
                 _sourceImageView.image = ((UIImageView *)view).image;
-            }
-            else if ([view isKindOfClass:[MFullScreenView class]]) {
+            }else if([view isKindOfClass:[MFullScreenView class]]) {
                 _sourceImageView.image = ((MFullScreenView *) view).imageView.image;
             }
             _sourceImageView.frame = [_sourceImageView.image getRectWithSize:[[UIScreen mainScreen] bounds].size];
@@ -552,49 +457,29 @@ typedef NS_ENUM(NSInteger, DetailRefreshViewAnimateType) {
     }
 }
 @end
-
-
 @class UIScrollPageControlView;
-
 #pragma mark UIView(_reuseIdentifier)
-
 @interface UIView(_reuseIdentifier)
-
 @property (nonatomic, copy) NSString *reuseIdentifier;          //复用标识
-
 @end
-
-
-
 #pragma mark --
 #pragma mark -- UIView(_reuseIdentifier)
-
 static char UIViewReuseIdentifier;
-
 @implementation UIView(_reuseIdentifier)
-
 - (void) setReuseIdentifier:(NSString *)reuseIdentifier {
     objc_setAssociatedObject(self, &UIViewReuseIdentifier, reuseIdentifier, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
-
 - (NSString *) reuseIdentifier {
     return objc_getAssociatedObject(self, &UIViewReuseIdentifier);
 }
-
 @end
-
-
 #pragma mark --
 #pragma mark -- UIView(_reuseIdentifier)
-
 @interface UIScrollPageControlView()
 @property (nonatomic, assign) NSInteger                     reuseStartIndex;    //复用的起始值，一般为-_maxReuseCount/2
 @property (nonatomic, strong) NSMutableDictionary           *reuseDictioary;    //复用的视图
 @property (nonatomic, strong) NSMutableArray                *deletateViewArrays;//超出展示区域，需要删除以备复用的视图集
-
 @end
-
-
 @implementation UIScrollPageControlView {
     NSInteger   _maxReuseCount;
     NSInteger   _totalCount;
@@ -603,7 +488,6 @@ static char UIViewReuseIdentifier;
     CGFloat     _itemSpace;
 }
 @synthesize currentView = _currentView;
-
 - (id) initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
@@ -619,34 +503,28 @@ static char UIViewReuseIdentifier;
     }
     return self;
 }
-
 - (void) setFrame:(CGRect)frame {
     [super setFrame:frame];
     _contentSize = frame.size;
 }
-
 - (void) dealloc {
     [self.scrollView removeObserver:self forKeyPath:@"contentOffset"];
     _delegate = nil;
 }
-
 #pragma mark --
 #pragma mark -- getter
-
 - (NSMutableDictionary *) reuseDictioary {
     if (!_reuseDictioary) {
         _reuseDictioary = [NSMutableDictionary dictionaryWithCapacity:_maxReuseCount];
     }
     return _reuseDictioary;
 }
-
 - (NSMutableArray *) deletateViewArrays {
     if (!_deletateViewArrays) {
         _deletateViewArrays = [NSMutableArray array];
     }
     return _deletateViewArrays;
 }
-
 - (UIScrollView *) scrollView {
     if (!_scrollView) {
         _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height)];
@@ -655,8 +533,6 @@ static char UIViewReuseIdentifier;
     }
     return _scrollView;
 }
-
-
 - (void) setCurrentIndex:(NSInteger)currentIndex {
     @synchronized(self) {
         if (_currentIndex != currentIndex && (currentIndex - _totalCount) < 0) {
@@ -673,7 +549,6 @@ static char UIViewReuseIdentifier;
         }
     }
 }
-
 - (NSString *) keyAtIndex:(NSUInteger) index {
     for (NSString *key in [self.reuseDictioary allKeys]) {
         if (index == [self indexAtString:key]) {
@@ -682,8 +557,6 @@ static char UIViewReuseIdentifier;
     }
     return @"";
 }
-
-
 - (NSInteger) indexAtString:(NSString *) key {
     NSRange rang = [key rangeOfString:@"==bg==" options:NSBackwardsSearch];
     if (rang.location != NSNotFound) {
@@ -692,7 +565,6 @@ static char UIViewReuseIdentifier;
     }
     return NSNotFound;
 }
-
 - (void) setReuseStartIndex:(NSInteger)reuseStartIndex {
     
     @synchronized(self) {
@@ -743,14 +615,12 @@ static char UIViewReuseIdentifier;
         [self computeCurrentView];
     }
 }
-
 - (void) computeCurrentView {
     UIView *currentViewWithIndex = [self.reuseDictioary objectForKey:[self keyAtIndex:self.currentIndex]];
     if (currentViewWithIndex) {
         self.currentView = currentViewWithIndex;
     }
 }
-
 - (void) setCurrentView:(UIView *)currentView {
     if (_currentView != currentView && currentView) {
         [self willChangeValueForKey:@"currentView"];
@@ -758,14 +628,12 @@ static char UIViewReuseIdentifier;
         [self didChangeValueForKey:@"currentView"];
     }
 }
-
 - (void) modifyCurrentIndex:(NSInteger) value {
     NSInteger index = value;
     if (((index + _maxReuseCount/2) >= 0) && ((_totalCount - 1 - index) >=0) ) {
         self.reuseStartIndex = index;
     }
 }
-
 - (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if ([@"contentOffset" isEqualToString:keyPath]) {
         CGFloat contentOffsetX = self.scrollView.contentOffset.x;
@@ -774,18 +642,14 @@ static char UIViewReuseIdentifier;
         }
     }
 }
-
 - (NSString *) reuseIdentifier:(NSString *) identifier index :(NSUInteger) index {
     return [NSString stringWithFormat:@"%@%@%@",identifier,@"==bg==", @(index)];
 }
-
 - (CGFloat) itemWidth {
     return (_contentSize.width + _itemSpace);
 }
-
 #pragma mark --
 #pragma mark -- Action
-
 - (void) __configItemAt:(NSUInteger) index {
     UIView *view = [self.delegate configItemOfControl:self at:index];
     CGRect viewFrame = view.frame;
@@ -798,8 +662,6 @@ static char UIViewReuseIdentifier;
         [self.scrollView addSubview:view];
     }
 }
-
-
 - (void) reloadData {
     [[self.scrollView subviews] enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([obj.reuseIdentifier length] > 0) {
@@ -824,7 +686,6 @@ static char UIViewReuseIdentifier;
     _currentView = nil;
     [self setReuseStartIndex: -_maxReuseCount / 2 + _currentIndex];
 }
-
 - (UIView *) dequeueReusableViewWithIdentifier:(NSString *) identifier {
     if (!identifier || 0 == [identifier length]) {
         return nil;
@@ -837,17 +698,12 @@ static char UIViewReuseIdentifier;
     }
     return nil;
 }
-
-
-
 @end
-
 @implementation DetailTipView {
     UIView *_leftLine , *_rightLine;
     CGFloat layerWidth;
     CGFloat layerSpace;
 }
-
 - (id) initWithFrame:(CGRect)frame {
     layerSpace = 15.0f;
     self = [super initWithFrame:frame];
@@ -867,7 +723,6 @@ static char UIViewReuseIdentifier;
     }
     return self;
 }
-
 - (void) addLeftRightLayer {
     UIColor *lineColor = [UIColor colorWithRed:206.0f/255.0f green:206.0f/255.0f blue:206.0f/255.0f alpha:0.7f];
     _leftLine = [[UIView alloc] initWithFrame:CGRectMake(layerSpace, self.bounds.size.height/2 - 1, layerWidth, 1)];
@@ -879,83 +734,53 @@ static char UIViewReuseIdentifier;
     [self addSubview:_rightLine];
 }
 @end
-
 typedef NS_ENUM(NSInteger, DetailPictureViewState) {
     DetailPictureViewStateNormal,
     DetailPictureViewStateLoading,
     DetailPictureViewStateTriggerd
 };
-
 typedef NS_ENUM(NSInteger, DetailPictureViewAnimateType) {
     DetailPictureViewAnimateTypeAttachRight,        //右边吸住，靠近边框, 默认值
     DetailPictureViewAnimateTypeAttachLeft,         //左边吸住，跟随变化
     DetailPictureViewAnimateTypeSpeed1,             //差速1
     DetailPictureViewAnimateTypeSpeed2,             //差速2
 };
-
 #pragma mark --
 #pragma mark DetailPictureView
-
 @interface DetailPictureView : UIView
-
 @property (nonatomic, strong) UILabel               *rightLabel;
 @property (nonatomic, strong) UIImageView           *leftImageView;
 @property (nonatomic, assign) UIScrollView          *scrollView;
 @property (nonatomic, assign) DetailPictureViewState state;
 @property (nonatomic, assign) DetailPictureViewAnimateType animateType;
 @property (nonatomic, copy)  void (^handler)(void);
-
 @end
-
-
-
 #pragma mark --
 #pragma mark __DetailPictureView
-
 @interface UIScrollView(__DetailPictureView)
-
 @property (nonatomic, strong, readonly) DetailPictureView *pictureView;
-
 - (void) addDetaiPictureViewWithHandler:(void (^)(void)) handler;
-
 @end
-
-
-
 #pragma mark --
 #pragma mark --Parallas
-
 @interface ParallasObject : NSObject
-
 @property (nonatomic, strong) UIScrollView    *scrollView;
 @property (nonatomic, weak) UIView          *targetView;
 @property (nonatomic, assign) BOOL          isVertical;
 @property (nonatomic, copy)  void (^handler)(void);
-
 @end
-
-
 #pragma mark --
 #pragma mark --UIScrollView(__Parallas)
-
 @interface UIScrollView(__Parallas)
-
 @property (nonatomic, strong) ParallasObject *parallas;
-
 - (void) addHorizeParallas:(UIView *) targetView block:(void (^)(void))block ;
-
 - (void) addVerticalParallas:(UIView *) targetView block:(void (^)(void))block ;
-
 @end
-
 @interface DetailPictureView()
 @property (nonatomic, assign) CGFloat originInsetY;
 @property (nonatomic, assign) CGFloat thresHold;
-
 @end
-
 @implementation DetailPictureView
-
 - (id) initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
@@ -966,7 +791,6 @@ typedef NS_ENUM(NSInteger, DetailPictureViewAnimateType) {
     }
     return self;
 }
-
 - (UILabel *) rightLabel {
     if (!_rightLabel) {
         _rightLabel = [[UILabel alloc] initWithFrame:CGRectMake(32, 0, 18, self.bounds.size.height)];
@@ -978,7 +802,6 @@ typedef NS_ENUM(NSInteger, DetailPictureViewAnimateType) {
     }
     return _rightLabel;
 }
-
 - (UIImageView *) leftImageView {
     if (!_leftImageView) {
         _leftImageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, (self.bounds.size.height - 25) / 2, 22, 22)];
@@ -987,8 +810,6 @@ typedef NS_ENUM(NSInteger, DetailPictureViewAnimateType) {
     }
     return _leftImageView;
 }
-
-
 - (void) didMoveToSuperview {
     if (!self.superview) {
         [_scrollView removeObserver:self forKeyPath:@"contentOffset"];
@@ -998,31 +819,23 @@ typedef NS_ENUM(NSInteger, DetailPictureViewAnimateType) {
         [_scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
     }
 }
-
 - (void) setScrollView:(UIScrollView *)scrollView {
     _scrollView = scrollView;
     self.originInsetY = scrollView.contentInset.top;
     [self setState:DetailPictureViewStateNormal];
 }
-
 #pragma mark - Observing
-
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if([keyPath isEqualToString:@"contentOffset"])
-        [self scrollViewDidScroll:[[change valueForKey:NSKeyValueChangeNewKey] CGPointValue]];
-    else if ([keyPath isEqualToString:@"contentSize"]) {
+        [self scrollViewDidScroll:[[change valueForKey:NSKeyValueChangeNewKey] CGPointValue]];else if ([keyPath isEqualToString:@"contentSize"]) {
         [self scrollViewDidScroll:self.scrollView.contentOffset];
     }
 }
-
-
 - (void)scrollViewDidScroll:(CGPoint)contentOffset {
     CGFloat scrollOffsetThreshold = self.scrollView.contentSize.width + self.thresHold - self.scrollView.bounds.size.width;
     if(!self.scrollView.isDragging && self.state == DetailPictureViewStateLoading)
-        self.state = DetailPictureViewStateTriggerd;
-    else if(contentOffset.x > scrollOffsetThreshold && self.scrollView.isDragging && self.state != DetailPictureViewStateLoading)
-        self.state = DetailPictureViewStateLoading;
-    else if(contentOffset.x <= scrollOffsetThreshold && self.state != DetailPictureViewStateNormal)
+        self.state = DetailPictureViewStateTriggerd;else if(contentOffset.x > scrollOffsetThreshold && self.scrollView.isDragging && self.state != DetailPictureViewStateLoading)
+        self.state = DetailPictureViewStateLoading;else if(contentOffset.x <= scrollOffsetThreshold && self.state != DetailPictureViewStateNormal)
         self.state = DetailPictureViewStateNormal;
     
     CGFloat offset = contentOffset.x + self.scrollView.contentInset.right + self.scrollView.bounds.size.width - self.scrollView.contentSize.width;
@@ -1049,8 +862,6 @@ typedef NS_ENUM(NSInteger, DetailPictureViewAnimateType) {
     
     self.frame = CGRectMake(contentOffset.x + self.scrollView.bounds.size.width - offset,0, self.bounds.size.width, self.bounds.size.height);
 }
-
-
 - (void) setState:(DetailPictureViewState)state {
     if (_state != state) {
         _state = state;
@@ -1083,25 +894,16 @@ typedef NS_ENUM(NSInteger, DetailPictureViewAnimateType) {
         }
     }
 }
-
-
-
 @end
-
-
 #pragma mark --
 #pragma mark -- UIScrollView(__DetailPictureView)
-
 @implementation UIScrollView(__DetailPictureView)
-
 - (void)setPictureView:(DetailPictureView *)pictureView {
     objc_setAssociatedObject(self, @selector(pictureView), pictureView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
-
 - (DetailPictureView *) pictureView {
     return objc_getAssociatedObject(self, _cmd);
 }
-
 - (void) addDetaiPictureViewWithHandler:(void (^)(void)) handler {
     if (!self.pictureView) {
         DetailPictureView *detailRefreshView = [[DetailPictureView alloc] initWithFrame:CGRectMake(0, self.bounds.size.width, 64, self.bounds.size.height)];
@@ -1113,21 +915,15 @@ typedef NS_ENUM(NSInteger, DetailPictureViewAnimateType) {
     [self addSubview:self.pictureView];
     [self bringSubviewToFront:self.pictureView];
 }
-
 @end
-
-
 #pragma mark --
 #pragma mark --Paralles
-
 @implementation ParallasObject
-
 - (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if ([keyPath isEqualToString:@"contentOffset"] && self.targetView ) {
         [self scrollViewDidVerticalScroll:[[change valueForKey:NSKeyValueChangeNewKey] CGPointValue]];
     }
 }
-
 - (void)scrollViewDidVerticalScroll:(CGPoint)contentOffset {
     CGRect  targetFrame         = self.targetView.frame;
     UIEdgeInsets contentInsets  = self.scrollView.contentInset;
@@ -1143,31 +939,23 @@ typedef NS_ENUM(NSInteger, DetailPictureViewAnimateType) {
         _targetView.frame = targetFrame;
     }
 }
-
 - (void) dealloc {
     [_scrollView removeObserver:self forKeyPath:@"contentOffset"];
 }
-
 - (void) setScrollView:(UIScrollView *)scrollView {
     _scrollView = scrollView;
     [_scrollView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:NULL];
 }
-
 @end
-
 #pragma mark --
 #pragma mark --UIScrollView(__Parallas)
-
 @implementation UIScrollView(__Parallas)
-
 - (void) setParallas:(ParallasObject *)parallas {
     objc_setAssociatedObject(self, @selector(parallas), parallas, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
-
 - (ParallasObject *) parallas {
     return objc_getAssociatedObject(self, _cmd);
 }
-
 - (void) addHorizeParallas:(UIView *) targetView block:(void (^)(void))block {
     if (!self.parallas) {
         ParallasObject *object = [[ParallasObject alloc] init];
@@ -1178,7 +966,6 @@ typedef NS_ENUM(NSInteger, DetailPictureViewAnimateType) {
         [self setParallas:object];
     }
 }
-
 - (void) addVerticalParallas:(UIView *) targetView block:(void (^)(void))block {
     if (!self.parallas) {
         ParallasObject *object = [[ParallasObject alloc] init];
@@ -1189,24 +976,17 @@ typedef NS_ENUM(NSInteger, DetailPictureViewAnimateType) {
         [self setParallas:object];
     }
 }
-
 @end
-
 static CGFloat animateTime  = 0.25f;
 static CGFloat paddingSpace = 60.0f;
 static CGFloat tipHeight    = 44.0f;
-
-
 @interface DetailView ()
 @property (nonatomic, strong) UIView                        *sectionView;
 @property (nonatomic, strong) UIView                        *alphaView;
 @property (nonatomic, strong) UIView                        *sectionLineView;
 @property (nonatomic, assign) BOOL                          isTriggerd;
 @property (nonatomic, assign) BOOL                          hidesForSingleTitle;    //中间的Section，是否对单个Ttitle的进行隐藏
-
-
 @end
-
 @implementation DetailView {
     __block CGFloat width, height, _middleHeight;
     NSInteger _currentIndex;
@@ -1218,7 +998,6 @@ static CGFloat tipHeight    = 44.0f;
 @synthesize tipView             = _tipView;
 @synthesize fullScreencontrol   = _fullScreencontrol;
 @synthesize topScrollPageView   = _topScrollPageView;
-
 - (id) initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
@@ -1235,14 +1014,12 @@ static CGFloat tipHeight    = 44.0f;
     }
     return self;
 }
-
 - (void) dealloc {
     _topScrollPageView.delegate = nil;
     _fullScreencontrol.screenPageView.delegate = nil;
     [_topScrollView removeObserver:self forKeyPath:@"contentOffset"];
     [_topScrollView removeObserver:self forKeyPath:@"contentSize"];
 }
-
 - (void) reloadData {
     self.isTriggerd = NO;
     if (_delegate && [_delegate respondsToSelector:@selector(viewAtTop)]) {
@@ -1258,20 +1035,17 @@ static CGFloat tipHeight    = 44.0f;
         [self.topScrollPageView reloadData];
     }
 }
-
 - (BOOL) isBottomViewShowed {
     if (_isTriggerd && self.topView.frame.origin.y >=0.0f) {
         return YES;
     }
     return NO;
 }
-
 - (void) disappearBottomView {
     if ([self isBottomViewShowed]) {
         [self hideBottomView];
     }
 }
-
 - (void) initTopScrollView {
     if (self.topScrollView) {
         return;
@@ -1279,13 +1053,11 @@ static CGFloat tipHeight    = 44.0f;
     UIView *view = [self.delegate viewAtTop];
     if ([view isKindOfClass:[UIScrollView class]]) {
         self.topScrollView = (UIScrollView *)view;
-    }
-    else if ([view isKindOfClass:[UIWebView class]]) {
+    }else if ([view isKindOfClass:[UIWebView class]]) {
         self.topScrollView = ((UIWebView *) view).scrollView;
-    }
-    else  {
+    }else {
         assert(0);
-        NSLog(@"scrollViewAtTop needs to be implemented");
+        DLog(@"scrollViewAtTop needs to be implemented");
         return;
     }
     
@@ -1295,7 +1067,6 @@ static CGFloat tipHeight    = 44.0f;
     [self.topScrollView setContentInset:UIEdgeInsetsMake(0, 0, tipHeight, 0)];
     [self.topView addSubview:view];
 }
-
 - (void) configTopScrollView {
     [self.topScrollView setContentInset:UIEdgeInsetsMake(_topScrollViewTopInset-20, 0, tipHeight, 0)];
 //    [self.topScrollView addDetailRefreshWithHandler:nil];
@@ -1309,7 +1080,6 @@ static CGFloat tipHeight    = 44.0f;
         [blockSelf addDetailPictureViewHandler];
     }];
 }
-
 - (void) addDetailPictureViewHandler {
     if (_sectionTotal == 0) {
         return ;
@@ -1327,9 +1097,7 @@ static CGFloat tipHeight    = 44.0f;
     } completion:^(BOOL finished) {
     }];
 }
-
 - (void)  hideBottomView {
-
     __weak typeof(self) blockSelf = self;
     self.isTriggerd = NO;
     [UIView animateWithDuration:animateTime animations:^{
@@ -1342,15 +1110,12 @@ static CGFloat tipHeight    = 44.0f;
         }
     }];
 }
-
 - (void) configBottomView:(UIScrollView *) scrollView {
     __weak typeof(self) weakSelf = self;
     [scrollView addDetailRefreshWithHandler:^{
         [weakSelf hideBottomView];
     }];
 }
-
-
 - (void) configBottmSectionViews {
     [[[self bottomView] subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
     if (_delegate) {
@@ -1362,7 +1127,6 @@ static CGFloat tipHeight    = 44.0f;
         [[[self sectionView] subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
         CGFloat itemWidth = width/titleTotal;
         CGRect rect = self.sectionView.frame;
-
         if (titleTotal == 1 && self.hidesForSingleTitle ) {
             _middleHeight = 0.0f;
             rect.size.height = _middleHeight;
@@ -1398,7 +1162,6 @@ static CGFloat tipHeight    = 44.0f;
             lineView.alpha = 0.5f;
             [[self sectionView] addSubview:lineView];
         }
-
         rect = self.bottomView.frame;
         float sectionHeight = _startYPosition;
         if (self.sectionView.superview) {
@@ -1418,7 +1181,6 @@ static CGFloat tipHeight    = 44.0f;
         
     }
 }
-
 - (void) didFirstShowOnBottomView {
     if (!self.sectionLineView.superview) {
         [_sectionView addSubview:self.sectionLineView];
@@ -1430,10 +1192,8 @@ static CGFloat tipHeight    = 44.0f;
         [_delegate floatViewIsGoingTo:YES];
     }
 }
-
 #pragma mark --
 #pragma mark Getter & Setter
-
 - (UIScrollPageControlView *) topScrollPageView {
     if (!_topScrollPageView) {
         _topScrollPageView = [[UIScrollPageControlView alloc] initWithFrame:CGRectMake(0, -_topScrollViewTopInset, width, _topScrollViewTopInset)];
@@ -1442,7 +1202,6 @@ static CGFloat tipHeight    = 44.0f;
     }
     return _topScrollPageView;
 }
-
 - (MFullScreenControl *) fullScreencontrol {
     if (!_fullScreencontrol) {
         _fullScreencontrol = [[MFullScreenControl alloc] init];
@@ -1456,7 +1215,6 @@ static CGFloat tipHeight    = 44.0f;
     }
     return _fullScreencontrol;
 }
-
 - (UIView *) alphaView {
     if (!_alphaView) {
         _alphaView = [[UIView alloc] initWithFrame:CGRectMake(0, -2, width, 4)];
@@ -1470,38 +1228,30 @@ static CGFloat tipHeight    = 44.0f;
     }
     return _alphaView;
 }
-
-
 - (DetailTipView *) tipView {
     if (!_tipView) {
         _tipView = [[DetailTipView alloc] initWithFrame:CGRectMake(0, height, width, tipHeight)];
     }
     return _tipView;
 }
-
 - (UIView *) topView {
     if (!_topView) {
         _topView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, height)];
     }
     return _topView;
 }
-
 - (CGRect) bottomSectionFrame {
     return CGRectMake(0, _middleHeight, width, height - _middleHeight - _startYPosition);
 }
-
-
 - (UIView *) bottomView {
     if (!_bottomView) {
         _bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, height, width, height - _startYPosition)];
     }
     return _bottomView;
 }
-
 - (UIScrollView *) imageScrollView {
     return self.topScrollPageView.scrollView;
 }
-
 - (UIView *) sectionView {
     if (!_sectionView) {
         _sectionView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, _middleHeight)];
@@ -1509,7 +1259,6 @@ static CGFloat tipHeight    = 44.0f;
     }
     return _sectionView;
 }
-
 - (UIView *) sectionLineView {
     if (!_sectionLineView) {
         _sectionLineView = [[UIView alloc] initWithFrame:CGRectMake(width, _middleHeight - 2, width, 2)];
@@ -1517,12 +1266,10 @@ static CGFloat tipHeight    = 44.0f;
     }
     return _sectionLineView;
 }
-
 - (UIScrollView *) firstScrollViewOfView:(UIView *) rootView {
     if ([rootView isKindOfClass:[UIScrollView class]]) {
         return (UIScrollView *)rootView;
-    }
-    else {
+    }else{
         __weak typeof(self) blockSelf = self;
         __block UIScrollView *scrollView = nil;
         [rootView.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -1535,7 +1282,6 @@ static CGFloat tipHeight    = 44.0f;
     }
     return nil;
 }
-
 - (void) animateContent {
     float contentStartY = _startYPosition;
     if (fabsf(contentStartY) < 1) {
@@ -1554,24 +1300,18 @@ static CGFloat tipHeight    = 44.0f;
     }
     
 }
-
 #pragma mark --
 #pragma mark Action
-
-
-
 - (void) showFullScreenOnView:(UIView *) view {
     [self.fullScreencontrol.screenPageView reloadData];
     self.fullScreencontrol.screenPageView.currentIndex = self.topScrollPageView.currentIndex;
     [self.fullScreencontrol appearOnView:view];
 }
-
 - (void) hideFullScreenOnView:(UIView *) view {
     [self.topScrollPageView.scrollView setContentOffset:CGPointMake(self.fullScreencontrol.screenPageView.currentIndex * [self.topScrollPageView itemWidth], 0)];
     [self.topScrollPageView reloadData];
     [self.fullScreencontrol disAppearOnView:view];
 }
-
 - (IBAction)sectionButtonAction:(id)sender {
     
     UIButton *button = (UIButton *) sender;
@@ -1582,7 +1322,6 @@ static CGFloat tipHeight    = 44.0f;
     NSUInteger index = button.tag - 20140830;
     
     UIView *theSectionView = [self.bottomView viewWithTag:20150830 + index];
-
     if (self.delegate && [self.delegate respondsToSelector:@selector(willChangeToSection:view:)]) {
         [self.delegate willChangeToSection:index view:theSectionView];
     }
@@ -1613,11 +1352,8 @@ static CGFloat tipHeight    = 44.0f;
     }
     
 }
-
-
 #pragma mark --
 #pragma mark Observer
-
 - (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if ([@"contentSize" isEqualToString:keyPath]) {
         [self __scrollTipView:self.topScrollView];
@@ -1625,7 +1361,6 @@ static CGFloat tipHeight    = 44.0f;
         [self __scrollAction:self.topScrollView];
     }
 }
-
 - (BOOL) __isNeedToAdjustTopScrollViewContentSize {
     CGFloat scrollSizeHeight = self.topScrollView.contentSize.height + self.topScrollView.contentInset.top + self.topScrollView.contentInset.bottom ;
     if (scrollSizeHeight  < height) {
@@ -1633,13 +1368,11 @@ static CGFloat tipHeight    = 44.0f;
     }
     return NO;
 }
-
 - (void) __adjustTopScrollViewContentSize {
     CGSize size = self.topScrollView.contentSize;
     size.height = height - (self.topScrollView.contentInset.top + self.topScrollView.contentInset.bottom);
     [self.topScrollView setContentSize:size];
 }
-
 - (void) __scrollTipView:(UIScrollView *)scrollView {
     if ([self __isNeedToAdjustTopScrollViewContentSize]) {
         [self __adjustTopScrollViewContentSize];
@@ -1647,9 +1380,7 @@ static CGFloat tipHeight    = 44.0f;
     }
     [self.tipView setFrame:CGRectMake(0, self.topScrollView.contentSize.height  , width, tipHeight)];
 }
-
 - (void)__scrollAction:(UIScrollView *)scrollView {
-
     if (scrollView == self.topScrollView && _sectionTotal > 0  && ![self __isNeedToAdjustTopScrollViewContentSize]) {
         CGSize contentSize          = scrollView.contentSize;
         CGPoint contentOffset       = scrollView.contentOffset;
@@ -1672,7 +1403,5 @@ static CGFloat tipHeight    = 44.0f;
             }
         }
     }
-
 }
-
 @end

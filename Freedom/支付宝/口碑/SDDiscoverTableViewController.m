@@ -1,4 +1,3 @@
-//
 //  SDDiscoverTableViewController.m
 //  GSD_ZHIFUBAO
 #import "SDDiscoverTableViewController.h"
@@ -7,17 +6,11 @@
 #import "SDAssetsTableViewControllerCellModel.h"
 #import "SDBasicTableViewControllerCell.h"
 @interface SDDiscoverTableViewHeaderItemButton : UIButton
-
 @property (nonatomic, copy) NSString *imageName;
 @property (nonatomic, copy) NSString *title;
-
 @end
-
-
 @implementation SDDiscoverTableViewHeaderItemButton
-
-- (instancetype)initWithFrame:(CGRect)frame
-{
+- (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         [self setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         self.titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -26,9 +19,7 @@
     }
     return self;
 }
-
-- (CGRect)imageRectForContentRect:(CGRect)contentRect
-{
+- (CGRect)imageRectForContentRect:(CGRect)contentRect{
     CGFloat x = contentRect.size.width * 0.2;
     CGFloat y = contentRect.size.height * 0.15;
     CGFloat w = contentRect.size.width - x * 2;
@@ -36,65 +27,41 @@
     CGRect rect = CGRectMake(x, y, w, h);
     return rect;
 }
-
-- (CGRect)titleRectForContentRect:(CGRect)contentRect
-{
+- (CGRect)titleRectForContentRect:(CGRect)contentRect{
     CGRect rect = CGRectMake(0, contentRect.size.height * 0.65, contentRect.size.width, contentRect.size.height * 0.3);
     return rect;
 }
-
-- (void)setTitle:(NSString *)title
-{
+- (void)setTitle:(NSString *)title{
     _title = title;
     
     [self setTitle:title forState:UIControlStateNormal];
 }
-
-- (void)setImageName:(NSString *)imageName
-{
+- (void)setImageName:(NSString *)imageName{
     _imageName = imageName;
     
     [self setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
     
 }
-
-
-
 @end
-
 @interface SDDiscoverTableViewHeader : UIView
-
 @property (nonatomic, strong) NSArray *headerItemModelsArray;
-
 @property (nonatomic, copy) void (^buttonClickedOperationBlock)(NSInteger index);
-
 @end
-
 // --------------------------SDDiscoverTableViewHeaderItemModel-----------
-
 @interface SDDiscoverTableViewHeaderItemModel : NSObject
-
 @property (nonatomic, copy) NSString *imageName;
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) Class destinationControllerClass;
-
 + (instancetype)modelWithTitle:(NSString *)title imageName:(NSString *)imageName destinationControllerClass:(Class)destinationControllerClass;
-
 @end
-
-
 @implementation SDDiscoverTableViewHeader
-
-- (instancetype)initWithFrame:(CGRect)frame
-{
+- (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor whiteColor];
     }
     return self;
 }
-
-- (void)setHeaderItemModelsArray:(NSArray *)headerItemModelsArray
-{
+- (void)setHeaderItemModelsArray:(NSArray *)headerItemModelsArray{
     _headerItemModelsArray = headerItemModelsArray;
     
     [headerItemModelsArray enumerateObjectsUsingBlock:^(SDDiscoverTableViewHeaderItemModel *model, NSUInteger idx, BOOL *stop) {
@@ -106,9 +73,7 @@
         [self addSubview:button];
     }];
 }
-
-- (void)layoutSubviews
-{
+- (void)layoutSubviews{
     [super layoutSubviews];
     
     if (self.subviews.count == 0) return;
@@ -118,30 +83,21 @@
         button.frame = CGRectMake(idx * w, 0, w, h);
     }];
 }
-
-- (void)buttonClickd:(SDDiscoverTableViewHeaderItemButton *)button
-{
+- (void)buttonClickd:(SDDiscoverTableViewHeaderItemButton *)button{
     if (self.buttonClickedOperationBlock) {
         self.buttonClickedOperationBlock(button.tag);
     }
 }
-
 @end
-
-
 @implementation SDDiscoverTableViewHeaderItemModel
-
-+ (instancetype)modelWithTitle:(NSString *)title imageName:(NSString *)imageName destinationControllerClass:(Class)destinationControllerClass
-{
++ (instancetype)modelWithTitle:(NSString *)title imageName:(NSString *)imageName destinationControllerClass:(Class)destinationControllerClass{
     SDDiscoverTableViewHeaderItemModel *model = [[SDDiscoverTableViewHeaderItemModel alloc] init];
     model.title = title;
     model.imageName = imageName;
     model.destinationControllerClass = destinationControllerClass;
     return model;
 }
-
 @end
-
 @interface SDDiscoverTableViewControllerCell : SDBasicTableViewControllerCell
 @end
 @implementation SDDiscoverTableViewControllerCell
@@ -160,15 +116,10 @@
 }
 @end
 @interface SDDiscoverTableViewController ()
-
 @property (nonatomic, strong) NSArray *headerDataArray;
-
 @end
-
 @implementation SDDiscoverTableViewController
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
       self.navigationItem.title = @"口碑";
     self.cellClass = [SDDiscoverTableViewControllerCell class];
@@ -180,9 +131,7 @@
     self.sectionsNumber = self.dataArray.count;
     
 }
-
-- (void)setupHeader
-{
+- (void)setupHeader{
     SDDiscoverTableViewHeaderItemModel *model0 = [SDDiscoverTableViewHeaderItemModel modelWithTitle:@"红包" imageName:@"adw_icon_apcoupon_normal" destinationControllerClass:[SDBasicTableViewController class]];
     
     SDDiscoverTableViewHeaderItemModel *model1 = [SDDiscoverTableViewHeaderItemModel modelWithTitle:@"电子券" imageName:@"adw_icon_coupon_normal" destinationControllerClass:[SDBasicTableViewController class]];
@@ -206,9 +155,7 @@
     };
     self.tableView.tableHeaderView = header;
 }
-
-- (void)setupModel
-{
+- (void)setupModel{
     // section 0 的model
     SDAssetsTableViewControllerCellModel *model01 = [SDAssetsTableViewControllerCellModel modelWithTitle:@"淘宝电影" iconImageName:@"adw_icon_movie_normal" destinationControllerClass:[SDBasicTableViewController class]];
     
@@ -219,32 +166,22 @@
     // section 1 的model
     SDAssetsTableViewControllerCellModel *model11 = [SDAssetsTableViewControllerCellModel modelWithTitle:@"我的朋友" iconImageName:@"adw_icon_contact_normal" destinationControllerClass:[SDBasicTableViewController class]];
     
-
     
     self.dataArray = @[@[model01, model02, model03],
                        @[model11]
                        ];
 }
-
 #pragma mark - delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     SDAssetsTableViewControllerCellModel *model = [self.dataArray[indexPath.section] objectAtIndex:indexPath.row];
     UIViewController *vc = [[model.destinationControllerClass alloc] init];
     vc.title = model.title;
     [self.navigationController pushViewController:vc animated:YES];
 }
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 20;
 }
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return (section == self.dataArray.count - 1) ? 10 : 0;
 }
-
-
 @end

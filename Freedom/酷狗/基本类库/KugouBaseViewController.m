@@ -1,14 +1,11 @@
-//
 //  KugouBaseViewController.m
-//  Created by 薛超 on 16/8/31.
-//  Copyright © 2016年 薛超. All rights reserved.
+//  Created by Super on 16/8/31.
+//  Copyright © 2016年 Super. All rights reserved.
 //
-
 #import "KugouBaseViewController.h"
 #define ItemImagewidth 20.0f
 #define ItemButtonwidth 50.0f
 @interface KugouBaseViewController ()
-
 @end
 @implementation KugouBaseViewController
 - (void)viewDidLoad {
@@ -24,13 +21,10 @@
     [self addleftItem:@""];
     [self addrightItem:@""];
 }
-
 -(void)setTitle:(NSString *)title{
     self.titleLabel.text = title;
 }
-/**
- *  添加NavBar
- */
+/*添加NavBar*/
 -(void)setNavBar{
     _navBar = [[UIView alloc] initWithFrame:CGRectMake(0, 0,APPW, 64)];
     _titleLabel = [[UILabel alloc] init];
@@ -54,7 +48,6 @@
 -(void)addBackItem{
     self.backItem.image = [UIImage imageNamed:@"backButton"];
 }
-
 -(UIImageView *)backItem{
     if (!_backItem){
         _backItem = [[UIImageView alloc]init];
@@ -67,10 +60,8 @@
     }
     return _backItem;
 }
-/**
- *  添加左按钮，传入图片名
- *  @param leftItemImageName
- */
+/*添加左按钮，传入图片名
+ *  @param leftItemImageName*/
 -(void)addleftItem:(NSString *)leftItemImageName{
     if (leftItemImageName.length!=0){
         if (_backItem!=nil) {
@@ -88,10 +79,8 @@
         _leftItem.frame = CGRectMake(5, 28, ItemImagewidth, ItemImagewidth);
     }return _leftItem;
 }
-/**
- *  添加右按钮，传入图片名
- *  @param rightItemImageName
- */
+/*添加右按钮，传入图片名
+ *  @param rightItemImageName*/
 -(void)addrightItem:(NSString *)rightItemImageName{
     if (rightItemImageName.length!=0){
         self.rightItem.image = [UIImage imageNamed:rightItemImageName];
@@ -107,10 +96,8 @@
         _rightItem.frame = CGRectMake(APPW-35, 28, ItemImagewidth, ItemImagewidth);
     }return _rightItem;
 }
-/**
- *  添加左侧按钮。传入一个Title
- *  @param Title
- */
+/*添加左侧按钮。传入一个Title
+ *  @param Title*/
 - (void)addleftButton:(NSString *)Title{
     if (Title.length!=0){
         [self.leftButton setTitle:Title forState:0];
@@ -126,10 +113,8 @@
         _leftButton.frame = CGRectMake(5, 28, ItemButtonwidth, ItemImagewidth);
     }return _leftButton;
 }
-/**
- *  添加右侧按钮。传入一个Title
- *  @param Title
- */
+/*添加右侧按钮。传入一个Title
+ *  @param Title*/
 - (void)addrightButton:(NSString *)Title{
     if (Title.length!=0){
         [self.rightButton setTitle:Title forState:0];
@@ -149,16 +134,16 @@
     [self goBack];
 }
 -(void)leftItemTouched:(id)sender{
-    NSLog(@"用到图片的时候重写leftItemTouched方法");
+    DLog(@"用到图片的时候重写leftItemTouched方法");
 }
 - (void)rightItemTouched:(id)sender{
-    NSLog(@"用到图片的时候重写rightItemTouched方法");
+    DLog(@"用到图片的时候重写rightItemTouched方法");
 }
 - (void)leftButtonClick:(id)sender{
-    NSLog(@"用到按钮的时候重写leftButtonClick方法");
+    DLog(@"用到按钮的时候重写leftButtonClick方法");
 }
 - (void)rightButtonClick:(id)sender{
-    NSLog(@"用到按钮的时候重写rightButtonClick方法");
+    DLog(@"用到按钮的时候重写rightButtonClick方法");
 }
 -(void)goBack{
     NSArray* vcarr = [self.navigationController viewControllers];
@@ -169,4 +154,3 @@
     }
 }
 @end
-

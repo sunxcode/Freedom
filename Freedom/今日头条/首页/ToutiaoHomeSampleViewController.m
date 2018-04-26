@@ -1,9 +1,7 @@
-//
 //  ToutiaoHomeSampleViewController.m
-//  Created by 薛超 on 17/1/11.
-//  Copyright © 2017年 薛超. All rights reserved.
+//  Created by Super on 17/1/11.
+//  Copyright © 2017年 Super. All rights reserved.
 //
-
 #import "ToutiaoHomeSampleViewController.h"
 #import "ToutiaoHomeDetailViewController.h"
 #import <XCategory/UILabel+expanded.h>
@@ -128,6 +126,4 @@
     NSDictionary *dict = self.tableView.dataArray[indexPath.row];
     [self pushController:[ToutiaoHomeDetailViewController class] withInfo:dict withTitle:dict[@"title"]];
 }
-
 @end
-

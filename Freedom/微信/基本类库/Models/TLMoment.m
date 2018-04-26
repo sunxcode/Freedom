@@ -1,11 +1,6 @@
-//
 //  TLMoment.m
-//  TLChat
-//
-//  Created by 李伯坤 on 16/4/7.
-//  Copyright © 2016年 李伯坤. All rights reserved.
-//
-
+//  Freedom
+// Created by Super
 #import "TLMoment.h"
 @implementation TLMoment
 - (id)init{
@@ -18,10 +13,8 @@
     }
     return self;
 }
-
-#pragma mark - # Getter
-- (TLMomentFrame *)momentFrame
-{
+#pragma mark - 
+- (TLMomentFrame *)momentFrame{
     if (_momentFrame == nil) {
         _momentFrame = [[TLMomentFrame alloc] init];
         _momentFrame.height = 76.0f;
@@ -30,10 +23,6 @@
     }
     return _momentFrame;
 }
-
 @end
-
-
 @implementation TLMomentFrame
-
 @end

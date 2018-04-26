@@ -1,15 +1,12 @@
-//
 //  TaobaoViewController.m
 #import "TaobaoHomeViewController.h"
 #import <XCategory/UIGestureRecognizer+expanded.h>
+#import <Masonry/Masonry.h>
 //cell等比高
 #define cell_height(i) APPW*((i)/375.0f)
 @interface YYFPSLabel : UILabel
-
 @end
-
 #define kSize CGSizeMake(70, 22)
-
 @implementation YYFPSLabel {
     CADisplayLink *_link;
     NSUInteger _count;
@@ -19,7 +16,6 @@
     
     NSTimeInterval _llll;
 }
-
 - (instancetype)initWithFrame:(CGRect)frame {
     if (frame.size.width == 0 && frame.size.height == 0) {
         frame.size = kSize;
@@ -45,15 +41,12 @@
     [_link addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
     return self;
 }
-
 - (void)dealloc {
     [_link invalidate];
 }
-
 - (CGSize)sizeThatFits:(CGSize)size {
     return kSize;
 }
-
 - (void)tick:(CADisplayLink *)link {
     if (_lastTime == 0) {
         _lastTime = link.timestamp;
@@ -75,10 +68,7 @@
     self.attributedText = text;
     self.textColor = color;
 }
-
 @end
-
-
 @interface TitlesImageViewFull : UIView
 @property (nonatomic, strong) UILabel *title;
 @property (nonatomic, strong) UILabel *subtitle;
@@ -104,28 +94,27 @@
     [self addSubview:_subtitle];
     [self addSubview:_iconview];
     [self addSubview:_imageview];
-    [_title makeConstraints:^(MASConstraintMaker *make) {
+    [self.title mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.equalTo(0);
-        make.width.greaterThanOrEqualTo(40);
-        make.height.equalTo(14);
+        make.width.greaterThanOrEqualTo(@40);
+        make.height.equalTo(@14);
     }];
-    [_iconview makeConstraints:^(MASConstraintMaker *make) {
+    [self.iconview mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(0);
-        make.left.equalTo(_title.right).offset(4);
-        make.width.greaterThanOrEqualTo(10);
-        make.height.equalTo(_title.height);
+        make.left.equalTo(_title.mas_right).offset(4);
+        make.width.greaterThanOrEqualTo(@10);
+        make.height.equalTo(_title.mas_height);
     }];
-    [_subtitle makeConstraints:^(MASConstraintMaker *make) {
+    [self.subtitle mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(0);
-        make.top.equalTo(_title.bottom).offset(3);
-        make.height.equalTo(12);
+        make.top.equalTo(_title.mas_bottom).offset(3);
+        make.height.equalTo(@12);
     }];
-    [_imageview makeConstraints:^(MASConstraintMaker *make) {
+    [self.imageview mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(0);
-        make.top.equalTo(_subtitle.bottom).offset(3);
+        make.top.equalTo(_subtitle.mas_bottom).offset(3);
     }];
 }
-
 - (void)setTitle:(NSString *)str1 subTitle:(NSString *)str2 size1:(CGFloat)s1 size2:(CGFloat)s2 color1:(UIColor *)c1 color2:(UIColor *)c2 {
     _title.text = str1;
     _title.textColor = c1;
@@ -133,11 +122,11 @@
     _subtitle.text = str2;
     _subtitle.textColor = c2;
     _subtitle.font = [UIFont systemFontOfSize:s2];
-    [_title updateConstraints:^(MASConstraintMaker *make) {
-        make.height.equalTo(s1);
+    [_title mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.height.equalTo([NSNumber numberWithFloat:s1]);
     }];
-    [_subtitle updateConstraints:^(MASConstraintMaker *make) {
-        make.height.equalTo(s2);
+    [_subtitle mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.height.equalTo([NSNumber numberWithFloat:s2]);
     }];
     [self layoutIfNeeded];
 }
@@ -145,16 +134,17 @@
     _imageview.image = img;
     _iconview.image  = icon;
 }
-- (void)setPadding:(CGFloat)padding {
-    [_title updateConstraints:^(MASConstraintMaker *make) {
+- (void)setPadding:(CGFloat)paddingfloat {
+    NSNumber *padding = [NSNumber numberWithFloat:paddingfloat];
+    [_title mas_updateConstraints:^(MASConstraintMaker *make) {
         make.left.top.equalTo(padding);
     }];
-    [_subtitle updateConstraints:^(MASConstraintMaker *make) {
+    [_subtitle mas_updateConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(padding);
     }];
-    [_imageview updateConstraints:^(MASConstraintMaker *make) {
+    [_imageview mas_updateConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(padding);
-        make.right.equalTo(-padding);
+        make.right.equalTo([NSNumber numberWithFloat:-paddingfloat]);
     }];
     [self layoutIfNeeded];
 }
@@ -219,13 +209,13 @@
     [view3 setTitle:@"搭配控" subTitle:@"我有我的fan" size1:14 size2:12 color1:[UIColor orangeColor] color2:[UIColor lightGrayColor]];
     [view3 setImage:[UIImage imageNamed:@"mini3.png"] titleIcon:nil];
     [view1 addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithActionBlock:^(id sender) {
-        [TaobaoTools show:@"红人圈"];
+        [FreedomTools show:@"红人圈"];
     }]];
     [view2 addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithActionBlock:^(id sender) {
-        [TaobaoTools show:@"视频直播"];
+        [FreedomTools show:@"视频直播"];
     }]];
     [view3 addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithActionBlock:^(id sender) {
-        [TaobaoTools show:@"搭配控"];
+        [FreedomTools show:@"搭配控"];
     }]];
     UILabel *subscrib = [[UILabel alloc]initWithFrame:CGRectMake(10, YH(mainView)-20, APPW-100, 20)];
     subscrib.text = @"小秘书为你精选推荐的N个达人";
@@ -417,10 +407,10 @@
     [view2 setImage:[UIImage imageNamed:@"05.jpg"] titleIcon:nil];
     [view1 setPadding:8];[view2 setPadding:8];
     [view1 addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithActionBlock:^(id sender) {
-        [TaobaoTools show:@"家具"];
+        [FreedomTools show:@"家具"];
     }]];
     [view2 addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithActionBlock:^(id sender) {
-        [TaobaoTools show:@"女装"];
+        [FreedomTools show:@"女装"];
     }]];
     UIImageView *footimage = [[UIImageView alloc]initWithFrame:CGRectMake(0, YH(mainView), W(self), 80)];
     footimage.image = [UIImage imageNamed:@"image2.jpg"];
@@ -457,7 +447,7 @@
         [view setPadding:8];
         view.backgroundColor = [UIColor whiteColor];
         [view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithActionBlock:^(id sender) {
-            [TaobaoTools show:dic[@"title"]];
+            [FreedomTools show:dic[@"title"]];
         }]];
         [mainView addSubview:view];
     }
@@ -468,7 +458,6 @@
 @implementation Headview1 {
     UIScrollView *scroll;
 }
-
 - (id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {[self initUI];}return self;
@@ -574,7 +563,7 @@
     [ttv2 setData:_dataArr[1] str:_dataArr[1]];
     __weak TaoTiaoView *weak_ttv = ttv1;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithActionBlock:^(id sender) {
-        [TaobaoTools show:[weak_ttv toString]];
+        [FreedomTools show:[weak_ttv toString]];
     }];
     [scroll addGestureRecognizer:tap];
     [scroll setContentSize:CGSizeMake(sWidth, sHeight *2)];
@@ -641,7 +630,6 @@
     UILabel *subTitle;
     UIImageView *imageview;
 }
-
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {[self initUI];}return self;
@@ -667,26 +655,6 @@
     imageview.image = aImage;
 }
 @end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //FIXME: 以下是正式的VC
 @interface TaobaoHomeViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 @property (nonatomic ,strong) UICollectionView *grid;
@@ -694,7 +662,6 @@
 @property (nonatomic, strong) NSArray *sectionArr;
 @property (nonatomic, strong) UILabel *msgLab;
 @end
-
 @implementation TaobaoHomeViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -775,7 +742,6 @@
     }
     return gridcell;
 }
-
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     UICollectionReusableView *reusableview = nil;
     if (indexPath.section == 0) {
@@ -804,10 +770,10 @@
     }
     return reusableview;
 }
-
 //item 宽高
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0) {//9宫格组//减1去除误差//DLog(@"########%f", (SCREEN_W-4-4-1)/5;
+    if (indexPath.section == 0) {//9宫格组//减1去除误差
+        //DLog(@"########%f", (SCREEN_W-4-4-1)/5;
         return CGSizeMake((APPW-4-4-1)/5 , APPW/5 + 20);
     }
     if (indexPath.section == 1) {//乱七八糟组

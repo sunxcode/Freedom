@@ -1,13 +1,9 @@
-//
 //  PersonalApplyNavigationController.m
 //  Freedom
+//  Created by Super on 16/9/5.
+//  Copyright © 2016年 Super. All rights reserved.
 //
-//  Created by 薛超 on 16/9/5.
-//  Copyright © 2016年 薛超. All rights reserved.
-//
-
 #import "PersonalApplyNavigationController.h"
-
 @implementation PersonalApplyNavigationController
 //第一次使用这个类的时候调用一次
 +(void)initialize{
@@ -19,5 +15,4 @@
     titleAttr[NSForegroundColorAttributeName] = [UIColor orangeColor];
     [item setTitleTextAttributes:titleAttr forState:UIControlStateNormal];
 }
-
 @end

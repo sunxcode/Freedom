@@ -1,20 +1,11 @@
-//
 //  DetailViewController.m
 //  WFCoretext
-//
-//  Created by 阿虎 on 14/10/28.
-//  Copyright (c) 2014年 tigerwf. All rights reserved.
-//
-
+//  Created by Super on 14/10/28.
 #import "DetailViewController.h"
 #import "E_ScrollViewController.h"
-
 @interface DetailViewController ()
-
 @end
-
 @implementation DetailViewController
-
 - (void)viewDidLoad {
     
     [super viewDidLoad];
@@ -35,11 +26,9 @@
    
     // Do any additional setup after loading the view.
 }
-
 - (void)backToPre{
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
-
 - (void)push{
     E_ScrollViewController *loginvctrl = [[E_ScrollViewController alloc] init];
     [self presentViewController:loginvctrl animated:NO completion:nil];
@@ -49,15 +38,12 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 /*
 #pragma mark - Navigation
-
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
 */
-
 @end

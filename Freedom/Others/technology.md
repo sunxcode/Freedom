@@ -1,4 +1,5 @@
-## 前言
+#
+# 前言
 本框架是由薛超为期一周时间设计的用于iOS_APP开发的框架，分类清晰，设计巧妙，封装性好。如果在使用中遇到什么问题可以及时修改优化本框架。
 熟练使用本框架的人基本掌握了以下开发能力:
 * 1、掌握C/Objective-C /CocoaTouch编程，对Swift略有涉猎。
@@ -12,8 +13,8 @@
 * 9、熟悉NSUserDefault、Plist和Json等数据持久化技术及网络数据的解析。
 * 10、了解地图定位、定制大头针、搜索、导航、地理编码与反编码等功能。
 * 11、高新技术：二维码、摇一摇、蓝牙技术、发短信打电话发邮件、应用间切换、本地通知。
-
-##简介
+#
+#简介
 薛超APP框架是集合了以下功能系列：
 1.是主流的APP框架，四个tabBar，分别为首页、服务、发现、我的。
 2.启动从storyboard和APPDelegate启动，首先会启动utility/BaseFile/HomeTabBarController，该类调用自定义的HomeTabBar和HomeNavigationController。
@@ -30,8 +31,8 @@
 13.Others文件夹存放平时少用到的系统文件，如Coredata，AppDelegate，PrefixHeader，main，info，readme等。
 14.utility存放开发过程中经常用到的方法，分别封装在对应的类之中。
 15.resource和Assets用于存放开发中要用到的本地文件，如图片、plist、txt等。框架采用cocoapods，详情可见Podfile，详细记录使用了那些三方库，它们的功能及网址。
-
-##更新记录
+#
+#更新记录
 * 1、使用Cocoapods建立了整个APP系统层，包括网络请求框架，图片缓存框架，JSON与对象，友盟分享，SharedSDK，提示性信息，数据库，即时聊天，特效以及其他系列功能架构。                 2016.09.01
 * 2、建立了整个APP辅助层，包括各个系统类功能的扩展、分类和继承以及基本类，如BaseViewController，categorys,手动导入的三方库。                                              2016.09.02
 * 3、完善了APP整个框架的基本配置，如info.plist,PrefixHeader,Foundation,README记录,封装了工具类Utility，导入了应用中可能用到的系列库(Linked Frameworks and Libraries)。  2016.09.03
@@ -40,23 +41,23 @@
 * 6、建立了基本的数据库系列，如icons.txt  TotalData  UserData.plist  MyCoreData.xcdatamodeld  Coredata.json                                                     2016.09.06
 * 7、引入了APP整个系列功能要用到的通用图片。                                                                                                                      2016.09.07
 * 8、修复了已知bug和冲突，如MRC与ARC，Objective和Swift，配置了APPICON，LaunchScreen，真机测试运行成功。                                                              2016.09.08
-
-##未完成的功能
+#
+#未完成的功能
 * 1、微信支付
 * 2、支付宝支付
 * 3、第三方登录与分享
 * 4、即时聊天
 * 5、蓝牙
 * 6、远程推送
-
-##个人简介
+#
+#个人简介
 1.	本人酷爱互联网行业的软件开发工作，做事积极负责，有很强的内驱力。
 2.	基础扎实，思路清晰，有良好的编程习惯，结构清晰，命名规范，逻辑性强，代码冗余率低。
 3.	具有较强需求分析、逻辑思维、程序设计、技术钻研精神。
 4.	另外心思缜密，创新意识，文档写作，组织协调沟通与表达以及团队合作的能力。
 5.	自学能力强，勇于面对和克服困难，能承受较大的工作压力。
-
-##高新技术
+#
+#高新技术
 1.支付宝相关功能接入:支付 会员 营销 理财 开店 社交功能。 https://open.alipay.com/platform/home.htm
 2.微信相关功能接入:移动应用开发 网站应用开发 公众号开发 公众号第三方开发  支付 登录 分享 收藏 图像识别 语音识别 语音合成 语义理解。 https://open.weixin.qq.com
 3.MOB接入:社会化分享 免费短信验证码 手游录像分享 MobAPI。 http://www.mob.com
@@ -77,10 +78,6 @@
 17.百度阅读接入:http://yuedu.baidu.com
 18.腾讯接入:http://open.qq.com
 19.阿里巴巴接入:https://open.1688.com
-
-
-
-
 高端案例
 指纹识别登录 https://github.com/zonghongyan/EVNTouchIDDemo
 iOS操作HTML5页面及JS交互 http://www.jianshu.com/p/8ceb99e154f7 http://blog.csdn.net/zhangmengleiblog/article/details/51801994 http://www.cnblogs.com/wanxudong/p/5581367.html
@@ -95,9 +92,8 @@ iOS开发系列--扩展http://www.cnblogs.com/kenshincui/p/5644803.html
 iOS开发系列--Kenshin博客 http://www.cnblogs.com/kenshincui/default.aspx
 iOS语音通话（语音对讲）http://blog.csdn.net/u011619283/article/details/39613335
 史上最全的开源库整理http://blog.csdn.net/u010551217/article/details/52946139  http://blog.csdn.net/liu1039950258/article/details/51656144
-
-
-##支付心得
+#
+#支付心得
 //IOS之收集到的很好的网址（博客，网站）http://www.cnblogs.com/goodboy-heyang/category/733290.html
 //GitHub 上有哪些完整的 iOS-App 源码值得参考？http://www.cnblogs.com/goodboy-heyang/p/5248379.html
 //酷炫动画github源码下载地址：https://github.com/lichtschlag/Dazzle
@@ -128,7 +124,6 @@ iOS语音通话（语音对讲）http://blog.csdn.net/u011619283/article/details
 使用alipaySDK需要在buildsettings searchPath header  增加这一行："$(SRCROOT)/薛超APP框架/ThirdSDK/alipaySDK"
 支付宝样例http://www.jianshu.com/p/b3063678c462
 */
-
 #pragma mark 支付宝分享
 /*1.导入alipayShareSDK然后做一般情况下相应的配置。
 2.在AppDelegate遵守APOpenAPIDelegate协议，在didFinishLaunching方法中注册申请的appID：[APOpenAPI registerApp:@"alisdkdemo"]，在application:openURL方法中[APOpenAPI handleOpenURL:url delegate:self]
@@ -138,7 +133,6 @@ iOS语音通话（语音对讲）http://blog.csdn.net/u011619283/article/details
 //  第三方应用程序发送一个sendReq后，收到支付宝的响应结果*resp : 第三方应用收到的支付宝的响应结果类，目前支持的类型包括 APSendMessageToAPResp(分享消息)
 - (void)onResp:(APBaseResp*)resp{}
 */
-
 #pragma mark 苹果官方支付https://developer.apple.com https://developer.apple.com/apple-pay/
 /*1.不用导入三方库，也不用在AppDelegate中设置什么。target导入PassKit.framework库。
 2.注册 Merchant ID。使用 Apple Pay 的前提是必须注册一个 `Merchant ID`
@@ -154,9 +148,9 @@ c. 在 `Apple Pay` 中点击 `Edit`，然后选择你刚才生成的 `Merchant I
 a. 在开发者后台选择 [Provisioning Profiles 标签](https://developer.apple.com/account/ios/profile/profileList.action) ，根据刚才的 `App ID` 生成 `Profile`，完成后下载文件，双击文件完成导入
 b. 创建 Xcode 项目，设置相应的 `Bundle ID`。完成后在项目的 `TARGETS` 项中选择 `Capabilities` 标签，打开 `Apple Pay` 选项并配置相应的 `Merchant ID` </br>
 c.打开wallet，设置allow all。![Xcode project settings](imgs/xcode_project_settings.png)
-5. 开发。在开发中需要用的类#import <PassKit/PassKit.h>并遵守<PKPaymentAuthorizationViewControllerDelegate>协议。实现见Wechart&AlipayViewController。如有疑问查看ApplePay文件夹图片。
+5. 开发。在开发中需要用的类
+#import <PassKit/PassKit.h>并遵守<PKPaymentAuthorizationViewControllerDelegate>协议。实现见Wechart&AlipayViewController。如有疑问查看ApplePay文件夹图片。
 */
-
 #pragma mark 银联支付https://open.unionpay.com/ajweb/index
 /*1.接入银联必须先注册银联开发账号，然后按照指引往下走。https://open.unionpay.com/ajweb/help/toPage
 2.选择银联服务产品查看说明然后登陆商户服务系统选择创建相应的服务https://open.unionpay.com/ajweb/product https://merchant.unionpay.com/portal/
@@ -165,7 +159,6 @@ c.打开wallet，设置allow all。![Xcode project settings](imgs/xcode_project_
 5.参考API进行开发 https://open.unionpay.com/ajweb/help/api
 详情见Wechart&AlipayViewController
 */
-
 #pragma mark 连连支付 https://apple.lianlianpay.com/OpenPlatform/
 /*
 1.接入连连支付ApplePay必须注册连连开发账号。邮箱激活即可获得AppID。创建应用。在苹果官网登陆apple账号注册Merchant ID。下载连连的csr文件上传到苹果并下载对应的cer证书，上传该cer证书到连连并提交。
@@ -173,7 +166,6 @@ c.打开wallet，设置allow all。![Xcode project settings](imgs/xcode_project_
 3.下载LianlianSDK，查看连连技术文档，开始开发。https://apple.lianlianpay.com/OpenPlatform/technical_documents.jsp
 4.其中有个静态库.a与支付宝的静态库冲突，删除即可：libRsaCrypto.a
 */
-
 #pragma mark QQ钱包支付 http://qpay.qq.com/
 /*
 1.接入QQ钱包必须注册QQ钱包开发账号。填写经营信息、商户信息、结算账户、提交审核、验证账户、签署协议、接入成功。
@@ -182,7 +174,3 @@ c.打开wallet，设置allow all。![Xcode project settings](imgs/xcode_project_
 */
 #pragma mark web支付 https://www.baidu.com
 //直接跳转支付的网页即可，说明略。
-
-
-
-

@@ -1,8 +1,7 @@
-//
 //  XFHomeViewController+Views.h
 //  Freedom
 //  Created by Super on 2017/11/3.
-//  Copyright © 2017年 薛超. All rights reserved.
+//  Copyright © 2017年 Super. All rights reserved.
 #import "XFHomeViewController.h"
 // 昵称字体
 #define XFStatusCellNameFont [UIFont systemFontOfSize:15]
@@ -121,5 +120,4 @@ typedef enum {
 +(instancetype)cellWithTableView:(UITableView *)tableView;
 @end
 @interface XFHomeViewController (Views)
-
 @end

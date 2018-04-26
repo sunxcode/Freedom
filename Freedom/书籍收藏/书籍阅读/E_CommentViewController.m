@@ -1,19 +1,10 @@
-//
 //  E_CommentViewController.m
-//  WFReader
-//
-//  Created by 阿虎 on 15/2/27.
-//  Copyright (c) 2015年 tigerwf. All rights reserved.
-//
-
+//  Freedom
+//  Created by Super on 15/2/27.
 #import "E_CommentViewController.h"
-
 @interface E_CommentViewController ()
-
 @end
-
 @implementation E_CommentViewController
-
 - (void)viewDidLoad {
     
     [super viewDidLoad];
@@ -24,7 +15,6 @@
     titleLbl.font = [UIFont systemFontOfSize:20];
     titleLbl.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:titleLbl];
-
     
     UIButton *backBtn = [UIButton buttonWithType:0];
     backBtn.frame = CGRectMake(10, 20, 60, 44);
@@ -39,31 +29,21 @@
     introLbl.textAlignment = NSTextAlignmentCenter;
     introLbl.backgroundColor = [UIColor clearColor];
     [self.view addSubview:introLbl];
-
 }
-
-
-
-
 - (void)backToFront{
    
     [self dismissViewControllerAnimated:YES completion:NULL];
-
 }
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 /*
 #pragma mark - Navigation
-
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
 */
-
 @end

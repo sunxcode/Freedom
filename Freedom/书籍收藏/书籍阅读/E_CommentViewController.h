@@ -1,15 +1,7 @@
-//
 //  E_CommentViewController.h
-//  WFReader
-//
-//  Created by 阿虎 on 15/2/27.
-//  Copyright (c) 2015年 tigerwf. All rights reserved.
-//
-
+//  Freedom
+//  Created by Super on 15/2/27.
 #import <UIKit/UIKit.h>
-/**
- *  评论视图控制器
- */
+/*评论视图控制器*/
 @interface E_CommentViewController : UIViewController
-
 @end

@@ -1,31 +1,18 @@
-//
 //  TLAddMenuHelper.m
-//  TLChat
-//
-//  Created by 李伯坤 on 16/3/11.
-//  Copyright © 2016年 李伯坤. All rights reserved.
-//
-
+//  Freedom
+// Created by Super
 #import "TLAddMenuHelper.h"
-
 @interface TLAddMenuHelper ()
-
 @property (nonatomic, strong) NSArray *menuItemTypes;
-
 @end
-
 @implementation TLAddMenuHelper
-
-- (id)init
-{
+- (id)init{
     if (self = [super init]) {
         _menuItemTypes = @[@"0", @"1", @"2", @"3"];
     }
     return self;
 }
-
-- (NSMutableArray *)menuData
-{
+- (NSMutableArray *)menuData{
     if (_menuData == nil) {
         _menuData = [[NSMutableArray alloc] init];
         for (NSString *type in self.menuItemTypes) {
@@ -35,9 +22,7 @@
     }
     return _menuData;
 }
-
-- (TLAddMenuItem *)p_getMenuItemByType:(TLAddMneuType)type
-{
+- (TLAddMenuItem *)p_getMenuItemByType:(TLAddMneuType)type{
     switch (type) {
         case TLAddMneuTypeGroupChat:        // 群聊
             return  [TLAddMenuItem createWithType:TLAddMneuTypeGroupChat title:@"发起群聊" iconPath:@"nav_menu_groupchat" className:@""];
@@ -55,5 +40,4 @@
             break;
     }
 }
-
 @end

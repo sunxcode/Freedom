@@ -1,17 +1,11 @@
-//
 //  XFMessageViewController.m
-//  Weibo
-//
+//  Freedom
 //  Created by Fay on 15/9/13.
-//  Copyright (c) 2015年 Fay. All rights reserved.
-//
-
 #import "XFMessageViewController.h"
 #import "XFMessageChartViewController.h"
 @interface XFMessageViewController ()
 @property(nonatomic,strong) UISearchBar *searchBar;
 @end
-
 @implementation XFMessageViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -23,13 +17,10 @@
     searchBar.placeholder = @"大家都在搜：男模遭趴光";
     return searchBar;
 }
-
 #pragma mark - Table view data source
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 20;
 }
@@ -54,15 +45,10 @@
     return cell;
     
 }
-
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     UIStoryboard *StoryBoard = [UIStoryboard storyboardWithName:@"Sina" bundle:nil];
     [self presentViewController:[StoryBoard instantiateViewControllerWithIdentifier:@"XFMessageChartViewController"] animated:YES completion:nil];
 }
-
-
-
-
 @end
 // 版权属于原作者
 // http://code4app.com (cn) http://code4app.net (en)

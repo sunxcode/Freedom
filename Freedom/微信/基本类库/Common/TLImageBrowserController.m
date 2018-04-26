@@ -1,67 +1,45 @@
-//
 //  TLImageBrowserController.m
-//  TLChat
-//
-//  Created by 李伯坤 on 16/5/1.
-//  Copyright © 2016年 李伯坤. All rights reserved.
-//
-
+//  Freedom
+// Created by Super
 #import "TLImageBrowserController.h"
-
 @interface TLImageBrowserController () <UIScrollViewDelegate>
-
 @property (nonatomic, strong) UIScrollView *scrollView;
-
 @property (nonatomic, strong) UIImageView *curImageView;
-
 @end
-
 @implementation TLImageBrowserController
-
-- (id)initWithImages:(NSArray *)images curImageIndex:(NSInteger)index curImageRect:(CGRect)rect
-{
+- (id)initWithImages:(NSArray *)images curImageIndex:(NSInteger)index curImageRect:(CGRect)rect{
     if (self = [super init]) {
         self.images = images;
         self.curIndex = index;
     }
     return self;
 }
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
     [self.view setBackgroundColor:[UIColor blackColor]];
     [self.scrollView setFrame:self.view.bounds];
     [self.view addSubview:self.scrollView];
 }
-
-- (void)viewDidAppear:(BOOL)animated
-{
+- (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
     [imageView setImage:[UIImage imageNamed:self.images[0]]];
     [self.scrollView addSubview:imageView];
     self.curImageView = imageView;
-
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self.view removeFromSuperview];
     });
 }
-
-- (void)show
-{
+- (void)show{
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
     [window addSubview:self.view];
 }
-
-#pragma mark - # Delegate
-- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
-{
+#pragma mark - 
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView{
     return self.curImageView;
 }
-
 -(void)scrollViewDidZoom:(UIScrollView *)scrollView{
     CGSize originalSize=_scrollView.bounds.size;
     CGSize contentSize=_scrollView.contentSize;
@@ -70,10 +48,8 @@
     
     self.curImageView.center=CGPointMake(contentSize.width/2+offsetX, contentSize.height/2+offsetY);
 }
-
-#pragma mark - # Getter
-- (UIScrollView *)scrollView
-{
+#pragma mark - 
+- (UIScrollView *)scrollView{
     if (_scrollView == nil) {
         _scrollView = [[UIScrollView alloc] init];
         [_scrollView setDelegate:self];
@@ -87,5 +63,4 @@
     }
     return _scrollView;
 }
-
 @end

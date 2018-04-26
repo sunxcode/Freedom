@@ -1,18 +1,10 @@
-//
 //  E_ListView.m
-//  WFReader
-//
-//  Created by 阿虎 on 15/2/15.
-//  Copyright (c) 2015年 tigerwf. All rights reserved.
-//
-
+//  Freedom
+//  Created by Super on 15/2/15.
 #import "E_ListView.h"
 #import "E_ReaderDataSource.h"
 #import "E_MarkTableViewCell.h"
-
-
 @implementation E_ListView
-
 - (id)initWithFrame:(CGRect)frame{
     
     if (self = [super initWithFrame:frame]) {
@@ -29,7 +21,6 @@
     }
     return self;
 }
-
 - (void)panEListView:(UIPanGestureRecognizer *)recongnizer{
     CGPoint touchPoint = [recongnizer locationInView:self];
     switch (recongnizer.state) {
@@ -41,7 +32,7 @@
         case UIGestureRecognizerStateChanged:{
             CGFloat offSetX = touchPoint.x - _panStartX;
             CGRect newFrame = self.frame;
-            //NSLog(@"offSetX == %f",offSetX);
+            //DLog(@"offSetX == %f",offSetX);
             newFrame.origin.x += offSetX;
             if (newFrame.origin.x >= 0){//试图向上滑动 阻止
                
@@ -78,12 +69,7 @@
         default:
             break;
     }
-
-
 }
-
-
-
 - (void)configListView{
     
     _isMenu = YES;
@@ -109,9 +95,7 @@
     [self addSubview:otherBtn];
     
 }
-
 - (void)configListViewHeader{
-
     NSArray *segmentedArray = @[@"目录",@"书签"];
     _segmentControl = [[UISegmentedControl alloc] initWithItems:segmentedArray];
     _segmentControl.frame = CGRectMake(15, 30, self.bounds.size.width - 30 , 40);
@@ -121,9 +105,7 @@
     [_segmentControl addTarget:self action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];
     NSDictionary *dict = [NSDictionary dictionaryWithObject:[UIFont systemFontOfSize:17] forKey:NSFontAttributeName];
     [_segmentControl setTitleTextAttributes:dict forState:0];
-
 }
-
 - (void)segmentAction:(UISegmentedControl *)sender{
     
     NSInteger index = sender.selectedSegmentIndex;
@@ -157,8 +139,6 @@
             break;
     }
 }
-
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
   
     if (_isMark) {
@@ -167,8 +147,6 @@
     
     return 50;
 }
-
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
     if (_isMark) {
@@ -177,7 +155,6 @@
     return dataCount;
     
 }
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (_isMark) {
@@ -186,10 +163,7 @@
     }
     
     [_delegate clickChapter:indexPath.row];
-
 }
-
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (_isMenu == YES) {
@@ -201,7 +175,6 @@
         cell.backgroundColor = [UIColor clearColor];
         cell.textLabel.text = [NSString stringWithFormat:@"第%ld章",indexPath.row + 1];
         return cell;
-
     }else if(_isMark){
         
         static NSString *cellStr = @"markCell";
@@ -228,7 +201,6 @@
     }
     return nil;
 }
-
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -236,5 +208,4 @@
     // Drawing code
 }
 */
-
 @end

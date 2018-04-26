@@ -1,10 +1,6 @@
-//
 //  JFDiscoverViewController.m
-//  JFTuDou
-//
-//  Created by 保修一站通 on 15/10/9.
-//  Copyright © 2015年 JF. All rights reserved.
-////  项目详解：
+//  Freedom
+//  Created by Freedom on 15/10/9.//  项目详解：
 //  github:https://github.com/tubie/JFTudou
 //  简书：http://www.jianshu.com/p/2156ec56c55b
 #import "JFDiscoverViewController.h"
@@ -86,7 +82,7 @@
     self.discoverTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         _dataSource = [[NSMutableArray alloc] init];
         _imageArray = [[NSMutableArray alloc] init];
-        NSString *urlStr =[[GetUrlString sharedManager]urlWithDiscoverData];
+        NSString *urlStr =[[FreedomTools sharedManager]urlWithDiscoverData];
         [NetBase GET:urlStr parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             [self.discoverTableView.mj_header endRefreshing];
             NSString *hotWord = [responseObject objectForKey:@"search_hot_word"];
@@ -145,11 +141,10 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row != 0 ) {
         JFWebViewController *webVC = [[JFWebViewController alloc]init];
-        webVC.urlStr = [[GetUrlString sharedManager]urlWithJianShuData];
+        webVC.urlStr = [[FreedomTools sharedManager]urlWithJianShuData];
         [self.navigationController pushViewController:webVC animated:YES];
     }
 }
-
 #pragma mark - JFImageScrollViewDelegate
 -(void)didSelectImageAtIndex:(NSInteger)index{
     JFDiscoverModel *disM = _dataSource[0];
@@ -157,9 +152,5 @@
     JFVideoDetailViewController  *videoVC = [[JFVideoDetailViewController alloc] init];
     videoVC.iid = code;
     [self.navigationController pushViewController:videoVC animated:YES];
-
 }
-
-
-
 @end

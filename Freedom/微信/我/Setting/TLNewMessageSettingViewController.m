@@ -1,33 +1,20 @@
-//
 //  TLNewMessageSettingViewController.m
-//  TLChat
-//
-//  Created by 李伯坤 on 16/2/8.
-//  Copyright © 2016年 李伯坤. All rights reserved.
-//
-
+//  Freedom
+//  Created by Super on 16/2/8.
 #import "TLNewMessageSettingViewController.h"
 #import "TLSettingGroup.h"
-
 @interface TLNewMessageSettingHelper : NSObject
-
 @property (nonatomic, strong) NSMutableArray *mineNewMessageSettingData;
-
 @end
-
 @implementation TLNewMessageSettingHelper
-
-- (id) init
-{
+- (id) init{
     if (self = [super init]) {
         self.mineNewMessageSettingData = [[NSMutableArray alloc] init];
         [self p_initTestData];
     }
     return self;
 }
-
-- (void) p_initTestData
-{
+- (void) p_initTestData{
     TLSettingItem *item1 = TLCreateSettingItem(@"接受新消息通知");
     item1.subTitle = @"已开启";
     item1.showDisclosureIndicator = NO;
@@ -52,17 +39,11 @@
     
     [self.mineNewMessageSettingData addObjectsFromArray:@[group1, group2, group3, group4, group5]];
 }
-
 @end
-
 @interface TLNewMessageSettingViewController ()
-
 @property (nonatomic, strong) TLNewMessageSettingHelper *helper;
-
 @end
-
 @implementation TLNewMessageSettingViewController
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationItem setTitle:@"新消息通知"];
@@ -70,5 +51,4 @@
     self.helper = [[TLNewMessageSettingHelper alloc] init];
     self.data = self.helper.mineNewMessageSettingData;
 }
-
 @end

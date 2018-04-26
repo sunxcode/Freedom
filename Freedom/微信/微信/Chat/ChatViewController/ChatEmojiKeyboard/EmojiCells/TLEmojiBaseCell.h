@@ -1,25 +1,12 @@
-//
 //  TLEmojiBaseCell.h
-//  TLChat
-//
-//  Created by 李伯坤 on 16/3/9.
-//  Copyright © 2016年 李伯坤. All rights reserved.
-//
-
+//  Freedom
+// Created by Super
 #import <UIKit/UIKit.h>
 #import "TLEmoji.h"
-
 @interface TLEmojiBaseCell : UICollectionViewCell
-
 @property (nonatomic, strong) TLEmoji *emojiItem;
-
 @property (nonatomic, strong) UIImageView *bgView;
-
-/**
- *  选中时的背景图片，默认nil
- */
+/*选中时的背景图片，默认nil*/
 @property (nonatomic, strong) UIImage *highlightImage;
-
 @property (nonatomic, assign) BOOL showHighlightImage;
-
 @end

@@ -1,11 +1,6 @@
-//
 //  DZHomeController.m
-//  Shop
-//
-//  Created by dengwei on 15/12/1.
-//  Copyright (c) 2015年 dengw. All rights reserved.
-//
-
+//  Freedom
+//  Created by Super on 15/12/1.
 #import "DZHomeController.h"
 #import <XCategory/UILabel+expanded.h>
 @interface DZHomeViewCell1 : BaseCollectionViewCell
@@ -129,7 +124,6 @@
     [self addSubview:DZtoutiaoV];
 }
 @end
-
 @interface DZHomeHeadView2 : UICollectionReusableView{
     UILabel *titleLabel;
 }
@@ -182,7 +176,6 @@
     self.collectionView.delegate = self;
     [self.view addSubview:self.collectionView];
 }
-
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     if (section == 0)return 1;if (section == 1)return 6;if (section == 2)return 8;return 20;
 }
@@ -203,7 +196,6 @@
     }
     return cell;
 }
-
 //FIXME: collectionViewDelegate
 //item 尺寸
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -258,6 +250,4 @@
     NSString *log = [NSString stringWithFormat:@"你选择的是%zd，%zd", indexPath.section, indexPath.row];
     [SVProgressHUD showSuccessWithStatus:log];DLog(@"%@",log);
 }
-
-
 @end

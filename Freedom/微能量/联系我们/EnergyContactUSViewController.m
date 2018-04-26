@@ -1,11 +1,8 @@
-//
 //  EnergyContactUSViewController.m
 //  Freedom
+//  Created by Super on 16/9/5.
+//  Copyright © 2016年 Super. All rights reserved.
 //
-//  Created by 薛超 on 16/9/5.
-//  Copyright © 2016年 薛超. All rights reserved.
-//
-
 #import "EnergyContactUSViewController.h"
 #import "EnergyContactDetailViewController.h"
 @interface EnergyContactUSViewCell:BaseTableViewCell
@@ -18,7 +15,6 @@
     self.title.frame = CGRectMake(XW(self.icon)+20,  (80 - 20)/2.0,APPW-XW(self.icon), 20);
     self.line.frame = CGRectMake(Boardseperad, 79, APPW-2*Boardseperad, 1);
 }
-
 -(void)setDataWithDict:(NSDictionary *)dict{
     self.title.text = (NSString*)dict;
     self.icon.image = [UIImage imageNamed:@"taobaomini3"];
@@ -50,7 +46,6 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [SVProgressHUD showErrorWithStatus:alertErrorTxt];
     }];
-
     self.tableView = [[BaseTableView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH-64)];
     [self fillTheTableDataWithHeadV:banner footV:nil canMove:NO canEdit:NO headH:0 footH:0 rowH:80 sectionN:1 rowN:6 cellName:@"EnergyContactUSViewCell"];
     self.tableView.dataArray = [NSMutableArray arrayWithObjects:@"一键导航",@"关注公众号",@"查看历史消息",@"微信营销交流",@"客服聊天",@"诚聘精英",nil];
@@ -63,7 +58,4 @@
     [self pushController:[EnergyContactDetailViewController class] withInfo:nil withTitle:value withOther:value];
     
 }
-
 @end
-
-

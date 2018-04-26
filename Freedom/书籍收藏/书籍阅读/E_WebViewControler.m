@@ -1,17 +1,8 @@
-//
 //  E_WebViewControler.m
-//  WFReader
-//
-//  Created by 阿虎 on 15/3/3.
-//  Copyright (c) 2015年 tigerwf. All rights reserved.
-//
-
+//  Freedom
+//  Created by Super on 15/3/3.
 #import "E_WebViewControler.h"
-
-
 @implementation E_WebViewControler
-
-
 - (id)initWithSelectString:(NSString *)selectString{
     
     if (self = [super init]) {
@@ -23,12 +14,9 @@
         
         self.view.backgroundColor = [UIColor whiteColor];
         
-
     }
     return self;
-
 }
-
 - (void)viewDidLoad {
     
     [super viewDidLoad];
@@ -66,21 +54,16 @@
     
     NSURLRequest *req = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.iciba.com/%@",_selectString]]];
     [_webView loadRequest:req];
-
 }
-
 - (void)backToFront{
     
     [self dismissViewControllerAnimated:YES completion:NULL];
     
 }
-
 #pragma mark - NJKWebViewProgressDelegate
 -(void)webViewProgress:(NJKWebViewProgress *)webViewProgress updateProgress:(float)progress{
     
     [_progressView setProgress:progress animated:YES];
    
 }
-
-
 @end

@@ -1,11 +1,7 @@
-//
 //  XFEmotion.m
 //  
-//
 //  Created by Fay on 15/10/18.
 //
-//
-
 #import "XFEmotion.h"
 #import "MJExtension.h"
 // 一页中最多3行
@@ -16,29 +12,22 @@
 #define XFEmotionPageSize ((XFEmotionMaxRows * XFEmotionMaxCols) - 1)
 // 最近表情的存储路径
 #define XFRecentEmotionsPath [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"emotions.archive"]
-
 @interface XFEmotion () <NSCoding>
 @end
 @implementation XFEmotion
 MJCodingImplementation
-- (BOOL)isEqual:(XFEmotion *)other
-{
+- (BOOL)isEqual:(XFEmotion *)other{
     return [self.chs isEqualToString:other.chs] || [self.code isEqualToString:other.code];
 }
-
 @end
-
 @class XFEmotionTabBar;
 @protocol XFEmotionTabBarDelegate <NSObject>
 @optional
 - (void)emotionTabBar:(XFEmotionTabBar *)tabBar didSelectButton:(XFEmotionTabBarButtonType)buttonType;
 @end
-
 @interface XFEmotionTabBarButton : UIButton
-
 @end
 @implementation XFEmotionTabBarButton
-
 - (id)initWithFrame:(CGRect)frame {
     
     self = [super initWithFrame:frame];
@@ -53,25 +42,20 @@ MJCodingImplementation
     }
     return self;
 }
-
 //重写highlight方法，取消掉高亮状态
 -(void)setHighlighted:(BOOL)highlighted {
     
     
     
 }
-
 @end
 @interface XFEmotionTabBar : UIView
 @property (nonatomic, weak) id<XFEmotionTabBarDelegate> delegate;
 @end
-
 @interface XFEmotionTabBar()
 @property (nonatomic, weak) XFEmotionTabBarButton *selectedBtn;
 @end
-
 @implementation XFEmotionTabBar
-
 -(id)initWithFrame:(CGRect)frame {
     
     self = [super initWithFrame:frame];
@@ -86,12 +70,9 @@ MJCodingImplementation
     }
     return self;
 }
-
-/**
- *  创建一个按钮
+/*创建一个按钮
  *
- *  @param title 按钮文字
- */
+ *  @param title 按钮文字*/
 - (XFEmotionTabBarButton *)setupBtn:(NSString *)title buttonType:(XFEmotionTabBarButtonType)buttonType {
     
     XFEmotionTabBarButton *btn = [[XFEmotionTabBarButton alloc]init];
@@ -124,7 +105,6 @@ MJCodingImplementation
     return btn;
     
 }
-
 //重写delegate 方法
 -(void)setDelegate:(id<XFEmotionTabBarDelegate>)delegate {
     
@@ -135,11 +115,7 @@ MJCodingImplementation
     
     
 }
-
-
-/**
- *  按钮点击
- */
+/*按钮点击*/
 - (void)btnClick:(XFEmotionTabBarButton *)btn {
     
     self.selectedBtn.enabled = YES;
@@ -153,8 +129,7 @@ MJCodingImplementation
     
     
 }
-- (void)layoutSubviews
-{
+- (void)layoutSubviews{
     [super layoutSubviews];
     
     // 设置按钮的frame
@@ -169,13 +144,9 @@ MJCodingImplementation
         btn.frameHeight = btnH;
     }
 }
-
-
 @end
-
 @implementation XFEmotionAttachment
-- (void)setEmotion:(XFEmotion *)emotion
-{
+- (void)setEmotion:(XFEmotion *)emotion{
     
     _emotion = emotion;
     
@@ -185,9 +156,7 @@ MJCodingImplementation
 // 版权属于原作者
 // http://code4app.com (cn) http://code4app.net (en)
 // 发布代码于最专业的源码分享网站: Code4App.com
-
 @implementation XFTextView
-
 -(id)initWithFrame:(CGRect)frame {
     
     self = [super initWithFrame:frame];
@@ -203,9 +172,6 @@ MJCodingImplementation
     return self;
     
 }
-
-
-
 -(void)setPlaceholder:(NSString *)placeholder {
     
     _placeholder = [placeholder copy];
@@ -214,15 +180,12 @@ MJCodingImplementation
     
     
 }
-
-
 -(void)setPlaceholderColor:(UIColor *)placeholderColor {
     
     _placeholderColor = placeholderColor;
     [self setNeedsDisplay];
     
 }
-
 -(void)setText:(NSString *)text {
     
     [super setText:text];
@@ -230,39 +193,31 @@ MJCodingImplementation
     [self setNeedsDisplay];
     
 }
-
-
-- (void)setFont:(UIFont *)font
-{
+- (void)setFont:(UIFont *)font{
     [super setFont:font];
     
     [self setNeedsDisplay];
 }
-
 //移除通知
 -(void)dealloc {
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
 }
-
 -(void)setAttributedText:(NSAttributedString *)attributedText {
     
     [super setAttributedText:attributedText];
     [self setNeedsDisplay];
     
 }
-
 /**
- * 监听文字改变
- */
+ * 监听文字改变*/
 -(void)textDidChange {
     
     //重绘
     [self setNeedsDisplay];
     
 }
-
 -(void)drawRect:(CGRect)rect {
     
     if (self.hasText) return;
@@ -282,23 +237,18 @@ MJCodingImplementation
     
     
 }
-
 @end
 // 版权属于原作者
 // http://code4app.com (cn) http://code4app.net (en)
 // 发布代码于最专业的源码分享网站: Code4App.com
-
 @implementation XFEmotionTextView
-
-- (id)initWithFrame:(CGRect)frame
-{
+- (id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
     }
     return self;
 }
-
 -(void)insertEmotion:(XFEmotion *)emotion {
     
     if (emotion.code) {
@@ -341,9 +291,7 @@ MJCodingImplementation
     
     
 }
-
-- (NSString *)fullText
-{
+- (NSString *)fullText{
     NSMutableString *fullText = [NSMutableString string];
     
     // 遍历所有的属性文字（图片、emoji、普通文字）
@@ -362,7 +310,6 @@ MJCodingImplementation
     
     return fullText;
 }
-
 /**
  selectedRange :
  1.本来是用来控制textView的文字选中范围
@@ -372,37 +319,28 @@ MJCodingImplementation
  1.如果是普通文字（text），文字大小由textView.font控制
  2.如果是属性文字（attributedText），文字大小不受textView.font控制，应该利用NSMutableAttributedString的- (void)addAttribute:(NSString *)name value:(id)value range:(NSRange)range;方法设置字体
  **/
-
 @end
 // 版权属于原作者
 // http://code4app.com (cn) http://code4app.net (en)
 // 发布代码于最专业的源码分享网站: Code4App.com
-
 @interface XFEmotionPageView : UIView
 /** 这一页显示的表情（里面都是XFEmotion模型） */
 @property (nonatomic, strong) NSArray *emotions;
-
 @end
-
 @class XFEmotion;
 @interface XFEmotionTool : NSObject
 + (void)addRecentEmotion:(XFEmotion *)emotion;
 + (NSArray *)recentEmotions;
 @end
 @implementation XFEmotionTool
-
 static NSMutableArray *_recentEmotions;
-
-+ (void)initialize
-{
++ (void)initialize{
     _recentEmotions = [NSKeyedUnarchiver unarchiveObjectWithFile:XFRecentEmotionsPath];
     if (_recentEmotions == nil) {
         _recentEmotions = [NSMutableArray array];
     }
 }
-
-+ (void)addRecentEmotion:(XFEmotion *)emotion
-{
++ (void)addRecentEmotion:(XFEmotion *)emotion{
     // 删除重复的表情
     [_recentEmotions removeObject:emotion];
     
@@ -412,50 +350,37 @@ static NSMutableArray *_recentEmotions;
     // 将所有的表情数据写入沙盒
     [NSKeyedArchiver archiveRootObject:_recentEmotions toFile:XFRecentEmotionsPath];
 }
-
-/**
- *  返回装着XFEmotion模型的数组
- */
-+ (NSArray *)recentEmotions
-{
+/*返回装着XFEmotion模型的数组*/
++ (NSArray *)recentEmotions{
     return _recentEmotions;
 }
 @end
 // 版权属于原作者
 // http://code4app.com (cn) http://code4app.net (en)
 // 发布代码于最专业的源码分享网站: Code4App.com
-
 @class XFEmotion;
 @interface XFEmotionButton : UIButton
 @property (nonatomic, strong) XFEmotion *emotion;
-
 @end
 // 版权属于原作者
 // http://code4app.com (cn) http://code4app.net (en)
 // 发布代码于最专业的源码分享网站: Code4App.com
-
 @implementation XFEmotionButton
-- (id)initWithFrame:(CGRect)frame
-{
+- (id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
         [self setup];
     }
     return self;
 }
-
-
-- (void)setup
-{
+- (void)setup{
     self.titleLabel.font = [UIFont systemFontOfSize:32];
     
     // 按钮高亮的时候。不要去调整图片（不要调整图片会灰色）
     self.adjustsImageWhenHighlighted = NO;
     //    self.adjustsImageWhenDisabled
 }
-
-- (void)setEmotion:(XFEmotion *)emotion
-{
+- (void)setEmotion:(XFEmotion *)emotion{
     _emotion = emotion;
     
     if (emotion.png) { // 有图片
@@ -465,21 +390,16 @@ static NSMutableArray *_recentEmotions;
         [self setTitle:emotion.code.emoji forState:UIControlStateNormal];
     }
 }
-
 @end
 // 版权属于原作者
 // http://code4app.com (cn) http://code4app.net (en)
 // 发布代码于最专业的源码分享网站: Code4App.com
-
 @interface XFEmotionPageView ()
 /** 删除按钮 */
 @property (nonatomic, weak) UIButton *deleteButton;
-
-
 @end
 @implementation XFEmotionPageView
-- (id)initWithFrame:(CGRect)frame
-{
+- (id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
         UIButton *deleteButton = [[UIButton alloc]init];
@@ -491,7 +411,6 @@ static NSMutableArray *_recentEmotions;
     }
     return self;
 }
-
 -(void)setEmotions:(NSArray *)emotions {
     
     _emotions = emotions;
@@ -509,7 +428,6 @@ static NSMutableArray *_recentEmotions;
     
     
 }
-
 //监听删除按钮点击
 -(void)deleteClick {
     
@@ -517,8 +435,7 @@ static NSMutableArray *_recentEmotions;
     
     
 }
--(void)btnClick:(XFEmotionButton *)btn
-{
+-(void)btnClick:(XFEmotionButton *)btn{
     
     [self selectEmotion:btn.emotion];
     
@@ -537,10 +454,6 @@ static NSMutableArray *_recentEmotions;
     
     
 }
-
-
-
-
 -(void)layoutSubviews {
     
     [super layoutSubviews];
@@ -565,7 +478,6 @@ static NSMutableArray *_recentEmotions;
 // 版权属于原作者
 // http://code4app.com (cn) http://code4app.net (en)
 // 发布代码于最专业的源码分享网站: Code4App.com
-
 @interface XFEmotionListView : UIView
 /** 表情(里面存放的XFEmotion模型) */
 @property (nonatomic, strong) NSArray *emotions;
@@ -573,13 +485,9 @@ static NSMutableArray *_recentEmotions;
 @interface XFEmotionListView ()<UIScrollViewDelegate>
 @property (nonatomic,weak) UIScrollView *scrollView;
 @property (nonatomic,weak) UIPageControl *pageControl;
-
 @end
-
 @implementation XFEmotionListView
-
-- (id)initWithFrame:(CGRect)frame
-{
+- (id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
         
@@ -606,8 +514,6 @@ static NSMutableArray *_recentEmotions;
     }
     return self;
 }
-
-
 // 根据emotions，创建对应个数的表情
 -(void)setEmotions:(NSArray *)emotions {
     
@@ -642,8 +548,6 @@ static NSMutableArray *_recentEmotions;
     [self setNeedsLayout];
     
 }
-
-
 -(void)layoutSubviews {
     
     [super layoutSubviews];
@@ -671,7 +575,6 @@ static NSMutableArray *_recentEmotions;
     self.scrollView.contentSize = CGSizeMake(count * self.scrollView.frameWidth, 0);
     
 }
-
 #pragma mark - scrollViewDelegate
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView {
     
@@ -682,9 +585,7 @@ static NSMutableArray *_recentEmotions;
     
 }
 @end
-
 @interface XFEmotionKeyboard()<XFEmotionTabBarDelegate>
-
 /** 保存正在显示listView */
 @property (nonatomic, weak) XFEmotionListView *showingListView;
 /** 表情内容 */
@@ -692,18 +593,12 @@ static NSMutableArray *_recentEmotions;
 @property (nonatomic, strong) XFEmotionListView *defaultListView;
 @property (nonatomic, strong) XFEmotionListView *emojiListView;
 @property (nonatomic, strong) XFEmotionListView *lxhListView;
-
 /** tabbar */
 @property (nonatomic, weak) XFEmotionTabBar *tabBar;
-
 @end
-
 @implementation XFEmotionKeyboard
-
 #pragma mark - 懒加载
-
--(XFEmotionListView *)recentListView
-{
+-(XFEmotionListView *)recentListView{
     if (!_recentListView) {
         self.recentListView = [[XFEmotionListView alloc] init];
         //加载沙盒中的数据
@@ -712,7 +607,6 @@ static NSMutableArray *_recentEmotions;
     }
     return _recentListView;
 }
-
 -(XFEmotionListView *)defaultListView {
     
     if (!_defaultListView) {
@@ -726,9 +620,7 @@ static NSMutableArray *_recentEmotions;
     return _defaultListView;
     
 }
-
-- (XFEmotionListView *)emojiListView
-{
+- (XFEmotionListView *)emojiListView{
     if (!_emojiListView) {
         self.emojiListView = [[XFEmotionListView alloc] init];
         NSString *path = [[NSBundle mainBundle] pathForResource:@"EmotionIcons/emoji/info.plist" ofType:nil];
@@ -737,9 +629,7 @@ static NSMutableArray *_recentEmotions;
     }
     return _emojiListView;
 }
-
-- (XFEmotionListView *)lxhListView
-{
+- (XFEmotionListView *)lxhListView{
     if (!_lxhListView) {
         self.lxhListView = [[XFEmotionListView alloc] init];
         NSString *path = [[NSBundle mainBundle] pathForResource:@"EmotionIcons/lxh/info.plist" ofType:nil];
@@ -748,9 +638,6 @@ static NSMutableArray *_recentEmotions;
     }
     return _lxhListView;
 }
-
-
-
 -(id)initWithFrame:(CGRect)frame {
     
     self = [super initWithFrame:frame];
@@ -773,7 +660,6 @@ static NSMutableArray *_recentEmotions;
 -(void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
-
 -(void)layoutSubviews {
     
     [super layoutSubviews];
@@ -790,7 +676,6 @@ static NSMutableArray *_recentEmotions;
     self.showingListView.frameHeight = self.tabBar.frameY;
     
 }
-
 #pragma mark - XFEmotionTabBarDelegate
 - (void)emotionTabBar:(XFEmotionTabBar *)tabBar didSelectButton:(XFEmotionTabBarButtonType)buttonType {
     
@@ -830,15 +715,11 @@ static NSMutableArray *_recentEmotions;
     [self setNeedsLayout];
 }
 @end
-
 @interface XFComposeToolbar()
 @property (nonatomic, weak) UIButton *emotionButton;
 @end
-
 @implementation XFComposeToolbar
-
-- (id)initWithFrame:(CGRect)frame
-{
+- (id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"compose_toolbar_background"]];
@@ -855,9 +736,7 @@ static NSMutableArray *_recentEmotions;
     }
     return self;
 }
-
-- (void)setShowKeyboardButton:(BOOL)showKeyboardButton
-{
+- (void)setShowKeyboardButton:(BOOL)showKeyboardButton{
     _showKeyboardButton = showKeyboardButton;
     
     // 默认的图片名
@@ -874,12 +753,9 @@ static NSMutableArray *_recentEmotions;
     [self.emotionButton setImage:[UIImage imageNamed:image] forState:UIControlStateNormal];
     [self.emotionButton setImage:[UIImage imageNamed:highImage] forState:UIControlStateHighlighted];
 }
-
 /**
- * 创建一个按钮
- */
+ * 创建一个按钮*/
 - (UIButton *)setupBtn:(NSString *)image highImage:(NSString *)highImage type:(XFComposeToolbarButtonType)type
-
 {
     UIButton *btn = [[UIButton alloc] init];
     [btn setImage:[UIImage imageNamed:image] forState:UIControlStateNormal];
@@ -889,7 +765,6 @@ static NSMutableArray *_recentEmotions;
     [self addSubview:btn];
     return btn;
 }
-
 -(void)btnClick:(UIButton *)btn {
     
     if ([self.delegate respondsToSelector:@selector(composeToolbar:didClickButton:)]) {
@@ -897,9 +772,7 @@ static NSMutableArray *_recentEmotions;
     }
     
 }
-
-- (void)layoutSubviews
-{
+- (void)layoutSubviews{
     [super layoutSubviews];
     
     // 设置所有按钮的frame
@@ -916,7 +789,6 @@ static NSMutableArray *_recentEmotions;
 }
 @end
 @implementation XFComposePhotosView
-
 -(id)initWithFrame:(CGRect)frame {
     
     self = [super initWithFrame:frame];
@@ -926,8 +798,6 @@ static NSMutableArray *_recentEmotions;
     }
     return self;
 }
-
-
 -(void)addPhoto:(UIImage *)photo {
     
     UIImageView *photoView = [[UIImageView alloc]init];
@@ -938,8 +808,6 @@ static NSMutableArray *_recentEmotions;
     [self.photos addObject:photo];
     
 }
-
-
 -(void)layoutSubviews {
     
     [super layoutSubviews];

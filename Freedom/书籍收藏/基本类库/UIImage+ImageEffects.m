@@ -41,11 +41,8 @@
  STRICT LIABILITY OR OTHERWISE, EVEN IF APPLE HAS BEEN ADVISED OF THE
  POSSIBILITY OF SUCH DAMAGE.
  
- Copyright (C) 2013 Apple Inc. All Rights Reserved.
  
  
- Copyright © 2013 Apple Inc. All rights reserved.
- WWDC 2013 License
  
  NOTE: This Apple Software was supplied by Apple as part of a WWDC 2013
  Session. Please refer to the applicable WWDC 2013 Session for further
@@ -90,41 +87,24 @@
  POSSIBILITY OF SUCH DAMAGE.
  
  EA1002
- 5/3/2013
- */
-
+ 5/3/2013*/
 #import "UIImage+ImageEffects.h"
-
 @import Accelerate;
 #import <float.h>
-
-
 @implementation UIImage (ImageEffects)
-
-
-- (UIImage *)applyLightEffect
-{
+- (UIImage *)applyLightEffect{
     UIColor *tintColor = [UIColor colorWithWhite:1.0 alpha:0.1];
     return [self applyBlurWithRadius:2 tintColor:tintColor saturationDeltaFactor:1.8 maskImage:nil];
 }
-
-
-- (UIImage *)applyExtraLightEffect
-{
+- (UIImage *)applyExtraLightEffect{
     UIColor *tintColor = [UIColor colorWithWhite:0.97 alpha:0.82];
     return [self applyBlurWithRadius:20 tintColor:tintColor saturationDeltaFactor:1.8 maskImage:nil];
 }
-
-
-- (UIImage *)applyDarkEffect
-{
+- (UIImage *)applyDarkEffect{
     UIColor *tintColor = [UIColor colorWithWhite:0.11 alpha:0.73];
     return [self applyBlurWithRadius:20 tintColor:tintColor saturationDeltaFactor:1.8 maskImage:nil];
 }
-
-
-- (UIImage *)applyTintEffectWithColor:(UIColor *)tintColor
-{
+- (UIImage *)applyTintEffectWithColor:(UIColor *)tintColor{
     const CGFloat EffectColorAlpha = 0.6;
     UIColor *effectColor = tintColor;
     int componentCount = CGColorGetNumberOfComponents(tintColor.CGColor);
@@ -133,8 +113,7 @@
         if ([tintColor getWhite:&b alpha:NULL]) {
             effectColor = [UIColor colorWithWhite:b alpha:EffectColorAlpha];
         }
-    }
-    else {
+    }else{
         CGFloat r, g, b;
         if ([tintColor getRed:&r green:&g blue:&b alpha:NULL]) {
             effectColor = [UIColor colorWithRed:r green:g blue:b alpha:EffectColorAlpha];
@@ -142,24 +121,20 @@
     }
     return [self applyBlurWithRadius:10 tintColor:effectColor saturationDeltaFactor:-1.0 maskImage:nil];
 }
-
-
-- (UIImage *)applyBlurWithRadius:(CGFloat)blurRadius tintColor:(UIColor *)tintColor saturationDeltaFactor:(CGFloat)saturationDeltaFactor maskImage:(UIImage *)maskImage
-{
+- (UIImage *)applyBlurWithRadius:(CGFloat)blurRadius tintColor:(UIColor *)tintColor saturationDeltaFactor:(CGFloat)saturationDeltaFactor maskImage:(UIImage *)maskImage{
     // Check pre-conditions.
     if (self.size.width < 1 || self.size.height < 1) {
-        NSLog (@"*** error: invalid size: (%.2f x %.2f). Both dimensions must be >= 1: %@", self.size.width, self.size.height, self);
+        DLog (@"*** error: invalid size: (%.2f x %.2f). Both dimensions must be >= 1: %@", self.size.width, self.size.height, self);
         return nil;
     }
     if (!self.CGImage) {
-        NSLog (@"*** error: image must be backed by a CGImage: %@", self);
+        DLog (@"*** error: image must be backed by a CGImage: %@", self);
         return nil;
     }
     if (maskImage && !maskImage.CGImage) {
-        NSLog (@"*** error: maskImage must be backed by a CGImage: %@", maskImage);
+        DLog (@"*** error: maskImage must be backed by a CGImage: %@", maskImage);
         return nil;
     }
-
     CGRect imageRect = { CGPointZero, self.size };
     UIImage *effectImage = self;
     
@@ -171,7 +146,6 @@
         CGContextScaleCTM(effectInContext, 1.0, -1.0);
         CGContextTranslateCTM(effectInContext, 0, -self.size.height);
         CGContextDrawImage(effectInContext, imageRect, self.CGImage);
-
         vImage_Buffer effectInBuffer;
         effectInBuffer.data     = CGBitmapContextGetData(effectInContext);
         effectInBuffer.width    = CGBitmapContextGetWidth(effectInContext);
@@ -185,11 +159,10 @@
         effectOutBuffer.width    = CGBitmapContextGetWidth(effectOutContext);
         effectOutBuffer.height   = CGBitmapContextGetHeight(effectOutContext);
         effectOutBuffer.rowBytes = CGBitmapContextGetBytesPerRow(effectOutContext);
-
         if (hasBlur) {
             // A description of how to compute the box kernel width from the Gaussian
             // radius (aka standard deviation) appears in the SVG spec:
-            // http://www.w3.org/TR/SVG/filters.html#feGaussianBlurElement
+            // http://www.w3.org/TR/SVG/filters.html feGaussianBlurElement
             // 
             // For larger values of 's' (s >= 2.0), an approximation can be used: Three
             // successive box-blurs build a piece-wise quadratic convolution kernel, which
@@ -226,29 +199,24 @@
             if (hasBlur) {
                 vImageMatrixMultiply_ARGB8888(&effectOutBuffer, &effectInBuffer, saturationMatrix, divisor, NULL, NULL, kvImageNoFlags);
                 effectImageBuffersAreSwapped = YES;
-            }
-            else {
+            }else{
                 vImageMatrixMultiply_ARGB8888(&effectInBuffer, &effectOutBuffer, saturationMatrix, divisor, NULL, NULL, kvImageNoFlags);
             }
         }
         if (!effectImageBuffersAreSwapped)
             effectImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
-
         if (effectImageBuffersAreSwapped)
             effectImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
     }
-
     // Set up output context.
     UIGraphicsBeginImageContextWithOptions(self.size, NO, [[UIScreen mainScreen] scale]);
     CGContextRef outputContext = UIGraphicsGetCurrentContext();
     CGContextScaleCTM(outputContext, 1.0, -1.0);
     CGContextTranslateCTM(outputContext, 0, -self.size.height);
-
     // Draw base image.
     CGContextDrawImage(outputContext, imageRect, self.CGImage);
-
     // Draw effect image.
     if (hasBlur) {
         CGContextSaveGState(outputContext);
@@ -258,7 +226,6 @@
         CGContextDrawImage(outputContext, imageRect, effectImage.CGImage);
         CGContextRestoreGState(outputContext);
     }
-
     // Add in color tint.
     if (tintColor) {
         CGContextSaveGState(outputContext);
@@ -266,13 +233,9 @@
         CGContextFillRect(outputContext, imageRect);
         CGContextRestoreGState(outputContext);
     }
-
     // Output image is ready.
     UIImage *outputImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-
     return outputImage;
 }
-
-
 @end

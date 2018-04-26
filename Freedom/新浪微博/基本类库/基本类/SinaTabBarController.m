@@ -1,11 +1,6 @@
-//
 //  XFTabBarViewController.m
-//  Weibo
-//
+//  Freedom
 //  Created by Fay on 15/9/13.
-//  Copyright (c) 2015年 Fay. All rights reserved.
-//
-
 #import "SinaTabBarController.h"
 #import "XFHomeViewController.h"
 #import "XFMessageViewController.h"
@@ -20,16 +15,11 @@
 #import "XFNewFeatureController.h"
 @class XFTabBar;
 @protocol XFTabBarDelegate <UITabBarDelegate>
-
 @optional
-
 - (void)tabBarDidClickPlusButton:(XFTabBar *)tabBar;
 @end
-
 @interface XFTabBar : UITabBar
-
 @property(nonatomic,weak)id <XFTabBarDelegate> delegate;
-
 @end
 @interface XFTabBar ()
 @property (nonatomic, weak) UIButton *plusBtn;
@@ -59,8 +49,6 @@
     return self;
     
 }
-
-
 -(void)plusClick {
     
     //通知代理
@@ -70,9 +58,6 @@
     }
     
 }
-
-
-
 -(void)layoutSubviews {
     
     [super layoutSubviews];
@@ -103,12 +88,10 @@
     
     
 }
-
 @end
 // 版权属于原作者
 // http://code4app.com (cn) http://code4app.net (en)
 // 发布代码于最专业的源码分享网站: Code4App.com
-
 @interface SinaTabBarController ()<XFTabBarDelegate>
 @property (nonatomic,weak)UIButton *plus;
 @property (nonatomic,weak)FXBlurView *blurView;
@@ -119,9 +102,7 @@
 @property (nonatomic,weak)UIImageView *comment;
 @property (nonatomic,weak)UIImageView *more;
 @end
-
 @implementation SinaTabBarController
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -180,13 +161,8 @@
         }];
 //        [UIApplication sharedApplication].delegate.window.rootViewController = [[XFOAuthController alloc]init];
     }
-
     
 }
-
-
-
-
 //添加子控制器
 -(void)addChildViewController:(UIViewController *)childVc  title:(NSString *)title image:(NSString *)image selImage:(NSString *)selImage {
     
@@ -214,7 +190,6 @@
     [self addChildViewController:nav];
     
 }
-
 -(void)tabBarDidClickPlusButton:(XFTabBar *)tabBar {
     
     FXBlurView *blurView = [[FXBlurView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
@@ -237,7 +212,6 @@
     bottom.backgroundColor = [UIColor whiteColor];
     
     //bottom.contentMode = UIViewContentModeCenter;
-
     
     UIButton *plus = [UIButton buttonWithType:UIButtonTypeCustom];
  
@@ -251,14 +225,12 @@
         
         plus.transform = CGAffineTransformMakeRotation(M_PI_4);
         self.plus = plus;
-
     }];
     
     [plus addTarget:self action:@selector(closeClick) forControlEvents:UIControlEventTouchUpInside];
     
     
     [blurView addSubview:bottom];
-
     
     UIImageView *text = [self btnAnimateWithFrame:CGRectMake(31, 500, 71, 100) imageName:@"tabbar_compose_idea" text:@"文字" animateFrame:CGRectMake(31, 280, 71, 100) delay:0.0];
     [self setAction:text action:@selector(compose)];
@@ -282,7 +254,6 @@
     
     
 }
-
 //按钮出来动画
 -(UIImageView *)btnAnimateWithFrame:(CGRect)frame imageName:(NSString *)imageName text:(NSString *)text animateFrame:(CGRect)aniFrame delay:(CGFloat)delay {
     
@@ -314,8 +285,6 @@
     
     return btnContainer;
 }
-
-
 //设置按钮方法
 -(void)setAction:(UIImageView *)imageView action:(SEL)action{
     
@@ -324,7 +293,6 @@
     [imageView addGestureRecognizer:gesture];
     
 }
-
 //发文字微博
 -(void)compose {
    
@@ -340,8 +308,6 @@
     
     
 }
-
-
 //关闭动画
 -(void)btnCloseAnimateWithFrame:(CGRect)rect delay:(CGFloat)delay btnView:(UIImageView *)btnView{
     
@@ -355,9 +321,6 @@
     }];
  
 }
-
-
-
 //关闭按钮
 -(void)closeClick {
     
@@ -370,8 +333,6 @@
         [self btnCloseAnimateWithFrame:CGRectMake(273, 700, 71, 100) delay:0.25 btnView:self.camera];
         [self btnCloseAnimateWithFrame:CGRectMake(152, 700, 71, 100) delay:0.3 btnView:self.ablum];
         [self btnCloseAnimateWithFrame:CGRectMake(31, 700, 71, 100) delay:0.35 btnView:self.text];
-
-
     } completion:^(BOOL finished) {
         
         [self.text removeFromSuperview];
@@ -383,10 +344,7 @@
         [self.blurView removeFromSuperview];
     }];
     
-
 }
-
-
 @end
 // 版权属于原作者
 // http://code4app.com (cn) http://code4app.net (en)

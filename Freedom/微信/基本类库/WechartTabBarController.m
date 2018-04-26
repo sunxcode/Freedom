@@ -1,8 +1,7 @@
 
-//
 //  WechartTabBarController.m
-//  Created by 薛超 on 16/8/19.
-//  Copyright © 2016年 薛超. All rights reserved.
+//  Created by Super on 16/8/19.
+//  Copyright © 2016年 Super. All rights reserved.
 #import "WechartTabBarController.h"
 #import "WechartNavigationController.h"
 #define kClassKey   @"rootVCClassString"
@@ -16,8 +15,10 @@
 #import "TLExpressionHelper.h"
 #import "JPEngine.h"
 #import "TLFriendHelper.h"
-
+#import "CocoaLumberjack.h"
 #import "TLUserHelper.h"
+#import <MobClick.h>
+#import <BlocksKit/BlocksKit+UIKit.h>
 static WechartTabBarController *rootVC = nil;
 @interface WechartTabBarController ()
 @property (nonatomic, strong) NSArray *childVCArray;
@@ -63,8 +64,6 @@ static WechartTabBarController *rootVC = nil;
         [self addChildViewController:nav];
     }];
 }
-
-
 - (void)p_initThirdPartSDK{
     // 友盟统计
     [MobClick startWithAppkey:UMENG_APPKEY reportPolicy:BATCH channelId:APP_CHANNEL];
@@ -72,7 +71,6 @@ static WechartTabBarController *rootVC = nil;
     [[AFNetworkReachabilityManager sharedManager] startMonitoring];
     // JSPatch
 //    [JSPatch testScriptInBundle];
-
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
     [DDLog addLogger:[DDASLLogger sharedInstance]];
     DDFileLogger *fileLogger = [[DDFileLogger alloc] init];
@@ -80,8 +78,7 @@ static WechartTabBarController *rootVC = nil;
     fileLogger.logFileManager.maximumNumberOfLogFiles = 7;
     [DDLog addLogger:fileLogger];
 }
-- (void)p_initUserData
-{
+- (void)p_initUserData{
     DLog(@"沙盒路径:\n%@", [NSFileManager documentsPath]);
     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"IsFirstRunApp"] == nil) {
         [[NSUserDefaults standardUserDefaults] setObject:@"NO" forKey:@"IsFirstRunApp"];
@@ -94,9 +91,7 @@ static WechartTabBarController *rootVC = nil;
     [TLUserHelper sharedHelper];
     [TLFriendHelper sharedFriendHelper];
 }
-
-- (void)p_downloadDefaultExpression
-{
+- (void)p_downloadDefaultExpression{
     [SVProgressHUD show];
     __block NSInteger count = 0;
     __block NSInteger successCount = 0;
@@ -115,8 +110,7 @@ static WechartTabBarController *rootVC = nil;
             BOOL ok = [[TLExpressionHelper sharedHelper] addExpressionGroup:group];
             if (!ok) {
                 DLog(@"表情存储失败！");
-            }
-            else {
+            }else{
                 successCount ++;
             }
             count ++;
@@ -148,8 +142,7 @@ static WechartTabBarController *rootVC = nil;
             BOOL ok = [[TLExpressionHelper sharedHelper] addExpressionGroup:group];
             if (!ok) {
                 DLog(@"表情存储失败！");
-            }
-            else {
+            }else{
                 successCount ++;
             }
             count ++;
@@ -166,9 +159,7 @@ static WechartTabBarController *rootVC = nil;
         }
     }];
 }
-
-- (void)p_initAppData
-{
+- (void)p_initAppData{
     TLRootProxy *proxy = [[TLRootProxy alloc] init];
     [proxy requestClientInitInfoSuccess:^(id data) {
         
@@ -176,11 +167,7 @@ static WechartTabBarController *rootVC = nil;
         
     }];
 }
-
-- (void)p_urgentMethod
-{
+- (void)p_urgentMethod{
     // 由JSPatch重写
 }
-
 @end
-

@@ -1,33 +1,21 @@
-//
 //  JFLoginViewController.m
-//  JFTudou
-//
-//  Created by 保修一站通 on 15/10/19.
-//  Copyright © 2015年 JF. All rights reserved.
-////  项目详解：
+//  Freedom
+//  Created by Freedom on 15/10/19.//  项目详解：
 //  github:https://github.com/tubie/JFTudou
 //  简书：http://www.jianshu.com/p/2156ec56c55b
-
-
 #import "JFLoginViewController.h"
 @protocol JFLoginBtnCellDelegate <NSObject>
 @optional
 -(void)loginBtnClick:(UIButton *)sender;
-
 @end
 @interface JFLoginBtnCell : UITableViewCell
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 - (void)loginBtnClick:(id)sender;
 - (void)xinlanWeiboBtnClick:(id)sender;
-
 @property(nonatomic, weak)id <JFLoginBtnCellDelegate>delegate;
-
-
 @end
-
 @implementation JFLoginBtnCell
-+ (instancetype)cellWithTableView:(UITableView *)tableView
-{
++ (instancetype)cellWithTableView:(UITableView *)tableView{
     static NSString *ID = @"JFLoginBtnCell";
     JFLoginBtnCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     if (cell == nil) {
@@ -39,39 +27,30 @@
     
     return cell;
 }
-
 - (void)loginBtnClick:(id)sender {
     if ([self.delegate respondsToSelector:@selector(loginBtnClick:)]) {
         [self.delegate loginBtnClick:sender];
     }
 }
-
 - (void)xinlanWeiboBtnClick:(id)sender {
     if ([self.delegate respondsToSelector:@selector(loginBtnClick:)]) {
         [self.delegate loginBtnClick:sender];
     }
 }
 @end
-
 @interface JFTextFieldCell : UITableViewCell
-
 + (instancetype)cellWithTableView:(UITableView *)tableView;
-
-
 @end
 @implementation JFTextFieldCell
-
 - (void)awakeFromNib {
     [super awakeFromNib];
 }
-
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
     
     // Configure the view for the selected state
 }
-+ (instancetype)cellWithTableView:(UITableView *)tableView
-{
++ (instancetype)cellWithTableView:(UITableView *)tableView{
     static NSString *ID = @"JFTextFieldCell";
     JFTextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     if (cell == nil) {
@@ -83,15 +62,10 @@
     return cell;
 }
 @end
-
 @interface JFLoginViewController ()<UITableViewDataSource, UITableViewDelegate,JFLoginBtnCellDelegate>
-
 @property (nonatomic, strong)UITableView *loginTableView;
-
 @end
-
 @implementation JFLoginViewController
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.hidesBottomBarWhenPushed = YES;//用push方法推出时，Tabbar隐藏
@@ -109,9 +83,7 @@
     self.loginTableView.separatorStyle = UITableViewCellAccessoryNone;
     [self.view addSubview:self.loginTableView];
     self.view.backgroundColor = RGBCOLOR(249, 249, 249);
-
 }
-
 -(void)initNav{
     
     self.navigationController.navigationBar.hidden = NO;
@@ -126,8 +98,6 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 2;
-
-
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
@@ -136,7 +106,6 @@
         return 180;
     }
 }
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
         JFTextFieldCell *cell = [JFTextFieldCell cellWithTableView:tableView];
@@ -146,17 +115,13 @@
         cell.delegate  = self;
         return cell;
     }
-
 }
 -(void)loginBtnClick:(UIButton *)sender{
     
     [self.navigationController popViewControllerAnimated:YES];
 }
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
 @end

@@ -1,14 +1,8 @@
 
-//  Weibo
-//
+//  Freedom
 //  Created by Fay on 15/9/14.
-//  Copyright (c) 2015年 Fay. All rights reserved.
-//
-
 #import <UIKit/UIKit.h>
-
 @interface XFNavigationController : UINavigationController
-
 @end
 // 版权属于原作者
 // http://code4app.com (cn) http://code4app.net (en)

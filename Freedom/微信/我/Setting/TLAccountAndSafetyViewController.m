@@ -1,49 +1,32 @@
-//
 //  TLAccountAndSafetyViewController.m
-//  TLChat
-//
-//  Created by 李伯坤 on 16/2/10.
-//  Copyright © 2016年 李伯坤. All rights reserved.
-//
-
+//  Freedom
+// Created by Super
 #import "TLAccountAndSafetyViewController.h"
 #import "TLWebViewController.h"
 #import "TLUserHelper.h"
 #import "TLUser.h"
 #import "TLSettingGroup.h"
 #import "TLUser.h"
-
 @interface TLAccountAndSafetyHelper : NSObject
-
 - (NSMutableArray *)mineAccountAndSafetyDataByUserInfo:(TLUser *)userInfo;
-
 @end
-
 @interface TLAccountAndSafetyHelper ()
-
 @property (nonatomic, strong) NSMutableArray *data;
-
 @end
-
 @implementation TLAccountAndSafetyHelper
-
-- (id)init
-{
+- (id)init{
     if (self = [super init]) {
         self.data = [[NSMutableArray alloc] init];
     }
     return self;
 }
-
-- (NSMutableArray *)mineAccountAndSafetyDataByUserInfo:(TLUser *)userInfo
-{
+- (NSMutableArray *)mineAccountAndSafetyDataByUserInfo:(TLUser *)userInfo{
     TLSettingItem *username = TLCreateSettingItem(@"微信号");
     if (userInfo.username.length > 0) {
         username.subTitle = userInfo.username;
         username.showDisclosureIndicator = NO;
         username.disableHighlight = YES;
-    }
-    else {
+    }else{
         username.subTitle = @"未设置";
     }
     TLSettingGroup *group1 = TLCreateSettingGroup(nil, nil, @[username]);
@@ -73,28 +56,19 @@
     [_data addObjectsFromArray:@[group1, group2, group3]];
     return _data;
 }
-
 @end
-
 @interface TLAccountAndSafetyViewController ()
-
 @property (nonatomic, strong) TLAccountAndSafetyHelper *helper;
-
 @end
-
 @implementation TLAccountAndSafetyViewController
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationItem setTitle:@"账号与安全"];
-
     self.helper = [[TLAccountAndSafetyHelper alloc] init];
     self.data = [self.helper mineAccountAndSafetyDataByUserInfo:[TLUserHelper sharedHelper].user];
 }
-
 #pragma mark - Delegate -
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     TLSettingItem *item = [self.data[indexPath.section] objectAtIndex:indexPath.row];
     if ([item.title isEqualToString:@"微信安全中心"]) {
         TLWebViewController *webVC = [[TLWebViewController alloc] init];
@@ -104,5 +78,4 @@
     }
     [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
-
 @end

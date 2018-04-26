@@ -1,9 +1,7 @@
-//
 //  ToutiaoVideoViewController.m
-//  Created by 薛超 on 16/8/25.
-//  Copyright © 2016年 薛超. All rights reserved.
+//  Created by Super on 16/8/25.
+//  Copyright © 2016年 Super. All rights reserved.
 //
-
 #import "ToutiaoVideoViewController.h"
 #import "ToutiaoHomeSampleViewController.h"
 static CGFloat const titleHeight = 40;
@@ -14,7 +12,6 @@ static CGFloat const titleHeight = 40;
 @property (nonatomic,strong) NSMutableArray *buttons;
 @property (nonatomic,strong) NSMutableArray *titles;
 @end
-
 @implementation ToutiaoVideoViewController
 -(UIStatusBarStyle)preferredStatusBarStyle{
     return UIStatusBarStyleDefault;
@@ -107,7 +104,6 @@ static CGFloat const titleHeight = 40;
     //移动childViewController
     self.contentScrollView.contentOffset = CGPointMake(x, 0);
 }
-
 #pragma  mark - 改变按钮
 -(void) setTitleBtn:(UIButton *) button{
     [self.selTitlebutton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];

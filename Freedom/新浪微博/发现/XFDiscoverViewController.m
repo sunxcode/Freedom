@@ -1,14 +1,8 @@
-//
 //  XFDiscoverViewController.m
-//  Weibo
-//
+//  Freedom
 //  Created by Fay on 15/9/13.
-//  Copyright (c) 2015年 Fay. All rights reserved.
-//
-
 #import "XFDiscoverViewController.h"
 #import "DiscoverDetailViewController.h"
-
 @interface XFDiscoverViewController ()
 @end
 @implementation XFDiscoverViewController
@@ -26,9 +20,7 @@
     // 初始化模型数据
     [self setupGroups];
 }
-/**
- *  初始化模型数据
- */
+/*初始化模型数据*/
 - (void)setupGroups{
     [self setupGroup0];
     [self setupGroup1];
@@ -47,7 +39,6 @@
     findPeople.subtitle = @"名人、有意思的人尽在这里";
     group.items = @[hotStatus, findPeople];
 }
-
 - (void)setupGroup1{
     // 1.创建组
     SWCommonGroup *group = [SWCommonGroup group];
@@ -89,5 +80,4 @@
     //    more.badgeValue = @"998";
     group.items = @[video, music, movie, cast, more];
 }
-
 @end

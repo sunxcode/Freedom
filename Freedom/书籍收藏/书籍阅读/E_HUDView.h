@@ -1,18 +1,12 @@
-//
 //  ZHX_HUDView.h
 //  ZHX
-//
-//  Created by 阿虎 on 14-1-6.
-//  Copyright (c) 2014年 阿虎. All rights reserved.
+//  Created by Super on 14-1-6.
+//  Copyright (c) 2014年 Super. All rights reserved.
 //
 /*
- 弹出视图
- */
-
+ 弹出视图*/
 #import <UIKit/UIKit.h>
-
-@interface E_HUDView : UIView<CAAnimationDelegate>
-{
+@interface E_HUDView : UIView<CAAnimationDelegate>{
     UIFont *msgFont;
 }
 @property (nonatomic, copy)   NSString *msg;
@@ -22,7 +16,5 @@
 @property (nonatomic, assign) float animationLeftScale;
 @property (nonatomic, assign) float animationTopScale;
 @property (nonatomic, assign) float totalDuration;
-
 + (void)showMsg:(NSString *)msg inView:(UIView*)theView;
-
 @end

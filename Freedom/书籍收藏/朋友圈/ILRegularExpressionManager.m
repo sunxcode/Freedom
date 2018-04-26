@@ -1,17 +1,9 @@
-//
 //  ILRegularExpressionManager.m
-//  ILCoretext
-//
-//  Created by 阿虎 on 14/10/22.
-//  Copyright (c) 2014年 tigerwf. All rights reserved.
-//
-
+//  Freedom
+//  Created by Super on 14/10/22.
 #import "ILRegularExpressionManager.h"
-
 @implementation ILRegularExpressionManager
-
-+ (NSArray *)itemIndexesWithPattern:(NSString *)pattern inString:(NSString *)findingString
-{
++ (NSArray *)itemIndexesWithPattern:(NSString *)pattern inString:(NSString *)findingString{
     NSAssert(pattern != nil, @"%s: pattern 不可以为 nil", __PRETTY_FUNCTION__);
     NSAssert(findingString != nil, @"%s: findingString 不可以为 nil", __PRETTY_FUNCTION__);
     
@@ -26,7 +18,7 @@
                        NSMakeRange(0, [findingString length])];
     
     if (error) {
-      //  NSLog(@"ERROR: %@", result);
+      //  DLog(@"ERROR: %@", result);
         return nil;
     }
     
@@ -47,9 +39,7 @@
     }
     return ranges;
 }
-
 + (NSMutableArray *)matchMobileLink:(NSString *)pattern{
-
     NSMutableArray *linkArr = [NSMutableArray arrayWithCapacity:0];
     NSRegularExpression*regular=[[NSRegularExpression alloc]initWithPattern:@"(\\(86\\))?(13[0-9]|15[0-35-9]|18[0125-9])\\d{8}" options:NSRegularExpressionDotMatchesLineSeparators|NSRegularExpressionCaseInsensitive error:nil];
     
@@ -61,21 +51,12 @@
         NSMutableDictionary * dic = [NSMutableDictionary dictionaryWithObjectsAndKeys:string,NSStringFromRange(result.range), nil];
         [linkArr addObject:dic];
     }
-
     return linkArr;
 }
-
-
-
-
-
-
 + (NSMutableArray *)matchWebLink:(NSString *)pattern{
-
-   // NSLog(@"go here? go here? go here ?");
+   // DLog(@"go here? go here? go here ?");
     
     NSMutableArray *linkArr = [NSMutableArray arrayWithCapacity:0];
-
     NSRegularExpression*regular=[[NSRegularExpression alloc]initWithPattern:@"((http[s]{0,1}|ftp)://[a-zA-Z0-9\\.\\-]+\\.([a-zA-Z]{2,4})(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%^&*+?:_/=<>]*)?)|(www.[a-zA-Z0-9\\.\\-]+\\.([a-zA-Z]{2,4})(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%^&*+?:_/=<>]*)?)" options:NSRegularExpressionDotMatchesLineSeparators|NSRegularExpressionCaseInsensitive error:nil];
     
     NSArray* array=[regular matchesInString:pattern options:0 range:NSMakeRange(0, [pattern length])];
@@ -88,9 +69,7 @@
         
         [linkArr addObject:dic];
     }
-   // NSLog(@"linkArr == %@",linkArr);
+   // DLog(@"linkArr == %@",linkArr);
     return linkArr;
-
 }
-
 @end

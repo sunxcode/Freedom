@@ -1,18 +1,10 @@
-//
 //  E_MarkTableViewCell.m
-//  WFReader
-//
-//  Created by 阿虎 on 15/3/2.
-//  Copyright (c) 2015年 tigerwf. All rights reserved.
-//
-
+//  Freedom
+//  Created by Super on 15/3/2.
 #import "E_MarkTableViewCell.h"
 #import "E_ContantFile.h"
-
 @implementation E_MarkTableViewCell
-
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
@@ -36,17 +28,11 @@
     }
     return self;
 }
-
-- (void)awakeFromNib
-{
+- (void)awakeFromNib{
     [super awakeFromNib];
 }
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated{
     [super setSelected:selected animated:animated];
-
     // Configure the view for the selected state
 }
-
 @end

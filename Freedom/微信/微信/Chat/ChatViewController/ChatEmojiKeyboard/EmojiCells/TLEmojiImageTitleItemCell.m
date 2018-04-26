@@ -1,26 +1,14 @@
-//
 //  TLEmojiImageTitleItemCell.m
-//  TLChat
-//
-//  Created by 李伯坤 on 16/2/21.
-//  Copyright © 2016年 李伯坤. All rights reserved.
-//
-
+//  Freedom
+// Created by Super
 #import "TLEmojiImageTitleItemCell.h"
 #import "UIImage+expanded.h"
-
 @interface TLEmojiImageTitleItemCell ()
-
 @property (nonatomic, strong) UIImageView *imageView;
-
 @property (nonatomic, strong) UILabel *label;
-
 @end
-
 @implementation TLEmojiImageTitleItemCell
-
-- (id) initWithFrame:(CGRect)frame
-{
+- (id) initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         [self setHighlightImage:[UIImage imageNamed:@"emoji_hl_background"]];
         [self.contentView addSubview:self.imageView];
@@ -29,17 +17,13 @@
     }
     return self;
 }
-
-- (void)setEmojiItem:(TLEmoji *)emojiItem
-{
+- (void)setEmojiItem:(TLEmoji *)emojiItem{
     [super setEmojiItem:emojiItem];
     [self.imageView setImage:emojiItem.emojiPath == nil ? nil : [UIImage imageNamed:emojiItem.emojiPath]];
     [self.label setText:emojiItem.emojiName];
 }
-
 #pragma mark - Private Methods -
-- (void)p_addMasonry
-{
+- (void)p_addMasonry{
     [self.bgView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.and.right.and.top.mas_equalTo(self.contentView);
         make.height.mas_equalTo(self.bgView.mas_width);
@@ -53,18 +37,14 @@
         make.left.and.right.and.bottom.mas_equalTo(self.contentView);
     }];
 }
-
 #pragma mark - Getter -
-- (UIImageView *)imageView
-{
+- (UIImageView *)imageView{
     if (_imageView == nil) {
         _imageView = [[UIImageView alloc] init];
     }
     return _imageView;
 }
-
-- (UILabel *)label
-{
+- (UILabel *)label{
     if (_label == nil) {
         _label = [[UILabel alloc] init];
         [_label setFont:[UIFont systemFontOfSize:12.0f]];
@@ -73,5 +53,4 @@
     }
     return _label;
 }
-
 @end

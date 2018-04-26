@@ -1,7 +1,6 @@
-//
 //  ToutiaoMeViewController.m
-//  Created by 薛超 on 16/8/25.
-//  Copyright © 2016年 薛超. All rights reserved.
+//  Created by Super on 16/8/25.
+//  Copyright © 2016年 Super. All rights reserved.
 #import "ToutiaoMeViewController.h"
 #import <XCategory/UILabel+expanded.h>
 @interface ToutiaoMeViewController ()
@@ -76,18 +75,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
-
 -(void)doSomething{
     DLog(@"阿拉啦");
 }
-
-
-
-
-
-
-
-
-
-
 @end

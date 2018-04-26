@@ -1,26 +1,19 @@
-//
 //  BooksMainViewController.m
 //  Freedom
+//  Created by Super on 17/2/9.
+//  Copyright © 2017年 Super. All rights reserved.
 //
-//  Created by 薛超 on 17/2/9.
-//  Copyright © 2017年 薛超. All rights reserved.
-//
-
 #import "BooksMainViewController.h"
-
 #import "BooksViewController.h"
 #import "WXViewController.h"
 #import "E_ScrollViewController.h"
-
 @interface BooksMainViewController ()
 @property (nonatomic , strong) UIView *rightMaskView ;  //右半透明蒙版
 @property (nonatomic , strong) UIView *leftMaskView;    //左半透明蒙版
 @property (nonatomic, strong) UIPanGestureRecognizer *leftGesture;
 @property (nonatomic, strong) UIPanGestureRecognizer *rightGesture;
 @end
-
 @implementation BooksMainViewController
-
 -(UIView *)rightMaskView{
     if (!_rightMaskView) {
         _rightMaskView = [[UIView alloc]initWithFrame:[UIScreen mainScreen].bounds];
@@ -46,7 +39,6 @@
     }
     return self;
 }
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     BooksViewController *bookshelf = [[BooksViewController alloc]init];
@@ -97,7 +89,6 @@
     self.leftGesture  = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(leftPaneGesture:)];
     [self.leftViewController.view addGestureRecognizer:self.leftGesture];
 }
-
 //显示左侧视图
 -(void)showSideWithAnimation:(BOOL)animation{
     [UIView animateWithDuration:animation?0.5:0 animations:^{
@@ -259,5 +250,4 @@
     perframe.origin.x += offsetX ;
     return perframe;
 }
-
 @end

@@ -1,17 +1,11 @@
-//
 //  E_SearchViewController.m
-//  WFReader
-//
-//  Created by 阿虎 on 15/2/28.
-//  Copyright (c) 2015年 tigerwf. All rights reserved.
-//
-
+//  Freedom
+// Created by Super
 #import "E_SearchViewController.h"
 #import "E_CommonManager.h"
 #import "E_ReaderDataSource.h"
 #import "E_SearchTableViewCell.h"
 @interface E_SearchViewController ()<UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate>{
-
     UITextField    *_searchTextField;
     UITableView    *_searchResultView;
     BOOL            _isFirstTime;
@@ -20,9 +14,7 @@
     NSString       *_keyWord;
 }
 @end
-
 @implementation E_SearchViewController
-
 - (void)viewDidLoad {
     [super viewDidLoad];
    
@@ -68,7 +60,6 @@
     [textFieldBg.layer setBorderColor:colorref];
     [self.view addSubview:textFieldBg];
     CGColorSpaceRelease(colorSpace);
-
     UIImageView *fangdajingBg = [[UIImageView alloc] initWithFrame:CGRectMake(10, 12, 13, 13)];
     fangdajingBg.image = [UIImage imageNamed:@"magnifiter.png"];
     [textFieldBg addSubview:fangdajingBg];
@@ -92,7 +83,6 @@
     [_searchResultView.mj_header beginRefreshing];
     _searchResultView.hidden = YES;
 }
-
 - (void)loadMoreInfo{
     [_searchResultView.mj_footer endRefreshing];
      NSMutableArray *tempArray = [[E_ReaderDataSource shareInstance] searchWithKeyWords:_searchTextField.text];
@@ -102,11 +92,9 @@
     [_searchResultView reloadData];
   
 }
-
 #pragma mark - textFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     
-
     [[E_ReaderDataSource shareInstance] resetTotalString];
   
     [_dataSource removeAllObjects];
@@ -121,16 +109,11 @@
     _searchResultView.hidden = NO;
     [_searchResultView reloadData];
     return YES;
-
 }
-
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     return 60;
 }
-
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
     if (_isSearch == NO) {
@@ -140,7 +123,6 @@
     }
     
 }
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellStr = @"listCell";
     E_SearchTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellStr];
@@ -182,16 +164,13 @@
   
     return cell;
 }
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
     
     [_delegate turnToClickSearchResult:[[_dataSource objectAtIndex:1] objectAtIndex:indexPath.row] withRange:NSRangeFromString([[_dataSource objectAtIndex:2] objectAtIndex:indexPath.row]) andKeyWord:_keyWord];
     [self dismissViewControllerAnimated:YES completion:NULL];
-
 }
-
 - (void)backToFront{
     
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
@@ -199,20 +178,16 @@
     [self dismissViewControllerAnimated:YES completion:NULL];
     
 }
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 /*
 #pragma mark - Navigation
-
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
 */
-
 @end

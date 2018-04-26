@@ -1,10 +1,8 @@
 
-//
 //  AlipayTabBarController.m
-//  Created by 薛超 on 16/8/19.
-//  Copyright © 2016年 薛超. All rights reserved.
+//  Created by Super on 16/8/19.
+//  Copyright © 2016年 Super. All rights reserved.
 //
-
 #import "AlipayTabBarController.h"
 #import "SDBasicNavigationController.h"
 #import "SDBasicViewContoller.h"
@@ -14,8 +12,7 @@
 #import "SDDiscoverTableViewController.h"
 #import "AlipayTools.h"
 @implementation AlipayTabBarController
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
 //    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageWithColor:[UIColor blackColor]] forBarMetrics:UIBarMetricsDefault];
 //    [[UINavigationBar appearance] setTintColor:[UIColor blackColor]];
@@ -52,9 +49,7 @@
 //        [self setupChildNavigationControllerWithClass:[SDBasicNavigationController class] tabBarImageName:@"TabBar_PublicService" rootViewControllerClass:[SDServiceTableViewController class] rootViewControllerTitle:@"朋友"];
 //    [self setupChildNavigationControllerWithClass:[SDBasicNavigationController class] tabBarImageName:@"TabBar_Assets" rootViewControllerClass:[SDAssetsTableViewController class] rootViewControllerTitle:@"我的"];
 }
-
-- (void)setupChildNavigationControllerWithClass:(Class)class tabBarImageName:(NSString *)name rootViewControllerClass:(Class)rootViewControllerClass rootViewControllerTitle:(NSString *)title
-{
+- (void)setupChildNavigationControllerWithClass:(Class)class tabBarImageName:(NSString *)name rootViewControllerClass:(Class)rootViewControllerClass rootViewControllerTitle:(NSString *)title{
     UIViewController *rootVC = [[rootViewControllerClass alloc] init];
     rootVC.title = title;
     UINavigationController *navVc = [[class  alloc] initWithRootViewController:rootVC];

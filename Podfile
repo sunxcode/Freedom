@@ -7,7 +7,7 @@ target 'Freedom' do
     pod 'MJRefresh', '~> 3.1.0'
     pod 'MJExtension', '~> 3.0.10'                       #json与对象                     https://github.com/CoderMJLee/MJExtension
     pod 'SDWebImage', '~> 3.7.4'                         #网络图片请求                    https://github.com/rs/SDWebImage
-    pod 'KissXML', '5.0'                                 #XML文件解析                    https://github.com/robbiehanson/KissXML
+#    pod 'KissXML', '5.0'                                 #XML文件解析                    https://github.com/robbiehanson/KissXML
     pod 'ElasticTransitionObjC'                          #OC版流动性质的拖拉界面切换效果    https://github.com/taglia3/ElasticTransition-ObjC
     pod 'PPRevealSideViewController', '~> 1.2.1'         #左界面和右界面                  https://github.com/ipup/PPRevealSideViewController
     pod 'AFNetworking', '~> 3.0'                         #轻量级网络请求                   https://github.com/AFNetworking/AFNetworking

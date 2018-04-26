@@ -1,11 +1,8 @@
-//
 //  ToutiaoTabBarController.m
-//  Created by 薛超 on 16/8/19.
-//  Copyright © 2016年 薛超. All rights reserved.
+//  Created by Super on 16/8/19.
+//  Copyright © 2016年 Super. All rights reserved.
 //
-
 #import "ToutiaoTabBarController.h"
-
 @implementation ToutiaoTabBarController
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -20,5 +17,4 @@
     //管理子控制器
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
 }
-
 @end

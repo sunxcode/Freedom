@@ -1,18 +1,12 @@
-//
 //  DZDealController.m
-//  Shop
-//
-//  Created by dengwei on 15/12/1.
-//  Copyright (c) 2015年 dengw. All rights reserved.
-//
-
+//  Freedom
+//  Created by Super on 15/12/1.
 #import "DZDealController.h"
 #import "DZDealListViewController.h"
 @interface DZDealController (){
     BaseScrollView *contentScrollView;
 }
 @end
-
 @implementation DZDealController
 - (void)viewDidLoad {
     [super viewDidLoad];

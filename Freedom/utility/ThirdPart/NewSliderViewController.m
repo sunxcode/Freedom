@@ -1,11 +1,8 @@
-//
 //  NewSliderViewController.m
 //  Freedom
+//  Created by Super on 16/9/2.
+//  Copyright © 2016年 Super. All rights reserved.
 //
-//  Created by 薛超 on 16/9/2.
-//  Copyright © 2016年 薛超. All rights reserved.
-//
-
 #import "NewSliderViewController.h"
 #define SCREEN_WIDTH   [UIScreen mainScreen].bounds.size.width
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
@@ -17,9 +14,7 @@
 @property (nonatomic, strong) UIPanGestureRecognizer *leftGesture;
 @property (nonatomic, strong) UIPanGestureRecognizer *rightGesture;
 @end
-
 @implementation NewSliderViewController
-
 -(UIView *)rightMaskView{
     if (!_rightMaskView) {
         _rightMaskView = [[UIView alloc]initWithFrame:[UIScreen mainScreen].bounds];
@@ -45,8 +40,6 @@
     }
     return self;
 }
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor grayColor];
@@ -72,7 +65,6 @@
     self.leftGesture  = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(leftPaneGesture:)];
     [self.leftViewController.view addGestureRecognizer:self.leftGesture];
 }
-
 //显示左侧视图
 -(void)showSideWithAnimation:(BOOL)animation{
     [UIView animateWithDuration:animation?0.5:0 animations:^{
@@ -238,6 +230,4 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
 @end

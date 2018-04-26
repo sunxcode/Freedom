@@ -1,9 +1,7 @@
-//
 //  TaobaoShopCarViewController.m
-//  Created by 薛超 on 17/1/11.
-//  Copyright © 2017年 薛超. All rights reserved.
+//  Created by Super on 17/1/11.
+//  Copyright © 2017年 Super. All rights reserved.
 //
-
 #import "TaobaoShopCarViewController.h"
 #import <XCategory/UILabel+expanded.h>
 @interface TaobaoShopCarViewCell:BaseTableViewCell
@@ -86,7 +84,6 @@
     [totalView addSubviews:totalb,heji,pay,nil];
     [self.view addSubview:totalView];
 }
-
 -(void)moreAction{
     DLog(@"更多");
     
@@ -94,6 +91,4 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
 }
-
-
 @end

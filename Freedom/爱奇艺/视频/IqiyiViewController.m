@@ -1,9 +1,7 @@
-//
 //  IqiyiViewController.m
-//  Created by 薛超 on 16/8/18.
-//  Copyright © 2016年 薛超. All rights reserved.
+//  Created by Super on 16/8/18.
+//  Copyright © 2016年 Super. All rights reserved.
 //
-
 #import "IqiyiViewController.h"
 #import "JFImageScrollCell.h"
 #import "JFVideoDetailViewController.h"
@@ -15,66 +13,48 @@
 @property(nonatomic, strong) NSMutableArray *boxes;
 @property(nonatomic, strong) NSMutableArray *banner;
 @property(nonatomic, strong) NSString *index_channel_content_version;
-
 @end
-
 @implementation JFHomeModel
-
-
 @end
-
 @interface JFBoxesModel : NSObject
 @property(nonatomic, strong) NSMutableArray *videos;
 @property(nonatomic, strong) NSNumber *ipad_display_type;
 @property(nonatomic, strong) NSString *index_page_channel_icon;
 @property(nonatomic, strong) NSNumber *display_type;
 @property(nonatomic, strong) NSString *index_page_channel_icon_for_ipad;
-
 @property(nonatomic, strong) NSNumber *video_count_for_ipad_index_page;
 @property(nonatomic, strong) NSString *cid;
 @property(nonatomic, strong) NSString *title;
 @property(nonatomic, strong) NSString *sub_title;
 @property(nonatomic, strong) NSString *redirect_type;
-
 @property(nonatomic, strong) NSString *url_for_more_link;
 @property(nonatomic, strong) NSString *is_podcast;
-
 @property(nonatomic, assign) float height;
-
 @end
 @implementation JFBoxesModel
-
 @end
-
 @interface JFBannerModel : NSObject
 @property(nonatomic, strong) NSNumber *is_albumcover;
 @property(nonatomic, strong) NSString *image_1452_578;
 @property(nonatomic, strong) NSString *image_800_450;
 @property(nonatomic, strong) NSString *platform_for_url_type;
 @property(nonatomic, strong) NSString *title;
-
 @property(nonatomic, strong) NSString *url;
 @property(nonatomic, strong) NSNumber *url_include_ids_count;
 @property(nonatomic, strong) NSObject *vip_information;
 @property(nonatomic, strong) NSString *plid;
 @property(nonatomic, strong) NSString *short_desc;
-
 @property(nonatomic, strong) NSString *image_726_289;
 @property(nonatomic, strong) NSString *iid;
 @property(nonatomic, strong) NSString *small_img;
 @property(nonatomic, strong) NSObject *game_information;
 @property(nonatomic, strong) NSString *aid;
-
 @property(nonatomic, strong) NSString *image_640_310;
 @property(nonatomic, strong) NSString *big_img;
 @property(nonatomic, strong) NSString *type;
 @property(nonatomic, strong) NSNumber *browser_for_url_type;
-
-
 @end
-
 @implementation JFBannerModel
-
 @end
 @interface JFVideosModel : NSObject
 @property(nonatomic, strong) NSString *yaofeng;
@@ -82,82 +62,48 @@
 @property(nonatomic, strong) NSString *pv;
 @property(nonatomic, strong) NSString *corner_image;
 @property(nonatomic, strong) NSString *title;
-
 @property(nonatomic, strong) NSString *url;
 @property(nonatomic, strong) NSNumber *url_include_ids_count;
 @property(nonatomic, strong) NSString *owner_nick;
 @property(nonatomic, strong) NSString *short_desc;
 @property(nonatomic, strong) NSObject *game_information;
-
 @property(nonatomic, strong) NSString *iid;
 @property(nonatomic, strong) NSString *small_img;
 @property(nonatomic, strong) NSString *stripe_b_r;
 @property(nonatomic, strong) NSString *plid;
 @property(nonatomic, strong) NSString *aid;
-
 @property(nonatomic, strong) NSString *owner_id;
 @property(nonatomic, strong) NSString *type;
 @property(nonatomic, strong) NSString *image_800x450;
 @property(nonatomic, strong) NSString *big_img;
-
 @end
-
 @implementation JFVideosModel
-
 @end
-
-
-
-
 @class JFBoxesModel,JFVideosModel;
-
-
 @protocol JFHomeBoxCellDelegate <NSObject>
-
 @optional
 -(void)didSelectHomeBox:(JFVideosModel *)video;
-
 @end
-
-
 @interface JFHomeBoxCell : UITableViewCell
-
 + (instancetype)cellWithTableView:(UITableView *)tableView ;
-
-
 @property(nonatomic, strong) JFBoxesModel *boxes;
 @property(nonatomic, weak) id <JFHomeBoxCellDelegate>delegate;
-
-
 @end
 @class JFImageCardView;
 @protocol JFImageCardViewDelegate <NSObject>
-
 @optional
 -(void)didSelectImageCard:(JFImageCardView *)imageCard video:(JFVideosModel *)video;
-
 @end
-
 @interface JFImageCardView : UIView
-
-
 @property(nonatomic, strong) UIImageView *imageView;
 @property(nonatomic, strong) UILabel *titleLabel;
 @property(nonatomic, strong) UILabel *pvLabel;
 @property(nonatomic, strong) UILabel *yaofengLabel;
-
-
 -(id)initWithFrame:(CGRect)frame video:(JFVideosModel *)video;
-
 @property(nonatomic, strong) JFVideosModel *video;
 @property(nonatomic, weak) id <JFImageCardViewDelegate>delegate;
-
 @end
-
 @implementation JFImageCardView
-
-
-
 -(id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
@@ -190,7 +136,6 @@
     }
     return self;
 }
-
 -(id)initWithFrame:(CGRect)frame video:(JFVideosModel *)video{
     self = [super initWithFrame:frame];
     if (self) {
@@ -219,7 +164,6 @@
     }
     return self;
 }
-
 -(void)setVideo:(JFVideosModel *)video{
     _video = video;//这里不能用self.video,只能用_video
     [self.imageView sd_setImageWithURL:[NSURL URLWithString:video.small_img] placeholderImage:[UIImage imageNamed:@"rec_holder"]];
@@ -241,20 +185,15 @@
     }
     
 }
-
 -(void)OnTapImageCard:(UITapGestureRecognizer *)sender{
-    NSLog(@"video==%@",self.video);
+    DLog(@"video==%@",self.video);
     if ([self.delegate respondsToSelector:@selector(didSelectImageCard:video:)]) {
         [self.delegate didSelectImageCard:self video:self.video];
         
     }
 }
-
-
-
 @end
-@interface JFHomeBoxCell ()<JFImageCardViewDelegate>
-{
+@interface JFHomeBoxCell ()<JFImageCardViewDelegate>{
     UILabel *_titleLabel;
     UIImageView *_imageView;
     JFImageCardView *_cardView1;
@@ -263,13 +202,8 @@
     JFImageCardView *_cardView4;
     
 }
-
 @end
-
-
-
 @implementation JFHomeBoxCell
-
 + (instancetype)cellWithTableView:(UITableView *)tableView {
     static NSString *menuID = @"JFHomeBoxCell";
     JFHomeBoxCell *cell = [tableView dequeueReusableCellWithIdentifier:menuID];
@@ -280,8 +214,6 @@
     return cell;
     
 }
-
-
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
@@ -289,14 +221,11 @@
     }
     return self;
 }
-
-
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
     
     // Configure the view for the selected state
 }
-
 -(void)initViews{
     //背景
     UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 5, APPW, 40+300)];
@@ -334,7 +263,6 @@
     [backView addSubview:_cardView3];
     [backView addSubview:_cardView4];
 }
-
 -(void)setBoxes:(JFBoxesModel *)boxes{
     _titleLabel.text = boxes.title;
     [_imageView sd_setImageWithURL:[NSURL URLWithString:boxes.index_page_channel_icon] placeholderImage:nil];
@@ -348,7 +276,6 @@
     [_cardView3 setVideo:video3];
     [_cardView4 setVideo:video4];
 }
-
 #pragma mark - JFImageCardViewDelegate
 -(void)didSelectImageCard:(JFImageCardView *)imageCard video:(JFVideosModel *)video{
     if ([self.delegate respondsToSelector:@selector(didSelectHomeBox:)]) {
@@ -356,22 +283,12 @@
     }
     
 }
-
-
 @end
-
-
-
 @interface JFHomeVideoBoxCell : UITableViewCell
-
 + (instancetype)cellWithTableView:(UITableView *)tableView ;
-
-
 @property(nonatomic, strong) JFBoxesModel *boxes;
 @end
-
-@interface JFHomeVideoBoxCell ()
-{
+@interface JFHomeVideoBoxCell (){
     UILabel *_titleLabel;
     UIImageView *_imageView;
     JFImageCardView *_cardView1;
@@ -381,11 +298,8 @@
     JFImageCardView *_cardView5;
     JFImageCardView *_cardView6;
 }
-
 @end
-
 @implementation JFHomeVideoBoxCell
-
 + (instancetype)cellWithTableView:(UITableView *)tableView {
     static NSString *JFHomeVideoBoxCellID = @"JFHomeVideoBoxCell";
     JFHomeVideoBoxCell *cell = [tableView dequeueReusableCellWithIdentifier:JFHomeVideoBoxCellID];
@@ -396,8 +310,6 @@
     return cell;
     
 }
-
-
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
@@ -405,17 +317,14 @@
     }
     return self;
 }
-
 - (void)awakeFromNib {
     [super awakeFromNib];
 }
-
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
     
     // Configure the view for the selected state
 }
-
 -(void)initViews{
     //背景
     UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 5, APPW, 40+230+230)];
@@ -451,7 +360,6 @@
     [backView addSubview:_cardView5];
     [backView addSubview:_cardView6];
 }
-
 -(void)setBoxes:(JFBoxesModel *)boxes{
     _titleLabel.text = boxes.title;
     [_imageView sd_setImageWithURL:[NSURL URLWithString:boxes.index_page_channel_icon] placeholderImage:nil];
@@ -469,10 +377,7 @@
     [_cardView6 setVideo:video6];
     
 }
-
 @end
-
-
 @interface IqiyiViewController ()<UITableViewDataSource, UITableViewDelegate,JFHomeBoxCellDelegate>{
     NSMutableArray *_dataSource;
     NSMutableArray *_boxesSource;
@@ -524,7 +429,6 @@
     [self.navigationController pushViewController:watchRecordVC animated:YES];
     
 }
-
 #pragma mark - 初始化数据
 -(void)initData{
     _dataSource = [[NSMutableArray alloc] init];
@@ -532,7 +436,7 @@
     _bannerSource = [[NSMutableArray alloc] init];
     _headImageArray = [[NSMutableArray alloc] init];
     
-    NSString *urlStr =  [[GetUrlString sharedManager]urlWithHomeData];
+    NSString *urlStr =  [[FreedomTools sharedManager]urlWithHomeData];
     [NetBase GET:urlStr parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [self.homeTableView.mj_header endRefreshing];
         [_headImageArray removeAllObjects];
@@ -580,7 +484,6 @@
     }
     return height;
 }
-
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
         return 180;
@@ -589,7 +492,6 @@
         return height;
     }
 }
-
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if(_bannerSource.count>0){
         return _boxesSource.count+1;
@@ -599,8 +501,7 @@
     
 }
 /*
- 主界面的cell类型要根据土豆返回来的display_type ＝ 1 返回两列 display_type ＝ 2三列 类型进行判断处理
- */
+ 主界面的cell类型要根据土豆返回来的display_type ＝ 1 返回两列 display_type ＝ 2三列 类型进行判断处理*/
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
         JFImageScrollCell *cell = [JFImageScrollCell cellWithTableView:tableView frame:CGRectMake(0, 0, APPW, 180)];
@@ -631,5 +532,4 @@
     [self.navigationController pushViewController:videoDetailVC animated:YES];
     
 }
-
 @end

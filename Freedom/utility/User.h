@@ -1,11 +1,8 @@
-//
 //  User.h
 //  Freedom
-//
 //  Created by Super on 2017/10/11.
-//  Copyright © 2017年 薛超. All rights reserved.
+//  Copyright © 2017年 Super. All rights reserved.
 //
-
 #import <Foundation/Foundation.h>
 #pragma mark 用户相关属性
 @interface User : NSObject

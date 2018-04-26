@@ -2,32 +2,22 @@
 #import "SHLrcsView.h"
 @interface SHLrcLine : NSObject
 /**
- * 播放时间点
- */
+ * 播放时间点*/
 @property(nonatomic,strong) NSString *time;
 /**
- * 歌词内容
- */
+ * 歌词内容*/
 @property(nonatomic,strong) NSString *words;
 @end
-
 @implementation SHLrcLine
-
 @end
-
 @interface SHMusicLrcCell : UITableViewCell
 /**
- * 
- */
+ * */
 @property(nonatomic,strong) SHLrcLine *message;
-
 @property(nonatomic,strong) UILabel *lrcLabel;
-
-
 - (void)settingCurrentTextColor;
 - (void)settingLastTextColor;
 @end
-
 @implementation SHMusicLrcCell
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -46,7 +36,6 @@
     self.lrcLabel.textColor = [UIColor lightTextColor];
     [self.contentView addSubview:self.lrcLabel];
 }
-
 - (void)settingCurrentTextColor{
     self.lrcLabel.textColor = [UIColor redColor];
     self.lrcLabel.font = [UIFont systemFontOfSize:25];
@@ -55,22 +44,17 @@
     self.lrcLabel.textColor = [UIColor lightTextColor];
     self.lrcLabel.font = [UIFont systemFontOfSize:17];
 }
-
 @end
-
 @interface SHLrcsView ()<UITableViewDataSource,UITableViewDelegate>
 /**
- * 显示歌词的tableView
- */
+ * 显示歌词的tableView*/
 @property(nonatomic,strong) UITableView *tableView;
 /**
- * 保存歌词的数组，每个元素就是一行歌词
- */
+ * 保存歌词的数组，每个元素就是一行歌词*/
 @property(nonatomic,strong) NSMutableArray *lrclines;
 //当前正在播放的那一行歌词
 @property(nonatomic)NSInteger currentIdx;
 @end
-
 @implementation SHLrcsView
 -(NSMutableArray *)lrclines{
     if (!_lrclines) {
@@ -113,10 +97,8 @@
     //设置歌词显示居中位置
     self.tableView.contentInset = UIEdgeInsetsMake(self.tableView.frame.size.height * 0.5, 0, self.tableView.frame.size.height * 0.5, 0);
 }
-
 /**
- * 对lrc格式解析歌词
- */
+ * 对lrc格式解析歌词*/
 - (void)setLrcname:(NSString *)lrcname{
     _lrcname = lrcname;
     //读取歌词文件
@@ -143,8 +125,7 @@
     [self.tableView reloadData];
 }
 /**
- * 滚动歌词，设置播放当前行属性
- */
+ * 滚动歌词，设置播放当前行属性*/
 - (void)setCurrentTime:(NSTimeInterval)currentTime{
     _currentTime = currentTime;
     int min = currentTime / 60;

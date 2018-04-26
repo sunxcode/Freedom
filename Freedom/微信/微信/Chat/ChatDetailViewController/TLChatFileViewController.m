@@ -1,11 +1,6 @@
-//
-//  TLChatFileViewController.m
-//  TLChat
-//
-//  Created by 李伯坤 on 16/3/18.
-//  Copyright © 2016年 李伯坤. All rights reserved.
-//
-
+//  FreedomFileViewController.m
+//  Freedom
+//  Created by Super on 16/3/18.
 #import "TLChatFileViewController.h"
 #import <XCategory/NSDate+expanded.h>
 #import "MWPhotoBrowser.h"
@@ -15,83 +10,56 @@
 #define     SPACE_COLLECTIONVIEW_CELL       (WIDTH_SCREEN - WIDTH_COLLECTIONVIEW_CELL * 4) / 3
 #import <UIKit/UIKit.h>
 #import "TLImageMessage.h"
-
 @interface TLChatFileCell : UICollectionViewCell
-
 @property (nonatomic, strong) TLMessage * message;
-
 @end
 @interface TLChatFileCell ()
-
 @property (nonatomic, strong) UIImageView *imageView;
-
 @end
-
 @implementation TLChatFileCell
-
-- (id)initWithFrame:(CGRect)frame
-{
+- (id)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         [self.contentView addSubview:self.imageView];
         [self p_addMasonry];
     }
     return self;
 }
-
-- (void)setMessage:(TLMessage *)message
-{
+- (void)setMessage:(TLMessage *)message{
     _message = message;
     if (message.messageType == TLMessageTypeImage) {
         if ([(TLImageMessage *)message imagePath].length > 0) {
             NSString *imagePath = [NSFileManager pathUserChatImage:[(TLImageMessage *)message imagePath]];
             [self.imageView setImage:[UIImage imageNamed:imagePath]];
-        }
-        else if ([(TLImageMessage *)message imageURL].length > 0) {
+        }else if ([(TLImageMessage *)message imageURL].length > 0) {
             [self.imageView sd_setImageWithURL:TLURL([(TLImageMessage *)message imageURL]) placeholderImage:[UIImage imageNamed:PuserLogo]];
-        }
-        else {
+        }else{
             [self.imageView setImage:nil];
         }
     }
 }
-
 #pragma mark - Private Methods -
-- (void)p_addMasonry
-{
+- (void)p_addMasonry{
     [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(self.contentView);
     }];
 }
-
 #pragma mark - Getter -
-- (UIImageView *)imageView
-{
+- (UIImageView *)imageView{
     if (_imageView == nil) {
         _imageView = [[UIImageView alloc] init];
     }
     return _imageView;
 }
-
 @end
-
 @interface TLChatFileHeaderView : UICollectionReusableView
-
 @property (nonatomic, strong) NSString *title;
-
 @end
-
 @interface TLChatFileHeaderView ()
-
 @property (nonatomic, strong) UIView *bgView;
-
 @property (nonatomic, strong) UILabel *titleLabel;
-
 @end
-
 @implementation TLChatFileHeaderView
-
-- (id)initWithFrame:(CGRect)frame
-{
+- (id)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         [self setBackgroundColor:[UIColor clearColor]];
         [self addSubview:self.bgView];
@@ -100,16 +68,12 @@
     }
     return self;
 }
-
-- (void)setTitle:(NSString *)title
-{
+- (void)setTitle:(NSString *)title{
     _title = title;
     [self.titleLabel setText:title];
 }
-
 #pragma mark - Private Methods -
-- (void)p_addMasonry
-{
+- (void)p_addMasonry{
     [self.bgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(self);
     }];
@@ -117,20 +81,16 @@
         make.edges.mas_equalTo(self).mas_offset(UIEdgeInsetsMake(0, 10, 0, 10));
     }];
 }
-
 #pragma mark - Getter -
-- (UIView *)bgView
-{
+- (UIView *)bgView{
     if (_bgView == nil) {
         _bgView = [[UIView alloc] init];
-        [_bgView setBackgroundColor:[UIColor colorBlackBG]];
+        [_bgView setBackgroundColor:RGBACOLOR(46.0, 49.0, 50.0, 1.0)];
         [_bgView setAlpha:0.8f];
     }
     return _bgView;
 }
-
-- (UILabel *)titleLabel
-{
+- (UILabel *)titleLabel{
     if (_titleLabel == nil) {
         _titleLabel = [[UILabel alloc] init];
         [_titleLabel setTextColor:[UIColor whiteColor]];
@@ -138,25 +98,17 @@
     }
     return _titleLabel;
 }
-
 @end
-
 @interface TLChatFileViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
-
 @property (nonatomic, strong) UICollectionView *collectionView;
-
 @property (nonatomic, strong) NSMutableArray *mediaData;
-
 @property (nonatomic, strong) NSMutableArray *browserData;
-
 @end
-
 @implementation TLChatFileViewController
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationItem setTitle:@"聊天文件"];
-    [self.view setBackgroundColor:[UIColor colorBlackBG]];
+    [self.view setBackgroundColor:RGBACOLOR(46.0, 49.0, 50.0, 1.0)];
     
     [self.view addSubview:self.collectionView];
     [self p_addMasonry];
@@ -165,13 +117,10 @@
         
     }];
     [self.navigationItem setRightBarButtonItem:rightBarButton];
-
     [self.collectionView registerClass:[TLChatFileHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"TLChatFileHeaderView"];
     [self.collectionView registerClass:[TLChatFileCell class] forCellWithReuseIdentifier:@"TLChatFileCell"];
 }
-
-- (void)setPartnerID:(NSString *)partnerID
-{
+- (void)setPartnerID:(NSString *)partnerID{
     _partnerID = partnerID;
     __weak typeof(self) weakSelf = self;
     [[TLMessageManager sharedInstance] chatFilesForPartnerID:partnerID completed:^(NSArray *data) {
@@ -181,37 +130,27 @@
         [weakSelf.collectionView reloadData];
     }];
 }
-
 #pragma mark - Delegate -
 //MARK: UICollectionViewDataSource
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
-{
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     return self.data.count;
 }
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     return [self.data[section] count];
 }
-
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
-{
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
     TLMessage *message = [self.data[indexPath.section] objectAtIndex:indexPath.row];
     TLChatFileHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"TLChatFileHeaderView" forIndexPath:indexPath];
     [headerView setTitle:[message.date chatFileTimeInfo]];
     return headerView;
 }
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     TLMessage * message = [self.data[indexPath.section] objectAtIndex:indexPath.row];
     TLChatFileCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"TLChatFileCell" forIndexPath:indexPath];
     [cell setMessage:message];
     return cell;
 }
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     TLMessage *message = [self.data[indexPath.section] objectAtIndex:indexPath.row];
     if (message.messageType == TLMessageTypeImage) {
         NSInteger index = -1;
@@ -230,19 +169,15 @@
         }
     }
 }
-
 #pragma mark - Private Methods -
-- (void)p_addMasonry
-{
+- (void)p_addMasonry{
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.and.right.and.top.mas_equalTo(self.view);
         make.bottom.mas_equalTo(self.view);
     }];
 }
-
 #pragma mark - Getter -
-- (UICollectionView *)collectionView
-{
+- (UICollectionView *)collectionView{
     if (_collectionView == nil) {
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         if ([UIDevice currentDevice].systemVersion.floatValue >= 9.0) {
@@ -263,17 +198,13 @@
     }
     return _collectionView;
 }
-
-- (NSMutableArray *)data
-{
+- (NSMutableArray *)data{
     if (_data == nil) {
         _data = [[NSMutableArray alloc] init];
     }
     return _data;
 }
-
-- (NSMutableArray *)mediaData
-{
+- (NSMutableArray *)mediaData{
     if (_mediaData == nil) {
         _mediaData = [[NSMutableArray alloc] init];
         for (NSArray *array in self.data) {
@@ -296,9 +227,7 @@
     }
     return _mediaData;
 }
-
-- (NSMutableArray *)browserData
-{
+- (NSMutableArray *)browserData{
     if (_browserData == nil) {
         _browserData = [[NSMutableArray alloc] init];
         for (TLMessage *message in self.mediaData) {
@@ -318,5 +247,4 @@
     }
     return _browserData;
 }
-
 @end

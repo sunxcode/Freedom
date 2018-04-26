@@ -1,15 +1,8 @@
-//
-//  TLChatDetailViewController.h
-//  TLChat
-//
-//  Created by 李伯坤 on 16/3/6.
-//  Copyright © 2016年 李伯坤. All rights reserved.
-//
-
+//  FreedomDetailViewController.h
+//  Freedom
+// Created by Super
 #import "TLSettingViewController.h"
 #import "TLUser.h"
 @interface TLChatDetailViewController : TLSettingViewController
-
 @property (nonatomic, strong) TLUser *user;
-
 @end

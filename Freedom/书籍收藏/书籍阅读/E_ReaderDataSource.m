@@ -1,18 +1,10 @@
-//
-//  E_ReaderDataSource.m
-//  E_Reader
-//
-//  Created by 阿虎 on 14-8-8.
-//  Copyright (c) 2014年 tiger. All rights reserved.
-//
-
+//   FreedomDataSource.m
+//   Freedom
+//  Created by Super on 14-8-8.
 #import "E_ReaderDataSource.h"
 #import "E_CommonManager.h"
 #import "E_HUDView.h"
-
-
 @implementation E_ReaderDataSource
-
 + (E_ReaderDataSource *)shareInstance{
     
     static E_ReaderDataSource *dataSource;
@@ -21,16 +13,12 @@
     dispatch_once(&onceToken, ^{
         
         dataSource = [[E_ReaderDataSource alloc] init];
-
       
     });
     
     return dataSource;
 }
-
-
 - (E_EveryChapter *)openChapter:(NSInteger)clickChapter{
-
     _currentChapterIndex = clickChapter;
     
     E_EveryChapter *chapter = [[E_EveryChapter alloc] init];
@@ -41,7 +29,6 @@
     
     return chapter;
 }
-
 - (E_EveryChapter *)openChapter{
     NSUInteger index = [E_CommonManager Manager_getChapterBefore];
     
@@ -55,17 +42,12 @@
     
     return chapter;
 }
-
 - (NSUInteger)openPage{
     
     NSUInteger index = [E_CommonManager Manager_getPageBefore];
     return index;
-
 }
-
-
 - (E_EveryChapter *)nextChapter{
-
     if (_currentChapterIndex >= _totalChapter) {
         [E_HUDView showMsg:@"没有更多内容了" inView:nil];
         return nil;
@@ -79,9 +61,7 @@
         return chapter;
     
     }
-
 }
-
 - (E_EveryChapter *)preChapter{
     
     if (_currentChapterIndex <= 1) {
@@ -97,9 +77,7 @@
         return chapter;
     }
 }
-
 - (void)resetTotalString{
-
     _totalString = [NSMutableString string];
     _everyChapterRange = [NSMutableArray array];
     
@@ -118,9 +96,7 @@
             break;
         }
     }
-
 }
-
 - (NSInteger)getChapterBeginIndex:(NSInteger)page{
  
     NSInteger index = 0;
@@ -129,7 +105,7 @@
         if (readTextData(i) != nil) {
             
             index += readTextData(i).length;
-           // NSLog(@"index == %ld",index);
+           // DLog(@"index == %ld",index);
             
         }else{
             break;
@@ -137,7 +113,6 @@
     }
     return index;
 }
-
 - (NSMutableArray *)searchWithKeyWords:(NSString *)keyWord{
     //关键字为空 则返回空数组
     if (keyWord == nil || [keyWord isEqualToString:@""]) {
@@ -163,7 +138,7 @@
                 
                 NSInteger newLo = [_totalString rangeOfString:keyWord options:1].location;
                 NSInteger newLen = [_totalString rangeOfString:keyWord options:1].length;
-               // NSLog(@"newLo == %ld,, newLen == %ld",newLo,newLen);
+               // DLog(@"newLo == %ld,, newLen == %ld",newLo,newLen);
              int temp = 0;
              for (int j = 0; j < _everyChapterRange.count; j ++) {
                  if (newLo > NSRangeFromString([_everyChapterRange objectAtIndex:j]).location) {
@@ -197,11 +172,8 @@
     [feedBackResult addObject:whichChapter];
     [feedBackResult addObject:locationResult];
     return feedBackResult;
-
 }
-
-- (NSInteger)doRandomLength:(NSInteger)location andPreOrNext:(BOOL)sender
-{
+- (NSInteger)doRandomLength:(NSInteger)location andPreOrNext:(BOOL)sender{
     //获取1到x之间的整数
     if (sender == YES) {
         NSInteger temp = location;
@@ -230,7 +202,6 @@
     
     
 }
-
 static NSString *readTextData(NSUInteger index){
     
     NSString *chapter_num = [NSString stringWithFormat:@"Chapter%ld",index];
@@ -238,5 +209,4 @@ static NSString *readTextData(NSUInteger index){
     NSString *content = [NSString stringWithContentsOfFile:path1 encoding:4 error:NULL];
     return content;
 }
-
 @end

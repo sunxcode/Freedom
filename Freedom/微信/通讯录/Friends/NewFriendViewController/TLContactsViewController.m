@@ -1,48 +1,29 @@
-//
 //  TLContactsViewController.m
-//  TLChat
-//
-//  Created by 李伯坤 on 16/3/8.
-//  Copyright © 2016年 李伯坤. All rights reserved.
-//
-
+//  Freedom
+// Created by Super
 #import "TLContactsViewController.h"
 #import "TLSearchController.h"
 #import "TLUserGroup.h"
+#import <BlocksKit/BlocksKit+UIKit.h>
 #import "TLFriendHeaderView.h"
 #import "TLFriendHelper.h"
-#import "UIFont+expanded.h"       // 字体
 #define     FRIENDS_SPACE_X         10.0f
 #define     FRIENDS_SPACE_Y         9.5f
 #import "TLContact.h"
 #import "TLTableViewCell.h"
-/**
- *  通讯录 Cell
- */
-
-
+#import <MobClick.h>
+/*通讯录 Cell*/
 @interface TLContactCell : TLTableViewCell
-
 @property (nonatomic, strong) TLContact *contact;
-
 @end
-
 @interface TLContactCell ()
-
 @property (nonatomic, strong) UIImageView *avatarImageView;
-
 @property (nonatomic, strong) UILabel *usernameLabel;
-
 @property (nonatomic, strong) UILabel *subTitleLabel;
-
 @property (nonatomic, strong) UIButton *rightButton;
-
 @end
-
 @implementation TLContactCell
-
-- (id) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
+- (id) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self.leftSeparatorSpace = FRIENDS_SPACE_X;
         
@@ -55,43 +36,36 @@
     }
     return self;
 }
-
 #pragma mark - Public Methods
-- (void) setContact:(TLContact *)contact
-{
+- (void) setContact:(TLContact *)contact{
     _contact = contact;
     if (contact.avatarPath) {
         NSString *path = [NSFileManager pathContactsAvatar:contact.avatarPath];
         [self.avatarImageView setImage:[UIImage imageNamed:path]];
-    }
-    else {
+    }else{
         [self.avatarImageView sd_setImageWithURL:TLURL(contact.avatarURL) placeholderImage:[UIImage imageNamed:PuserLogo]];
     }
     
     [self.usernameLabel setText:contact.name];
     [self.subTitleLabel setText:contact.tel];
     if (contact.status == TLContactStatusStranger) {
-        [self.rightButton setBackgroundColor:[UIColor colorGreenDefault]];
+        [self.rightButton setBackgroundColor:colorGreenDefault];
         [self.rightButton setTitle:@"添加" forState:UIControlStateNormal];
         [self.rightButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [self.rightButton.layer setBorderColor:[UIColor colorWithWhite:0.7 alpha:1.0].CGColor];
-    }
-    else {
+    }else{
         [self.rightButton setBackgroundColor:[UIColor clearColor]];
         [self.rightButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
         [self.rightButton.layer setBorderColor:[UIColor clearColor].CGColor];
         if (contact.status == TLContactStatusFriend) {
             [self.rightButton setTitle:@"已添加" forState:UIControlStateNormal];
-        }
-        else if (contact.status == TLContactStatusWait) {
+        }else if (contact.status == TLContactStatusWait) {
             [self.rightButton setTitle:@"等待验证 " forState:UIControlStateNormal];
         }
     }
 }
-
 #pragma mark - Prvate Methods -
-- (void) p_addMasonry
-{
+- (void) p_addMasonry{
     [self.avatarImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(FRIENDS_SPACE_X);
         make.top.mas_equalTo(FRIENDS_SPACE_Y);
@@ -118,27 +92,21 @@
         make.width.mas_greaterThanOrEqualTo(48);
     }];
 }
-
 #pragma mark - Getter
-- (UIImageView *)avatarImageView
-{
+- (UIImageView *)avatarImageView{
     if (_avatarImageView == nil) {
         _avatarImageView = [[UIImageView alloc] init];
     }
     return _avatarImageView;
 }
-
-- (UILabel *)usernameLabel
-{
+- (UILabel *)usernameLabel{
     if (_usernameLabel == nil) {
         _usernameLabel = [[UILabel alloc] init];
         [_usernameLabel setFont:[UIFont fontFriendsUsername]];
     }
     return _usernameLabel;
 }
-
-- (UILabel *)subTitleLabel
-{
+- (UILabel *)subTitleLabel{
     if (_subTitleLabel == nil) {
         _subTitleLabel = [[UILabel alloc] init];
         [_subTitleLabel setFont:[UIFont systemFontOfSize:14.0f]];
@@ -146,9 +114,7 @@
     }
     return _subTitleLabel;
 }
-
-- (UIButton *)rightButton
-{
+- (UIButton *)rightButton{
     if (_rightButton == nil) {
         _rightButton = [[UIButton alloc] init];
         [_rightButton.titleLabel setFont:[UIFont systemFontOfSize:14.0f]];
@@ -158,25 +124,18 @@
     }
     return _rightButton;
 }
-
 @end
-
 @interface TLContactsViewController () <UISearchBarDelegate>
-
 @property (nonatomic, strong) TLSearchController *searchController;
-
 @end
-
 @implementation TLContactsViewController
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
     [self.navigationItem setTitle:@"通讯录朋友"];
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
     [self.tableView setSectionIndexBackgroundColor:[UIColor clearColor]];
-    [self.tableView setSectionIndexColor:[UIColor colorBlackForNavBar]];
+    [self.tableView setSectionIndexColor:RGBACOLOR(46.0, 49.0, 50.0, 1.0)];
     [self.tableView setTableHeaderView:self.searchController.searchBar];
     
     [self registerCellClass];
@@ -195,18 +154,14 @@
         [UIAlertView bk_alertViewWithTitle:@"错误" message:@"未成功获取到通讯录信息"];
     }];
 }
-
-- (void)viewWillDisappear:(BOOL)animated
-{
+- (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     if ([SVProgressHUD isVisible]) {
         [SVProgressHUD dismiss];
     }
 }
-
 #pragma mark - Getter -
-- (TLSearchController *)searchController
-{
+- (TLSearchController *)searchController{
     if (_searchController == nil) {
         _searchController = [[TLSearchController alloc] initWithSearchResultsController:self.searchVC];
         [_searchController setSearchResultsUpdater:self.searchVC];
@@ -215,130 +170,88 @@
     }
     return _searchController;
 }
-
-- (TLContactsSearchViewController *)searchVC
-{
+- (TLContactsSearchViewController *)searchVC{
     if (_searchVC == nil) {
         _searchVC = [[TLContactsSearchViewController alloc] init];
     }
     return _searchVC;
 }
-
-- (void)registerCellClass
-{
+- (void)registerCellClass{
     [self.tableView registerClass:[TLFriendHeaderView class] forHeaderFooterViewReuseIdentifier:@"TLFriendHeaderView"];
     [self.tableView registerClass:[TLContactCell class] forCellReuseIdentifier:@"TLContactCell"];
 }
-
 #pragma mark - Delegate -
 //MARK: UITableViewDataSource
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return self.data.count;
 }
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     TLUserGroup *group = [self.data objectAtIndex:section];
     return group.count;
 }
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     TLContact *contact = [self.data[indexPath.section] objectAtIndex:indexPath.row];
     TLContactCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TLContactCell"];
     [cell setContact:contact];
     if (indexPath.section == self.data.count - 1 && indexPath.row == [self.data[indexPath.section] count] - 1) {
         [cell setBottomLineStyle:TLCellLineStyleFill];
-    }
-    else {
+    }else{
         [cell setBottomLineStyle:(indexPath.row == [self.data[indexPath.section] count] - 1 ? TLCellLineStyleNone : TLCellLineStyleDefault)];
     }
     return cell;
 }
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     TLUserGroup *group = [self.data objectAtIndex:section];
     TLFriendHeaderView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"TLFriendHeaderView"];
     [view setTitle:group.groupName];
     return view;
 }
-
-- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
-{
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView{
     return self.headers;
 }
-
 //MARK: UITableViewDelegate
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 55.0f;
 }
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 22.0f;
 }
-
 //MARK: UISearchBarDelegate
-- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
-{
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
     [self.searchVC setContactsData:self.contactsData];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
 }
-
-- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
-{
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
 }
-
 @end
-
-
-
 @interface TLContactsSearchViewController ()
-
 @property (nonatomic, strong) NSMutableArray *data;
-
 @end
-
 @implementation TLContactsSearchViewController
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
     
     self.data = [[NSMutableArray alloc] init];;
     [self.tableView registerClass:[TLContactCell class] forCellReuseIdentifier:@"TLContactCell"];
     [self setAutomaticallyAdjustsScrollViewInsets:NO];
 }
-
-- (void) viewWillAppear:(BOOL)animated
-{
+- (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.tableView.frameY = HEIGHT_NAVBAR + HEIGHT_STATUSBAR;
     self.tableView.frameHeight = HEIGHT_SCREEN - self.tableView.frameY;
 }
-
 #pragma mark - UITableViewDataSource
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.data.count;
 }
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     TLContactCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TLContactCell"];
     
     TLContact *contact = [self.data objectAtIndex:indexPath.row];
@@ -347,14 +260,11 @@
     [cell setBottomLineStyle:(indexPath.row == self.data.count - 1 ? TLCellLineStyleFill : TLCellLineStyleDefault)];
     return cell;
 }
-
 #pragma mark - Delegate -
 //MARK: UITableViewDelegate
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 55.0f;
 }
-
 //MARK: UISearchResultsUpdating
 - (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
     NSString *searchText = [searchController.searchBar.text lowercaseString];
@@ -366,5 +276,4 @@
     }
     [self.tableView reloadData];
 }
-
 @end

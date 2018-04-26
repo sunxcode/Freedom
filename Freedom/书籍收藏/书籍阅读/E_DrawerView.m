@@ -1,17 +1,10 @@
-//
 //  E_DrawerView.m
-//  WFReader
-//
-//  Created by 阿虎 on 15/2/15.
-//  Copyright (c) 2015年 tigerwf. All rights reserved.
-//
-
+//  Freedom
+//  Created by Super on 15/2/15.
 #import "E_DrawerView.h"
 #import "UIImage+ImageEffects.h"
 #define ListViewW (3* self.frame.size.width/4)
-
 @implementation E_DrawerView
-
 - (id)initWithFrame:(CGRect)frame parentView:(UIView *)p{
     self = [super initWithFrame:frame];
     if (self) {
@@ -36,7 +29,6 @@
     return self;
     
 }
-
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
     
     CGPoint touchPoint = [touch locationInView:self];
@@ -48,8 +40,6 @@
     }
     
 }
-
-
 - (void)hideDrawView{
    
     [UIView animateWithDuration:0.25 animations:^{
@@ -62,20 +52,15 @@
         [self removeFromSuperview];
     }];
     
-
 }
-
 - (void)removeE_ListView{
     
     [_listView removeFromSuperview];
     _listView = nil;
     [_delegate openTapGes];
     [self removeFromSuperview];
-
 }
-
 - (void)configUI{
-
     if (_listView == nil) {
         
         _listView = [[E_ListView alloc] initWithFrame:CGRectMake(- ListViewW, 0, ListViewW, self.frame.size.height)];
@@ -98,7 +83,6 @@
     
     
 }
-
 - (void)clickMark:(E_Mark *)eMark{
    
     [UIView animateWithDuration:0.25 animations:^{
@@ -111,9 +95,7 @@
         [_delegate turnToClickMark:eMark];
         [self removeFromSuperview];
     }];
-
 }
-
 - (void)clickChapter:(NSInteger)chaperIndex{
     
     [UIView animateWithDuration:0.25 animations:^{
@@ -128,7 +110,6 @@
     }];
    
 }
-
 - (UIImage *)blurredSnapshot {
     
     UIGraphicsBeginImageContextWithOptions(CGSizeMake(CGRectGetWidth(self.parent.frame), CGRectGetHeight(self.parent.frame)), NO, 1.0f);
@@ -141,5 +122,4 @@
     
     return blurredSnapshotImage;
 }
-
 @end

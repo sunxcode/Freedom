@@ -1,33 +1,20 @@
-//
 //  TLUserHelper.m
-//  TLChat
-//
-//  Created by 李伯坤 on 16/2/6.
-//  Copyright © 2016年 李伯坤. All rights reserved.
-//
-
+//  Freedom
+// Created by Super
 #import "TLUserHelper.h"
-
 static TLUserHelper *helper;
-
 @implementation TLUserHelper
-
-+ (TLUserHelper *) sharedHelper
-{
++ (TLUserHelper *) sharedHelper{
     static dispatch_once_t once;
     dispatch_once(&once, ^{
         helper = [[TLUserHelper alloc] init];
     });
     return helper;
 }
-
-- (NSString *)userID
-{
+- (NSString *)userID{
     return self.user.userID;
 }
-
-- (id) init
-{
+- (id) init{
     if (self = [super init]) {
         self.user = [[TLUser alloc] init];
         self.user.userID = @"这是我的二维码：2829969299 \n没错，我爱周芳园。";//我的二维码数据
@@ -43,5 +30,4 @@ static TLUserHelper *helper;
     }
     return self;
 }
-
 @end

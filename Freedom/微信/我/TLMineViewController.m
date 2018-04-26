@@ -1,15 +1,8 @@
-//
 //  TLMineViewController.m
-//  TLChat
-//
-//  Created by 李伯坤 on 16/1/23.
-//  Copyright © 2016年 李伯坤. All rights reserved.
-//
-
+//  Freedom
+// Created by Super
 /*
- *  注意：该类TableView重载并增加section（0， 0）
- */
-
+ *  注意：该类TableView重载并增加section（0， 0）*/
 #import "TLMineViewController.h"
 #import "TLUserHelper.h"
 #import "TLMineInfoViewController.h"
@@ -19,35 +12,21 @@
 #import "TLSettingGroup.h"
 #import "TLUser.h"
 #import "TLMenuItem.h"
-#import "UIFont+expanded.h"       // 字体
 #define     MINE_SPACE_X        14.0f
 #define     MINE_SPACE_Y        12.0f
 #import <UIKit/UIKit.h>
 #import "TLUser.h"
-
 @interface TLMineHeaderCell : UITableViewCell
-
 @property (nonatomic, strong) TLUser *user;
-
 @end
-
 @interface TLMineHeaderCell ()
-
 @property (nonatomic, strong) UIImageView *avatarImageView;
-
 @property (nonatomic, strong) UILabel *nikenameLabel;
-
 @property (nonatomic, strong) UILabel *usernameLabel;
-
 @property (nonatomic, strong) UIImageView *QRImageView;
-
-
 @end
-
 @implementation TLMineHeaderCell
-
-- (id) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
+- (id) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
         
@@ -60,9 +39,7 @@
     }
     return self;
 }
-
-- (void) addMasonry
-{
+- (void) addMasonry{
     [self.avatarImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(MINE_SPACE_X);
         make.top.mas_equalTo(MINE_SPACE_Y);
@@ -87,9 +64,7 @@
         make.height.and.width.mas_equalTo(18);
     }];
 }
-
-- (void) setUser:(TLUser *)user
-{
+- (void) setUser:(TLUser *)user{
     _user = user;
     if (user.avatarPath) {
         [self.avatarImageView setImage:[UIImage imageNamed:user.avatarPath]];
@@ -100,10 +75,8 @@
     [self.nikenameLabel setText:user.nikeName];
     [self.usernameLabel setText:user.username ? [@"微信号：" stringByAppendingString:user.username] : @""];
 }
-
 #pragma mark - Getter
-- (UIImageView *) avatarImageView
-{
+- (UIImageView *) avatarImageView{
     if (_avatarImageView == nil) {
         _avatarImageView = [[UIImageView alloc] init];
         [_avatarImageView.layer setMasksToBounds:YES];
@@ -111,55 +84,40 @@
     }
     return _avatarImageView;
 }
-
-- (UILabel *) nikenameLabel
-{
+- (UILabel *) nikenameLabel{
     if (_nikenameLabel == nil) {
         _nikenameLabel = [[UILabel alloc] init];
         [_nikenameLabel setFont:[UIFont fontMineNikename]];
     }
     return _nikenameLabel;
 }
-
-- (UILabel *) usernameLabel
-{
+- (UILabel *) usernameLabel{
     if (_usernameLabel == nil) {
         _usernameLabel = [[UILabel alloc] init];
         [_usernameLabel setFont:[UIFont fontMineUsername]];
     }
     return _usernameLabel;
 }
-
-- (UIImageView *) QRImageView
-{
+- (UIImageView *) QRImageView{
     if (_QRImageView == nil) {
         _QRImageView = [[UIImageView alloc] init];
         [_QRImageView setImage:[UIImage imageNamed:PQRCode]];
     }
     return _QRImageView;
 }
-
 @end
-
 @interface TLMineHelper : NSObject
-
 @property (nonatomic, strong) NSMutableArray *mineMenuData;
-
 @end
 @implementation TLMineHelper
-
-- (id) init
-{
+- (id) init{
     if (self = [super init]) {
         self.mineMenuData = [[NSMutableArray alloc] init];
         [self p_initTestData];
     }
     return self;
 }
-
-
-- (void) p_initTestData
-{
+- (void) p_initTestData{
     TLMenuItem *item0 = TLCreateMenuItem(nil, nil);
     TLMenuItem *item1 = TLCreateMenuItem(Palbum_b, @"相册");
     TLMenuItem *item2 = TLCreateMenuItem(PfavoriteHL, @"收藏");
@@ -169,27 +127,18 @@
     TLMenuItem *item6 = TLCreateMenuItem(PsetingHL, @"设置");
     [self.mineMenuData addObjectsFromArray:@[@[item0], @[item1, item2, item3, item4], @[item5], @[item6]]];
 }
-
 @end
-
 @interface TLMineInfoHelper ()
-
 @property (nonatomic, strong) NSMutableArray *mineInfoData;
-
 @end
-
 @implementation TLMineInfoHelper
-
-- (id) init
-{
+- (id) init{
     if (self = [super init]) {
         _mineInfoData = [[NSMutableArray alloc] init];
     }
     return self;
 }
-
-- (NSMutableArray *)mineInfoDataByUserInfo:(TLUser *)userInfo
-{
+- (NSMutableArray *)mineInfoDataByUserInfo:(TLUser *)userInfo{
     TLSettingItem *avatar = TLCreateSettingItem(@"头像");
     avatar.rightImageURL = userInfo.avatarURL;
     TLSettingItem *nikename = TLCreateSettingItem(@"名字");
@@ -199,8 +148,7 @@
         username.subTitle = userInfo.username;
         username.showDisclosureIndicator = NO;
         username.disableHighlight = YES;
-    }
-    else {
+    }else{
         username.subTitle = @"未设置";
     }
     
@@ -221,16 +169,11 @@
     [_mineInfoData addObjectsFromArray:@[group1, group2]];
     return _mineInfoData;
 }
-
 @end
-
 @interface TLMineViewController ()
-
 @property (nonatomic, strong) TLMineHelper *mineHelper;
 @end
-
 @implementation TLMineViewController
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationItem setTitle:@"我"];
@@ -239,11 +182,9 @@
     
     [self.tableView registerClass:[TLMineHeaderCell class] forCellReuseIdentifier:@"TLMineHeaderCell"];
 }
-
 #pragma mark - Delegate -
 //MARK: UITableViewDataSource
-- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         TLMineHeaderCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TLMineHeaderCell"];
         [cell setUser:[TLUserHelper sharedHelper].user];
@@ -251,18 +192,14 @@
     }
     return [super tableView:tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section]];
 }
-
 //MARK: UITableViewDelegate
-- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         return 90;
     }
     return [super tableView:tableView heightForRowAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section]];
 }
-
-- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         TLMineInfoViewController *mineInfoVC = [[TLMineInfoViewController alloc] init];
         [self setHidesBottomBarWhenPushed:YES];
@@ -277,8 +214,7 @@
         [self setHidesBottomBarWhenPushed:YES];
         [self.navigationController pushViewController:expressionVC animated:YES];
         [self setHidesBottomBarWhenPushed:NO];
-    }
-    else if ([item.title isEqualToString:@"设置"]) {
+    }else if ([item.title isEqualToString:@"设置"]) {
         TLMineSettingViewController *settingVC = [[TLMineSettingViewController alloc] init];
         [self setHidesBottomBarWhenPushed:YES];
         [self.navigationController pushViewController:settingVC animated:YES];
@@ -286,5 +222,4 @@
     }
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];
 }
-
 @end

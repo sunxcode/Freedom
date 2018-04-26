@@ -1,11 +1,6 @@
-//
 //  LinsenViewController.m
 //  CLKuGou
-//
 //  Created by Darren on 16/7/29.
-//  Copyright © 2016年 darren. All rights reserved.
-//
-
 #define headerH 300
 #import "LinsenViewController.h"
 #import "LocalMusicViewController.h"
@@ -13,11 +8,8 @@
 #import "RESideMenu.h"//自定义转场
 #import <MediaPlayer/MediaPlayer.h>
 typedef void(^clickLocalMusicBlock)();
-
 @interface mainHeaderView : UIView
-
 @property (nonatomic,copy) clickLocalMusicBlock localMusic;
-
 @end
 @interface mainHeaderView()
 @property (nonatomic,strong) UIImageView *imageView;
@@ -36,7 +28,6 @@ typedef void(^clickLocalMusicBlock)();
     }
     return self;
 }
-
 - (void)setupTopButtoms{
     CGFloat btnW = 60;
     CGFloat btnH = 60;
@@ -102,13 +93,10 @@ typedef void(^clickLocalMusicBlock)();
         [bView addSubview:btn];
     }
 }
-
 - (void)clickLable2{
     self.localMusic();
 }
-
 @end
-
 @interface LinsenViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic,weak) UITableView *tableView;
 @property (nonatomic,strong) NSArray *titlesArr;
@@ -177,7 +165,6 @@ typedef void(^clickLocalMusicBlock)();
     cell.textLabel.text = self.titlesArr[indexPath.row];
     return cell;
 }
-
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     

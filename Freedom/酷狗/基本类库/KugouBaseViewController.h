@@ -1,11 +1,8 @@
-//
 //  KugouBaseViewController.h
-//  Created by 薛超 on 16/8/31.
-//  Copyright © 2016年 薛超. All rights reserved.
+//  Created by Super on 16/8/31.
+//  Copyright © 2016年 Super. All rights reserved.
 //
-
 #import <UIKit/UIKit.h>
-
 @interface KugouBaseViewController : UIViewController
 @property (strong, nonatomic) UIView       *navBar;
 @property (strong, nonatomic) UIImageView            *backItem;
@@ -20,13 +17,10 @@
 - (void)rightItemTouched:(id)sender;
 - (void)leftButtonClick:(id)sender;
 - (void)rightButtonClick:(id)sender;
-
 - (void)goBack;
 - (void)addBackItem;
 - (void)addleftItem:(NSString *)leftItemImageName;
 - (void)addrightItem:(NSString *)rightItemImageName;
 - (void)addleftButton:(NSString *)Title;
 - (void)addrightButton:(NSString *)Title;
-
-
 @end

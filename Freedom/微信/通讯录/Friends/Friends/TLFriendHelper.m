@@ -1,11 +1,6 @@
-//
 //  TLFriendHelper.m
-//  TLChat
-//
-//  Created by 李伯坤 on 16/1/27.
-//  Copyright © 2016年 李伯坤. All rights reserved.
-//
-
+//  Freedom
+//  Created by Super on 16/1/27.
 #import "TLFriendHelper.h"
 #import "TLDBFriendStore.h"
 #import "TLDBGroupStore.h"
@@ -15,28 +10,19 @@
 #import <AddressBookUI/AddressBookUI.h>
 #import "TLContact.h"
 static TLFriendHelper *friendHelper = nil;
-
 @interface TLFriendHelper ()
-
 @property (nonatomic, strong) TLDBFriendStore *friendStore;
-
 @property (nonatomic, strong) TLDBGroupStore *groupStore;
-
 @end
-
 @implementation TLFriendHelper
-
-+ (TLFriendHelper *)sharedFriendHelper
-{
++ (TLFriendHelper *)sharedFriendHelper{
     static dispatch_once_t once;
     dispatch_once(&once, ^{
         friendHelper = [[TLFriendHelper alloc] init];
     });
     return friendHelper;
 }
-
-- (id)init
-{
+- (id)init{
     if (self = [super init]) {
         // 初始化好友数据
         self.friendsData = [self.friendStore friendsDataByUid:[TLUserHelper sharedHelper].userID];
@@ -50,10 +36,8 @@ static TLFriendHelper *friendHelper = nil;
     }
     return self;
 }
-
 #pragma mark - Public Methods -
-- (TLUser *)getFriendInfoByUserID:(NSString *)userID
-{
+- (TLUser *)getFriendInfoByUserID:(NSString *)userID{
     if (userID == nil) {
         return nil;
     }
@@ -64,9 +48,7 @@ static TLFriendHelper *friendHelper = nil;
     }
     return nil;
 }
-
-- (TLGroup *)getGroupInfoByGroupID:(NSString *)groupID
-{
+- (TLGroup *)getGroupInfoByGroupID:(NSString *)groupID{
     if (groupID == nil) {
         return nil;
     }
@@ -77,10 +59,8 @@ static TLFriendHelper *friendHelper = nil;
     }
     return nil;
 }
-
 #pragma mark - Private Methods -
-- (void)p_resetFriendData
-{
+- (void)p_resetFriendData{
     // 1、排序
     NSArray *serializeArray = [self.friendsData sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         int i;
@@ -91,15 +71,13 @@ static TLFriendHelper *friendHelper = nil;
             char b = toupper([strB characterAtIndex:i]);
             if (a > b) {
                 return (NSComparisonResult)NSOrderedDescending;
-            }
-            else if (a < b) {
+            }else if (a < b) {
                 return (NSComparisonResult)NSOrderedAscending;
             }
         }
         if (strA.length > strB.length) {
             return (NSComparisonResult)NSOrderedDescending;
-        }
-        else if (strA.length < strB.length){
+        }else if (strA.length < strB.length){
             return (NSComparisonResult)NSOrderedAscending;
         }
         return (NSComparisonResult)NSOrderedSame;
@@ -123,8 +101,7 @@ static TLFriendHelper *friendHelper = nil;
         char c = toupper([user.pinyin characterAtIndex:0]);
         if (!isalpha(c)) {      // #组
             [othGroup addObject:user];
-        }
-        else if (c != lastC){
+        }else if (c != lastC){
             if (curGroup && curGroup.count > 0) {
                 [ansData addObject:curGroup];
                 [ansSectionHeaders addObject:curGroup.groupName];
@@ -133,8 +110,7 @@ static TLFriendHelper *friendHelper = nil;
             curGroup = [[TLUserGroup alloc] init];
             [curGroup setGroupName:[NSString stringWithFormat:@"%c", c]];
             [curGroup addObject:user];
-        }
-        else {
+        }else{
             [curGroup addObject:user];
         }
         
@@ -171,9 +147,7 @@ static TLFriendHelper *friendHelper = nil;
         });
     }
 }
-
-- (void)p_initTestData
-{
+- (void)p_initTestData{
     // 好友数据
     NSString *path = [[NSBundle mainBundle] pathForResource:@"FriendList" ofType:@"json"];
     NSData *jsonData = [NSData dataWithContentsOfFile:path];
@@ -203,13 +177,11 @@ static TLFriendHelper *friendHelper = nil;
     }
     // 生成Group Icon
     for (TLGroup *group in self.groupsData) {
-        [TLUIUtility createGroupAvatar:group finished:nil];
+        [FreedomTools createGroupAvatar:group finished:nil];
     }
 }
-
 #pragma mark - Getter
-- (TLUserGroup *)defaultGroup
-{
+- (TLUserGroup *)defaultGroup{
     if (_defaultGroup == nil) {
         TLUser *item_new = [[TLUser alloc] init];
         item_new.userID = @"-1";
@@ -231,30 +203,22 @@ static TLFriendHelper *friendHelper = nil;
     }
     return _defaultGroup;
 }
-
-- (NSInteger)friendCount
-{
+- (NSInteger)friendCount{
     return self.friendsData.count;
 }
-
-- (TLDBFriendStore *)friendStore
-{
+- (TLDBFriendStore *)friendStore{
     if (_friendStore == nil) {
         _friendStore = [[TLDBFriendStore alloc] init];
     }
     return _friendStore;
 }
-
-- (TLDBGroupStore *)groupStore
-{
+- (TLDBGroupStore *)groupStore{
     if (_groupStore == nil) {
         _groupStore = [[TLDBGroupStore alloc] init];
     }
     return _groupStore;
 }
-
-- (NSMutableArray *)friendDetailArrayByUserInfo:(TLUser *)userInfo
-{
+- (NSMutableArray *)friendDetailArrayByUserInfo:(TLUser *)userInfo{
     NSMutableArray *data = [[NSMutableArray alloc] init];
     NSMutableArray *arr = [[NSMutableArray alloc] init];
     
@@ -275,8 +239,7 @@ static TLFriendHelper *friendHelper = nil;
     if (userInfo.detailInfo.tags.count == 0) {
         TLInfo *remark = TLCreateInfo(@"设置备注和标签" , nil);
         [arr insertObject:remark atIndex:0];
-    }
-    else {
+    }else{
         NSString *str = [userInfo.detailInfo.tags componentsJoinedByString:@","];
         TLInfo *remark = TLCreateInfo(@"标签", str);
         [arr addObject:remark];
@@ -304,12 +267,12 @@ static TLFriendHelper *friendHelper = nil;
     TLInfo *sendMsg = TLCreateInfo(@"发消息", nil);
     sendMsg.type = TLInfoTypeButton;
     sendMsg.titleColor = [UIColor whiteColor];
-    sendMsg.buttonBorderColor = [UIColor colorGrayLine];
+    sendMsg.buttonBorderColor = colorGrayLine;
     [arr addObject:sendMsg];
     if (![userInfo.userID isEqualToString:[TLUserHelper sharedHelper].userID]) {
         TLInfo *video = TLCreateInfo(@"视频聊天", nil);
         video.type = TLInfoTypeButton;
-        video.buttonBorderColor = [UIColor colorGrayLine];
+        video.buttonBorderColor = colorGrayLine;
         video.buttonColor = [UIColor whiteColor];
         [arr addObject:video];
     }
@@ -317,9 +280,7 @@ static TLFriendHelper *friendHelper = nil;
     
     return data;
 }
-
-- (NSMutableArray *)friendDetailSettingArrayByUserInfo:(TLUser *)userInfo
-{
+- (NSMutableArray *)friendDetailSettingArrayByUserInfo:(TLUser *)userInfo{
     TLSettingItem *remark = TLCreateSettingItem(@"设置备注及标签");
     if (userInfo.remarkName.length > 0) {
         remark.subTitle = userInfo.remarkName;
@@ -346,10 +307,8 @@ static TLFriendHelper *friendHelper = nil;
     
     return [NSMutableArray arrayWithObjects:group1, group2, group3, group4, group5, nil];
 }
-
 + (void)tryToGetAllContactsSuccess:(void (^)(NSArray *data, NSArray *formatData, NSArray *headers))success
-                            failed:(void (^)())failed
-{
+                            failed:(void (^)())failed{
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         // 1、获取通讯录信息
         ABAddressBookRef addressBooks = nil;
@@ -360,8 +319,7 @@ static TLFriendHelper *friendHelper = nil;
                 dispatch_semaphore_signal(sema);
             });
             dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
-        }
-        else {
+        }else{
             addressBooks = ABAddressBookCreate();
         }
         
@@ -380,8 +338,7 @@ static TLFriendHelper *friendHelper = nil;
                     success(data, formatData, headers);
                 });
             }
-        }
-        else {
+        }else{
             dispatch_async(dispatch_get_main_queue(), ^{
                 failed();
             });
@@ -401,8 +358,7 @@ static TLFriendHelper *friendHelper = nil;
             
             if ((__bridge id)abFullName != nil) {
                 nameString = (__bridge NSString *)abFullName;
-            }
-            else {
+            }else{
                 if ((__bridge id)abLastName != nil) {
                     nameString = [NSString stringWithFormat:@"%@ %@", nameString, lastNameString];
                 }
@@ -472,8 +428,7 @@ static TLFriendHelper *friendHelper = nil;
             }
             if (strA.length > strB.length) {
                 return (NSComparisonResult)NSOrderedDescending;
-            }
-            else if (strA.length < strB.length){
+            }else if (strA.length < strB.length){
                 return (NSComparisonResult)NSOrderedAscending;
             }
             return (NSComparisonResult)NSOrderedSame;
@@ -496,8 +451,7 @@ static TLFriendHelper *friendHelper = nil;
             char c = toupper([contact.pinyin characterAtIndex:0]);
             if (!isalpha(c)) {      // #组
                 [othGroup addObject:contact];
-            }
-            else if (c != lastC){
+            }else if (c != lastC){
                 if (curGroup && curGroup.count > 0) {
                     [data addObject:curGroup];
                     [headers addObject:curGroup.groupName];
@@ -506,8 +460,7 @@ static TLFriendHelper *friendHelper = nil;
                 curGroup = [[TLUserGroup alloc] init];
                 [curGroup setGroupName:[NSString stringWithFormat:@"%c", c]];
                 [curGroup addObject:contact];
-            }
-            else {
+            }else{
                 [curGroup addObject:contact];
             }
         }
@@ -535,5 +488,4 @@ static TLFriendHelper *friendHelper = nil;
         }
     });
 }
-
 @end

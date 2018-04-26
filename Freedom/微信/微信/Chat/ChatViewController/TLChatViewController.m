@@ -1,41 +1,30 @@
-//
-//  TLChatViewController.m
-//  TLChat
-//
-//  Created by 李伯坤 on 16/2/15.
-//  Copyright © 2016年 李伯坤. All rights reserved.
-//
-
+//  FreedomViewController.m
+//  Freedom
+// Created by Super
 #import "TLChatViewController.h"
 #import "TLChatDetailViewController.h"
 #import "TLChatGroupDetailViewController.h"
 #import "TLEmojiKBHelper.h"
 #import <MobClick.h>
+#import <BlocksKit/BlocksKit+UIKit.h>
 #import "TLExpressionViewController.h"
 #import "TLMyExpressionViewController.h"
 #import "TLFriendDetailViewController.h"
 #import "MWPhotoBrowser.h"
-
+#import <ReactiveCocoa/ReactiveCocoa.h>
 #import "TLUserHelper.h"
 @interface TLMoreKBHelper : NSObject
-
 @property (nonatomic, strong) NSMutableArray *chatMoreKeyboardData;
-
 @end
-
 @implementation TLMoreKBHelper
-
-- (id) init
-{
+- (id) init{
     if (self = [super init]) {
         self.chatMoreKeyboardData = [[NSMutableArray alloc] init];
         [self p_initTestData];
     }
     return self;
 }
-
-- (void) p_initTestData
-{
+- (void) p_initTestData{
     TLMoreKeyboardItem *imageItem = [TLMoreKeyboardItem createByType:TLMoreKeyboardItemTypeImage
                                                                title:@"照片"
                                                            imagePath:@"moreKB_image"];
@@ -71,37 +60,22 @@
                                                            imagePath:@"moreKB_wallet"];
     [self.chatMoreKeyboardData addObjectsFromArray:@[imageItem, cameraItem, videoItem, videoCallItem, walletItem, transferItem, positionItem, favoriteItem, businessCardItem, voiceItem, cardsItem]];
 }
-
 @end
-
-
-
-
 static TLChatViewController *chatVC;
-
 @interface TLChatViewController()
-
 @property (nonatomic, strong) TLMoreKBHelper *moreKBhelper;
-
 @property (nonatomic, strong) TLEmojiKBHelper *emojiKBHelper;
-
 @property (nonatomic, strong) UIBarButtonItem *rightBarButton;
-
 @end
-
 @implementation TLChatViewController
-
-+ (TLChatViewController *) sharedChatVC
-{
++ (TLChatViewController *) sharedChatVC{
     static dispatch_once_t once;
     dispatch_once(&once, ^{
         chatVC = [[TLChatViewController alloc] init];
     });
     return chatVC;
 }
-
-- (void) viewDidLoad
-{
+- (void) viewDidLoad{
     [super viewDidLoad];
     [self.navigationItem setRightBarButtonItem:self.rightBarButton];
     
@@ -113,80 +87,62 @@ static TLChatViewController *chatVC;
         [self setChatEmojiKeyboardData:emojiGroups];
     }];
 }
-
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [MobClick beginLogPageView:@"ChatVC"];
 }
-
-- (void)viewWillDisappear:(BOOL)animated
-{
+- (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [MobClick endLogPageView:@"ChatVC"];
 }
-
-- (void)dealloc
-{
+- (void)dealloc{
 #ifdef DEBUG_MEMERY
-    NSLog(@"dealloc ChatVC");
+    DLog(@"dealloc ChatVC");
 #endif
 }
-
-#pragma mark - # Public Methods
-- (void)setPartner:(id<TLChatUserProtocol>)partner
-{
+#pragma mark Public Methods
+- (void)setPartner:(id<TLChatUserProtocol>)partner{
     [super setPartner:partner];
     if ([partner chat_userType] == TLChatUserTypeUser) {
         [self.rightBarButton setImage:[UIImage imageNamed:@"nav_chat_single"]];
-    }
-    else if ([partner chat_userType] == TLChatUserTypeGroup) {
+    }else if ([partner chat_userType] == TLChatUserTypeGroup) {
         [self.rightBarButton setImage:[UIImage imageNamed:@"nav_chat_multi"]];
     }
 }
-
-#pragma mark - # Event Response
-- (void)rightBarButtonDown:(UINavigationBar *)sender
-{
+#pragma mark - Event Response
+- (void)rightBarButtonDown:(UINavigationBar *)sender{
     if ([self.partner chat_userType] == TLChatUserTypeUser) {
         TLChatDetailViewController *chatDetailVC = [[TLChatDetailViewController alloc] init];
         [chatDetailVC setUser:(TLUser *)self.partner];
         [self setHidesBottomBarWhenPushed:YES];
         [self.navigationController pushViewController:chatDetailVC animated:YES];
-    }
-    else if ([self.partner chat_userType] == TLChatUserTypeGroup) {
+    }else if ([self.partner chat_userType] == TLChatUserTypeGroup) {
         TLChatGroupDetailViewController *chatGroupDetailVC = [[TLChatGroupDetailViewController alloc] init];
         [chatGroupDetailVC setGroup:(TLGroup *)self.partner];
         [self setHidesBottomBarWhenPushed:YES];
         [self.navigationController pushViewController:chatGroupDetailVC animated:YES];
     }
 }
-
-#pragma mark - # Getter
-- (UIBarButtonItem *)rightBarButton
-{
+#pragma mark - 
+- (UIBarButtonItem *)rightBarButton{
     if (_rightBarButton == nil) {
         _rightBarButton = [[UIBarButtonItem alloc] initWithImage:nil style:UIBarButtonItemStylePlain target:self action:@selector(rightBarButtonDown:)];
     }
     return _rightBarButton;
 }
-
 #pragma mark - Delegate -
 //MARK: TLMoreKeyboardDelegate
-- (void)moreKeyboard:(id)keyboard didSelectedFunctionItem:(TLMoreKeyboardItem *)funcItem
-{
+- (void)moreKeyboard:(id)keyboard didSelectedFunctionItem:(TLMoreKeyboardItem *)funcItem{
     if (funcItem.type == TLMoreKeyboardItemTypeCamera || funcItem.type == TLMoreKeyboardItemTypeImage) {
         UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
         if (funcItem.type == TLMoreKeyboardItemTypeCamera) {
             if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
                 [imagePickerController setSourceType:UIImagePickerControllerSourceTypeCamera];
-            }
-            else {
+            }else{
                 [UIAlertView bk_alertViewWithTitle:@"错误" message:@"相机初始化失败"];
                 return;
             }
-        }
-        else {
+        }else{
             [imagePickerController setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
         }
         [self presentViewController:imagePickerController animated:YES completion:nil];
@@ -199,47 +155,37 @@ static TLChatViewController *chatVC;
         } completed:^{
             [imagePickerController dismissViewControllerAnimated:YES completion:nil];
         }];
-    }
-    else {
+    }else{
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:[NSString stringWithFormat:@"选中”%@“ 按钮", funcItem.title] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
         [alert show];
     }
 }
-
 //MARK: TLEmojiKeyboardDelegate
-- (void)emojiKeyboardEmojiEditButtonDown
-{
+- (void)emojiKeyboardEmojiEditButtonDown{
     TLExpressionViewController *expressionVC = [[TLExpressionViewController alloc] init];
     TLNavigationController *navC = [[TLNavigationController alloc] initWithRootViewController:expressionVC];
     [self presentViewController:navC animated:YES completion:nil];
 }
-
-- (void)emojiKeyboardMyEmojiEditButtonDown
-{
+- (void)emojiKeyboardMyEmojiEditButtonDown{
     TLMyExpressionViewController *myExpressionVC = [[TLMyExpressionViewController alloc] init];
     TLNavigationController *navC = [[TLNavigationController alloc] initWithRootViewController:myExpressionVC];
     [self presentViewController:navC animated:YES completion:nil];
 }
-
 //MARK: TLChatViewControllerProxy
-- (void)didClickedUserAvatar:(TLUser *)user
-{
+- (void)didClickedUserAvatar:(TLUser *)user{
     TLFriendDetailViewController *detailVC = [[TLFriendDetailViewController alloc] init];
     [detailVC setUser:user];
     [self setHidesBottomBarWhenPushed:YES];
     [self.navigationController pushViewController:detailVC animated:YES];
 }
-
-- (void)didClickedImageMessages:(NSArray *)imageMessages atIndex:(NSInteger)index
-{
+- (void)didClickedImageMessages:(NSArray *)imageMessages atIndex:(NSInteger)index{
     NSMutableArray *data = [[NSMutableArray alloc] init];
     for (TLMessage *message in imageMessages) {
         NSURL *url;
         if ([(TLImageMessage *)message imagePath]) {
             NSString *imagePath = [NSFileManager pathUserChatImage:[(TLImageMessage *)message imagePath]];
             url = [NSURL fileURLWithPath:imagePath];
-        }
-        else {
+        }else{
             url = TLURL([(TLImageMessage *)message imageURL]);
         }
         

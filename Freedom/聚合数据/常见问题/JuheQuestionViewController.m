@@ -1,9 +1,7 @@
-//
 //  JuheQuestionViewController.m
-//  Created by 薛超 on 16/9/5.
-//  Copyright © 2016年 薛超. All rights reserved.
+//  Created by Super on 16/9/5.
+//  Copyright © 2016年 Super. All rights reserved.
 //
-
 #import "JuheQuestionViewController.h"
 #import "JuheDetailQuestion.h"
 @interface JuheQuestionViewCell:BaseTableViewCell
@@ -47,7 +45,6 @@
     self.tableView.delegate = self;
     [self.view addSubview:self.tableView];
 }
-
 -(void)moreAction{
     DLog(@"更多");
     
@@ -55,6 +52,4 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [self pushController:[JuheDetailQuestion class] withInfo:nil withTitle:@"问题详情"];
 }
-
-
 @end

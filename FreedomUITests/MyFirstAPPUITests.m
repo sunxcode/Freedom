@@ -1,19 +1,12 @@
-//
 //  FreedomUITests.m
 //  FreedomUITests
+//  Created by Super on 16/6/13.
+//  Copyright © 2016年 Super. All rights reserved.
 //
-//  Created by 薛超 on 16/6/13.
-//  Copyright © 2016年 薛超. All rights reserved.
-//
-
 #import <XCTest/XCTest.h>
-
 @interface FreedomUITests : XCTestCase
-
 @end
-
 @implementation FreedomUITests
-
 - (void)setUp {
     [super setUp];
     
@@ -26,15 +19,12 @@
     
     // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
 }
-
 - (void)tearDown {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
 }
-
 - (void)testExample {
     // Use recording to get started writing UI tests.
     // Use XCTAssert and related functions to verify your tests produce the correct results.
 }
-
 @end

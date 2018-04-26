@@ -1,31 +1,20 @@
-//
 //  DetailTableViewController.m
-//  B5MDetailFramework
-//
+//  Freedom
 //  Created by boguang on 15/8/21.
-//  Copyright (c) 2015年 micker. All rights reserved.
-//
-
 #import "DetailTableViewController.h"
-
 #import "DetailView.h"
 #import "UIImage+expanded.h"
-
 static NSString *titles[] = {@"图文详情",@"商品评论",@"店铺推荐"};
 static NSString *urls[] = {
     @"http://m.b5m.com/item.html?tid=2614676&mps=____&type=content",
     @"http://m.b5m.com/item.html?tid=2614676&mps=____&type=comment",
     @"http://m.baidu.com"};
-
 @interface DetailTableViewController () <DetailViewSectionDelegate,UIScrollPageControlViewDelegate, UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) DetailView *detailView;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *data;
-
 @end
-
 @implementation DetailTableViewController
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -34,12 +23,9 @@ static NSString *urls[] = {
     [self.tableView reloadData];
     [self.detailView reloadData];
 }
-
 - (void) dealloc {
-    NSLog(@"DetailTableViewController dealloc");
-
+    DLog(@"DetailTableViewController dealloc");
 }
-
 - (DetailView *) detailView {
     if (!_detailView) {
         _detailView = [[DetailView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height-64)];
@@ -48,7 +34,6 @@ static NSString *urls[] = {
     }
     return _detailView;
 }
-
 - (UITableView *) tableView {
     if (!_tableView) {
         _tableView = [[UITableView alloc] initWithFrame:_detailView.bounds];
@@ -57,14 +42,10 @@ static NSString *urls[] = {
     }
     return _tableView;
 }
-
-
 #pragma mark UIScrollPageControlViewDelegate
-
 - (NSUInteger) numberOfView:(UIScrollPageControlView *) control {
     return 8;
 }
-
 - (UIView *) configItemOfControl:(UIScrollPageControlView *) control at:(NSUInteger) index  {
     UIImageView *cellItem = (UIImageView *)[control dequeueReusableViewWithIdentifier:@"reuse"];
     NSString *reuse = @"复用来的";
@@ -89,28 +70,20 @@ static NSString *urls[] = {
     label.text = [NSString stringWithFormat:@"item = %ld || reuse = %@", index,reuse];
     return cellItem;
 }
-
 #pragma mark DetailViewSectionDelegate
-
-
 - (UIView *) viewAtTop {
     return self.tableView;
 }
-
 - (NSUInteger ) numberOfSections {
     return 3;
 }
-
-
 - (NSString *) titleOfSectionAt:(NSUInteger )index {
     return titles[index];
 }
-
 - (UIView *) viewOfSectionAt:(NSUInteger ) index {
     UIWebView *webview = [[UIWebView alloc] initWithFrame:CGRectZero];
     return webview;
 }
-
 - (void) didChangeToSection:(NSUInteger) index view:(UIView *) view {
     NSString *url = urls[index];
     UIWebView *webView = (UIWebView *) view;
@@ -119,12 +92,8 @@ static NSString *urls[] = {
         [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
     }
 }
-
-
 #pragma mark ==
 #pragma mark == tableView
-
-
 - (NSMutableArray *) data {
     if (!_data) {
         _data = [NSMutableArray array];
@@ -137,16 +106,12 @@ static NSString *urls[] = {
     }
     return _data;
 }
-
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.data count];
 }
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *dequeueReusableCellWithIdentifier = @"dequeueReusableCellWithIdentifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:dequeueReusableCellWithIdentifier];
@@ -154,16 +119,13 @@ static NSString *urls[] = {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:dequeueReusableCellWithIdentifier];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-
     cell.textLabel.text = self.data[indexPath.row][@"title"];
     cell.detailTextLabel.text = self.data[indexPath.row][@"author"];
     return cell;
 }
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 85;
 }
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *classString = self.data[indexPath.row][@"class"];
     Class newClass = NSClassFromString(classString);
@@ -172,5 +134,4 @@ static NSString *urls[] = {
     if (controller)
         [self.navigationController pushViewController:controller animated:YES];
 }
-
 @end

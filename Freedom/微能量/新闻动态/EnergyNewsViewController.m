@@ -1,9 +1,7 @@
-//
 //  EnergyNewsViewController.m
-//  Created by 薛超 on 16/9/5.
-//  Copyright © 2016年 薛超. All rights reserved.
+//  Created by Super on 16/9/5.
+//  Copyright © 2016年 Super. All rights reserved.
 //
-
 #import "EnergyNewsViewController.h"
 #import "EnergyNewsDetailViewController.h"
 @interface EnergyNewsViewCell:BaseTableViewCell
@@ -16,7 +14,6 @@
     self.title.frame = CGRectMake(XW(self.icon)+20,  (70 - 20)/2.0,APPW-XW(self.icon), 20);
     self.line.frame = CGRectMake(Boardseperad, 69, APPW-2*Boardseperad, 1);
 }
-
 -(void)setDataWithDict:(NSDictionary *)dict{
     self.title.text = (NSString*)dict;
     self.icon.image = [UIImage imageNamed:@"taobaomini3"];
@@ -41,6 +38,4 @@
     [self pushController:[EnergyNewsDetailViewController class] withInfo:nil withTitle:value withOther:value];
     
 }
-
 @end
-

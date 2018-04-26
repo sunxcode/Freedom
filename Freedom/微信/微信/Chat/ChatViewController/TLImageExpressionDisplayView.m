@@ -1,36 +1,21 @@
-//
 //  TLImageExpressionDisplayView.m
-//  TLChat
-//
-//  Created by 李伯坤 on 16/3/16.
-//  Copyright © 2016年 李伯坤. All rights reserved.
-//
-
+//  Freedom
+//  Created by Super on 16/3/16.
 #import "TLImageExpressionDisplayView.h"
 #import "UIImage+GIF.h"
 #import "UIImageView+WebCache.h"
-
 #define     WIDTH_TIPS      150
 #define     HEIGHT_TIPS     162
 #define     WIDTH_CENTER    25
 #define     SPACE_IMAGE     16
-
 @interface TLImageExpressionDisplayView ()
-
 @property (nonatomic, strong) UIImageView *bgLeftView;
-
 @property (nonatomic, strong) UIImageView *bgCenterView;
-
 @property (nonatomic, strong) UIImageView *bgRightView;
-
 @property (nonatomic, strong) UIImageView *imageView;
-
 @end
-
 @implementation TLImageExpressionDisplayView
-
-- (id)initWithFrame:(CGRect)frame
-{
+- (id)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:CGRectMake(0, 0, WIDTH_TIPS, HEIGHT_TIPS)]) {
         [self addSubview:self.bgLeftView];
         [self addSubview:self.bgCenterView];
@@ -40,16 +25,12 @@
     }
     return self;
 }
-
-- (void)displayEmoji:(TLEmoji *)emoji atRect:(CGRect)rect
-{
+- (void)displayEmoji:(TLEmoji *)emoji atRect:(CGRect)rect{
     [self setRect:rect];
     [self setEmoji:emoji];
 }
-
 static NSString *curID;
-- (void)setEmoji:(TLEmoji *)emoji
-{
+- (void)setEmoji:(TLEmoji *)emoji{
     if (_emoji == emoji) {
         return;
     }
@@ -58,9 +39,8 @@ static NSString *curID;
     NSData *data = [NSData dataWithContentsOfFile:emoji.emojiPath];
     if (data) {
         [self.imageView setImage:[UIImage sd_animatedGIFWithData:data]];
-    }
-    else {
-        NSString *urlString = [TLHost expressionDownloadURLWithEid:emoji.emojiID];
+    }else{
+        NSString *urlString = [NSString stringWithFormat:@"http://123.57.155.230:8080/ibiaoqing/admin/expre/download.do?pId=%@",emoji.emojiID];
         [self.imageView sd_setImageWithURL:TLURL(emoji.emojiURL) completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             if ([urlString containsString:curID]) {
                 dispatch_async(dispatch_get_global_queue(0, 0), ^{
@@ -75,9 +55,7 @@ static NSString *curID;
         }];
     }
 }
-
-- (void)setRect:(CGRect)rect
-{
+- (void)setRect:(CGRect)rect{
     self.frameY = rect.origin.y - self.frameHeight + 13;
     CGFloat w = WIDTH_TIPS - WIDTH_CENTER;
     CGFloat centerX = rect.origin.x + rect.size.width / 2;
@@ -86,24 +64,20 @@ static NSString *curID;
         [self.bgLeftView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.width.mas_equalTo(w / 4);
         }];
-    }
-    else if (WIDTH_SCREEN - rect.origin.x < self.frameWidth) {   // 箭头在右边
+    }else if (WIDTH_SCREEN - rect.origin.x < self.frameWidth) {   // 箭头在右边
         self.center = CGPointMake(centerX - (WIDTH_TIPS - w / 4 - WIDTH_CENTER) / 2 + SPACE_IMAGE,self.center.y);
         [self.bgLeftView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.width.mas_equalTo(w / 4 * 3);
         }];
-    }
-    else {
+    }else{
         self.center = CGPointMake(centerX,self.center.y);
         [self.bgLeftView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.width.mas_equalTo(w / 2);
         }];
     }
 }
-
 #pragma mark - Private Methods -
-- (void)p_addMasonry
-{
+- (void)p_addMasonry{
     [self.bgLeftView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.and.left.and.bottom.mas_equalTo(self);
     }];
@@ -124,39 +98,29 @@ static NSString *curID;
         make.height.mas_equalTo(self.imageView.mas_width);
     }];
 }
-
 #pragma mark - Getter -
-- (UIImageView *)imageView
-{
+- (UIImageView *)imageView{
     if (_imageView == nil) {
         _imageView = [[UIImageView alloc] init];
     }
     return _imageView;
 }
-
-- (UIImageView *)bgLeftView
-{
+- (UIImageView *)bgLeftView{
     if (_bgLeftView == nil) {
         _bgLeftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"emojiKB_bigTips_left"]];
     }
     return _bgLeftView;
 }
-
-- (UIImageView *)bgCenterView
-{
+- (UIImageView *)bgCenterView{
     if (_bgCenterView == nil) {
         _bgCenterView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"emojiKB_bigTips_middle"]];
     }
     return _bgCenterView;
 }
-
-- (UIImageView *)bgRightView
-{
+- (UIImageView *)bgRightView{
     if (_bgRightView == nil) {
         _bgRightView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"emojiKB_bigTips_right"]];
     }
     return _bgRightView;
 }
-
-
 @end

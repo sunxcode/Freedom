@@ -1,3 +1,4 @@
+
 #import "XFHomeViewController.h"
 #import "XFTitleMenuViewController.h"
 #import "XFAccount.h"
@@ -87,9 +88,7 @@
     //一进来就开始加载微博
     [self refreshStatus:refresh];
 }
-/**
- *  将HWStatus模型转为HWStatusFrame模型
- */
+/*将HWStatus模型转为HWStatusFrame模型*/
 -(NSArray *)stausFramesWithStatuses:(NSArray *)statuses{
     NSMutableArray *frames = [NSMutableArray array];
     for (XFStatus *status in statuses) {
@@ -99,9 +98,7 @@
     }
     return frames;
 }
-/**
- *  UIRefreshControl进入刷新状态：加载最新的数据
- */
+/*UIRefreshControl进入刷新状态：加载最新的数据*/
 -(void)refreshStatus:(UIRefreshControl *)control {
     NSString *url = @"https://api.weibo.com/2/statuses/friends_timeline.json";
      XFAccount *account = [XFAccountTool account];
@@ -170,7 +167,6 @@
     //显示
     [dropMenu showFrom:titleButton];
 }
-
 // 加载更多的微博数据
 -(void)loadMoreStatus {
     // 1.请求管理者// 2.拼接请求参数
@@ -204,23 +200,18 @@
     }];
 }
 - (void)friendSearch{
-    NSLog(@"friendSearch");
+    DLog(@"friendSearch");
 }
 - (void)pop{
-    NSLog(@"pop");
+    DLog(@"pop");
 }
 #pragma mark XFDropdownViewDelegate代理方法
-/**
- *  下拉菜单被销毁了
- */
+/*下拉菜单被销毁了*/
 - (void)dropdownMenuDidDismiss:(XFDropdownView *)menu{
     UIButton *titleButton = (UIButton *)self.navigationItem.titleView;
     titleButton.selected = NO;
 }
-
-/**
- *  下拉菜单显示了
- */
+/*下拉菜单显示了*/
 - (void)dropdownMenuDidShow:(XFDropdownView *)menu{
     UIButton *titleButton = (UIButton *)self.navigationItem.titleView;
     titleButton.selected = YES;
@@ -248,5 +239,4 @@
     XFStatusFrame *frame = self.statusFrames[indexPath.row];
     return frame.cellHeight;
 }
-
 @end

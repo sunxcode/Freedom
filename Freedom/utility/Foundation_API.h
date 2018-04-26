@@ -1,9 +1,9 @@
 //
 //  Foundation_API.h
-//  薛超APP框架
+//  SuperAPP框架
 //
-//  Created by 薛超 on 16/9/6.
-//  Copyright © 2016年 薛超. All rights reserved.
+//  Created by Super on 16/9/6.
+//  Copyright © 2016年 Super. All rights reserved.
 #ifndef Foundation_API_h
 #define Foundation_API_h
 //FIXME: 登         录         注         册         *******************
@@ -25,7 +25,6 @@
 /************************************************************************************************************************************************************************************/
 //FIXME:     大         众         点         评         *******************/
 //http://developer.dianping.com/app/tutorial
-
 //FIXME:              支         付         宝              *******************/
 //https://doc.open.alipay.com
 //FIXME:           个         人         简         历           *******************/
@@ -35,7 +34,6 @@
 #define MicroPage1 @"http://d.eqxiu.com/s/2laMmsfr?userKey=148636102478720979"//我的微页1与命运有约
 #define MicroPage2 @"http://www.rabbitpre.com/m/v6eyraMYd?lc=2&sui=VgLIRGWS#from=share"//我的微页2芳园生日快乐
 #define MicroPage3 @"http://www.rabbitpre.com/m/qUviFRIRP?lc=1&sui=Z9lylffK#from=share"//我的微页3超级说服力
-
 //FIXME:           个         人         应         用           *******************/
 //FIXME:           自         由         主         义           *******************/
 //FIXME:                   淘         宝                    *******************/
@@ -47,12 +45,10 @@
 #define WXBusinessPlist     @"http://sqimg.qq.com/QQHDs/MacQQ/Release/resources/plist/business.plist"//下载business.plist上面有欢迎界面图片和访问时间。
 #define WXBusinessPlist1    @"http://sqimg.qq.com/QQHDs/MacQQ/Release/PropertyList_v1.1.plist"//下载plist文件，上面有一些配置信息在business.plist文件之前访问的。
 #define WXWqsjd             @"http://wqs.jd.com/portal/wx/portal_indexV4.shtml?PTAG=17007.13.1&ptype=1"//购物
-
 //FIXME:                  微          博                   *******************/
 //http://open.weibo.com
 #define WBLogin             @"http://weibo.com/login.php"//
 #define WBMovie             @"http://movie.weibo.com/"//
-
 //FIXME:         聚         合         数         据           *******************/
 //http://open.juhe.cn
 #define JHMorecpagequestion @"http://m.juhe.cn/qa/more/cpage/2/question/"//
@@ -68,7 +64,6 @@
 #define JHDocsapiid         @"https://www.juhe.cn/docs/api/id/235"//API数据代码
 #define JH                  @"http://m.juhe.cn/"//数据接口
 #define JHNews              @"http://m.juhe.cn/news"//聚合动态
-
 //FIXME:                  酷          狗                   *******************/酷 狗 图片size一律为600
 //http://open.10155.com/cms
 #define RECOMMEND           @"http://iosservice.kugou.com/api/v3/recommend/index?plat=2&showtype=1"//乐库推荐订阅
@@ -90,7 +85,6 @@
 #define FULLPATH(filename)  [NSString stringWithFormat:@"%@/%@/%@.mp3",NSHomeDirectory(),@"Documents",filename]//本地歌曲的完整地址
 #define SINGERMV(singerid,singername,page,pagesize) [NSString stringWithFormat:@"http://ioscdn.kugou.com/api/v3/singer/mv?singerid=%@&singername=%@&page=%d&pagesize=%d",singerid,singername,page,pagesize]//MV列表
 #define FMMUSIC(offset0,fmtype0,offset,fmid0) [NSString stringWithFormat:@"http://lib3.service.kugou.com/index.php?size=20&pid=ios&offset0=%@&ver=4070&fmtype0=%@&offset=%@&fmcount=1&fmid0=%@",offset0,fmtype0,offset,fmid0]//电台歌单
-
 #define TBaiduRestserver1  @"http://tingapi.ting.baidu.com/v1/restserver/ting?from=qianqian&version=2.1.0&method=baidu.ting.search.catalogSug&format=json&query=%E5%B0%8F%E8%8B%B9%E6%9E%9C"   //搜索建议
 #define TBaiduRestserver2  @"http://tingapi.ting.baidu.com/v1/restserver/ting?method=baidu.ting.search.suggestion&query=%E5%B0%8F%E8%8B%B9%E6%9E%9C&format=json&from=ios&version=2.1.1"  //搜索建议：只有歌名
 #define TBaiduRestserver3  @"http://tingapi.ting.baidu.com/v1/restserver/ting?from=qianqian&version=2.1.0&method=baidu.ting.search.common&format=json&query=%E5%B0%8F%E8%8B%B9%E6%9E%9C&page_no=1&page_size=30" //搜索结果
@@ -131,20 +125,16 @@
 #define KGAcshowRankCityPage @"http://acshow.kugou.com/show7/rank/json/v2/cdn/banner/get_banner?platform=2&version=8200"//主播列表
 #define KGToolsPerfomGetbycity @"http://tools.mobile.kugou.com/api/v1/perform/get_by_city?plat=2&version=8200&city=%@"//根据城市看直播
 #define KGIoscdnMultBanner  @"http://ioscdn.kugou.com/api/v3/mv/multBanner?plat=2&version=8200"//banner
-
 #define KGIoscdnRecommend   @"http://ioscdn.kugou.com/api/v3/mv/recommend?plat=2&version=8200"//baner
 #define KGIoscdnList        @"http://ioscdn.kugou.com/api/v3/mv/tagListV2?plat=2"//分类
 #define KGIoscdnTagListv2   @"http://ioscdn.kugou.com/api/v3/mv/list?type=1&page=2&pagesize=20&plat=2"//banner
-
 #define KGIoscdnTagMvs      @"http://ioscdn.kugou.com/api/v3/mv/tagMvsV2?type=2&ids=&page=1&pagesize=20"//获取mv列表
-
 #define KGIoscdnYuekuphp1   @"http://ioscdn.kugou.com/new/app/i/yueku.php?cmd=104&singer=%@"//获取歌手的图片
 #define KGTrackermvindex    @"http://trackermv.kugou.com/interface/index/cmd=100&hash=DA27295F2033CAF3DE512020F9BBB200&key=1225a00b7b2a962a8e0745363b4b8299&pid=1&ext=mp4"//根据hash和key下载mv
 /******************                         唱                         *******************/
 #define KGAcsingSongnewHundred   @"http://acsing.kugou.com/sing7/song/json/v2/cdn/song_new_hundred.do?platform=2&sign=39f12683b7697f55&pageSize=100&version=8200"//
 #define KGAcsingListhtml         @"http://acsing.kugou.com/sing7/web/static/mobile/KSongGame/views/list.html?sign=051e5eb1"//
 #define KGAcsingActivityIndex    @"http://acsing.kugou.com/sing7/web/activity/index?sign=051e5eb1"//
-
 //FIXME:               爱         奇         艺               *******************/
 //http://open.iqiyi.com
 #define QYIfaceHotdoc        @"http://iface.iqiyi.com/api/hotDoc?key=8e48946f144759d86a50075555fd5862&type=json"//banner
@@ -153,7 +143,6 @@
 #define QYCmtsEpconfig       @"http://cmts.iqiyi.com/emoticon/ep_config.json"//泡泡表情包
 #define QYLdownloadaction    @"http://l.rcd.iqiyi.com/apis/mbd/download.action?agent_type=20&version=7.8&auth=c3Q7OJjyl8O1MXwm1W1WuBuGZLrKsaBYY2VMrbAZm2ihfEAucRUm2QSUm2SZ1m19HWdR5ls72&page_num=1&page_size=3"//刷新首页视频列表
 /******************                        首         页                    *******************/
-
 /******************                    服         务                    *******************/
 #define QYYueduHome4           @"http://api.yuedu.iqiyi.com/book/home?apiKey=&appVer=1.8.0&gender=wenxue&md5=684774c94bdf749b512e8889306c1d62&qiyiId=470C6D16-2F27-41F5-A4B1-DEAADC9B491E&srcPlatform=12&timeStamp=409514&userId=1233167644"//不清楚
 #define QYYueduHome5           @"http://api.yuedu.iqiyi.com/book/home?apiKey=&appVer=1.8.0&gender=male&md5=684774c94bdf749b512e8889306c1d62&qiyiId=470C6D16-2F27-41F5-A4B1-DEAADC9B491E&srcPlatform=12&timeStamp=409514&userId=1233167644"//列表
@@ -186,8 +175,6 @@
 /******************                    泡         泡                    *******************/
 #define QYTGetfeeds1    @"http://api.t.iqiyi.com/feed/get_feeds?agenttype=116&agentversion=7.8&appid=44&atoken=4520160m2tL9dkCUZGPlHIYVM6IW95uzMYha8bt5dCUIB6koMm4&authcookie=c3Q7OJjyl8O1MXwm1W1WuBuGZLrKsaBYY2VMrbAZm2ihfEAucRUm2QSUm2SZ1m19HWdR5ls72&business_type=1&count=20&device_id=3761e933e179c95fb5f7f8de85ffb55baedb1e1e&feedTypes=1%2C6%2C7%2C8%2C9%2C10%2C29%2C101&hasRecomCard=11&m_device_id=470C6D16-2F27-41F5-A4B1-DEAADC9B491E&needEvent=1&needStartAction=1&needTotal=0&needTotalUser=0&notice=1&orderBy=1&playPlatform=12&praise=0&qypid=02032001010000000000&snsTime=1&sourceid=44&top=1&uid=1233167644&version=1&wallId=200124347"//钱包信息
 #define QYSearchm @"http://search.video.qiyi.com/m?if=defaultQuery&is_qipu_platform=1&platform=12&u=470C6D16-2F27-41F5-A4B1-DEAADC9B491E&pu=1233167644&channel=0"//搜索列表
-
-
 //FIXME:           今         日         头         条           *******************/
 #define TTEnergyURL     @"http://api.nengapp.com/v2/info/ios/news/special?tagId=%@"//能见新闻从12到44
 //首页
@@ -223,8 +210,6 @@
 #define TTIsWapmall1           @"http://is.snssdk.com/2/wap/mall/?iid=5464891932&ac=WIFI&ssmix=a&aid=13&app_name=news_article&channel=App%20Store&device_platform=iphone&idfa=470C6D16-2F27-41F5-A4B1-DEAADC9B491E&os_version=9.3.5&vid=C0136D0B-9B89-4D42-9AE4-78F96CDC2AFF&openudid=29da7256a52d98281947cb96a6357791c40289b9&device_type=iPhone%206&ab_feature=z1&ab_group=z1&device_id=22794530286&ab_version=72368,82650,79288&resolution=750*1334&ab_client=a1,b1,b7,f2,f7,e1&version_code=5.7.7"//商城网页
 #define TTIsArticletabcomments2 @"http://is.snssdk.com/article/v1/tab_comments/?version_code=5.7.7&app_name=news_article&vid=C0136D0B-9B89-4D42-9AE4-78F96CDC2AFF&device_id=22794530286&channel=App%20Store&resolution=750*1334&aid=13&ab_version=72368,82650,79288&ab_feature=z1&ab_group=z1&openudid=29da7256a52d98281947cb96a6357791c40289b9&live_sdk_version=1.3.0&idfv=C0136D0B-9B89-4D42-9AE4-78F96CDC2AFF&ac=WIFI&os_version=9.3.5&ssmix=a&device_platform=iphone&iid=5464891932&ab_client=a1,b1,b7,f2,f7,e1&device_type=iPhone%206&idfa=470C6D16-2F27-41F5-A4B1-DEAADC9B491E&aggr_type=1&group_id=6331601205689925889&item_id=6331604981220639233&tab_index=0"//获取新闻id
 #define TTIsFaqv2              @"http://is.snssdk.com/faq/v2/?app_name=news_article&device_platform=iphone&aid=13&aid=13&iid=5464891932&ac=WIFI&ssmix=a&channel=App%20Store&idfa=470C6D16-2F27-41F5-A4B1-DEAADC9B491E&os_version=9.3.5&vid=C0136D0B-9B89-4D42-9AE4-78F96CDC2AFF&openudid=29da7256a52d98281947cb96a6357791c40289b9&device_type=iPhone%206&ab_feature=z1&ab_group=z1&device_id=22794530286&ab_version=72368,82650,79288&resolution=750*1334&ab_client=a1,b1,b7,f2,f7,e1&version_code=5.7.7"//常见问题
-
-
 //FIXME:                   iReader                    *******************/
 #define IRAdInternal     @"http://m.ad.zhangyue.com/api/internal.do?zysid=8c3940fb3c3df86f2ea5d6318e91d396&rgt=7&usr=i623907218&pc=10&p1=181F5D8E709345A0AE22F92766F1F571&p2=111010&p3=657007&p4=501607&p5=1001&p6=AAAAAAAAAAAAAAAAAAAA&p7=AAAAAAAAAAAAAAA&p9=0&p11=584&p12=&p16=iPhone7,2&p21=00003&p22=iPhone_OS,9.3.5&idfa=470C6D16-2F27-41F5-A4B1-DEAADC9B491E&adcmd=1001&app_id=5&channel_id=111010&phone_model=iPhone7%2C2&support_ad_type=41%2C45%2C58&support_platform=0%2C1&support_position=36&usrid=i623907218&version_id=657007"//精选
 #define IRIh2iphonephp7  @"http://ih2.zhangyue.com/zybook4/app/iphone.php?ca=User.Assets&zysid=8c3940fb3c3df86f2ea5d6318e91d396&rgt=7&usr=i623907218&pc=10&p1=181F5D8E709345A0AE22F92766F1F571&p2=111010&p3=657007&p4=501607&p5=1001&p6=AAAAAAAAAAAAAAAAAAAA&p7=AAAAAAAAAAAAAAA&p9=0&p11=584&p12=&p16=iPhone7,2&p21=00003&p22=iPhone_OS,9.3.5&idfa=470C6D16-2F27-41F5-A4B1-DEAADC9B491E&pk=MyProperty&pca=slidePage"//我的余额
@@ -274,7 +259,6 @@
 #define IRIh2Filterbooklist1 @"http://ih2.zhangyue.com/webintf/Category_Create/FilterBookList?category_id=60&resource_id=13&order=download&info_type=book&status=0&pageSize=20&key=2C_60&pk=1K1&usr=i623907218&rgt=7&p1=181F5D8E709345A0AE22F92766F1F571&p2=111010&p3=657007&p4=501607&p5=1001&p6=AAAAAAAAAAAAAAAAAAAA&p7=AAAAAAAAAAAAAAA&p9=0&p11=584&p16=iPhone7%2C2&p21=00003&p22=iPhone_OS%2C9.3.5&zysid=8c3940fb3c3df86f2ea5d6318e91d396"//试读
 #define IRIh2Filterbooklist2 @"http://ih2.zhangyue.com/webintf/Category_Create/FilterBookList?category_id=113&resource_id=13&order=download&info_type=book&status=0&pageSize=20&key=2C_113&pk=1K1&usr=i623907218&rgt=7&p1=181F5D8E709345A0AE22F92766F1F571&p2=111010&p3=657007&p4=501607&p5=1001&p6=AAAAAAAAAAAAAAAAAAAA&p7=AAAAAAAAAAAAAAA&p9=0&p11=584&p16=iPhone7%2C2&p21=00003&p22=iPhone_OS%2C9.3.5&zysid=8c3940fb3c3df86f2ea5d6318e91d396"//试读
 #define IRImggroup5          @"http://img.ad.zhangyue.com/group6/M00/A2/DF/CmQUNlfZGJyEcCwoAAAAAKd72Ks060197760.jpg?v=9oyc8zjn&type=image/jpeg"//特权图片
-
 //FIXME:                 微         能         量                *******************/
 #define WNCate7             @"http://wxsyb.bama555.com/cate?id=516b6b1eade8d006&wxid="//经典案例
 #define WNAsist2            @"http://wxsyb.bama555.com/data/assist/?&callback=jQuery20308067237965296954_1474263692852&_=1474263692853"//首页四个分类
@@ -300,6 +284,4 @@
 #define WNMgeDesignfeature  @"http://mge.wxrrd.com/design/feature.json"//地标回购店铺信息
 #define WNMpGetmassendmsg   @"http://mp.weixin.qq.com/mp/getmasssendmsg?__biz=MjM5NzI4NDY1Mg==#wechat_webview_type=1&wechat_redirect"//历史消息
 #define WNMpS               @"http://mp.weixin.qq.com/s?__biz=MzIxNTAxMzQwMg==&mid=2655998669&idx=1&sn=8cf8f2fa84a4195eb3d787be261ff6cf&scene=1&srcid=09198bT2lseLcrghHTt51mZZ#rd"//软文
-
-
 #endif /* Foundation_API_h */

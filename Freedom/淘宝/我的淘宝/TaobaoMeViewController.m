@@ -1,9 +1,7 @@
-//
 //  TaobaoMeViewController.m
-//  Created by 薛超 on 17/1/11.
-//  Copyright © 2017年 薛超. All rights reserved.
+//  Created by Super on 17/1/11.
+//  Copyright © 2017年 Super. All rights reserved.
 //
-
 #import "TaobaoMeViewController.h"
 #import <XCategory/UILabel+expanded.h>
 @interface TaobaoMeViewCell1 : BaseCollectionViewCell
@@ -93,7 +91,6 @@
     self.collectionView.delegate = self;
     [self.view addSubview:self.collectionView];
 }
-
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     if (section == 0)return 5;if (section == 1)return 12;if (section == 2)return 4;return 0;
 }
@@ -111,7 +108,6 @@
     }
     return cell;
 }
-
 //FIXME: collectionViewDelegate
 //item 尺寸
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -145,7 +141,6 @@
     NSString *log = [NSString stringWithFormat:@"你选择的是%zd，%zd", indexPath.section, indexPath.row];
     [SVProgressHUD showSuccessWithStatus:log];DLog(@"%@",log);
 }
-
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
     if(section==0){
         return UIEdgeInsetsMake(80, 10, 0, 10);
@@ -153,12 +148,4 @@
         return UIEdgeInsetsMake(10, 10, 0, 10);
     }
 }
-
 @end
-
-
-
-
-
-
-

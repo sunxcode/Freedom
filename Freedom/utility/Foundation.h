@@ -4,8 +4,7 @@
 #import "Foundation_enum.h"
 #import "Foundation_string.h"
 #ifdef DEBUG
-#define NSLog(...) NSLog(__VA_ARGS__)
-#define ELog(err) {if(err) DLog(@"%@", err)}
+#define ELog(err) {if(err) NSLog(@"%@", err)}
 #define DLog(fmt, ...) {NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);}
 //@weakobj(self)[self doSomething^{@strongobj(self)[self back];}];
 #if __has_feature(objc_arc)
@@ -16,7 +15,6 @@
 #define strongobj(object) autoreleasepool{} __typeof__(object) object = block##_##object;
 #endif
 #else
-#define NSLog(...)
 #define ELog(err)
 #define DLog(...)
 #if __has_feature(objc_arc)
@@ -57,10 +55,7 @@
               manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain", @"application/xml",\
               @"text/xml",@"text/html",@"text/javascript", @"application/x-plist",   @"image/tiff", @"image/jpeg", @"image/gif", @"image/png", @"image/ico",\
               @"image/x-icon", @"image/bmp", @"image/x-bmp", @"image/x-xbitmap", @"image/x-win-bitmap", nil];(manager);})
-
-
 #define WS(weakSelf)      __weak __typeof(&*self)weakSelf = self;
-
 /**********************     字     符    串     ***********************/
 #define alertErrorTxt     @"服务器异常,请稍后再试"
 /**********************       尺        寸      ***********************/
@@ -106,7 +101,30 @@
 #define DOCUMENTS_FOLDER  [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
 #define FOLDERPATH(s)     [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:s]
 #define FILEPATH          [DOCUMENTS_FOLDER stringByAppendingPathComponent:[self fileNameString]]
-
 /************************      额  外  的  宏     ************************/
 #define JFSearchHistoryPath [cachePath stringByAppendingPathComponent:@"hisDatas.data"]//搜索文件
-
+#define     APP_CHANNEL         @"Github"
+#define     DEBUG_LOCAL_SERVER      // 使用本地测试服务器
+#ifdef  DEBUG_LOCAL_SERVER
+#define     HOST_URL        @"http://127.0.0.1:8000/"            // 本地测试服务器
+#else
+#define     HOST_URL        @"http://121.42.29.15:8000/"         // 远程线上服务器
+#endif
+#define     SIZE_SCREEN                 [UIScreen mainScreen].bounds.size
+#define     WIDTH_SCREEN                [UIScreen mainScreen].bounds.size.width
+#define     HEIGHT_SCREEN               [UIScreen mainScreen].bounds.size.height
+#define     HEIGHT_STATUSBAR            20.0f
+#define     HEIGHT_TABBAR               49.0f
+#define     HEIGHT_NAVBAR               44.0f
+#define     NAVBAR_ITEM_FIXED_SPACE     5.0f
+#define     BORDER_WIDTH_1PX            ([[UIScreen mainScreen] scale] > 0.0 ? 1.0 / [[UIScreen mainScreen] scale] : 1.0)
+#define     MAX_MESSAGE_WIDTH               WIDTH_SCREEN * 0.58
+#define     TLURL(urlString)    [NSURL URLWithString:urlString]
+#define     TLNoNilString(str)  (str.length > 0 ? str : @"")
+#define     TLTimeStamp(date)   ([NSString stringWithFormat:@"%lf", [date timeIntervalSince1970]])
+#define     HEIGHT_CHATBAR_TEXTVIEW         36.0f
+#define     HEIGHT_MAX_CHATBAR_TEXTVIEW     111.5f
+#define     HEIGHT_CHAT_KEYBOARD            215.0f
+#define colorGrayLine RGBACOLOR(200, 200, 200, 1.0)
+#define colorGrayBG RGBACOLOR(239.0, 239.0, 244.0, 1.0)
+#define colorGreenDefault RGBACOLOR(2.0, 187.0, 0.0, 1.0f)

@@ -1,38 +1,22 @@
-//
 //  XFAccountTool.m
-//  Weibo
-//
+//  Freedom
 //  Created by Fay on 15/9/21.
-//  Copyright (c) 2015年 Fay. All rights reserved.
-//
-
 // 账号的存储路径
 #define XFAccountPath [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"account.data"]
-
 #import "XFAccountTool.h"
 #import "XFAccount.h"
-
 @implementation XFAccountTool
-
-/**
- *  存储账号信息
+/*存储账号信息
  *
- *  @param account 账号模型
- */
-+ (void)saveAccount:(XFAccount *)account
-{
+ *  @param account 账号模型*/
++ (void)saveAccount:(XFAccount *)account{
     // 自定义对象的存储必须用NSKeyedArchiver
     [NSKeyedArchiver archiveRootObject:account toFile:XFAccountPath];
 }
-
-
-/**
- *  返回账号信息
+/*返回账号信息
  *
- *  @return 账号模型（如果账号过期，返回nil）
- */
-+ (XFAccount *)account
-{
+ *  @return 账号模型（如果账号过期，返回nil）*/
++ (XFAccount *)account{
     
     // 加载模型
     XFAccount *account = [NSKeyedUnarchiver unarchiveObjectWithFile:XFAccountPath];

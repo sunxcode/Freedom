@@ -1,10 +1,6 @@
-//
 //  SettingViewController.m
 //  CLKuGou
-//
 //  Created by Darren on 16/7/29.
-//  Copyright © 2016年 darren. All rights reserved.
-//
 #import "SettingViewController.h"
 @interface SettingViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic,weak) UITableView *tableView;
@@ -29,7 +25,6 @@
     [self setupLeftGesture];
     [self setupMainVCTapGesture];
 }
-
 - (UIView *)setupTopView{
     self.topView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APPW, 100)];
     [self.view addSubview:self.topView];
@@ -55,7 +50,6 @@
     
     return self.topView;
 }
-
 - (UIView *)setupBottomView{
     UIView *foot = [[UIView alloc] initWithFrame:CGRectMake(0, APPH-110, APPW, 110)];
     UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(10, 0, APPW-70, 0.5)];
@@ -117,7 +111,7 @@
     CGFloat scare = 1-deltaX/1000.0;
     CGFloat tranX = -fabs(deltaX)/200.0;
     CGFloat tranY = fabs(deltaX)/1000.0;
-    NSLog(@"%f",scare);
+    DLog(@"%f",scare);
     if (0.5<scare<1) {
         self.bottomView.transform = CGAffineTransformMakeScale(0.5,0.5);
     } else {
@@ -149,7 +143,6 @@
         }
     }
 }
-
 - (void)setupMainVCTapGesture{
     [self.presentingViewController.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickMainVC)]];
 }

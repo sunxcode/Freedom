@@ -1,31 +1,16 @@
-//
 //  TLFriendCell.m
-//  TLChat
-//
-//  Created by 李伯坤 on 16/1/26.
-//  Copyright © 2016年 李伯坤. All rights reserved.
-//
-
+//  Freedom
+//  Created by Super on 16/1/26.
 #import "TLFriendCell.h"
-
-#import "UIFont+expanded.h"       // 字体
 #define     FRIENDS_SPACE_X         10.0f
 #define     FRIENDS_SPACE_Y         9.0f
-
 @interface TLFriendCell ()
-
 @property (nonatomic, strong) UIImageView *avatarImageView;
-
 @property (nonatomic, strong) UILabel *usernameLabel;
-
 @property (nonatomic, strong) UILabel *subTitleLabel;
-
 @end
-
 @implementation TLFriendCell
-
-- (id) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
+- (id) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self.leftSeparatorSpace = FRIENDS_SPACE_X;
         
@@ -37,15 +22,12 @@
     }
     return self;
 }
-
 #pragma mark - Public Methods
-- (void)setUser:(TLUser *)user
-{
+- (void)setUser:(TLUser *)user{
     _user = user;
     if (user.avatarPath) {
         [self.avatarImageView setImage:[UIImage imageNamed:user.avatarPath]];
-    }
-    else {
+    }else{
         [self.avatarImageView sd_setImageWithURL:TLURL(user.avatarURL) placeholderImage:[UIImage imageNamed:PuserLogo]];
     }
     
@@ -56,17 +38,14 @@
         [self.usernameLabel mas_updateConstraints:^(MASConstraintMaker *make) {
             make.centerY.mas_equalTo(self.avatarImageView).mas_offset(-9.5);
         }];
-    }
-    else if (user.detailInfo.remarkInfo.length == 0 && !self.subTitleLabel.isHidden){
+    }else if (user.detailInfo.remarkInfo.length == 0 && !self.subTitleLabel.isHidden){
         [self.usernameLabel mas_updateConstraints:^(MASConstraintMaker *make) {
             make.centerY.mas_equalTo(self.avatarImageView);
         }];
     }
 }
-
 #pragma mark - Prvate Methods -
-- (void)p_addMasonry
-{
+- (void)p_addMasonry{
     [self.avatarImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(FRIENDS_SPACE_X);
         make.top.mas_equalTo(FRIENDS_SPACE_Y);
@@ -86,27 +65,21 @@
         make.right.mas_lessThanOrEqualTo(self.contentView).mas_offset(-20);
     }];
 }
-
 #pragma mark - Getter
-- (UIImageView *)avatarImageView
-{
+- (UIImageView *)avatarImageView{
     if (_avatarImageView == nil) {
         _avatarImageView = [[UIImageView alloc] init];
     }
     return _avatarImageView;
 }
-
-- (UILabel *)usernameLabel
-{
+- (UILabel *)usernameLabel{
     if (_usernameLabel == nil) {
         _usernameLabel = [[UILabel alloc] init];
         [_usernameLabel setFont:[UIFont fontFriendsUsername]];
     }
     return _usernameLabel;
 }
-
-- (UILabel *)subTitleLabel
-{
+- (UILabel *)subTitleLabel{
     if (_subTitleLabel == nil) {
         _subTitleLabel = [[UILabel alloc] init];
         [_subTitleLabel setFont:[UIFont systemFontOfSize:14.0f]];
@@ -115,5 +88,4 @@
     }
     return _subTitleLabel;
 }
-
 @end

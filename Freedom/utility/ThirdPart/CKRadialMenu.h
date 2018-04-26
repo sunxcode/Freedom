@@ -1,11 +1,6 @@
-//
 //  CKRadialView.h
-//  CKRadialMenu
-//
-//  Created by Cameron Klein on 12/7/14.
-//  Copyright (c) 2014 Cameron Klein. All rights reserved.
-//
-
+//  Freedom
+//  Created by Freedom on 12/7/14.
 #import <UIKit/UIKit.h>
 @class CKRadialMenu;
 @protocol CKRadialMenuDelegate <NSObject>
@@ -16,7 +11,6 @@
 -(BOOL)radialMenuShouldRetract:(CKRadialMenu *)radialMenu;
 -(void)radialMenuDidRetract:(CKRadialMenu *)radialMenu;
 @end
-
 @interface CKRadialMenu : UIView
 - (void) addPopoutView: (UIView *) popoutView withIndentifier: (NSString *) identifier;
 -(void)addPopoutViews:(UIView *)popoutView,...;
@@ -37,5 +31,3 @@
 #pragma mark 外界调用
 - (void) didTapCenterView: (UITapGestureRecognizer *) sender;
 @end
-
-

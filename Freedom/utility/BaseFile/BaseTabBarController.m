@@ -1,16 +1,10 @@
-//
 //  BaseTabBarController.m
 //  Freedom
+//  Created by Super on 16/9/20.
+//  Copyright © 2016年 Super. All rights reserved.
 //
-//  Created by 薛超 on 16/9/20.
-//  Copyright © 2016年 薛超. All rights reserved.
-//
-
 #import "BaseTabBarController.h"
 #import "BaseNavigationController.h"
-
-
-
 @interface BaseTabBar()
 @property(nonatomic,weak)UIButton *centerButton;
 @end
@@ -61,9 +55,7 @@
         }
     }
 }
-
 @end
-
 @interface BaseTabBarController ()
 @property (nonatomic, strong) NSMutableArray *items;
 @end
@@ -115,13 +107,10 @@
     BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:viewController];
     [self addChildViewController:nav];
 }
-//
 //#import "MyTabBarController.h"
 //#import "MyTabBar.h"
 //@interface MyTabBarController ()<MyTabBarDelegate>
-//
 //@end
-//
 //@implementation MyTabBarController
 //-(void)MyTabBarDidClickCenterButton:(MyTabBar *)tabBar{
 ////    WeChartViewController *WeChartC=[self.storyboard instantiateViewControllerWithIdentifier:@"wechartNavigationController"];
@@ -152,5 +141,4 @@
 //    [self setValue:tabbar forKey:@"tabBar"];
 //}
 //@end
-
 @end

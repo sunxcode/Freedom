@@ -1,9 +1,7 @@
-//
 //  XFHomeViewController+Views.m
 //  Freedom
-//
 //  Created by Super on 2017/11/3.
-//  Copyright © 2017年 薛超. All rights reserved.
+//  Copyright © 2017年 Super. All rights reserved.
 //
 #import "XFHomeViewController+Views.h"
 #import <XCategory/NSDate+expanded.h>
@@ -71,7 +69,6 @@
     self.gifView.frameY = self.frameHeight - self.gifView.frameHeight;
 }
 @end
-
 @implementation XFStatusPhotosView
 -(id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -125,7 +122,6 @@
     return CGSizeMake(photosW, photosH);
 }
 @end
-
 @implementation XFStatus
 -(NSDictionary *)objectClassInArray {
     return @{@"pic_urls" : [XFPhoto class]};
@@ -184,7 +180,6 @@
     }
 }
 @end
-
 @implementation XFStatusFrame
 -(void)setStatus:(XFStatus *)status {
     _status  = status;
@@ -283,7 +278,6 @@
     self.cellHeight = CGRectGetMaxY(self.toolbarF) + Boardseperad;
 }
 @end
-
 @implementation XFTitleButton
 -(instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -313,7 +307,6 @@
     [self sizeToFit];
 }
 @end
-
 @implementation XFLoadMoreFooter
 -(id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -375,9 +368,7 @@
     _contentController = contentController;
     self.content = contentController.view;
 }
-/**
- *  显示
- */
+/*显示*/
 - (void)showFrom:(UIView *)from{
     // 1.获得最上面的窗口
     UIWindow *window = [[UIApplication sharedApplication].windows lastObject];
@@ -395,9 +386,7 @@
         [self.delegate dropdownMenuDidShow:self];
     }
 }
-/**
- *  销毁
- */
+/*销毁*/
 - (void)dismiss{
     [self removeFromSuperview];
     if ([self.delegate respondsToSelector:@selector(dropdownMenuDidDismiss:)]) {
@@ -453,8 +442,7 @@
     return self;
 }
 /**
- * 添加分割线
- */
+ * 添加分割线*/
 - (void)setupDivider{
     UIImageView *divider = [[UIImageView alloc] init];
     divider.image = [UIImage imageNamed:@"timeline_card_bottom_line"];
@@ -611,10 +599,8 @@
     }
     return cell;
 }
-/**
- *  cell的初始化方法，一个cell只会调用一次
- *  一般在这里添加所有可能显示的子控件，以及子控件的一次性设置
- */
+/*cell的初始化方法，一个cell只会调用一次
+ *  一般在这里添加所有可能显示的子控件，以及子控件的一次性设置*/
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
@@ -638,8 +624,7 @@
     self.toolbar = toolbar;
 }
 /**
- * 初始化转发微博
- */
+ * 初始化转发微博*/
 - (void)setupRetweet {
     /** 转发微博整体 */
     UIView *retweetView = [[UIView alloc] init];
@@ -660,8 +645,7 @@
     self.retweetPhotosView = retweetPhotosView;
 }
 /**
- * 初始化原创微博
- */
+ * 初始化原创微博*/
 - (void)setupOriginal {
     /** 原创微博整体 */
     UIView *originalView = [[UIView alloc] init];

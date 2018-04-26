@@ -1,49 +1,29 @@
 
-//
 //  TLShakeViewController.m
-//  TLChat
-//
-//  Created by 李伯坤 on 16/2/22.
-//  Copyright © 2016年 李伯坤. All rights reserved.
-//
-
+//  Freedom
+// Created by Super
 #import "TLShakeViewController.h"
 #import "TLShakeSettingViewController.h"
-
 #define     SHAKE_HEIGHT    90
 typedef NS_ENUM(NSUInteger, TLShakeButtonType) {
     TLShakeButtonTypePeople,
     TLShakeButtonTypeSong,
     TLShakeButtonTypeTV,
 };
-
 @interface TLShakeButton : UIButton
-
 @property (nonatomic, strong) NSString *title;
-
 @property (nonatomic, strong) NSString *iconPath;
-
 @property (nonatomic, strong) NSString *iconHLPath;
-
 @property (nonatomic, assign) TLShakeButtonType type;
-
 @property (nonatomic, assign) NSUInteger msgNumber;
-
 - (id) initWithType:(TLShakeButtonType)type title:(NSString *)title iconPath:(NSString *)iconPath iconHLPath:(NSString *)iconHLPath;
-
 @end
 @interface TLShakeButton ()
-
 @property (nonatomic, strong) UIImageView *iconImageView;
-
 @property (nonatomic, strong) UILabel *textLabel;
-
 @end
-
 @implementation TLShakeButton
-
-- (id) initWithType:(TLShakeButtonType)type title:(NSString *)title iconPath:(NSString *)iconPath iconHLPath:(NSString *)iconHLPath
-{
+- (id) initWithType:(TLShakeButtonType)type title:(NSString *)title iconPath:(NSString *)iconPath iconHLPath:(NSString *)iconHLPath{
     if (self = [super init]) {
         [self addSubview:self.iconImageView];
         [self addSubview:self.textLabel];
@@ -55,35 +35,25 @@ typedef NS_ENUM(NSUInteger, TLShakeButtonType) {
     }
     return self;
 }
-
-- (void)setTitle:(NSString *)title
-{
+- (void)setTitle:(NSString *)title{
     _title = title;
     [self.textLabel setText:title];
 }
-
-- (void)setIconPath:(NSString *)iconPath
-{
+- (void)setIconPath:(NSString *)iconPath{
     _iconPath = iconPath;
     [self.iconImageView setImage:[UIImage imageNamed:iconPath]];
 }
-
-- (void)setIconHLPath:(NSString *)iconHLPath
-{
+- (void)setIconHLPath:(NSString *)iconHLPath{
     _iconHLPath = iconHLPath;
     [self.iconImageView setHighlightedImage:[UIImage imageNamed:iconHLPath]];
 }
-
-- (void)setSelected:(BOOL)selected
-{
+- (void)setSelected:(BOOL)selected{
     [super setSelected:selected];
     [self.iconImageView setHighlighted:selected];
     [self.textLabel setHighlighted:selected];
 }
-
 #pragma mark - Private Methods -
-- (void)p_addMasonry
-{
+- (void)p_addMasonry{
     [self.iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.and.right.mas_equalTo(self);
         make.bottom.mas_equalTo(self.textLabel.mas_top).mas_offset(-8);
@@ -97,59 +67,40 @@ typedef NS_ENUM(NSUInteger, TLShakeButtonType) {
         make.top.mas_equalTo(self.iconImageView.mas_top);
     }];
 }
-
 #pragma mark - Getter -
-- (UIImageView *)iconImageView
-{
+- (UIImageView *)iconImageView{
     if (_iconImageView == nil) {
         _iconImageView = [[UIImageView alloc] init];
     }
     return _iconImageView;
 }
-
-- (UILabel *)textLabel
-{
+- (UILabel *)textLabel{
     if (_textLabel == nil) {
         _textLabel = [[UILabel alloc] init];
         [_textLabel setFont:[UIFont systemFontOfSize:12.0f]];
         [_textLabel setTextAlignment:NSTextAlignmentCenter];
         [_textLabel setTextColor:[UIColor whiteColor]];
-        [_textLabel setHighlightedTextColor:[UIColor colorGreenDefault]];
+        [_textLabel setHighlightedTextColor:colorGreenDefault];
     }
     return _textLabel;
 }
-
 @end
-
 @interface TLShakeViewController ()
-
 @property (nonatomic, assign) TLShakeButtonType curType;
-
 @property (nonatomic, strong) UIImageView *topLogoView;
-
 @property (nonatomic, strong) UIImageView *bottomLogoView;
-
 @property (nonatomic, strong) UIImageView *centerLogoView;
-
 @property (nonatomic, strong) UIImageView *topLineView;
-
 @property (nonatomic, strong) UIImageView *bottomLineView;
-
 @property (nonatomic, strong) TLShakeButton *peopleButton;
-
 @property (nonatomic, strong) TLShakeButton *songButton;
-
 @property (nonatomic, strong) TLShakeButton *tvButton;
-
 @end
-
 @implementation TLShakeViewController
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
     [self.navigationItem setTitle:@"摇一摇"];
-    [self.view setBackgroundColor:[UIColor colorBlackBG]];
+    [self.view setBackgroundColor:RGBACOLOR(46.0, 49.0, 50.0, 1.0)];
     
     UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav_setting"] style:UIBarButtonItemStylePlain target:self action:@selector(rightBarButtonDown:)];
     [self.navigationItem setRightBarButtonItem:rightBarButton];
@@ -166,23 +117,18 @@ typedef NS_ENUM(NSUInteger, TLShakeButtonType) {
     
     self.curType = TLShakeButtonTypePeople;
 }
-
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     NSString *centreImageName = [[NSUserDefaults standardUserDefaults] objectForKey:@"Shake_Image_Path"];
     if (centreImageName) {
         NSString *path = [NSFileManager pathUserSettingImage:centreImageName];
         [self.centerLogoView setImage:[UIImage imageNamed:path]];
-    }
-    else {
+    }else{
         [self.centerLogoView setImage:[UIImage imageNamed:@"shake_logo_center"]];
     }
 }
-
 #pragma mark - Event Response
-- (void)controlButtonDown:(TLShakeButton *)sender
-{
+- (void)controlButtonDown:(TLShakeButton *)sender{
     if (sender.isSelected) {
         return;
     }
@@ -191,17 +137,13 @@ typedef NS_ENUM(NSUInteger, TLShakeButtonType) {
     [self.songButton setSelected:self.songButton.type == sender.type];
     [self.tvButton setSelected:self.tvButton.type == sender.type];
 }
-
-- (void)rightBarButtonDown:(UIBarButtonItem *)sender
-{
+- (void)rightBarButtonDown:(UIBarButtonItem *)sender{
     TLShakeSettingViewController *shakeSettingVC = [[TLShakeSettingViewController alloc] init];
     [self setHidesBottomBarWhenPushed:YES];
     [self.navigationController pushViewController:shakeSettingVC animated:YES];
 }
-
 // 摇动手机
-- (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event
-{
+- (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event{
     if ([self.topLineView isHidden]) {
         [self.topLineView setHidden:NO];
         [self.bottomLineView setHidden:NO];
@@ -231,10 +173,8 @@ typedef NS_ENUM(NSUInteger, TLShakeButtonType) {
         }];
     }
 }
-
 #pragma mark - Private Methods -
-- (void)p_addMasonry
-{
+- (void)p_addMasonry{
     [self.centerLogoView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.mas_equalTo(self.view);
         make.width.mas_equalTo(self.view);
@@ -277,30 +217,24 @@ typedef NS_ENUM(NSUInteger, TLShakeButtonType) {
         make.left.mas_equalTo(self.songButton.mas_right).mas_offset(space);
     }];
 }
-
 #pragma mark - Getter -
-- (UIImageView *)topLogoView
-{
+- (UIImageView *)topLogoView{
     if (_topLogoView == nil) {
         _topLogoView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"shake_logo_top"]];
-        [_topLogoView setBackgroundColor:[UIColor colorBlackBG]];
+        [_topLogoView setBackgroundColor:RGBACOLOR(46.0, 49.0, 50.0, 1.0)];
         [_topLogoView setContentMode:UIViewContentModeBottom];
     }
     return _topLogoView;
 }
-
-- (UIImageView *)bottomLogoView
-{
+- (UIImageView *)bottomLogoView{
     if (_bottomLogoView == nil) {
         _bottomLogoView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"shake_logo_bottom"]];
-        [_bottomLogoView setBackgroundColor:[UIColor colorBlackBG]];
+        [_bottomLogoView setBackgroundColor:RGBACOLOR(46.0, 49.0, 50.0, 1.0)];
         [_bottomLogoView setContentMode:UIViewContentModeTop];
     }
     return _bottomLogoView;
 }
-
-- (UIImageView *)centerLogoView
-{
+- (UIImageView *)centerLogoView{
     if (_centerLogoView == nil) {
         _centerLogoView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"shake_logo_center"]];
         [_centerLogoView setContentMode:UIViewContentModeScaleAspectFill];
@@ -308,27 +242,21 @@ typedef NS_ENUM(NSUInteger, TLShakeButtonType) {
     }
     return _centerLogoView;
 }
-
-- (UIImageView *)topLineView
-{
+- (UIImageView *)topLineView{
     if (_topLineView == nil) {
         _topLineView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"shake_line_top"]];
         [_topLineView setHidden:YES];
     }
     return _topLineView;
 }
-
-- (UIImageView *)bottomLineView
-{
+- (UIImageView *)bottomLineView{
     if (_bottomLineView == nil) {
         _bottomLineView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"shake_line_bottom"]];
         [_bottomLineView setHidden:YES];
     }
     return _bottomLineView;
 }
-
-- (TLShakeButton *)peopleButton
-{
+- (TLShakeButton *)peopleButton{
     if (_peopleButton == nil) {
         _peopleButton = [[TLShakeButton alloc] initWithType:TLShakeButtonTypePeople title:@"人" iconPath:@"shake_button_people" iconHLPath:@"shake_button_peopleHL"];
         [_peopleButton setSelected:YES];
@@ -336,23 +264,18 @@ typedef NS_ENUM(NSUInteger, TLShakeButtonType) {
     }
     return _peopleButton;
 }
-
-- (TLShakeButton *)songButton
-{
+- (TLShakeButton *)songButton{
     if (_songButton == nil) {
         _songButton = [[TLShakeButton alloc] initWithType:TLShakeButtonTypeSong title:@"歌曲" iconPath:@"shake_button_music" iconHLPath:@"shake_button_musicHL"];
         [_songButton addTarget:self action:@selector(controlButtonDown:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _songButton;
 }
-
-- (TLShakeButton *)tvButton
-{
+- (TLShakeButton *)tvButton{
     if (_tvButton == nil) {
         _tvButton = [[TLShakeButton alloc] initWithType:TLShakeButtonTypeTV title:@"电视" iconPath:@"shake_button_tv" iconHLPath:@"shake_button_tvHL"];
         [_tvButton addTarget:self action:@selector(controlButtonDown:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _tvButton;
 }
-
 @end

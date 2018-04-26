@@ -1,26 +1,18 @@
-//
-//  E_ReaderView.m
-//  E_Reader
-//
-//  Created by 阿虎 on 14-8-8.
-//  Copyright (c) 2014年 tiger. All rights reserved.
-//
-
+//   FreedomView.m
+//   Freedom
+//  Created by Super on 14-8-8.
 #import "E_ReaderView.h"
 #import <CoreText/CoreText.h>
 #import "E_ContantFile.h"
 #import "E_CommonManager.h"
 #import <AVFoundation/AVSpeechSynthesis.h>
-
-
 #define kEpubView_H self.frame.size.height
 #define kItemCopy           @"复制"
-//#define kItemHighLight      @"高亮"
+//
+#define kItemHighLight      @"高亮"
 #define kItemCiBa           @"词霸"
 #define kItemRead           @"朗读"
-
-@implementation E_ReaderView
-{
+@implementation E_ReaderView{
     CTFrameRef _ctFrame;
     NSRange selectedRange;//选择区域
   //  CGSize suggestedSize;
@@ -33,17 +25,13 @@
     NSMutableString *_totalString;
    
 }
-
-- (void)dealloc
-{
+- (void)dealloc{
     if (_ctFrame != NULL) {
         CFRelease(_ctFrame);
     }
 }
-
 #pragma mark - 初始化一些手势等
-- (id)initWithFrame:(CGRect)frame
-{
+- (id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
         
@@ -60,7 +48,6 @@
         tapRecognizer.enabled = NO;
         [self addGestureRecognizer:tapRecognizer];
         
-
         panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(PanAction:)];
         [self addGestureRecognizer:panRecognizer];
         panRecognizer.enabled = NO;
@@ -68,13 +55,8 @@
     }
     return self;
 }
-
-
-
 #pragma mark - 绘制相关方法
-
-- (void)drawRect:(CGRect)rect
-{
+- (void)drawRect:(CGRect)rect{
     if (!_ctFrame) return;
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetTextMatrix(context, CGAffineTransformIdentity);
@@ -96,8 +78,6 @@
     
     CTFrameDraw(_ctFrame, context);
 }
-
-
 - (NSMutableArray *)calculateRangeArrayWithKeyWord:(NSString *)searchWord{
     
     NSMutableString *blankWord = [NSMutableString string];
@@ -121,12 +101,8 @@
     
     }
     return feedBackArray;
-
 }
-
-
-- (NSDictionary *)coreTextAttributes
-{
+- (NSDictionary *)coreTextAttributes{
     UIFont *font_ = [UIFont systemFontOfSize:self.font];
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     paragraphStyle.lineSpacing = font_.pointSize / 2;
@@ -135,10 +111,7 @@
     NSDictionary *dic = @{NSParagraphStyleAttributeName: paragraphStyle, NSFontAttributeName:font_};
     return dic;
 }
-
-
-- (void)render
-{
+- (void)render{
     NSMutableAttributedString *attrString = [[NSMutableAttributedString  alloc] initWithString:self.text];
     _totalString = [NSMutableString stringWithString:self.text];
     
@@ -156,18 +129,15 @@
 //    suggestedSize = CTFramesetterSuggestFrameSizeWithConstraints(frameSetter, CFRangeMake(0, 0), NULL, CGSizeMake(CGRectGetWidth(self.frame), MAXFLOAT), NULL);
 //    suggestedSize = CGSizeMake(ceilf(suggestedSize.width), ceilf(suggestedSize.height));
 //    
-//    NSLog(@"height == %f",suggestedSize.height);
+//    DLog(@"height == %f",suggestedSize.height);
 //****************************************
     
     CFRelease(path);
     CFRelease(frameSetter);
 }
-
-- (CTFrameRef)getCTFrame
-{
+- (CTFrameRef)getCTFrame{
     return _ctFrame;
 }
-
 #pragma mark - 搜索结果
 - (void)showSearchResultRect:(NSMutableArray *)resultArray{
     
@@ -175,16 +145,12 @@
         [self drawHighLightRect:NSRangeFromString([resultArray objectAtIndex:i])];
     }
 }
-
 #pragma mark -高亮区域
 - (void)showHighLightRect:(NSMutableArray *)highArray{
-
     for (int i = 0; i < highArray.count; i ++) {
         [self drawHighLightRect:NSRangeFromString([highArray objectAtIndex:i])];
     }
-
 }
-
 #pragma mark - 计算高亮区域 （懒得写枚举区分，就直接复制下面得 选择区域了）
 - (void)drawHighLightRect:(NSRange)selectRect{
     
@@ -218,10 +184,8 @@
     [self drawHighLightPathFromRects:pathRects];//画选择框
     
 }
-
 #pragma mark - 画高亮部分
-- (void)drawHighLightPathFromRects:(NSMutableArray*)array
-{
+- (void)drawHighLightPathFromRects:(NSMutableArray*)array{
     if (array==nil || [array count] == 0)
     {
         return;
@@ -246,9 +210,6 @@
     CGContextFillPath(ctx);//用当前的填充颜色或样式填充路径线段包围的区域。
     CGPathRelease(_path);
 }
-
-
-
 #pragma mark - 计算选择区域
 - (void)showSelectRect:(NSRange)selectRect{
     
@@ -282,10 +243,8 @@
     [self drawPathFromRects:pathRects];//画选择框
     
 }
-
 #pragma mark- 画背景色
-- (void)drawPathFromRects:(NSMutableArray*)array
-{
+- (void)drawPathFromRects:(NSMutableArray*)array{
     if (array==nil || [array count] == 0)
     {
         return;
@@ -297,7 +256,6 @@
     
     [[UIColor colorWithRed:228/255.0 green:100/255.0 blue:166/255.0 alpha:0.6]setFill];
     
-
     for (int i = 0; i < [array count]; i++) {
         
         CGRect firstRect = CGRectFromString([array objectAtIndex:i]);
@@ -312,7 +270,6 @@
     CGContextFillPath(ctx);//用当前的填充颜色或样式填充路径线段包围的区域。
     CGPathRelease(_path);
 }
-
 #pragma mark- 重新设置光标的位置
 - (void)resetCursor:(NSMutableArray*)rectArray{
     
@@ -329,7 +286,6 @@
     _rightCursor.setupPoint = rightCursorPoint;
    
 }
-
 #pragma mark - 初始化光标
 - (void)showCursor{
   
@@ -345,9 +301,6 @@
     
     [self setNeedsDisplay];
 }
-
-
-
 #pragma mark - 长按手势
 - (void)LongPressAction:(UILongPressGestureRecognizer *)longPress{
     
@@ -374,7 +327,6 @@
         }else{
             [self showMenuUI];
         }
-
         tapRecognizer.enabled = YES;
         
     }
@@ -386,8 +338,6 @@
    
     
 }
-
-
 #pragma mark -平移拖动
 - (void)PanAction:(UIPanGestureRecognizer *)panGes{
     
@@ -421,13 +371,11 @@
              selectedRange.length = selectedRange.location - index + selectedRange.length;
              selectedRange.location = index;
              self.magnifierView.touchPoint = point;
-
         } else if (_rightCursor.tag == 1 && index > selectedRange.location) {
             
              selectedRange.location = selectedRange.location;
              selectedRange.length =  index - selectedRange.location;
              self.magnifierView.touchPoint = point;
-
         }
        
         
@@ -443,11 +391,9 @@
                 }else{
                     [self showMenuUI];
                 }
-
     }
     [self setNeedsDisplay];
 }
-
 #pragma mark - 隐藏menu
 - (void)hideMenuUI {
     if ([self resignFirstResponder]) {
@@ -455,10 +401,8 @@
         [theMenu setMenuVisible:NO animated:YES];
     }
 }
-
 #pragma mark - 显示menu
 - (void)showMenuUI{
-
     longRecognizer.enabled = NO;
     if ([self becomeFirstResponder]) {
         CGRect selectedRect = [self getMenuRect];
@@ -491,9 +435,7 @@
         [menuController setMenuVisible:YES animated:YES];
     }
 }
-
 - (CGRect )getMenuRect{
-
     if (selectedRange.length == 0 || selectedRange.location == NSNotFound) {
         return CGRectZero;
     }
@@ -524,7 +466,6 @@
     
     return  CGRectFromString([pathRects firstObject]);
 }
-
 - (BOOL)canPerformAction:(SEL)action withSender:(id)sender {
    //|| action == @selector(highLight:)
     if (action == @selector(copyword:) || action == @selector(ciBa:) || action == @selector(readText:)) {
@@ -532,9 +473,9 @@
     }
     return NO;
 }
-
 ////高亮
-//#pragma mark - 高亮
+//
+#pragma mark - 高亮
 //- (void)highLight:(id)sender{
 //    
 //     [_delegate shutOffGesture:NO];
@@ -550,8 +491,6 @@
 //    longRecognizer.enabled = YES;
 //    
 //}
-
-
 - (void)resetting{
     
     selectedRange.location = 0;
@@ -563,9 +502,7 @@
     panRecognizer.enabled = NO;
     tapRecognizer.enabled = NO;
     longRecognizer.enabled = YES;
-
 }
-
 //朗读
 - (void)readText:(id)sender{
     
@@ -580,8 +517,6 @@
     [av speakUtterance:utterance];
     [self resetting];
 }
-
-
 //词霸
 - (void)ciBa:(id)sender{
     
@@ -590,8 +525,6 @@
     [_delegate ciBa:ciBaString];
     [self resetting];
 }
-
-
 //拷贝
 #pragma mark - copy
 - (void)copyword:(id)sender{
@@ -600,15 +533,12 @@
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     [pasteboard setString:[NSString stringWithFormat:@"%@",[self.text substringWithRange:NSMakeRange(selectedRange.location, selectedRange.length)]]];
     
-     NSLog(@"copyString == %@",[NSString stringWithFormat:@"%@",[self.text substringWithRange:NSMakeRange(selectedRange.location, selectedRange.length)]]);
+     DLog(@"copyString == %@",[NSString stringWithFormat:@"%@",[self.text substringWithRange:NSMakeRange(selectedRange.location, selectedRange.length)]]);
     [self resetting];
 }
-
-
 - (BOOL)canBecomeFirstResponder {
     return YES;
 }
-
 #pragma mark -单击手势
 - (void)TapAction:(UITapGestureRecognizer *)doubleTap{
   
@@ -623,8 +553,6 @@
     tapRecognizer.enabled = NO;
     longRecognizer.enabled = YES;
 }
-
-
 #pragma mark -移除放大镜
 - (void)removeMaginfierView {
     
@@ -633,10 +561,8 @@
         _magnifierView = nil;
     }
 }
-
 #pragma mark -移除光标
 - (void)removeCursor{
-
     if (_leftCursor) {
         [_leftCursor removeFromSuperview];
         _leftCursor = nil;
@@ -647,8 +573,6 @@
     }
     
 }
-
-
 #pragma mark -根据用户手指的坐标获得 手指下面文字在整页文字中的index
 - (CFIndex)getTouchIndexWithTouchPoint:(CGPoint)touchPoint{
     
@@ -682,12 +606,9 @@
     }
     free(origins);
     return index;
-
 }
-
 #pragma mark - 中文字典串
-- (NSRange)characterRangeAtIndex:(NSInteger)index doFrame:(CTFrameRef)frame
-{
+- (NSRange)characterRangeAtIndex:(NSInteger)index doFrame:(CTFrameRef)frame{
     __block NSArray *lines = (NSArray*)CTFrameGetLines(_ctFrame);
     NSInteger count = [lines count];
     __block NSRange returnRange = NSMakeRange(NSNotFound, 0);
@@ -729,7 +650,6 @@
     
     return returnRange;
 }
-
 - (E_MagnifiterView *)magnifierView {
     
     if (_magnifierView == nil) {
@@ -741,14 +661,12 @@
         }
         _magnifierView.viewToMagnify = self;
         [self addSubview:_magnifierView];
-//        NSLog(@"go here=------");
+//        DLog(@"go here=------");
     }
     return _magnifierView;
 }
-
 #pragma mark- Range区域
-- (NSRange)rangeIntersection:(NSRange)first withSecond:(NSRange)second
-{
+- (NSRange)rangeIntersection:(NSRange)first withSecond:(NSRange)second{
     NSRange result = NSMakeRange(NSNotFound, 0);
     if (first.location > second.location)
     {
@@ -764,5 +682,4 @@
     }
     return result;
 }
-
 @end

@@ -1,17 +1,11 @@
-//
 //  BooksNavigationController.m
 //  Freedom
+//  Created by Super on 17/2/9.
+//  Copyright © 2017年 Super. All rights reserved.
 //
-//  Created by 薛超 on 17/2/9.
-//  Copyright © 2017年 薛超. All rights reserved.
-//
-
 #import "BooksNavigationController.h"
-
 @interface BooksNavigationController ()
-
 @end
-
 @implementation BooksNavigationController
 //第一次使用这个类的时候调用一次
 +(void)initialize{
@@ -22,6 +16,4 @@
     titleAttr[NSForegroundColorAttributeName] = [UIColor orangeColor];
     [item setTitleTextAttributes:titleAttr forState:UIControlStateNormal];
 }
-
-
 @end

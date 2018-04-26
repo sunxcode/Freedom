@@ -1,33 +1,18 @@
-//
 //  TLMenuViewController.m
-//  TLChat
-//
-//  Created by 李伯坤 on 16/2/6.
-//  Copyright © 2016年 李伯坤. All rights reserved.
-//
-
+//  Freedom
+// Created by Super
 #import "TLMenuViewController.h"
 #import <MobClick.h>
 #define     REDPOINT_WIDTH      8.0f
-
 @interface TLMenuCell ()
-
 @property (nonatomic, strong) UIImageView *iconImageView;
-
 @property (nonatomic, strong) UILabel *titleLabel;
-
 @property (nonatomic, strong) UILabel *midLabel;
-
 @property (nonatomic, strong) UIImageView *rightImageView;
-
 @property (nonatomic, strong) UIView *redPointView;
-
 @end
-
 @implementation TLMenuCell
-
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
         [self.contentView addSubview:self.iconImageView];
@@ -40,9 +25,7 @@
     }
     return self;
 }
-
-- (void)setMenuItem:(TLMenuItem *)menuItem
-{
+- (void)setMenuItem:(TLMenuItem *)menuItem{
     _menuItem = menuItem;
     [self.iconImageView setImage:[UIImage imageNamed:menuItem.iconPath]];
     [self.titleLabel setText:menuItem.title];
@@ -51,8 +34,7 @@
         [self.rightImageView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.width.mas_equalTo(0);
         }];
-    }
-    else {
+    }else{
         [self.rightImageView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(self.rightImageView.mas_height);
         }];
@@ -60,10 +42,8 @@
     }
     [self.redPointView setHidden:!menuItem.showRightRedPoint];
 }
-
 #pragma mark - Private Methods
-- (void)p_addMasonry
-{
+- (void)p_addMasonry{
     [self.iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.contentView).mas_offset(15.0f);
         make.centerY.mas_equalTo(self.contentView);
@@ -90,26 +70,20 @@
         make.width.and.height.mas_equalTo(REDPOINT_WIDTH);
     }];
 }
-
 #pragma mark - Getter
-- (UIImageView *)iconImageView
-{
+- (UIImageView *)iconImageView{
     if (_iconImageView == nil) {
         _iconImageView = [[UIImageView alloc] init];
     }
     return _iconImageView;
 }
-
-- (UILabel *)titleLabel
-{
+- (UILabel *)titleLabel{
     if (_titleLabel == nil) {
         _titleLabel = [[UILabel alloc] init];
     }
     return _titleLabel;
 }
-
-- (UILabel *)midLabel
-{
+- (UILabel *)midLabel{
     if (_midLabel == nil) {
         _midLabel = [[UILabel alloc] init];
         [_midLabel setTextColor:[UIColor grayColor]];
@@ -117,17 +91,13 @@
     }
     return _midLabel;
 }
-
-- (UIImageView *)rightImageView
-{
+- (UIImageView *)rightImageView{
     if (_rightImageView == nil) {
         _rightImageView = [[UIImageView alloc] init];
     }
     return _rightImageView;
 }
-
-- (UIView *)redPointView
-{
+- (UIView *)redPointView{
     if (_redPointView == nil) {
         _redPointView = [[UIView alloc] init];
         [_redPointView setBackgroundColor:[UIColor redColor]];
@@ -138,110 +108,77 @@
     }
     return _redPointView;
 }
-
 @end
-
 @interface TLMenuViewController ()
-
 @end
-
 @implementation TLMenuViewController
-
-- (void) loadView
-{
+- (void) loadView{
     self.view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH_SCREEN, HEIGHT_SCREEN)];
     self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
-    [self.tableView setBackgroundColor:[UIColor colorGrayBG]];
+    [self.tableView setBackgroundColor:colorGrayBG];
     [self.tableView setLayoutMargins:UIEdgeInsetsMake(0, 15, 0, 0)];
     [self.tableView setSeparatorInset:UIEdgeInsetsMake(0, 15, 0, 0)];
-    [self.tableView setSeparatorColor:[UIColor colorGrayLine]];
+    [self.tableView setSeparatorColor:colorGrayLine];
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH_SCREEN, 20)]];
 }
-
-- (void) viewDidLoad
-{
+- (void) viewDidLoad{
     [super viewDidLoad];
     [self.tableView registerClass:[TLMenuCell class] forCellReuseIdentifier:@"TLMenuCell"];
 }
-
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [MobClick beginLogPageView:self.analyzeTitle];
 }
-
-- (void)viewWillDisappear:(BOOL)animated
-{
+- (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [MobClick endLogPageView:self.analyzeTitle];
 }
-
-- (void)dealloc
-{
+- (void)dealloc{
 #ifdef DEBUG_MEMERY
-    NSLog(@"dealloc %@", self.navigationItem.title);
+    DLog(@"dealloc %@", self.navigationItem.title);
 #endif
 }
-
 #pragma mark - 
 #pragma mark - UITableViewDataSource
-- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView{
     return self.data.count;
 }
-
-- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [self.data[section] count];
 }
-
-- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     TLMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TLMenuCell"];
     TLMenuItem *item = [self.data[indexPath.section] objectAtIndex:indexPath.row];
     [cell setMenuItem:item];
     return cell;
 }
-
 #pragma mark UITableViewDelegate
-- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     TLMenuItem *item = [self.data[indexPath.section] objectAtIndex:indexPath.row];
-
     if (item.rightIconURL != nil || item.subTitle != nil) {
         item.rightIconURL = nil;
         item.subTitle = nil;
         item.showRightRedPoint = NO;
         [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-    }
-    else {
+    }else{
         [tableView deselectRowAtIndexPath:indexPath animated:NO];
     }
 }
-
-- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 44.0f;
 }
-
-- (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
+- (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 15.0f;
 }
-
-- (CGFloat) tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
+- (CGFloat) tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 5.0f;
 }
-
 #pragma mark - Getter -
 #pragma mark - Getter -
-- (NSString *)analyzeTitle
-{
+- (NSString *)analyzeTitle{
     if (_analyzeTitle == nil) {
         return self.navigationItem.title;
     }
     return _analyzeTitle;
 }
-
 @end

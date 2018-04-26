@@ -1,18 +1,10 @@
-//
 //  E_SearchTableViewCell.m
-//  WFReader
-//
-//  Created by 阿虎 on 15/2/28.
-//  Copyright (c) 2015年 tigerwf. All rights reserved.
-//
-
+//  Freedom
+// Created by Super
 #import "E_SearchTableViewCell.h"
 #import "E_ContantFile.h"
-
 @implementation E_SearchTableViewCell
-
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         
@@ -31,12 +23,8 @@
     }
     return self;
 }
-
-
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
     // Configure the view for the selected state
 }
-
 @end

@@ -1,29 +1,20 @@
-//
 //  E_SettingBottomBar.m
-//  WFReader
-//
-//  Created by 阿虎 on 15/2/13.
-//  Copyright (c) 2015年 tigerwf. All rights reserved.
-//
-
+//  Freedom
+//  Created by Super on 15/2/13.
 #import "E_SettingBottomBar.h"
 #import "E_ContantFile.h"
 #import "E_CommonManager.h"
 #import "ILSlider.h"
 #import "E_HUDView.h"
-
 #define MAX_FONT_SIZE 27
 #define MIN_FONT_SIZE 17
 #define MIN_TIPS @"字体已到最小"
 #define MAX_TIPS @"字体已到最大"
-
-@implementation E_SettingBottomBar
-{
+@implementation E_SettingBottomBar{
     ILSlider *ilSlider;
     UILabel  *showLbl;
     BOOL isFirstShow;
 }
-
 - (id)initWithFrame:(CGRect)frame{
     
     self = [super initWithFrame:frame];
@@ -35,10 +26,7 @@
     return self;
     
 }
-
-
 - (void)configUI{
-
     UIButton *menuBtn = [UIButton buttonWithType:0];
     [menuBtn setImage:[UIImage imageNamed:@"reader_cover.png"] forState:0];
     [menuBtn addTarget:self action:@selector(showDrawerView) forControlEvents:UIControlEventTouchUpInside];
@@ -68,7 +56,6 @@
     _smallFont.frame =  CGRectMake(90, self.frame.size.height - 54, (self.frame.size.width - 200)/2, 44);
     [self addSubview:_smallFont];
     
-
     showLbl = [[UILabel alloc] initWithFrame:CGRectMake(70, self.frame.size.height - kBottomBarH - 70, self.frame.size.width - 140 , 60)];
     showLbl.backgroundColor = [UIColor colorWithRed:59/255.0 green:59/255.0 blue:59/255.0 alpha:1.0];
     [showLbl setTextColor:[UIColor whiteColor]];
@@ -105,7 +92,6 @@
         }
         [_delegate sliderToChapterPage:page];
     }];
-
     [self addSubview:ilSlider];
    
     //前一章 按钮
@@ -159,11 +145,8 @@
         themeButton.tag = 7000+i;
         [themeButton addTarget:self action:@selector(themeButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         [themeScroll addSubview:themeButton];
-
     }
 }
-
-
 - (void)themeButtonPressed:(UIButton *)sender{
     
     [sender setSelected:YES];
@@ -178,22 +161,17 @@
     [_delegate themeButtonAction:self themeIndex:sender.tag-7000];
     [E_CommonManager saveCurrentThemeID:sender.tag-7000];
 }
-
 - (void)goToNextChapter{
     
     [_delegate turnToNextChapter];
     
 }
-
 - (void)goToPreChapter{
     
     [_delegate turnToPreChapter];
-
 }
-
 #pragma mark - 小
-- (void)changeSmall
-{
+- (void)changeSmall{
     NSUInteger fontSize = [E_CommonManager fontSize];
     if (fontSize <= MIN_FONT_SIZE) {
         [E_HUDView showMsg:MIN_TIPS inView:self];
@@ -205,9 +183,7 @@
     [_delegate fontSizeChanged:(int)fontSize];
     [_delegate shutOffPageViewControllerGesture:NO];
 }
-
-- (void)changeBig
-{
+- (void)changeBig{
     NSUInteger fontSize = [E_CommonManager fontSize];
     if (fontSize >= MAX_FONT_SIZE) {
         [E_HUDView showMsg:MAX_TIPS inView:self];
@@ -220,35 +196,23 @@
     [_delegate shutOffPageViewControllerGesture:NO];
     
 }
-
-
-- (void)updateFontButtons
-{
+- (void)updateFontButtons{
     NSUInteger fontSize = [E_CommonManager fontSize];
     _bigFont.enabled = fontSize < MAX_FONT_SIZE;
     _smallFont.enabled = fontSize > MIN_FONT_SIZE;
 }
-
 - (void)showDrawerView{
    
     [_delegate callDrawerView];
-
 }
-
 - (void)changeSliderRatioNum:(float)percentNum{
     
     ilSlider.ratioNum = percentNum;
-
 }
-
 - (void)showCommentView{
     
     [_delegate callCommentView];
 }
-
-
-
-
 - (void)showToolBar{
     
     CGRect newFrame = self.frame;
@@ -269,7 +233,6 @@
     
     
 }
-
 - (void)hideToolBar{
     
     CGRect newFrame = self.frame;
@@ -290,5 +253,4 @@
     // Drawing code
 }
 */
-
 @end

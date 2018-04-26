@@ -1,17 +1,9 @@
-//
 //  NSArray+NSArray_ILExtension.m
-//  ILCoretext
-//
-//  Created by 阿虎 on 14/10/22.
-//  Copyright (c) 2014年 tigerwf. All rights reserved.
-//
-
+//  Freedom
+//  Created by Super on 14/10/22.
 #import "NSArray+NSArray_ILExtension.h"
-
 @implementation NSArray (NSArray_ILExtension)
-
-- (NSArray *)offsetRangesInArrayBy:(NSUInteger)offset
-{
+- (NSArray *)offsetRangesInArrayBy:(NSUInteger)offset{
     NSUInteger aOffset = 0;
     NSUInteger prevLength = 0;
     
@@ -33,5 +25,4 @@
     
     return ranges;
 }
-
 @end

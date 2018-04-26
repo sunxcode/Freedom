@@ -1,13 +1,9 @@
-//
 //  NewSliderViewController.h
 //  Freedom
+//  Created by Super on 16/9/2.
+//  Copyright © 2016年 Super. All rights reserved.
 //
-//  Created by 薛超 on 16/9/2.
-//  Copyright © 2016年 薛超. All rights reserved.
-//
-
 #import <UIKit/UIKit.h>
-
 @interface NewSliderViewController : UIViewController
 @property (strong, nonatomic) UIViewController *leftViewController;
 @property (strong, nonatomic) UIViewController *CenterViewController;

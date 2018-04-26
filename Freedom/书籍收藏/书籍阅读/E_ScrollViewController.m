@@ -1,11 +1,6 @@
-//
 //  E_ScrollViewController.m
-//  E_Reader
-//
-//  Created by 阿虎 on 14-8-8.
-//  Copyright (c) 2014年 tiger. All rights reserved.
-//
-
+//   Freedom
+//  Created by Super on 14-8-8.
 #import "E_ScrollViewController.h"
 #import "E_ReaderViewController.h"
 #import "E_ReaderDataSource.h"
@@ -21,9 +16,7 @@
 #import "E_SearchViewController.h"
 #import "E_WebViewControler.h"
 #import "E_HUDView.h"
-
-@interface E_ScrollViewController ()<UIPageViewControllerDataSource,UIPageViewControllerDelegate,E_ReaderViewControllerDelegate,E_SettingTopBarDelegate,E_SettingBottomBarDelegate,E_DrawerViewDelegate,CDSideBarControllerDelegate,E_SearchViewControllerDelegate>
-{
+@interface E_ScrollViewController ()<UIPageViewControllerDataSource,UIPageViewControllerDelegate,E_ReaderViewControllerDelegate,E_SettingTopBarDelegate,E_SettingBottomBarDelegate,E_DrawerViewDelegate,CDSideBarControllerDelegate,E_SearchViewControllerDelegate>{
     UIPageViewController * _pageViewController;
     E_Paging             * _paginater;
     BOOL _isTurnOver;     //是否跨章；
@@ -41,21 +34,14 @@
     
     NSString      *_searchWord;//用来接受搜索页面的keyword
 }
-
 @property (copy, nonatomic) NSString* chapterTitle_;
 @property (copy, nonatomic) NSString* chapterContent_;
 @property (unsafe_unretained, nonatomic) int fontSize;
 @property (unsafe_unretained, nonatomic) NSUInteger readOffset;
 @property (assign, nonatomic) NSInteger readPage;
 @end
-
-
 @implementation E_ScrollViewController
-
-
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -63,17 +49,13 @@
     }
     return self;
 }
-
-
 - (void)viewDidAppear:(BOOL)animated{
    [super viewDidAppear:animated];
     self.navigationController.navigationBarHidden = YES;
     self.hidesBottomBarWhenPushed = YES;//用push方法推出时，Tabbar隐藏
    
 }
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
     [E_HUDView showMsg:@"长按选择文本" inView:nil];
     UIImage *sina = [UIImage imageNamed:Psina];
@@ -85,7 +67,6 @@
     sideBar.delegate = self;
     [sideBar insertMenuButtonOnView:[UIApplication sharedApplication].delegate.window atPosition:CGPointMake(self.view.frame.size.width - 70, 50)];
     sideBar.singleTap.enabled = NO;
-
     //设置总章节数
     [E_ReaderDataSource shareInstance].totalChapter = 7;
     self.fontSize = [E_CommonManager fontSize];
@@ -112,8 +93,6 @@
     [self.view addGestureRecognizer:panGesRec];
   
 }
-
-
 - (void)LightRegulation:(UIPanGestureRecognizer *)recognizer{
     CGPoint touchPoint = [recognizer locationInView:self.view];
     switch (recognizer.state) {
@@ -122,7 +101,7 @@
         }break;
         case UIGestureRecognizerStateChanged:{
             CGFloat offSetY = touchPoint.y - _panStartY;
-           // NSLog(@"offSetY == %f",offSetY);
+           // DLog(@"offSetY == %f",offSetY);
             CGFloat light = [UIScreen mainScreen].brightness;
             if (offSetY >=0 ) {
                 CGFloat percent = offSetY/self.view.frame.size.height;
@@ -146,7 +125,6 @@
             break;
     }
 }
-
 - (void)callToolBar{
     if (_settingToolBar == nil) {
         _settingToolBar= [[E_SettingTopBar alloc] initWithFrame:CGRectMake(0, -64, self.view.frame.size.width, 64)];
@@ -185,11 +163,9 @@
     }
     
 }
-
-- (void)initPageView:(BOOL)isFromMenu;
-{
+- (void)initPageView:(BOOL)isFromMenu;{
     if (_pageViewController) {
-       //  NSLog(@"remove pageViewController");
+       //  DLog(@"remove pageViewController");
         [_pageViewController removeFromParentViewController];
         _pageViewController = nil;
     }
@@ -208,7 +184,6 @@
         [self showPage:beforePage];
     }
 }
-
 #pragma mark - readerVcDelegate
 - (void)shutOffPageViewControllerGesture:(BOOL)yesOrNo{
     
@@ -221,28 +196,22 @@
     
     }
 }
-
 - (void)ciBaWithString:(NSString *)ciBaString{
    
     E_WebViewControler *webView = [[E_WebViewControler alloc] initWithSelectString:ciBaString];
     [self presentViewController:webView animated:YES completion:NULL];
-
 }
-
 #pragma mark - 点击侧边栏目录跳转
 - (void)turnToClickChapter:(NSInteger)chapterIndex{
     
     E_EveryChapter *chapter = [[E_ReaderDataSource shareInstance] openChapter:chapterIndex + 1];//加1 是因为indexPath.row从0 开始的
     [self parseChapter:chapter];
     [self initPageView:YES];
-
 }
-
 - (void)sliderToChapterPage:(NSInteger)chapterIndex{
-    //NSLog(@"update");
+    //DLog(@"update");
     [self showPage:chapterIndex - 1];
 }
-
 #pragma mark - 点击侧边栏书签跳转
 - (void)turnToClickMark:(E_Mark *)eMark{
     
@@ -251,7 +220,7 @@
     
     if (_pageViewController) {
         
-         NSLog(@"remove pageViewController");
+         DLog(@"remove pageViewController");
         [_pageViewController.view removeFromSuperview];
         [_pageViewController removeFromParentViewController];
         _pageViewController = nil;
@@ -267,7 +236,6 @@
     int showPage = [self findOffsetInNewPage:NSRangeFromString(eMark.markRange).location];
     [self showPage:showPage];
 }
-
 #pragma mark - 上一章
 - (void)turnToPreChapter{
     
@@ -286,9 +254,7 @@
         return;
     }
     [self turnToClickChapter:[E_ReaderDataSource shareInstance].currentChapterIndex];
-
 }
-
 #pragma mark - 隐藏设置bar
 - (void)hideTheSettingBar{
     
@@ -312,19 +278,13 @@
         [self shutOffPageViewControllerGesture:NO];
     }
 }
-
-
 #pragma mark --
-- (void)parseChapter:(E_EveryChapter *)chapter
-{
+- (void)parseChapter:(E_EveryChapter *)chapter{
     self.chapterContent_ = chapter.chapterContent;
     self.chapterTitle_ = chapter.chapterTitle;
     [self configPaginater];
 }
-
-
-- (void)configPaginater
-{
+- (void)configPaginater{
     _paginater = [[E_Paging alloc] init];
     E_ReaderViewController *temp = [[E_ReaderViewController alloc] init];
     temp.delegate = self;
@@ -334,16 +294,12 @@
     _paginater.contentText = self.chapterContent_;
     [_paginater paginate];
 }
-
-- (void)readPositionRecord
-{
+- (void)readPositionRecord{
     int currentPage = [_pageViewController.viewControllers.lastObject currentPage];
     NSRange range = [_paginater rangeOfPage:currentPage];
     self.readOffset = range.location;
 }
-
-- (void)fontSizeChanged:(int)fontSize
-{
+- (void)fontSizeChanged:(int)fontSize{
     [self readPositionRecord];
     self.fontSize = fontSize;
     _paginater.contentFont = self.fontSize;
@@ -352,7 +308,6 @@
     [self showPage:showPage];
     
 }
-
 #pragma mark - 直接隐藏多功能下拉按钮
 - (void)hideMultifunctionButton{
     if (_searchBtn) {
@@ -360,7 +315,6 @@
        
     }
 }
-
 #pragma mark - TopbarDelegate
 - (void)goBack{
     sideBar.singleTap.enabled = NO;
@@ -369,7 +323,6 @@
     [E_CommonManager saveCurrentChapter:[E_ReaderDataSource shareInstance].currentChapterIndex];
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
-
 #pragma mark - 动画显示或隐藏多功能下拉按钮
 - (void)showMultifunctionButton{
     
@@ -436,7 +389,6 @@
     searchVc.delegate = self;
     [self presentViewController:searchVc animated:YES completion:NULL];
 }
-
 - (void)doShare{
     
     tapGesRec.enabled = NO;
@@ -449,7 +401,6 @@
     DELAYEXECUTE(0.15,{[_shareBtn removeFromSuperview];_shareBtn = nil;DELAYEXECUTE(0.12, {[_markBtn removeFromSuperview];_markBtn = nil;DELAYEXECUTE(0.09, [_searchBtn removeFromSuperview];_searchBtn = nil;[self hideTheSettingBar]; [sideBar showMenu];);});});
    
 }
-
 - (void)doMark{
     
     _markBtn.selected = !_markBtn.selected;
@@ -462,10 +413,8 @@
     NSRange range = [_paginater rangeOfPage:_readPage];
     [E_CommonManager saveCurrentMark:[E_ReaderDataSource shareInstance].currentChapterIndex andChapterRange:range byChapterContent:_paginater.contentText];
 }
-
 #pragma mark - searchViewControllerDelegate -
 - (void)turnToClickSearchResult:(NSString *)chapter withRange:(NSRange)searchRange andKeyWord:(NSString *)keyWord{
-
     _searchWord = keyWord;
     
     E_EveryChapter *e_chapter = [[E_ReaderDataSource shareInstance] openChapter:[chapter integerValue]];//加1 是因为indexPath.row从0 开始的
@@ -473,7 +422,7 @@
     
     if (_pageViewController) {
         
-        // NSLog(@"remove pageViewController");
+        // DLog(@"remove pageViewController");
         [_pageViewController removeFromParentViewController];
         _pageViewController = nil;
     }
@@ -488,9 +437,7 @@
     int showPage = [self findOffsetInNewPage:searchRange.location - [[E_ReaderDataSource shareInstance] getChapterBeginIndex:[chapter integerValue]]];
     [self showPage:showPage];
     
-
 }
-
 #pragma mark - CDSideBarDelegate -- add by tiger-
 - (void)changeGestureRecognizers{
     
@@ -500,7 +447,6 @@
         ges.enabled = YES;
     }
 }
-
 - (void)menuButtonClicked:(int)index{
     
     if (index == 0) {
@@ -512,12 +458,9 @@
         [E_HUDView showMsg:@"分享至朋友圈" inView:self.view];
         
     }else if(index == 2){
-
         [E_HUDView showMsg:@"分享至微信" inView:self.view];
     }
-
 }
-
 #pragma mark - 底部左侧按钮触发事件
 - (void)callDrawerView{
     
@@ -527,10 +470,7 @@
     DELAYEXECUTE(0.18, {E_DrawerView *drawerView = [[E_DrawerView alloc] initWithFrame:self.view.frame parentView:self.view];drawerView.delegate = self;
         [self.view addSubview:drawerView];});
     
-
 }
-
-
 #pragma mark - 底部右侧按钮触发事件
 - (void)callCommentView{
  
@@ -538,14 +478,11 @@
     [self presentViewController:e_commentVc animated:YES completion:NULL];
     
 }
-
 - (void)openTapGes{
     
     tapGesRec.enabled = YES;
 }
-
 // //////////////////////////////////////////////////////////////////
-
 #pragma mark - 改变主题
 - (void)themeButtonAction:(id)myself themeIndex:(NSInteger)theme{
   
@@ -557,10 +494,8 @@
    
     [self showPage:self.readPage];
 }
-
 #pragma mark - 根据偏移值找到新的页码
-- (NSUInteger)findOffsetInNewPage:(NSUInteger)offset
-{
+- (NSUInteger)findOffsetInNewPage:(NSUInteger)offset{
     int pageCount = _paginater.pageCount;
     for (int i = 0; i < pageCount; i++) {
         NSRange range = [_paginater rangeOfPage:i];
@@ -570,10 +505,8 @@
     }
     return 0;
 }
-
 //显示第几页
-- (void)showPage:(NSUInteger)page
-{
+- (void)showPage:(NSUInteger)page{
     E_ReaderViewController *readerController = [self readerControllerWithPage:page];
     [_pageViewController setViewControllers:@[readerController]
                                   direction:UIPageViewControllerNavigationDirectionForward
@@ -582,10 +515,7 @@
                                      
                                  }];
 }
-
-
-- (E_ReaderViewController *)readerControllerWithPage:(NSUInteger)page
-{
+- (E_ReaderViewController *)readerControllerWithPage:(NSUInteger)page{
     _readPage = page;
     E_ReaderViewController *textController = [[E_ReaderViewController alloc] init];
     textController.delegate = self;
@@ -615,32 +545,23 @@
         }else{
             percent = currentPage/totalPage;
         }
-
         [_settingBottomBar changeSliderRatioNum:percent];
     }
     
     _searchWord = nil;
     return textController;
 }
-
-
-
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
 #pragma mark - UIPageViewDataSource And UIPageViewDelegate
-
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController
-      viewControllerBeforeViewController:(UIViewController *)viewController
-{
+      viewControllerBeforeViewController:(UIViewController *)viewController{
     _isTurnOver = NO;
     _isRight = NO;
     
-   // NSLog(@"go before");
+   // DLog(@"go before");
     E_ReaderViewController *reader = (E_ReaderViewController *)viewController;
     NSUInteger currentPage = reader.currentPage;
     
@@ -669,17 +590,14 @@
     E_ReaderViewController *textController = [self readerControllerWithPage:currentPage - 1];
     return textController;
 }
-
-
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController
-       viewControllerAfterViewController:(UIViewController *)viewController
-{
+       viewControllerAfterViewController:(UIViewController *)viewController{
     
     _isTurnOver = NO;
     _isRight = YES;
     
     
-   //  NSLog(@"go after");
+   //  DLog(@"go after");
     E_ReaderViewController *reader = (E_ReaderViewController *)viewController;
     NSUInteger currentPage = reader.currentPage;
     
@@ -708,14 +626,11 @@
     E_ReaderViewController *textController = [self readerControllerWithPage:currentPage + 1];
     return textController;
 }
-- (void)pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray *)pendingViewControllers
-{
+- (void)pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray *)pendingViewControllers{
     _pageIsAnimating = NO;
     
 }
-
-- (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed
-{
+- (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed{
     
     if (completed) {
         //翻页完成
@@ -737,12 +652,7 @@
         
     }
 }
-
-- (NSUInteger)lastPage
-{
+- (NSUInteger)lastPage{
     return _paginater.pageCount - 1;
 }
-
-
-
 @end

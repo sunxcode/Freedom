@@ -1,27 +1,16 @@
-//
 //  ILSlider.m
 //  ILSlider
-//
-//  Created by 阿虎 on 14-10-17.
-//  Copyright (c) 2014年 tigerwf. All rights reserved.
-//
-
+//  Created by Super on 14-10-17.
 #import "ILSlider.h"
-
 @interface ILSlider ()
-
 @property (nonatomic, strong) UIColor *lineColor;//整条线的颜色
 @property (nonatomic, strong) UIColor *slidedLineColor;//滑动过的线的颜色
 @property (nonatomic, strong) UIColor *circleColor;//圆的颜色
-
 @property (nonatomic, assign) CGFloat lineWidth;//线的宽度
 @property (nonatomic, assign) CGFloat circleRadius;//圆的半径
 @property (nonatomic, assign) BOOL    isSliding;//是否正在滑动
-
 @end
-
 @implementation ILSlider
-
 - (id)initWithFrame:(CGRect)frame direction:(ILSliderDirection)direction{
     self = [super initWithFrame:frame];
     if (self) {
@@ -42,11 +31,7 @@
         
     }
     return self;
-
 }
-
-
-
 - (void)drawRect:(CGRect)rect {
     
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -104,45 +89,37 @@
     CGContextDrawPath(context, kCGPathFillStroke);
     
 }
-
 #pragma mark 触摸
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [self updateTouchPoint:touches];
     [self callbackTouchEnd:NO];
 }
-
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     [self updateTouchPoint:touches];
     [self callbackTouchEnd:NO];
 }
-
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     [self updateTouchPoint:touches];
     [self callbackTouchEnd:YES];
 }
-
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
     [self updateTouchPoint:touches];
     [self callbackTouchEnd:YES];
 }
-
-
 - (void)updateTouchPoint:(NSSet*)touches {
     
     CGPoint touchPoint = [[touches anyObject] locationInView:self];
     self.ratioNum = (_direction == ILSliderDirectionHorizonal ? touchPoint.x : touchPoint.y) / (_direction == ILSliderDirectionHorizonal ? self.frame.size.width : self.frame.size.height);
-   // NSLog(@"_ratioNum == %f",_ratioNum);
+   // DLog(@"_ratioNum == %f",_ratioNum);
 }
-
 - (void)setRatioNum:(CGFloat)ratioNum {
     if (_ratioNum != ratioNum) {
         _ratioNum = ratioNum;
         
         self.value = _minValue + ratioNum * (_maxValue - _minValue);
     }
-  //  NSLog(@"_value = %f",_value);
+  //  DLog(@"_value = %f",_value);
 }
-
 - (void)setValue:(CGFloat)value {
     
     if (value != _value) {
@@ -162,21 +139,15 @@
         }
     }
 }
-
-
 - (void)sliderChangeBlock:(TouchStateChanged)didChangeBlock{
     
     _StateChanged = didChangeBlock;
-
 }
-
 - (void)sliderTouchEndBlock:(TouchStateEnd)touchEndBlock{
     
     _StateEnd = touchEndBlock;
     
 }
-
-
 - (void)callbackTouchEnd:(BOOL)isTouchEnd {
     
     _isSliding = !isTouchEnd;

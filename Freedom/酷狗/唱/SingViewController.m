@@ -1,18 +1,11 @@
-//
 //  SingViewController.m
 //  CLKuGou
-//
 //  Created by Darren on 16/7/29.
-//  Copyright © 2016年 darren. All rights reserved.
-//
-
 #import "SingViewController.h"
 #import "RESideMenu.h"
 #import "KugouRightSettingViewController.h"
 @interface SingViewController ()
-
 @end
-
 @implementation SingViewController
 - (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -97,6 +90,4 @@
 -(void)cell{
     
 }
-
-
 @end

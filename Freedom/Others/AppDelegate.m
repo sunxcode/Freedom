@@ -103,7 +103,7 @@
     return YES;
 }
 - (void)remoteControlReceivedWithEvent:(UIEvent *)event{
-    NSLog(@"remoteControlReceivedWithEvent");
+    DLog(@"remoteControlReceivedWithEvent");
     PlayAudioViewController *pbVC = [PlayAudioViewController shared];
     if (event.type == UIEventTypeRemoteControl) {
         switch (event.subtype) {
@@ -128,5 +128,4 @@
 //- (PPRevealSideDirection)pprevealSideViewController:(PPRevealSideViewController *)controller directionsAllowedForPanningOnView:(UIView *)view {
 //    return PPRevealSideDirectionLeft | PPRevealSideDirectionRight | PPRevealSideDirectionTop | PPRevealSideDirectionBottom;
 //}
-
 @end

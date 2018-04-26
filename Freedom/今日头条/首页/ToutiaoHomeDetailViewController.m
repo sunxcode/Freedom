@@ -1,9 +1,7 @@
-//
 //  ToutiaoHomeDetailViewController.m
-//  Created by 薛超 on 17/2/7.
-//  Copyright © 2017年 薛超. All rights reserved.
+//  Created by Super on 17/2/7.
+//  Copyright © 2017年 Super. All rights reserved.
 //
-
 #import "ToutiaoHomeDetailViewController.h"
 @interface ToutiaoHomeDetailViewController ()<UIWebViewDelegate>{
     UIWebView *webView;
@@ -32,5 +30,4 @@
     [webView loadHTMLString:s baseURL:[NSURL URLWithString:dataurl]];
     [self.view addSubview:webView];
 }
-
 @end

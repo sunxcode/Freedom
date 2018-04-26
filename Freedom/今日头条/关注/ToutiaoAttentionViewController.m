@@ -1,9 +1,7 @@
-//
 //  ToutiaoAttentionViewController.m
-//  Created by 薛超 on 16/8/25.
-//  Copyright © 2016年 薛超. All rights reserved.
+//  Created by Super on 16/8/25.
+//  Copyright © 2016年 Super. All rights reserved.
 //
-
 #import "ToutiaoAttentionViewController.h"
 @interface ToutiaoAttentionViewCell:BaseTableViewCell
 @end
@@ -22,7 +20,6 @@
     self.title.text = @"我关注的好友";
 }
 @end
-
 @implementation ToutiaoAttentionViewController
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -42,13 +39,10 @@
     self.tableView.delegate = self;
     [self.view addSubview:self.tableView];
 }
-
 -(void)moreAction{
     DLog(@"更多");
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
 }
-
-
 @end

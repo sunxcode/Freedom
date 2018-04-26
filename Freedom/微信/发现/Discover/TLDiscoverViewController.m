@@ -1,11 +1,6 @@
-//
 //  TLDiscoverViewController.m
-//  TLChat
-//
-//  Created by 李伯坤 on 16/1/23.
-//  Copyright © 2016年 李伯坤. All rights reserved.
-//
-
+//  Freedom
+// Created by Super
 #import "TLDiscoverViewController.h"
 #import "TLMomentsViewController.h"
 #import "TLScanningViewController.h"
@@ -15,24 +10,17 @@
 #import "TLGameViewController.h"
 #import "TLMenuItem.h"
 @interface TLDiscoverHelper : NSObject
-
 @property (nonatomic, strong) NSMutableArray *discoverMenuData;
-
 @end
-
 @implementation TLDiscoverHelper
-
-- (id) init
-{
+- (id) init{
     if (self = [super init]) {
         self.discoverMenuData = [[NSMutableArray alloc] init];
         [self p_initTestData];
     }
     return self;
 }
-
-- (void) p_initTestData
-{
+- (void) p_initTestData{
     TLMenuItem *item1 = TLCreateMenuItem(PfrendsCircle, @"朋友圈");
     item1.rightIconURL = @"http://img4.duitang.com/uploads/item/201510/16/20151016113134_TZye4.thumb.224_0.jpeg";
     item1.showRightRedPoint = YES;
@@ -47,19 +35,12 @@
     item7.showRightRedPoint = YES;
     [self.discoverMenuData addObjectsFromArray:@[@[item1], @[item2, item3], @[item4, item5], @[item6, item7]]];
 }
-
 @end
-
 @interface TLDiscoverViewController ()
-
 @property (nonatomic, strong) TLMomentsViewController *momentsVC;
-
 @property (nonatomic, strong) TLDiscoverHelper *discoverHelper;
-
 @end
-
 @implementation TLDiscoverViewController
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationItem setTitle:@"发现"];
@@ -67,11 +48,9 @@
     self.discoverHelper = [[TLDiscoverHelper alloc] init];
     self.data = self.discoverHelper.discoverMenuData;
 }
-
-#pragma mark - Delegate - 
+#pragma mark - Delegate -
 //MARK: UITableViewDelegate
-- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     TLMenuItem *item = [self.data[indexPath.section] objectAtIndex:indexPath.row];
     if ([item.title isEqualToString:@"朋友圈"]) {
         [self setHidesBottomBarWhenPushed:YES];
@@ -83,26 +62,22 @@
         [self setHidesBottomBarWhenPushed:YES];
         [self.navigationController pushViewController:scannerVC animated:YES];
         [self setHidesBottomBarWhenPushed:NO];
-    }
-    else if ([item.title isEqualToString:@"摇一摇"]) {
+    }else if ([item.title isEqualToString:@"摇一摇"]) {
         TLShakeViewController *shakeVC = [[TLShakeViewController alloc] init];
         [self setHidesBottomBarWhenPushed:YES];
         [self.navigationController pushViewController:shakeVC animated:YES];
         [self setHidesBottomBarWhenPushed:NO];
-    }
-    else if ([item.title isEqualToString:@"漂流瓶"]) {
+    }else if ([item.title isEqualToString:@"漂流瓶"]) {
         TLBottleViewController *bottleVC = [[TLBottleViewController alloc] init];
         [self setHidesBottomBarWhenPushed:YES];
         [self.navigationController pushViewController:bottleVC animated:YES];
         [self setHidesBottomBarWhenPushed:NO];
-    }
-    else if ([item.title isEqualToString:@"购物"]) {
+    }else if ([item.title isEqualToString:@"购物"]) {
         TLShoppingViewController *shoppingVC = [[TLShoppingViewController alloc] init];
         [self setHidesBottomBarWhenPushed:YES];
         [self.navigationController pushViewController:shoppingVC animated:YES];
         [self setHidesBottomBarWhenPushed:NO];
-    }
-    else if ([item.title isEqualToString:@"游戏"]) {
+    }else if ([item.title isEqualToString:@"游戏"]) {
         TLGameViewController *gameVC = [[TLGameViewController alloc] init];
         [self setHidesBottomBarWhenPushed:YES];
         [self.navigationController pushViewController:gameVC animated:YES];
@@ -110,14 +85,11 @@
     }
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];
 }
-
-#pragma mark - # Getter 
-- (TLMomentsViewController *)momentsVC
-{
+#pragma mark - Getter
+- (TLMomentsViewController *)momentsVC{
     if (_momentsVC == nil) {
         _momentsVC = [[TLMomentsViewController alloc] init];
     }
     return _momentsVC;
 }
-
 @end

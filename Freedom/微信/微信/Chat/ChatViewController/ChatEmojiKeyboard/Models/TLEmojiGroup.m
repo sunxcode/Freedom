@@ -1,17 +1,9 @@
-//
 //  TLEmojiGroup.m
-//  TLChat
-//
-//  Created by 李伯坤 on 16/2/19.
-//  Copyright © 2016年 李伯坤. All rights reserved.
-//
-
+//  Freedom
+//  Created by Super on 16/2/19.
 #import "TLEmojiGroup.h"
-
 @implementation TLEmojiGroup
-
-+ (NSDictionary *)replacedKeyFromPropertyName
-{
++ (NSDictionary *)replacedKeyFromPropertyName{
     return @{
              @"groupID" : @"eId",
              @"groupIconURL" : @"coverUrl",
@@ -23,17 +15,13 @@
              @"bannerURL" : @"URL",
              };
 }
-
-- (id)init
-{
+- (id)init{
     if (self = [super init]) {
         [self setType:TLEmojiTypeImageWithTitle];
     }
     return self;
 }
-
-- (void)setType:(TLEmojiType)type
-{
+- (void)setType:(TLEmojiType)type{
     _type = type;
     switch (type) {
         case TLEmojiTypeOther:
@@ -55,37 +43,28 @@
     self.pageItemCount = self.rowNumber * self.colNumber;
     self.pageNumber = self.count / self.pageItemCount + (self.count % self.pageItemCount == 0 ? 0 : 1);
 }
-
-- (void)setData:(NSMutableArray *)data
-{
+- (void)setData:(NSMutableArray *)data{
     _data = data;
     self.count = data.count;
     self.pageItemCount = self.rowNumber * self.colNumber;
     self.pageNumber = self.count / self.pageItemCount + (self.count % self.pageItemCount == 0 ? 0 : 1);
 }
-
-- (id)objectAtIndex:(NSUInteger)index
-{
+- (id)objectAtIndex:(NSUInteger)index{
     return [self.data objectAtIndex:index];
 }
-
-- (NSString *)path
-{
+- (NSString *)path{
     if (_path == nil && self.groupID != nil) {
         _path = [NSFileManager pathExpressionForGroupID:self.groupID];
     }
     return _path;
 }
-
-- (NSString *)groupIconPath
-{
+- (NSString *)groupIconPath{
     if (_groupIconPath == nil && self.path != nil) {
         _groupIconPath = [NSString stringWithFormat:@"%@icon_%@", self.path, self.groupID];
     }
     return _groupIconPath;
 }
-- (NSString *)pictureURL
-{
+- (NSString *)pictureURL{
     return self.bannerURL;
 }
 @end

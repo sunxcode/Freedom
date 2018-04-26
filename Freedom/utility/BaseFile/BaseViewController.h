@@ -1,6 +1,5 @@
 /*
- 这里的tabaleview只需要创建之后调用fillTheTableDataWithHeadV最后设置代理即可，需要的话有些方法重写。
- */
+ 这里的tabaleview只需要创建之后调用fillTheTableDataWithHeadV最后设置代理即可，需要的话有些方法重写。*/
 #import <UIKit/UIKit.h>
 #import <BaseTableView/BaseTableView.h>
 #import <BaseScrollView/BaseScrollView.h>

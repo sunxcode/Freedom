@@ -1,4 +1,5 @@
-##复杂功能说明之导入xcodeproj项目
+#
+#复杂功能说明之导入xcodeproj项目
 内含excel文件解析读取，依赖库：libiconv.tbd需要加入新的xcodeproj，增加方法如下：
 1. 将开源项目拖入项目文件夹中，点击file/AddFilesTo  选择开源项目的.xcodeproj
 2. Build Phases下 Links Binary With Libraries 引入.a文件。Target Dependencies里引入.a文件
@@ -7,7 +8,6 @@
 *2.内含把数据写成xls文件并分享和发送邮件的方法。
 1.设置bitcode为no,other linker flag为-lstdc++
 2.下载LibXL.framework拖进项目即可http://www.libxl.com/download.html
-
 # HTTPS 请求需要配置加密解密文件
 + (AFSecurityPolicy*)customSecurityPolicy{
 // /先导入证书
@@ -25,7 +25,6 @@ securityPolicy.validatesDomainName = NO;
 securityPolicy.pinnedCertificates = [NSSet setWithObjects:certData,nil];
 return securityPolicy;
 }
-
 + (void)post:(NSString *)url params:(NSDictionary *)params success:(void (^)(id))success failure:(void (^)(NSError *))failure{
 // 1.获得请求管理者
 AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
@@ -38,9 +37,12 @@ mgr.responseSerializer = [AFHTTPResponseSerializer serializer];
 } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
 }];
 }
-
-##银联支付的APPDelegate文件中增加的代码
-//#import "UPPaymentControl.h"  #import "RSA.h" #import <CommonCrypto/CommonDigest.h>
+#
+#银联支付的APPDelegate文件中增加的代码
+//
+#import "UPPaymentControl.h"  
+#import "RSA.h" 
+#import <CommonCrypto/CommonDigest.h>
 加入这些代码
 - (NSString *) readPublicKey:(NSString *) keyName{
 if (keyName == nil || [keyName isEqualToString:@""]) return nil;
@@ -81,7 +83,6 @@ return YES;
 return NO;
 }return NO;
 }
-
 // NOTE: 9.0以后使用新API接口
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString*, id> *)options{
 [[UPPaymentControl defaultControl] handlePaymentResult:url completeBlock:^(NSString *code, NSDictionary *data) {//结果code为成功时，先校验签名，校验成功后做后续处理
@@ -113,8 +114,8 @@ digest[ 0], digest[ 1], digest[ 2], digest[ 3],digest[ 4], digest[ 5], digest[ 6
 digest[10], digest[11],digest[12], digest[13], digest[14], digest[15],digest[16], digest[17], digest[18], digest[19]];
 return description;
 }
-
-##点击展开分区是这样实现的：
+#
+#点击展开分区是这样实现的：
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
 if (section == 1) {
     if (self.currentIndex==1) {
@@ -125,8 +126,8 @@ if (section == 1) {
 }else{
     return 0;
 }}
-
-##清理缓存：
+#
+#清理缓存：
 -(void)learbtnAction{
 [SVProgressHUD showWithStatus:ssssss(@"正在清理缓存", @"")];
 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -134,38 +135,27 @@ NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDo
 NSFileManager* fileManager=[NSFileManager defaultManager];
 NSString *_documentsDirectory = paths[0];
 NSString * cacheDirectoryName = [_documentsDirectory stringByAppendingPathComponent:@"MyCache"];
-NSLog(@"cacheDirectoryName:%@",cacheDirectoryName);
+DLog(@"cacheDirectoryName:%@",cacheDirectoryName);
 NSArray * tempFileList = [[NSArray alloc] initWithArray:[fileManager contentsOfDirectoryAtPath:cacheDirectoryName error:nil]];
 for (NSString *strName in tempFileList) {
 NSString* fileAbsolutePath = [cacheDirectoryName stringByAppendingPathComponent:strName];
 BOOL blDele= [fileManager removeItemAtPath:fileAbsolutePath error:nil];
-if(blDele)NSLog(@"删除:%d",blDele);
+if(blDele)DLog(@"删除:%d",blDele);
 else[SVProgressHUD showImage:nil status:@"您已经清理过了,暂无缓存文件!"];
 }
 dispatch_async(dispatch_get_main_queue(), ^{[SVProgressHUD showImage:nil status:ssssss(@"清理成功!", @"")];});
 });
 }
-
-##xcode8不打印多余log
+#
+#xcode8不打印多余log
 按步骤打开Product > Scheme > Edit Scheme > 选择Run > Argumens > Environment Variables ;加入OS_ACTIVITY_MODE = disable
-
-##保存模拟器图片到电脑桌面
+#
+#保存模拟器图片到电脑桌面
 NSString *folder =@"/Users/xuechao/Desktop/image/";
 [[NSFileManager defaultManager] createDirectoryAtPath:folder withIntermediateDirectories:YES attributes:nil error:nil];
 [[NSFileManager defaultManager] createFileAtPath:[NSString stringWithFormat:@"%@%@",folder,dict[@"imagename"]] contents:[NSData dataWithContentsOfURL:[NSURL URLWithString:dict[@"imagename"]]] attributes:nil];
 NSString *folder =@"/Users/xuechao/Desktop/image/";
 [[NSFileManager defaultManager] createDirectoryAtPath:folder withIntermediateDirectories:YES attributes:nil error:nil];
 [[NSFileManager defaultManager] createFileAtPath:[NSString stringWithFormat:@"%@%@",folder,dict[@"imagename"]] contents:[NSData dataWithContentsOfURL:[NSURL URLWithString:dict[@"imagename"]]]attributes:nil];
-
-
-##
-
-
-
-
-
-
-
-
-
-
+#
+#

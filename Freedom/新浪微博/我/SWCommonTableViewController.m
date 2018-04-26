@@ -1,72 +1,47 @@
 
-//
 //  CommonViewController.m
-//  新浪微博
-//
+//  Freedom
 //  Created by apple on 15-3-18.
-//  Copyright (c) 2015年 xc. All rights reserved.
-//
-
 #import "SWCommonTableViewController.h"
 #import "SWCommonItem.h"
 #import "NSString+expanded.h"
 #import "SWCommonItem.h"
-
-
 @interface SWCommonCell : UITableViewCell
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 - (void)setIndexPath:(NSIndexPath *)indexPath rowsInSection:(int)rows;
-
 /** cell对应的item数据 */
 @property (nonatomic, strong) SWCommonItem *item;
 @end
 @implementation SWCommonLabelItem
-
 @end
-
 @implementation SWCommonArrowItem
-
 @end
 @interface SWCommonCell()
-/**
- *  箭头
- */
+/*箭头*/
 @property (strong, nonatomic) UIImageView *rightArrow;
-/**
- *  开关
- */
+/*开关*/
 @property (strong, nonatomic) UISwitch *rightSwitch;
-/**
- *  标签
- */
+/*标签*/
 @property (strong, nonatomic) UILabel *rightLabel;
-/**
- *  提醒数字
- */
+/*提醒数字*/
 @property (strong, nonatomic) UIButton *bageView;
 @property (nonatomic, copy) NSString *badgeValue;
 @end
-
 @implementation SWCommonCell
 #pragma mark - 懒加载右边的view
-- (UIImageView *)rightArrow
-{
+- (UIImageView *)rightArrow{
     if (_rightArrow == nil) {
         self.rightArrow = [[UIImageView alloc] initWithImage:[UIImage imageNamed:PcellRight]];
     }
     return _rightArrow;
 }
-
-- (UISwitch *)rightSwitch
-{
+- (UISwitch *)rightSwitch{
     if (_rightSwitch == nil) {
         self.rightSwitch = [[UISwitch alloc] init];
     }
     return _rightSwitch;
 }
-
-- (UILabel *)rightLabel
-{
+- (UILabel *)rightLabel{
     if (_rightLabel == nil) {
         self.rightLabel = [[UILabel alloc] init];
         self.rightLabel.textColor = [UIColor lightGrayColor];
@@ -74,9 +49,7 @@
     }
     return _rightLabel;
 }
-
-- (UIButton *)bageView
-{
+- (UIButton *)bageView{
     if (_bageView == nil) {
         self.bageView = [[UIButton alloc] init];
         self.bageView.titleLabel.font = [UIFont systemFontOfSize:11];
@@ -84,10 +57,8 @@
     }
     return _bageView;
 }
-
 #pragma mark - 初始化
-+ (instancetype)cellWithTableView:(UITableView *)tableView
-{
++ (instancetype)cellWithTableView:(UITableView *)tableView{
     static NSString *ID = @"common";
     SWCommonCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     if (cell == nil) {
@@ -95,9 +66,7 @@
     }
     return cell;
 }
-
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // 设置标题的字体
@@ -114,18 +83,15 @@
     }
     return self;
 }
-
 #pragma mark - 调整子控件的位置
-- (void)layoutSubviews
-{
+- (void)layoutSubviews{
     [super layoutSubviews];
     
     // 调整子标题的x
     self.detailTextLabel.frameX = CGRectGetMaxX(self.textLabel.frame) + 5;
 }
 #pragma mark - setter
-- (void)setIndexPath:(NSIndexPath *)indexPath rowsInSection:(int)rows
-{
+- (void)setIndexPath:(NSIndexPath *)indexPath rowsInSection:(int)rows{
     // 1.取出背景view
     UIImageView *bgView = (UIImageView *)self.backgroundView;
     UIImageView *selectedBgView = (UIImageView *)self.selectedBackgroundView;
@@ -134,9 +100,7 @@
     bgView.image = [UIImage imageWithColor:whitecolor];
     selectedBgView.image = [UIImage imageWithColor:RGBCOLOR(241, 241, 241)];
 }
-
-- (void)setItem:(SWCommonItem *)item
-{
+- (void)setItem:(SWCommonItem *)item{
     _item = item;
     
     // 1.设置基本数据
@@ -177,36 +141,26 @@
     }
 }
 @end
-
 @implementation SWCommonGroup
-+ (instancetype)group
-{
++ (instancetype)group{
     return [[self alloc] init];
 }
 @end
-
 @interface SWCommonTableViewController ()
 @property (nonatomic, strong) NSMutableArray *groups;
 @end
-
 @implementation SWCommonTableViewController
-
-- (NSMutableArray *)groups
-{
+- (NSMutableArray *)groups{
     if (_groups == nil) {
         self.groups = [NSMutableArray array];
     }
     return _groups;
 }
-
 /** 屏蔽tableView的样式 */
-- (id)init
-{
+- (id)init{
     return [self initWithStyle:UITableViewStyleGrouped];
 }
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
     
     // 设置tableView属性
@@ -216,21 +170,15 @@
     self.tableView.sectionHeaderHeight = 0;
     self.tableView.contentInset = UIEdgeInsetsMake(5 - 35, 0, 0, 0);
 }
-
 #pragma mark - Table view data source
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return self.groups.count;
 }
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     SWCommonGroup *group = self.groups[section];
     return group.items.count;
 }
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     SWCommonCell *cell = [SWCommonCell cellWithTableView:tableView];
     SWCommonGroup *group = self.groups[indexPath.section];
     cell.item = group.items[indexPath.row];
@@ -238,22 +186,16 @@
     [cell setIndexPath:indexPath rowsInSection:(int)group.items.count];
     return cell;
 }
-
-- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
-{
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section{
     SWCommonGroup *group = self.groups[section];
     return group.footer;
 }
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     SWCommonGroup *group = self.groups[section];
     return group.header;
 }
-
 #pragma mark - Table view delegate
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     // 1.取出这行对应的item模型
     SWCommonGroup *group = self.groups[indexPath.section];
     SWCommonItem *item = group.items[indexPath.row];

@@ -1,9 +1,7 @@
-//
 //  EnergySuperMarketTabBarController.m
-//  Created by 薛超 on 16/9/5.
-//  Copyright © 2016年 薛超. All rights reserved.
+//  Created by Super on 16/9/5.
+//  Copyright © 2016年 Super. All rights reserved.
 //
-
 #import "EnergySuperMarketTabBarController.h"
 #import "EnergySuperHomeViewController.h"
 #import "EnergyShopTabBarController.h"
@@ -57,7 +55,6 @@ static EnergySuperMarketTabBarController *rootVC = nil;
     [self.stabbar removeFromParentViewController];
     [self.superTabbar setSelectedIndex:self.backTab];
 }
-
 //-(void)viewWillAppear:(BOOL)animated{
 //    [super viewWillAppear:animated];
 //    [self setSelectedIndex:1];

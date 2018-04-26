@@ -1,65 +1,44 @@
-//
 //  DetailView.h
 //  DW
 #import <UIKit/UIKit.h>
 @class MFullScreenControl;
 @class UIScrollPageControlView;
-
 @interface MFullScreenControl : NSObject
-
 @property (nonatomic, strong) UIScrollPageControlView       *screenPageView;    //滚动视图
 @property (nonatomic, assign) BOOL                           isAppear;          //记录当前状态
 - (void) appearOnView:(UIView *) view;
 - (void) disAppearOnView:(UIView *) view;
-
 @end
-
-
 @interface MFullScreenControl()
-
 @property (nonatomic, strong) UIWindow                      *screenWindow;      //全屏窗体
 @property (nonatomic, strong) UIView                        *contentView;       //视图容器
 @property (nonatomic, strong) UIView                        *fromView;          //启动视图
 @property (nonatomic, strong) UIImageView                   *sourceImageView;   //克隆的启动视图，用于动画展示
-
 @end
 @interface MFullScreenView : UIView
-
 @property (nonatomic, strong) UIScrollView  *scrollView;    //容器
 @property (nonatomic, strong) UIImageView   *imageView;     //执行动画的图片视图
 @property (nonatomic, assign, setter=enableDoubleTap:) BOOL isDoubleTapEnabled; //是否允许双击放大
 @property (nonatomic, strong) void (^singleTapBlock)(UITapGestureRecognizer *recognizer);   //单击的回调处理
 - (void) reloadData;
-
 @end
-
 @interface MFullScreenView() <UIScrollViewDelegate>
 @property (nonatomic, strong) UITapGestureRecognizer *doubleTap;
 @property (nonatomic, strong) UITapGestureRecognizer *singleTap;
-
 @end
 @protocol UIScrollPageControlViewDelegate <NSObject>
-
 @required
-
 // 配置复用视图总数
 - (NSUInteger) numberOfView:(UIScrollPageControlView *) control;
-
 // 配置索引位置的视图，类似于UITableViewCell的生成方式
 - (UIView *) configItemOfControl:(UIScrollPageControlView *) control at:(NSUInteger) index ;
-
 @optional
 - (CGFloat) minimumRowSpacing:(UIScrollPageControlView *) control;
-
 // 配置正常呈现的视图，主要用于图片失去焦点时，进行场景还原操作，此方法有待优化
 - (void) reconfigItemOfControl:(UIScrollPageControlView *)control at:(NSUInteger) index withView:(UIView *)view;
-
 @end
-
 #pragma mark UIScrollPageControlView
-
 @interface UIScrollPageControlView : UIView
-
 @property (nonatomic, strong) UIScrollView                          *scrollView;
 @property (nonatomic, assign) BOOL                                  enablePageControl;  //默认为YES
 @property (nonatomic, assign) NSInteger                             currentIndex;       //当前展示
@@ -68,9 +47,7 @@
 - (CGFloat) itemWidth;
 - (UIView *) dequeueReusableViewWithIdentifier:(NSString *) identifier;
 - (void) reloadData;
-
 @end
-
 @protocol DetailViewSectionDelegate <NSObject>
 @required
 //顶部的滚动视图，此视图可以为如下值，UIWebView, UIScrollView及其之类@return 视图
@@ -114,5 +91,4 @@
 - (void) hideFullScreenOnView:(UIView *) view;
 // 刷新页面
 - (void) reloadData;
-
 @end

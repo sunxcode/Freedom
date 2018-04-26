@@ -1,37 +1,23 @@
-//
 //  TLRootProxy.m
-//  TLChat
-//
-//  Created by 李伯坤 on 16/3/13.
-//  Copyright © 2016年 李伯坤. All rights reserved.
-//
-
+//  Freedom
+// Created by Super
 #import "TLRootProxy.h"
-
 @implementation TLRootProxy
-
 - (void)requestClientInitInfoSuccess:(void (^)(id)) clientInitInfo
-                             failure:(void (^)(NSString *))error
-{
-    NSString *urlString = [TLHost clientInitInfoURL];
+                             failure:(void (^)(NSString *))error{
+    NSString *urlString = [HOST_URL stringByAppendingString:@"client/getClientInitInfo/"];
     [NetBase POST:urlString parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-           NSLog(@"OK");
+           DLog(@"OK");
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-           NSLog(@"OK");
+           DLog(@"OK");
     }];
 }
-
 - (void)userLoginWithUsername:(NSString *)username
                      password:(NSString *)password
                       success:(void (^)(id))userInfo
-                      failure:(void (^)(NSString *))error
-{
-
+                      failure:(void (^)(NSString *))error{
 }
-
-
-- (NSMutableArray *)chatDetailDataByUserInfo:(TLUser *)userInfo
-{
+- (NSMutableArray *)chatDetailDataByUserInfo:(TLUser *)userInfo{
     TLSettingItem *users = TLCreateSettingItem(@"users");
     users.type = TLSettingItemTypeOther;
     TLSettingGroup *group1 = TLCreateSettingGroup(nil, nil, @[users]);
@@ -60,9 +46,7 @@
     [data addObjectsFromArray:@[group1, group2, group3, group4, group5, group6]];
     return data;
 }
-
-- (NSMutableArray *)chatDetailDataByGroupInfo:(TLGroup *)groupInfo
-{
+- (NSMutableArray *)chatDetailDataByGroupInfo:(TLGroup *)groupInfo{
     TLSettingItem *users = TLCreateSettingItem(@"users");
     users.type = TLSettingItemTypeOther;
     TLSettingItem *allUsers = TLCreateSettingItem(([NSString stringWithFormat:@"全部群成员(%ld)", (long)groupInfo.count]));
@@ -75,8 +59,7 @@
     TLSettingItem *groupPost = TLCreateSettingItem(@"群公告");
     if (groupInfo.post.length > 0) {
         groupPost.subTitle = groupInfo.post;
-    }
-    else {
+    }else{
         groupPost.subTitle = @"未设置";
     }
     TLSettingGroup *group2 = TLCreateSettingGroup(nil, nil, (@[groupName, groupQR, groupPost]));

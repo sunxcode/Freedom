@@ -1,9 +1,7 @@
-//
 //  AppDelegate.h
 //  Freedom
-//
-//  Created by 薛超 on 16/6/13.
-//  Copyright © 2016年 薛超. All rights reserved.
+//  Created by Super on 16/6/13.
+//  Copyright © 2016年 Super. All rights reserved.
 #import <UIKit/UIKit.h>
 @class AEAudioController;
 @interface AppDelegate : UIResponder <UIApplicationDelegate>{
@@ -17,4 +15,3 @@
 - (void)readData;
 @property (strong, nonatomic) NSMutableArray *items;
 @end
-

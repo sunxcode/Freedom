@@ -1,18 +1,9 @@
-//
 //  XFNavigationController.m
-//  Weibo
-//
+//  Freedom
 //  Created by Fay on 15/9/14.
-//  Copyright (c) 2015年 Fay. All rights reserved.
-//
-
 #import "XFNavigationController.h"
 #import "UIBarButtonItem+expanded.h"
-
 @implementation XFNavigationController
-
-
-
 +(void)initialize {
     
     
@@ -34,12 +25,7 @@
     
     [item setTitleTextAttributes:disableTextArr forState:UIControlStateDisabled];
     
-
 }
-
-
-
-
 -(void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
     
     [super pushViewController:viewController animated:animated];
@@ -54,23 +40,18 @@
     }
     
     
-
     
 }
-
-
 -(void)back {
     
     [self popViewControllerAnimated:YES];
     
 }
-
 -(void)more {
     
     [self popToRootViewControllerAnimated:YES];
     
 }
-
 @end
 // 版权属于原作者
 // http://code4app.com (cn) http://code4app.net (en)

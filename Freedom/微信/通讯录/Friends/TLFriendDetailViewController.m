@@ -1,11 +1,6 @@
-//
 //  TLFriendDetailViewController.m
-//  TLChat
-//
-//  Created by 李伯坤 on 16/2/26.
-//  Copyright © 2016年 李伯坤. All rights reserved.
-//
-
+//  Freedom
+// Created by Super
 #import "TLFriendDetailViewController.h"
 #import "TLChatViewController.h"
 #import "TLRootViewController.h"
@@ -14,30 +9,19 @@
 #import "TLFriendHelper.h"
 #import "TLTableViewCell.h"
 #import "TLInfo.h"
-
 #import "UIButton+WebCache.h"
 #import "TLUser.h"
-
-#import "UIFont+expanded.h"       // 字体
 #define     MINE_SPACE_X        14.0f
 #define     MINE_SPACE_Y        12.0f
 #import "TLSettingViewController.h"
 @interface TLFriendDetailAlbumCell : TLTableViewCell
-
 @property (nonatomic, strong) TLInfo *info;
-
 @end
-
 @interface TLFriendDetailAlbumCell ()
-
 @property (nonatomic, strong) NSMutableArray *imageViewsArray;
-
 @end
-
 @implementation TLFriendDetailAlbumCell
-
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self.imageViewsArray = [[NSMutableArray alloc] init];
         [self.textLabel setFont:[UIFont systemFontOfSize:15.0f]];
@@ -45,9 +29,7 @@
     }
     return self;
 }
-
-- (void)setInfo:(TLInfo *)info
-{
+- (void)setInfo:(TLInfo *)info{
     _info = info;
     [self.textLabel setText:info.title];
     NSArray *arr = info.userInfo;
@@ -63,8 +45,7 @@
         if (self.imageViewsArray.count <= i) {
             imageView = [[UIImageView alloc] init];
             [self.imageViewsArray addObject:imageView];
-        }
-        else {
+        }else{
             imageView = self.imageViewsArray[i];
         }
         [self.contentView addSubview:imageView];
@@ -75,32 +56,21 @@
             make.width.mas_equalTo(imageView.mas_height);
             if (i == 0) {
                 make.left.mas_equalTo(WIDTH_SCREEN * 0.28);
-            }
-            else {
+            }else{
                 make.left.mas_equalTo([self.imageViewsArray[i - 1] mas_right]).mas_offset(spaceX);
             }
         }];
     }
 }
-
 @end
-
 @interface TLFriendDetailUserCell ()
-
 @property (nonatomic, strong) UIButton *avatarView;
-
 @property (nonatomic, strong) UILabel *shownameLabel;
-
 @property (nonatomic, strong) UILabel *usernameLabel;
-
 @property (nonatomic, strong) UILabel *nikenameLabel;
-
 @end
-
 @implementation TLFriendDetailUserCell
-
-- (id) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
+- (id) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self setSelectionStyle:UITableViewCellSelectionStyleNone];
         self.leftSeparatorSpace = 15.0f;
@@ -114,9 +84,7 @@
     }
     return self;
 }
-
-- (void) addMasonry
-{
+- (void) addMasonry{
     [self.avatarView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(MINE_SPACE_X);
         make.top.mas_equalTo(MINE_SPACE_Y);
@@ -140,9 +108,7 @@
         make.top.mas_equalTo(self.usernameLabel.mas_bottom).mas_offset(3);
     }];
 }
-
-- (void) setInfo:(TLInfo *)info
-{
+- (void) setInfo:(TLInfo *)info{
     _info = info;
     TLUser *user = info.userInfo;
     if (user.avatarPath) {
@@ -157,23 +123,18 @@
         if (user.nikeName.length > 0) {
             [self.nikenameLabel setText:[@"昵称：" stringByAppendingString:user.nikeName]];
         }
-    }
-    else if (user.nikeName.length > 0){
+    }else if (user.nikeName.length > 0){
         [self.nikenameLabel setText:[@"昵称：" stringByAppendingString:user.nikeName]];
     }
 }
-
-#pragma mark - # Event Response
-- (void)avatarViewButtonDown:(UIButton *)sender
-{
+#pragma mark - Event Response
+- (void)avatarViewButtonDown:(UIButton *)sender{
     if (self.delegate && [self.delegate respondsToSelector:@selector(friendDetailUserCellDidClickAvatar:)]) {
         [self.delegate friendDetailUserCellDidClickAvatar:self.info];
     }
 }
-
 #pragma mark - Getter
-- (UIButton *)avatarView
-{
+- (UIButton *)avatarView{
     if (_avatarView == nil) {
         _avatarView = [[UIButton alloc] init];
         [_avatarView.layer setMasksToBounds:YES];
@@ -182,18 +143,14 @@
     }
     return _avatarView;
 }
-
-- (UILabel *)shownameLabel
-{
+- (UILabel *)shownameLabel{
     if (_shownameLabel == nil) {
         _shownameLabel = [[UILabel alloc] init];
         [_shownameLabel setFont:[UIFont fontMineNikename]];
     }
     return _shownameLabel;
 }
-
-- (UILabel *)usernameLabel
-{
+- (UILabel *)usernameLabel{
     if (_usernameLabel == nil) {
         _usernameLabel = [[UILabel alloc] init];
         [_usernameLabel setFont:[UIFont fontMineUsername]];
@@ -201,9 +158,7 @@
     }
     return _usernameLabel;
 }
-
-- (UILabel *)nikenameLabel
-{
+- (UILabel *)nikenameLabel{
     if (_nikenameLabel == nil) {
         _nikenameLabel = [[UILabel alloc] init];
         [_nikenameLabel setTextColor:[UIColor grayColor]];
@@ -211,35 +166,22 @@
     }
     return _nikenameLabel;
 }
-
 @end
 @interface TLFriendDetailSettingViewController : TLSettingViewController
-
 @property (nonatomic, strong) TLUser *user;
-
 @end
-
 @interface TLFriendDetailSettingViewController ()
-
 @end
-
 @implementation TLFriendDetailSettingViewController
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationItem setTitle:@"资料设置"];
     
     self.data = [[TLFriendHelper sharedFriendHelper] friendDetailSettingArrayByUserInfo:self.user];
 }
-
-
-
 @end
-
 @implementation TLFriendDetailViewController
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
     [self.navigationItem setTitle:@"详细资料"];
     
@@ -247,35 +189,27 @@
     [self.navigationItem setRightBarButtonItem:rightBarButton];
     [self registerCellClass];
 }
-
-- (void)setUser:(TLUser *)user
-{
+- (void)setUser:(TLUser *)user{
     _user = user;
     NSArray *array = [[TLFriendHelper sharedFriendHelper] friendDetailArrayByUserInfo:self.user];
     self.data = [NSMutableArray arrayWithArray:array];
     [self.tableView reloadData];
 }
-
 #pragma mark - Event Response -
-- (void)rightBarButtonDown:(UIBarButtonItem *)sender
-{
+- (void)rightBarButtonDown:(UIBarButtonItem *)sender{
     TLFriendDetailSettingViewController *detailSetiingVC = [[TLFriendDetailSettingViewController alloc] init];
     [detailSetiingVC setUser:self.user];
     [self setHidesBottomBarWhenPushed:YES];
     [self.navigationController pushViewController:detailSetiingVC animated:YES];
 }
-
 #pragma mark - Private Methods -
-- (void)registerCellClass
-{
+- (void)registerCellClass{
     [self.tableView registerClass:[TLFriendDetailUserCell class] forCellReuseIdentifier:@"TLFriendDetailUserCell"];
     [self.tableView registerClass:[TLFriendDetailAlbumCell class] forCellReuseIdentifier:@"TLFriendDetailAlbumCell"];
 }
-
 #pragma mark - Delegate -
 //MARK: UITableViewDataSource
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     TLInfo *info = [self.data[indexPath.section] objectAtIndex:indexPath.row];
     if (info.type == TLInfoTypeOther) {
         if (indexPath.section == 0) {
@@ -285,8 +219,7 @@
             [cell setTopLineStyle:TLCellLineStyleFill];
             [cell setBottomLineStyle:TLCellLineStyleFill];
             return cell;
-        }
-        else {
+        }else{
             TLFriendDetailAlbumCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TLFriendDetailAlbumCell"];
             [cell setInfo:info];
             return cell;
@@ -294,10 +227,8 @@
     }
     return [super tableView:tableView cellForRowAtIndexPath:indexPath];
 }
-
 //MARK: UITableViewDelegate
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     TLInfo *info = [self.data[indexPath.section] objectAtIndex:indexPath.row];
     if (info.type == TLInfoTypeOther) {
         if (indexPath.section == 0) {
@@ -307,11 +238,8 @@
     }
     return [super tableView:tableView heightForRowAtIndexPath:indexPath];
 }
-
-
 //MARK: TLInfoButtonCellDelegate
-- (void)infoButtonCellClicked:(TLInfo *)info
-{
+- (void)infoButtonCellClicked:(TLInfo *)info{
     if ([info.title isEqualToString:@"发消息"]) {
         TLChatViewController *chatVC = [TLChatViewController sharedChatVC];
         if ([self.navigationController findViewController:@"TLChatViewController"]) {
@@ -340,16 +268,13 @@
         [super infoButtonCellClicked:info];
     }
 }
-
 //MARK: TLFriendDetailUserCellDelegate
-- (void)friendDetailUserCellDidClickAvatar:(TLInfo *)info
-{
+- (void)friendDetailUserCellDidClickAvatar:(TLInfo *)info{
     NSURL *url;
     if (self.user.avatarPath) {
         NSString *imagePath = [NSFileManager pathUserAvatar:self.user.avatarPath];
         url = [NSURL fileURLWithPath:imagePath];
-    }
-    else {
+    }else{
         url = TLURL(self.user.avatarURL);
     }
     
@@ -358,5 +283,4 @@
     TLNavigationController *broserNavC = [[TLNavigationController alloc] initWithRootViewController:browser];
     [self presentViewController:broserNavC animated:NO completion:nil];
 }
-
 @end

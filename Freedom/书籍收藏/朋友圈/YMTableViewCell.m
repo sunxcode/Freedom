@@ -1,29 +1,18 @@
-//
 //  YMTableViewCell.m
 //  WFCoretext
-//
-//  Created by 阿虎 on 14/10/28.
-//  Copyright (c) 2014年 tigerwf. All rights reserved.
-// 2 3 2 2 2 3 1 3 2 1
-
+//  Created by Super on 14/10/28. 2 3 2 2 2 3 1 3 2 1
 #import "YMTableViewCell.h"
 #import "WFReplyBody.h"
 #import "ContantHead.h"
 #import "YMTapGestureRecongnizer.h"
 #import "WFHudView.h"
-
 #define kImageTag 9999
-
-
-@implementation YMTableViewCell
-{
+@implementation YMTableViewCell{
     UIButton *foldBtn;
     YMTextData *tempDate;
     UIImageView *replyImageView;
 }
-
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
@@ -83,7 +72,6 @@
     }
     return self;
 }
-
 - (void)foldText{
     
     if (tempDate.foldOrNot == YES) {
@@ -97,14 +85,11 @@
     [_delegate changeFoldState:tempDate onCellRow:self.stamp];
     
 }
-
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
     
     // Configure the view for the selected state
 }
-
-
 - (void)setYMViewWith:(YMTextData *)ymData{
   
     tempDate = ymData;
@@ -126,7 +111,6 @@
     [_ymShuoshuoArray removeAllObjects];
   
 #pragma mark - // /////////添加说说view
-
     WFTextView *textView = [[WFTextView alloc] initWithFrame:CGRectMake(offSet_X, 15 + TableHeader, screenWidth - 2 * offSet_X, 0)];
     textView.delegate = self;
     textView.attributedData = ymData.attributedDataShuoshuo;
@@ -201,7 +185,6 @@
     }
     
     [_ymFavourArray removeAllObjects];
-
     
     float origin_Y = 10;
     NSUInteger scale_Y = ymData.showImageArray.count - 1;
@@ -228,7 +211,6 @@
     [self.contentView addSubview:favourView];
     backView_H += ((ymData.favourHeight == 0)?(-kReply_FavourDistance):ymData.favourHeight);
     [_ymFavourArray addObject:favourView];
-
 //点赞图片的位置
     _favourImage.frame = CGRectMake(offSet_X + 8, favourView.frame.origin.y, (ymData.favourHeight == 0)?0:20,(ymData.favourHeight == 0)?0:20);
     
@@ -239,7 +221,7 @@
         WFTextView * ymTextView = (WFTextView *)[_ymTextArray objectAtIndex:i];
         if (ymTextView.superview) {
             [ymTextView removeFromSuperview];
-            //  NSLog(@"here");
+            //  DLog(@"here");
             
         }
         
@@ -305,7 +287,6 @@
     
     
 }
-
 #pragma mark - ilcoreTextDelegate
 - (void)clickMyself:(NSString *)clickString{
     
@@ -321,8 +302,6 @@
     
     
 }
-
-
 - (void)longClickWFCoretext:(NSString *)clickString replyIndex:(NSInteger)index{
   
     if (index == -1) {
@@ -333,13 +312,11 @@
     }
     
 }
-
-
 - (void)clickWFCoretext:(NSString *)clickString replyIndex:(NSInteger)index{
     
     if ([clickString isEqualToString:@""] && index != -1) {
        //reply
-        //NSLog(@"reply");
+        //DLog(@"reply");
         [_delegate clickRichText:_stamp replyIndex:index];
     }else{
         if ([clickString isEqualToString:@""]) {
@@ -350,7 +327,6 @@
     }
     
 }
-
 #pragma mark - 点击action
 - (void)tapImageView:(YMTapGestureRecongnizer *)tapGes{
     
@@ -358,5 +334,4 @@
     
     
 }
-
 @end

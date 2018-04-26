@@ -1,28 +1,18 @@
-//
 //  YMTextData.m
 //  WFCoretext
-//
-//  Created by 阿虎 on 14/10/29.
-//  Copyright (c) 2014年 tigerwf. All rights reserved.
-//
-
+//  Created by Super on 14/10/29.
 #import "YMTextData.h"
 #import "ContantHead.h"
 #import "ILRegularExpressionManager.h"
 #import "NSString+NSString_ILExtension.h"
 #import "WFReplyBody.h"
 #import "WFTextView.h"
-
 @implementation YMTextData{
     
     TypeView typeview;
     int tempInt;
 }
-
-
-
-- (id)init
-{
+- (id)init{
     self = [super init];
     if (self) {
         
@@ -37,9 +27,7 @@
            }
     return self;
 }
-
 - (void)setMessageBody:(WFMessageBody *)messageBody{
-
     _messageBody = messageBody;
     _showImageArray = messageBody.posterPostImage;
     _foldOrNot = YES;
@@ -49,8 +37,6 @@
     _favourArray = messageBody.posterFavour;
     _hasFavour = messageBody.isFavour;
 }
-
-
 - (NSMutableArray *)findAttrWith:(NSMutableArray *)replies{
     
     NSMutableArray *feedBackArray = [NSMutableArray arrayWithCapacity:0];
@@ -73,7 +59,6 @@
     return feedBackArray;
     
 }
-
 - (float)calculateFavourHeightWithWidth:(float)sizeWidth{
     
     typeview = TypeFavour;
@@ -102,7 +87,6 @@
     
     return height;
 }
-
 //计算replyview高度
 - (float) calculateReplyHeightWithWidth:(float)sizeWidth{
     
@@ -159,7 +143,6 @@
     }
     
 }
-
 - (void)matchString:(NSString *)dataSourceString fromView:(TypeView) isReplyV{
     
     if (isReplyV == TypeReply) {
@@ -239,7 +222,6 @@
         }
     }
 }
-
 //说说高度
 - (float) calculateShuoshuoHeightWithWidth:(float)sizeWidth withUnFoldState:(BOOL)isUnfold{
     
@@ -278,6 +260,4 @@
     return [_wfcoreText getTextHeight];
     
 }
-
-
 @end

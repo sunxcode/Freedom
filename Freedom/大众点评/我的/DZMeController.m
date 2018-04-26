@@ -1,22 +1,12 @@
-//
 //  DZMeViewController.m
-//  Shop
-//
-//  Created by dengwei on 15/11/28.
-//  Copyright (c) 2015年 dengw. All rights reserved.
-//
-
+//  Freedom
+//  Created by Super on 15/11/28.
 #import "DZMeController.h"
-
-@interface DZMeController ()<UITableViewDataSource,UITableViewDelegate>
-{
+@interface DZMeController ()<UITableViewDataSource,UITableViewDelegate>{
     NSArray *_data;
 }
-
 @end
-
 @implementation DZMeController
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -31,12 +21,9 @@
     
     //3.设置tableview属性
     [self buildTableView];
-
 }
-
 #pragma mark 设置tableview属性
--(void)buildTableView
-{
+-(void)buildTableView{
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, APPW, APPH) style:UITableViewStyleGrouped];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -51,20 +38,16 @@
     //24bit颜色 RGB（红绿蓝）
     //32bit颜色 ARGB
 }
-
 #pragma mark 读取plist文件内容
--(void)loadPlist
-{
+-(void)loadPlist{
     //1.获取路径
     NSURL *url = [[NSBundle mainBundle] URLForResource:@"DianpingWo" withExtension:@"plist"];
     
     //2.读取数据
     _data = [NSArray arrayWithContentsOfURL:url];
 }
-
 #pragma mark 搭建UI界面
--(void)buildUI
-{
+-(void)buildUI{
     self.title = @"我的";
     
     //设置右上角按钮
@@ -73,32 +56,22 @@
     //设置左上角按钮
     UIBarButtonItem *service = [[UIBarButtonItem alloc]initWithTitle:@"联系客服" style:UIBarButtonItemStylePlain target:self action:@selector(serviceAction)];
     self.navigationItem.leftBarButtonItem = service;
-
 }
-
 #pragma mark 弹出消息窗口
--(void)sendMessage
-{
+-(void)sendMessage{
     DLog(@"消息");
 }
-
 #pragma mark 联系客服
--(void)serviceAction
-{
+-(void)serviceAction{
     DLog(@"联系客服");
 }
-
 #pragma mark - Table View data source
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return _data.count;
 }
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [_data[section] count];
 }
-
 //设置tableView每组头部的高度
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (section == 0) {
@@ -107,11 +80,9 @@
         return 0;
     }
 }
-
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 8;
 }
-
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     if (section == 0) {
         UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APPW, 5)];
@@ -142,15 +113,12 @@
     }else{
         UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APPW, 5)];
         headerView.backgroundColor = RGBCOLOR(239, 239, 244);
-
         return headerView;
     }
     
 }
-
 #pragma mark 每当有一个新的cell进入屏幕视野范围内就会调用
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellIdentifier = @"cell";
     //forIndexPath:indexPath 跟 storyboard 配套使用
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
@@ -171,19 +139,12 @@
     
     return cell;
 }
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-
 }
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
-
 @end

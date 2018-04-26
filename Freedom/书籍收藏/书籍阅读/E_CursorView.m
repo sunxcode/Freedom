@@ -1,16 +1,9 @@
-//
 //  E_CursorView.m
-//  WFReader
-//
-//  Created by 阿虎 on 15/1/29.
-//  Copyright (c) 2015年 tigerwf. All rights reserved.
-//
-
+//  Freedom
+// Created by Super
 #import "E_CursorView.h"
 #define kE_CursorWidth 2
-
 @implementation E_CursorView
-
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -18,7 +11,6 @@
     // Drawing code
 }
 */
-
 - (id)initWithType:(CursorType)type andHeight:(float)cursorHeight byDrawColor:(UIColor *)drawColor{
     self = [super init];
     if (self) {
@@ -29,10 +21,7 @@
         
     }
     return self;
-
 }
-
-
 - (void)setSetupPoint:(CGPoint)setupPoint{
     
     self.backgroundColor = _cursorColor;
@@ -54,7 +43,6 @@
     }
     [self addSubview:_dragDot];
 }
-
 - (void)dealloc{
    
     

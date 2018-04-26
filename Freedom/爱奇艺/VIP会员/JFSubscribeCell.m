@@ -1,63 +1,34 @@
-//
 //  JFSubscribeCell.m
-//  JFTudou
-//
-//  Created by 保修一站通 on 15/10/16.
-//  Copyright © 2015年 JF. All rights reserved.
-//
-
+//  Freedom
+//  Created by Freedom on 15/10/16.
 #import "JFSubscribeCell.h"
-
 @implementation JFSubItemModel
-
 @end
-
 @implementation JFSubscribeModel
-
 @end
-
 @class JFSubScribeCardView,JFSubItemModel;
-
-
 @protocol JFSubImageScrollViewDelegate <NSObject>
-
-
 @optional
 -(void)didSelectSubScrollView:(JFSubScribeCardView *)subScrollView subItem:(JFSubItemModel *)subItem;
-
 @end
-
 @interface JFSubImageScrollView : UIView
-
 @property(nonatomic, weak) id <JFSubImageScrollViewDelegate>delegate;
 @property(nonatomic, strong) UIScrollView *scrollView;
 @property(nonatomic, strong) NSArray *dataArray;
-
-
 @end
-
 @class JFSubItemModel,JFSubScribeCardView;
-
 @protocol JFSubScribeCardViewDelegate <NSObject>
-
 -(void)didSelectSubImageCard:(JFSubScribeCardView *)subImageCard subItem:(JFSubItemModel *)subItem;
-
 @end
 @interface JFSubScribeCardView : UIView
-
 @property(nonatomic, strong) UIImageView *imageView;
 @property(nonatomic, strong) UILabel *titleLabel;
-
 @property (strong, nonatomic) UIImageView *cardImageView;
 @property (strong, nonatomic) UILabel *cardLabel;
 @property(nonatomic, strong) JFSubItemModel *subItem;
-
 @property(nonatomic, weak) id<JFSubScribeCardViewDelegate>delegate;
-
 @end
-
 @implementation JFSubScribeCardView
-
 -(id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
@@ -80,7 +51,6 @@
     }
     return self;
 }
-
 -(void)setSubItem:(JFSubItemModel *)subItem{
     _subItem = subItem;
     [self.imageView sd_setImageWithURL:[NSURL URLWithString:subItem.picurl] placeholderImage:[UIImage imageNamed:@"rec_holder"]];
@@ -88,23 +58,15 @@
     //    [self.cardImageView sd_setImageWithURL:[NSURL URLWithString:subItem.picurl]  placeholderImage:[UIImage imageNamed:@"rec_holder"]];
     //    self.cardLabel .text = subItem.title;
 }
-
 -(void)TapImageCard:(UITapGestureRecognizer *)sender{
     if ([self.delegate respondsToSelector:@selector(didSelectSubImageCard:subItem:)]) {
         [self.delegate didSelectSubImageCard:self subItem:self.subItem];
     }
 }
-
-
-
-
 @end
-
 @interface JFSubImageScrollView ()<JFSubScribeCardViewDelegate>
-
 @end
 @implementation JFSubImageScrollView
-
 -(JFSubImageScrollView*)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
@@ -128,7 +90,6 @@
     }
     return self;
 }
-
 -(void)setDataArray:(NSArray *)dataArray{
     _dataArray = dataArray;
     for (int i = 0; i < 3; i++) {
@@ -137,19 +98,13 @@
         [card setSubItem:item];
     }
 }
-
 -(void)didSelectSubImageCard:(JFSubScribeCardView *)subImageCard subItem:(JFSubItemModel *)subItem{
     if ([self.delegate respondsToSelector:@selector(didSelectSubScrollView:subItem:)]) {
         [self.delegate didSelectSubScrollView:subImageCard subItem:subItem];
     }
 }
-
-
 @end
-
-
-@interface JFSubscribeCell ()<JFSubImageScrollViewDelegate>
-{
+@interface JFSubscribeCell ()<JFSubImageScrollViewDelegate>{
     NSMutableArray *_items;
     JFSubImageScrollView *_scrollV;
     UIImageView *_imageView;
@@ -157,9 +112,7 @@
     UILabel *_subedLabel;
     UIButton *_dingyueBtn;
 }
-
 @end
-
 @implementation JFSubscribeCell
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -215,14 +168,11 @@
     _subedLabel.text = [NSString stringWithFormat:@"订阅 %@", subscribeM.subed_count];
     [_scrollV setDataArray:_items];
 }
-
 - (void)awakeFromNib {
     [super awakeFromNib];
 }
-
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
     // Configure the view for the selected state
 }
 -(void)didSelectSubScrollView:(JFSubScribeCardView *)subScrollView subItem:(JFSubItemModel *)subItem{
@@ -231,5 +181,4 @@
     }
     
 }
-
 @end

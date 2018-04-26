@@ -1,19 +1,12 @@
-//
 //  TLDBFriendStore.m
-//  TLChat
-//
-//  Created by 李伯坤 on 16/3/22.
-//  Copyright © 2016年 李伯坤. All rights reserved.
-//
-
+//  Freedom
+//  Created by Super on 16/3/22.
 #import "TLDBFriendStore.h"
 #import "TLDBFriendSQL.h"
 #import "TLDBManager.h"
 #import "TLUser.h"
 @implementation TLDBFriendStore
-
-- (id)init
-{
+- (id)init{
     if (self = [super init]) {
         self.dbQueue = [TLDBManager sharedInstance].commonQueue;
         BOOL ok = [self createTable];
@@ -23,15 +16,11 @@
     }
     return self;
 }
-
-- (BOOL)createTable
-{
+- (BOOL)createTable{
     NSString *sqlString = [NSString stringWithFormat:SQL_CREATE_FRIENDS_TABLE, FRIENDS_TABLE_NAME];
     return [self createTable:FRIENDS_TABLE_NAME withSQL:sqlString];
 }
-
-- (BOOL)addFriend:(TLUser *)user forUid:(NSString *)uid
-{
+- (BOOL)addFriend:(TLUser *)user forUid:(NSString *)uid{
     NSString *sqlString = [NSString stringWithFormat:SQL_UPDATE_FRIEND, FRIENDS_TABLE_NAME];
     NSArray *arrPara = [NSArray arrayWithObjects:
                         TLNoNilString(uid),
@@ -44,9 +33,7 @@
     BOOL ok = [self excuteSQL:sqlString withArrParameter:arrPara];
     return ok;
 }
-
-- (BOOL)updateFriendsData:(NSArray *)friendData forUid:(NSString *)uid
-{
+- (BOOL)updateFriendsData:(NSArray *)friendData forUid:(NSString *)uid{
     NSArray *oldData = [self friendsDataByUid:uid];
     if (oldData.count > 0) {
         // 建立新数据的hash表，用于删除数据库中的过时数据
@@ -73,9 +60,7 @@
     
     return YES;
 }
-
-- (NSMutableArray *)friendsDataByUid:(NSString *)uid
-{
+- (NSMutableArray *)friendsDataByUid:(NSString *)uid{
     __block NSMutableArray *data = [[NSMutableArray alloc] init];
     NSString *sqlString = [NSString stringWithFormat:SQL_SELECT_FRIENDS, FRIENDS_TABLE_NAME, uid];
     
@@ -94,12 +79,9 @@
     
     return data;
 }
-
-- (BOOL)deleteFriendByFid:(NSString *)fid forUid:(NSString *)uid
-{
+- (BOOL)deleteFriendByFid:(NSString *)fid forUid:(NSString *)uid{
     NSString *sqlString = [NSString stringWithFormat:SQL_DELETE_FRIEND, FRIENDS_TABLE_NAME, uid, fid];
     BOOL ok = [self excuteSQL:sqlString, nil];
     return ok;
 }
-
 @end

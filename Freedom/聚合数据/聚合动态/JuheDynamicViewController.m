@@ -1,9 +1,7 @@
-//
 //  JuheDynamicViewController.m
-//  Created by 薛超 on 16/9/5.
-//  Copyright © 2016年 薛超. All rights reserved.
+//  Created by Super on 16/9/5.
+//  Copyright © 2016年 Super. All rights reserved.
 //
-
 #import "JuheDynamicViewController.h"
 #import <XCategory/UILabel+expanded.h>
 @interface JuheDynamicCollectionViewCell : BaseCollectionViewCell{
@@ -53,7 +51,6 @@
     CGContextFillPath(context);
 }
 @end
-
 @implementation JuheDynamicViewController
 -(void)viewDidLoad{
     [super viewDidLoad];
@@ -78,10 +75,4 @@
     self.collectionView.scrollEnabled = NO;
     [self.view addSubviews:self.collectionView,nil];
 }
-
 @end
-
-
-
-
-

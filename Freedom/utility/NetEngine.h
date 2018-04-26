@@ -1,10 +1,9 @@
-//
 //  NetEngine.h
 //  Freedom
+//  Created by Super on 17/1/18.
+//  Copyright © 2017年 Super. All rights reserved.
 //
-//  Created by 薛超 on 17/1/18.
-//  Copyright © 2017年 薛超. All rights reserved.
-//#import <AFNetworking/AFNetworking.h>
+#import <AFNetworking/AFNetworking.h>
 #import "SVProgressHUD.h"
 @interface NetEngine : AFHTTPSessionManager
 typedef void (^ResponseBlock)(id resData,BOOL isCache);

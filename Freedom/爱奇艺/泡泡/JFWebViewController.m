@@ -1,9 +1,6 @@
-//
 //  JFWebViewController.m
-//  JF团购
-//
-//  Created by 保修一站通 on 15/9/15.
-//  Copyright (c) 2015年 JF团购. All rights reserved.
+//  Freedom
+//  Created by Freedom on 15/9/15.
 #import "JFWebViewController.h"
 @interface JFWebViewController ()<UIWebViewDelegate>{
     UILabel *_titleLabel;
@@ -34,7 +31,7 @@
     self.webView.scalesPageToFit = YES;
     [self.view addSubview:self.webView];
     
-    NSLog(@"webview URL:%@",self.urlStr);
+    DLog(@"webview URL:%@",self.urlStr);
     NSString *urlStr = [self.urlStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
     [self.webView loadRequest:request];
@@ -45,9 +42,8 @@
     [self.view addSubview:_activityView];
     [self.view bringSubviewToFront:_activityView];
 }
-
 -(void)OnBackBtn:(UIButton *)sender{
-    NSLog(@"_isFirstIn:%d",_isFirstIn);
+    DLog(@"_isFirstIn:%d",_isFirstIn);
     if (_isFirstIn <= 1) {
         [self.navigationController popViewControllerAnimated:YES];
     }else{
@@ -58,21 +54,21 @@
 }
 #pragma mark - UIWebViewDelegate
 -(void)webViewDidStartLoad:(UIWebView *)webView{
-    NSLog(@"开始加载webview");
+    DLog(@"开始加载webview");
 }
 -(void)webViewDidFinishLoad:(UIWebView *)webView{
-    NSLog(@"加载webview完成");
+    DLog(@"加载webview完成");
     NSString *theTitle=[webView stringByEvaluatingJavaScriptFromString:@"document.title"];
     self.title = theTitle;
     [_activityView stopAnimating];
 }
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
-    NSLog(@"加载webview失败");
+    DLog(@"加载webview失败");
 }
 -(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
     [_activityView startAnimating];
     _isFirstIn++;
-    NSLog(@"第几次加载:%d",_isFirstIn);
+    DLog(@"第几次加载:%d",_isFirstIn);
     return YES;
 }
 @end

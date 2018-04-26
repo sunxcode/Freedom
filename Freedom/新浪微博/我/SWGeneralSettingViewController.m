@@ -1,38 +1,23 @@
-//
 //  SWGeneralSettingViewController.m
-//  新浪微博
-//
+//  Freedom
 //  Created by apple on 15-3-15.
-//  Copyright (c) 2014年 heima. All rights reserved.
-//
-
 #import "SWGeneralSettingViewController.h"
 @interface SWGeneralSettingViewController ()
-
 @end
-
 @implementation SWGeneralSettingViewController
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
     
     [self setupGroups];
 }
-
-/**
- *  初始化模型数据
- */
-- (void)setupGroups
-{
+/*初始化模型数据*/
+- (void)setupGroups{
     [self setupGroup0];
     [self setupGroup1];
     [self setupGroup2];
     [self setupGroup3];
 }
-
-- (void)setupGroup0
-{
+- (void)setupGroup0{
     // 1.创建组
     SWCommonGroup *group = [SWCommonGroup group];
     [self.groups addObject:group];
@@ -47,9 +32,7 @@
     
     group.items = @[readMdoe,readMdoe1,readMdoe2];
 }
-
-- (void)setupGroup1
-{
+- (void)setupGroup1{
     SWCommonGroup *group = [SWCommonGroup group];
     [self.groups addObject:group];
     
@@ -60,19 +43,15 @@
     readMdoe1.text = @"仅WiFi";
     
     group.items = @[readMdoe,readMdoe1];
-
 }
-
-- (void)setupGroup2
-{
+- (void)setupGroup2{
     SWCommonGroup *group = [SWCommonGroup group];
     [self.groups addObject:group];
     SWCommonLabelItem *readMdoe1 = [SWCommonLabelItem itemWithTitle:@"声音"];
     readMdoe1.text = @"开";
     group.items = @[readMdoe1];
 }
-- (void)setupGroup3
-{
+- (void)setupGroup3{
     SWCommonGroup *group = [SWCommonGroup group];
     [self.groups addObject:group];
     SWCommonLabelItem *readMdoe1 = [SWCommonLabelItem itemWithTitle:@"多语言环境"];

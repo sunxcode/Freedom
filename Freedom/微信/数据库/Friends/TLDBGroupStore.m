@@ -1,18 +1,11 @@
-//
 //  TLDBGroupStore.m
-//  TLChat
-//
-//  Created by 李伯坤 on 16/4/17.
-//  Copyright © 2016年 李伯坤. All rights reserved.
-//
-
+//  Freedom
+//  Created by Super on 16/4/17.
 #import "TLDBGroupStore.h"
 #import "TLDBGroupSQL.h"
 #import "TLGroup.h"
 @implementation TLDBGroupStore
-
-- (id)init
-{
+- (id)init{
     if (self = [super init]) {
         self.dbQueue = [TLDBManager sharedInstance].commonQueue;
         BOOL ok = [self createTable];
@@ -22,9 +15,7 @@
     }
     return self;
 }
-
-- (BOOL)createTable
-{
+- (BOOL)createTable{
     NSString *sqlString = [NSString stringWithFormat:SQL_CREATE_GROUPS_TABLE, GROUPS_TABLE_NAME];
     BOOL ok = [self createTable:GROUPS_TABLE_NAME withSQL:sqlString];
     if (ok) {
@@ -33,9 +24,7 @@
     }
     return ok;
 }
-
-- (BOOL)addGroup:(TLGroup *)group forUid:(NSString *)uid
-{
+- (BOOL)addGroup:(TLGroup *)group forUid:(NSString *)uid{
     NSString *sqlString = [NSString stringWithFormat:SQL_UPDATE_GROUP, GROUPS_TABLE_NAME];
     NSArray *arrPara = [NSArray arrayWithObjects:
                         TLNoNilString(uid),
@@ -49,9 +38,7 @@
     }
     return ok;
 }
-
-- (BOOL)updateGroupsData:(NSArray *)groupData forUid:(NSString *)uid
-{
+- (BOOL)updateGroupsData:(NSArray *)groupData forUid:(NSString *)uid{
     NSArray *oldData = [self groupsDataByUid:uid];
     if (oldData.count > 0) {
         // 建立新数据的hash表，用于删除数据库中的过时数据
@@ -79,10 +66,7 @@
     
     return YES;
 }
-
-
-- (NSMutableArray *)groupsDataByUid:(NSString *)uid
-{
+- (NSMutableArray *)groupsDataByUid:(NSString *)uid{
     __block NSMutableArray *data = [[NSMutableArray alloc] init];
     NSString *sqlString = [NSString stringWithFormat:SQL_SELECT_GROUPS, GROUPS_TABLE_NAME, uid];
     
@@ -103,18 +87,13 @@
     
     return data;
 }
-
-- (BOOL)deleteGroupByGid:(NSString *)gid forUid:(NSString *)uid
-{
+- (BOOL)deleteGroupByGid:(NSString *)gid forUid:(NSString *)uid{
     NSString *sqlString = [NSString stringWithFormat:SQL_DELETE_GROUP, GROUPS_TABLE_NAME, uid, gid];
     BOOL ok = [self excuteSQL:sqlString, nil];
     return ok;
 }
-
-
-#pragma mark - # Group Members 
-- (BOOL)addGroupMember:(TLUser *)user forUid:(NSString *)uid andGid:(NSString *)gid
-{
+#pragma mark - Group Members 
+- (BOOL)addGroupMember:(TLUser *)user forUid:(NSString *)uid andGid:(NSString *)gid{
     NSString *sqlString = [NSString stringWithFormat:SQL_UPDATE_GROUP_MEMBER, GROUP_MEMBER_TABLE_NAMGE];
     NSArray *arrPara = [NSArray arrayWithObjects:
                         TLNoNilString(uid),
@@ -128,9 +107,7 @@
     BOOL ok = [self excuteSQL:sqlString withArrParameter:arrPara];
     return ok;
 }
-
-- (BOOL)addGroupMembers:(NSArray *)users forUid:(NSString *)uid andGid:(NSString *)gid
-{
+- (BOOL)addGroupMembers:(NSArray *)users forUid:(NSString *)uid andGid:(NSString *)gid{
     NSArray *oldData = [self groupMembersForUid:uid andGid:gid];
     if (oldData.count > 0) {
         // 建立新数据的hash表，用于删除数据库中的过时数据
@@ -155,9 +132,7 @@
     }
     return YES;
 }
-
-- (NSMutableArray *)groupMembersForUid:(NSString *)uid andGid:(NSString *)gid
-{
+- (NSMutableArray *)groupMembersForUid:(NSString *)uid andGid:(NSString *)gid{
     __block NSMutableArray *data = [[NSMutableArray alloc] init];
     NSString *sqlString = [NSString stringWithFormat:SQL_SELECT_GROUP_MEMBERS, GROUP_MEMBER_TABLE_NAMGE, uid];
     
@@ -176,12 +151,9 @@
     
     return data;
 }
-
-- (BOOL)deleteGroupMemberForUid:(NSString *)uid gid:(NSString *)gid andFid:(NSString *)fid
-{
+- (BOOL)deleteGroupMemberForUid:(NSString *)uid gid:(NSString *)gid andFid:(NSString *)fid{
     NSString *sqlString = [NSString stringWithFormat:SQL_DELETE_GROUP_MEMBER, GROUP_MEMBER_TABLE_NAMGE, uid, gid, fid];
     BOOL ok = [self excuteSQL:sqlString, nil];
     return ok;
 }
-
 @end

@@ -1,12 +1,6 @@
-//
 //  TLMoment.h
-//  TLChat
-//
-//  Created by 李伯坤 on 16/4/7.
-//  Copyright © 2016年 李伯坤. All rights reserved.
-//
-
-
+//  Freedom
+// Created by Super
 #import "TLMomentDetail.h"
 #import "TLMomentExtension.h"
 @interface TLMomentFrame : NSObject
@@ -24,4 +18,3 @@
 @property (nonatomic, strong) TLMomentExtension *extension;
 @property (nonatomic, strong) TLMomentFrame *momentFrame;
 @end
-

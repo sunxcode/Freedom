@@ -1,11 +1,6 @@
-//
 //  TLRootViewController.m
-//  TLChat
-//
-//  Created by 李伯坤 on 16/1/23.
-//  Copyright © 2016年 李伯坤. All rights reserved.
-//
-
+//  Freedom
+// Created by Super
 #import "TLRootViewController.h"
 #import "TLConversationViewController.h"
 #import "TLFriendsViewController.h"
@@ -17,32 +12,26 @@
 #import "TLExpressionHelper.h"
 #import "JPEngine.h"
 #import "TLFriendHelper.h"
-
+#import "CocoaLumberjack.h"
 #import "TLUserHelper.h"
+#import <MobClick.h>
+#import <BlocksKit/BlocksKit+UIKit.h>
 static TLRootViewController *rootVC = nil;
-
 @interface TLRootViewController ()
-
 @property (nonatomic, strong) NSArray *childVCArray;
-
 @property (nonatomic, strong) TLConversationViewController *conversationVC;
 @property (nonatomic, strong) TLFriendsViewController *friendsVC;
 @property (nonatomic, strong) TLDiscoverViewController *discoverVC;
 @property (nonatomic, strong) TLMineViewController *mineVC;
-
 @end
-
 @implementation TLRootViewController
-
-+ (TLRootViewController *) sharedRootViewController
-{
++ (TLRootViewController *) sharedRootViewController{
     static dispatch_once_t once;
     dispatch_once(&once, ^{
         rootVC = [[TLRootViewController alloc] init];
     });
     return rootVC;
 }
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
@@ -52,14 +41,11 @@ static TLRootViewController *rootVC = nil;
     [self p_urgentMethod];          // 紧急方法
     [self setViewControllers:self.childVCArray];       // 初始化子控制器
 }
-
 - (id)childViewControllerAtIndex:(NSUInteger)index{
     return [[self.childViewControllers objectAtIndex:index] rootViewController];
 }
-
 #pragma mark - Getters
-- (NSArray *) childVCArray
-{
+- (NSArray *) childVCArray{
     if (_childVCArray == nil) {
         TLNavigationController *convNavC = [[TLNavigationController alloc] initWithRootViewController:self.conversationVC];
         TLNavigationController *friendNavC = [[TLNavigationController alloc] initWithRootViewController:self.friendsVC];
@@ -69,9 +55,7 @@ static TLRootViewController *rootVC = nil;
     }
     return _childVCArray;
 }
-
-- (TLConversationViewController *) conversationVC
-{
+- (TLConversationViewController *) conversationVC{
     if (_conversationVC == nil) {
         _conversationVC = [[TLConversationViewController alloc] init];
         [_conversationVC.tabBarItem setTitle:@"消息"];
@@ -81,9 +65,7 @@ static TLRootViewController *rootVC = nil;
     
     return _conversationVC;
 }
-
-- (TLFriendsViewController *) friendsVC
-{
+- (TLFriendsViewController *) friendsVC{
     if (_friendsVC == nil) {
         _friendsVC = [[TLFriendsViewController alloc] init];
         [_friendsVC.tabBarItem setTitle:@"通讯录"];
@@ -92,9 +74,7 @@ static TLRootViewController *rootVC = nil;
     }
     return _friendsVC;
 }
-
-- (TLDiscoverViewController *) discoverVC
-{
+- (TLDiscoverViewController *) discoverVC{
     if (_discoverVC == nil) {
         _discoverVC = [[TLDiscoverViewController alloc] init];
         [_discoverVC.tabBarItem setTitle:@"发现"];
@@ -103,9 +83,7 @@ static TLRootViewController *rootVC = nil;
     }
     return _discoverVC;
 }
-
-- (TLMineViewController *) mineVC
-{
+- (TLMineViewController *) mineVC{
     if (_mineVC == nil) {
         _mineVC = [[TLMineViewController alloc] init];
         [_mineVC.tabBarItem setTitle:@"我"];
@@ -140,8 +118,7 @@ static TLRootViewController *rootVC = nil;
     fileLogger.logFileManager.maximumNumberOfLogFiles = 7;
     [DDLog addLogger:fileLogger];
 }
-- (void)p_initUserData
-{
+- (void)p_initUserData{
     DLog(@"沙盒路径:\n%@", [NSFileManager documentsPath]);
     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"IsFirstRunApp"] == nil) {
         [[NSUserDefaults standardUserDefaults] setObject:@"NO" forKey:@"IsFirstRunApp"];
@@ -154,9 +131,7 @@ static TLRootViewController *rootVC = nil;
     [TLUserHelper sharedHelper];
     [TLFriendHelper sharedFriendHelper];
 }
-
-- (void)p_downloadDefaultExpression
-{
+- (void)p_downloadDefaultExpression{
     [SVProgressHUD show];
     __block NSInteger count = 0;
     __block NSInteger successCount = 0;
@@ -175,8 +150,7 @@ static TLRootViewController *rootVC = nil;
             BOOL ok = [[TLExpressionHelper sharedHelper] addExpressionGroup:group];
             if (!ok) {
                 DLog(@"表情存储失败！");
-            }
-            else {
+            }else{
                 successCount ++;
             }
             count ++;
@@ -208,8 +182,7 @@ static TLRootViewController *rootVC = nil;
             BOOL ok = [[TLExpressionHelper sharedHelper] addExpressionGroup:group];
             if (!ok) {
                 DLog(@"表情存储失败！");
-            }
-            else {
+            }else{
                 successCount ++;
             }
             count ++;
@@ -226,9 +199,7 @@ static TLRootViewController *rootVC = nil;
         }
     }];
 }
-
-- (void)p_initAppData
-{
+- (void)p_initAppData{
     TLRootProxy *proxy = [[TLRootProxy alloc] init];
     [proxy requestClientInitInfoSuccess:^(id data) {
         
@@ -236,10 +207,7 @@ static TLRootViewController *rootVC = nil;
         
     }];
 }
-
-- (void)p_urgentMethod
-{
+- (void)p_urgentMethod{
     // 由JSPatch重写
 }
-
 @end

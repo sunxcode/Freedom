@@ -1,11 +1,6 @@
-//
 //  LocalMusicViewController.m
 //  CLKuGou
-//
-//  Created by Darren on 16/7/31.
-//  Copyright © 2016年 darren. All rights reserved.
-//本地音乐播放列表而已
-
+//  Created by Darren on 16/7/31.本地音乐播放列表而已
 #import "LocalMusicViewController.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import "KugouTabBarController.h"
@@ -44,7 +39,6 @@
 @property (nonatomic,strong) NSMutableArray *timerArr;// 时长
 @property (nonatomic,strong) KugouTools *tools;
 @end
-
 @implementation LocalMusicViewController
 #pragma 懒加载
 - (NSMutableArray *)iconArr{if (_iconArr == nil) {_iconArr = [NSMutableArray array];}return _iconArr;}
@@ -61,7 +55,6 @@
         //        [self addNoticefication];
     }return _musicController;
 }
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"我的音乐";
@@ -123,7 +116,6 @@
     }
     return cell;
 }
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
@@ -140,8 +132,6 @@
     tabbar.coustomTabBar.songNameLable.text = self.songArr[indexPath.row];
     tabbar.coustomTabBar.singerLable.text = self.singerArr[indexPath.row];
 }
-
-
 //- (void)show{
 //    if (_imagesPath) {
 //        //单例方法,创建管理文件的单例方法
@@ -158,7 +148,7 @@
 //                [images addObject:image];
 //            }
 //        }
-//        NSLog(@"count = %d",images.count);
+//        DLog(@"count = %d",images.count);
 //        if (images.count != 0) {
 //            self.animationImages = images;
 //            self.animationDuration = _velocity;

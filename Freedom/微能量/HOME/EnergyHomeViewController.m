@@ -1,7 +1,6 @@
-//
 //  EnergyHomeViewController.m
-//  Created by 薛超 on 16/9/5.
-//  Copyright © 2016年 薛超. All rights reserved.
+//  Created by Super on 16/9/5.
+//  Copyright © 2016年 Super. All rights reserved.
 #import "EnergyHomeViewController.h"
 #import "EnergyDetailViewController.h"
 @interface EnergyHomeViewCell : BaseCollectionViewCell
@@ -67,5 +66,4 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     [self pushController:[EnergyDetailViewController class] withInfo:nil withTitle:self.collectionView.dataArray[indexPath.row]];
 }
-
 @end

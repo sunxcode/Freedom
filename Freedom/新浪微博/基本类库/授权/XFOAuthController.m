@@ -1,22 +1,14 @@
-//
 //  XFOAuthController.m
-//  Weibo
-//
+//  Freedom
 //  Created by Fay on 15/9/20.
-//  Copyright (c) 2015年 Fay. All rights reserved.
-//
-
 #import "XFOAuthController.h"
 #import "XFAccount.h"
 #import "SinaTabBarController.h"
 #import "XFNewFeatureController.h"
 #import "XFAccountTool.h"
-
 @interface XFOAuthController ()<UIWebViewDelegate>
-
 @end
 @implementation XFOAuthController
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -33,36 +25,25 @@
     
     
 }
-
 //隐藏状态栏
 -(BOOL)prefersStatusBarHidden {
     
     return YES;
 }
-
 #pragma mark-webView的代理方法
-
-
 -(void)webViewDidStartLoad:(UIWebView *)webView{
     [SVProgressHUD showWithStatus:@"正在加载..."];
     
 }
-
 -(void)webViewDidFinishLoad:(UIWebView *)webView {
     
     [SVProgressHUD dismiss];
 }
-
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
     
     [SVProgressHUD dismiss];
     
 }
-
-
-
-
-
 -(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     
     //获得Url
@@ -78,20 +59,15 @@
     
         // 利用code换取一个accessToken
         [self accessTokenWithCode:code];
-
         //禁止加载回调页面
         return NO;
     }
     
     return YES;
 }
-
-/**
- *  利用code（授权成功后的request token）换取一个accessToken
+/*利用code（授权成功后的request token）换取一个accessToken
  *
- *  @param code 授权成功后的request token
- */
-
+ *  @param code 授权成功后的request token*/
 - (void)accessTokenWithCode:(NSString *)code{
     
 /*
@@ -105,7 +81,6 @@
     grant_type为authorization_code时
     code	true	string	调用authorize获得的code值。
     redirect_uri	true	string	回调地址，需需与注册应用里的回调地址一致。
-
     */
     NSString *url = @"https://api.weibo.com/oauth2/access_token";
     //拼接请求参数
@@ -128,10 +103,8 @@
         //        UIWindow *window = [UIApplication sharedApplication].keyWindow;
         //        [window switchRootViewController];
         [self dismissViewControllerAnimated:YES completion:nil];
-
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"失========败%@",error);
+        DLog(@"失========败%@",error);
     }];
 }
-
 @end

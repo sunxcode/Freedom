@@ -1,23 +1,14 @@
-//
 //  JFMineViewController.m
-//  JFTuDou
-//
-//  Created by 保修一站通 on 15/10/9.
-//  Copyright © 2015年 JF. All rights reserved.
-////  项目详解：
+//  Freedom
+//  Created by Freedom on 15/10/9.//  项目详解：
 //  github:https://github.com/tubie/JFTudou
 //  简书：http://www.jianshu.com/p/2156ec56c55b
-
-
 #import "JFMineViewController.h"
 #import "JFWatchRecordViewController.h"
 #import "JFLoginViewController.h"
 @interface JFMineViewController ()
-
 @end
-
 @implementation JFMineViewController
-
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    self.title = @"我的";
@@ -27,12 +18,10 @@
     [self initViews];
     // Do any additional setup after loading the view.
 }
-
 -(void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBar.hidden = YES;
     
 }
-
 -(void)setNav{
     
     UIImageView *backImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, APPW, 147)];
@@ -77,8 +66,6 @@
     msgLabel.font = [UIFont systemFontOfSize:12];
     [self.view addSubview:msgLabel];
 }
-
-
 -(void)initViews{
     UIImageView *backImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 150, APPW, APPH-150-49)];
     [backImage setImage:[UIImage imageNamed:@"cache_no_data"]];
@@ -102,27 +89,21 @@
         JFWatchRecordViewController *watchRecordVC = [[JFWatchRecordViewController alloc]initWithNibName:@"JFWatchRecordViewController" bundle:nil];
         [self.navigationController pushViewController:watchRecordVC animated:YES];
     }
-
 }
-
 -(void)tapGROnIconClick{
     JFLoginViewController *loginVC = [[JFLoginViewController alloc]init];
     [self.navigationController pushViewController:loginVC animated:YES];
-
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 /*
 #pragma mark - Navigation
-
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
 */
-
 @end

@@ -1,11 +1,6 @@
-//
 //  XFNewFeatureController.m
-//  Weibo
-//
+//  Freedom
 //  Created by Fay on 15/9/19.
-//  Copyright © 2015年 Fay. All rights reserved.
-//
-
 #import "XFNewFeatureController.h"
 #import "SinaTabBarController.h"
 #define KCount 4
@@ -13,11 +8,8 @@
 @property(nonatomic,weak) UIScrollView *scrollView;
 @property (nonatomic, weak) UIPageControl *pageControl;
 @property (nonatomic,weak) UIButton *shareBtn;
-
 @end
-
 @implementation XFNewFeatureController
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -70,7 +62,6 @@
             startBtn.frame = CGRectMake(APPW/4, APPH * 0.80, APPW/2, 40);
             [startBtn addTarget:self action:@selector(startClick) forControlEvents:UIControlEventTouchUpInside];
             [imageView addSubview:startBtn];
-
         }
       
         
@@ -84,10 +75,7 @@
     self.pageControl = pageControl;
     [self.view addSubview:pageControl];
     
-
-
 }
-
 //开始按钮
 -(void)startClick {
     
@@ -99,19 +87,12 @@
     
     
 }
-
-
 //分享按钮
 -(void)shareClick {
     
     self.shareBtn.selected = !self.shareBtn.isSelected;
     
 }
-
-
-
-
-
 //监听pageControl
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView {
     
@@ -121,13 +102,10 @@
     
     
 }
-
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 @end
 // 版权属于原作者
 // http://code4app.com (cn) http://code4app.net (en)

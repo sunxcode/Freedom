@@ -1,20 +1,11 @@
-//
 //  TLDBMessageStore.m
-//  TLChat
-//
-//  Created by 李伯坤 on 16/3/13.
-//  Copyright © 2016年 李伯坤. All rights reserved.
-//
-
+//  Freedom
+// Created by Super
 #import "TLDBMessageStore.h"
 #import "TLDBMessageStoreSQL.h"
-
 #import <XCategory/NSDate+expanded.h>
-
 @implementation TLDBMessageStore
-
-- (id)init
-{
+- (id)init{
     if (self = [super init]) {
         self.dbQueue = [TLDBManager sharedInstance].messageQueue;
         BOOL ok = [self createTable];
@@ -24,15 +15,11 @@
     }
     return self;
 }
-
-- (BOOL)createTable
-{
+- (BOOL)createTable{
     NSString *sqlString = [NSString stringWithFormat:SQL_CREATE_MESSAGE_TABLE, MESSAGE_TABLE_NAME];
     return [self createTable:MESSAGE_TABLE_NAME withSQL:sqlString];
 }
-
-- (BOOL)addMessage:(TLMessage *)message
-{
+- (BOOL)addMessage:(TLMessage *)message{
     if (message == nil || message.messageID == nil || message.userID == nil || (message.friendID == nil && message.groupID == nil)) {
         return NO;
     }
@@ -41,8 +28,7 @@
     NSString *subfid;
     if (message.partnerType == TLPartnerTypeUser) {
         fid = message.friendID;
-    }
-    else {
+    }else{
         fid = message.groupID;
         subfid = message.friendID;
     }
@@ -64,9 +50,7 @@
     BOOL ok = [self excuteSQL:sqlString withArrParameter:arrPara];
     return ok;
 }
-
-- (void)messagesByUserID:(NSString *)userID partnerID:(NSString *)partnerID fromDate:(NSDate *)date count:(NSUInteger)count complete:(void (^)(NSArray *, BOOL))complete
-{
+- (void)messagesByUserID:(NSString *)userID partnerID:(NSString *)partnerID fromDate:(NSDate *)date count:(NSUInteger)count complete:(void (^)(NSArray *, BOOL))complete{
     __block NSMutableArray *data = [[NSMutableArray alloc] init];
     NSString *sqlString = [NSString stringWithFormat:
                         SQL_SELECT_MESSAGES_PAGE,
@@ -75,7 +59,6 @@
                         partnerID,
                         [NSString stringWithFormat:@"%lf", date.timeIntervalSince1970],
                         (long)(count + 1)];
-
     [self excuteQuerySQL:sqlString resultBlock:^(FMResultSet *retSet) {
         while ([retSet next]) {
             TLMessage * message = [self p_createDBMessageByFMResultSet:retSet];
@@ -91,9 +74,7 @@
     }
     complete(data, hasMore);
 }
-
-- (NSArray *)chatFilesByUserID:(NSString *)userID partnerID:(NSString *)partnerID
-{
+- (NSArray *)chatFilesByUserID:(NSString *)userID partnerID:(NSString *)partnerID{
     __block NSMutableArray *data = [[NSMutableArray alloc] init];
     NSString *sqlString = [NSString stringWithFormat:SQL_SELECT_CHAT_FILES, MESSAGE_TABLE_NAME, userID, partnerID];
     
@@ -104,8 +85,7 @@
             TLMessage * message = [self p_createDBMessageByFMResultSet:retSet];
             if (([message.date isThisWeek] && [lastDate isThisWeek]) || (![message.date isThisWeek] && [lastDate isSameMonthAsDate:message.date])) {
                 [array addObject:message];
-            }
-            else {
+            }else{
                 lastDate = message.date;
                 if (array.count > 0) {
                     [data addObject:array];
@@ -120,9 +100,7 @@
     }];
     return data;
 }
-
-- (NSArray *)chatImagesAndVideosByUserID:(NSString *)userID partnerID:(NSString *)partnerID
-{
+- (NSArray *)chatImagesAndVideosByUserID:(NSString *)userID partnerID:(NSString *)partnerID{
     __block NSMutableArray *data = [[NSMutableArray alloc] init];
     NSString *sqlString = [NSString stringWithFormat:SQL_SELECT_CHAT_MEDIA, MESSAGE_TABLE_NAME, userID, partnerID];
     
@@ -135,9 +113,7 @@
     }];
     return data;
 }
-
-- (TLMessage *)lastMessageByUserID:(NSString *)userID partnerID:(NSString *)partnerID
-{
+- (TLMessage *)lastMessageByUserID:(NSString *)userID partnerID:(NSString *)partnerID{
     NSString *sqlString = [NSString stringWithFormat:SQL_SELECT_LAST_MESSAGE, MESSAGE_TABLE_NAME, MESSAGE_TABLE_NAME, userID, partnerID];
     __block TLMessage * message;
     [self excuteQuerySQL:sqlString resultBlock:^(FMResultSet *retSet) {
@@ -148,31 +124,23 @@
     }];
     return message;
 }
-
-- (BOOL)deleteMessageByMessageID:(NSString *)messageID
-{
+- (BOOL)deleteMessageByMessageID:(NSString *)messageID{
     NSString *sqlString = [NSString stringWithFormat:SQL_DELETE_MESSAGE, MESSAGE_TABLE_NAME, messageID];
     BOOL ok = [self excuteSQL:sqlString, nil];
     return ok;
 }
-
-- (BOOL)deleteMessagesByUserID:(NSString *)userID partnerID:(NSString *)partnerID;
-{
+- (BOOL)deleteMessagesByUserID:(NSString *)userID partnerID:(NSString *)partnerID;{
     NSString *sqlString = [NSString stringWithFormat:SQL_DELETE_FRIEND_MESSAGES, MESSAGE_TABLE_NAME, userID, partnerID];
     BOOL ok = [self excuteSQL:sqlString, nil];
     return ok;
 }
-
-- (BOOL)deleteMessagesByUserID:(NSString *)userID
-{
+- (BOOL)deleteMessagesByUserID:(NSString *)userID{
     NSString *sqlString = [NSString stringWithFormat:SQL_DELETE_USER_MESSAGES, MESSAGE_TABLE_NAME, userID];
     BOOL ok = [self excuteSQL:sqlString, nil];
     return ok;
 }
-
 #pragma mark - Private Methods -
-- (TLMessage *)p_createDBMessageByFMResultSet:(FMResultSet *)retSet
-{
+- (TLMessage *)p_createDBMessageByFMResultSet:(FMResultSet *)retSet{
     TLMessageType type = [retSet intForColumn:@"msg_type"];
     TLMessage * message = [TLMessage createMessageByType:type];
     message.messageID = [retSet stringForColumn:@"msgid"];
@@ -181,8 +149,7 @@
     if (message.partnerType == TLPartnerTypeGroup) {
         message.groupID = [retSet stringForColumn:@"fid"];
         message.friendID = [retSet stringForColumn:@"subfid"];
-    }
-    else {
+    }else{
         message.friendID = [retSet stringForColumn:@"fid"];
         message.groupID = [retSet stringForColumn:@"subfid"];
     }
@@ -196,5 +163,4 @@
     message.readState = [retSet intForColumn:@"received_status"];
     return message;
 }
-
 @end

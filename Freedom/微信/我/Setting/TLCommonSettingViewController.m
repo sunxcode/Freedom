@@ -1,10 +1,6 @@
-//
 //  TLCommonSettingViewController.m
-//  TLChat
-//
-//  Created by 李伯坤 on 16/2/21.
-//  Copyright © 2016年 李伯坤. All rights reserved.
-//
+//  Freedom
+// Created by Super
 #import "TLCommonSettingViewController.h"
 #import "TLMessageManager.h"
 #import "TLChatViewController.h"
@@ -21,29 +17,17 @@
 #import "TLSettingItem.h"
 #import "TLSettingGroup.h"
 @interface TLChatFontSettingView : UIView
-
 @property (nonatomic, assign) CGFloat curFontSize;
-
 @property (nonatomic, copy) void (^fontSizeChangeTo)(CGFloat size);
-
-
 @end
 @interface TLChatFontSettingView ()
-
 @property (nonatomic, strong) UILabel *miniFontLabel;
-
 @property (nonatomic, strong) UILabel *maxFontLabel;
-
 @property (nonatomic, strong) UILabel *standardFontLabel;
-
 @property (nonatomic, strong) UISlider *slider;
-
 @end
-
 @implementation TLChatFontSettingView
-
-- (id)initWithFrame:(CGRect)frame
-{
+- (id)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         [self setBackgroundColor:[UIColor whiteColor]];
         [self addSubview:self.miniFontLabel];
@@ -54,16 +38,12 @@
     }
     return self;
 }
-
-- (void)setCurFontSize:(CGFloat)curFontSize
-{
+- (void)setCurFontSize:(CGFloat)curFontSize{
     _curFontSize = curFontSize;
     [self.slider setValue:curFontSize];
 }
-
 #pragma mark - Event Response -
-- (void)sliderValueChanged:(UISlider *)sender
-{
+- (void)sliderValueChanged:(UISlider *)sender{
     NSInteger value = (NSInteger)sender.value;
     value = ((sender.value - value) > 0.5 ? value + 1 : value);
     if (value == (NSInteger)_curFontSize) {
@@ -74,10 +54,8 @@
         self.fontSizeChangeTo(value);
     }
 }
-
 #pragma mark - Private Methods -
-- (void)p_addMasonry
-{
+- (void)p_addMasonry{
     [self.miniFontLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.slider.mas_left);
         make.bottom.mas_equalTo(self.slider.mas_top).mas_offset(-6);
@@ -100,10 +78,8 @@
         make.height.mas_equalTo(40);
     }];
 }
-
 #pragma mark - Getter -
-- (UILabel *)miniFontLabel
-{
+- (UILabel *)miniFontLabel{
     if (_miniFontLabel == nil) {
         _miniFontLabel = [[UILabel alloc] init];
         [_miniFontLabel setFont:[UIFont systemFontOfSize:MIN_FONT_SIZE]];
@@ -111,9 +87,7 @@
     }
     return _miniFontLabel;
 }
-
-- (UILabel *)maxFontLabel
-{
+- (UILabel *)maxFontLabel{
     if (_maxFontLabel == nil) {
         _maxFontLabel = [[UILabel alloc] init];
         [_maxFontLabel setFont:[UIFont systemFontOfSize:MAX_FONT_SZIE]];
@@ -121,9 +95,7 @@
     }
     return _maxFontLabel;
 }
-
-- (UILabel *)standardFontLabel
-{
+- (UILabel *)standardFontLabel{
     if (_standardFontLabel == nil) {
         _standardFontLabel = [[UILabel alloc] init];
         [_standardFontLabel setFont:[UIFont systemFontOfSize:STANDARD_FONT_SZIE]];
@@ -131,9 +103,7 @@
     }
     return _standardFontLabel;
 }
-
-- (UISlider *)slider
-{
+- (UISlider *)slider{
     if (_slider == nil) {
         _slider = [[UISlider alloc] init];
         [_slider setMinimumValue:MIN_FONT_SIZE];
@@ -142,26 +112,15 @@
     }
     return _slider;
 }
-
 @end
-
 @interface TLChatFontViewController : TLViewController
-
 @end
-
 @interface TLChatFontViewController ()
-
 @property (nonatomic, strong) TLChatTableViewController *chatTVC;
-
 @property (nonatomic, strong) TLChatFontSettingView *chatFontSettingView;
-
 @end
-
-
 @implementation TLChatFontViewController
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
     [self.navigationItem setTitle:@"字体大小"];
     
@@ -180,10 +139,8 @@
     [self.chatFontSettingView setCurFontSize:size];
     self.chatTVC.data = [self p_chatTVCData];
 }
-
 #pragma mark - Private Methods -
-- (void)p_addMasonry
-{
+- (void)p_addMasonry{
     [self.chatTVC.view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.and.left.and.right.mas_equalTo(self.view);
         make.bottom.mas_equalTo(self.chatFontSettingView.mas_top);
@@ -194,9 +151,7 @@
         make.height.mas_equalTo(self.chatFontSettingView.mas_width).multipliedBy(0.4);
     }];
 }
-
-- (NSMutableArray *)p_chatTVCData
-{
+- (NSMutableArray *)p_chatTVCData{
     TLTextMessage *message = [[TLTextMessage alloc] init];
     message.fromUser = [TLUserHelper sharedHelper].user;
     message.messageType = TLMessageTypeText;
@@ -228,11 +183,8 @@
     NSMutableArray *data = [[NSMutableArray alloc] initWithObjects:message, message1, message2, nil];
     return data;
 }
-
-
 #pragma mark - Getter -
-- (TLChatTableViewController *)chatTVC
-{
+- (TLChatTableViewController *)chatTVC{
     if (_chatTVC == nil) {
         _chatTVC = [[TLChatTableViewController alloc] init];
         [_chatTVC setDisablePullToRefresh:YES];
@@ -240,21 +192,15 @@
     }
     return _chatTVC;
 }
-
-- (TLChatFontSettingView *)chatFontSettingView
-{
+- (TLChatFontSettingView *)chatFontSettingView{
     if (_chatFontSettingView == nil) {
         _chatFontSettingView = [[TLChatFontSettingView alloc] init];
     }
     return _chatFontSettingView;
 }
-
 @end
-
 @implementation TLCommonSettingHelper
-
-+ (NSMutableArray *)chatBackgroundSettingData
-{
++ (NSMutableArray *)chatBackgroundSettingData{
     TLSettingItem *select = TLCreateSettingItem(@"选择背景图");
     TLSettingGroup *group1 = TLCreateSettingGroup(nil, nil, @[select]);
     
@@ -269,19 +215,14 @@
     NSMutableArray *data = [[NSMutableArray alloc] initWithObjects:group1, group2, group3, nil];
     return data;
 }
-
-
-- (id) init
-{
+- (id) init{
     if (self = [super init]) {
         self.commonSettingData = [[NSMutableArray alloc] init];
         [self p_initTestData];
     }
     return self;
 }
-
-- (void) p_initTestData
-{
+- (void) p_initTestData{
     TLSettingItem *item1 = TLCreateSettingItem(@"多语言");
     TLSettingGroup *group1 = TLCreateSettingGroup(nil, nil, @[item1]);
     
@@ -308,17 +249,11 @@
     
     [self.commonSettingData addObjectsFromArray:@[group1, group2, group3, group4, group5, group6]];
 }
-
 @end
-
 @interface TLCommonSettingViewController () <TLActionSheetDelegate>
-
 @property (nonatomic, strong) TLCommonSettingHelper *helper;
-
 @end
-
 @implementation TLCommonSettingViewController
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationItem setTitle:@"通用"];
@@ -326,28 +261,23 @@
     self.helper = [[TLCommonSettingHelper alloc] init];
     self.data = self.helper.commonSettingData;
 }
-
 #pragma mark - Delegate -
 //MARK: UITableViewDelegate
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     TLSettingItem *item = [self.data[indexPath.section] objectAtIndex:indexPath.row];
     if ([item.title isEqualToString:@"字体大小"]) {
         TLChatFontViewController *chatFontVC = [[TLChatFontViewController alloc] init];
         [self setHidesBottomBarWhenPushed:YES];
         [self.navigationController pushViewController:chatFontVC animated:YES];
-    }
-    else if ([item.title isEqualToString:@"聊天背景"]) {
+    }else if ([item.title isEqualToString:@"聊天背景"]) {
         TLChatBackgroundSettingViewController *chatBGSettingVC = [[TLChatBackgroundSettingViewController alloc] init];
         [self setHidesBottomBarWhenPushed:YES];
         [self.navigationController pushViewController:chatBGSettingVC animated:YES];
-    }
-    else if ([item.title isEqualToString:@"我的表情"]) {
+    }else if ([item.title isEqualToString:@"我的表情"]) {
         TLMyExpressionViewController *myExpressionVC = [[TLMyExpressionViewController alloc] init];
         [self setHidesBottomBarWhenPushed:YES];
         [self.navigationController pushViewController:myExpressionVC animated:YES];
-    }
-    else if ([item.title isEqualToString:@"清空聊天记录"]) {
+    }else if ([item.title isEqualToString:@"清空聊天记录"]) {
         TLActionSheet *actionSheet = [[TLActionSheet alloc] initWithTitle:@"将删除所有个人和群的聊天记录。" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"清空聊天记录" otherButtonTitles:nil];
         [actionSheet setTag:TAG_ACTIONSHEET_EMPTY_REC];
         [actionSheet show];
@@ -355,10 +285,8 @@
     
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
-
 //MARK: TLActionSheetDelegate
-- (void)actionSheet:(TLActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
+- (void)actionSheet:(TLActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (actionSheet.tag == TAG_ACTIONSHEET_EMPTY_REC) {
         if (buttonIndex == 0) {
             [[TLMessageManager sharedInstance] deleteAllMessages];
@@ -366,5 +294,4 @@
         }
     }
 }
-
 @end

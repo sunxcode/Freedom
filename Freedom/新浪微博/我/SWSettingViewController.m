@@ -1,22 +1,12 @@
-//
 //  SWSettingViewController.m
-//  新浪微博
-//
+//  Freedom
 //  Created by apple on 15-3-15.
-//  Copyright (c) 2014年 heima. All rights reserved.
-//
-
 #import "SWSettingViewController.h"
-
 #import "SWGeneralSettingViewController.h"
-
 @interface SWSettingViewController ()
-
 @end
-
 @implementation SWSettingViewController
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
     
     self.title = @"设置";
@@ -25,9 +15,7 @@
     
     [self setupFooter];
 }
-
-- (void)setupFooter
-{
+- (void)setupFooter{
     // 1.创建按钮
     UIButton *logout = [[UIButton alloc] init];
     
@@ -43,19 +31,13 @@
     
     self.tableView.tableFooterView = logout;
 }
-
-/**
- *  初始化模型数据
- */
-- (void)setupGroups
-{
+/*初始化模型数据*/
+- (void)setupGroups{
     [self setupGroup0];
     [self setupGroup1];
     [self setupGroup2];
 }
-
-- (void)setupGroup0
-{
+- (void)setupGroup0{
     // 1.创建组
     SWCommonGroup *group = [SWCommonGroup group];
     group.footer = @"tile部";
@@ -67,9 +49,7 @@
     
     group.items = @[newFriend,newFriend1];
 }
-
-- (void)setupGroup1
-{
+- (void)setupGroup1{
     // 1.创建组
     SWCommonGroup *group = [SWCommonGroup group];
     [self.groups addObject:group];
@@ -81,8 +61,7 @@
     newFriend3.destVcClass = [SWGeneralSettingViewController class];
     group.items = @[newFriend1,newFriend2,newFriend3];
 }
-- (void)setupGroup2
-{
+- (void)setupGroup2{
     // 1.创建组
     SWCommonGroup *group = [SWCommonGroup group];
     [self.groups addObject:group];
@@ -94,5 +73,4 @@
     
     group.items = @[newFriend1,newFriend2,newFriend3];
 }
-
 @end

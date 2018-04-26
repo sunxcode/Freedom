@@ -1,48 +1,26 @@
-//
 //  TLScannerViewController.m
-//  TLChat
-//
-//  Created by 李伯坤 on 16/2/24.
-//  Copyright © 2016年 李伯坤. All rights reserved.
-//
-
+//  Freedom
+//  Created by Super on 16/2/24.
 #import "TLScannerViewController.h"
 #import <AVFoundation/AVFoundation.h>
 @interface TLScannerView : UIView
-
-/**
- *  隐藏扫描指示器，默认NO
- */
+/*隐藏扫描指示器，默认NO*/
 @property (nonatomic, assign) BOOL hiddenScannerIndicator;
-
 - (void)startScanner;
-
 - (void)stopScanner;
-
 @end
-@interface TLScannerView ()
-{
+@interface TLScannerView (){
     NSTimer *timer;
 }
-
 @property (nonatomic, strong) UIView *bgView;
-
 @property (nonatomic, strong) UIImageView *topLeftView;
-
 @property (nonatomic, strong) UIImageView *topRightView;
-
 @property (nonatomic, strong) UIImageView *btmLeftView;
-
 @property (nonatomic, strong) UIImageView *btmRightView;
-
 @property (nonatomic, strong) UIImageView *scannerLine;
-
 @end
-
 @implementation TLScannerView
-
-- (id)initWithFrame:(CGRect)frame
-{
+- (id)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         [self setClipsToBounds:YES];
         [self addSubview:self.bgView];
@@ -55,10 +33,8 @@
     }
     return self;
 }
-
 #pragma mark - Public Methods -
-- (void)startScanner
-{
+- (void)startScanner{
     [self stopScanner];
     timer = [NSTimer bk_scheduledTimerWithTimeInterval:1.0 / 60 block:^(NSTimer *timer) {
         if (self.hiddenScannerIndicator) {
@@ -69,24 +45,19 @@
         self.scannerLine.frameHeight = 10;
         if (self.scannerLine.frameY + self.scannerLine.frameHeight >= self.frameHeight) {
             self.scannerLine.frameY = 0;
-        }
-        else {
+        }else{
             self.scannerLine.frameY ++;
         }
     } repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
 }
-
-- (void)stopScanner
-{
+- (void)stopScanner{
     if (timer) {
         [timer invalidate];
         timer = nil;
     }
 }
-
-- (void)setHiddenScannerIndicator:(BOOL)hiddenScannerIndicator
-{
+- (void)setHiddenScannerIndicator:(BOOL)hiddenScannerIndicator{
     if (hiddenScannerIndicator == _hiddenScannerIndicator) {
         return;
     }
@@ -95,8 +66,7 @@
         self.scannerLine.frameY = 0;
         [self.scannerLine setHidden:YES];
         _hiddenScannerIndicator = hiddenScannerIndicator;
-    }
-    else {
+    }else{
         _hiddenScannerIndicator = hiddenScannerIndicator;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             self.scannerLine.frameY = 0;
@@ -104,10 +74,8 @@
         });
     }
 }
-
 #pragma mark - Private Methods -
-- (void)p_addMasonry
-{
+- (void)p_addMasonry{
     [_bgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(self);
     }];
@@ -128,10 +96,8 @@
         make.width.and.height.mas_lessThanOrEqualTo(self);
     }];
 }
-
 #pragma mark - Getter -
-- (UIView *)bgView
-{
+- (UIView *)bgView{
     if (_bgView == nil) {
         _bgView = [[UIView alloc] init];
         [_bgView setBackgroundColor:[UIColor clearColor]];
@@ -141,68 +107,49 @@
     }
     return _bgView;
 }
-
-- (UIImageView *)topLeftView
-{
+- (UIImageView *)topLeftView{
     if (_topLeftView == nil) {
         _topLeftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"scanner_top_left"]];
     }
     return _topLeftView;
 }
-
-- (UIImageView *)topRightView
-{
+- (UIImageView *)topRightView{
     if (_topRightView == nil) {
         _topRightView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"scanner_top_right"]];
     }
     return _topRightView;
 }
-
-- (UIImageView *)btmLeftView
-{
+- (UIImageView *)btmLeftView{
     if (_btmLeftView == nil) {
         _btmLeftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"scanner_bottom_left"]];
     }
     return _btmLeftView;
 }
-
-- (UIImageView *)btmRightView
-{
+- (UIImageView *)btmRightView{
     if (_btmRightView == nil) {
         _btmRightView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"scanner_bottom_right"]];
     }
     return _btmRightView;
 }
-
-- (UIImageView *)scannerLine
-{
+- (UIImageView *)scannerLine{
     if (_scannerLine == nil) {
         _scannerLine = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"scanner_line"]];
         [_scannerLine setFrame:CGRectZero];
     }
     return _scannerLine;
 }
-
 @end
-
 @interface TLScannerBackgroundView : UIView
-
 - (void)addMasonryWithContainView:(UIView *)containView;
-
 @end
 @interface TLScannerBackgroundView ()
-
 @property (nonatomic, strong) UIView *topView;
 @property (nonatomic, strong) UIView *btmView;
 @property (nonatomic, strong) UIView *leftView;
 @property (nonatomic, strong) UIView *rightView;
-
 @end
-
 @implementation TLScannerBackgroundView
-
-- (id)initWithFrame:(CGRect)frame
-{
+- (id)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         [self addSubview:self.topView];
         [self addSubview:self.btmView];
@@ -211,10 +158,8 @@
     }
     return self;
 }
-
 #pragma mark - Public Methods -
-- (void)addMasonryWithContainView:(UIView *)containView
-{
+- (void)addMasonryWithContainView:(UIView *)containView{
     UIView *scannerView = containView;
     [self.topView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.and.left.and.right.mas_equalTo(self);
@@ -237,61 +182,45 @@
         make.bottom.mas_equalTo(self.btmView.mas_top);
     }];
 }
-
 #pragma mark - Getter -
-- (UIView *)topView
-{
+- (UIView *)topView{
     if (_topView == nil) {
         _topView = [[UIView alloc] init];
-        [_topView setBackgroundColor:[UIColor colorBlackAlphaScannerBG]];
+        [_topView setBackgroundColor:RGBACOLOR(71, 70, 73, 1.0)];
     }
     return _topView;
 }
-
-- (UIView *)btmView
-{
+- (UIView *)btmView{
     if (_btmView == nil) {
         _btmView = [[UIView alloc] init];
-        [_btmView setBackgroundColor:[UIColor colorBlackAlphaScannerBG]];
+        [_btmView setBackgroundColor:RGBACOLOR(71, 70, 73, 1.0)];
     }
     return _btmView;
 }
-
-- (UIView *)leftView
-{
+- (UIView *)leftView{
     if (_leftView == nil) {
         _leftView = [[UIView alloc] init];
-        [_leftView setBackgroundColor:[UIColor colorBlackAlphaScannerBG]];
+        [_leftView setBackgroundColor:RGBACOLOR(71, 70, 73, 1.0)];
     }
     return _leftView;
 }
-
-- (UIView *)rightView
-{
+- (UIView *)rightView{
     if (_rightView == nil) {
         _rightView = [[UIView alloc] init];
-        [_rightView setBackgroundColor:[UIColor colorBlackAlphaScannerBG]];
+        [_rightView setBackgroundColor:RGBACOLOR(71, 70, 73, 1.0)];
     }
     return _rightView;
 }
-
 @end
-
 @interface TLScannerViewController () <AVCaptureMetadataOutputObjectsDelegate>
-
 @property (nonatomic, strong) UILabel *introudctionLabel;
 @property (nonatomic, strong) TLScannerView *scannerView;
 @property (nonatomic, strong) TLScannerBackgroundView *scannerBGView;
-
 @property (nonatomic, strong) AVCaptureSession *scannerSession;
 @property (nonatomic, strong) AVCaptureVideoPreviewLayer *videoPreviewLayer;
-
 @end
-
 @implementation TLScannerViewController
-
-+ (void)scannerQRCodeFromImage:(UIImage *)image ans:(void (^)(NSString *ansStr))ans
-{
++ (void)scannerQRCodeFromImage:(UIImage *)image ans:(void (^)(NSString *ansStr))ans{
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         NSData *imageData = (UIImagePNGRepresentation(image) ? UIImagePNGRepresentation(image) :UIImageJPEGRepresentation(image, 1));
         CIImage *ciImage = [CIImage imageWithData:imageData];
@@ -313,9 +242,7 @@
         });
     });
 }
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
     [self.view setBackgroundColor:[UIColor blackColor]];
     
@@ -326,33 +253,26 @@
     
     [self p_addMasonry];
 }
-
-- (void)viewDidAppear:(BOOL)animated
-{
+- (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     if (self.scannerSession) {
         if (_delegate && [_delegate respondsToSelector:@selector(scannerViewControllerInitSuccess:)]) {
             [_delegate scannerViewControllerInitSuccess:self];
         }
-    }
-    else {
+    }else{
         if (_delegate && [_delegate respondsToSelector:@selector(scannerViewController:initFailed:)]) {
             [_delegate scannerViewController:self initFailed:@"相机初始化失败"];
         }
     }
 }
-
-- (void)viewWillDisappear:(BOOL)animated
-{
+- (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     if ([self.scannerSession isRunning]) {
         [self stopCodeReading];
     }
 }
-
 #pragma mark - Public Methods -
-- (void)setScannerType:(TLScannerType)scannerType
-{
+- (void)setScannerType:(TLScannerType)scannerType{
     if (_scannerType == scannerType) {
         return;
     }
@@ -363,16 +283,13 @@
     if (scannerType == TLScannerTypeQR) {
         [self.introudctionLabel setText:@"将二维码/条码放入框内，即可自动扫描"];
         width = height = WIDTH_SCREEN * 0.7;
-    }
-    else if (scannerType == TLScannerTypeCover) {
+    }else if (scannerType == TLScannerTypeCover) {
         [self.introudctionLabel setText:@"将书、CD、电影海报放入框内，即可自动扫描"];
         width = height = WIDTH_SCREEN * 0.85;
-    }
-    else if (scannerType == TLScannerTypeStreet) {
+    }else if (scannerType == TLScannerTypeStreet) {
         [self.introudctionLabel setText:@"扫一下周围环境，寻找附近街景"];
         width = height = WIDTH_SCREEN * 0.85;
-    }
-    else if (scannerType == TLScannerTypeTranslate) {
+    }else if (scannerType == TLScannerTypeTranslate) {
         width = WIDTH_SCREEN * 0.7;
         height = 55;
         [self.introudctionLabel setText:@"将英文单词放入框内"];
@@ -393,27 +310,19 @@
         [self startCodeReading];
     }
 }
-
-- (void)startCodeReading
-{
+- (void)startCodeReading{
     [self.scannerView startScanner];
     [self.scannerSession startRunning];
 }
-
-- (void)stopCodeReading
-{
+- (void)stopCodeReading{
     [self.scannerView stopScanner];
     [self.scannerSession stopRunning];
 }
-
-- (BOOL)isRunning
-{
+- (BOOL)isRunning{
     return [self.scannerSession isRunning];
 }
-
 #pragma mark - Delegate -
-- (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection
-{
+- (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection{
     if (metadataObjects.count > 0) {
         [self stopCodeReading];
         AVMetadataMachineReadableCodeObject *obj = metadataObjects[0];
@@ -422,10 +331,8 @@
         }
     }
 }
-
 #pragma mark - Private Methods -
-- (void)p_addMasonry
-{
+- (void)p_addMasonry{
     [self.scannerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.view);
         make.centerY.mas_equalTo(self.view).mas_offset(-55);
@@ -443,10 +350,8 @@
         make.top.mas_equalTo(self.scannerView.mas_bottom).mas_offset(30);
     }];
 }
-
 #pragma mark - Getter -
-- (AVCaptureSession *)scannerSession
-{
+- (AVCaptureSession *)scannerSession{
     if (_scannerSession == nil) {
         AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
         
@@ -455,18 +360,14 @@
         if (error) {    // 没有摄像头
             return nil;
         }
-
         AVCaptureMetadataOutput *output = [[AVCaptureMetadataOutput alloc] init];
         [output setMetadataObjectsDelegate:self queue:dispatch_get_main_queue()];
-
         AVCaptureSession *session = [[AVCaptureSession alloc] init];
         if ([session canSetSessionPreset:AVCaptureSessionPreset1920x1080]) {
             [session setSessionPreset:AVCaptureSessionPreset1920x1080];
-        }
-        else if ([session canSetSessionPreset:AVCaptureSessionPreset1280x720]) {
+        }else if ([session canSetSessionPreset:AVCaptureSessionPreset1280x720]) {
             [session setSessionPreset:AVCaptureSessionPreset1280x720];
-        }
-        else {
+        }else{
             [session setSessionPreset:AVCaptureSessionPresetPhoto];
         }
         
@@ -482,9 +383,7 @@
     }
     return _scannerSession;
 }
-
-- (AVCaptureVideoPreviewLayer *)videoPreviewLayer
-{
+- (AVCaptureVideoPreviewLayer *)videoPreviewLayer{
     if (_videoPreviewLayer == nil) {
         _videoPreviewLayer = [AVCaptureVideoPreviewLayer layerWithSession:self.scannerSession];
         [_videoPreviewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
@@ -492,9 +391,7 @@
     }
     return _videoPreviewLayer;
 }
-
-- (UILabel *)introudctionLabel
-{
+- (UILabel *)introudctionLabel{
     if (_introudctionLabel == nil) {
         _introudctionLabel = [[UILabel alloc] init];
         [_introudctionLabel setBackgroundColor:[UIColor clearColor]];
@@ -504,21 +401,16 @@
     }
     return _introudctionLabel;
 }
-
-- (TLScannerView *)scannerView
-{
+- (TLScannerView *)scannerView{
     if (_scannerView == nil) {
         _scannerView = [[TLScannerView alloc] init];
     }
     return _scannerView;
 }
-
-- (TLScannerBackgroundView *)scannerBGView
-{
+- (TLScannerBackgroundView *)scannerBGView{
     if (_scannerBGView == nil) {
         _scannerBGView = [[TLScannerBackgroundView alloc] init];
     }
     return _scannerBGView;
 }
-
 @end

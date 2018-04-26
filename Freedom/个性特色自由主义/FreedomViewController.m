@@ -1,11 +1,8 @@
-//
 //  FreedomViewController.m
 //  Freedom
+//  Created by Super on 16/8/18.
+//  Copyright © 2016年 Super. All rights reserved.
 //
-//  Created by 薛超 on 16/8/18.
-//  Copyright © 2016年 薛超. All rights reserved.
-//
-
 #import "FreedomViewController.h"
 #import "FreedomBooksViewController.h"
 @interface FreedomViewCell : BaseCollectionViewCell
@@ -52,6 +49,4 @@
     [SVProgressHUD showSuccessWithStatus:log];DLog(@"%@",log);
     [self pushController:[FreedomBooksViewController class] withInfo:self.collectionView.dataArray[indexPath.row] withTitle:@"书籍详情"];
 }
-
 @end
-

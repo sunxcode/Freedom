@@ -1,15 +1,7 @@
-//
 //  YMButton.h
 //  WFCoretext
-//
-//  Created by 阿虎 on 14/11/4.
-//  Copyright (c) 2014年 tigerwf. All rights reserved.
-//
-
+//  Created by Super on 14/11/4.
 #import <UIKit/UIKit.h>
-
 @interface YMButton : UIButton
-
 @property (nonatomic,strong) NSIndexPath * appendIndexPath;
-
 @end

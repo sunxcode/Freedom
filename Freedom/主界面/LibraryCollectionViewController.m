@@ -1,8 +1,7 @@
-//
 //  LibraryCollectionViewController.m
 //  Freedom
-//  Created by 薛超 on 16/6/24.
-//  Copyright © 2016年 薛超. All rights reserved.
+//  Created by Super on 16/6/24.
+//  Copyright © 2016年 Super. All rights reserved.
 #import "LibraryCollectionViewController.h"
 #import "User.h"
 @interface LibraryCollectionViewCell : BaseCollectionViewCell
@@ -38,8 +37,6 @@
         self.dismissByForegroundDrag    = YES;
     }return self;
 }
-
-
 static NSString * const reuseIdentifier = @"Cell";
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -55,7 +52,7 @@ static NSString * const reuseIdentifier = @"Cell";
     backView.image = [UIImage imageNamed:@""];
     self.collectionView.backgroundView = backView;
     ElasticTransition *ET = (ElasticTransition*)self.transitioningDelegate;
-    NSLog(@"\ntransition.edge = %@\ntransition.transformType = %@\ntransition.sticky = %@\ntransition.showShadow = %@", [HelperFunctions typeToStringOfEdge:ET.edge], [ET transformTypeToString], ET.sticky ? @"YES" : @"NO", ET.showShadow ? @"YES" : @"NO");
+    DLog(@"\ntransition.edge = %@\ntransition.transformType = %@\ntransition.sticky = %@\ntransition.showShadow = %@", [HelperFunctions typeToStringOfEdge:ET.edge], [ET transformTypeToString], ET.sticky ? @"YES" : @"NO", ET.showShadow ? @"YES" : @"NO");
     
     libraryBooks = [NSMutableArray arrayWithArray:[User getControllerData]];
     [self.collectionView registerClass:[LibraryCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
@@ -63,14 +60,12 @@ static NSString * const reuseIdentifier = @"Cell";
     self.collectionView.dataSource = self;
 }
 #pragma mark <UICollectionViewDataSource>
-
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return libraryBooks.count;
 }
-
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     LibraryCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     if(!cell){
@@ -101,18 +96,15 @@ static NSString * const reuseIdentifier = @"Cell";
 //- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
 //	return YES;
 //}
-//
 //- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 //    return YES;
 //}
 //- (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
 //	return NO;
 //}
-//
 //- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
 //	return NO;
 //}
-//
 //- (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
 //	
 //}

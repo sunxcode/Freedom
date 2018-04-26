@@ -1,35 +1,21 @@
-//
-//  TLChatBaseViewController.m
-//  TLChat
-//
-//  Created by 李伯坤 on 16/2/15.
-//  Copyright © 2016年 李伯坤. All rights reserved.
-//
-
+//  FreedomBaseViewController.m
+//  Freedom
+// Created by Super
 #import "TLChatBaseViewController.h"
 #import "UIImage+expanded.h"
 #import "TLMessageManager.h"
-
 #import "TLUserHelper.h"
 #define     SIZE_TIPS    CGSizeMake(55, 100)
 #define     WIDTH_TEXTVIEW          self.frameWidth * 0.94
 @interface TLTextDisplayView : UIView
-
 @property (nonatomic, strong) NSAttributedString *attrString;
-
 - (void)showInView:(UIView *)view withAttrText:(NSAttributedString *)attrText animation:(BOOL)animation;
-
 @end
 @interface TLTextDisplayView ()
-
 @property (nonatomic, strong) UITextView *textView;
-
 @end
-
 @implementation TLTextDisplayView
-
-- (id)initWithFrame:(CGRect)frame
-{
+- (id)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         [self setBackgroundColor:[UIColor whiteColor]];
         [self addSubview:self.textView];
@@ -42,9 +28,7 @@
     }
     return self;
 }
-
-- (void)showInView:(UIView *)view withAttrText:(NSAttributedString *)attrText animation:(BOOL)animation
-{
+- (void)showInView:(UIView *)view withAttrText:(NSAttributedString *)attrText animation:(BOOL)animation{
     [view addSubview:self];
     [self setFrame:view.bounds];
     [self setAttrString:attrText];
@@ -55,9 +39,7 @@
         [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
     }];
 }
-
-- (void)setAttrString:(NSAttributedString *)attrString
-{
+- (void)setAttrString:(NSAttributedString *)attrString{
     _attrString = attrString;
     NSMutableAttributedString *mutableAttrString = [[NSMutableAttributedString alloc] initWithAttributedString:attrString];
     [mutableAttrString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:25.0f] range:NSMakeRange(0, attrString.length)];
@@ -68,9 +50,7 @@
         make.size.mas_equalTo(size);
     }];
 }
-
-- (void)dismiss
-{
+- (void)dismiss{
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
     [UIView animateWithDuration:0.2 animations:^{
         self.alpha = 0;
@@ -78,10 +58,8 @@
         [self removeFromSuperview];
     }];
 }
-
 #pragma mark - Getter -
-- (UITextView *)textView
-{
+- (UITextView *)textView{
     if (_textView == nil) {
         _textView = [[UITextView alloc] init];
         [_textView setBackgroundColor:[UIColor clearColor]];
@@ -90,23 +68,14 @@
     }
     return _textView;
 }
-
 @end
-
 @interface TLEmojiDisplayView ()
-
 @property (nonatomic, strong) UIImageView *imageView;
-
 @property (nonatomic, strong) UILabel *imageLabel;
-
 @property (nonatomic, strong) UILabel *titleLabel;
-
 @end
-
 @implementation TLEmojiDisplayView
-
-- (id)initWithFrame:(CGRect)frame
-{
+- (id)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:CGRectMake(0, 0, SIZE_TIPS.width, SIZE_TIPS.height)]) {
         [self setImage:[UIImage imageNamed:@"emojiKB_tips"]];
         [self addSubview:self.imageLabel];
@@ -116,23 +85,18 @@
     }
     return self;
 }
-
-- (void)displayEmoji:(TLEmoji *)emoji atRect:(CGRect)rect
-{
+- (void)displayEmoji:(TLEmoji *)emoji atRect:(CGRect)rect{
     [self setRect:rect];
     [self setEmoji:emoji];
 }
-
-- (void)setEmoji:(TLEmoji *)emoji
-{
+- (void)setEmoji:(TLEmoji *)emoji{
     _emoji = emoji;
     if (emoji.type == TLEmojiTypeEmoji) {
         [self.imageLabel setHidden:NO];
         [self.imageView setHidden:YES];
         [self.titleLabel setHidden:YES];
         [self.imageLabel setText:emoji.emojiName];
-    }
-    else if (emoji.type == TLEmojiTypeFace) {
+    }else if (emoji.type == TLEmojiTypeFace) {
         [self.imageLabel setHidden:YES];
         [self.imageView setHidden:NO];
         [self.titleLabel setHidden:NO];
@@ -140,15 +104,11 @@
         [self.titleLabel setText:[emoji.emojiName substringWithRange:NSMakeRange(1, emoji.emojiName.length - 2)]];
     }
 }
-
-- (void)setRect:(CGRect)rect
-{
+- (void)setRect:(CGRect)rect{
     self.center = CGPointMake(rect.origin.x + rect.size.width / 2, rect.origin.y + rect.size.height - self.frameHeight + 15.0+self.frameHeight/2);
 }
-
 #pragma mark - Private Methods -
-- (void)p_addMasonry
-{
+- (void)p_addMasonry{
     [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self).mas_offset(10);
         make.left.mas_equalTo(self).mas_offset(12);
@@ -165,18 +125,14 @@
         make.top.mas_equalTo(self).mas_offset(12);
     }];
 }
-
 #pragma mark - Getter -
-- (UIImageView *)imageView
-{
+- (UIImageView *)imageView{
     if (_imageView == nil) {
         _imageView = [[UIImageView alloc] init];
     }
     return _imageView;
 }
-
-- (UILabel *)titleLabel
-{
+- (UILabel *)titleLabel{
     if (_titleLabel == nil) {
         _titleLabel = [[UILabel alloc] init];
         [_titleLabel setFont:[UIFont systemFontOfSize:12.0f]];
@@ -184,9 +140,7 @@
     }
     return _titleLabel;
 }
-
-- (UILabel *)imageLabel
-{
+- (UILabel *)imageLabel{
     if (_imageLabel == nil) {
         _imageLabel = [[UILabel alloc] init];
         [_imageLabel setTextAlignment:NSTextAlignmentCenter];
@@ -195,21 +149,16 @@
     }
     return _imageLabel;
 }
-
 @end
-
 @interface UIButton (add)
 - (void) setImage:(UIImage *)image imageHL:(UIImage *)imageHL;
 @end
 @implementation UIButton (add)
-
-- (void) setImage:(UIImage *)image imageHL:(UIImage *)imageHL
-{
+- (void) setImage:(UIImage *)image imageHL:(UIImage *)imageHL{
     [self setImage:image forState:UIControlStateNormal];
     [self setImage:imageHL forState:UIControlStateHighlighted];
 }
-+ (UIButton *)initBtnWithFrame:(CGRect)frame target:(id)target method:(SEL)method title:(NSString *)title setimageName:(NSString *)setimageName backImageName:(NSString *)backImageName;
-{
++ (UIButton *)initBtnWithFrame:(CGRect)frame target:(id)target method:(SEL)method title:(NSString *)title setimageName:(NSString *)setimageName backImageName:(NSString *)backImageName;{
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = frame;
     [btn addTarget:target action:method forControlEvents:UIControlEventTouchUpInside];
@@ -221,8 +170,7 @@
     return btn;
 }
 @end
-@interface TLChatBar () <UITextViewDelegate>
-{
+@interface TLChatBar () <UITextViewDelegate>{
     UIImage *kVoiceImage;
     UIImage *kVoiceImageHL;
     UIImage *kEmojiImage;
@@ -232,27 +180,17 @@
     UIImage *kKeyboardImage;
     UIImage *kKeyboardImageHL;
 }
-
 @property (nonatomic, strong) UIButton *modeButton;
-
 @property (nonatomic, strong) UIButton *voiceButton;
-
 @property (nonatomic, strong) UITextView *textView;
-
 @property (nonatomic, strong) UIButton *talkButton;
-
 @property (nonatomic, strong) UIButton *emojiButton;
-
 @property (nonatomic, strong) UIButton *moreButton;
-
 @end
-
 @implementation TLChatBar
-
-- (id)init
-{
+- (id)init{
     if (self = [super init]) {
-        [self setBackgroundColor:[UIColor colorGrayForChatBar]];
+        [self setBackgroundColor:RGBACOLOR(245.0, 245.0, 247.0, 1.0)];
         [self p_initImage];
         
         [self addSubview:self.modeButton];
@@ -268,16 +206,12 @@
     }
     return self;
 }
-
-- (void)layoutSubviews
-{
+- (void)layoutSubviews{
     [super layoutSubviews];
     [self setNeedsDisplay];
 }
-
 #pragma mark - Public Methods
-- (void)sendCurrentText
-{
+- (void)sendCurrentText{
     if (self.textView.text.length > 0) {     // send Text
         if (_dataDelegate && [_dataDelegate respondsToSelector:@selector(chatBar:sendText:)]) {
             [_dataDelegate chatBar:self sendText:self.textView.text];
@@ -286,35 +220,26 @@
     [self.textView setText:@""];
     [self textViewDidChange:self.textView];
 }
-
-- (void)addEmojiString:(NSString *)emojiString
-{
+- (void)addEmojiString:(NSString *)emojiString{
     NSString *str = [NSString stringWithFormat:@"%@%@", self.textView.text, emojiString];
     [self.textView setText:str];
     [self textViewDidChange:self.textView];
 }
-
-- (void)setActivity:(BOOL)activity
-{
+- (void)setActivity:(BOOL)activity{
     _activity = activity;
     if (activity) {
         [self.textView setTextColor:[UIColor blackColor]];
-    }
-    else {
+    }else{
         [self.textView setTextColor:[UIColor grayColor]];
     }
 }
-
-- (BOOL)isFirstResponder
-{
+- (BOOL)isFirstResponder{
     if (self.status == TLChatBarStatusEmoji || self.status == TLChatBarStatusKeyboard || self.status == TLChatBarStatusMore) {
         return YES;
     }
     return NO;
 }
-
-- (BOOL)resignFirstResponder
-{
+- (BOOL)resignFirstResponder{
     if (self.status == TLChatBarStatusEmoji || self.status == TLChatBarStatusKeyboard || self.status == TLChatBarStatusMore) {
         if (_delegate && [_delegate respondsToSelector:@selector(chatBar:changeStatusFrom:to:)]) {
             [_delegate chatBar:self changeStatusFrom:self.status to:TLChatBarStatusInit];
@@ -326,11 +251,9 @@
     }
     return [super resignFirstResponder];
 }
-
 #pragma mark - Delegate -
 //MARK: UITextViewDelegate
-- (BOOL)textViewShouldBeginEditing:(UITextView *)textView
-{
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView{
     [self setActivity:YES];
     if (self.status != TLChatBarStatusKeyboard) {
         if (_delegate && [_delegate respondsToSelector:@selector(chatBar:changeStatusFrom:to:)]) {
@@ -338,22 +261,18 @@
         }
         if (self.status == TLChatBarStatusEmoji) {
             [self.emojiButton setImage:kEmojiImage imageHL:kEmojiImageHL];
-        }
-        else if (self.status == TLChatBarStatusMore) {
+        }else if (self.status == TLChatBarStatusMore) {
             [self.moreButton setImage:kMoreImage imageHL:kMoreImageHL];
         }
         self.status = TLChatBarStatusKeyboard;
     }
     return YES;
 }
-
-- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
-{
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
     if ([text isEqualToString:@"\n"]){
         [self sendCurrentText];
         return NO;
-    }
-    else if (textView.text.length > 0 && [text isEqualToString:@""]) {       // delete
+    }else if (textView.text.length > 0 && [text isEqualToString:@""]) {       // delete
         if ([textView.text characterAtIndex:range.location] == ']') {
             NSUInteger location = range.location;
             NSUInteger length = range.length;
@@ -374,9 +293,7 @@
     
     return YES;
 }
-
-- (void)textViewDidChange:(UITextView *)textView
-{
+- (void)textViewDidChange:(UITextView *)textView{
     CGFloat height = [textView sizeThatFits:CGSizeMake(self.textView.frameWidth, MAXFLOAT)].height;
     height = height > HEIGHT_CHATBAR_TEXTVIEW ? height : HEIGHT_CHATBAR_TEXTVIEW;
     height = (height <= HEIGHT_MAX_CHATBAR_TEXTVIEW ? height : textView.frameHeight);
@@ -396,10 +313,8 @@
         }];
     }
 }
-
 #pragma mark - Event Response
-- (void)modeButtonDown
-{
+- (void)modeButtonDown{
     if (self.status == TLChatBarStatusEmoji) {
         if (_delegate && [_delegate respondsToSelector:@selector(chatBar:changeStatusFrom:to:)]) {
             [_delegate chatBar:self changeStatusFrom:self.status to:TLChatBarStatusInit];
@@ -407,8 +322,7 @@
         [self.emojiButton setImage:kEmojiImage imageHL:kEmojiImageHL];
         self.status = TLChatBarStatusInit;
         
-    }
-    else if (self.status == TLChatBarStatusMore) {
+    }else if (self.status == TLChatBarStatusMore) {
         if (_delegate && [_delegate respondsToSelector:@selector(chatBar:changeStatusFrom:to:)]) {
             [_delegate chatBar:self changeStatusFrom:self.status to:TLChatBarStatusInit];
         }
@@ -416,9 +330,7 @@
         self.status = TLChatBarStatusInit;
     }
 }
-
-- (void)voiceButtonDown
-{
+- (void)voiceButtonDown{
     [self.textView resignFirstResponder];
     
     // 开始文字输入
@@ -431,18 +343,15 @@
         [self.textView setHidden:NO];
         [self.talkButton setHidden:YES];
         self.status = TLChatBarStatusKeyboard;
-    }
-    else {          // 开始语音
+    }else{          // 开始语音
         if (_delegate && [_delegate respondsToSelector:@selector(chatBar:changeStatusFrom:to:)]) {
             [_delegate chatBar:self changeStatusFrom:self.status to:TLChatBarStatusVoice];
         }
         if (self.status == TLChatBarStatusKeyboard) {
             [self.textView resignFirstResponder];
-        }
-        else if (self.status == TLChatBarStatusEmoji) {
+        }else if (self.status == TLChatBarStatusEmoji) {
             [self.emojiButton setImage:kEmojiImage imageHL:kEmojiImageHL];
-        }
-        else if (self.status == TLChatBarStatusMore) {
+        }else if (self.status == TLChatBarStatusMore) {
             [self.moreButton setImage:kMoreImage imageHL:kMoreImageHL];
         }
         [self.talkButton setHidden:NO];
@@ -451,9 +360,7 @@
         self.status = TLChatBarStatusVoice;
     }
 }
-
-- (void)emojiButtonDown
-{
+- (void)emojiButtonDown{
     // 开始文字输入
     if (self.status == TLChatBarStatusEmoji) {
         if (_delegate && [_delegate respondsToSelector:@selector(chatBar:changeStatusFrom:to:)]) {
@@ -462,8 +369,7 @@
         [self.emojiButton setImage:kEmojiImage imageHL:kEmojiImageHL];
         [self.textView becomeFirstResponder];
         self.status = TLChatBarStatusKeyboard;
-    }
-    else {      // 打开表情键盘
+    }else{      // 打开表情键盘
         if (_delegate && [_delegate respondsToSelector:@selector(chatBar:changeStatusFrom:to:)]) {
             [_delegate chatBar:self changeStatusFrom:self.status to:TLChatBarStatusEmoji];
         }
@@ -471,8 +377,7 @@
             [self.voiceButton setImage:kVoiceImage imageHL:kVoiceImageHL];
             [self.talkButton setHidden:YES];
             [self.textView setHidden:NO];
-        }
-        else if (self.status == TLChatBarStatusMore) {
+        }else if (self.status == TLChatBarStatusMore) {
             [self.moreButton setImage:kMoreImage imageHL:kMoreImageHL];
         }
         [self.emojiButton setImage:kKeyboardImage imageHL:kKeyboardImageHL];
@@ -480,9 +385,7 @@
         self.status = TLChatBarStatusEmoji;
     }
 }
-
-- (void)moreButtonDown
-{
+- (void)moreButtonDown{
     // 开始文字输入
     if (self.status == TLChatBarStatusMore) {
         if (_delegate && [_delegate respondsToSelector:@selector(chatBar:changeStatusFrom:to:)]) {
@@ -491,8 +394,7 @@
         [self.moreButton setImage:kMoreImage imageHL:kMoreImageHL];
         [self.textView becomeFirstResponder];
         self.status = TLChatBarStatusKeyboard;
-    }
-    else {      // 打开更多键盘
+    }else{      // 打开更多键盘
         if (_delegate && [_delegate respondsToSelector:@selector(chatBar:changeStatusFrom:to:)]) {
             [_delegate chatBar:self changeStatusFrom:self.status to:TLChatBarStatusMore];
         }
@@ -500,8 +402,7 @@
             [self.voiceButton setImage:kVoiceImage imageHL:kVoiceImageHL];
             [self.talkButton setHidden:YES];
             [self.textView setHidden:NO];
-        }
-        else if (self.status == TLChatBarStatusEmoji) {
+        }else if (self.status == TLChatBarStatusEmoji) {
             [self.emojiButton setImage:kEmojiImage imageHL:kEmojiImageHL];
         }
         [self.moreButton setImage:kKeyboardImage imageHL:kKeyboardImageHL];
@@ -509,31 +410,23 @@
         self.status = TLChatBarStatusMore;
     }
 }
-
-- (void)talkButtonTouchDown:(UIButton *)sender
-{
+- (void)talkButtonTouchDown:(UIButton *)sender{
     if (_dataDelegate && [_dataDelegate respondsToSelector:@selector(chatBarRecording:)]) {
         [_dataDelegate chatBarRecording:self];
     }
 }
-
-- (void)talkButtonTouchUpInside:(UIButton *)sender
-{
+- (void)talkButtonTouchUpInside:(UIButton *)sender{
     if (_dataDelegate && [_dataDelegate respondsToSelector:@selector(chatBarFinishedRecoding:)]) {
         [_dataDelegate chatBarFinishedRecoding:self];
     }
 }
-
-- (void)talkButtonTouchCancel:(UIButton *)sender
-{
+- (void)talkButtonTouchCancel:(UIButton *)sender{
     if (_dataDelegate && [_dataDelegate respondsToSelector:@selector(chatBarDidCancelRecording:)]) {
         [_dataDelegate chatBarDidCancelRecording:self];
     }
 }
-
 #pragma mark - Private Methods
-- (void)p_addMasonry
-{
+- (void)p_addMasonry{
     [self.modeButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self);
         make.bottom.mas_equalTo(self).mas_offset(-4);
@@ -569,9 +462,7 @@
         make.right.mas_equalTo(self.moreButton.mas_left);
     }];
 }
-
-- (void)p_initImage
-{
+- (void)p_initImage{
     kVoiceImage = [UIImage imageNamed:@"chat_toolbar_voice"];
     kVoiceImageHL = [UIImage imageNamed:@"chat_toolbar_voice_HL"];
     kEmojiImage = [UIImage imageNamed:@"chat_toolbar_emotion"];
@@ -581,22 +472,18 @@
     kKeyboardImage = [UIImage imageNamed:@"chat_toolbar_keyboard"];
     kKeyboardImageHL = [UIImage imageNamed:@"chat_toolbar_keyboard_HL"];
 }
-
-- (void)drawRect:(CGRect)rect
-{
+- (void)drawRect:(CGRect)rect{
     [super drawRect:rect];
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetLineWidth(context, 0.5);
-    CGContextSetStrokeColorWithColor(context, [UIColor colorGrayLine].CGColor);
+    CGContextSetStrokeColorWithColor(context, colorGrayLine.CGColor);
     CGContextBeginPath(context);
     CGContextMoveToPoint(context, 0, 0);
     CGContextAddLineToPoint(context, WIDTH_SCREEN, 0);
     CGContextStrokePath(context);
 }
-
 #pragma mark - Getter
-- (UIButton *)modeButton
-{
+- (UIButton *)modeButton{
     if (_modeButton == nil) {
         _modeButton = [[UIButton alloc] init];
         [_modeButton setImage:[UIImage imageNamed:@"chat_toolbar_texttolist"] imageHL:[UIImage imageNamed:@"chat_toolbar_texttolist_HL"]];
@@ -604,9 +491,7 @@
     }
     return _modeButton;
 }
-
-- (UIButton *)voiceButton
-{
+- (UIButton *)voiceButton{
     if (_voiceButton == nil) {
         _voiceButton = [[UIButton alloc] init];
         [_voiceButton setImage:kVoiceImage imageHL:kVoiceImageHL];
@@ -614,9 +499,7 @@
     }
     return _voiceButton;
 }
-
-- (UITextView *)textView
-{
+- (UITextView *)textView{
     if (_textView == nil) {
         _textView = [[UITextView alloc] init];
         [_textView setFont:[UIFont systemFontOfSize:16.0f]];
@@ -630,9 +513,7 @@
     }
     return _textView;
 }
-
-- (UIButton *)talkButton
-{
+- (UIButton *)talkButton{
     if (_talkButton == nil) {
         _talkButton = [[UIButton alloc] init];
         [_talkButton setTitle:@"按住 说话" forState:UIControlStateNormal];
@@ -652,9 +533,7 @@
     }
     return _talkButton;
 }
-
-- (UIButton *)emojiButton
-{
+- (UIButton *)emojiButton{
     if (_emojiButton == nil) {
         _emojiButton = [[UIButton alloc] init];
         [_emojiButton setImage:kEmojiImage imageHL:kEmojiImageHL];
@@ -662,9 +541,7 @@
     }
     return _emojiButton;
 }
-
-- (UIButton *)moreButton
-{
+- (UIButton *)moreButton{
     if (_moreButton == nil) {
         _moreButton = [[UIButton alloc] init];
         [_moreButton setImage:kMoreImage imageHL:kMoreImageHL];
@@ -672,18 +549,12 @@
     }
     return _moreButton;
 }
-
-- (NSString *)curText
-{
+- (NSString *)curText{
     return self.textView.text;
 }
-
 @end
-
 @implementation TLChatBaseViewController
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
     
     [self.view addSubview:self.chatTableVC.tableView];
@@ -692,26 +563,19 @@
     
     [self p_addMasonry];
 }
-
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardFrameWillChange:) name:UIKeyboardWillChangeFrameNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
 }
-
-- (void)viewWillDisappear:(BOOL)animated
-{
+- (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
-
-
 #pragma mark - Public Methods -
-- (void)setPartner:(id<TLChatUserProtocol>)partner
-{
+- (void)setPartner:(id<TLChatUserProtocol>)partner{
     if (_partner && [[_partner chat_userID] isEqualToString:[partner chat_userID]]) {
         return;
     }
@@ -719,32 +583,24 @@
     [self.navigationItem setTitle:[_partner chat_username]];
     [self resetChatVC];
 }
-
-- (void)setChatMoreKeyboardData:(NSMutableArray *)moreKeyboardData
-{
+- (void)setChatMoreKeyboardData:(NSMutableArray *)moreKeyboardData{
     [self.moreKeyboard setChatMoreKeyboardData:moreKeyboardData];
 }
-
-- (void)setChatEmojiKeyboardData:(NSMutableArray *)emojiKeyboardData
-{
+- (void)setChatEmojiKeyboardData:(NSMutableArray *)emojiKeyboardData{
     [self.emojiKeyboard setEmojiGroupData:emojiKeyboardData];
 }
-
-- (void)resetChatVC
-{
+- (void)resetChatVC{
     NSString *chatViewBGImage = [[NSUserDefaults standardUserDefaults] objectForKey:[@"CHAT_BG_" stringByAppendingString:[self.partner chat_userID]]];
     if (chatViewBGImage == nil) {
         chatViewBGImage = [[NSUserDefaults standardUserDefaults] objectForKey:@"CHAT_BG_ALL"];
         if (chatViewBGImage == nil) {
-            [self.view setBackgroundColor:[UIColor colorGrayCharcoalBG]];
-        }
-        else {
+            [self.view setBackgroundColor:[UIColor colorWithWhite:0.5 alpha:0.3]];
+        }else{
             NSString *imagePath = [NSFileManager pathUserChatBackgroundImage:chatViewBGImage];
             UIImage *image = [UIImage imageNamed:imagePath];
             [self.view setBackgroundColor:[UIColor colorWithPatternImage:image]];
         }
-    }
-    else {
+    }else{
         NSString *imagePath = [NSFileManager pathUserChatBackgroundImage:chatViewBGImage];
         UIImage *image = [UIImage imageNamed:imagePath];
         [self.view setBackgroundColor:[UIColor colorWithPatternImage:image]];
@@ -752,12 +608,8 @@
     
     [self resetChatTVC];
 }
-
-/**
- *  发送图片消息
- */
-- (void)sendImageMessage:(UIImage *)image
-{
+/*发送图片消息*/
+- (void)sendImageMessage:(UIImage *)image{
     NSData *imageData = (UIImagePNGRepresentation(image) ? UIImagePNGRepresentation(image) :UIImageJPEGRepresentation(image, 0.5));
     NSString *imageName = [NSString stringWithFormat:@"%lf.jpg", [NSDate date].timeIntervalSince1970];
     NSString *imagePath = [NSFileManager pathUserChatImage:imageName];
@@ -778,8 +630,7 @@
         message1.imagePath = imageName;
         message1.imageSize = image.size;
         [self sendMessage:message1];
-    }
-    else {
+    }else{
         for (id<TLChatUserProtocol> user in [self.partner groupMembers]) {
             TLImageMessage *message1 = [[TLImageMessage alloc] init];
             message1.friendID = [user chat_userID];
@@ -792,10 +643,8 @@
         }
     }
 }
-
 #pragma mark - Private Methods -
-- (void)p_addMasonry
-{
+- (void)p_addMasonry{
     [self.chatTableVC.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.and.left.and.right.mas_equalTo(self.view);
         make.bottom.mas_equalTo(self.chatBar.mas_top);
@@ -804,19 +653,15 @@
         make.left.and.right.and.bottom.mas_equalTo(self.view);
     }];
 }
-
 #pragma mark - Getter -
-- (TLChatTableViewController *)chatTableVC
-{
+- (TLChatTableViewController *)chatTableVC{
     if (_chatTableVC == nil) {
         _chatTableVC = [[TLChatTableViewController alloc] init];
         [_chatTableVC setDelegate:self];
     }
     return _chatTableVC;
 }
-
-- (TLChatBar *)chatBar
-{
+- (TLChatBar *)chatBar{
     if (_chatBar == nil) {
         _chatBar = [[TLChatBar alloc] init];
         [_chatBar setDelegate:self];
@@ -824,9 +669,7 @@
     }
     return _chatBar;
 }
-
-- (TLEmojiKeyboard *)emojiKeyboard
-{
+- (TLEmojiKeyboard *)emojiKeyboard{
     if (_emojiKeyboard == nil) {
         _emojiKeyboard = [TLEmojiKeyboard keyboard];
         [_emojiKeyboard setKeyboardDelegate:self];
@@ -834,9 +677,7 @@
     }
     return _emojiKeyboard;
 }
-
-- (TLMoreKeyboard *)moreKeyboard
-{
+- (TLMoreKeyboard *)moreKeyboard{
     if (_moreKeyboard == nil) {
         _moreKeyboard = [TLMoreKeyboard keyboard];
         [_moreKeyboard setKeyboardDelegate:self];
@@ -844,26 +685,20 @@
     }
     return _moreKeyboard;
 }
-
-- (TLEmojiDisplayView *)emojiDisplayView
-{
+- (TLEmojiDisplayView *)emojiDisplayView{
     if (_emojiDisplayView == nil) {
         _emojiDisplayView = [[TLEmojiDisplayView alloc] init];
     }
     return _emojiDisplayView;
 }
-
-- (TLImageExpressionDisplayView *)imageExpressionDisplayView
-{
+- (TLImageExpressionDisplayView *)imageExpressionDisplayView{
     if (_imageExpressionDisplayView == nil) {
         _imageExpressionDisplayView = [[TLImageExpressionDisplayView alloc] init];
     }
     return _imageExpressionDisplayView;
 }
-
 //MARK: TLChatBarDataDelegate
-- (void)chatBar:(TLChatBar *)chatBar sendText:(NSString *)text
-{
+- (void)chatBar:(TLChatBar *)chatBar sendText:(NSString *)text{
     TLTextMessage *message = [[TLTextMessage alloc] init];
     message.fromUser = self.user;
     message.messageType = TLMessageTypeText;
@@ -877,8 +712,7 @@
         message1.ownerTyper = TLMessageOwnerTypeFriend;
         message1.text = text;
         [self sendMessage:message1];
-    }
-    else {
+    }else{
         for (id<TLChatUserProtocol> user in [self.partner groupMembers]) {
             TLTextMessage *message1 = [[TLTextMessage alloc] init];
             message1.friendID = [user chat_userID];
@@ -890,54 +724,39 @@
         }
     }
 }
-
-- (void)chatBarRecording:(TLChatBar *)chatBar
-{
-    NSLog(@"rec...");
+- (void)chatBarRecording:(TLChatBar *)chatBar{
+    DLog(@"rec...");
 }
-
-- (void)chatBarWillCancelRecording:(TLChatBar *)chatBar
-{
-    NSLog(@"will cancel");
+- (void)chatBarWillCancelRecording:(TLChatBar *)chatBar{
+    DLog(@"will cancel");
 }
-
-- (void)chatBarDidCancelRecording:(TLChatBar *)chatBar
-{
-    NSLog(@"cancel");
+- (void)chatBarDidCancelRecording:(TLChatBar *)chatBar{
+    DLog(@"cancel");
 }
-
-- (void)chatBarFinishedRecoding:(TLChatBar *)chatBar
-{
-    NSLog(@"finished");
+- (void)chatBarFinishedRecoding:(TLChatBar *)chatBar{
+    DLog(@"finished");
 }
 #pragma mark - Public Methods -
-- (void)addToShowMessage:(TLMessage *)message
-{
+- (void)addToShowMessage:(TLMessage *)message{
     message.showTime = [self p_needShowTime:message.date];
     [self.chatTableVC addMessage:message];
     [self.chatTableVC scrollToBottomWithAnimation:YES];
 }
-
-- (void)resetChatTVC
-{
+- (void)resetChatTVC{
     [self.chatTableVC reloadData];
     lastDateInterval = 0;
     msgAccumulate = 0;
 }
-
 #pragma mark - Delegate -
 //MARK: TLChatTableViewControllerDelegate
 // chatView 点击事件
-- (void)chatTableViewControllerDidTouched:(TLChatTableViewController *)chatTVC
-{
+- (void)chatTableViewControllerDidTouched:(TLChatTableViewController *)chatTVC{
     if ([self.chatBar isFirstResponder]) {
         [self.chatBar resignFirstResponder];
     }
 }
-
 // chatView 获取历史记录
-- (void)chatTableViewController:(TLChatTableViewController *)chatTVC getRecordsFromDate:(NSDate *)date count:(NSUInteger)count completed:(void (^)(NSDate *, NSArray *, BOOL))completed
-{
+- (void)chatTableViewController:(TLChatTableViewController *)chatTVC getRecordsFromDate:(NSDate *)date count:(NSUInteger)count completed:(void (^)(NSDate *, NSArray *, BOOL))completed{
     [[TLMessageManager sharedInstance] messageRecordForPartner:[self.partner chat_userID] fromDate:date count:count complete:^(NSArray *array, BOOL hasMore) {
         if (array.count > 0) {
             int count = 0;
@@ -966,29 +785,21 @@
         completed(date, array, hasMore);
     }];
 }
-
-- (BOOL)chatTableViewController:(TLChatTableViewController *)chatTVC deleteMessage:(TLMessage *)message
-{
+- (BOOL)chatTableViewController:(TLChatTableViewController *)chatTVC deleteMessage:(TLMessage *)message{
     return [[TLMessageManager sharedInstance] deleteMessageByMsgID:message.messageID];
 }
-
-- (void)chatTableViewController:(TLChatTableViewController *)chatTVC didClickUserAvatar:(TLUser *)user
-{
+- (void)chatTableViewController:(TLChatTableViewController *)chatTVC didClickUserAvatar:(TLUser *)user{
     if ([self respondsToSelector:@selector(didClickedUserAvatar:)]) {
         [self didClickedUserAvatar:user];
     }
 }
-
-- (void)chatTableViewController:(TLChatTableViewController *)chatTVC didDoubleClickMessage:(TLMessage *)message
-{
+- (void)chatTableViewController:(TLChatTableViewController *)chatTVC didDoubleClickMessage:(TLMessage *)message{
     if (message.messageType == TLMessageTypeText) {
         TLTextDisplayView *displayView = [[TLTextDisplayView alloc] init];
         [displayView showInView:self.navigationController.view withAttrText:[(TLTextMessage *)message attrText] animation:YES];
     }
 }
-
-- (void)chatTableViewController:(TLChatTableViewController *)chatTVC didClickMessage:(TLMessage *)message
-{
+- (void)chatTableViewController:(TLChatTableViewController *)chatTVC didClickMessage:(TLMessage *)message{
     if (message.messageType == TLMessageTypeImage && [self respondsToSelector:@selector(didClickedImageMessages:atIndex:)]) {
         [[TLMessageManager sharedInstance] chatImagesAndVideosForPartnerID:[self.partner chat_userID] completed:^(NSArray *imagesData) {
             NSInteger index = -1;
@@ -1004,12 +815,10 @@
         }];
     }
 }
-
 #pragma mark - Private Methods -
 static NSTimeInterval lastDateInterval = 0;
 static NSInteger msgAccumulate = 0;
-- (BOOL)p_needShowTime:(NSDate *)date
-{
+- (BOOL)p_needShowTime:(NSDate *)date{
     if (++msgAccumulate > 10 || lastDateInterval == 0 || date.timeIntervalSince1970 - lastDateInterval > 30) {
         lastDateInterval = date.timeIntervalSince1970;
         msgAccumulate = 0;
@@ -1017,16 +826,12 @@ static NSInteger msgAccumulate = 0;
     }
     return NO;
 }
-
-
-- (void)sendMessage:(TLMessage *)message
-{
+- (void)sendMessage:(TLMessage *)message{
     message.userID = [TLUserHelper sharedHelper].userID;
     if ([self.partner chat_userType] == TLChatUserTypeUser) {
         message.partnerType = TLPartnerTypeUser;
         message.friendID = [self.partner chat_userID];
-    }
-    else if ([self.partner chat_userType] == TLChatUserTypeGroup) {
+    }else if ([self.partner chat_userType] == TLChatUserTypeGroup) {
         message.partnerType = TLPartnerTypeGroup;
         message.groupID = [self.partner chat_userID];
     }
@@ -1038,19 +843,16 @@ static NSInteger msgAccumulate = 0;
     [[TLMessageManager sharedInstance] sendMessage:message progress:^(TLMessage * message, CGFloat pregress) {
         
     } success:^(TLMessage * message) {
-        NSLog(@"send success");
+        DLog(@"send success");
     } failure:^(TLMessage * message) {
-        NSLog(@"send failure");
+        DLog(@"send failure");
     }];
 }
-
 //MARK: TLEmojiKeyboardDelegate
-- (void)emojiKeyboard:(TLEmojiKeyboard *)emojiKB didSelectedEmojiItem:(TLEmoji *)emoji
-{
+- (void)emojiKeyboard:(TLEmojiKeyboard *)emojiKB didSelectedEmojiItem:(TLEmoji *)emoji{
     if (emoji.type == TLEmojiTypeEmoji || emoji.type == TLEmojiTypeFace) {
         [self.chatBar addEmojiString:emoji.emojiName];
-    }
-    else {
+    }else{
         TLExpressionMessage *message = [[TLExpressionMessage alloc] init];
         message.fromUser = self.user;
         message.messageType = TLMessageTypeExpression;
@@ -1064,8 +866,7 @@ static NSInteger msgAccumulate = 0;
             message1.ownerTyper = TLMessageOwnerTypeFriend;
             message1.emoji = emoji;;
             [self sendMessage:message1];
-        }
-        else {
+        }else{
             for (id<TLChatUserProtocol> user in [self.partner groupMembers]) {
                 TLExpressionMessage *message1 = [[TLExpressionMessage alloc] init];
                 message1.friendID = [user chat_userID];
@@ -1078,56 +879,41 @@ static NSInteger msgAccumulate = 0;
         }
     }
 }
-
-- (void)emojiKeyboardSendButtonDown
-{
+- (void)emojiKeyboardSendButtonDown{
     [self.chatBar sendCurrentText];
 }
-
-- (void)emojiKeyboard:(TLEmojiKeyboard *)emojiKB didTouchEmojiItem:(TLEmoji *)emoji atRect:(CGRect)rect
-{
+- (void)emojiKeyboard:(TLEmojiKeyboard *)emojiKB didTouchEmojiItem:(TLEmoji *)emoji atRect:(CGRect)rect{
     if (emoji.type == TLEmojiTypeEmoji || emoji.type == TLEmojiTypeFace) {
         if (self.emojiDisplayView.superview == nil) {
             [self.emojiKeyboard addSubview:self.emojiDisplayView];
         }
         [self.emojiDisplayView displayEmoji:emoji atRect:rect];
-    }
-    else {
+    }else{
         if (self.imageExpressionDisplayView.superview == nil) {
             [self.emojiKeyboard addSubview:self.imageExpressionDisplayView];
         }
         [self.imageExpressionDisplayView displayEmoji:emoji atRect:rect];
     }
 }
-
-- (void)emojiKeyboardCancelTouchEmojiItem:(TLEmojiKeyboard *)emojiKB
-{
+- (void)emojiKeyboardCancelTouchEmojiItem:(TLEmojiKeyboard *)emojiKB{
     if (self.emojiDisplayView.superview != nil) {
         [self.emojiDisplayView removeFromSuperview];
-    }
-    else if (self.imageExpressionDisplayView.superview != nil) {
+    }else if (self.imageExpressionDisplayView.superview != nil) {
         [self.imageExpressionDisplayView removeFromSuperview];
     }
 }
-
-- (void)emojiKeyboard:(TLEmojiKeyboard *)emojiKB selectedEmojiGroupType:(TLEmojiType)type
-{
+- (void)emojiKeyboard:(TLEmojiKeyboard *)emojiKB selectedEmojiGroupType:(TLEmojiType)type{
     if (type == TLEmojiTypeEmoji || type == TLEmojiTypeFace) {
         [self.chatBar setActivity:YES];
-    }
-    else {
+    }else{
         [self.chatBar setActivity:NO];
     }
 }
-
-- (BOOL)chatInputViewHasText
-{
+- (BOOL)chatInputViewHasText{
     return self.chatBar.curText.length == 0 ? NO : YES;
 }
-
-#pragma mark - # Public Methods
-- (void)keyboardWillHide:(NSNotification *)notification
-{
+#pragma mark Public Methods
+- (void)keyboardWillHide:(NSNotification *)notification{
     if (curStatus == TLChatBarStatusEmoji || curStatus == TLChatBarStatusMore) {
         return;
     }
@@ -1136,16 +922,13 @@ static NSInteger msgAccumulate = 0;
     }];
     [self.view layoutIfNeeded];
 }
-
-- (void)keyboardFrameWillChange:(NSNotification *)notification
-{
+- (void)keyboardFrameWillChange:(NSNotification *)notification{
     CGRect keyboardFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     if (lastStatus == TLChatBarStatusMore || lastStatus == TLChatBarStatusEmoji) {
         if (keyboardFrame.size.height <= HEIGHT_CHAT_KEYBOARD) {
             return;
         }
-    }
-    else if (curStatus == TLChatBarStatusEmoji || curStatus == TLChatBarStatusMore) {
+    }else if (curStatus == TLChatBarStatusEmoji || curStatus == TLChatBarStatusMore) {
         return;
     }
     [self.chatBar mas_updateConstraints:^(MASConstraintMaker *make) {
@@ -1154,41 +937,31 @@ static NSInteger msgAccumulate = 0;
     [self.view layoutIfNeeded];
     [self.chatTableVC scrollToBottomWithAnimation:NO];
 }
-
-- (void)keyboardDidShow:(NSNotification *)notification
-{
+- (void)keyboardDidShow:(NSNotification *)notification{
     if (lastStatus == TLChatBarStatusMore) {
         [self.moreKeyboard dismissWithAnimation:NO];
-    }
-    else if (lastStatus == TLChatBarStatusEmoji) {
+    }else if (lastStatus == TLChatBarStatusEmoji) {
         [self.emojiKeyboard dismissWithAnimation:NO];
     }
 }
-
-#pragma mark - # Delegate
+#pragma mark - 
 //MARK: TLKeyboardDelegate
-- (void)chatKeyboard:(id)keyboard didChangeHeight:(CGFloat)height
-{
+- (void)chatKeyboard:(id)keyboard didChangeHeight:(CGFloat)height{
     [self.chatBar mas_updateConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(self.view).mas_offset(-height);
     }];
     [self.view layoutIfNeeded];
     [self.chatTableVC scrollToBottomWithAnimation:NO];
 }
-
-- (void)chatKeyboardDidShow:(id)keyboard
-{
+- (void)chatKeyboardDidShow:(id)keyboard{
     if (curStatus == TLChatBarStatusMore && lastStatus == TLChatBarStatusEmoji) {
         [self.emojiKeyboard dismissWithAnimation:NO];
-    }
-    else if (curStatus == TLChatBarStatusEmoji && lastStatus == TLChatBarStatusMore) {
+    }else if (curStatus == TLChatBarStatusEmoji && lastStatus == TLChatBarStatusMore) {
         [self.moreKeyboard dismissWithAnimation:NO];
     }
 }
-
 //MARK: TLChatBarDelegate
-- (void)chatBar:(TLChatBar *)chatBar changeStatusFrom:(TLChatBarStatus)fromStatus to:(TLChatBarStatus)toStatus
-{
+- (void)chatBar:(TLChatBar *)chatBar changeStatusFrom:(TLChatBarStatus)fromStatus to:(TLChatBarStatus)toStatus{
     if (curStatus == toStatus) {
         return;
     }
@@ -1197,56 +970,44 @@ static NSInteger msgAccumulate = 0;
     if (toStatus == TLChatBarStatusInit) {
         if (fromStatus == TLChatBarStatusMore) {
             [self.moreKeyboard dismissWithAnimation:YES];
-        }
-        else if (fromStatus == TLChatBarStatusEmoji) {
+        }else if (fromStatus == TLChatBarStatusEmoji) {
             [self.emojiKeyboard dismissWithAnimation:YES];
         }
-    }
-    else if (toStatus == TLChatBarStatusKeyboard) {
+    }else if (toStatus == TLChatBarStatusKeyboard) {
         if (fromStatus == TLChatBarStatusMore) {
             [self.moreKeyboard mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.top.mas_equalTo(self.chatBar.mas_bottom);
                 make.left.and.right.mas_equalTo(self.view);
                 make.height.mas_equalTo(HEIGHT_CHAT_KEYBOARD);
             }];
-        }
-        else if (fromStatus == TLChatBarStatusEmoji) {
+        }else if (fromStatus == TLChatBarStatusEmoji) {
             [self.emojiKeyboard mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.top.mas_equalTo(self.chatBar.mas_bottom);
                 make.left.and.right.mas_equalTo(self.view);
                 make.height.mas_equalTo(HEIGHT_CHAT_KEYBOARD);
             }];
         }
-    }
-    else if (toStatus == TLChatBarStatusVoice) {
+    }else if (toStatus == TLChatBarStatusVoice) {
         if (fromStatus == TLChatBarStatusMore) {
             [self.moreKeyboard dismissWithAnimation:YES];
-        }
-        else if (fromStatus == TLChatBarStatusEmoji) {
+        }else if (fromStatus == TLChatBarStatusEmoji) {
             [self.emojiKeyboard dismissWithAnimation:YES];
         }
-    }
-    else if (toStatus == TLChatBarStatusEmoji) {
+    }else if (toStatus == TLChatBarStatusEmoji) {
         if (fromStatus == TLChatBarStatusKeyboard) {
             [self.emojiKeyboard showInView:self.view withAnimation:YES];
-        }
-        else {
+        }else{
             [self.emojiKeyboard showInView:self.view withAnimation:YES];
         }
-    }
-    else if (toStatus == TLChatBarStatusMore) {
+    }else if (toStatus == TLChatBarStatusMore) {
         if (fromStatus == TLChatBarStatusKeyboard) {
             [self.moreKeyboard showInView:self.view withAnimation:YES];
-        }
-        else {
+        }else{
             [self.moreKeyboard showInView:self.view withAnimation:YES];
         }
     }
 }
-
-- (void)chatBar:(TLChatBar *)chatBar didChangeTextViewHeight:(CGFloat)height
-{
+- (void)chatBar:(TLChatBar *)chatBar didChangeTextViewHeight:(CGFloat)height{
     [self.chatTableVC scrollToBottomWithAnimation:NO];
 }
-
 @end

@@ -1,9 +1,7 @@
-//
 //  IqiyiTabBarController.m
-//  Created by 薛超 on 16/8/19.
-//  Copyright © 2016年 薛超. All rights reserved.
+//  Created by Super on 16/8/19.
+//  Copyright © 2016年 Super. All rights reserved.
 //
-
 #import "IqiyiTabBarController.h"
 #import "KugouViewController.h"
 #import "JFClassifyViewController.h"
@@ -11,16 +9,10 @@
 #import "JFMineViewController.h"
 #import "JFSubscribeViewController.h"
 #import "IqiyiNavigationController.h"
-
-
 @interface JFTabBarButton : UIButton
-
 @property (nonatomic , weak)UITabBarItem *item;
-
 @end
-
 @implementation JFTabBarButton
-
 -(id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self)
@@ -41,8 +33,6 @@
     }
     return  self;
 }
-
-
 -(void)setHighlighted:(BOOL)highlighted{
     
 }
@@ -52,29 +42,20 @@
 //    CGFloat imageH = contentRect.size.height * JFTabBarButtonImageRatio;
 //    return CGRectMake(0, 0, imageW, imageH);
 //}
-//
 //-(CGRect)titleRectForContentRect:(CGRect)contentRect{
-//
 //    CGFloat  titleY = contentRect.size.height * JFTabBarButtonImageRatio;
 //    CGFloat titleW = contentRect.size.width;
 //    CGFloat titleH = contentRect.size.height -titleY ;
 //    return  CGRectMake(0, titleY, titleW, titleH);
 //}
-
 -(void)setItem:(UITabBarItem *)item{
     _item = item;
     [self setTitle:item.title forState:UIControlStateNormal];
     [self setImage:item.image forState:UIControlStateNormal];
     [self setImage:item.selectedImage forState:UIControlStateSelected];
 }
-
-
-
-
 @end
-
 @class JFTabBar;
-
 //给每个按钮定义协议 与 方法
 @protocol tabbarDelegate <NSObject>
 @optional
@@ -82,17 +63,11 @@
 @end
 @interface JFTabBar : UIView
 @property (weak ,nonatomic)JFTabBarButton *selectedButton;
-/**
- *  给自定义的tabbar添加按钮
- */
+/*给自定义的tabbar添加按钮*/
 -(void)addTabBarButtonWithItem:(UITabBarItem *)itme;
 @property(nonatomic , weak) id <tabbarDelegate> delegate;
-
-
-
 @end
 @implementation JFTabBar
-
 -(void)addTabBarButtonWithItem:(UITabBarItem *)item{
     //1.创建按钮
     JFTabBarButton *button = [[JFTabBarButton alloc]init];
@@ -116,11 +91,9 @@
     
     
 }
-
 /**
  * button监听事件
- *
- */
+ **/
 -(void)buttonClick:(JFTabBarButton*)button{
     
     if ([self.delegate respondsToSelector:@selector(tabBar:didselectedButtonFrom:to:)]
@@ -133,7 +106,6 @@
     self.selectedButton = button;
     
 }
-
 -(void)layoutSubviews{
     [super layoutSubviews];
     
@@ -155,20 +127,11 @@
         button.tag = index;
     }
 }
-
-
-
-
 @end
-
 @interface IqiyiTabBarController ()<tabbarDelegate>
-
 @property(nonatomic ,strong)JFTabBar *costomTabBar;
-
 @end
-
 @implementation IqiyiTabBarController
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -177,7 +140,6 @@
     //添加子控制器
 //    [self setUpAllChildViewController];
 }
-
 //取出系统自带的tabbar并把里面的按钮删除掉
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
@@ -187,7 +149,6 @@
 //        }
 //    }
 }
-
 -(void)setUpTabBar{
     JFTabBar *customTabBar = [[JFTabBar alloc]init];
     customTabBar.delegate = self;
@@ -201,7 +162,6 @@
     self.selectedIndex = to;
     
 }
-
 -(void)setUpAllChildViewController{
 //    KugouViewController *homeVC = [[KugouViewController alloc]init];
 //    [self setupChildViewController:homeVC title:@"首页" imageName:@"home_homepage_notselected" seleceImageName:@"home_homepage_selected"];
@@ -219,7 +179,6 @@
 //    [self setupChildViewController:moreVC title:@"我的" imageName:@"home_mine_notselected" seleceImageName:@"home_mine_selected"];
     
 }
-
 -(void)setupChildViewController:(UIViewController*)controller title:(NSString *)title imageName:(NSString *)imageName seleceImageName:(NSString *)selectImageName{
     //    controller.title = title;
     controller.tabBarItem.title = title;//跟上面一样效果
@@ -230,8 +189,4 @@
     [self addChildViewController:nav];
     [self.costomTabBar addTabBarButtonWithItem:controller.tabBarItem];
 }
-
-
-
-
 @end

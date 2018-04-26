@@ -1,35 +1,23 @@
-//
 //  TLShakeSettingViewController.m
-//  TLChat
-//
-//  Created by 李伯坤 on 16/3/3.
-//  Copyright © 2016年 李伯坤. All rights reserved.
-//
-
+//  Freedom
+//  Created by Super on 16/3/3.
 #import "TLSettingGroup.h"
-
+#import <ReactiveCocoa/ReactiveCocoa.h>
 #import "TLShakeSettingViewController.h"
 #import "TLSettingItem.h"
+#import <BlocksKit/BlocksKit+UIKit.h>
 @interface TLShakeHelper : NSObject
-
 @property (nonatomic, strong) NSMutableArray *shakeSettingData;
-
 @end
-
-
 @implementation TLShakeHelper
-
-- (id) init
-{
+- (id) init{
     if (self = [super init]) {
         self.shakeSettingData = [[NSMutableArray alloc] init];
         [self p_initTestData];
     }
     return self;
 }
-
-- (void) p_initTestData
-{
+- (void) p_initTestData{
     TLSettingItem *item1 = TLCreateSettingItem(@"使用默认背景图片");
     item1.showDisclosureIndicator = NO;
     TLSettingItem *item2 = TLCreateSettingItem(@"换张背景图片");
@@ -46,36 +34,25 @@
     
     [self.shakeSettingData addObjectsFromArray:@[group1, group2, group3]];
 }
-
-
 @end
-
 @interface TLShakeSettingViewController ()
-
 @property (nonatomic, strong) TLShakeHelper *helper;
-
 @end
-
 @implementation TLShakeSettingViewController
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
     [self.navigationItem setTitle:@"摇一摇设置"];
     
     self.helper = [[TLShakeHelper alloc] init];
     self.data = self.helper.shakeSettingData;
 }
-
 #pragma mark - Delegate -
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     TLSettingItem *item = [self.data[indexPath.section] objectAtIndex:indexPath.row];
     if ([item.title isEqualToString:@"使用默认背景图片"]) {
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Shake_Image_Path"];
         [UIAlertView bk_alertViewWithTitle:@"已恢复默认背景图"];
-    }
-    else if ([item.title isEqualToString:@"换张背景图片"]) {
+    }else if ([item.title isEqualToString:@"换张背景图片"]) {
         UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
         [imagePickerController setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
         [imagePickerController setAllowsEditing:YES];
@@ -98,5 +75,4 @@
     }
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
-
 @end

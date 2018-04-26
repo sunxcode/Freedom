@@ -1,11 +1,6 @@
-//
 //  SDBasicNavigationController.m
 //  GSD_ZHIFUBAO
-//
-//  Created by aier on 15-6-3.
-//  Copyright (c) 2015年 GSD. All rights reserved.
-//
-
+//  Created by Super on 15-6-3.
 /*
  
  *********************************************************************************
@@ -17,15 +12,10 @@
  * GitHub: https://github.com/gsdios
  *
  *********************************************************************************
- 
  */
-
 #import "SDBasicNavigationController.h"
-
 @implementation SDBasicNavigationController
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
     self.tabBarItem.image = [self.tabBarItem.image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     self.tabBarItem.selectedImage = [self.tabBarItem.selectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
@@ -33,9 +23,7 @@
     
     [self.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor blackColor]] forBarMetrics:UIBarMetricsDefault];
 }
-
-- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
-{
+- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
     [viewController.navigationItem.backBarButtonItem setTitleTextAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:10]} forState:UIControlStateNormal];
     if (self.childViewControllers.count > 0) {
         viewController.hidesBottomBarWhenPushed = YES;

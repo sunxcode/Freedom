@@ -1,35 +1,19 @@
-//
 //  E_Paging.mm
-//  E_Reader
-//
-//  Created by 阿虎 on 14-8-8.
-//  Copyright (c) 2014年 tiger. All rights reserved.
-//
-
-
+//   Freedom
+//  Created by Super on 14-8-8.
 #import "E_Paging.h"
-
 #import <CoreText/CoreText.h>
 #include <vector>
 #include <fstream>
 #include <iostream>
-
 #define CHAR_PER_LOAD 50000
-
 using namespace std;
-
 @interface E_Paging ()
-
 @end
-
-@implementation E_Paging
-{
+@implementation E_Paging{
     vector<NSUInteger> _pageOffsets;
 }
-
-
-- (void)paginate
-{
+- (void)paginate{
     //清空
     _pageOffsets.clear();
     
@@ -112,15 +96,11 @@ using namespace std;
     
     CGPathRelease(path);
     CFRelease(frameSetter);
-
 }
-
 - (NSUInteger)pageCount {
     
     return _pageOffsets.size();
 }
-
-
 - (NSString *)stringOfPage:(NSUInteger)page {
     
     if (page >= [self pageCount]) return @"";
@@ -135,11 +115,8 @@ using namespace std;
     
     return [self subStringWithRange:NSMakeRange(head, tail-head)];
 }
-
 //***//////////////////////////////////////////////
-
-- (NSString *)subStringWithRange:(NSRange)range
-{
+- (NSString *)subStringWithRange:(NSRange)range{
     if (range.location == NSNotFound) return @"";
     
     NSUInteger head = range.location;
@@ -155,7 +132,6 @@ using namespace std;
     
     return [_contentText substringWithRange:NSMakeRange(head, tail - head)];
 }
-
 - (NSRange)rangeOfPage:(NSUInteger)page {
     
     if (page >= _pageOffsets.size()) {
@@ -168,14 +144,11 @@ using namespace std;
     
     return NSMakeRange(_pageOffsets[page], _contentText.length - _pageOffsets[page]);
 }
-
-- (NSDictionary *)stringAttrWithFont:(NSUInteger )fontSize
-{
+- (NSDictionary *)stringAttrWithFont:(NSUInteger )fontSize{
     UIFont *font = [UIFont systemFontOfSize:fontSize];
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     paragraphStyle.lineSpacing = font.pointSize / 2;
     paragraphStyle.alignment = NSTextAlignmentJustified;
     return @{NSParagraphStyleAttributeName: paragraphStyle, NSFontAttributeName:font};
 }
-
 @end

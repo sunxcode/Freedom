@@ -41,11 +41,7 @@
  STRICT LIABILITY OR OTHERWISE, EVEN IF APPLE HAS BEEN ADVISED OF THE
  POSSIBILITY OF SUCH DAMAGE.
  
- Copyright (C) 2013 Apple Inc. All Rights Reserved.
  
- 
- Copyright © 2013 Apple Inc. All rights reserved.
- WWDC 2013 License
  
  NOTE: This Apple Software was supplied by Apple as part of a WWDC 2013
  Session. Please refer to the applicable WWDC 2013 Session for further
@@ -90,18 +86,12 @@
  POSSIBILITY OF SUCH DAMAGE.
  
  EA1002
- 5/3/2013
- */
-
+ 5/3/2013*/
 @import UIKit;
-
 @interface UIImage (ImageEffects)
-
 - (UIImage *)applyLightEffect;
 - (UIImage *)applyExtraLightEffect;
 - (UIImage *)applyDarkEffect;
 - (UIImage *)applyTintEffectWithColor:(UIColor *)tintColor;
-
 - (UIImage *)applyBlurWithRadius:(CGFloat)blurRadius tintColor:(UIColor *)tintColor saturationDeltaFactor:(CGFloat)saturationDeltaFactor maskImage:(UIImage *)maskImage;
-
 @end

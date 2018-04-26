@@ -1,20 +1,10 @@
-//
 //  TLImageExpressionDisplayView.h
-//  TLChat
-//
-//  Created by 李伯坤 on 16/3/16.
-//  Copyright © 2016年 李伯坤. All rights reserved.
-//
-
+//  Freedom
+//  Created by Super on 16/3/16.
 #import <UIKit/UIKit.h>
 #import "TLEmoji.h"
-
 @interface TLImageExpressionDisplayView : UIView
-
 @property (nonatomic, strong) TLEmoji *emoji;
-
 @property (nonatomic, assign) CGRect rect;
-
 - (void)displayEmoji:(TLEmoji *)emoji atRect:(CGRect)rect;
-
 @end

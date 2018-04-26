@@ -1,32 +1,20 @@
-//
 //  TLSettingItem.m
-//  TLChat
-//
-//  Created by 李伯坤 on 16/2/7.
-//  Copyright © 2016年 李伯坤. All rights reserved.
-//
-
+//  Freedom
+// Created by Super
 #import "TLSettingItem.h"
-
 @implementation TLSettingItem
-
-+ (TLSettingItem *) createItemWithTitle:(NSString *)title
-{
++ (TLSettingItem *) createItemWithTitle:(NSString *)title{
     TLSettingItem *item = [[TLSettingItem alloc] init];
     item.title = title;
     return item;
 }
-
-- (id) init
-{
+- (id) init{
     if (self = [super init]) {
         self.showDisclosureIndicator = YES;
     }
     return self;
 }
-
-- (NSString *) cellClassName
-{
+- (NSString *) cellClassName{
     switch (self.type) {
         case TLSettingItemTypeDefalut:
             return @"TLSettingCell";
@@ -42,5 +30,4 @@
     }
     return nil;
 }
-
 @end

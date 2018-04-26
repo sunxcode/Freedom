@@ -1,13 +1,6 @@
-//
 //  TLExpressionViewController.h
-//  TLChat
-//
-//  Created by 李伯坤 on 16/2/21.
-//  Copyright © 2016年 李伯坤. All rights reserved.
-//
-
+//  Freedom
+// Created by Super
 #import "TLViewController.h"
-
 @interface TLExpressionViewController : TLViewController
-
 @end

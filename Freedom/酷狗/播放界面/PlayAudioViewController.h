@@ -1,19 +1,14 @@
-//
 //  PlayAudioViewController.h
 //  我的酷狗
+//  Created by Super on 16/8/29.
+//  Copyright © 2016年 Super. All rights reserved.
 //
-//  Created by 薛超 on 16/8/29.
-//  Copyright © 2016年 薛超. All rights reserved.
-//
-
 #import "KugouBaseViewController.h"
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 @class KugouLyricsManage;
-/**
- *  播放页面
- *  支持手势的旋转动画
- */
+/*播放页面
+ *  支持手势的旋转动画*/
 @interface PlayAudioViewController : KugouBaseViewController<UIGestureRecognizerDelegate,AVAudioPlayerDelegate>{
     CGPoint _startTouch;
     
@@ -69,7 +64,6 @@
     
     int index;
 }
-
 @property (nonatomic,assign) BOOL isMoving;
 @property (nonatomic,retain) UILabel *labelSong;
 @property (nonatomic,retain) UILabel *labelSinger;
@@ -78,7 +72,6 @@
 @property (nonatomic,assign) NSInteger index;
 @property (nonatomic,retain) NSString *songsCount;
 @property (nonatomic,assign) BOOL isPlay;
-
 +(id)shared;
 - (void)readMusic;
 - (void)readData;
@@ -86,5 +79,4 @@
 - (void)play;
 - (void)rewind;
 - (void)fastForward;
-
 @end

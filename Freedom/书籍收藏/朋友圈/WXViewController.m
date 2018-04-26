@@ -1,11 +1,6 @@
-//
 //  WXViewController.m
 //  WFCoretext
-//
-//  Created by 阿虎 on 14/10/28.
-//  Copyright (c) 2014年 tigerwf. All rights reserved.
-//
-
+//  Created by Super on 14/10/28.
 #import "WXViewController.h"
 #import "YMTableViewCell.h"
 #import "ContantHead.h"
@@ -16,14 +11,10 @@
 #import "WFMessageBody.h"
 #import "WFPopView.h"
 #import "WFActionSheet.h"
-
 #define dataCount 10
 #define kLocationToBottom 20
 #define kAdmin @"杨越光"
-
-
-@interface WXViewController ()<UITableViewDataSource,UITableViewDelegate,cellDelegate,InputDelegate,UIActionSheetDelegate>
-{
+@interface WXViewController ()<UITableViewDataSource,UITableViewDelegate,cellDelegate,InputDelegate,UIActionSheetDelegate>{
     NSMutableArray *_imageDataSource;
     
     NSMutableArray *_contentDataSource;//模拟接口给的数据
@@ -42,15 +33,10 @@
     
     
 }
-
 @property (nonatomic,strong) WFPopView *operationView;
 @property (nonatomic,strong) NSIndexPath *selectedIndexPath;
-
 @end
-
 @implementation WXViewController
-
-
 #pragma mark - 数据源
 - (void)configData{
     
@@ -165,7 +151,6 @@
     [_contentDataSource addObject:messBody6];
  
 }
-
 - (void)viewDidLoad {
     
     [super viewDidLoad];
@@ -184,10 +169,8 @@
     
     [self loadTextData];
 }
-
 #pragma mark -加载数据
 - (void)loadTextData{
-
      dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
          
        NSMutableArray * ymDataArray =[[NSMutableArray alloc]init];
@@ -206,12 +189,8 @@
          
     });
 }
-
-
-
 #pragma mark - 计算高度
 - (void)calculateHeight:(NSMutableArray *)dataArray{
-
     
     NSDate* tmpStartData = [NSDate date];
     
@@ -230,44 +209,33 @@
     }
     
     double deltaTime = [[NSDate date] timeIntervalSinceDate:tmpStartData];
-    NSLog(@"cost time = %f", deltaTime);
+    DLog(@"cost time = %f", deltaTime);
     
     dispatch_async(dispatch_get_main_queue(), ^{
         
                [mainTable reloadData];
       
     });
-
    
 }
-
-
-
-
 - (void)backToPre{
     
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
-
-
 - (void) initTableview{
-
     mainTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height - 64)];
     mainTable.backgroundColor = [UIColor clearColor];
     // mainTable.separatorStyle = UITableViewCellSeparatorStyleNone;
     mainTable.delegate = self;
     mainTable.dataSource = self;
     [self.view addSubview:mainTable];
-
 }
-
 //**
 // *  ///////////////////////////////////////////////////
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     return  _tableDataSource.count;
 }
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
    
     YMTextData *ym = [_tableDataSource objectAtIndex:indexPath.row];
@@ -275,8 +243,6 @@
     return TableHeader + kLocationToBottom + ym.replyHeight + ym.showImageHeight  + kDistance + (ym.islessLimit?0:30) + (unfold?ym.shuoshuoHeight:ym.unFoldShuoHeight) + kReplyBtnDistance + ym.favourHeight + (ym.favourHeight == 0?0:kReply_FavourDistance);
    
 }
-
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     static NSString *CellIdentifier = @"ILTableViewCell";
@@ -290,14 +256,10 @@
     [cell.replyBtn addTarget:self action:@selector(replyAction:) forControlEvents:UIControlEventTouchUpInside];
     cell.delegate = self;
     [cell setYMViewWith:[_tableDataSource objectAtIndex:indexPath.row]];
-
     return cell;
 }
-
 ////////////////////////////////////////////////////////////////////
-
 #pragma mark - 按钮动画
-
 - (void)replyAction:(YMButton *)sender{
      
     CGRect rectInTableView = [mainTable rectForRowAtIndexPath:sender.appendIndexPath];
@@ -311,9 +273,6 @@
     YMTextData *ym = [_tableDataSource objectAtIndex:_selectedIndexPath.row];
     [self.operationView showAtView:mainTable rect:targetRect isFavour:ym.hasFavour];
 }
-
-
-
 - (WFPopView *)operationView {
     if (!_operationView) {
         _operationView = [WFPopView initailzerWFOperationView];
@@ -334,7 +293,6 @@
     }
     return _operationView;
 }
-
 #pragma mark - 赞
 - (void)addLike{
     
@@ -359,10 +317,7 @@
     [_tableDataSource replaceObjectAtIndex:_selectedIndexPath.row withObject:ymData];
     
     [mainTable reloadData];
-
 }
-
-
 #pragma mark - 真の评论
 - (void)replyMessage:(YMButton *)sender{
     
@@ -373,26 +328,18 @@
     replyView.delegate = self;
     replyView.replyTag = _selectedIndexPath.row;
     [self.view addSubview:replyView];
-
 }
-
-
 #pragma mark -移除评论按钮
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
     [self.operationView dismiss];
-
 }
-
-
 #pragma mark -cellDelegate
 - (void)changeFoldState:(YMTextData *)ymD onCellRow:(NSInteger)cellStamp{
     
     [_tableDataSource replaceObjectAtIndex:cellStamp withObject:ymD];
     [mainTable reloadData];
-
 }
-
 #pragma mark - 图片点击事件回调
 - (void)showImageViewWithImageViews:(NSArray *)imageViews byClickWhich:(NSInteger)clickTag{
    
@@ -415,21 +362,16 @@
         }];
        
     }];
-
 }
-
 #pragma mark - 长按评论整块区域的回调
 - (void)longClickRichText:(NSInteger)index replyIndex:(NSInteger)replyIndex{
-
     [self.operationView dismiss];
     YMTextData *ymData = (YMTextData *)[_tableDataSource objectAtIndex:index];
     WFReplyBody *b = [ymData.messageBody.posterReplies objectAtIndex:replyIndex];
     
     UIPasteboard *pboard = [UIPasteboard generalPasteboard];
     pboard.string = b.replyInfo;
-
 }
-
 #pragma mark - 点评论整块区域的回调
 - (void)clickRichText:(NSInteger)index replyIndex:(NSInteger)replyIndex{
     
@@ -458,7 +400,6 @@
         [self.view addSubview:replyView];
     }
 }
-
 #pragma mark - 评论说说回调
 - (void)YMReplyInputWithReply:(NSString *)replyText appendTag:(NSInteger)inputTag{
     
@@ -487,7 +428,6 @@
         
         [m.posterReplies addObject:body];
         ymData.messageBody = m;
-
     }
    
     
@@ -496,23 +436,19 @@
     [ymData.completionReplySource removeAllObjects];
     [ymData.attributedDataReply removeAllObjects];
     
-
     ymData.replyHeight = [ymData calculateReplyHeightWithWidth:self.view.frame.size.width];
     [_tableDataSource replaceObjectAtIndex:inputTag withObject:ymData];
     
     [mainTable reloadData];
     
 }
-
 - (void)destorySelf{
     
-  //  NSLog(@"dealloc reply");
+  //  DLog(@"dealloc reply");
     [replyView removeFromSuperview];
     replyView = nil;
     _replyIndex = -1;
-
 }
-
 - (void)actionSheet:(WFActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 0) {
         //delete
@@ -534,11 +470,8 @@
     }
     _replyIndex = -1;
 }
-
 - (void)dealloc{
     
-    NSLog(@"销毁");
-
+    DLog(@"销毁");
 }
-
 @end

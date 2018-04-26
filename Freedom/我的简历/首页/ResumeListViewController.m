@@ -1,11 +1,8 @@
-//
 //  ResumeListViewController.m
 //  Freedom
+//  Created by Super on 17/2/8.
+//  Copyright © 2017年 Super. All rights reserved.
 //
-//  Created by 薛超 on 17/2/8.
-//  Copyright © 2017年 薛超. All rights reserved.
-//
-
 #import "ResumeListViewController.h"
 #import "ResumeDetailViewController.h"
 @interface ResumeListViewCell:BaseTableViewCell

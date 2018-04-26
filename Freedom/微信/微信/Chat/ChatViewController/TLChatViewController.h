@@ -1,15 +1,7 @@
-//
-//  TLChatViewController.h
-//  TLChat
-//
-//  Created by 李伯坤 on 16/2/15.
-//  Copyright © 2016年 李伯坤. All rights reserved.
-//
-
+//  FreedomViewController.h
+//  Freedom
+// Created by Super
 #import "TLChatBaseViewController.h"
-
 @interface TLChatViewController : TLChatBaseViewController
-
 + (TLChatViewController *) sharedChatVC;
-
 @end

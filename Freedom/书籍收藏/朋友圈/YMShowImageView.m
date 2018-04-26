@@ -1,26 +1,14 @@
-//
 //  YMShowImageView.m
 //  WFCoretext
-//
-//  Created by 阿虎 on 14/11/3.
-//  Copyright (c) 2014年 tigerwf. All rights reserved.
-//
-
+//  Created by Super on 14/11/3.
 #import "YMShowImageView.h"
-
 @implementation YMShowImageView{
-
     UIScrollView *_scrollView;
     CGRect self_Frame;
     NSInteger page;
     BOOL doubleClick;
-
 }
-
-
-
 - (id)initWithFrame:(CGRect)frame byClick:(NSInteger)clickTag appendArray:(NSArray *)appendArray{
-
     self = [super initWithFrame:frame];
     if (self) {
         
@@ -45,12 +33,9 @@
         
     }
     return self;
-
     
 }
-
 - (void)configScrollViewWith:(NSInteger)clickTag andAppendArray:(NSArray *)appendArray{
-
     _scrollView = [[UIScrollView alloc] initWithFrame:self_Frame];
     _scrollView.backgroundColor = [UIColor whiteColor];
     _scrollView.pagingEnabled = true;
@@ -84,18 +69,13 @@
     }
     [_scrollView setContentOffset:CGPointMake(W * (clickTag - 9999), 0) animated:YES];
     page = clickTag - 9999;
-
 }
-
 - (void)disappear{
     
     _removeImg();
    
 }
-
-
 - (void)changeBig:(UITapGestureRecognizer *)tapGes{
-
     CGFloat newscale = 1.9;
     UIScrollView *currentScrollView = (UIScrollView *)[self viewWithTag:page + 100];
     CGRect zoomRect = [self zoomRectForScale:newscale withCenter:[tapGes locationInView:tapGes.view] andScrollView:currentScrollView];
@@ -110,16 +90,12 @@
     }
     
     doubleClick = !doubleClick;
-
 }
-
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView{
     
     UIImageView *imageView = (UIImageView *)[self viewWithTag:scrollView.tag + 900];
     return imageView;
-
 }
-
 - (CGRect)zoomRectForScale:(CGFloat)newscale withCenter:(CGPoint)center andScrollView:(UIScrollView *)scrollV{
    
     CGRect zoomRect = CGRectZero;
@@ -128,11 +104,9 @@
     zoomRect.size.width = scrollV.frame.size.width  / newscale;
     zoomRect.origin.x = center.x - (zoomRect.size.width  / 2.0);
     zoomRect.origin.y = center.y - (zoomRect.size.height / 2.0);
-   // NSLog(@" === %f",zoomRect.origin.x);
+   // DLog(@" === %f",zoomRect.origin.x);
     return zoomRect;
-
 }
-
 - (void)show:(UIView *)bgView didFinish:(didRemoveImage)tempBlock{
     
      [bgView addSubview:self];
@@ -146,12 +120,8 @@
       } completion:^(BOOL finished) {
         
      }];
-
 }
-
-
 #pragma mark - ScorllViewDelegate
-
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
   
     CGPoint offset = _scrollView.contentOffset;
@@ -170,12 +140,9 @@
         scollV_pre.zoomScale = 1.0;
     }
     
-   // NSLog(@"page == %d",page);
+   // DLog(@"page == %d",page);
 }
-
 - (void)scrollViewDidZoom:(UIScrollView *)scrollView{
   
-
 }
-
 @end

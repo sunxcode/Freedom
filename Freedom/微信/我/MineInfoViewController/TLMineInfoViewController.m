@@ -1,34 +1,20 @@
-//
 //  TLMineInfoViewController.m
-//  TLChat
-//
-//  Created by 李伯坤 on 16/2/10.
-//  Copyright © 2016年 李伯坤. All rights reserved.
-//
-
+//  Freedom
+// Created by Super
 #import "TLMineInfoViewController.h"
 #import "TLMyQRCodeViewController.h"
 #import "TLUserHelper.h"
 #import "TLMineViewController.h"
 #import "TLSettingItem.h"
 @interface TLMineInfoAvatarCell : UITableViewCell
-
 @property (nonatomic, strong) TLSettingItem *item;
-
 @end
-
 @interface TLMineInfoAvatarCell ()
-
 @property (nonatomic, strong) UILabel *titleLabel;
-
 @property (nonatomic, strong) UIImageView *avatarImageView;
-
 @end
-
 @implementation TLMineInfoAvatarCell
-
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
         [self.contentView addSubview:self.titleLabel];
@@ -37,25 +23,19 @@
     }
     return self;
 }
-
-- (void)setItem:(TLSettingItem *)item
-{
+- (void)setItem:(TLSettingItem *)item{
     _item = item;
     [self.titleLabel setText:item.title];
     if (item.rightImagePath) {
         [self.avatarImageView setImage: [UIImage imageNamed:item.rightImagePath]];
-    }
-    else if (item.rightImageURL){
+    }else if (item.rightImageURL){
         [self.avatarImageView sd_setImageWithURL:TLURL(item.rightImageURL) placeholderImage:[UIImage imageNamed:PuserLogo]];
-    }
-    else {
+    }else{
         [self.avatarImageView setImage:nil];
     }
 }
-
 #pragma mark - Private Methods -
-- (void)p_addMasonry
-{
+- (void)p_addMasonry{
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(self.contentView);
         make.left.mas_equalTo(self.contentView).mas_offset(15);
@@ -69,18 +49,14 @@
         make.width.mas_equalTo(self.avatarImageView.mas_height);
     }];
 }
-
 #pragma mark - Getter -
-- (UILabel *)titleLabel
-{
+- (UILabel *)titleLabel{
     if (_titleLabel == nil) {
         _titleLabel = [[UILabel alloc] init];
     }
     return _titleLabel;
 }
-
-- (UIImageView *)avatarImageView
-{
+- (UIImageView *)avatarImageView{
     if (_avatarImageView == nil) {
         _avatarImageView = [[UIImageView alloc] init];
         [_avatarImageView.layer setMasksToBounds:YES];
@@ -88,17 +64,11 @@
     }
     return _avatarImageView;
 }
-
 @end
-
 @interface TLMineInfoViewController ()
-
 @property (nonatomic, strong) TLMineInfoHelper *helper;
-
 @end
-
 @implementation TLMineInfoViewController
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationItem setTitle:@"个人信息"];
@@ -108,11 +78,9 @@
     self.helper = [[TLMineInfoHelper alloc] init];
     self.data = [self.helper mineInfoDataByUserInfo:[TLUserHelper sharedHelper].user];
 }
-
 #pragma mark - Delegate -
 //MARK: UITableViewDataSource
-- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     TLSettingItem *item = [self.data[indexPath.section] objectAtIndex:indexPath.row];
     if ([item.title isEqualToString:@"头像"]) {
         TLMineInfoAvatarCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TLMineInfoAvatarCell"];
@@ -121,10 +89,8 @@
     }
     return [super tableView:tableView cellForRowAtIndexPath:indexPath];
 }
-
 //MARK: UITableViewDelegate
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     TLSettingItem *item = [self.data[indexPath.section] objectAtIndex:indexPath.row];
     if ([item.title isEqualToString:@"我的二维码"]) {
         TLMyQRCodeViewController *myQRCodeVC = [[TLMyQRCodeViewController alloc] init];
@@ -133,14 +99,11 @@
     }
     [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
-
-- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     TLSettingItem *item = [self.data[indexPath.section] objectAtIndex:indexPath.row];
     if ([item.title isEqualToString:@"头像"]) {
         return 85.0f;
     }
     return [super tableView:tableView heightForRowAtIndexPath:indexPath];
 }
-
 @end

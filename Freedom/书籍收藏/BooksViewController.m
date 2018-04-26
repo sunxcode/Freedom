@@ -1,11 +1,8 @@
-//
 //  BooksViewController.m
 //  Freedom
+//  Created by Super on 16/8/18.
+//  Copyright © 2016年 Super. All rights reserved.
 //
-//  Created by 薛超 on 16/8/18.
-//  Copyright © 2016年 薛超. All rights reserved.
-//
-
 #import "BooksViewController.h"
 #import "WXViewController.h"
 #import "E_ScrollViewController.h"
@@ -55,12 +52,10 @@
     self.collectionView.frame = self.view.bounds;
     [self.view addSubview:self.collectionView];
 }
-
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSString *log = [NSString stringWithFormat:@"你选择的是%zd，%zd", indexPath.section, indexPath.row];
     [SVProgressHUD showSuccessWithStatus:log];DLog(@"%@",log);
     E_ScrollViewController *loginvctrl = [[E_ScrollViewController alloc] init];
     [self presentViewController:loginvctrl animated:NO completion:NULL];
 }
-
 @end

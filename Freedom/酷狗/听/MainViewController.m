@@ -1,11 +1,6 @@
-//
 //  MainViewController.m
 //  CLKuGou
-//
 //  Created by Darren on 16/7/29.
-//  Copyright © 2016年 darren. All rights reserved.
-//
-
 #import "MainViewController.h"
 #import "LinsenViewController.h"//听
 #import "LookViewController.h"//看
@@ -23,11 +18,9 @@
 //计算标题大小
 +(CGSize)titleSize:(NSString *)title height:(CGFloat)height;
 @end
-
 @interface TitleScrollView : UIScrollView
 typedef void (^SelectBlock)(NSInteger index);
-/**
- *  创建一个标题滚动栏
+/*创建一个标题滚动栏
  *  @param frame          布局
  *  @param titleArray     标题数组
  *  @param selected_index 默认选中按钮的索引
@@ -35,8 +28,7 @@ typedef void (^SelectBlock)(NSInteger index);
  *  @param isEqual        下面的条子是否按数量等分宽度 YES:等分 NO:按照标题宽度
  *  @param selectBlock    点击标题回调方法
  *
- *  @return 滚动视图对象
- */
+ *  @return 滚动视图对象*/
 -(instancetype)initWithFrame:(CGRect)frame
                   TitleArray:(NSArray *)titleArray
                selectedIndex:(NSInteger)selected_index
@@ -45,21 +37,14 @@ typedef void (^SelectBlock)(NSInteger index);
                        color:(UIColor *)color
                  selectColor:(UIColor *)selectColor
                  SelectBlock:(SelectBlock)selectBlock;
-/**
- *  修改选中标题
- *  @param selectedIndex 选中标题的索引
- */
+/*修改选中标题
+ *  @param selectedIndex 选中标题的索引*/
 -(void)setSelectedIndex:(NSInteger)selectedIndex;
-/**
- *  把按钮放出来以便改变可以其颜色 （陈亮）
- */
+/*把按钮放出来以便改变可以其颜色 （陈亮）*/
 @property (nonatomic,strong) UIButton *titleButton;
-/**
- *  把line放出来,有的界面不需要显示,直接隐藏它 (郭长峰)
- */
+/*把line放出来,有的界面不需要显示,直接隐藏它 (郭长峰)*/
 @property (nonatomic,strong) UILabel        *line;
 @end
-
 @implementation TitleScrollHelper
 +(CGFloat)caculateSpaceByTitleArray:(NSArray *)titleArray rect:(CGRect)rect{
     CGFloat width = 0;
@@ -68,28 +53,24 @@ typedef void (^SelectBlock)(NSInteger index);
     }
     return (rect.size.width - width)/titleArray.count;
 }
-
 +(CGSize)titleSize:(NSString *)title height:(CGFloat)height{
     return [title boundingRectWithSize:CGSizeMake(0, height) options:3 attributes:@{NSFontAttributeName:titleFont} context:nil].size;
 }
 @end
-
 @implementation TitleScrollView{
     UIButton       *selectedButt;
     SelectBlock    block;
     NSMutableArray *buttonArray;
     BOOL           isEqualWidth;
 }
-/**
- *  创建一个标题滚动栏
+/*创建一个标题滚动栏
  *  @param frame          布局
  *  @param titleArray     标题数组
  *  @param selected_index 默认选中按钮的索引
  *  @param scrollEnable   能否滚动
  *  @param isEqual        下面的条子是否按数量等分宽度 YES:等分 NO:按照标题宽度
  *  @param selectBlock    点击标题回调方法
- *  @return 滚动视图对象
- */
+ *  @return 滚动视图对象*/
 -(instancetype)initWithFrame:(CGRect)frame
                   TitleArray:(NSArray *)titleArray
                selectedIndex:(NSInteger)selected_index
@@ -97,8 +78,7 @@ typedef void (^SelectBlock)(NSInteger index);
               lineEqualWidth:(BOOL)isEqual
                        color:(UIColor *)color
                  selectColor:(UIColor *)selectColor
-                 SelectBlock:(SelectBlock)selectBlock;
-{
+                 SelectBlock:(SelectBlock)selectBlock;{
     self =[super initWithFrame:frame];
     if (self)
     {
@@ -159,7 +139,6 @@ typedef void (^SelectBlock)(NSInteger index);
         [self buttonOffset:butt];
     }
 }
-
 -(void)buttonOffset:(UIButton *)butt{
     CGSize size = [TitleScrollHelper titleSize:butt.titleLabel.text height:butt.frame.size.height];
     CGFloat width = isEqualWidth?self.frame.size.width/buttonArray.count:size.width;
@@ -177,10 +156,8 @@ typedef void (^SelectBlock)(NSInteger index);
         self.contentOffset = CGPointMake(self.contentSize.width-self.frame.size.width, 0);
     }
 }
-/**
- *  修改选中标题
- *  @param selectedIndex 选中标题的索引
- */
+/*修改选中标题
+ *  @param selectedIndex 选中标题的索引*/
 -(void)setSelectedIndex:(NSInteger)selectedIndex{
     for (UIButton *butt in buttonArray){
         if (butt.tag == selectedIndex){
@@ -189,7 +166,6 @@ typedef void (^SelectBlock)(NSInteger index);
     }
 }
 @end
-
 @interface MainViewController ()<UIScrollViewDelegate>
 @property (nonatomic, weak) UIScrollView *contentView;
 @property (nonatomic, strong) TitleScrollView *titleView;
@@ -225,8 +201,6 @@ typedef void (^SelectBlock)(NSInteger index);
         }];
     }return _titleView;
 }
-
-
 - (void)setupNav{
     [self.navBar addSubview:self.titleView];    
     self.leftItem.image = [UIImage imageNamed:@"placeHoder-128"];
@@ -251,7 +225,6 @@ typedef void (^SelectBlock)(NSInteger index);
     offset.x = index * self.contentView.frameWidth;
     [self.contentView setContentOffset:offset animated:YES];
 }
-
 //  底部的scrollView
 - (void)setupContentView{
     // 不要自动调整inset

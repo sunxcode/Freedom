@@ -1,19 +1,10 @@
-//
 //  TLGroup.m
-//  TLChat
-//
-//  Created by 李伯坤 on 16/3/7.
-//  Copyright © 2016年 李伯坤. All rights reserved.
-//
-
+//  Freedom
+// Created by Super
 #import "TLGroup.h"
-
-
 #import "TLUserHelper.h"
 @implementation TLGroup
-
-- (id)init
-{
+- (id)init{
     if (self = [super init]) {
         [TLGroup mj_setupObjectClassInArray:^NSDictionary *{
             return @{ @"users" : @"TLUser" };
@@ -21,24 +12,16 @@
     }
     return self;
 }
-
-- (NSInteger)count
-{
+- (NSInteger)count{
     return self.users.count;
 }
-
-- (void)addObject:(id)anObject
-{
+- (void)addObject:(id)anObject{
     [self.users addObject:anObject];
 }
-
-- (id)objectAtIndex:(NSUInteger)index
-{
+- (id)objectAtIndex:(NSUInteger)index{
     return [self.users objectAtIndex:index];
 }
-
-- (TLUser *)memberByUserID:(NSString *)uid
-{
+- (TLUser *)memberByUserID:(NSString *)uid{
     for (TLUser *user in self.users) {
         if ([user.userID isEqualToString:uid]) {
             return user;
@@ -46,9 +29,7 @@
     }
     return nil;
 }
-
-- (NSString *)groupName
-{
+- (NSString *)groupName{
     if (_groupName == nil || _groupName.length == 0) {
         for (TLUser *user in self.users) {
             if (user.showName.length > 0) {
@@ -63,72 +44,49 @@
     }
     return _groupName;
 }
-
-- (NSString *)myNikeName
-{
+- (NSString *)myNikeName{
     if (_myNikeName.length == 0) {
         _myNikeName = [TLUserHelper sharedHelper].user.showName;
     }
     return _myNikeName;
 }
-
-- (NSString *)pinyin
-{
+- (NSString *)pinyin{
     if (_pinyin == nil) {
         _pinyin = self.groupName.pinyin;
     }
     return _pinyin;
 }
-
-- (NSString *)pinyinInitial
-{
+- (NSString *)pinyinInitial{
     if (_pinyinInitial == nil) {
         _pinyinInitial = self.groupName.pinyinInitial;
     }
     return _pinyinInitial;
 }
-
-- (NSString *)groupAvatarPath
-{
+- (NSString *)groupAvatarPath{
     if (_groupAvatarPath == nil) {
         _groupAvatarPath = [self.groupID stringByAppendingString:@".png"];
     }
     return _groupAvatarPath;
 }
-
-- (NSString *)chat_userID
-{
+- (NSString *)chat_userID{
     return self.groupID;
 }
-
-- (NSString *)chat_username
-{
+- (NSString *)chat_username{
     return self.groupName;
 }
-
-- (NSString *)chat_avatarURL
-{
+- (NSString *)chat_avatarURL{
     return nil;
 }
-
-- (NSString *)chat_avatarPath
-{
+- (NSString *)chat_avatarPath{
     return self.groupAvatarPath;
 }
-
-- (NSInteger)chat_userType
-{
+- (NSInteger)chat_userType{
     return TLChatUserTypeGroup;
 }
-
-- (id)groupMemberByID:(NSString *)userID
-{
+- (id)groupMemberByID:(NSString *)userID{
     return [self memberByUserID:userID];
 }
-
-- (NSArray *)groupMembers
-{
+- (NSArray *)groupMembers{
     return self.users;
 }
-
 @end

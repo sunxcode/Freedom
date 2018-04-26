@@ -1,17 +1,9 @@
-//
 //  TLTableViewCell.m
-//  TLChat
-//
-//  Created by 李伯坤 on 16/1/23.
-//  Copyright © 2016年 李伯坤. All rights reserved.
-//
-
+//  Freedom
+// Created by Super
 #import "TLTableViewCell.h"
-
 @implementation TLTableViewCell
-
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         _leftSeparatorSpace = 15.0f;
         _topLineStyle = TLCellLineStyleNone;
@@ -19,37 +11,27 @@
     }
     return self;
 }
-
-- (void)setTopLineStyle:(TLCellLineStyle)topLineStyle
-{
+- (void)setTopLineStyle:(TLCellLineStyle)topLineStyle{
     _topLineStyle = topLineStyle;
     [self setNeedsDisplay];
 }
-
-- (void)setBottomLineStyle:(TLCellLineStyle)bottomLineStyle
-{
+- (void)setBottomLineStyle:(TLCellLineStyle)bottomLineStyle{
     _bottomLineStyle = bottomLineStyle;
     [self setNeedsDisplay];
 }
-
-- (void)setLeftSeparatorSpace:(CGFloat)leftSeparatorSpace
-{
+- (void)setLeftSeparatorSpace:(CGFloat)leftSeparatorSpace{
     _leftSeparatorSpace = leftSeparatorSpace;
     [self setNeedsDisplay];
 }
-
-- (void)setRightSeparatorSpace:(CGFloat)rightSeparatorSpace
-{
+- (void)setRightSeparatorSpace:(CGFloat)rightSeparatorSpace{
     _rightSeparatorSpace = rightSeparatorSpace;
     [self setNeedsDisplay];
 }
-
-- (void)drawRect:(CGRect)rect
-{
+- (void)drawRect:(CGRect)rect{
     [super drawRect:rect];
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetLineWidth(context, BORDER_WIDTH_1PX * 2);
-    CGContextSetStrokeColorWithColor(context, [UIColor colorGrayLine].CGColor);
+    CGContextSetStrokeColorWithColor(context, colorGrayLine.CGColor);
     if (self.topLineStyle != TLCellLineStyleNone) {
         CGContextBeginPath(context);
         CGFloat startX = (self.topLineStyle == TLCellLineStyleFill ? 0 : _leftSeparatorSpace);
@@ -69,5 +51,4 @@
         CGContextStrokePath(context);
     }
 }
-
 @end

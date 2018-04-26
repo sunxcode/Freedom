@@ -1,32 +1,19 @@
-//
 //  WFPopView.m
 //  WFCoretext
-//
-//  Created by 阿虎 on 15/5/11.
-//  Copyright (c) 2015年 tigerwf. All rights reserved.
-//
-
+//  Created by Super on 15/5/11.
 #import "WFPopView.h"
-
 #define kXHALbumOperationViewSize CGSizeMake(120, 34)
 #define kXHAlbumSpatorY 5
-
 @interface WFPopView ()
-
 @property (nonatomic, strong) UIButton *replyButton;
 @property (nonatomic, strong) UIButton *likeButton;
-
 @property (nonatomic, assign) CGRect targetRect;
-
 @end
-
 @implementation WFPopView
-
 + (instancetype)initailzerWFOperationView {
     WFPopView *operationView = [[WFPopView alloc] initWithFrame:CGRectZero];
     return operationView;
 }
-
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
@@ -38,18 +25,14 @@
     }
     return self;
 }
-
 #pragma mark - Action
-
 - (void)operationDidClicked:(UIButton *)sender {
     [self dismiss];
     if (self.didSelectedOperationCompletion) {
         self.didSelectedOperationCompletion(sender.tag);
     }
 }
-
 #pragma mark - Propertys
-
 - (UIButton *)replyButton {
     if (!_replyButton) {
         _replyButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -61,7 +44,6 @@
     }
     return _replyButton;
 }
-
 - (UIButton *)likeButton {
     if (!_likeButton) {
         _likeButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -73,9 +55,7 @@
     }
     return _likeButton;
 }
-
 #pragma mark - 公开方法
-
 - (void)showAtView:(UITableView *)containerView rect:(CGRect)targetRect isFavour:(BOOL)isFavour {
     self.targetRect = targetRect;
     if (self.shouldShowed) {
@@ -97,7 +77,6 @@
         [_likeButton setTitle:(isFavour?@"取消赞":@"赞") forState:UIControlStateNormal];
     }];
 }
-
 - (void)dismiss {
     if (!self.shouldShowed) {
         return;
@@ -116,5 +95,4 @@
         
     }];
 }
-
 @end

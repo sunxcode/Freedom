@@ -1,76 +1,49 @@
-//
 //  TLMomentsViewController.m
-//  TLChat
-//
-//  Created by 李伯坤 on 16/4/5.
-//  Copyright © 2016年 李伯坤. All rights reserved.
-//
-
+//  Freedom
+//  Created by Super on 16/4/5.
 #import "TLMomentsViewController.h"
 #import "TLMoment.h"
 #import "TLMomentDetailViewController.h"
 #import "MWPhotoBrowser.h"
 #import "TLMomentsViewController.h"
 #import "UIButton+WebCache.h"
-
 #import "TLUserHelper.h"
 #define         WIDTH_AVATAR        65
-
 #import "TLMomentImageView.h"
-
 #import "TLTableViewCell.h"
 #import "TLMoment.h"
-
 @interface TLMomentsProxy : NSObject
 - (NSArray *)testData;
 @end
 @implementation TLMomentsProxy
-
-- (NSArray *)testData
-{
+- (NSArray *)testData{
     NSString *path = [[NSBundle mainBundle] pathForResource:@"Moments" ofType:@"json"];
     NSData *jsonData = [NSData dataWithContentsOfFile:path];
     NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:nil];
     NSArray *arr = [TLMoment mj_objectArrayWithKeyValuesArray:jsonArray];
     return arr;
 }
-
 @end
-
-
 @interface TLMomentBaseCell : TLTableViewCell
-
 @property (nonatomic, assign) id<TLMomentViewDelegate> delegate;
-
 @property (nonatomic, strong) TLMoment *moment;
-
 @end
 @interface TLMomentImagesCell : TLMomentBaseCell
-
 @end
 @implementation TLMomentBaseCell
-
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self setBottomLineStyle:TLCellLineStyleFill];
         [self setSelectionStyle:UITableViewCellSelectionStyleNone];
     }
     return self;
 }
-
 @end
-
 @interface TLMomentImagesCell ()
-
 @property (nonatomic, strong) TLMomentImageView *momentView;
-
 @end
-
 @implementation TLMomentImagesCell
-
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self.contentView addSubview:self.momentView];
         [self.momentView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -79,51 +52,33 @@
     }
     return self;
 }
-
-- (void)setMoment:(TLMoment *)moment
-{
+- (void)setMoment:(TLMoment *)moment{
     [super setMoment:moment];
     [self.momentView setMoment:moment];
 }
-
-- (void)setDelegate:(id<TLMomentViewDelegate>)delegate
-{
+- (void)setDelegate:(id<TLMomentViewDelegate>)delegate{
     [super setDelegate:delegate];
     [self.momentView setDelegate:delegate];
 }
-
-#pragma mark - # Getter
-- (TLMomentImageView *)momentView
-{
+#pragma mark - 
+- (TLMomentImageView *)momentView{
     if (_momentView == nil) {
         _momentView = [[TLMomentImageView alloc] init];
     }
     return _momentView;
 }
-
 @end
-
 @interface TLMomentHeaderCell : TLTableViewCell
-
 @property (nonatomic, strong) TLUser *user;
-
 @end
 @interface TLMomentHeaderCell ()
-
 @property (nonatomic, strong) UIButton *backgroundWall;
-
 @property (nonatomic, strong) UIButton *avatarView;
-
 @property (nonatomic, strong) UILabel *usernameLabel;
-
 @property (nonatomic, strong) UILabel *mottoLabel;
-
 @end
-
 @implementation TLMomentHeaderCell
-
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self setBottomLineStyle:TLCellLineStyleNone];
         [self setSelectionStyle:UITableViewCellSelectionStyleNone];
@@ -136,9 +91,7 @@
     }
     return self;
 }
-
-- (void)setUser:(TLUser *)user
-{
+- (void)setUser:(TLUser *)user{
     _user = user;
     [self.backgroundWall sd_setImageWithURL:TLURL(user.detailInfo.momentsWallURL) forState:UIControlStateNormal];
     [self.backgroundWall sd_setImageWithURL:TLURL(user.detailInfo.momentsWallURL) forState:UIControlStateHighlighted];
@@ -146,10 +99,8 @@
     [self.usernameLabel setText:user.nikeName];
     [self.mottoLabel setText:user.detailInfo.motto];
 }
-
-#pragma mark - # Private Methods
-- (void)p_addMasonry
-{
+#pragma mark - 
+- (void)p_addMasonry{
     [self.backgroundWall mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.and.right.mas_equalTo(self.contentView);
         make.bottom.mas_equalTo(self.mottoLabel.mas_top).mas_offset(- WIDTH_AVATAR / 3.0f - 8.0f);
@@ -173,19 +124,15 @@
         make.width.mas_lessThanOrEqualTo(WIDTH_SCREEN * 0.4);
     }];
 }
-
-#pragma mark - # Getter
-- (UIButton *)backgroundWall
-{
+#pragma mark - 
+- (UIButton *)backgroundWall{
     if (_backgroundWall == nil) {
         _backgroundWall = [[UIButton alloc] init];
-        [_backgroundWall setBackgroundColor:[UIColor colorGrayLine]];
+        [_backgroundWall setBackgroundColor:colorGrayLine];
     }
     return _backgroundWall;
 }
-
-- (UIButton *)avatarView
-{
+- (UIButton *)avatarView{
     if (_avatarView == nil) {
         _avatarView = [[UIButton alloc] init];
         [_avatarView.layer setMasksToBounds:YES];
@@ -194,18 +141,14 @@
     }
     return _avatarView;
 }
-
-- (UILabel *)usernameLabel
-{
+- (UILabel *)usernameLabel{
     if (_usernameLabel == nil) {
         _usernameLabel = [[UILabel alloc] init];
         [_usernameLabel setTextColor:[UIColor whiteColor]];
     }
     return _usernameLabel;
 }
-
-- (UILabel *)mottoLabel
-{
+- (UILabel *)mottoLabel{
     if (_mottoLabel == nil) {
         _mottoLabel = [[UILabel alloc] init];
         [_mottoLabel setFont:[UIFont systemFontOfSize:14.0f]];
@@ -214,24 +157,13 @@
     }
     return _mottoLabel;
 }
-
-
 @end
-
 @interface TLMomentsViewController ()<TLMomentViewDelegate>
-
 @property (nonatomic, strong) TLMomentsProxy *proxy;
-
-
 - (void)loadData;
-
-
 - (void)registerCellForTableView:(UITableView *)tableView;
-
 @end
-
 @implementation TLMomentsViewController
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationItem setTitle:@"朋友圈"];
@@ -246,35 +178,27 @@
     [self registerCellForTableView:self.tableView];
     [self loadData];
 }
-
-#pragma mark - # Getter
-- (TLMomentsProxy *)proxy
-{
+#pragma mark - 
+- (TLMomentsProxy *)proxy{
     if (_proxy == nil) {
         _proxy = [[TLMomentsProxy alloc] init];
     }
     return _proxy;
 }
-- (void)loadData
-{
+- (void)loadData{
     self.data = [NSMutableArray arrayWithArray:self.proxy.testData];
     [self.tableView reloadData];
 }
-- (void)registerCellForTableView:(UITableView *)tableView
-{
+- (void)registerCellForTableView:(UITableView *)tableView{
     [tableView registerClass:[TLMomentHeaderCell class] forCellReuseIdentifier:@"TLMomentHeaderCell"];
     [tableView registerClass:[TLMomentImagesCell class] forCellReuseIdentifier:@"TLMomentImagesCell"];
     [tableView registerClass:[TLTableViewCell class] forCellReuseIdentifier:@"EmptyCell"];
 }
-
-#pragma mark - # Delegate
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+#pragma mark - 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.data.count + 1;
 }
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
         TLMomentHeaderCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TLMomentHeaderCell"];
         [cell setUser:[TLUserHelper sharedHelper].user];
@@ -290,15 +214,12 @@
     if (cell) {
         [cell setMoment:moment];
         [cell setDelegate:self];
-    }
-    else {
+    }else{
         cell = [tableView dequeueReusableCellWithIdentifier:@"EmptyCell"];
     }
     return cell;
 }
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
         return 260.0f;
     }
@@ -306,9 +227,7 @@
     TLMoment *moment = [self.data objectAtIndex:indexPath.row - 1];
     return (int)moment.momentFrame.height;
 }
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row > 0) {
         TLMoment *moment = [self.data objectAtIndex:indexPath.row - 1];
         TLMomentDetailViewController *detailVC = [[TLMomentDetailViewController alloc] init];
@@ -318,10 +237,8 @@
     }
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
-
 //MARK: TLMomentViewDelegate
-- (void)momentViewClickImage:(NSArray *)images atIndex:(NSInteger)index
-{
+- (void)momentViewClickImage:(NSArray *)images atIndex:(NSInteger)index{
     NSMutableArray *data = [[NSMutableArray alloc] initWithCapacity:images.count];
     for (NSString *imageUrl in images) {
         MWPhoto *photo = [MWPhoto photoWithURL:TLURL(imageUrl)];
@@ -333,5 +250,4 @@
     TLNavigationController *broserNavC = [[TLNavigationController alloc] initWithRootViewController:browser];
     [self presentViewController:broserNavC animated:NO completion:nil];
 }
-
 @end

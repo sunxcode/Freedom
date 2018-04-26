@@ -1,19 +1,12 @@
-//
 //  XFProfileViewController.m
-//  Weibo
-//
+//  Freedom
 //  Created by Fay on 15/9/13.
-//  Copyright (c) 2015年 Fay. All rights reserved.
-//
-
 #import "XFProfileViewController.h"
-
 #import "SWSettingViewController.h"
 @interface XFProfileViewController ()
 @property (nonatomic,assign,getter=isLogin) NSString *login;
 @end
 @implementation XFProfileViewController
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     //校验是否登录：未登录，需要显示登录注册
@@ -35,21 +28,15 @@
     }
     return _login;
 }
-
-/**
- *  初始化模型数据
- */
-- (void)setupGroups
-{
+/*初始化模型数据*/
+- (void)setupGroups{
     [self setupGroup0];
     [self setupGroup1];
     [self setupGroup2];
     [self setupGroup3];
     [self setupGroup4];
 }
-
-- (void)setupGroup0
-{
+- (void)setupGroup0{
     // 1.创建组
     SWCommonGroup *group = [SWCommonGroup group];
     [self.groups addObject:group];
@@ -62,9 +49,7 @@
     
     group.items = @[newFriend,renwu];
 }
-
-- (void)setupGroup1
-{
+- (void)setupGroup1{
     // 1.创建组
     SWCommonGroup *group = [SWCommonGroup group];
     [self.groups addObject:group];
@@ -73,7 +58,6 @@
     SWCommonArrowItem *album = [SWCommonArrowItem itemWithTitle:@"我的相册" icon:Palbum_g];
     album.subtitle = @"(100)";
     
-
     
     SWCommonArrowItem *like = [SWCommonArrowItem itemWithTitle:@"我的赞" icon:@"like"];
     like.subtitle = @"(36)";
@@ -81,8 +65,7 @@
     
     group.items = @[album, like];
 }
-- (void)setupGroup2
-{
+- (void)setupGroup2{
     // 1.创建组
     SWCommonGroup *group = [SWCommonGroup group];
     [self.groups addObject:group];
@@ -92,8 +75,7 @@
     SWCommonArrowItem *renwu = [SWCommonArrowItem itemWithTitle:@"微博运动" icon:@"new_friend"];
     group.items = @[newFriend,renwu];
 }
-- (void)setupGroup3
-{
+- (void)setupGroup3{
     // 1.创建组
     SWCommonGroup *group = [SWCommonGroup group];
     [self.groups addObject:group];
@@ -102,8 +84,7 @@
     
     group.items = @[newFriend];
 }
-- (void)setupGroup4
-{
+- (void)setupGroup4{
     // 1.创建组
     SWCommonGroup *group = [SWCommonGroup group];
     [self.groups addObject:group];
@@ -113,21 +94,16 @@
     collect.badgeValue = @"1";
     group.items = @[collect];
 }
-/**
- *  设置当前控制器的导航显示item
- */
-- (void)setupNavgationItem
-{
+/*设置当前控制器的导航显示item*/
+- (void)setupNavgationItem{
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"设置" style:UIBarButtonItemStyleDone target:self action:@selector(setting)];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"添加好友" style:UIBarButtonItemStyleDone target:self action:@selector(addFreinds)];
 }
-
 -(void)setting{
     SWSettingViewController *setting = [[SWSettingViewController alloc] init];
     [self.navigationController pushViewController:setting animated:YES];
     
 }
-
 - (void)addFreinds{
     DLog(@"添加朋友");
 }

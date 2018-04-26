@@ -1,16 +1,12 @@
-//
 //  PlayAudioViewController.m
 //  我的酷狗
+//  Created by Super on 16/8/29.
+//  Copyright © 2016年 Super. All rights reserved.
 //
-//  Created by 薛超 on 16/8/29.
-//  Copyright © 2016年 薛超. All rights reserved.
-//
-
 #import "PlayAudioViewController.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import "NSData+KRCParse.h"
-@interface KRC : NSObject
-{
+@interface KRC : NSObject{
     //FileStream fs;
     
     //头部4字节
@@ -25,15 +21,11 @@
     //UNZIP后数据
     NSData * UnzipBytes;
 }
-
 - (NSString *) Decode: (NSString * )filePath;
-
 @end
 @implementation KRC
-
 //异或加密 密钥
-- (NSString *) Decode: (NSString * )filePath
-{
+- (NSString *) Decode: (NSString * )filePath{
     NSString * EncKey = @"@Gaw^2tGQ61-ÎÒni";
     //char EncKey[] = { '@', 'G', 'a', 'w', '^', '2', 't', 'G', 'Q', '6', '1', '-', 'Î', 'Ò', 'n', 'i' };
     
@@ -63,50 +55,36 @@
     
     return s;
 }
-
 @end
-
 @interface LyricsUtil : NSObject
-
 //根据每行歌词得到相应行的给个字的时间点数组
 +(NSMutableArray *)timeArrayWithLineLyric:(NSString *)lineLyric;
-
 //得到每一行开始时间的数组
 +(NSMutableArray *)startTimeArrayWithLineLyric:(NSString *)lineLyric;
-
 //得到不带时间的歌词
 +(NSMutableString *)getLyricStringWithLyric:(NSString *)lineLyric;
-
 //得到歌词的总行
 +(int)getLyricLineNumWithLyric:(NSString *)lineLyric;
-
 //得到不带时间的歌词的数组
 +(NSMutableArray *)getLyricSArrayWithLyric:(NSString *)lineLyric;
-
 //得到每行歌词有多少个字的数组
 +(NSMutableArray *)getLineLyricWordNmuWithLyric:(NSString *)lineLyric;
-
 //得到最大行的字体个数
 +(int)getMaxLineNumWithArray:(NSMutableArray *)lineNumArray;
-
 @end
 // 版权属于原作者
 // http://code4app.com (cn) http://code4app.net (en)
 // 发布代码于最专业的源码分享网站: Code4App.com
-
 @implementation LyricsUtil
-
-
 //拿到krc歌词，返回每句歌词的当个字time组成的数据，只针对krc
-+(NSMutableArray *)timeArrayWithLineLyric:(NSString *)lineLyric
-{
++(NSMutableArray *)timeArrayWithLineLyric:(NSString *)lineLyric{
     //去掉前面没用的歌词
     NSRange LyricTillte = [lineLyric rangeOfString:@"[offset:0]"];
     NSString *LyricBody = [lineLyric substringFromIndex:LyricTillte.location+10];
     
     //把krc歌词每个单词的time的最后一个,0 去掉。
     NSString * lineLyricd= [LyricBody stringByReplacingOccurrencesOfString:@",0>" withString:@">"];
-    NSLog(@"%@",lineLyricd);
+    DLog(@"%@",lineLyricd);
     //最后返回的时间数组，包含每一行数组的数组
     NSMutableArray * timeArray = [[NSMutableArray alloc]init];
     //    //单个句歌词的时间数组
@@ -120,7 +98,7 @@
         //截取总时间以后的字符串，因为我要返回每个字的时间数组
         NSRange start = [lineArray[i] rangeOfString:@"]"];
         NSString *sub = [lineArray[i] substringFromIndex:start.location+1];
-        NSLog(@"%@", sub);
+        DLog(@"%@", sub);
         //把sub按>分成数组
         NSArray * array = [sub componentsSeparatedByString:@">"];
         for (int y = 0; y<array.count-1; y++) {
@@ -145,14 +123,12 @@
         [timeArray addObject:oneLineArray];
     }
     
-    NSLog(@"%@",timeArray);
+    DLog(@"%@",timeArray);
     
     return timeArray;
 }
-
 //得到每一行开始时间的数组,可根据时间判断换行
-+(NSMutableArray *)startTimeArrayWithLineLyric:(NSString *)lineLyric
-{
++(NSMutableArray *)startTimeArrayWithLineLyric:(NSString *)lineLyric{
     NSRange LyricTillte = [lineLyric rangeOfString:@"[offset:0]"];
     NSString *LyricBody = [lineLyric substringFromIndex:LyricTillte.location+10];
     
@@ -164,19 +140,17 @@
         NSRange start = [array[i] rangeOfString:@"["];
         NSRange end = [array[i] rangeOfString:@","];
         NSString *sub = [array[i] substringWithRange:NSMakeRange(start.location+1, end.location-start.location-1)];
-        NSLog(@"%@", sub);
+        DLog(@"%@", sub);
         
         [stratTimeArray addObject:sub];
         
     }
-    NSLog(@"%@",stratTimeArray);
+    DLog(@"%@",stratTimeArray);
     
     return stratTimeArray;
 }
-
 //得到不带时间的歌词
-+(NSMutableString *)getLyricStringWithLyric:(NSString *)lineLyric
-{
++(NSMutableString *)getLyricStringWithLyric:(NSString *)lineLyric{
     NSRange LyricTillte = [lineLyric rangeOfString:@"[offset:0]"];
     NSString *LyricBody = [lineLyric substringFromIndex:LyricTillte.location+10];
     
@@ -186,13 +160,13 @@
     
     for (int i=1; i<lineArray.count-1; i++) {
         NSArray * array = [lineArray[i] componentsSeparatedByString:@"<"];
-        NSLog(@"%@",array);
+        DLog(@"%@",array);
         NSString * lineStr = [NSString string];
         for (int y=1; y<array.count; y++) {
             NSRange start = [array[y] rangeOfString:@">"];
             NSString *sub1 = [array[y] substringFromIndex:start.location+1];
             lineStr = [lineStr stringByAppendingString:sub1];
-            NSLog( @"%@",sub1);
+            DLog( @"%@",sub1);
             
         }
         [LyricStr appendString:lineStr];
@@ -201,10 +175,8 @@
     }
     return LyricStr;
 }
-
 //得到不带时间的歌词的数组
-+(NSMutableArray *)getLyricSArrayWithLyric:(NSString *)lineLyric
-{
++(NSMutableArray *)getLyricSArrayWithLyric:(NSString *)lineLyric{
     NSRange LyricTillte = [lineLyric rangeOfString:@"[offset:0]"];
     NSString *LyricBody = [lineLyric substringFromIndex:LyricTillte.location+10];
     
@@ -214,13 +186,13 @@
     
     for (int i=1; i<lineArray.count-1; i++) {
         NSArray * array = [lineArray[i] componentsSeparatedByString:@"<"];
-        NSLog(@"%@",array);
+        DLog(@"%@",array);
         NSString * lineStr = [NSString string];
         for (int y=1; y<array.count; y++) {
             NSRange start = [array[y] rangeOfString:@">"];
             NSString *sub1 = [array[y] substringFromIndex:start.location+1];
             lineStr = [lineStr stringByAppendingString:sub1];
-            NSLog( @"%@",sub1);
+            DLog( @"%@",sub1);
             
         }
         [lyricSArray addObject:lineStr];
@@ -228,10 +200,8 @@
     }
     return lyricSArray;
 }
-
 //得到歌词的总行
-+(int)getLyricLineNumWithLyric:(NSString *)lineLyric
-{
++(int)getLyricLineNumWithLyric:(NSString *)lineLyric{
     NSRange LyricTillte = [lineLyric rangeOfString:@"[offset:0]"];
     NSString *LyricBody = [lineLyric substringFromIndex:LyricTillte.location+10];
     int lineNum;
@@ -240,10 +210,8 @@
     
     return lineNum;
 }
-
 //得到每行歌词有多少个字的数组
-+(NSMutableArray *)getLineLyricWordNmuWithLyric:(NSString *)lineLyric
-{
++(NSMutableArray *)getLineLyricWordNmuWithLyric:(NSString *)lineLyric{
     NSMutableArray * wordNumArray = [[NSMutableArray alloc]init];
     NSRange LyricTillte = [lineLyric rangeOfString:@"[offset:0]"];
     NSString *LyricBody = [lineLyric substringFromIndex:LyricTillte.location+10];
@@ -259,10 +227,8 @@
     
     return wordNumArray;
 }
-
 //得到最大行的字体个数
-+(int)getMaxLineNumWithArray:(NSMutableArray *)lineNumArray
-{
++(int)getMaxLineNumWithArray:(NSMutableArray *)lineNumArray{
     int max;
     
     max = [[lineNumArray valueForKeyPath:@"@max.intValue"] intValue];
@@ -270,33 +236,22 @@
     return max;
 }
 @end
-
 @interface LyricsAndTime : NSObject
 @property NSString *lyric;
 @property NSString *myTime;
 - (id)initWithLyrics:(NSString *)lyric andTime:(NSString *)time;
-
 - (NSString *)description;
-
 - (BOOL)islater:(LyricsAndTime *)obj;
-
 @end
-
 @interface KugouLyricsManage : NSObject
 @property NSMutableArray *arr;
 @property NSString *str;
 @property NSString *path;
-
 - (id)init;
-
 - (void)readFile;
-
 - (void)sort;
-
 - (void)play;
-
 @end
-
 @implementation LyricsAndTime
 - (id)initWithLyrics:(NSString *)lyric andTime:(NSString *)time{
     self = [super init];
@@ -306,24 +261,16 @@
     }
     return self;
 }
-
-- (NSString *)description
-{
+- (NSString *)description{
     NSString *str = [NSString stringWithFormat:@"%@  %@",_myTime,_lyric];
     return str;
 }
-
-- (BOOL)islater:(LyricsAndTime *)obj
-{
+- (BOOL)islater:(LyricsAndTime *)obj{
     return [self.myTime compare: obj.myTime]>0;
 }
-
 @end
-
 @implementation KugouLyricsManage
-
-- (id)init
-{
+- (id)init{
     self = [super init];
     if (self) {
         _arr = [[NSMutableArray alloc] init];
@@ -331,22 +278,20 @@
     }
     return self;
 }
-
-- (void)readFile
-{
+- (void)readFile{
     
     NSError *error;
     NSString *str = [NSString stringWithContentsOfFile:_path encoding:NSUTF8StringEncoding error:&error];
     if (error) {
-        NSLog(@"%@",error);
+        DLog(@"%@",error);
     }
     NSArray *arr = [[NSArray alloc] init];
     
     arr = [str componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"[]"]];
     //    for (id obj in arr) {
-    //        NSLog(@"%@",obj);
+    //        DLog(@"%@",obj);
     //    }
-    //    NSLog(@"%@",arr);
+    //    DLog(@"%@",arr);
     
     NSString *song = [arr[1] substringFromIndex:[arr[1]rangeOfString:@":"].location+1];
     NSString *singer = [arr[3] substringFromIndex:[arr[3]rangeOfString:@":"].location+1];
@@ -362,74 +307,50 @@
     }
     
     //    for (id obj in _arr) {
-    //        NSLog(@"%@",obj);
+    //        DLog(@"%@",obj);
     //    }
     
 }
-
-
-- (void)sort
-{
+- (void)sort{
     [_arr sortUsingSelector:@selector(islater:)];
     
     //    for (id obj in _arr) {
-    //        NSLog(@"%@",obj);
+    //        DLog(@"%@",obj);
     //    }
 }
-
-- (void)play
-{
-    NSLog(@"%@",_str);
+- (void)play{
+    DLog(@"%@",_str);
     float temp = 0;
     for (id obj in _arr) {
-        NSLog(@"%@",obj);
+        DLog(@"%@",obj);
         float x = [[obj myTime] intValue]*60 + [[[obj myTime] substringFromIndex:3] floatValue];
         sleep(x-temp);
         temp = x;
     }
 }
-
 @end
-
 @interface LyricsView : UIView
-
 @property (strong, nonatomic)  UILabel *textLable;
-
 @property (strong, nonatomic)  UILabel *maskLable;
-
 @property (nonatomic, strong) CALayer *maskLayer;//用来控制maskLabel渲染的layer
-
 - (void)setFont:(UIFont *)font;
-
 - (void)setText:(NSString *)text;
-
 - (void)setTextAlignment:(NSTextAlignment)textAlignment;
-
-/**
- *  根据设置显示动画
+/*根据设置显示动画
  *
  *  @param timeArray     数组的内容是各个时间点，第一个必须是0，最后一个必须是总时间
- *  @param locationArray 对应各个时间点的位置，值从0~1，第一个必须是0，最后一个必须是1
- */
+ *  @param locationArray 对应各个时间点的位置，值从0~1，第一个必须是0，最后一个必须是1*/
 - (void)startLyricsAnimationWithTimeArray:(NSArray *)timeArray andLocationArray:(NSArray *)locationArray;
-
 - (void)stopAnimation;
-
 - (void)reAnimation;
-
 - (void)setupDefault;
-
 @end
 // 版权属于原作者
 // http://code4app.com (cn) http://code4app.net (en)
 // 发布代码于最专业的源码分享网站: Code4App.com
-
 @interface LyricsView ()
-
 @end
-
 @implementation LyricsView
-
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
@@ -440,7 +361,6 @@
     }
     return self;
 }
-
 - (void)setupDefault {
     
     //self.textLable.backgroundColor = [UIColor redColor];
@@ -461,24 +381,20 @@
     
     
 }
-
 - (void)setFont:(UIFont *)font {
     self.textLable.font = font;
     self.maskLable.font = font;
 }
-
 ///定义两个lab的内容
 - (void)setText:(NSString *)text {
     self.textLable.text = text;
     self.maskLable.text = text;
 }
-
 //定义lab的字体的位置
 - (void)setTextAlignment:(NSTextAlignment)textAlignment {
     self.textLable.textAlignment = textAlignment;
     self.maskLable.textAlignment = textAlignment;
 }
-
 - (void)startLyricsAnimationWithTimeArray:(NSArray *)timeArray andLocationArray:(NSArray *)locationArray {
     //每行歌词的时间总长
     CGFloat totalDuration = [timeArray.lastObject floatValue]*1.0/1000;
@@ -500,8 +416,6 @@
     animation.removedOnCompletion = NO;
     [self.maskLayer addAnimation:animation forKey:@"MaskAnimation"];
 }
-
-
 - (void)stopAnimation {
     //[self pauseLayer:self.maskLayer];
     
@@ -509,10 +423,8 @@
     
     self.maskLayer=nil;
 }
-
 //暂停
--(void)pauseLayer:(CALayer*)layer
-{
+-(void)pauseLayer:(CALayer*)layer{
     CFTimeInterval pausedTime = [layer convertTime:CACurrentMediaTime() fromLayer:nil];
     
     // 让CALayer的时间停止走动
@@ -520,15 +432,11 @@
     // 让CALayer的时间停留在pausedTime这个时刻
     layer.timeOffset = pausedTime;
 }
-
-- (void)reAnimation
-{
+- (void)reAnimation{
     [self resumeLayer:self.maskLayer];
 }
-
 //恢复
--(void)resumeLayer:(CALayer*)layer
-{
+-(void)resumeLayer:(CALayer*)layer{
     CFTimeInterval pausedTime = layer.timeOffset;
     // 1. 让CALayer的时间继续行走
     layer.speed = 1.0;
@@ -541,16 +449,13 @@
     // 5. 设置相对于父坐标系的开始时间(往后退timeSincePause)
     layer.beginTime = timeSincePause;
 }
-
 #pragma mark - property
-
 - (UILabel *)textLable {
     if (!_textLable) {
         _textLable = [[UILabel alloc] initWithFrame:self.bounds];
     }
     return _textLable;
 }
-
 - (UILabel *)maskLable {
     if (!_maskLable) {
         _maskLable = [[UILabel alloc] initWithFrame:self.bounds];
@@ -561,7 +466,6 @@
 // 版权属于原作者
 // http://code4app.com (cn) http://code4app.net (en)
 // 发布代码于最专业的源码分享网站: Code4App.com
-
 @interface PlayAudioViewController()<AVAudioPlayerDelegate>{
     BOOL _isPlaying;
     //歌词
@@ -582,10 +486,8 @@
     int _maxNum;
     CGSize lineSize;
 }
-
 @property (nonatomic, strong) LyricsView *lyricsView;//歌词视图，里面是两个lab
 @property (nonatomic,weak) UIScrollView * backScrollView;//歌词滑动的ScrollView
-
 @end
 @implementation PlayAudioViewController
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
@@ -595,7 +497,6 @@
         _modelIndex = 0;
     }return self;
 }
-
 +(id)shared{
     static PlayAudioViewController* _sington=nil;
     if (_sington==nil) {
@@ -606,7 +507,6 @@
         _sington.view.transform = CGAffineTransformMakeRotation(M_PI/5.5);
     }return _sington;
 }
-
 - (void)viewDidLoad{
     [super viewDidLoad];
     [self.view setBackgroundColor:[UIColor clearColor]];
@@ -724,9 +624,7 @@
     [self getLyricsInfo];
     //创建ScrollView及其视图
     [self createBackScrollView];
-
 }
-
 //从本地读取全部歌曲
 - (void)readData{
     _arraySongs = [[NSMutableArray alloc] init];
@@ -736,7 +634,7 @@
     //    NSString *path = [NSHomeDirectory() stringByAppendingString:@"/GKMusic.app"];
     //深度遍历(会去遍历当前目录下的子目录里的文件)
     NSArray *array = [fm subpathsOfDirectoryAtPath:DOCUMENTS_FOLDER error:nil];
-    //    NSLog(@"%@",array);
+    //    DLog(@"%@",array);
     for (NSString *str in array) {
         if ([str hasSuffix:@"mp3"]) {
             NSString *str2 = [str substringToIndex:[str rangeOfString:@".mp3"].location];
@@ -762,7 +660,6 @@
         [self readMusic];
     }
 }
-
 //读取指定歌曲
 - (void)readMusic{
     _labelSong.text = _arraySongs[_index];
@@ -778,7 +675,7 @@
     int sec = duration - min*60;
     _label4.text = [NSString stringWithFormat:@"%02d:%02d",min,sec];
     BOOL isReady = [_audioPlayer prepareToPlay];
-    NSLog(@"isReady = %d",isReady);
+    DLog(@"isReady = %d",isReady);
     if (!isReady) {
         if (_isNext) {
             [self fastForward];
@@ -789,10 +686,7 @@
     // 在锁屏界面显示歌曲信息
     [self showInfoInLockedScreen];
 }
-
-/**
- *  在锁屏界面显示歌曲信息
- */
+/*在锁屏界面显示歌曲信息*/
 - (void)showInfoInLockedScreen{
     NSMutableDictionary *info = [NSMutableDictionary dictionary];
     // 标题(音乐名称)
@@ -840,8 +734,7 @@
         _timer = [NSTimer timerWithTimeInterval:0.1 target:self selector:@selector(updateLyrics:) userInfo:nil repeats:YES];
         NSRunLoop *runloop=[NSRunLoop currentRunLoop];
         [runloop addTimer:_timer forMode:NSRunLoopCommonModes];
-    }
-    else {
+    }else{
         //开启定时器
         [_timer setFireDate:[NSDate distantPast]];
     }
@@ -856,7 +749,6 @@
     _lyricsLB.text = _lrc.str;
     _lyricsLB.textColor = [UIColor greenColor];
 }
-
 //播放/暂停 按钮
 - (void)play{
     if (!_haveMusic) {
@@ -879,7 +771,6 @@
         if (self.lyricsView.maskLayer == nil) {
             [self.lyricsView setupDefault];
         }
-
         NSArray *arrayItems = [NSArray arrayWithObjects:_btnModel,_btnSpace,_btnRewind,_btnSpace,_btnPause,_btnSpace,_btnFastForward,_btnSpace,_btnStop,_btnSpace, nil];
         _toolBar.items = arrayItems;
         [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(updateTimer:) userInfo:nil repeats:YES];
@@ -945,8 +836,7 @@
         if (c) {
             [self play];
         }
-    }
-    else {
+    }else{
         _index++;
         if (_index == _arraySongs.count) {
             _index = 0;
@@ -986,14 +876,12 @@
             float y = [[_lrc.arr[i+1] myTime] intValue]*60 + [[[_lrc.arr[i+1] myTime] substringFromIndex:3] floatValue];
             if (_audioPlayer.currentTime >= x && _audioPlayer.currentTime < y) {
                 index = i;
-            }
-            else if (_audioPlayer.currentTime >= y) {
+            }else if (_audioPlayer.currentTime >= y) {
                 index = i + 1;
             }
         }
     }
 }
-
 //滑动进度条
 - (void)progressChange:(UISlider *)slider{
     if (!_haveMusic) {
@@ -1029,7 +917,6 @@
 //    [MMProgressHUD showWithStatus:_btnModel.title];
 //    [MMProgressHUD dismissWithSuccess:nil];
 }
-
 //列表循环
 - (void)model01{
     [self fastForward];
@@ -1055,12 +942,10 @@
 - (void)model05{
     [self fastForward];
 }
-
 #pragma mark - AVAudioPlayerDelegate
-
 //一曲放完结束后
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag{
-     NSLog(@"播放结束");
+     DLog(@"播放结束");
     switch (_modelIndex) {
         case 0:[self model01];return;
         case 1:[self model02];return;
@@ -1069,26 +954,18 @@
         case 4:[self model05];return;
     }
 }
-
-/**
- *  音乐播放器被打断(打\接电话)
- */
+/*音乐播放器被打断(打\接电话)*/
 - (void)audioPlayerBeginInterruption:(AVAudioPlayer *)player{
       [_audioPlayer stop];//暂停而不是停止
-    NSLog(@"audioPlayerBeginInterruption---被打断");
+    DLog(@"audioPlayerBeginInterruption---被打断");
 }
-
-/**
- *  音乐播放器停止打断(打\接电话)
- */
+/*音乐播放器停止打断(打\接电话)*/
 - (void)audioPlayerEndInterruption:(AVAudioPlayer *)player withOptions:(NSUInteger)flags{
-    NSLog(@"audioPlayerEndInterruption---停止打断");
+    DLog(@"audioPlayerEndInterruption---停止打断");
     if (_isPlaying) {
         [player play];//继续播放
     }
 }
-
-
 //直接收回页面
 - (void)pressBack{
     [UIView animateWithDuration:0.3 animations:^{
@@ -1100,11 +977,9 @@
      } completion:^(BOOL finished) {
      }];
 }
-
 - (void)pressList{
     
 }
-
 - (void)panGestureRecognizer:(UIPanGestureRecognizer *)recoginzer{
     CGPoint touchPoint = [recoginzer locationInView:[[UIApplication sharedApplication] keyWindow]];
     if (recoginzer.state == UIGestureRecognizerStateBegan){
@@ -1147,13 +1022,10 @@
     if (_isMoving)
         [self moveViewWithX:touchPoint.x - _startTouch.x];
 }
-
-- (void)moveViewWithX:(float)x
-{
+- (void)moveViewWithX:(float)x{
     double r = M_PI/6 * (x/320);
     self.view.transform = CGAffineTransformMakeRotation(r);
 }
-
 #pragma mark 以下是逐词播放
 -(void)getLyricsInfo{
     //得到没句的时间
@@ -1168,7 +1040,6 @@
     _wordNumArray = [LyricsUtil getLineLyricWordNmuWithLyric:_lyrics];
     _maxNum = [LyricsUtil getMaxLineNumWithArray:_wordNumArray];
 }
-
 -(void)createBackScrollView{
     UIScrollView * backScrollView = [[UIScrollView alloc]init];
     self.backScrollView = backScrollView;
@@ -1219,7 +1090,6 @@
     [lyricsView.maskLable setFrame:CGRectMake(APPW/2-size.width/2, 0, size.width, size.height)];
     [lyricsView.textLable setFrame:CGRectMake(APPW/2-size.width/2, 0, size.width, size.height)];
 }
-
 //判断换行
 -(void)changeTime{
     for (int i=0; i<_startTimeArray.count; i++) {

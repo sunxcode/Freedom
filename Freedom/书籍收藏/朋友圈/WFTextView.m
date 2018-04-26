@@ -1,11 +1,6 @@
-//
 //  WFTextView.m
 //  WFCoretext
-//
-//  Created by 阿虎 on 14/10/31.
-//  Copyright (c) 2014年 tigerwf. All rights reserved.
-//
-
+//  Created by Super on 14/10/31.
 #import "WFTextView.h"
 #import "ContantHead.h"
 #import <CoreText/CoreText.h>
@@ -13,16 +8,12 @@
 #import "NSArray+NSArray_ILExtension.h"
 #import "NSString+NSString_ILExtension.h"
 #import "WFHudView.h"
-
 #define FontHeight                  15.0
 #define ImageLeftPadding            2.0
 #define ImageTopPadding             3.0
 #define FontSize                    FontHeight
 #define LineSpacing                 10.0
 #define EmotionImageWidth           FontSize
-
-
-
 @implementation WFTextView{
     
     NSString *_oldString;//未替换含有如[em:02:]的字符串
@@ -33,11 +24,8 @@
     CTTypesetterRef typesetter;
     CTFontRef helvetica;
 }
-
 @synthesize isDraw = _isDraw;
-
-- (id)initWithFrame:(CGRect)frame
-{
+- (id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
         
@@ -57,29 +45,21 @@
     }
     return self;
 }
-
 - (void)dealloc{
     
     if (typesetter != NULL) {
         
         CFRelease(typesetter);
     }
-
 }
-
 - (void)setTextColor:(UIColor *)textColor{
-
     _textColor = textColor;
 }
-
 - (void)setOldString:(NSString *)oldString andNewString:(NSString *)newString{
-
     _oldString = oldString;
     _newString = newString;
     [self cookEmotionString];
 }
-
-
 #pragma mark -
 - (void)cookEmotionString{
     
@@ -107,16 +87,13 @@
     [self setNeedsDisplay];
     
 }
-
 #pragma mark -
-/**
- *  根据调整后的字符串，生成绘图时使用的 attribute string
+/*根据调整后的字符串，生成绘图时使用的 attribute string
  *
  *  @param ranges  占位符的位置数组
  *  @param aString 替换过含有如[em:02:]的字符串
  *
- *  @return 富文本String
- */
+ *  @return 富文本String*/
 - (NSAttributedString *)createAttributedEmotionStringWithRanges:(NSArray *)ranges
                                                       forString:(NSString*)aString{
    
@@ -148,14 +125,12 @@
     
     return attrString;
 }
-
 // 通过表情名获得表情的图片
 - (UIImage *)getEmotionForKey:(NSString *)key{
     
     NSString *nameStr = [NSString stringWithFormat:@"%@.png",key];
     return [UIImage imageNamed:nameStr];
 }
-
 CTRunDelegateRef newEmotionRunDelegate(){
     
     static NSString *emotionRunName = @"emotionRunName";
@@ -171,25 +146,20 @@ CTRunDelegateRef newEmotionRunDelegate(){
     
     return runDelegate;
 }
-
 #pragma mark - Run delegate
 void WFRunDelegateDeallocCallback( void* refCon ){
    // CFRelease(refCon);
 }
-
 CGFloat WFRunDelegateGetAscentCallback( void *refCon ){
     return FontHeight;
 }
-
 CGFloat WFRunDelegateGetDescentCallback(void *refCon){
     return 0.0;
 }
-
 CGFloat WFRunDelegateGetWidthCallback(void *refCon){
     // EmotionImageWidth + 2 * ImageLeftPadding
     return  19.0;
 }
-
 #pragma mark - 绘制
 - (void)drawRect:(CGRect)rect{
     // 没有内容时取消本次绘制
@@ -201,7 +171,7 @@ CGFloat WFRunDelegateGetWidthCallback(void *refCon){
     UIGraphicsPushContext(context);
     
     // 翻转坐标系
-    Flip_Context(context, FontHeight);
+Flip_Context(context, FontHeight);
     
     CGFloat y = 0;
     CFIndex start = 0;
@@ -227,36 +197,28 @@ CGFloat WFRunDelegateGetWidthCallback(void *refCon){
         if (tempK == limitline) {
             
             _limitCharIndex = start;
-          //  NSLog(@"limitCharIndex = %ld",self.limitCharIndex);
+          //  DLog(@"limitCharIndex = %ld",self.limitCharIndex);
         }
         
     }
     
     UIGraphicsPopContext();
 }
-
-
 // 翻转坐标系
 static inline
-void Flip_Context(CGContextRef context, CGFloat offset) // offset为字体的高度
-{
+void Flip_Context(CGContextRef context, CGFloat offset){// offset为字体的高度
     CGContextScaleCTM(context, 1, -1);
     CGContextTranslateCTM(context, 0, -offset);
 }
-
 // 生成每个表情的 frame 坐标
 static inline
-CGPoint Emoji_Origin_For_Line(CTLineRef line, CGPoint lineOrigin, CTRunRef run)
-{
+CGPoint Emoji_Origin_For_Line(CTLineRef line, CGPoint lineOrigin, CTRunRef run){
     CGFloat x = lineOrigin.x + CTLineGetOffsetForStringIndex(line, CTRunGetStringRange(run).location, NULL) + ImageLeftPadding;
     CGFloat y = lineOrigin.y - ImageTopPadding;
     return CGPointMake(x, y);
 }
-
-
 // 绘制每行中的表情
-void Draw_Emoji_For_Line(CGContextRef context, CTLineRef line, id owner, CGPoint lineOrigin)
-{
+void Draw_Emoji_For_Line(CGContextRef context, CTLineRef line, id owner, CGPoint lineOrigin){
     CFArrayRef runs = CTLineGetGlyphRuns(line);
     
     // 统计有多少个run
@@ -278,8 +240,6 @@ void Draw_Emoji_For_Line(CGContextRef context, CTLineRef line, id owner, CGPoint
         }
     }
 }
-
-
 - (float)getTextHeight{
     
     CGFloat w = CGRectGetWidth(self.frame);
@@ -303,8 +263,6 @@ void Draw_Emoji_For_Line(CGContextRef context, CTLineRef line, id owner, CGPoint
     
     return -y;
 }
-
-
 #pragma mark - 获得行数
 - (int)getTextLines{
     
@@ -327,7 +285,6 @@ void Draw_Emoji_For_Line(CGContextRef context, CTLineRef line, id owner, CGPoint
     return textlines;
     
 }
-
 - (void)manageGesture:(UIGestureRecognizer *)gesture gestureType:(GestureType)gestureType{
     
     CGPoint point = [gesture locationInView:self];
@@ -395,13 +352,9 @@ void Draw_Emoji_For_Line(CGContextRef context, CTLineRef line, id owner, CGPoint
     
     DELAYEXECUTE(0.3, [_selectionsViews makeObjectsPerformSelector:@selector(removeFromSuperview)]);
     
-
-
 }
-
 #pragma mark - 长按自己
 - (void)longPressMyself:(UILongPressGestureRecognizer *)gesture{
-
     if (gesture.state == UIGestureRecognizerStateBegan) {
         [self manageGesture:gesture gestureType:LongGesType];
     }
@@ -411,20 +364,16 @@ void Draw_Emoji_For_Line(CGContextRef context, CTLineRef line, id owner, CGPoint
     }
     
 }
-
-
 #pragma mark -点击自己
 - (void)tapMyself:(UITapGestureRecognizer *)gesture{
     
     [self manageGesture:gesture gestureType:TapGesType];
 }
-
 - (BOOL)judgeIndexInSelectedRange:(CFIndex) index withWorkLine:(CTLineRef)workctLine{
     
     for (int i = 0; i < _attributedData.count; i ++) {
         
         NSString *key = [[[_attributedData objectAtIndex:i] allKeys] objectAtIndex:0];
-
         NSRange keyRange = NSRangeFromString(key);
         if (index>=keyRange.location && index<= keyRange.location + keyRange.length) {
             if (_isFold) {
@@ -448,7 +397,6 @@ void Draw_Emoji_For_Line(CGContextRef context, CTLineRef line, id owner, CGPoint
     
     return NO;
 }
-
 - (NSMutableArray *)getSelectedCGRectWithClickRange:(NSRange)tempRange{
     
     NSMutableArray *clickRects = [[NSMutableArray alloc] init];
@@ -486,7 +434,6 @@ void Draw_Emoji_For_Line(CGContextRef context, CTLineRef line, id owner, CGPoint
     return clickRects;
     
 }
-
 //超出1行 处理
 - (NSRange)rangeIntersection:(NSRange)first withSecond:(NSRange)second{
     
@@ -505,8 +452,6 @@ void Draw_Emoji_For_Line(CGContextRef context, CTLineRef line, id owner, CGPoint
     }
     return result;
 }
-
-
 - (void)drawViewFromRects:(NSArray *)array withDictValue:(NSString *)value{
     //用户名可能超过1行的内容 所以记录在数组里，有多少元素 就有多少view
     // selectedViewLinesF = array.count;
@@ -523,8 +468,6 @@ void Draw_Emoji_For_Line(CGContextRef context, CTLineRef line, id owner, CGPoint
     }
     
 }
-
-
 - (void)clickAllContext{
     
     UIView *myselfSelected = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
@@ -538,9 +481,7 @@ void Draw_Emoji_For_Line(CGContextRef context, CTLineRef line, id owner, CGPoint
             [[self viewWithTag:10102] removeFromSuperview];
         }
     });
-
 }
-
 - (void)longClickAllContext{
    
     UIView *myselfSelected = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
@@ -552,18 +493,11 @@ void Draw_Emoji_For_Line(CGContextRef context, CTLineRef line, id owner, CGPoint
     }else{
         [_delegate longClickWFCoretext:@"" replyIndex:_replyIndex];
     }
-
 }
-
 - (void)removeLongClickArea{
-
     if ([self viewWithTag:10102]) {
         [[self viewWithTag:10102] removeFromSuperview];
     }
-
     [WFHudView showMsg:@"复制成功" inView:nil];
 }
-
-
-
 @end

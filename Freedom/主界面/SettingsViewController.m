@@ -1,9 +1,7 @@
-//
 //  SettingsViewController.m
 //  Freedom
-//
-//  Created by 薛超 on 16/6/24.
-//  Copyright © 2016年 薛超. All rights reserved.
+//  Created by Super on 16/6/24.
+//  Copyright © 2016年 Super. All rights reserved.
 #import "SettingsViewController.h"
 @interface SettingsViewController ()<UITableViewDelegate,UITableViewDataSource>{
     UITableView *tableView1;
@@ -19,9 +17,10 @@
     tableView1.backgroundColor = [UIColor clearColor];
     tableView1.tableHeaderView = [self getheadView];
     tableView1.showsVerticalScrollIndicator = NO;
+    tableView1.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:tableView1];
     ElasticTransition *ET = (ElasticTransition*)self.transitioningDelegate;
-    NSLog(@"\ntransition.edge = %@\ntransition.transformType = %@\ntransition.sticky = %@\ntransition.showShadow = %@", [HelperFunctions typeToStringOfEdge:ET.edge], [ET transformTypeToString], ET.sticky ? @"YES" : @"NO", ET.showShadow ? @"YES" : @"NO");
+    DLog(@"\ntransition.edge = %@\ntransition.transformType = %@\ntransition.sticky = %@\ntransition.showShadow = %@", [HelperFunctions typeToStringOfEdge:ET.edge], [ET transformTypeToString], ET.sticky ? @"YES" : @"NO", ET.showShadow ? @"YES" : @"NO");
 }
 -(id)initWithCoder:(NSCoder *)aDecoder{
     self = [super initWithCoder:aDecoder];
@@ -34,7 +33,6 @@
 }
 -(UIView *)getheadView{
     UIView *headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPW*0.8, 200)];
-//    headView.backgroundColor = [UIColor yellowColor];
     return headView;
 }
 #pragma mark - Table view data source
@@ -55,5 +53,8 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 80;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 @end

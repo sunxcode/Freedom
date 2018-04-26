@@ -1,28 +1,19 @@
-//
 //  DetailScrollViewController.m
-//  B5MDetailFramework
-//
+//  Freedom
 //  Created by boguang on 15/8/21.
-//  Copyright (c) 2015年 micker. All rights reserved.
-//
-
 #import "DetailScrollViewController.h"
 #import "DetailView.h"
 #import "UIImage+expanded.h"
-
 static NSString *titles[] = {@"图文详情",@"商品评论",@"店铺推荐"};
 static NSString *urls[] = {
     @"http://m.b5m.com/item.html?tid=2614676&mps=____&type=content",
     @"http://m.b5m.com/item.html?tid=2614676&mps=____&type=comment",
     @"http://m.baidu.com"};
-
 @interface DetailScrollViewController () <DetailViewSectionDelegate, UIScrollPageControlViewDelegate>
 @property (nonatomic, strong) DetailView *detailView;
 @property (nonatomic, strong) UIScrollView *scrollView;
 @end
-
 @implementation DetailScrollViewController
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -33,12 +24,9 @@ static NSString *urls[] = {
     [self.detailView reloadData];
     [_scrollView setContentSize:CGSizeMake(self.view.bounds.size.width, (self.view.bounds.size.height - 64) * 2)];
 }
-
 - (void) dealloc {
-    NSLog(@"DetailScrollViewController dealloc");
-
+    DLog(@"DetailScrollViewController dealloc");
 }
-
 - (DetailView *) detailView {
     if (!_detailView) {
         _detailView = [[DetailView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height-64)];
@@ -47,7 +35,6 @@ static NSString *urls[] = {
     }
     return _detailView;
 }
-
 - (UIScrollView *) scrollView {
     if (!_scrollView) {
         _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-64)];
@@ -65,14 +52,10 @@ static NSString *urls[] = {
     }
     return _scrollView;
 }
-
-
 #pragma mark UIScrollPageControlViewDelegate
-
 - (NSUInteger) numberOfView:(UIScrollPageControlView *) control {
     return 10;
 }
-
 - (UIView *) configItemOfControl:(UIScrollPageControlView *) control at:(NSUInteger) index  {
     UIImageView *cellItem = (UIImageView *)[control dequeueReusableViewWithIdentifier:@"reuse"];
     NSString *reuse = @"复用来的";
@@ -97,29 +80,20 @@ static NSString *urls[] = {
     label.text = [NSString stringWithFormat:@"item = %ld || reuse = %@", index,reuse];
     return cellItem;
 }
-
-
 #pragma mark DetailViewSectionDelegate
-
-
 - (UIView *) viewAtTop {
     return self.scrollView;
 }
-
 - (NSUInteger ) numberOfSections {
     return 3;
 }
-
-
 - (NSString *) titleOfSectionAt:(NSUInteger )index {
     return titles[index];
 }
-
 - (UIView *) viewOfSectionAt:(NSUInteger ) index {
     UIWebView *webview = [[UIWebView alloc] initWithFrame:CGRectZero];
     return webview;
 }
-
 - (void) didChangeToSection:(NSUInteger) index view:(UIView *) view {
     NSString *url = urls[index];
     UIWebView *webView = (UIWebView *) view;
@@ -128,6 +102,4 @@ static NSString *urls[] = {
         [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
     }
 }
-
-
 @end

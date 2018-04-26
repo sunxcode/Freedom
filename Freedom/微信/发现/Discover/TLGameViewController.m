@@ -1,17 +1,9 @@
-//
 //  TLGameViewController.m
-//  TLChat
-//
-//  Created by 李伯坤 on 16/3/4.
-//  Copyright © 2016年 李伯坤. All rights reserved.
-//
-
+//  Freedom
+//  Created by Super on 16/3/4.
 #import "TLGameViewController.h"
-
 @implementation TLGameViewController
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
     [self setUseMPageTitleAsNavTitle:NO];
     [self setShowLoadingProgress:NO];
@@ -25,28 +17,21 @@
     
     [SVProgressHUD showWithStatus:@"加载中"];
 }
-
-- (void)viewWillDisappear:(BOOL)animated
-{
+- (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     if ([SVProgressHUD isVisible]) {
         [SVProgressHUD dismiss];
     }
 }
-
 #pragma mark - Delegate -
-- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation
-{
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
     if ([SVProgressHUD isVisible]) {
         [SVProgressHUD dismiss];
     }
     [super webView:webView didFinishNavigation:navigation];
 }
-
 #pragma mark - Event Response
-- (void) rightBarButtonDown:(UIBarButtonItem *)sender
-{
+- (void) rightBarButtonDown:(UIBarButtonItem *)sender{
     
 }
-
 @end

@@ -1,33 +1,20 @@
-//
 //  TLPrivacySettingViewController.m
-//  TLChat
-//
-//  Created by 李伯坤 on 16/2/10.
-//  Copyright © 2016年 李伯坤. All rights reserved.
-//
-
+//  Freedom
+// Created by Super
 #import "TLPrivacySettingViewController.h"
 #import "TLSettingGroup.h"
-
 @interface TLPrivacySettingHelper : NSObject
-
 @property (nonatomic, strong) NSMutableArray *minePrivacySettingData;
-
 @end
-
 @implementation TLPrivacySettingHelper
-
-- (id) init
-{
+- (id) init{
     if (self = [super init]) {
         self.minePrivacySettingData = [[NSMutableArray alloc] init];
         [self p_initTestData];
     }
     return self;
 }
-
-- (void) p_initTestData
-{
+- (void) p_initTestData{
     TLSettingItem *item1 = TLCreateSettingItem(@"加我为好友时需要验证");
     item1.type = TLSettingItemTypeSwitch;
     TLSettingGroup *group1 = TLCreateSettingGroup(@"通讯录", nil, @[item1]);
@@ -61,17 +48,11 @@
     
     [self.minePrivacySettingData addObjectsFromArray:@[group1, group2, group3, group4, group5, group6, group7]];
 }
-
 @end
-
 @interface TLPrivacySettingViewController ()
-
 @property (nonatomic, strong) TLPrivacySettingHelper *helper;
-
 @end
-
 @implementation TLPrivacySettingViewController
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationItem setTitle:@"隐私"];
@@ -79,5 +60,4 @@
     self.helper = [[TLPrivacySettingHelper alloc] init];
     self.data = self.helper.minePrivacySettingData;
 }
-
 @end

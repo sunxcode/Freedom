@@ -1,9 +1,7 @@
-//
 //  TaobaoMiniTopicViewController.m
-//  Created by 薛超 on 17/1/11.
-//  Copyright © 2017年 薛超. All rights reserved.
+//  Created by Super on 17/1/11.
+//  Copyright © 2017年 Super. All rights reserved.
 //
-
 #import "TaobaoMiniTopicViewController.h"
 #import <XCategory/UILabel+expanded.h>
 @interface TaobaoMiniTopicViewCell:BaseTableViewCell{
@@ -23,7 +21,7 @@
 }
 -(void)setDataWithDict:(NSDictionary *)dict{
     self.icon.image = [UIImage imageNamed:@"mini5"];
-    self.title.text = @"#韩国年度榜#";
+    self.title.text = @"韩国年度榜";
     self.script.text = @"主持人：全球购买手小队长";
     sees.text = @"热度：79570  参与人：100";
 }
@@ -62,6 +60,4 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
 }
-
 @end
-

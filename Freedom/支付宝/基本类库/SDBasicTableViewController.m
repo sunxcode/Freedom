@@ -1,11 +1,6 @@
-//
 //  SDBasicTableViewController.m
 //  GSD_ZHIFUBAO
-//
-//  Created by aier on 15-6-4.
-//  Copyright (c) 2015年 GSD. All rights reserved.
-//
-
+//  Created by Super on 15-6-4.
 /*
  
  *********************************************************************************
@@ -17,16 +12,11 @@
  * GitHub: https://github.com/gsdios
  *
  *********************************************************************************
- 
  */
-
 #import "SDBasicTableViewController.h"
 #import "SDBasicTableViewControllerCell.h"
-
 @implementation SDBasicTableViewController
-
-- (instancetype)init
-{
+- (instancetype)init{
     if (self = [super init]) {
         _refreshMode = SDBasicTableViewControllerRefeshModeNone;
         _sectionsNumber = 1;
@@ -34,9 +24,7 @@
     }
     return self;
 }
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
     
     self.tableView.backgroundColor = [UIColor colorWithRed:(245 / 255.0) green:(245 / 255.0) blue:(245 / 255.0) alpha:1];
@@ -47,24 +35,18 @@
     [self setupRefreshMode];
     
 }
-
-- (void)setDataArray:(NSArray *)dataArray
-{
+- (void)setDataArray:(NSArray *)dataArray{
     _dataArray = dataArray;
     
     [self.tableView reloadData];
     [self.tableView registerClass:self.cellClass forCellReuseIdentifier:[self.cellClass description]];
 }
-
-- (void)setRefreshMode:(SDBasicTableViewControllerRefeshMode)refreshMode
-{
+- (void)setRefreshMode:(SDBasicTableViewControllerRefeshMode)refreshMode{
     _refreshMode = refreshMode;
     
     [self setupRefreshMode];
 }
-
-- (void)setupRefreshMode
-{
+- (void)setupRefreshMode{
     switch (_refreshMode) {
         case SDBasicTableViewControllerRefeshModeNone:
         {
@@ -90,22 +72,15 @@
             break;
     }
 }
-
 #pragma mark - data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return self.sectionsNumber;
 }
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     NSInteger number = (self.sectionsNumber == 1) ? self.dataArray.count : [self.dataArray[section] count];
     return number;
 }
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     SDBasicTableViewControllerCell *cell = [tableView dequeueReusableCellWithIdentifier:[self.cellClass description]];
     if (!cell) {
         cell = [[self.cellClass alloc] init];
@@ -117,12 +92,8 @@
     }
     return cell;
 }
-
 #pragma mark - funcs for subControllers rewrite
-
-- (void)pullDownRefreshOperation
-{
+- (void)pullDownRefreshOperation{
     
 }
-
 @end

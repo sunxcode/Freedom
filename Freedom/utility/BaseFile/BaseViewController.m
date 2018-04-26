@@ -96,7 +96,6 @@
         }
     }
 }
-
 #pragma mark - Actions
 - (void)backToHomeViewController{
     NSArray *controllers = [(UITabBarController*)[(UIWindow*)[[UIApplication sharedApplication] windows][0] rootViewController] viewControllers];//首页的controllers
@@ -173,7 +172,6 @@
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath{
     return self.tableView.canMoveRow;
 }
-
 #pragma mark  子类重写
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     DLog(@"请子类重写这个方法");
@@ -192,7 +190,7 @@
     }];
     // 2 添加一个置顶按钮
     UITableViewRowAction *topRowAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"置顶" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
-        NSLog(@"点击了置顶");
+        DLog(@"点击了置顶");
         [self.tableView.dataArray exchangeObjectAtIndex:indexPath.row withObjectAtIndex:0];
         NSIndexPath *firstIndexPath = [NSIndexPath indexPathForRow:0 inSection:indexPath.section];
         [tableView moveRowAtIndexPath:indexPath toIndexPath:firstIndexPath];
@@ -249,7 +247,6 @@
 - (BOOL)collectionView:(UICollectionView *)collectionView canMoveItemAtIndexPath:(NSIndexPath *)indexPath{
     return self.collectionView.canMoveRow;
 }
-
 //子类重写
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
       DLog(@"请子类重写这个方法");
@@ -260,7 +257,7 @@
 #pragma mark -Notify
 -(void) reachabilityChanged:(NSNotification*) notification{
     if ([(Reachability*)[notification object] currentReachabilityStatus] == ReachableViaWiFi) {
-        NSLog(@"网络状态改变了.");
+        DLog(@"网络状态改变了.");
     }
 }
 #pragma mark others
@@ -270,7 +267,6 @@
 - (void)readData {
     self.items = [NSMutableArray arrayWithArray:[User getControllerData]];
 }
-
 -(void)radialMenu:(CKRadialMenu *)radialMenu didSelectPopoutWithIndentifier:(NSString *)identifier{
     DLog(@"代理通知发现点击了控制器%@", identifier);
     int a = [identifier intValue];

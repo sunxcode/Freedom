@@ -1,11 +1,6 @@
-//
 //  CKRadialView.m
-//  CKRadialMenu
-//
-//  Created by Cameron Klein on 12/7/14.
-//  Copyright (c) 2014 Cameron Klein. All rights reserved.
-//
-
+//  Freedom
+//  Created by Freedom on 12/7/14.
 #import "CKRadialMenu.h"
 #import "FirstViewController.h"
 #import "UIView+expanded.h"
@@ -44,7 +39,6 @@
   }
   return self;
 }
-
 #pragma mark 关于中间的按钮
 - (void) setCenterView:(UIView *)centerView {
     if (!centerView) {
@@ -176,7 +170,6 @@
     popoutView.center = CGPointMake(self.bounds.origin.x + self.bounds.size.width/2,self.bounds.origin.y + self.bounds.size.height/2);
     [self addSubview:popoutView];
     [self sendSubviewToBack:popoutView];
-
     va_list ap;
     va_start(ap, popoutView);
     UIView *akey=va_arg(ap,id);
@@ -219,7 +212,6 @@
   view.layer.shadowOffset = CGSizeMake(0, 3);
   return view;
 }
-
 - (UIView *) makeDefaultPopupView {
   UIView *view = [UIView new];
   view.frame = CGRectMake(0, 0, self.frame.size.width/1.5, self.frame.size.height / 1.5);
@@ -232,16 +224,13 @@
     view.backgroundColor = redcolor;
   return view;
 }
-
 #pragma mark Helper Methods
-
 - (CGAffineTransform) getTransformForPopupViewAtIndex: (NSInteger) index {
   CGFloat newAngle = self.startAngle + (self.distanceBetweenPopouts * index);
   CGFloat deltaY = -self.distanceFromCenter * cos(newAngle/ 180.0 * M_PI);
   CGFloat deltaX = self.distanceFromCenter * sin(newAngle/ 180.0 * M_PI);
   return CGAffineTransformMakeTranslation(deltaX, deltaY);
 }
-
 - (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event{
   if (CGRectContainsPoint(self.bounds, point)) {
     return true;
@@ -253,7 +242,6 @@
   }
   return false;
 }
-
 - (void) enableDevelopmentMode {
   UIView *positionView = [UIView new];
   CGRect screenRect = [UIScreen mainScreen].bounds;
@@ -309,7 +297,6 @@
   }
   
 }
-
 -(void) didPanPopout:(UIPanGestureRecognizer *)sender {
   UIView *view = sender.view;
   NSInteger i = [self.popoutViews indexOfObject:view];
@@ -335,7 +322,6 @@
     // Change Position of Views
     view.center = point;
     view.transform = CGAffineTransformIdentity;
-
     NSInteger i = 0;
     for (UIView *subView in self.popoutViews) {
       if (subView != view) {
@@ -353,7 +339,6 @@
     }
   }
 }
-
 - (void)distanceSliderChanged:(UISlider *)sender {
   if (!self.menuIsExpanded){
     [self expand];
@@ -366,16 +351,12 @@
     i++;
   }
 }
-
 - (void)staggerSliderChanged:(UISlider *)sender {
   self.stagger = sender.value;
   self.staggerLabel.text = [NSString stringWithFormat:@"动画时间间距: %.02f", self.stagger];
 }
-
 - (void)durationSliderChanged:(UISlider *)sender {
   self.animationDuration = sender.value;
   self.animationLabel.text = [NSString stringWithFormat:@"动画总时间: %.02f", self.animationDuration];
 }
-
-
 @end

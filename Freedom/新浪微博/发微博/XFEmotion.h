@@ -1,18 +1,14 @@
-//
 //  XFEmotion.h
 //  
-//
 //  Created by Fay on 15/10/18.
 //
-//
-
 #import <Foundation/Foundation.h>
-
 typedef enum {
     XFComposeToolbarButtonTypeCamera, // 拍照
     XFComposeToolbarButtonTypePicture, // 相册
     XFComposeToolbarButtonTypeMention, // @
-    XFComposeToolbarButtonTypeTrend, // #
+    XFComposeToolbarButtonTypeTrend, // 
+#
     XFComposeToolbarButtonTypeEmotion // 表情
 } XFComposeToolbarButtonType;
 typedef enum {
@@ -23,21 +19,16 @@ typedef enum {
     
 } XFEmotionTabBarButtonType;
 @interface XFEmotionKeyboard : UIView
-
 @end
-
 @interface XFComposePhotosView : UIView
 -(void)addPhoto:(UIImage *)photo;
 @property (nonatomic, strong,readonly) NSMutableArray *photos;
 @end
-
 @interface XFTextView : UITextView
 /** 占位文字 */
 @property (nonatomic,copy)NSString *placeholder;
 /** 占位文字的颜色 */
 @property (nonatomic,strong)UIColor *placeholderColor;
-
-
 @end
 @class XFEmotion;
 @interface XFEmotionTextView : XFTextView
@@ -50,19 +41,14 @@ typedef enum {
 @end
 @class XFComposeToolbar;
 @protocol XFComposeToolbarDelegate <NSObject>
-
 @optional
 -(void)composeToolbar:(XFComposeToolbar *)toolbar didClickButton:(XFComposeToolbarButtonType)buttonType;
-
 @end
-
 @interface XFComposeToolbar : UIView
 @property (nonatomic,weak) id<XFComposeToolbarDelegate> delegate;
 /** 是否要显示键盘按钮  */
 @property (nonatomic, assign) BOOL showKeyboardButton;
-
 @end
-
 @interface XFEmotion : NSObject
 /** 表情的文字描述 */
 @property (nonatomic, copy) NSString *chs;
@@ -70,7 +56,6 @@ typedef enum {
 @property (nonatomic, copy) NSString *png;
 /** emoji表情的16进制编码 */
 @property (nonatomic, copy) NSString *code;
-
 @end
 // 版权属于原作者
 // http://code4app.com (cn) http://code4app.net (en)

@@ -1,4 +1,3 @@
-//
 //  TaobaoMiniDynamicViewController.m
 #import "TaobaoMiniDynamicViewController.h"
 #import <XCategory/UILabel+expanded.h>
@@ -40,7 +39,7 @@
     name.text = @"微淘发现";
     times.text = @"1-7";
     self.picV.image = [UIImage imageNamed:@"image4.jpg"];
-    self.title.text = @"#初心品质#不忘初心，惊喜大发现，原来。。。";
+    self.title.text = @"初心品质 不忘初心，惊喜大发现，原来。。。";
     self.script.text = @"与爱齐名，为有初心不变，小编为大家收集了超多好文好店，从手工匠人到原型设计，他们并没有忘记";
     sees.text = @"👀 145";
     [zan setTitle:@"👍3031" forState:UIControlStateNormal];
@@ -63,6 +62,4 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
 }
-
 @end
-
