@@ -2,7 +2,7 @@
 //  Freedom
 // Created by Super
 #import "TLActionSheet.h"
-#import "UIImage+expanded.h"
+    
 #define     TITLE_FONT_SIZE             13.0f
 #define     BUTTON_FONT_SIZE            18.0f
 #define     HEIGHT_BUTTON               48.0f

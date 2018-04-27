@@ -93,7 +93,7 @@
     [self setNeedsDisplay];
     [self setFrame:view.bounds];
     
-    CGRect rect = CGRectMake(view.frameWidth - WIDTH_TABLEVIEW - 5, HEIGHT_NAVBAR + HEIGHT_STATUSBAR + 10, WIDTH_TABLEVIEW, self.data.count * HEIGHT_TABLEVIEW_CELL);
+    CGRect rect = CGRectMake(view.frameWidth - WIDTH_TABLEVIEW - 5, HEIGHT_NAVBAR + NavY + 10, WIDTH_TABLEVIEW, self.data.count * HEIGHT_TABLEVIEW_CELL);
     [self.tableView setFrame:rect];
 }
 - (BOOL)isShow{
@@ -138,8 +138,8 @@
 #pragma mark - Private Methods -
 - (void)drawRect:(CGRect)rect{
     CGFloat startX = self.frameWidth - 27;
-    CGFloat startY = HEIGHT_STATUSBAR + HEIGHT_NAVBAR + 3;
-    CGFloat endY = HEIGHT_STATUSBAR + HEIGHT_NAVBAR + 10;
+    CGFloat startY = NavY + HEIGHT_NAVBAR + 3;
+    CGFloat endY = NavY + HEIGHT_NAVBAR + 10;
     CGFloat width = 6;
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextMoveToPoint(context, startX, startY);

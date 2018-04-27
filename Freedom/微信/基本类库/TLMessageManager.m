@@ -47,13 +47,13 @@
         if (CGSizeEqualToSize(imageSize, CGSizeZero)) {
             kMessageFrame.contentSize = CGSizeMake(100, 100);
         }else if (imageSize.width > imageSize.height) {
-            CGFloat height = WIDTH_SCREEN * 0.45 * imageSize.height / imageSize.width;
-            height = height < WIDTH_SCREEN * 0.25 ? WIDTH_SCREEN * 0.25 : height;
-            kMessageFrame.contentSize = CGSizeMake(WIDTH_SCREEN * 0.45, height);
+            CGFloat height = APPW * 0.45 * imageSize.height / imageSize.width;
+            height = height < APPW * 0.25 ? APPW * 0.25 : height;
+            kMessageFrame.contentSize = CGSizeMake(APPW * 0.45, height);
         }else{
-            CGFloat width = WIDTH_SCREEN * 0.45 * imageSize.width / imageSize.height;
-            width = width < WIDTH_SCREEN * 0.25 ? WIDTH_SCREEN * 0.25 : width;
-            kMessageFrame.contentSize = CGSizeMake(width, WIDTH_SCREEN * 0.45);
+            CGFloat width = APPW * 0.45 * imageSize.width / imageSize.height;
+            width = width < APPW * 0.25 ? APPW * 0.25 : width;
+            kMessageFrame.contentSize = CGSizeMake(width, APPW * 0.45);
         }
         
         kMessageFrame.height += kMessageFrame.contentSize.height;

@@ -4,8 +4,8 @@
 //  Copyright © 2018年 Super. All rights reserved.
 //
 #import <Foundation/Foundation.h>
-@class JFHomeServiceModel;
 @class TLGroup;
+@class XFAccount;
 @interface FreedomTools : NSObject
 + (CGFloat)getTextHeightOfText:(NSString *)text
                           font:(UIFont *)font
@@ -41,6 +41,12 @@
 /*简书数据*/
 -(NSString *)urlWithJianShuData;
 @property (nonatomic, strong) NSString *version;
-@end
-@interface TLNavigationController : UINavigationController
+/*存储账号信息@param account 账号模型*/
++ (void)saveAccount:(XFAccount *)account;
+/*返回账号信息 @return 账号模型（如果账号过期，返回nil）*/
++ (XFAccount *)account;
+
++ (NSArray *)itemIndexesWithPattern:(NSString *)pattern inString:(NSString *)findingString;
++ (NSMutableArray *)matchMobileLink:(NSString *)pattern;
++ (NSMutableArray *)matchWebLink:(NSString *)pattern;
 @end

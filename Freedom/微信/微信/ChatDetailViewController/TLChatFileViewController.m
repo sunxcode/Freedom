@@ -4,10 +4,11 @@
 #import "TLChatFileViewController.h"
 #import <XCategory/NSDate+expanded.h>
 #import "MWPhotoBrowser.h"
+#import "TLRootViewController.h"
 #import "TLMessageManager.h"
 #define     HEIGHT_COLLECTIONVIEW_HEADER    28
-#define     WIDTH_COLLECTIONVIEW_CELL       WIDTH_SCREEN / 4 * 0.98
-#define     SPACE_COLLECTIONVIEW_CELL       (WIDTH_SCREEN - WIDTH_COLLECTIONVIEW_CELL * 4) / 3
+#define     WIDTH_COLLECTIONVIEW_CELL       APPW / 4 * 0.98
+#define     SPACE_COLLECTIONVIEW_CELL       (APPW - WIDTH_COLLECTIONVIEW_CELL * 4) / 3
 @interface TLChatFileCell : UICollectionViewCell
 @property (nonatomic, strong) TLMessage * message;
 @end
@@ -184,8 +185,8 @@
         [layout setItemSize:CGSizeMake(WIDTH_COLLECTIONVIEW_CELL, WIDTH_COLLECTIONVIEW_CELL)];
         [layout setMinimumInteritemSpacing:SPACE_COLLECTIONVIEW_CELL];
         [layout setMinimumLineSpacing:SPACE_COLLECTIONVIEW_CELL];
-        [layout setHeaderReferenceSize:CGSizeMake(WIDTH_SCREEN, HEIGHT_COLLECTIONVIEW_HEADER)];
-        [layout setFooterReferenceSize:CGSizeMake(WIDTH_SCREEN, 0)];
+        [layout setHeaderReferenceSize:CGSizeMake(APPW, HEIGHT_COLLECTIONVIEW_HEADER)];
+        [layout setFooterReferenceSize:CGSizeMake(APPW, 0)];
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
         [_collectionView setBackgroundColor:[UIColor clearColor]];
         [_collectionView setDataSource:self];

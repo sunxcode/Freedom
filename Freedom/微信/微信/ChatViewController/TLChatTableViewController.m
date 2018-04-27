@@ -2,7 +2,6 @@
 //  Freedom
 // Created by Super
 #import "TLChatTableViewController.h"
-#import "MJRefresh.h"
 #import <BlocksKit/BlocksKit+UIKit.h>
 #define     PAGE_MESSAGE_COUNT      15
 #import "UIImage+GIF.h"
@@ -467,13 +466,13 @@ static UILabel *textLabel;
         if (CGSizeEqualToSize(emojiSize, CGSizeZero)) {
             kMessageFrame.contentSize = CGSizeMake(80, 80);
         }else if (emojiSize.width > emojiSize.height) {
-            CGFloat height = WIDTH_SCREEN * 0.35 * emojiSize.height / emojiSize.width;
-            height = height < WIDTH_SCREEN * 0.2 ? WIDTH_SCREEN * 0.2 : height;
-            kMessageFrame.contentSize = CGSizeMake(WIDTH_SCREEN * 0.35, height);
+            CGFloat height = APPW * 0.35 * emojiSize.height / emojiSize.width;
+            height = height < APPW * 0.2 ? APPW * 0.2 : height;
+            kMessageFrame.contentSize = CGSizeMake(APPW * 0.35, height);
         }else{
-            CGFloat width = WIDTH_SCREEN * 0.35 * emojiSize.width / emojiSize.height;
-            width = width < WIDTH_SCREEN * 0.2 ? WIDTH_SCREEN * 0.2 : width;
-            kMessageFrame.contentSize = CGSizeMake(width, WIDTH_SCREEN * 0.35);
+            CGFloat width = APPW * 0.35 * emojiSize.width / emojiSize.height;
+            width = width < APPW * 0.2 ? APPW * 0.2 : width;
+            kMessageFrame.contentSize = CGSizeMake(width, APPW * 0.35);
         }
         
         kMessageFrame.height += kMessageFrame.contentSize.height;
@@ -677,7 +676,7 @@ static UILabel *textLabel;
     [super viewDidLoad];
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [self.tableView setBackgroundColor:[UIColor clearColor]];
-    [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH_SCREEN, 20)]];
+    [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectMake(0, 0, APPW, 20)]];
     if (!self.disablePullToRefresh) {
         [self.tableView setMj_header:self.refresHeader];
     }

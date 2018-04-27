@@ -5,7 +5,7 @@
 #define     HEIGHT_TOP_SPACE            15
 #define     HEIGHT_COLLECTIONVIEW       (HEIGHT_CHAT_KEYBOARD * 0.85 - HEIGHT_TOP_SPACE)
 #define     WIDTH_COLLECTION_CELL       60
-#import "UIImage+expanded.h"
+    
 @implementation TLMoreKeyboardItem
 + (TLMoreKeyboardItem *)createByType:(TLMoreKeyboardItemType)type title:(NSString *)title imagePath:(NSString *)imagePath{
     TLMoreKeyboardItem *item = [[TLMoreKeyboardItem alloc] init];
@@ -199,7 +199,7 @@ static TLMoreKeyboard *moreKB;
     CGContextSetStrokeColorWithColor(context, colorGrayLine.CGColor);
     CGContextBeginPath(context);
     CGContextMoveToPoint(context, 0, 0);
-    CGContextAddLineToPoint(context, WIDTH_SCREEN, 0);
+    CGContextAddLineToPoint(context, APPW, 0);
     CGContextStrokePath(context);
 }
 #pragma mark - Getter -
@@ -208,7 +208,7 @@ static TLMoreKeyboard *moreKB;
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         [layout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
         float h = HEIGHT_COLLECTIONVIEW / 2 * 0.93;
-        float spaceX = (WIDTH_SCREEN - WIDTH_COLLECTION_CELL * 4) / 5;
+        float spaceX = (APPW - WIDTH_COLLECTION_CELL * 4) / 5;
         float spaceY = HEIGHT_COLLECTIONVIEW - h * 2;
         [layout setItemSize:CGSizeMake(WIDTH_COLLECTION_CELL, h)];
         [layout setMinimumInteritemSpacing:spaceY];
@@ -267,7 +267,7 @@ static TLMoreKeyboard *moreKB;
 }
 //Mark: UIScrollViewDelegate
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-    [self.pageControl setCurrentPage:(int)(scrollView.contentOffset.x / WIDTH_SCREEN)];
+    [self.pageControl setCurrentPage:(int)(scrollView.contentOffset.x / APPW)];
 }
 #pragma mark - Private Methods -
 - (NSUInteger)p_transformIndex:(NSUInteger)index{

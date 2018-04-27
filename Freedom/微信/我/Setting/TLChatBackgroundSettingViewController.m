@@ -2,7 +2,7 @@
 //  Freedom
 //  Created by Super on 16/3/19.
 #import "TLChatBackgroundSettingViewController.h"
-#import "UIImage+expanded.h"
+    
 #import "TLActionSheet.h"
 #import <BlocksKit/BlocksKit+UIKit.h>
 #import "TLChatViewController.h"
@@ -10,8 +10,8 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "TLCommonSettingViewController.h"
 #define     SPACE_EDGE                      10
-#define     WIDTH_COLLECTIONVIEW_CELL       (WIDTH_SCREEN - SPACE_EDGE * 2) / 3 * 0.98
-#define     SPACE_COLLECTIONVIEW_CELL       (WIDTH_SCREEN - SPACE_EDGE * 2 - WIDTH_COLLECTIONVIEW_CELL * 3) / 2
+#define     WIDTH_COLLECTIONVIEW_CELL       (APPW - SPACE_EDGE * 2) / 3 * 0.98
+#define     SPACE_COLLECTIONVIEW_CELL       (APPW - SPACE_EDGE * 2 - WIDTH_COLLECTIONVIEW_CELL * 3) / 2
 @interface TLChatBackgroundSelectViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 - (void)registerCellForCollectionView:(UICollectionView *)collectionView;
 @property (nonatomic, strong) NSMutableArray *data;

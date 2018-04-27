@@ -5,6 +5,9 @@
 //
 #import "FreedomTools.h"
 #import "TLUserHelper.h"
+// 账号的存储路径
+#define XFAccountPath [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"account.data"]
+#import "SinaMode.h"
 static UILabel *hLabel = nil;
 @implementation FreedomTools
 + (CGFloat) getTextHeightOfText:(NSString *)text
@@ -196,16 +199,110 @@ static UILabel *hLabel = nil;
     }
     return _version;
 }
-@end
-@implementation TLNavigationController
-- (void) viewDidLoad{
-    [super viewDidLoad];
+/*存储账号信息
+ *
+ *  @param account 账号模型*/
++ (void)saveAccount:(XFAccount *)account{
+    // 自定义对象的存储必须用NSKeyedArchiver
+    [NSKeyedArchiver archiveRootObject:account toFile:XFAccountPath];
+}
+/*返回账号信息
+ *
+ *  @return 账号模型（如果账号过期，返回nil）*/
++ (XFAccount *)account{
     
-    [self.navigationBar setBarTintColor:RGBACOLOR(46.0, 49.0, 50.0, 1.0)];
-    [self.navigationBar setTintColor:[UIColor whiteColor]];
-    [self.view setBackgroundColor:colorGrayBG];
+    // 加载模型
+    XFAccount *account = [NSKeyedUnarchiver unarchiveObjectWithFile:XFAccountPath];
     
-    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],
-                                                           NSFontAttributeName:[UIFont fontNavBarTitle]}];
+    /* 验证账号是否过期 */
+    
+    // 过期的秒数
+    long long expires_in = [account.expires_in longLongValue];
+    // 获得过期时间
+    NSDate *expiresTime = [account.created_time dateByAddingTimeInterval:expires_in];
+    // 获得当前时间
+    NSDate *now = [NSDate date];
+    
+    // 如果expiresTime <= now，过期
+    /**
+     NSOrderedAscending = -1L, 升序，右边 > 左边
+     NSOrderedSame, 一样
+     NSOrderedDescending 降序，右边 < 左边
+     */
+    NSComparisonResult result = [expiresTime compare:now];
+    if (result != NSOrderedDescending) { // 过期
+        return nil;
+    }
+    
+    return account;
+}
++ (NSArray *)itemIndexesWithPattern:(NSString *)pattern inString:(NSString *)findingString{
+    NSAssert(pattern != nil, @"%s: pattern 不可以为 nil", __PRETTY_FUNCTION__);
+    NSAssert(findingString != nil, @"%s: findingString 不可以为 nil", __PRETTY_FUNCTION__);
+    
+    NSError *error = nil;
+    NSRegularExpression *regExp = [[NSRegularExpression alloc] initWithPattern:
+                                   pattern options:NSRegularExpressionCaseInsensitive
+                                                                         error:&error];
+    
+    // 查找匹配的字符串
+    NSArray *result = [regExp matchesInString:findingString options:
+                       NSMatchingReportCompletion range:
+                       NSMakeRange(0, [findingString length])];
+    
+    if (error) {
+        //  DLog(@"ERROR: %@", result);
+        return nil;
+    }
+    
+    NSUInteger count = [result count];
+    // 没有查找到结果，返回空数组
+    if (0 == count) {
+        return [NSArray array];
+    }
+    
+    // 将返回数组中的 NSTextCheckingResult 的实例的 range 取出生成新的 range 数组
+    NSMutableArray *ranges = [[NSMutableArray alloc] initWithCapacity:count];
+    for(NSInteger i = 0; i < count; i++)
+    {
+        @autoreleasepool {
+            NSRange aRange = [[result objectAtIndex:i] range];
+            [ranges addObject:[NSValue valueWithRange:aRange]];
+        }
+    }
+    return ranges;
+}
++ (NSMutableArray *)matchMobileLink:(NSString *)pattern{
+    NSMutableArray *linkArr = [NSMutableArray arrayWithCapacity:0];
+    NSRegularExpression*regular=[[NSRegularExpression alloc]initWithPattern:@"(\\(86\\))?(13[0-9]|15[0-35-9]|18[0125-9])\\d{8}" options:NSRegularExpressionDotMatchesLineSeparators|NSRegularExpressionCaseInsensitive error:nil];
+    
+    NSArray* array=[regular matchesInString:pattern options:0 range:NSMakeRange(0, [pattern length])];
+    
+    for( NSTextCheckingResult * result in array){
+        
+        NSString * string=[pattern substringWithRange:result.range];
+        NSMutableDictionary * dic = [NSMutableDictionary dictionaryWithObjectsAndKeys:string,NSStringFromRange(result.range), nil];
+        [linkArr addObject:dic];
+    }
+    return linkArr;
+}
++ (NSMutableArray *)matchWebLink:(NSString *)pattern{
+    // DLog(@"go here? go here? go here ?");
+    
+    NSMutableArray *linkArr = [NSMutableArray arrayWithCapacity:0];
+    NSRegularExpression*regular=[[NSRegularExpression alloc]initWithPattern:@"((http[s]{0,1}|ftp)://[a-zA-Z0-9\\.\\-]+\\.([a-zA-Z]{2,4})(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%^&*+?:_/=<>]*)?)|(www.[a-zA-Z0-9\\.\\-]+\\.([a-zA-Z]{2,4})(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%^&*+?:_/=<>]*)?)" options:NSRegularExpressionDotMatchesLineSeparators|NSRegularExpressionCaseInsensitive error:nil];
+    
+    NSArray* array=[regular matchesInString:pattern options:0 range:NSMakeRange(0, [pattern length])];
+    
+    for( NSTextCheckingResult * result in array){
+        
+        NSString * string=[pattern substringWithRange:result.range];
+        
+        NSMutableDictionary * dic = [NSMutableDictionary dictionaryWithObjectsAndKeys:string,NSStringFromRange(result.range), nil];
+        
+        [linkArr addObject:dic];
+    }
+    // DLog(@"linkArr == %@",linkArr);
+    return linkArr;
 }
 @end

@@ -6,7 +6,7 @@
 //  Copyright © 2018年 薛超. All rights reserved.
 #import "WechartModes.h"
 #define     EDGE_MOMENT_EXTENSION       5.0f
-#define     WIDTH_MOMENT_CONTENT        (WIDTH_SCREEN - 70.0f)
+#define     WIDTH_MOMENT_CONTENT        (APPW - 70.0f)
 @implementation TLMoment
 - (id)init{
     if (self = [super init]) {
@@ -241,11 +241,11 @@
 #pragma mark - Setter
 - (void) setHeaderTitle:(NSString *)headerTitle{
     _headerTitle = headerTitle;
-    _headerHeight = [FreedomTools getTextHeightOfText:headerTitle font:[UIFont fontSettingHeaderAndFooterTitle] width:WIDTH_SCREEN - 30];
+    _headerHeight = [FreedomTools getTextHeightOfText:headerTitle font:[UIFont fontSettingHeaderAndFooterTitle] width:APPW - 30];
 }
 - (void) setFooterTitle:(NSString *)footerTitle{
     _footerTitle = footerTitle;
-    _footerHeight = [FreedomTools getTextHeightOfText:footerTitle font:[UIFont fontSettingHeaderAndFooterTitle] width:WIDTH_SCREEN - 30];
+    _footerHeight = [FreedomTools getTextHeightOfText:footerTitle font:[UIFont fontSettingHeaderAndFooterTitle] width:APPW - 30];
 }
 #pragma mark - Getter
 - (NSUInteger) count{

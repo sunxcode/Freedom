@@ -3,7 +3,7 @@
 //  Created by boguang on 15/8/21.
 #import "DetailScrollViewController.h"
 #import "DetailView.h"
-#import "UIImage+expanded.h"
+    
 static NSString *titles[] = {@"图文详情",@"商品评论",@"店铺推荐"};
 static NSString *urls[] = {
     @"http://m.b5m.com/item.html?tid=2614676&mps=____&type=content",

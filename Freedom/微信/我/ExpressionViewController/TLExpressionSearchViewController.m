@@ -4,6 +4,7 @@
 #import "TLExpressionSearchViewController.h"
 #import "TLExpressionDetailViewController.h"
 #import "TLExpressionHelper.h"
+#import "TLRootViewController.h"
 #import "TLExpressionChosenViewController.h"
 #define         HEGIHT_EXPCELL      80
 @interface TLExpressionSearchViewController () <TLExpressionCellDelegate>
@@ -20,7 +21,7 @@
     [super viewWillAppear:animated];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
     
-    [self.tableView setFrame:CGRectMake(0, HEIGHT_NAVBAR + HEIGHT_STATUSBAR, WIDTH_SCREEN, HEIGHT_SCREEN - HEIGHT_STATUSBAR - HEIGHT_NAVBAR)];
+    [self.tableView setFrame:CGRectMake(0, HEIGHT_NAVBAR + NavY, APPW, APPH - NavY - HEIGHT_NAVBAR)];
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];

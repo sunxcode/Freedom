@@ -195,7 +195,7 @@
 }
 - (UILabel *)footerLabel{
     if (_footerLabel == nil) {
-        _footerLabel= [[UILabel alloc] initWithFrame:CGRectMake(0, 0, WIDTH_SCREEN, 50.0f)];
+        _footerLabel= [[UILabel alloc] initWithFrame:CGRectMake(0, 0, APPW, 50.0f)];
         [_footerLabel setTextAlignment:NSTextAlignmentCenter];
         [_footerLabel setFont:[UIFont systemFontOfSize:17.0f]];
         [_footerLabel setTextColor:[UIColor grayColor]];

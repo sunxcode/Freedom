@@ -1,8 +1,8 @@
 //  SDAddItemViewController.m
-//  GSD_ZHIFUBAO
+//  Freedom
 //  Created by Super on 15-6-7.
 #import "SDAddItemViewController.h"
-#import "SDHomeGridViewListItemView.h"
+#import "SDHomeViewController.h"
 #import "UIView+SDExtension.h"
 #define kHomeGridViewPerRowItemCount 4
 @interface SDAddItemGridView : UIScrollView <UIScrollViewDelegate>

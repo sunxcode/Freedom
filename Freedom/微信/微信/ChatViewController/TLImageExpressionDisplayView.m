@@ -3,7 +3,6 @@
 //  Created by Super on 16/3/16.
 #import "TLImageExpressionDisplayView.h"
 #import "UIImage+GIF.h"
-#import "UIImageView+WebCache.h"
 #define     WIDTH_TIPS      150
 #define     HEIGHT_TIPS     162
 #define     WIDTH_CENTER    25
@@ -64,7 +63,7 @@ static NSString *curID;
         [self.bgLeftView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.width.mas_equalTo(w / 4);
         }];
-    }else if (WIDTH_SCREEN - rect.origin.x < self.frameWidth) {   // 箭头在右边
+    }else if (APPW - rect.origin.x < self.frameWidth) {   // 箭头在右边
         self.center = CGPointMake(centerX - (WIDTH_TIPS - w / 4 - WIDTH_CENTER) / 2 + SPACE_IMAGE,self.center.y);
         [self.bgLeftView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.width.mas_equalTo(w / 4 * 3);

@@ -5,6 +5,7 @@
 #import "TLChatDetailViewController.h"
 #import "TLChatGroupDetailViewController.h"
 #import <MobClick.h>
+#import "TLRootViewController.h"
 #import <BlocksKit/BlocksKit+UIKit.h>
 #import "TLExpressionViewController.h"
 #import "TLMyExpressionViewController.h"

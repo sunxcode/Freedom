@@ -2,9 +2,10 @@
 //  WFCoretext
 //  Created by Super on 14/10/28.
 #import <UIKit/UIKit.h>
-#import "YMTextData.h"
-#import "WFTextView.h"
-#import "YMButton.h"
+#import "BookFriendsMode.h"
+@interface YMButton : UIButton
+@property (nonatomic,strong) NSIndexPath * appendIndexPath;
+@end
 @protocol cellDelegate <NSObject>
 - (void)changeFoldState:(YMTextData *)ymD onCellRow:(NSInteger) cellStamp;
 - (void)showImageViewWithImageViews:(NSArray *)imageViews byClickWhich:(NSInteger)clickTag;

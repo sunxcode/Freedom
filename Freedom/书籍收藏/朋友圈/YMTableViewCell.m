@@ -2,11 +2,16 @@
 //  WFCoretext
 //  Created by Super on 14/10/28. 2 3 2 2 2 3 1 3 2 1
 #import "YMTableViewCell.h"
-#import "WFReplyBody.h"
-#import "ContantHead.h"
-#import "YMTapGestureRecongnizer.h"
-#import "WFHudView.h"
 #define kImageTag 9999
+@interface YMTapGestureRecongnizer : UITapGestureRecognizer
+@property (nonatomic,strong) NSArray *appendArray;
+@end
+@implementation YMTapGestureRecongnizer
+@end
+
+@implementation YMButton
+
+@end
 @implementation YMTableViewCell{
     UIButton *foldBtn;
     YMTextData *tempDate;

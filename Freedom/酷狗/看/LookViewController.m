@@ -3,7 +3,6 @@
 //  Created by Darren on 16/7/29.
 #define headerH 280
 #import "LookViewController.h"
-#import "CoustomButtom.h"
 #import <MediaPlayer/MediaPlayer.h>
 @interface LookViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic,weak) UITableView *tableView;
@@ -30,7 +29,11 @@
     NSArray *titleArr = @[@"MV",@"繁星直播",@"酷狗LIVE"];
     for (int i = 0; i < 3; i ++) {
         CGFloat btnX = magin + (magin + btnW)*i;
-        CoustomButtom *btn = [[CoustomButtom alloc] initWithFrame:CGRectMake(btnX, banner.frameHeight+15, btnW, btnH)];
+        UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(btnX, banner.frameHeight+15, btnW, btnH)];
+        
+        btn.imageView.contentMode = UIViewContentModeScaleAspectFit;
+        btn.titleLabel.textAlignment = NSTextAlignmentCenter;
+        
         btn.titleLabel.font = [UIFont systemFontOfSize:15];
         [btn setImage:[UIImage imageNamed:[NSString stringWithFormat:@"n%d",i+1]] forState:UIControlStateNormal];
         [btn setTitle:titleArr[i] forState:UIControlStateNormal];

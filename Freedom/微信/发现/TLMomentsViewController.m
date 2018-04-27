@@ -8,6 +8,7 @@
 #import "TLMomentsViewController.h"
 #import "UIButton+WebCache.h"
 #import "TLUserHelper.h"
+#import "TLRootViewController.h"
 #define         WIDTH_AVATAR        65
 #import "TLTableViewCell.h"
 @interface TLMomentsProxy : NSObject
@@ -119,7 +120,7 @@
     [self.mottoLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(self.contentView).mas_offset(-8.0f);
         make.right.mas_equalTo(self.avatarView);
-        make.width.mas_lessThanOrEqualTo(WIDTH_SCREEN * 0.4);
+        make.width.mas_lessThanOrEqualTo(APPW * 0.4);
     }];
 }
 #pragma mark - 

@@ -3,7 +3,6 @@
 #import "ElasticTransition.h"
 #import "SettingsViewController.h"
 #import "LibraryCollectionViewController.h"
-#import "UIColor+expanded.h"
 #import "User.h"
 @interface CollectionViewCell1 : UICollectionViewCell{
     UIView *view;

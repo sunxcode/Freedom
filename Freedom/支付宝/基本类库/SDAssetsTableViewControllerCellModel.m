@@ -1,19 +1,21 @@
 //  SDAssetsTableViewControllerCellModel.m
-//  GSD_ZHIFUBAO
+//  Freedom
 //  Created by Super on 15-6-4.
 /*
  
- *********************************************************************************
- *
- * 在您使用此自动布局库的过程中如果出现bug请及时以以下任意一种方式联系我们，我们会及时修复bug并
- * 帮您解决问题。
- * 新浪微博:GSD_iOS
- * Email : gsdios@126.com
- * GitHub: https://github.com/gsdios
- *
- *********************************************************************************
+*********************************************************************************
  */
 #import "SDAssetsTableViewControllerCellModel.h"
+@implementation AlipayTools
+#define kItemsArrayCacheKey @"AlipayHomeIconsCacheKey"
++ (NSArray *)itemsArray{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:kItemsArrayCacheKey];
+}
++ (void)saveItemsArray:(NSArray *)array{
+    [[NSUserDefaults standardUserDefaults] setObject:[array copy] forKey:kItemsArrayCacheKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+@end
 @implementation SDAssetsTableViewControllerCellModel
 + (instancetype)modelWithTitle:(NSString *)title iconImageName:(NSString *)iconImageName destinationControllerClass:(Class)destinationControllerClass{
     SDAssetsTableViewControllerCellModel *model = [[SDAssetsTableViewControllerCellModel alloc] init];

@@ -116,7 +116,7 @@
 #pragma mark - Getter -
 - (WKWebView *)webView{
     if (_webView == nil) {
-        _webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, HEIGHT_NAVBAR + HEIGHT_STATUSBAR, WIDTH_SCREEN, HEIGHT_SCREEN - HEIGHT_NAVBAR - HEIGHT_STATUSBAR)];
+        _webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, HEIGHT_NAVBAR + NavY, APPW, APPH - HEIGHT_NAVBAR - NavY)];
         [_webView setAllowsBackForwardNavigationGestures:YES];
         [_webView setNavigationDelegate:self];
     }
@@ -124,7 +124,7 @@
 }
 - (UIProgressView *)progressView{
     if (_progressView == nil) {
-        _progressView = [[UIProgressView alloc] initWithFrame:CGRectMake(0, HEIGHT_NAVBAR + HEIGHT_STATUSBAR, WIDTH_SCREEN, 10.0f)];
+        _progressView = [[UIProgressView alloc] initWithFrame:CGRectMake(0, HEIGHT_NAVBAR + NavY, APPW, 10.0f)];
         [_progressView setTransform: CGAffineTransformMakeScale(1.0f, 2.0f)];
         [_progressView setProgressTintColor:colorGreenDefault];
         [_progressView setTrackTintColor:[UIColor clearColor]];
@@ -145,7 +145,7 @@
 }
 - (UILabel *)authLabel{
     if (_authLabel == nil) {
-        _authLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, HEIGHT_NAVBAR + HEIGHT_STATUSBAR + 13, WIDTH_SCREEN - 40, 0)];
+        _authLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, HEIGHT_NAVBAR + NavY + 13, APPW - 40, 0)];
         [_authLabel setFont:[UIFont systemFontOfSize:12.0f]];
         [_authLabel setTextAlignment:NSTextAlignmentCenter];
         [_authLabel setTextColor:[UIColor grayColor]];

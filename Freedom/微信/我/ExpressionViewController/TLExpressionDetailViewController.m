@@ -6,11 +6,11 @@
 #import <BlocksKit/BlocksKit+UIKit.h>
 #define         EDGE                20.0
 #define         SPACE_CELL          15.0
-#define         WIDTH_CELL          ((WIDTH_SCREEN - EDGE * 2 - SPACE_CELL * 3.0) / 4.0)
+#define         WIDTH_CELL          ((APPW - EDGE * 2 - SPACE_CELL * 3.0) / 4.0)
 #import "UIImage+GIF.h"
-#import "UIImage+expanded.h"
+    
 #import "TLEmojiBaseCell.h"
-#define         HEIGHT_EXP_BANNER       (WIDTH_SCREEN * 0.45)
+#define         HEIGHT_EXP_BANNER       (APPW * 0.45)
 @protocol TLExpressionDetailCellDelegate <NSObject>
 - (void)expressionDetailCellDownloadButtonDown:(TLEmojiGroup *)group;
 @end
@@ -156,7 +156,7 @@
 }
 #pragma mark - Class Methods
 + (CGFloat)cellHeightForModel:(TLEmojiGroup *)group{
-    CGFloat detailHeight = [group.groupDetailInfo boundingRectWithSize:CGSizeMake(WIDTH_SCREEN - 30, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{ NSFontAttributeName : [UIFont systemFontOfSize:13.0f]} context:nil].size.height;
+    CGFloat detailHeight = [group.groupDetailInfo boundingRectWithSize:CGSizeMake(APPW - 30, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{ NSFontAttributeName : [UIFont systemFontOfSize:13.0f]} context:nil].size.height;
     CGFloat bannerHeight = group.bannerURL.length > 0 ? HEIGHT_EXP_BANNER : 0;
     CGFloat height = 105.0 + detailHeight + bannerHeight;
     return height;

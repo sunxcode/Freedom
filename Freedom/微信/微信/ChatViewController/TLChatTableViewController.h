@@ -6,7 +6,6 @@
 #import "TLEmojiKeyboard.h"
 #import "TLActionSheet.h"
 #import <Foundation/Foundation.h>
-#import "NSString+expanded.h"
 @protocol TLMessageCellDelegate;
 typedef NS_ENUM(NSInteger, TLChatMenuItemType) {
     TLChatMenuItemTypeCancel,

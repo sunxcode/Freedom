@@ -1,10 +1,10 @@
 //  SDDiscoverTableViewController.m
-//  GSD_ZHIFUBAO
+//  Freedom
 #import "SDDiscoverTableViewController.h"
 #import "SDAssetsTableViewControllerCellModel.h"
 #import "UIView+SDExtension.h"
 #import "SDAssetsTableViewControllerCellModel.h"
-#import "SDBasicTableViewControllerCell.h"
+#import "SDBasicTableViewController.h"
 @interface SDDiscoverTableViewHeaderItemButton : UIButton
 @property (nonatomic, copy) NSString *imageName;
 @property (nonatomic, copy) NSString *title;

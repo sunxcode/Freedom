@@ -4,11 +4,9 @@
 #import "TLUserHelper.h"
 #import "TLExpressionHelper.h"
 #import "TLEmojiBaseCell.h"
-#import "NSString+expanded.h"
 #import "TLDBManager.h"
 #import "WechartModes.h"
 #import <AddressBookUI/AddressBookUI.h>
-#import "NSString+expanded.h"
 @implementation TLUserChatSetting
 @end
 @implementation TLUserDetail
@@ -653,8 +651,7 @@ static TLFriendHelper *friendHelper = nil;
                 char b = toupper([strB characterAtIndex:i]);
                 if (a > b) {
                     return (NSComparisonResult)NSOrderedDescending;
-                }
-                else if (a < b) {
+                }else if (a < b) {
                     return (NSComparisonResult)NSOrderedAscending;
                 }
             }
@@ -780,10 +777,8 @@ static TLUserHelper *helper;
         if (userGroups && userGroups.count > 0) {
             [emojiGroupData addObject:userGroups];
         }
-        
         // 系统设置
         [emojiGroupData addObject:self.systemEmojiGroups];
-        
         dispatch_async(dispatch_get_main_queue(), ^{
             complete(emojiGroupData);
         });

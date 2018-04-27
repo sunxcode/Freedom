@@ -214,7 +214,7 @@
     // bottom
     CGFloat widthButton = 35;
     CGFloat hightButton = 55;
-    CGFloat space = (WIDTH_SCREEN - widthButton * 4) / 5;
+    CGFloat space = (APPW - widthButton * 4) / 5;
     [self.qrButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(self.bottomView);
         make.left.mas_equalTo(self.bottomView).mas_offset(space);

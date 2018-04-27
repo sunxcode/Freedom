@@ -34,9 +34,9 @@
     NSArray *arr = info.userInfo;
     
     CGFloat spaceY = 12;
-    NSUInteger count = (WIDTH_SCREEN - WIDTH_SCREEN * 0.28 - 28) / (80 - spaceY * 2 + 3);
+    NSUInteger count = (APPW - APPW * 0.28 - 28) / (80 - spaceY * 2 + 3);
     count = arr.count <= count ? arr.count : count;
-    CGFloat spaceX = (WIDTH_SCREEN - WIDTH_SCREEN * 0.28 - 28 - count * (80 - spaceY * 2)) / count;
+    CGFloat spaceX = (APPW - APPW * 0.28 - 28 - count * (80 - spaceY * 2)) / count;
     spaceX = spaceX > 7 ? 7 : spaceX;
     for (int i = 0; i < count; i ++) {
         NSString *imageURL = arr[i];
@@ -54,7 +54,7 @@
             make.bottom.mas_equalTo(self.contentView).mas_offset(-spaceY);
             make.width.mas_equalTo(imageView.mas_height);
             if (i == 0) {
-                make.left.mas_equalTo(WIDTH_SCREEN * 0.28);
+                make.left.mas_equalTo(APPW * 0.28);
             }else{
                 make.left.mas_equalTo([self.imageViewsArray[i - 1] mas_right]).mas_offset(spaceX);
             }

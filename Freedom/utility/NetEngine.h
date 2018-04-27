@@ -4,7 +4,6 @@
 //  Copyright © 2017年 Super. All rights reserved.
 //
 #import <AFNetworking/AFNetworking.h>
-#import "SVProgressHUD.h"
 @interface NetEngine : AFHTTPSessionManager
 typedef void (^ResponseBlock)(id resData,BOOL isCache);
 typedef void (^ErrorBlock)(NSError *error);

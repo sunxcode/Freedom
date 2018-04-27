@@ -149,8 +149,8 @@
 }
 - (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.tableView.frameY = HEIGHT_NAVBAR + HEIGHT_STATUSBAR;
-    self.tableView.frameHeight = HEIGHT_SCREEN - self.tableView.frameY;
+    self.tableView.frameY = HEIGHT_NAVBAR + NavY;
+    self.tableView.frameHeight = APPH - self.tableView.frameY;
 }
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{

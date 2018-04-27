@@ -4,13 +4,35 @@
 //  Copyright © 2016年 Super. All rights reserved.
 //
 #import "AlipayTabBarController.h"
-#import "SDBasicNavigationController.h"
 #import "SDBasicViewContoller.h"
 #import "SDHomeViewController.h"
 #import "SDAssetsTableViewController.h"
 #import "SDServiceTableViewController.h"
+#import "SDAssetsTableViewControllerCellModel.h"
 #import "SDDiscoverTableViewController.h"
-#import "AlipayTools.h"
+@interface SDBasicNavigationController : UINavigationController
+@end
+@implementation SDBasicNavigationController
+- (void)viewDidLoad{
+    [super viewDidLoad];
+    self.tabBarItem.image = [self.tabBarItem.image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    self.tabBarItem.selectedImage = [self.tabBarItem.selectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    [self.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    
+    [self.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor blackColor]] forBarMetrics:UIBarMetricsDefault];
+}
+- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
+    [viewController.navigationItem.backBarButtonItem setTitleTextAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:10]} forState:UIControlStateNormal];
+    if (self.childViewControllers.count > 0) {
+        viewController.hidesBottomBarWhenPushed = YES;
+    }
+    [super pushViewController:viewController animated:YES];
+}
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+}
+@end
+
 @implementation AlipayTabBarController
 - (void)viewDidLoad{
     [super viewDidLoad];

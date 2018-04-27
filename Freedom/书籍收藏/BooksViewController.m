@@ -6,7 +6,6 @@
 #import "BooksViewController.h"
 #import "WXViewController.h"
 #import "E_ScrollViewController.h"
-#import "ContantHead.h"
 @interface BooksViewCell : BaseCollectionViewCell
 @end
 @implementation BooksViewCell

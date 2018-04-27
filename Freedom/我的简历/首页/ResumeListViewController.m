@@ -14,6 +14,7 @@
     self.title.frame = CGRectMake(XW(self.icon)+10, 10, APPW-XW(self.icon)-20, 20);
     self.script.frame = CGRectMake(X(self.title), YH(self.title), W(self.title), H(self.title));
     self.script.textColor = [UIColor grayColor];
+    [self addSubviews:self.icon,self.title,self.script,nil];
 }
 -(void)setDataWithDict:(NSDictionary *)dict{
     self.icon.image = [UIImage imageNamed:dict[@"pic"]];

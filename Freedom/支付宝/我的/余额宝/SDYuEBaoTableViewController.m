@@ -1,8 +1,8 @@
 //  SDYuEBaoTableViewController.m
-//  GSD_ZHIFUBAO
+//  Freedom
 //  Created by Super on 15-6-6.
 #import "SDYuEBaoTableViewController.h"
-#import "SDBasicTableViewControllerCell.h"
+#import "SDBasicTableViewController.h"
 #import <Foundation/Foundation.h>
 @interface SDYuEBaoTableViewCellModel : NSObject
 @property (nonatomic, assign) float yesterdayIncome;

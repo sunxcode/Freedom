@@ -5,12 +5,12 @@
 //  抽取公共方法:只是模型数据改变
 //
 #import <UIKit/UIKit.h>
-#import "SWCommonItem.h"
-@interface SWCommonLabelItem : SWCommonItem
+#import "SinaMode.h"
+@interface SWCommonLabelItem : SinaMode
 /** 右边label显示的内容 */
 @property (nonatomic, copy) NSString *text;
 @end
-@interface SWCommonArrowItem : SWCommonItem
+@interface SWCommonArrowItem : SinaMode
 @end
 @interface SWCommonGroup : NSObject
 /** 组头 */

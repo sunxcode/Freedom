@@ -3,7 +3,7 @@
 //  Created by boguang on 15/8/21.
 #import "DetailWapViewController.h"
 #import "DetailView.h"
-#import "UIImage+expanded.h"
+    
 static NSUInteger __totalNumber = 3;
 static NSString * images[] = {@"1.jpg", @"l.jpg", @"w.jpg",@"xt.jpg"};
 static NSString *titles[] = {@"图文详情",@"商品评论",@"百度"};

@@ -1,10 +1,9 @@
 //  SDServiceTableViewController.m
-//  GSD_ZHIFUBAO
+//  Freedom
 //  Created by Super on 15-6-4.
 #import "SDServiceTableViewController.h"
 #import "UIView+SDExtension.h"
-#import "UIImageView+WebCache.h"
-#import "SDBasicTableViewControllerCell.h"
+#import "SDBasicTableViewController.h"
 @interface SDServiceTableViewCellModel : NSObject
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *detailString;

@@ -1,5 +1,5 @@
 //  SDBasicViewContoller.h
-//  GSD_ZHIFUBAO
+//  Freedom
 //  Created by Super on 15-6-3.
 /**
  

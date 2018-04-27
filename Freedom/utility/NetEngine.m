@@ -1,14 +1,8 @@
 //
 #import "NetEngine.h"
 #import "SDDataCache.h"
-//
-#import "NSString+expanded.h"
-//
 #import "UIView+expanded.h"
-//
 #import "NSDictionary+expanded.h"
-#import <AFNetworking/AFNetworking.h>
-//
 #import <AFNetworking/AFImageDownloader.h>
 @implementation NetEngine
 static NSString *cacheDirectoryName = nil;

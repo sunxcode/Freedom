@@ -44,12 +44,12 @@
     SWCommonGroup *group = [SWCommonGroup group];
     [self.groups addObject:group];
     // 2.设置组的所有行数据:根据不同cell下那是不同内容
-    SWCommonItem *gameCenter = [SWCommonItem itemWithTitle:@"游戏中心" icon:@"game_center"];
+    SinaMode *gameCenter = [SinaMode itemWithTitle:@"游戏中心" icon:@"game_center"];
     gameCenter.destVcClass = [DiscoverDetailViewController class];
     SWCommonLabelItem *near = [SWCommonLabelItem itemWithTitle:@"周边" icon:@"near"];
     near.text = @"测试文字";
     near.destVcClass = [DiscoverDetailViewController class];
-    SWCommonItem *app = [SWCommonItem itemWithTitle:@"应用" icon:@"app"];
+    SinaMode *app = [SinaMode itemWithTitle:@"应用" icon:@"app"];
     app.badgeValue = @"10";
     app.destVcClass = [DiscoverDetailViewController class];
     group.items = @[gameCenter, near, app];
@@ -59,13 +59,13 @@
     SWCommonGroup *group = [SWCommonGroup group];
     [self.groups addObject:group];
     // 2.设置组的所有行数据
-    SWCommonItem *video = [SWCommonItem itemWithTitle:@"视频" icon:Pshok_b];
+    SinaMode *video = [SinaMode itemWithTitle:@"视频" icon:Pshok_b];
     video.operation = ^{
         DLog(@"----点击了视频---");
     };
-    SWCommonItem *music = [SWCommonItem itemWithTitle:@"音乐" icon:@"music"];
+    SinaMode *music = [SinaMode itemWithTitle:@"音乐" icon:@"music"];
     
-    SWCommonItem *movie = [SWCommonItem itemWithTitle:@"电影" icon:@"movie"];
+    SinaMode *movie = [SinaMode itemWithTitle:@"电影" icon:@"movie"];
     movie.operation = ^{
         DLog(@"----点击了电影");
     };

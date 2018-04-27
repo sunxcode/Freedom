@@ -110,15 +110,11 @@
 #else
 #define     HOST_URL        @"http://121.42.29.15:8000/"         // 远程线上服务器
 #endif
-#define     SIZE_SCREEN                 [UIScreen mainScreen].bounds.size
-#define     WIDTH_SCREEN                [UIScreen mainScreen].bounds.size.width
-#define     HEIGHT_SCREEN               [UIScreen mainScreen].bounds.size.height
-#define     HEIGHT_STATUSBAR            20.0f
 #define     HEIGHT_TABBAR               49.0f
 #define     HEIGHT_NAVBAR               44.0f
 #define     NAVBAR_ITEM_FIXED_SPACE     5.0f
 #define     BORDER_WIDTH_1PX            ([[UIScreen mainScreen] scale] > 0.0 ? 1.0 / [[UIScreen mainScreen] scale] : 1.0)
-#define     MAX_MESSAGE_WIDTH               WIDTH_SCREEN * 0.58
+#define     MAX_MESSAGE_WIDTH               APPW * 0.58
 #define     TLURL(urlString)    [NSURL URLWithString:urlString]
 #define     TLNoNilString(str)  (str.length > 0 ? str : @"")
 #define     TLTimeStamp(date)   ([NSString stringWithFormat:@"%lf", [date timeIntervalSince1970]])

@@ -4,7 +4,6 @@
 #define headerH 300
 #import "LinsenViewController.h"
 #import "LocalMusicViewController.h"
-#import "CoustomButtom.h"
 #import "RESideMenu.h"//自定义转场
 #import <MediaPlayer/MediaPlayer.h>
 typedef void(^clickLocalMusicBlock)();
@@ -35,7 +34,12 @@ typedef void(^clickLocalMusicBlock)();
     NSArray *titleArr = @[@"我喜欢",@"歌单",@"下载",@"最近"];
     for (int i = 0; i < 4; i ++) {
         CGFloat btnX = magin + (magin + btnW)*i;
-        CoustomButtom *btn = [[CoustomButtom alloc] initWithFrame:CGRectMake(btnX, 30, btnW, btnH)];
+        UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(btnX, 30, btnW, btnH)];
+        
+        btn.imageView.contentMode = UIViewContentModeScaleAspectFit;
+        btn.titleLabel.textAlignment = NSTextAlignmentCenter;
+        btn.imageView.contentMode = UIViewContentModeScaleAspectFit;
+        btn.titleLabel.textAlignment = NSTextAlignmentCenter;
         btn.titleLabel.font = [UIFont systemFontOfSize:15];
         [btn setImage:[UIImage imageNamed:@"main_clock"] forState:UIControlStateNormal];
         [btn setTitle:titleArr[i] forState:UIControlStateNormal];
@@ -85,7 +89,12 @@ typedef void(^clickLocalMusicBlock)();
     NSArray *titleArr = @[@"乐库",@"电台",@"库群"];
     for (int i = 0; i < 3; i ++) {
         CGFloat btnX = magin + (magin + btnW)*i;
-        CoustomButtom *btn = [[CoustomButtom alloc] initWithFrame:CGRectMake(btnX, 15, btnW, btnH)];
+        UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(btnX, 15, btnW, btnH)];
+        
+        btn.imageView.contentMode = UIViewContentModeScaleAspectFit;
+        btn.titleLabel.textAlignment = NSTextAlignmentCenter;
+        btn.imageView.contentMode = UIViewContentModeScaleAspectFit;
+        btn.titleLabel.textAlignment = NSTextAlignmentCenter;
         btn.titleLabel.font = [UIFont systemFontOfSize:15];
         [btn setImage:[UIImage imageNamed:[NSString stringWithFormat:@"n%d",i+1]] forState:UIControlStateNormal];
         [btn setTitle:titleArr[i] forState:UIControlStateNormal];

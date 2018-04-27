@@ -5,7 +5,17 @@
 #import <AVFoundation/AVFoundation.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import "PlayAudioViewController.h"
-#import "KugouTools.h"
+@implementation KugouTools
+- (void)encodeWithCoder:(NSCoder *)encoder{
+    [encoder encodeObject:self.mediaItem forKey:@"mediaItem"];
+}
+- (id)initWithCoder:(NSCoder *)decoder{
+    if (self = [super init]) {
+        // 读取文件的内容
+        self.mediaItem = [decoder decodeObjectForKey:@"mediaItem"];
+    }return self;
+}
+@end
 @interface TabBarView()<AVAudioPlayerDelegate>
 @property(nonatomic,strong) AVAudioPlayer *avPlayer;
 @property(nonatomic,weak) NSTimer *timer;

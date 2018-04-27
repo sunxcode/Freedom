@@ -2,7 +2,7 @@
 //  Freedom
 // Created by Super
 #import "TLChatBaseViewController.h"
-#import "UIImage+expanded.h"
+    
 #import "TLMessageManager.h"
 #import "TLUserHelper.h"
 #define     SIZE_TIPS    CGSizeMake(55, 100)
@@ -45,7 +45,7 @@
     [mutableAttrString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:25.0f] range:NSMakeRange(0, attrString.length)];
     [self.textView setAttributedText:mutableAttrString];
     CGSize size = [self.textView sizeThatFits:CGSizeMake(WIDTH_TEXTVIEW, MAXFLOAT)];
-    size.height = size.height > HEIGHT_SCREEN ? HEIGHT_SCREEN : size.height;
+    size.height = size.height > APPH ? APPH : size.height;
     [self.textView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(size);
     }];
@@ -479,7 +479,7 @@
     CGContextSetStrokeColorWithColor(context, colorGrayLine.CGColor);
     CGContextBeginPath(context);
     CGContextMoveToPoint(context, 0, 0);
-    CGContextAddLineToPoint(context, WIDTH_SCREEN, 0);
+    CGContextAddLineToPoint(context, APPW, 0);
     CGContextStrokePath(context);
 }
 #pragma mark - Getter

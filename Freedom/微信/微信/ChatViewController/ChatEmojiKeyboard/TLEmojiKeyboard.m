@@ -100,7 +100,7 @@ static TLEmojiKeyboard *emojiKB;
 }
 #pragma mark - Event Response -
 - (void) pageControlChanged:(UIPageControl *)pageControl{
-    [self.collectionView scrollRectToVisible:CGRectMake(WIDTH_SCREEN * pageControl.currentPage, 0, WIDTH_SCREEN, HEIGHT_PAGECONTROL) animated:YES];
+    [self.collectionView scrollRectToVisible:CGRectMake(APPW * pageControl.currentPage, 0, APPW, HEIGHT_PAGECONTROL) animated:YES];
 }
 #pragma mark - Private Methods -
 - (void)p_addMasonry{
@@ -127,7 +127,7 @@ static TLEmojiKeyboard *emojiKB;
     CGContextSetStrokeColorWithColor(context, colorGrayLine.CGColor);
     CGContextBeginPath(context);
     CGContextMoveToPoint(context, 0, 0);
-    CGContextAddLineToPoint(context, WIDTH_SCREEN, 0);
+    CGContextAddLineToPoint(context, APPW, 0);
     CGContextStrokePath(context);
 }
 #pragma mark - Getter -
@@ -225,28 +225,28 @@ static TLEmojiKeyboard *emojiKB;
         cellWidth = cellHeight = (HEIGHT_EMOJIVIEW / self.curGroup.rowNumber) * 0.55;
         topSpace = 11;
         btmSpace = 19;
-        hfSpace = (WIDTH_SCREEN - cellWidth * self.curGroup.colNumber) / (self.curGroup.colNumber + 1) * 1.4;
+        hfSpace = (APPW - cellWidth * self.curGroup.colNumber) / (self.curGroup.colNumber + 1) * 1.4;
     }else if (self.curGroup.type == TLEmojiTypeImageWithTitle){
         cellHeight = (HEIGHT_EMOJIVIEW / self.curGroup.rowNumber) * 0.96;
         cellWidth = cellHeight * 0.8;
-        hfSpace = (WIDTH_SCREEN - cellWidth * self.curGroup.colNumber) / (self.curGroup.colNumber + 1) * 1.2;
+        hfSpace = (APPW - cellWidth * self.curGroup.colNumber) / (self.curGroup.colNumber + 1) * 1.2;
     }else{
         cellWidth = cellHeight = (HEIGHT_EMOJIVIEW / self.curGroup.rowNumber) * 0.72;
         topSpace = 8;
         btmSpace = 16;
-        hfSpace = (WIDTH_SCREEN - cellWidth * self.curGroup.colNumber) / (self.curGroup.colNumber + 1) * 1.2;
+        hfSpace = (APPW - cellWidth * self.curGroup.colNumber) / (self.curGroup.colNumber + 1) * 1.2;
     }
     
     cellSize = CGSizeMake(cellWidth, cellHeight);
     headerReferenceSize = CGSizeMake(hfSpace, HEIGHT_EMOJIVIEW);
     footerReferenceSize = CGSizeMake(hfSpace, HEIGHT_EMOJIVIEW);
-    minimumLineSpacing = (WIDTH_SCREEN - hfSpace * 2 - cellWidth * self.curGroup.colNumber) / (self.curGroup.colNumber - 1);
+    minimumLineSpacing = (APPW - hfSpace * 2 - cellWidth * self.curGroup.colNumber) / (self.curGroup.colNumber - 1);
     minimumInteritemSpacing = (HEIGHT_EMOJIVIEW - topSpace - btmSpace - cellHeight * self.curGroup.rowNumber) / (self.curGroup.rowNumber - 1);
     sectionInsets = UIEdgeInsetsMake(topSpace, 0, btmSpace, 0);
 }
 #pragma mark - Delegate -
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-    [self.pageControl setCurrentPage:(int)(scrollView.contentOffset.x / WIDTH_SCREEN)];
+    [self.pageControl setCurrentPage:(int)(scrollView.contentOffset.x / APPW)];
 }
 //MARK: UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{

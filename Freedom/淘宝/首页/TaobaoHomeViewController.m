@@ -1,7 +1,6 @@
 //  TaobaoViewController.m
 #import "TaobaoHomeViewController.h"
 #import <XCategory/UIGestureRecognizer+expanded.h>
-#import <Masonry/Masonry.h>
 //cell等比高
 #define cell_height(i) APPW*((i)/375.0f)
 @interface YYFPSLabel : UILabel

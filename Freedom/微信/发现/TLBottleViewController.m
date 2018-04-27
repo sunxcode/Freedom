@@ -125,7 +125,7 @@ typedef NS_ENUM(NSUInteger, TLBottleButtonType) {
     if (hidden) {
         [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
         [UIView animateWithDuration:0.5 animations:^{
-            [self.navigationController.navigationBar setFrameY: -HEIGHT_NAVBAR - HEIGHT_STATUSBAR];
+            [self.navigationController.navigationBar setFrameY: -HEIGHT_NAVBAR - NavY];
         } completion:^(BOOL finished) {
             [self.navigationController.navigationBar setHidden:YES];
         }];
@@ -133,7 +133,7 @@ typedef NS_ENUM(NSUInteger, TLBottleButtonType) {
         [self.navigationController.navigationBar setHidden:NO];
         [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
         [UIView animateWithDuration:0.2 animations:^{
-            [self.navigationController.navigationBar setFrameY:HEIGHT_STATUSBAR];
+            [self.navigationController.navigationBar setFrameY:NavY];
         }];
     }
 }
@@ -143,7 +143,7 @@ typedef NS_ENUM(NSUInteger, TLBottleButtonType) {
     }];
     
     CGFloat widthButton = 75;
-    CGFloat space = (WIDTH_SCREEN - widthButton * 3) / 4;
+    CGFloat space = (APPW - widthButton * 3) / 4;
     [self.pickUpButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.and.bottom.mas_equalTo(self.view);
         make.width.mas_equalTo(widthButton);

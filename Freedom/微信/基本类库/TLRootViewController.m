@@ -14,6 +14,20 @@
 #import "CocoaLumberjack.h"
 #import <MobClick.h>
 #import <BlocksKit/BlocksKit+UIKit.h>
+
+@implementation TLNavigationController
+- (void) viewDidLoad{
+    [super viewDidLoad];
+    
+    [self.navigationBar setBarTintColor:RGBACOLOR(46.0, 49.0, 50.0, 1.0)];
+    [self.navigationBar setTintColor:[UIColor whiteColor]];
+    [self.view setBackgroundColor:colorGrayBG];
+    
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],
+                                                           NSFontAttributeName:[UIFont fontNavBarTitle]}];
+}
+@end
+
 static TLRootViewController *rootVC = nil;
 @interface TLRootViewController ()
 @property (nonatomic, strong) NSArray *childVCArray;

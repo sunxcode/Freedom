@@ -5,7 +5,7 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import "KugouTabBarController.h"
 #import <AVFoundation/AVFoundation.h>
-#import "KugouTools.h"
+#import "TabBarView.h"
 @interface LocalMusicCell : UITableViewCell
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 @property (strong, nonatomic) UIImageView *iconView;

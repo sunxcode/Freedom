@@ -3,11 +3,11 @@
 //  Created by Super on 16/4/23.
 #import "TLMomentDetailViewController.h"
 #import "MWPhotoBrowser.h"
-#import <UIKit/UIKit.h>
-#import "UIView+expanded.h"
+#import "TLRootViewController.h"
 #import "UIButton+WebCache.h"
-#define     WIDTH_IMAGE_ONE     (WIDTH_SCREEN - 70) * 0.6
-#define     WIDTH_IMAGE         (WIDTH_SCREEN - 70) * 0.31
+#import "TLRootViewController.h"
+#define     WIDTH_IMAGE_ONE     (APPW - 70) * 0.6
+#define     WIDTH_IMAGE         (APPW - 70) * 0.31
 #define     SPACE               4.0
 #import "UIButton+WebCache.h"
 #define         EDGE_LEFT       10.0f

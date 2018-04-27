@@ -4,10 +4,8 @@
 #import "TLExpressionChosenViewController.h"
 #import "TLExpressionSearchViewController.h"
 #import "TLSearchController.h"
-#import "MJRefresh.h"
 #import "TLExpressionDetailViewController.h"
 #import "TLExpressionHelper.h"
-#import "MJRefresh.h"
 #import "TLPictureCarouselView.h"
 #define         EDGE_TOP        10.0f
 #define         EDGE_LEFT       15.0f
@@ -190,7 +188,7 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     [self setAutomaticallyAdjustsScrollViewInsets:NO];
-    [self.tableView setFrame:CGRectMake(0, HEIGHT_NAVBAR + HEIGHT_STATUSBAR, WIDTH_SCREEN, HEIGHT_SCREEN - HEIGHT_STATUSBAR - HEIGHT_NAVBAR)];
+    [self.tableView setFrame:CGRectMake(0, HEIGHT_NAVBAR + NavY, APPW, APPH - NavY - HEIGHT_NAVBAR)];
     [self.tableView setBackgroundColor:[UIColor whiteColor]];
     [self.tableView setTableHeaderView:self.searchController.searchBar];
     

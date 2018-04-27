@@ -6,7 +6,6 @@
 #import "TLAddFriendViewController.h"
 #import "TLContactsViewController.h"
 #import "TLTableViewCell.h"
-#import "UIView+expanded.h"
 static const NSString *TLThirdPartFriendTypeContacts = @"1";
 static const NSString *TLThirdPartFriendTypeQQ = @"2";
 static const NSString *TLThirdPartFriendTypeGoogle = @"3";

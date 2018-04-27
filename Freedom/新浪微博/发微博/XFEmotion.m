@@ -3,7 +3,6 @@
 //  Created by Fay on 15/10/18.
 //
 #import "XFEmotion.h"
-#import "MJExtension.h"
 // 一页中最多3行
 #define XFEmotionMaxRows 3
 // 一行中最多7列

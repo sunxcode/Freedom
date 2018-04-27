@@ -7,10 +7,10 @@
 #import "TLExpressionDetailViewController.h"
 #define         EDGE                20.0
 #define         SPACE_CELL          EDGE
-#define         WIDTH_CELL          ((WIDTH_SCREEN - EDGE * 2 - SPACE_CELL * 2.0) / 3.0)
+#define         WIDTH_CELL          ((APPW - EDGE * 2 - SPACE_CELL * 2.0) / 3.0)
 #define         HEIGHT_CELL         (WIDTH_CELL + 20)
 #import "TLExpressionHelper.h"
-#import "UIImage+expanded.h"
+    
 #import <UIKit/UIKit.h>
 #import "TLEmojiBaseCell.h"
 @interface TLExpressionPublicCell : UICollectionViewCell
@@ -129,7 +129,7 @@
 - (UICollectionView *)collectionView{
     if (_collectionView == nil) {
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-        CGRect rect = CGRectMake(0, HEIGHT_NAVBAR + HEIGHT_STATUSBAR, WIDTH_SCREEN, HEIGHT_SCREEN - HEIGHT_NAVBAR - HEIGHT_STATUSBAR);
+        CGRect rect = CGRectMake(0, HEIGHT_NAVBAR + NavY, APPW, APPH - HEIGHT_NAVBAR - NavY);
         _collectionView = [[UICollectionView alloc] initWithFrame:rect collectionViewLayout:layout];
         [_collectionView setBackgroundColor:[UIColor whiteColor]];
         [_collectionView setDataSource:self];

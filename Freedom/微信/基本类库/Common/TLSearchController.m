@@ -2,12 +2,11 @@
 //  Freedom
 // Created by Super
 #import "TLSearchController.h"
-#import "UIImage+expanded.h"
-#import "UIView+expanded.h"
+    
 @implementation TLSearchController
 - (id)initWithSearchResultsController:(UIViewController *)searchResultsController{
     if (self = [super initWithSearchResultsController:searchResultsController]) {
-        [self.searchBar setFrame:CGRectMake(0, 0, WIDTH_SCREEN, HEIGHT_NAVBAR)];
+        [self.searchBar setFrame:CGRectMake(0, 0, APPW, HEIGHT_NAVBAR)];
         [self.searchBar setBackgroundImage:[UIImage imageWithColor:colorGrayBG]];
         [self.searchBar setBarTintColor:colorGrayBG];
         [self.searchBar setTintColor:colorGreenDefault];

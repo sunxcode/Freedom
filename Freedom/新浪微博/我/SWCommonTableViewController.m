@@ -3,14 +3,12 @@
 //  Freedom
 //  Created by apple on 15-3-18.
 #import "SWCommonTableViewController.h"
-#import "SWCommonItem.h"
-#import "NSString+expanded.h"
-#import "SWCommonItem.h"
+#import "SinaMode.h"
 @interface SWCommonCell : UITableViewCell
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 - (void)setIndexPath:(NSIndexPath *)indexPath rowsInSection:(int)rows;
 /** cell对应的item数据 */
-@property (nonatomic, strong) SWCommonItem *item;
+@property (nonatomic, strong) SinaMode *item;
 @end
 @implementation SWCommonLabelItem
 @end
@@ -100,7 +98,7 @@
     bgView.image = [UIImage imageWithColor:whitecolor];
     selectedBgView.image = [UIImage imageWithColor:RGBCOLOR(241, 241, 241)];
 }
-- (void)setItem:(SWCommonItem *)item{
+- (void)setItem:(SinaMode *)item{
     _item = item;
     
     // 1.设置基本数据
@@ -127,7 +125,7 @@
         self.accessoryView = self.bageView;
     } else if ([item isKindOfClass:[SWCommonArrowItem class]]) {
         self.accessoryView = self.rightArrow;
-    } else if ([item isKindOfClass:[SWCommonItem class]]) {
+    } else if ([item isKindOfClass:[SinaMode class]]) {
         self.accessoryView = self.rightSwitch;
     } else if ([item isKindOfClass:[SWCommonLabelItem class]]) {
         SWCommonLabelItem *labelItem = (SWCommonLabelItem *)item;
@@ -198,7 +196,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     // 1.取出这行对应的item模型
     SWCommonGroup *group = self.groups[indexPath.section];
-    SWCommonItem *item = group.items[indexPath.row];
+    SinaMode *item = group.items[indexPath.row];
     
     // 2.判断有无需要跳转的控制器
     if (item.destVcClass) {
