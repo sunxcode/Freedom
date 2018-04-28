@@ -34,7 +34,7 @@
     [self.shakeSettingData addObjectsFromArray:@[group1, group2, group3]];
 }
 @end
-@interface TLShakeSettingViewController ()
+@interface TLShakeSettingViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 @property (nonatomic, strong) TLShakeHelper *helper;
 @end
 @implementation TLShakeSettingViewController
@@ -46,6 +46,35 @@
     self.data = self.helper.shakeSettingData;
 }
 #pragma mark - Delegate -
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(nullable NSDictionary<NSString *,id> *)editingInfo{
+    [picker dismissViewControllerAnimated:YES completion:^{
+        UIImage *image = [editingInfo objectForKey:UIImagePickerControllerEditedImage];
+        if (image == nil) {
+            image = [editingInfo objectForKey:UIImagePickerControllerOriginalImage];
+        }
+        NSData *imageData = (UIImagePNGRepresentation(image) ? UIImagePNGRepresentation(image) :UIImageJPEGRepresentation(image, 1));
+        NSString *imageName = [NSString stringWithFormat:@"%lf.jpg", [NSDate date].timeIntervalSince1970];
+        NSString *imagePath = [NSFileManager pathUserSettingImage:imageName];
+        [[NSFileManager defaultManager] createFileAtPath:imagePath contents:imageData attributes:nil];
+        [[NSUserDefaults standardUserDefaults] setObject:imageName forKey:@"Shake_Image_Path"];
+    }];
+}
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
+    [picker dismissViewControllerAnimated:YES completion:^{
+        UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+        if (image == nil) {
+            image = [info objectForKey:UIImagePickerControllerOriginalImage];
+        }
+        NSData *imageData = (UIImagePNGRepresentation(image) ? UIImagePNGRepresentation(image) :UIImageJPEGRepresentation(image, 1));
+        NSString *imageName = [NSString stringWithFormat:@"%lf.jpg", [NSDate date].timeIntervalSince1970];
+        NSString *imagePath = [NSFileManager pathUserSettingImage:imageName];
+        [[NSFileManager defaultManager] createFileAtPath:imagePath contents:imageData attributes:nil];
+        [[NSUserDefaults standardUserDefaults] setObject:imageName forKey:@"Shake_Image_Path"];
+    }];
+}
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     TLSettingItem *item = [self.data[indexPath.section] objectAtIndex:indexPath.row];
     if ([item.title isEqualToString:@"使用默认背景图片"]) {
@@ -56,21 +85,7 @@
         [imagePickerController setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
         [imagePickerController setAllowsEditing:YES];
         [self presentViewController:imagePickerController animated:YES completion:nil];
-        [imagePickerController.rac_imageSelectedSignal subscribeNext:^(id x) {
-            [imagePickerController dismissViewControllerAnimated:YES completion:^{
-                UIImage *image = [x objectForKey:UIImagePickerControllerEditedImage];
-                if (image == nil) {
-                    image = [x objectForKey:UIImagePickerControllerOriginalImage];
-                }
-                NSData *imageData = (UIImagePNGRepresentation(image) ? UIImagePNGRepresentation(image) :UIImageJPEGRepresentation(image, 1));
-                NSString *imageName = [NSString stringWithFormat:@"%lf.jpg", [NSDate date].timeIntervalSince1970];
-                NSString *imagePath = [NSFileManager pathUserSettingImage:imageName];
-                [[NSFileManager defaultManager] createFileAtPath:imagePath contents:imageData attributes:nil];
-                [[NSUserDefaults standardUserDefaults] setObject:imageName forKey:@"Shake_Image_Path"];
-            }];
-        } completed:^{
-            [imagePickerController dismissViewControllerAnimated:YES completion:nil];
-        }];
+        imagePickerController.delegate = self;
     }
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }

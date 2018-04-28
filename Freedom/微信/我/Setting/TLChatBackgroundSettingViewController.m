@@ -65,7 +65,7 @@
     return cell;
 }
 @end
-@interface TLChatBackgroundSettingViewController () <TLActionSheetDelegate>
+@interface TLChatBackgroundSettingViewController () <TLActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 @end
 @implementation TLChatBackgroundSettingViewController
 - (void)viewDidLoad {
@@ -82,6 +82,21 @@
     }
     return 0;
 }
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(nullable NSDictionary<NSString *,id> *)editingInfo{
+    [picker dismissViewControllerAnimated:YES completion:^{
+        UIImage *image = [editingInfo objectForKey:UIImagePickerControllerOriginalImage];
+        [self p_setChatBackgroundImage:image];
+    }];
+}
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
+    [picker dismissViewControllerAnimated:YES completion:^{
+        UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+        [self p_setChatBackgroundImage:image];
+    }];
+}
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
 //MARK: UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     TLSettingItem *item = [self.data[indexPath.section] objectAtIndex:indexPath.row];
@@ -92,32 +107,16 @@
     }else if ([item.title isEqualToString:@"从手机相册中选择"]) {
         UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
         [imagePickerController setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-        
+        imagePickerController.delegate = self;
         [self presentViewController:imagePickerController animated:YES completion:nil];
-        [imagePickerController.rac_imageSelectedSignal subscribeNext:^(id x) {
-            [imagePickerController dismissViewControllerAnimated:YES completion:^{
-                UIImage *image = [x objectForKey:UIImagePickerControllerOriginalImage];
-                [self p_setChatBackgroundImage:image];
-            }];
-        } completed:^{
-            [imagePickerController dismissViewControllerAnimated:YES completion:nil];
-        }];
     }else if ([item.title isEqualToString:@"拍一张"]) {
         UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
         if(![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
             [UIAlertView bk_alertViewWithTitle:@"错误" message:@"相机初始化失败"];
         }else{
             [imagePickerController setSourceType:UIImagePickerControllerSourceTypeCamera];
+            imagePickerController.delegate = self;
             [self presentViewController:imagePickerController animated:YES completion:nil];
-            [imagePickerController.rac_imageSelectedSignal subscribeNext:^(id x) {
-                [imagePickerController dismissViewControllerAnimated:YES completion:^{
-                    UIImage *image = [x objectForKey:UIImagePickerControllerOriginalImage];
-                    [self p_setChatBackgroundImage:image];
-                }];
-            } completed:^{
-                [imagePickerController dismissViewControllerAnimated:YES completion:nil];
-            }];
-            
         }
     }else if ([item.title isEqualToString:@"将背景应用到所有聊天场景"]) {
         TLActionSheet *actionSheet = [[TLActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"将背景应用到所有聊天场景" otherButtonTitles:nil];

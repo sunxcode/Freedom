@@ -107,13 +107,8 @@ PODS:
   - PPHelpMe (1.0.2)
   - PPRevealSideViewController (1.2.4):
     - PPHelpMe
-  - ReactiveCocoa (2.5):
-    - ReactiveCocoa/UI (= 2.5)
-  - ReactiveCocoa/Core (2.5):
-    - ReactiveCocoa/no-arc
-  - ReactiveCocoa/no-arc (2.5)
-  - ReactiveCocoa/UI (2.5):
-    - ReactiveCocoa/Core
+  - ReactiveCocoa (7.2.0):
+    - ReactiveSwift (~> 3.1)
   - ReactiveSwift (3.1.0):
     - Result (~> 3.2)
   - Realm (3.5.0):
@@ -175,17 +170,17 @@ DEPENDENCIES:
   - MJExtension
   - MJRefresh
   - Moya
-  - Moya/ReactiveSwift (~> 11.0)
+  - Moya/ReactiveSwift
   - Moya/RxSwift
   - MWPhotoBrowser
   - ObjectDictionary
   - PPRevealSideViewController
-  - ReactiveCocoa (~> 2.5)
-  - ReactiveSwift (~> 3.0)
+  - ReactiveCocoa
+  - ReactiveSwift
   - RealmSwift
   - RESideMenu
-  - RxCocoa (~> 4.0)
-  - RxSwift (~> 4.0)
+  - RxCocoa
+  - RxSwift
   - SDWebImage
   - SmartJSWebView
   - SnapKit
@@ -287,7 +282,7 @@ SPEC CHECKSUMS:
   ObjectDictionary: 0c2cd262eab9faf2488aea2ae52469887fb4ffbb
   PPHelpMe: 243c40d2fad33ebdcc6b158c0db54893e0cc2d14
   PPRevealSideViewController: eb2109c91688f34647dc8427d683f1d43ec012f9
-  ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
+  ReactiveCocoa: 476dae7ca790f40d30d186a1bd7ebae4290395d5
   ReactiveSwift: 5b26d2e988fe0eed2daf48c4054d1de74db50184
   Realm: 0378021c424e4e2bd6a0e63b27881e929d9b9ad1
   RealmSwift: 3322562622fda2ad596985ead4d8d8be30cf838c
@@ -308,6 +303,6 @@ SPEC CHECKSUMS:
   XCategory: 3bbaccbd4cc02c40ea22467427fa3a4d8f21a827
   XMLDictionary: fa07b6ff422b3a91d47a5de9bc82e3fc04fbd167
 
-PODFILE CHECKSUM: cd6b41ea041a89709dae65bb942aef050d0b7f94
+PODFILE CHECKSUM: 064d148e4a3921ff1cfcca722cfefa815d503c6a
 
 COCOAPODS: 1.5.0

@@ -25,44 +25,22 @@
     return self;
 }
 - (void) p_initTestData{
-    TLMoreKeyboardItem *imageItem = [TLMoreKeyboardItem createByType:TLMoreKeyboardItemTypeImage
-                                                               title:@"照片"
-                                                           imagePath:@"moreKB_image"];
-    TLMoreKeyboardItem *cameraItem = [TLMoreKeyboardItem createByType:TLMoreKeyboardItemTypeCamera
-                                                                title:@"拍摄"
-                                                            imagePath:@"moreKB_video"];
-    TLMoreKeyboardItem *videoItem = [TLMoreKeyboardItem createByType:TLMoreKeyboardItemTypeVideo
-                                                               title:@"小视频"
-                                                           imagePath:@"moreKB_sight"];
-    TLMoreKeyboardItem *videoCallItem = [TLMoreKeyboardItem createByType:TLMoreKeyboardItemTypeVideoCall
-                                                                   title:@"视频聊天"
-                                                               imagePath:@"moreKB_video_call"];
-    TLMoreKeyboardItem *walletItem = [TLMoreKeyboardItem createByType:TLMoreKeyboardItemTypeWallet
-                                                                title:@"红包"
-                                                            imagePath:@"moreKB_wallet"];
-    TLMoreKeyboardItem *transferItem = [TLMoreKeyboardItem createByType:TLMoreKeyboardItemTypeTransfer
-                                                                  title:@"转账"
-                                                              imagePath:@"moreKB_pay"];
-    TLMoreKeyboardItem *positionItem = [TLMoreKeyboardItem createByType:TLMoreKeyboardItemTypePosition
-                                                                  title:@"位置"
-                                                              imagePath:@"moreKB_location"];
-    TLMoreKeyboardItem *favoriteItem = [TLMoreKeyboardItem createByType:TLMoreKeyboardItemTypeFavorite
-                                                                  title:@"收藏"
-                                                              imagePath:@"moreKB_favorite"];
-    TLMoreKeyboardItem *businessCardItem = [TLMoreKeyboardItem createByType:TLMoreKeyboardItemTypeBusinessCard
-                                                                      title:@"个人名片"
-                                                                  imagePath:@"moreKB_friendcard" ];
-    TLMoreKeyboardItem *voiceItem = [TLMoreKeyboardItem createByType:TLMoreKeyboardItemTypeVoice
-                                                               title:@"语音输入"
-                                                           imagePath:@"moreKB_voice"];
-    TLMoreKeyboardItem *cardsItem = [TLMoreKeyboardItem createByType:TLMoreKeyboardItemTypeCards
-                                                               title:@"卡券"
-                                                           imagePath:@"moreKB_wallet"];
+    TLMoreKeyboardItem *imageItem = [TLMoreKeyboardItem createByType:TLMoreKeyboardItemTypeImage title:@"照片" imagePath:@"moreKB_image"];
+    TLMoreKeyboardItem *cameraItem = [TLMoreKeyboardItem createByType:TLMoreKeyboardItemTypeCamera title:@"拍摄" imagePath:@"moreKB_video"];
+    TLMoreKeyboardItem *videoItem = [TLMoreKeyboardItem createByType:TLMoreKeyboardItemTypeVideo title:@"小视频" imagePath:@"moreKB_sight"];
+    TLMoreKeyboardItem *videoCallItem = [TLMoreKeyboardItem createByType:TLMoreKeyboardItemTypeVideoCall title:@"视频聊天" imagePath:@"moreKB_video_call"];
+    TLMoreKeyboardItem *walletItem = [TLMoreKeyboardItem createByType:TLMoreKeyboardItemTypeWallet title:@"红包" imagePath:@"moreKB_wallet"];
+    TLMoreKeyboardItem *transferItem = [TLMoreKeyboardItem createByType:TLMoreKeyboardItemTypeTransfer title:@"转账" imagePath:@"moreKB_pay"];
+    TLMoreKeyboardItem *positionItem = [TLMoreKeyboardItem createByType:TLMoreKeyboardItemTypePosition title:@"位置" imagePath:@"moreKB_location"];
+    TLMoreKeyboardItem *favoriteItem = [TLMoreKeyboardItem createByType:TLMoreKeyboardItemTypeFavorite title:@"收藏" imagePath:@"moreKB_favorite"];
+    TLMoreKeyboardItem *businessCardItem = [TLMoreKeyboardItem createByType:TLMoreKeyboardItemTypeBusinessCard title:@"个人名片" imagePath:@"moreKB_friendcard" ];
+    TLMoreKeyboardItem *voiceItem = [TLMoreKeyboardItem createByType:TLMoreKeyboardItemTypeVoice title:@"语音输入" imagePath:@"moreKB_voice"];
+    TLMoreKeyboardItem *cardsItem = [TLMoreKeyboardItem createByType:TLMoreKeyboardItemTypeCards title:@"卡券" imagePath:@"moreKB_wallet"];
     [self.chatMoreKeyboardData addObjectsFromArray:@[imageItem, cameraItem, videoItem, videoCallItem, walletItem, transferItem, positionItem, favoriteItem, businessCardItem, voiceItem, cardsItem]];
 }
 @end
 static TLChatViewController *chatVC;
-@interface TLChatViewController()
+@interface TLChatViewController()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property (nonatomic, strong) TLMoreKBHelper *moreKBhelper;
 @property (nonatomic, strong) TLUserHelper *emojiKBHelper;
 @property (nonatomic, strong) UIBarButtonItem *rightBarButton;
@@ -131,6 +109,21 @@ static TLChatViewController *chatVC;
     return _rightBarButton;
 }
 #pragma mark - Delegate -
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(nullable NSDictionary<NSString *,id> *)editingInfo{
+    [picker dismissViewControllerAnimated:YES completion:^{
+        UIImage *image = [editingInfo objectForKey:UIImagePickerControllerOriginalImage];
+        [self sendImageMessage:image];
+    }];
+}
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
+    [picker dismissViewControllerAnimated:YES completion:^{
+        UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+        [self sendImageMessage:image];
+    }];
+}
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+     [picker dismissViewControllerAnimated:YES completion:nil];
+}
 //MARK: TLMoreKeyboardDelegate
 - (void)moreKeyboard:(id)keyboard didSelectedFunctionItem:(TLMoreKeyboardItem *)funcItem{
     if (funcItem.type == TLMoreKeyboardItemTypeCamera || funcItem.type == TLMoreKeyboardItemTypeImage) {
@@ -145,16 +138,8 @@ static TLChatViewController *chatVC;
         }else{
             [imagePickerController setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
         }
+        imagePickerController.delegate = self;
         [self presentViewController:imagePickerController animated:YES completion:nil];
-        __weak typeof(self) weakSelf = self;
-        [imagePickerController.rac_imageSelectedSignal subscribeNext:^(id x) {
-            [imagePickerController dismissViewControllerAnimated:YES completion:^{
-                UIImage *image = [x objectForKey:UIImagePickerControllerOriginalImage];
-                [weakSelf sendImageMessage:image];
-            }];
-        } completed:^{
-            [imagePickerController dismissViewControllerAnimated:YES completion:nil];
-        }];
     }else{
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:[NSString stringWithFormat:@"选中”%@“ 按钮", funcItem.title] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
         [alert show];

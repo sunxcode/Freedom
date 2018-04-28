@@ -154,30 +154,49 @@
     }
     [self.scanVC setScannerType:sender.type];
 }
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(nullable NSDictionary<NSString *,id> *)editingInfo{
+    [picker dismissViewControllerAnimated:YES completion:^{
+        UIImage *image = [editingInfo objectForKey:UIImagePickerControllerOriginalImage];
+        [SVProgressHUD showWithStatus:@"扫描中，请稍候"];
+        [TLScannerViewController scannerQRCodeFromImage:image ans:^(NSString *ansStr) {
+            [SVProgressHUD dismiss];
+            if (ansStr == nil) {
+                [UIAlertView bk_showAlertViewWithTitle:@"扫描失败" message:@"请换张图片，或换个设备重试~" cancelButtonTitle:@"确定" otherButtonTitles:nil handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                    [self.scanVC startCodeReading];
+                }];
+            }
+            else {
+                [self p_analysisQRAnswer:ansStr];
+            }
+        }];
+    }];
+}
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
+    [picker dismissViewControllerAnimated:YES completion:^{
+        UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+        [SVProgressHUD showWithStatus:@"扫描中，请稍候"];
+        [TLScannerViewController scannerQRCodeFromImage:image ans:^(NSString *ansStr) {
+            [SVProgressHUD dismiss];
+            if (ansStr == nil) {
+                [UIAlertView bk_showAlertViewWithTitle:@"扫描失败" message:@"请换张图片，或换个设备重试~" cancelButtonTitle:@"确定" otherButtonTitles:nil handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                    [self.scanVC startCodeReading];
+                }];
+            }
+            else {
+                [self p_analysisQRAnswer:ansStr];
+            }
+        }];
+    }];
+}
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
 - (void)albumBarButtonDown:(UIBarButtonItem *)sender{
     [self.scanVC stopCodeReading];
     UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
     [imagePickerController setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+    imagePickerController.delegate = self;
     [self presentViewController:imagePickerController animated:YES completion:nil];
-    [imagePickerController.rac_imageSelectedSignal subscribeNext:^(id x) {
-        [imagePickerController dismissViewControllerAnimated:YES completion:^{
-            UIImage *image = [x objectForKey:UIImagePickerControllerOriginalImage];
-            [SVProgressHUD showWithStatus:@"扫描中，请稍候"];
-            [TLScannerViewController scannerQRCodeFromImage:image ans:^(NSString *ansStr) {
-                [SVProgressHUD dismiss];
-                if (ansStr == nil) {
-                    [UIAlertView bk_showAlertViewWithTitle:@"扫描失败" message:@"请换张图片，或换个设备重试~" cancelButtonTitle:@"确定" otherButtonTitles:nil handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                        [self.scanVC startCodeReading];
-                    }];
-                }
-                else {
-                    [self p_analysisQRAnswer:ansStr];
-                }
-            }];
-        }];
-    } completed:^{
-        [imagePickerController dismissViewControllerAnimated:YES completion:nil];
-    }];
 }
 - (void)myQRButtonDown{
     TLMyQRCodeViewController *myQRCodeVC = [[TLMyQRCodeViewController alloc] init];
