@@ -1,0 +1,6 @@
+framework module ACMediaFrame {
+  umbrella header "ACMediaFrame-umbrella.h"
+
+  export *
+  module * { export * }
+}

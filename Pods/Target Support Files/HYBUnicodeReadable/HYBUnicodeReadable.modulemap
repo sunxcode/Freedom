@@ -1,0 +1,6 @@
+framework module HYBUnicodeReadable {
+  umbrella header "HYBUnicodeReadable-umbrella.h"
+
+  export *
+  module * { export * }
+}

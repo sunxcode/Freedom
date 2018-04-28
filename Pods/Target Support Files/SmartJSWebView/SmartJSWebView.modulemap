@@ -1,0 +1,6 @@
+framework module SmartJSWebView {
+  umbrella header "SmartJSWebView-umbrella.h"
+
+  export *
+  module * { export * }
+}
