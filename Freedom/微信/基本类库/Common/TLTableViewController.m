@@ -2,7 +2,7 @@
 //  Freedom
 // Created by Super
 #import "TLTableViewController.h"
-#import <MobClick.h>
+#import <UMMobClick/MobClick.h>
 @implementation TLTableViewController
 - (void) viewDidLoad{
     [super viewDidLoad];

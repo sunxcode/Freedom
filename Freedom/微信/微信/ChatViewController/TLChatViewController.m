@@ -4,7 +4,7 @@
 #import "TLChatViewController.h"
 #import "TLChatDetailViewController.h"
 #import "TLChatGroupDetailViewController.h"
-#import <MobClick.h>
+#import <UMMobClick/MobClick.h>
 #import "TLRootViewController.h"
 #import <BlocksKit/BlocksKit+UIKit.h>
 #import "TLExpressionViewController.h"

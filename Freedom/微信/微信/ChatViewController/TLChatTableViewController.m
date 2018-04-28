@@ -5,7 +5,7 @@
 #import <BlocksKit/BlocksKit+UIKit.h>
 #define     PAGE_MESSAGE_COUNT      15
 #import "UIImage+GIF.h"
-#import <MobClick.h>
+#import <UMMobClick/MobClick.h>
 #define     MSG_SPACE_TOP       2
 #define     MSG_SPACE_TOP       14
 #define     MSG_SPACE_BTM       20

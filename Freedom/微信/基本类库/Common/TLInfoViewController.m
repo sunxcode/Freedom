@@ -2,7 +2,6 @@
 //  Freedom
 // Created by Super
 #import "TLInfoViewController.h"
-#import <MobClick.h>
 #import <BlocksKit/BlocksKit+UIKit.h>
     
 @interface TLInfoCell ()

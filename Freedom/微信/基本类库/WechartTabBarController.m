@@ -14,7 +14,7 @@
 #import "JPEngine.h"
 #import "CocoaLumberjack.h"
 #import "TLUserHelper.h"
-#import <MobClick.h>
+#import <UMMobClick/MobClick.h>
 #import <BlocksKit/BlocksKit+UIKit.h>
 static WechartTabBarController *rootVC = nil;
 @interface WechartTabBarController ()
@@ -63,7 +63,11 @@ static WechartTabBarController *rootVC = nil;
 }
 - (void)p_initThirdPartSDK{
     // 友盟统计
-    [MobClick startWithAppkey:UMENG_APPKEY reportPolicy:BATCH channelId:APP_CHANNEL];
+    UMAnalyticsConfig *config = [UMAnalyticsConfig sharedInstance];
+    config.appKey = UMENG_APPKEY;
+    config.ePolicy = BATCH;
+    config.channelId = APP_CHANNEL;
+    [MobClick startWithConfigure:config];
     // 网络环境监测
     [[AFNetworkReachabilityManager sharedManager] startMonitoring];
     // JSPatch

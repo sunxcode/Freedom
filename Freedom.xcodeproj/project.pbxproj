@@ -5289,7 +5289,6 @@
 				7759B6881D0EA37F00AE3A59 /* Frameworks */,
 				7759B6891D0EA37F00AE3A59 /* Resources */,
 				594D8475FD8B79805F499D8A /* [CP] Embed Pods Frameworks */,
-				A09EB6C11F89B3AE5FCB7767 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -6316,21 +6315,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Freedom/Pods-Freedom-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A09EB6C11F89B3AE5FCB7767 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Freedom/Pods-Freedom-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A53E273E080B8DA8D139609C /* [CP] Check Pods Manifest.lock */ = {

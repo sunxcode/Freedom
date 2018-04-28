@@ -8,7 +8,7 @@
 #define     FRIENDS_SPACE_X         10.0f
 #define     FRIENDS_SPACE_Y         9.5f
 #import "TLTableViewCell.h"
-#import <MobClick.h>
+#import <UMMobClick/MobClick.h>
 #import "TLFriendsViewController.h"
 /*通讯录 Cell*/
 @interface TLContactCell : TLTableViewCell

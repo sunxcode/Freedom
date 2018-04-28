@@ -2,7 +2,7 @@
 //  Freedom
 // Created by Super
 #import "TLWebViewController.h"
-#import <MobClick.h>
+#import <UMMobClick/MobClick.h>
 #define     WEBVIEW_NAVBAR_ITEMS_FIXED_SPACE    9
 @interface TLWebViewController ()
 @property (nonatomic, strong) WKWebView *webView;

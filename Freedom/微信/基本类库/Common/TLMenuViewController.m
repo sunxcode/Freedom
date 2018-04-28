@@ -2,7 +2,7 @@
 //  Freedom
 // Created by Super
 #import "TLMenuViewController.h"
-#import <MobClick.h>
+#import <UMMobClick/MobClick.h>
 #define     REDPOINT_WIDTH      8.0f
 @interface TLMenuCell ()
 @property (nonatomic, strong) UIImageView *iconImageView;
