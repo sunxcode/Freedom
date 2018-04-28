@@ -18,6 +18,7 @@
 		71267A552092DC93006E1B96 /* YMTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 71267A542092DC92006E1B96 /* YMTableViewCell.m */; };
 		71267A582092E726006E1B96 /* BookReadMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 71267A572092E726006E1B96 /* BookReadMode.m */; };
 		71267A5B2092E736006E1B96 /* BookSubViews.m in Sources */ = {isa = PBXBuildFile; fileRef = 71267A5A2092E736006E1B96 /* BookSubViews.m */; };
+		71517B1C2094803300B40538 /* JSONObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71517B1B2094803300B40538 /* JSONObject.swift */; };
 		71ECDFB52091EB4B00495467 /* JSPatch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71ECDFB22091EB4A00495467 /* JSPatch.framework */; };
 		71ECDFB62091EB4B00495467 /* UINavigationController+JZExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 71ECDFB42091EB4B00495467 /* UINavigationController+JZExtension.m */; };
 		71ECDFC02091F9EF00495467 /* TLMessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 71ECDFBB2091F9ED00495467 /* TLMessageManager.m */; };
@@ -1156,6 +1157,7 @@
 		71267A572092E726006E1B96 /* BookReadMode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookReadMode.m; sourceTree = "<group>"; };
 		71267A592092E736006E1B96 /* BookSubViews.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookSubViews.h; sourceTree = "<group>"; };
 		71267A5A2092E736006E1B96 /* BookSubViews.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookSubViews.m; sourceTree = "<group>"; };
+		71517B1B2094803300B40538 /* JSONObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONObject.swift; sourceTree = "<group>"; };
 		71ECDFB22091EB4A00495467 /* JSPatch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JSPatch.framework; sourceTree = "<group>"; };
 		71ECDFB32091EB4A00495467 /* UINavigationController+JZExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+JZExtension.h"; sourceTree = "<group>"; };
 		71ECDFB42091EB4B00495467 /* UINavigationController+JZExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+JZExtension.m"; sourceTree = "<group>"; };
@@ -4379,6 +4381,7 @@
 		7772A7F11D64433500444973 /* ThirdPart */ = {
 			isa = PBXGroup;
 			children = (
+				71517B1B2094803300B40538 /* JSONObject.swift */,
 				71ECDFB22091EB4A00495467 /* JSPatch.framework */,
 				71ECDFB32091EB4A00495467 /* UINavigationController+JZExtension.h */,
 				71ECDFB42091EB4B00495467 /* UINavigationController+JZExtension.m */,
@@ -6238,8 +6241,12 @@
 				"${BUILT_PRODUCTS_DIR}/PPRevealSideViewController/PPRevealSideViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/RESideMenu/RESideMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveSwift/ReactiveSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SmartJSWebView/SmartJSWebView.framework",
@@ -6286,8 +6293,12 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PPRevealSideViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RESideMenu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SmartJSWebView.framework",
@@ -6528,6 +6539,7 @@
 				779B81B51D7D0E7300B23DFA /* JuheDynamicViewController.m in Sources */,
 				7741F1F51D6D53B700EED332 /* SDYuEBaoTableViewController.m in Sources */,
 				77CC4F441D90E07A00DD2EC8 /* BaseTabBarController.m in Sources */,
+				71517B1C2094803300B40538 /* JSONObject.swift in Sources */,
 				7719177B1D65C2B2002F2BCD /* PersonalApplyViewController.m in Sources */,
 				779937BA1E2F1DE100866968 /* EnergyShopMeViewController.m in Sources */,
 				77CC4F3E1D90E03200DD2EC8 /* BaseNavigationController.m in Sources */,
