@@ -1,6 +1,5 @@
 
 #import "BaseViewController.h"
-#import "Reachability.h"
 #include <objc/runtime.h>
 #import "User.h"
 @interface BaseViewController ()
@@ -14,7 +13,11 @@
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:)name:kReachabilityChangedNotification object:nil];
+    [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        if(status == AFNetworkReachabilityStatusReachableViaWiFi){
+            DLog(@"网络状态改变了.");
+        }
+    }];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
 }
 - (void)viewDidLoad{
@@ -47,7 +50,7 @@
     return [self pushController:controller withInfo:info withTitle:title withOther:nil tabBarHidden:YES];
 }
 - (BaseViewController*)pushController:(Class)controller withInfo:(id)info withTitle:(NSString*)title withOther:(id)other{
-   return [self pushController:controller withInfo:info withTitle:title withOther:other tabBarHidden:YES];
+    return [self pushController:controller withInfo:info withTitle:title withOther:other tabBarHidden:YES];
 }
 - (BaseViewController*)pushController:(Class)controller withInfo:(id)info withTitle:(NSString*)title withOther:(id)other tabBarHidden:(BOOL)abool{
     DLog(@"\n跳转到 %@ 类",NSStringFromClass(controller));
@@ -140,7 +143,7 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if(self.tableView.sectionN == 1){
-//        return self.tableView.rowN;
+        //        return self.tableView.rowN;
         return self.tableView.dataArray.count;
     }else{
         NSArray *rows = self.tableView.dataArray[section];
@@ -249,16 +252,10 @@
 }
 //子类重写
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-      DLog(@"请子类重写这个方法");
+    DLog(@"请子类重写这个方法");
 }
 - (void)collectionView:(UICollectionView *)collectionView moveItemAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath*)destinationIndexPath{
-      DLog(@"请子类重写这个方法");
-}
-#pragma mark -Notify
--(void) reachabilityChanged:(NSNotification*) notification{
-    if ([(Reachability*)[notification object] currentReachabilityStatus] == ReachableViaWiFi) {
-        DLog(@"网络状态改变了.");
-    }
+    DLog(@"请子类重写这个方法");
 }
 #pragma mark others
 - (void)addFloatView{
@@ -293,7 +290,7 @@
     //    animation.type = kCATransitionReveal;
     //    animation.subtype = kCATransitionFromTop;
     [self.view.window.layer addAnimation:animation forKey:nil];
-//    [self presentViewController:con animated:NO completion:^{}];
+    //    [self presentViewController:con animated:NO completion:^{}];
     UIWindow *win = [UIApplication sharedApplication].keyWindow;
     win.rootViewController = con;
     [win makeKeyAndVisible];
@@ -348,7 +345,7 @@
         [self.radialView removeFromSuperview];
         self.radialView = nil;
     }
-   
+    
 }
 #pragma mark 摇一摇
 /** 开始摇一摇 */

@@ -3,7 +3,7 @@
 //  Created by Super on 15-6-7.
 #import "SDAddItemViewController.h"
 #import "SDHomeViewController.h"
-#import "UIView+SDExtension.h"
+
 #define kHomeGridViewPerRowItemCount 4
 @interface SDAddItemGridView : UIScrollView <UIScrollViewDelegate>
 @property (nonatomic, strong) NSArray *gridModelsArray;
@@ -32,12 +32,12 @@
 }
 - (void)layoutSubviews{
     [super layoutSubviews];
-    CGFloat itemW = self.sd_width / kHomeGridViewPerRowItemCount;
+    CGFloat itemW = self.frameWidth / kHomeGridViewPerRowItemCount;
     CGFloat itemH = itemW * 1.1;
     if (YES) {
         [self setupSubViewsFrame];
         [_rowSeparatorsArray enumerateObjectsUsingBlock:^(UIView *view, NSUInteger idx, BOOL *stop) {
-            CGFloat w = self.sd_width;
+            CGFloat w = self.frameWidth;
             CGFloat h = 0.4;
             CGFloat x = 0;
             CGFloat y = idx * itemH;
@@ -153,7 +153,7 @@
     }];
 }
 - (void)setupSubViewsFrame{
-    CGFloat itemW = self.sd_width / kHomeGridViewPerRowItemCount;
+    CGFloat itemW = self.frameWidth / kHomeGridViewPerRowItemCount;
     CGFloat itemH = itemW * 1.1;
     [_itemsArray enumerateObjectsUsingBlock:^(UIView *item, NSUInteger idx, BOOL *stop) {
         long rowIndex = idx / kHomeGridViewPerRowItemCount;
@@ -163,7 +163,7 @@
         CGFloat y = itemH * rowIndex;
         item.frame = CGRectMake(x, y, itemW, itemH);
         if (idx == (_itemsArray.count - 1)) {
-            self.contentSize = CGSizeMake(0, item.sd_height + item.sd_y);
+            self.contentSize = CGSizeMake(0, item.frameHeight + item.frameY);
         }
     }];
 }

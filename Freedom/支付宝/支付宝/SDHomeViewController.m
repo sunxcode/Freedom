@@ -1,15 +1,12 @@
 //  SDHomeViewController.m
 //  Freedom
 #import "SDHomeViewController.h"
-#import "UIView+SDExtension.h"
 #import "SDAddItemViewController.h"
 #import "SDAssetsTableViewControllerCellModel.h"
-#import "SDCycleScrollView.h"
 #define kHomeGridViewPerRowItemCount 4
 #define kHomeGridViewTopSectionRowCount 3
 #import "SDScanViewController.h"
 #import "UIButton+WebCache.h"
-#import "UIView+SDExtension.h"
 @implementation SDHomeGridItemModel
 @end
 @implementation SDHomeGridViewListItemView{
@@ -78,7 +75,7 @@
     CGFloat w = W(_button);
     [_button setImageEdgeInsets:UIEdgeInsetsMake(h*0.2, w*0.32, h*0.3, w*0.32)];
     [_button setTitleEdgeInsets:UIEdgeInsetsMake(h*0.6, -w*0.4, 0, 0)];
-    _iconView.frame = CGRectMake(self.sd_width - _iconView.sd_width - margin, margin, 20, 20);
+    _iconView.frame = CGRectMake(self.frameWidth - _iconView.frameWidth - margin, margin, 20, 20);
 }
 @end
 
@@ -92,7 +89,6 @@
 @interface SDHomeGridView : UIScrollView <UIScrollViewDelegate>
 @property (nonatomic, weak) id<SDHomeGridViewDeleate> gridViewDelegate;
 @property (nonatomic, strong) NSArray *gridModelsArray;
-@property (nonatomic, strong) NSArray *scrollADImageURLStringsArray;
 @end
 @implementation SDHomeGridView{
     NSMutableArray *_itemsArray;
@@ -102,7 +98,7 @@
     CGPoint _lastPoint;
     UIButton *_placeholderButton;
     SDHomeGridViewListItemView *_currentPressedView;
-    SDCycleScrollView *_cycleScrollADView;
+    BaseScrollView *_cycleScrollADView;
     UIView *_cycleScrollADViewBackgroundView;
     UIButton *_moreItemButton;
     CGRect _currentPresssViewFrame;
@@ -133,11 +129,11 @@
         UIView *header = [[UIView alloc] init];
         header.frame = CGRectMake(0, 0, APPW, 100);
         header.backgroundColor = [UIColor colorWithRed:(38 / 255.0) green:(42 / 255.0) blue:(59 / 255.0) alpha:1];
-        UIButton *scan = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, header.sd_width * 0.5, header.sd_height)];
+        UIButton *scan = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, header.frameWidth * 0.5, header.frameHeight)];
         [scan setImage:[UIImage imageNamed:Pscan_y] forState:UIControlStateNormal];
         [scan addTarget:self action:@selector(scanButtonClicked) forControlEvents:UIControlEventTouchUpInside];
         [header addSubview:scan];
-        UIButton *pay = [[UIButton alloc] initWithFrame:CGRectMake(scan.sd_width, 0, header.sd_width * 0.5, header.sd_height)];
+        UIButton *pay = [[UIButton alloc] initWithFrame:CGRectMake(scan.frameWidth, 0, header.frameWidth * 0.5, header.frameHeight)];
         [pay setImage:[UIImage imageNamed:@"home_pay"] forState:UIControlStateNormal];
         [header addSubview:pay];
         UIView *line = [[UIView alloc]initWithFrame:CGRectMake(APPW/2, 0, 0.5, 100)];
@@ -149,11 +145,10 @@
         cycleScrollADViewBackgroundView.backgroundColor = [UIColor colorWithRed:(235 / 255.0) green:(235 / 255.0) blue:(235 / 255.0) alpha:1];
         [self addSubview:cycleScrollADViewBackgroundView];
         _cycleScrollADViewBackgroundView = cycleScrollADViewBackgroundView;
-        
-        SDCycleScrollView *cycleView = [[SDCycleScrollView alloc] init];
-        cycleView.autoScrollTimeInterval = 2.0;
-        [self addSubview:cycleView];
-        _cycleScrollADView = cycleView;
+        _cycleScrollADViewBackgroundView.backgroundColor = [UIColor redColor];
+        NSArray *temp = @[@"http://ww3.sinaimg.cn/bmiddle/9d857daagw1er7lgd1bg1j20ci08cdg3.jpg",@"http://ww4.sinaimg.cn/bmiddle/763cc1a7jw1esr747i13xj20dw09g0tj.jpg",@"http://ww4.sinaimg.cn/bmiddle/67307b53jw1esr4z8pimxj20c809675d.jpg"];
+        _cycleScrollADView = [BaseScrollView sharedBannerWithFrame:CGRectMake(0, 0, APPW, 100) icons:temp];
+        [self addSubview:_cycleScrollADView];
     }
     return self;
 }
@@ -217,10 +212,6 @@
     if ([self.gridViewDelegate respondsToSelector:@selector(homeGrideViewmoreItemButtonClicked:)]) {
         [self.gridViewDelegate homeGrideViewmoreItemButtonClicked:self];
     }
-}
-- (void)setScrollADImageURLStringsArray:(NSArray *)scrollADImageURLStringsArray{
-    _scrollADImageURLStringsArray = scrollADImageURLStringsArray;
-    _cycleScrollADView.imageURLStringsGroup = scrollADImageURLStringsArray;
 }
 - (NSInteger)rowCountWithItemsCount:(NSInteger)count{
     long rowCount = (count + kHomeGridViewPerRowItemCount - 1) / kHomeGridViewPerRowItemCount;
@@ -296,7 +287,7 @@
     }
 }
 - (void)setupSubViewsFrame{
-    CGFloat itemW = self.sd_width / kHomeGridViewPerRowItemCount;
+    CGFloat itemW = self.frameWidth / kHomeGridViewPerRowItemCount;
     CGFloat itemH = itemW * 1.1;
     [_itemsArray enumerateObjectsUsingBlock:^(UIView *item, NSUInteger idx, BOOL *stop) {
         long rowIndex = idx / kHomeGridViewPerRowItemCount;
@@ -310,19 +301,19 @@
         }
         item.frame = CGRectMake(x, y, itemW, itemH);
         if (idx == (_itemsArray.count - 1)) {
-            self.contentSize = CGSizeMake(0, item.sd_height + item.sd_y);
+            self.contentSize = CGSizeMake(0, item.frameHeight + item.frameY);
         }
     }];
 }
 #pragma mark - life circles
 - (void)layoutSubviews{
     [super layoutSubviews];
-    CGFloat itemW = self.sd_width / kHomeGridViewPerRowItemCount;
+    CGFloat itemW = self.frameWidth / kHomeGridViewPerRowItemCount;
     CGFloat itemH = itemW * 1.1;
     [self setupSubViewsFrame];
     if (_shouldAdjustedSeparators) {
         [_rowSeparatorsArray enumerateObjectsUsingBlock:^(UIView *view, NSUInteger idx, BOOL *stop) {
-            CGFloat w = self.sd_width;
+            CGFloat w = self.frameWidth;
             CGFloat h = 0.4;
             CGFloat x = 0;
             CGFloat y = idx * itemH+100;
@@ -330,15 +321,15 @@
         }];
         [_columnSeparatorsArray enumerateObjectsUsingBlock:^(UIView *view, NSUInteger idx, BOOL *stop) {
             CGFloat w = 0.4;
-            CGFloat h = MAX(self.contentSize.height-100, self.sd_height-100);
+            CGFloat h = MAX(self.contentSize.height-100, self.frameHeight-100);
             CGFloat x = idx * itemW;
             CGFloat y = 100;
             view.frame = CGRectMake(x, y, w, h);
         }];
         _shouldAdjustedSeparators = NO;
     }
-    _cycleScrollADViewBackgroundView.frame = CGRectMake(0, itemH * kHomeGridViewTopSectionRowCount, self.sd_width, itemH);
-    _cycleScrollADView.frame = CGRectMake(0, _cycleScrollADViewBackgroundView.sd_y + 10, self.sd_width, itemH - 10 * 2);
+    _cycleScrollADViewBackgroundView.frame = CGRectMake(0, itemH * kHomeGridViewTopSectionRowCount, self.frameWidth, itemH);
+    _cycleScrollADView.frame = CGRectMake(0, _cycleScrollADViewBackgroundView.frameY + 10, self.frameWidth, itemH - 10 * 2);
 }
 #pragma mark - scroll view delegate
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
@@ -358,17 +349,13 @@
     mainView.showsVerticalScrollIndicator = NO;
     [self setupDataArray];
     mainView.gridModelsArray = _dataArray;
-    // 模拟轮播图数据源
-    mainView.scrollADImageURLStringsArray = @[@"http://ww3.sinaimg.cn/bmiddle/9d857daagw1er7lgd1bg1j20ci08cdg3.jpg",
-                                              @"http://ww4.sinaimg.cn/bmiddle/763cc1a7jw1esr747i13xj20dw09g0tj.jpg",
-                                              @"http://ww4.sinaimg.cn/bmiddle/67307b53jw1esr4z8pimxj20c809675d.jpg"];
     [self.view addSubview:mainView];
     _mainView = mainView;
 }
 - (void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
-    CGFloat tabbarHeight = [[self.tabBarController tabBar] sd_height];
-    _mainView.frame = CGRectMake(0, 0, self.view.sd_width, APPH-tabbarHeight);
+    CGFloat tabbarHeight = [[self.tabBarController tabBar] frameHeight];
+    _mainView.frame = CGRectMake(0, 0, self.view.frameWidth, APPH-tabbarHeight);
 }
 - (void)setupDataArray{
     NSArray *itemsArray = [AlipayTools itemsArray];

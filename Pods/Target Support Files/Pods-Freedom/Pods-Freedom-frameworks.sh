@@ -10,7 +10,8 @@ SWIFT_STDLIB_PATH="${DT_TOOLCHAIN_DIR}/usr/lib/swift/${PLATFORM_NAME}"
 # was originally proposed here: https://lists.samba.org/archive/rsync/2008-February/020158.html
 RSYNC_PROTECT_TMP_FILES=(--filter "P .*.??????")
 
-install_framework(){
+install_framework()
+{
   if [ -r "${BUILT_PRODUCTS_DIR}/$1" ]; then
     local source="${BUILT_PRODUCTS_DIR}/$1"
   elif [ -r "${BUILT_PRODUCTS_DIR}/$(basename "$1")" ]; then
@@ -115,6 +116,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/JSONKit/JSONKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/JSPatch/JSPatch.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/KissXML/KissXML.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework"
@@ -124,10 +126,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/PPHelpMe/PPHelpMe.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/PPRevealSideViewController/PPRevealSideViewController.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/RESideMenu/RESideMenu.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/Reachability/Reachability.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/SDAutoLayout/SDAutoLayout.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/SDCycleScrollView/SDCycleScrollView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/XCarryOn/XCarryOn.framework"
@@ -148,6 +147,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/JSONKit/JSONKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/JSPatch/JSPatch.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/KissXML/KissXML.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework"
@@ -157,10 +157,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/PPHelpMe/PPHelpMe.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/PPRevealSideViewController/PPRevealSideViewController.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/RESideMenu/RESideMenu.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/Reachability/Reachability.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/SDAutoLayout/SDAutoLayout.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/SDCycleScrollView/SDCycleScrollView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/XCarryOn/XCarryOn.framework"

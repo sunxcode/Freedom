@@ -2,7 +2,7 @@
 //  Freedom
 //  Created by Super on 15-6-4.
 #import "SDServiceTableViewController.h"
-#import "UIView+SDExtension.h"
+
 #import "SDBasicTableViewController.h"
 @interface SDServiceTableViewCellModel : NSObject
 @property (nonatomic, copy) NSString *title;
@@ -86,20 +86,20 @@
 }
 - (void)layoutSubviews{
     CGFloat margin = 8;
-    _textField.frame = CGRectMake(margin, margin, self.sd_width - margin * 2, self.sd_height - margin * 2);
+    _textField.frame = CGRectMake(margin, margin, self.frameWidth - margin * 2, self.frameHeight - margin * 2);
     [self layoutTextFieldSubviews];
     if (!_textField.leftView) {
-        UIView *leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _textFieldSearchIcon.sd_height * 1.4, _textFieldSearchIcon.sd_height)];
+        UIView *leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _textFieldSearchIcon.frameHeight * 1.4, _textFieldSearchIcon.frameHeight)];
         _textField.leftView = leftView;
         _textField.leftViewMode = UITextFieldViewModeAlways;
     }
 }
 - (void)layoutTextFieldSubviews{
-    CGRect rect = [self.placeholderText boundingRectWithSize:CGSizeMake(_textField.sd_width * 0.7, _textField.sd_height) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : _textFieldPlaceholderLabel.font} context:nil];
-    _textFieldPlaceholderLabel.bounds = CGRectMake(0, 0, rect.size.width, _textField.sd_height);
-    _textFieldPlaceholderLabel.center = CGPointMake(_textField.sd_width * 0.5, _textField.sd_height * 0.5);
-    _textFieldSearchIcon.bounds = CGRectMake(0, 0, _textField.sd_height * 0.6, _textField.sd_height * 0.6);
-    _textFieldSearchIcon.center = CGPointMake(_textFieldPlaceholderLabel.sd_x - _textFieldSearchIcon.sd_width * 0.5,  _textFieldPlaceholderLabel.center.y);
+    CGRect rect = [self.placeholderText boundingRectWithSize:CGSizeMake(_textField.frameWidth * 0.7, _textField.frameHeight) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : _textFieldPlaceholderLabel.font} context:nil];
+    _textFieldPlaceholderLabel.bounds = CGRectMake(0, 0, rect.size.width, _textField.frameHeight);
+    _textFieldPlaceholderLabel.center = CGPointMake(_textField.frameWidth * 0.5, _textField.frameHeight * 0.5);
+    _textFieldSearchIcon.bounds = CGRectMake(0, 0, _textField.frameHeight * 0.6, _textField.frameHeight * 0.6);
+    _textFieldSearchIcon.center = CGPointMake(_textFieldPlaceholderLabel.frameX - _textFieldSearchIcon.frameWidth * 0.5,  _textFieldPlaceholderLabel.center.y);
 }
 - (void)textFieldValueChanged:(UITextField *)field{
     _textFieldPlaceholderLabel.hidden = (field.text.length != 0);
@@ -107,7 +107,7 @@
 #pragma mark - textField delegate
 - (void)textFieldDidBeginEditing:(UITextField *)textField{
     [_textField becomeFirstResponder];
-    CGFloat deltaX = _textFieldSearchIcon.sd_x - 5;
+    CGFloat deltaX = _textFieldSearchIcon.frameX - 5;
     [UIView animateWithDuration:0.4 animations:^{
         _textFieldSearchIcon.transform = CGAffineTransformMakeTranslation(- deltaX, 0);
         _textFieldPlaceholderLabel.transform = CGAffineTransformMakeTranslation(- deltaX, 0);
@@ -131,7 +131,7 @@
     self.refreshMode = SDBasicTableViewControllerRefeshModeHeaderRefresh;
     self.tableView.rowHeight = 70;
     SDServiceTableViewHeader *header = [[SDServiceTableViewHeader alloc] init];
-    header.sd_height = 44;
+    header.frameHeight = 44;
     header.placeholderText = @"搜索朋友";
     self.tableView.tableHeaderView = header;
     self.cellClass = [SDServiceTableViewCell class];

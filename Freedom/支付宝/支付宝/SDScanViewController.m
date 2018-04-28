@@ -3,7 +3,7 @@
 //  Created by Super on 15-6-6.
 
 #import "SDScanViewController.h"
-#import "UIView+SDExtension.h"
+
 #import <AVFoundation/AVFoundation.h>
 static const CGFloat kBorderW = 60;
 static const CGFloat kMargin = 15;
@@ -33,26 +33,26 @@ static const CGFloat kMargin = 15;
     mask.layer.borderColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.7].CGColor;
     mask.layer.borderWidth = kBorderW;
     
-    mask.bounds = CGRectMake(0, 0, self.view.sd_width + kBorderW + kMargin * 2, self.view.sd_height * 0.9);
-    mask.center = CGPointMake(self.view.sd_width * 0.5, self.view.sd_height * 0.5);
-    mask.sd_y = 0;
+    mask.bounds = CGRectMake(0, 0, self.view.frameWidth + kBorderW + kMargin * 2, self.view.frameHeight * 0.9);
+    mask.center = CGPointMake(self.view.frameWidth * 0.5, self.view.frameHeight * 0.5);
+    mask.frameY = 0;
     
     [self.view addSubview:mask];
 }
 - (void)setupBottomBar{
-    UIView *bottomBar = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.sd_height * 0.9, self.view.sd_width, self.view.sd_height * 0.1)];
+    UIView *bottomBar = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.frameHeight * 0.9, self.view.frameWidth, self.view.frameHeight * 0.1)];
     bottomBar.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.8];
     [self.view addSubview:bottomBar];
 }
 - (void)setupScanWindowView{
-    CGFloat scanWindowH = self.view.sd_height * 0.9 - kBorderW * 2;
-    CGFloat scanWindowW = self.view.sd_width - kMargin * 2;
+    CGFloat scanWindowH = self.view.frameHeight * 0.9 - kBorderW * 2;
+    CGFloat scanWindowW = self.view.frameWidth - kMargin * 2;
     UIView *scanWindow = [[UIView alloc] initWithFrame:CGRectMake(kMargin, kBorderW, scanWindowW, scanWindowH)];
     scanWindow.clipsToBounds = YES;
     [self.view addSubview:scanWindow];
     
     CGFloat scanNetImageViewH = 241;
-    CGFloat scanNetImageViewW = scanWindow.sd_width;
+    CGFloat scanNetImageViewW = scanWindow.frameWidth;
     UIImageView *scanNetImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"scan_net"]];
     scanNetImageView.frame = CGRectMake(0, -scanNetImageViewH, scanNetImageViewW, scanNetImageViewH);
     CABasicAnimation *scanNetAnimation = [CABasicAnimation animation];
@@ -76,7 +76,7 @@ static const CGFloat kMargin = 15;
     [bottomLeft setImage:[UIImage imageNamed:@"u_scan_3"] forState:UIControlStateNormal];
     [scanWindow addSubview:bottomLeft];
     
-    UIButton *bottomRight = [[UIButton alloc] initWithFrame:CGRectMake(topRight.sd_x, bottomLeft.sd_y, buttonWH, buttonWH)];
+    UIButton *bottomRight = [[UIButton alloc] initWithFrame:CGRectMake(topRight.frameX, bottomLeft.frameY, buttonWH, buttonWH)];
     [bottomRight setImage:[UIImage imageNamed:@"u_scan_4"] forState:UIControlStateNormal];
     [scanWindow addSubview:bottomRight];
 }

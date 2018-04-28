@@ -2,7 +2,7 @@
 //  Freedom
 #import "SDDiscoverTableViewController.h"
 #import "SDAssetsTableViewControllerCellModel.h"
-#import "UIView+SDExtension.h"
+
 #import "SDAssetsTableViewControllerCellModel.h"
 #import "SDBasicTableViewController.h"
 @interface SDDiscoverTableViewHeaderItemButton : UIButton
@@ -77,8 +77,8 @@
     [super layoutSubviews];
     
     if (self.subviews.count == 0) return;
-    CGFloat w = self.sd_width / self.subviews.count;
-    CGFloat h = self.sd_height;
+    CGFloat w = self.frameWidth / self.subviews.count;
+    CGFloat h = self.frameHeight;
     [self.subviews enumerateObjectsUsingBlock:^(UIView *button, NSUInteger idx, BOOL *stop) {
         button.frame = CGRectMake(idx * w, 0, w, h);
     }];
@@ -144,7 +144,7 @@
     
     
     SDDiscoverTableViewHeader *header = [[SDDiscoverTableViewHeader alloc] init];
-    header.sd_height = 90;
+    header.frameHeight = 90;
     header.headerItemModelsArray = self.headerDataArray;
     __weak typeof(self) weakSelf = self;
     header.buttonClickedOperationBlock = ^(NSInteger index){
