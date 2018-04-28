@@ -38,9 +38,8 @@ target 'Freedom' do
     pod 'ObjectDictionary', '~> 0.1.4'
 #Swift.frameworks
 #pod 'XExtension'
-#pod 'ElasticTransition' #Swift版本 /lkzhao/ElasticTransition
 pod 'IQKeyboardManagerSwift'
-#pod 'RealmSwift'
+pod 'RealmSwift'
 pod 'SnapKit'
 pod 'SwiftWebViewBridge'
 pod 'Alamofire'
