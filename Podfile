@@ -49,8 +49,8 @@ pod 'ReactiveCocoa', '~>2.5'
 pod 'ReactiveSwift', '~>3.0'
 pod 'RxSwift',    '~> 4.0'
 pod 'RxCocoa',    '~> 4.0'
-#pod 'Moya/RxSwift'
-#pod 'Moya/ReactiveSwift', '~> 11.0'
+pod 'Moya/RxSwift'
+pod 'Moya/ReactiveSwift', '~> 11.0'
 #其它的
 #pod 'SwiftyJSONModel'#冲突了
 #pod 'RongCloudIM'
