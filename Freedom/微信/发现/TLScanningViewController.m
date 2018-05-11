@@ -6,7 +6,6 @@
 #import "TLWebViewController.h"
 #import "TLMyQRCodeViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import "UINavigationController+JZExtension.h"
 #import <BlocksKit/BlocksKit+UIKit.h>
 #define     HEIGHT_BOTTOM_VIEW      82
 @interface TLScannerButton : UIButton

@@ -21,31 +21,8 @@ PODS:
   - AFNetworking/UIKit (3.2.0):
     - AFNetworking/NSURLSession
   - Alamofire (4.7.2)
-  - BaseCollectionView (0.1.7):
-    - AFNetworking (~> 3.0)
-    - MJRefresh (~> 3.1.0)
+  - BaseFile (0.3.3):
     - SDWebImage
-    - SVProgressHUD (~> 2.2)
-  - BaseFillTableViewController (0.1.7):
-    - AFNetworking (~> 3.0)
-    - MJRefresh (~> 3.1.0)
-    - SDWebImage
-    - SVProgressHUD (~> 2.2)
-  - BaseScrollView (0.1.8):
-    - AFNetworking
-    - MJRefresh
-    - SDWebImage
-    - SVProgressHUD
-  - BaseStaticTableView (0.1.9):
-    - AFNetworking (~> 3.0)
-    - MJRefresh (~> 3.1.0)
-    - SDWebImage
-    - SVProgressHUD (~> 2.2)
-  - BaseTableView (0.1.8):
-    - AFNetworking (~> 3.0)
-    - MJRefresh (~> 3.1.0)
-    - SDWebImage
-    - SVProgressHUD (~> 2.0)
   - BlocksKit (2.2.5):
     - BlocksKit/All (= 2.2.5)
   - BlocksKit/All (2.2.5):
@@ -142,6 +119,7 @@ PODS:
     - MJRefresh
     - SDWebImage
     - SVProgressHUD
+  - XExtension (0.3.2)
   - XMLDictionary (1.4.1)
 
 DEPENDENCIES:
@@ -149,11 +127,7 @@ DEPENDENCIES:
   - ACMediaFrame
   - AFNetworking
   - Alamofire
-  - BaseCollectionView (~> 0.1.7)
-  - BaseFillTableViewController (~> 0.1.7)
-  - BaseScrollView (~> 0.1.8)
-  - BaseStaticTableView (~> 0.1.9)
-  - BaseTableView (~> 0.1.8)
+  - BaseFile
   - BlocksKit
   - Bugly
   - CocoaAsyncSocket
@@ -190,8 +164,9 @@ DEPENDENCIES:
   - TZImagePickerController
   - UAProgressView
   - UMengAnalytics
-  - XCarryOn (~> 0.1.7)
-  - XCategory (~> 0.2.4)
+  - XCarryOn
+  - XCategory
+  - XExtension
   - XMLDictionary
 
 SPEC REPOS:
@@ -201,11 +176,7 @@ SPEC REPOS:
     - ACMediaFrame
     - AFNetworking
     - Alamofire
-    - BaseCollectionView
-    - BaseFillTableViewController
-    - BaseScrollView
-    - BaseStaticTableView
-    - BaseTableView
+    - BaseFile
     - BlocksKit
     - Bugly
     - CocoaAsyncSocket
@@ -247,6 +218,7 @@ SPEC REPOS:
     - UMengAnalytics
     - XCarryOn
     - XCategory
+    - XExtension
     - XMLDictionary
 
 SPEC CHECKSUMS:
@@ -255,11 +227,7 @@ SPEC CHECKSUMS:
   ACMediaFrame: 7b8e74e3fcb8d7cf46049bfe5756c6e556cca568
   AFNetworking: 8ac6017b94ea105479f7776e5288e48ae9c59bb4
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
-  BaseCollectionView: b75eb059bfe86c363beab5eb28d2aabdcffc3bae
-  BaseFillTableViewController: 7d509280a154b7f2647918676a62e2f0c4d4f1b1
-  BaseScrollView: b1ce916c098b2e54a32eb5f13b9ecdc03cba066c
-  BaseStaticTableView: 1eff3dbb8f3c1edb7c82fefc75c6c42cdeb88b01
-  BaseTableView: a4fd516282c7f74492b8b033364fe6855dd02763
+  BaseFile: aca5c0a5d501d8a18aa33a88b82d284b10407055
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
   Bugly: 3ca9f255c01025582df26f9222893b383c7e4b4e
   CocoaAsyncSocket: eafaa68a7e0ec99ead0a7b35015e0bf25d2c8987
@@ -301,8 +269,9 @@ SPEC CHECKSUMS:
   UMengAnalytics: ef8d45f94c0e5771dc364cf6a5731d9d3b101da2
   XCarryOn: ba58313b06a1e11477e326a5275dd1452417cc2a
   XCategory: 3bbaccbd4cc02c40ea22467427fa3a4d8f21a827
+  XExtension: 88a18788cbcc6ef3cf47f4763f2a079903efc487
   XMLDictionary: fa07b6ff422b3a91d47a5de9bc82e3fc04fbd167
 
-PODFILE CHECKSUM: 064d148e4a3921ff1cfcca722cfefa815d503c6a
+PODFILE CHECKSUM: 875b8767fef588f453bd5b9526f15ed324936fe8
 
 COCOAPODS: 1.5.0

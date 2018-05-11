@@ -4,11 +4,12 @@
 //
 #import "TaobaoMiniVideoViewController.h"
 #import <XCategory/UILabel+expanded.h>
-@interface TaobaoMiniVideoViewCell:BaseTableViewCell{
+@interface TaobaoMiniVideoViewCell:BaseTableViewOCCell{
     UILabel *name,*sees,*times;
     UIButton *zan,*pinglun;
     UIImageView *type;
 }
+@property(nonatomic,strong)UIView *cellContentView;
 @end
 @implementation TaobaoMiniVideoViewCell
 -(void)initUI{
@@ -52,9 +53,8 @@
 @implementation TaobaoMiniVideoViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.tableView = [[BaseTableView alloc]initWithFrame:CGRectMake(0,0, APPW, self.view.frameHeight-20) style:UITableViewStylePlain];
-    [self fillTheTableDataWithHeadV:nil footV:nil canMove:NO canEdit:NO headH:0 footH:0 rowH:280 sectionN:1 rowN:11 cellName:@"TaobaoMiniVideoViewCell"];
-    self.tableView.dataArray = [NSMutableArray arrayWithObjects:@"b",@"a",@"v",@"f",@"d",@"a",@"w",@"u",@"n",@"o",@"2", nil];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0,0, APPW, self.view.frameHeight-20) style:UITableViewStylePlain];
+    self.dataArray = [NSMutableArray arrayWithObjects:@"b",@"a",@"v",@"f",@"d",@"a",@"w",@"u",@"n",@"o",@"2", nil];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self.view addSubview:self.tableView];

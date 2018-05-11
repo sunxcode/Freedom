@@ -19,6 +19,6 @@ typedef enum {
 @property (readonly, nonatomic, strong) NSIndexPath *currentIndexPath;
 -(id)initWithRadius: (CGFloat) radius andAngularSpacing: (CGFloat) spacing andCellSize: (CGSize) cell andAlignment:(WheelAlignmentType)alignment andItemHeight:(CGFloat)height andXOffset: (CGFloat) xOffset;
 @end
-@interface FirstViewController : BaseViewController
+@interface FirstViewController : BaseOCViewController
 + (FirstViewController *) sharedViewController;
 @end

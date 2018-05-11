@@ -7,7 +7,7 @@
 #import "JuheMessageViewController.h"
 #import "JuheAboutUSViewController.h"
 #import "JuheChartViewController.h"
-@interface JuheContectUSViewCell:BaseCollectionViewCell{
+@interface JuheContectUSViewCell:BaseCollectionViewOCCell{
     NSMutableDictionary *thumbnailCache;
 }
 -(void)setCollectionDataWithDic:(NSDictionary*)dict;
@@ -42,25 +42,28 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
     self.title = @"联系我们";
-    BaseCollectionViewLayout *layout = [BaseCollectionViewLayout sharedFlowlayoutWithCellSize:CGSizeMake(APPW*2/3, 140) groupInset:UIEdgeInsetsMake(10, 10, 0, 10) itemSpace:50 linespace:10];
-    self.collectionView = [[BaseCollectionView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH-TabBarH) collectionViewLayout:layout];
+    
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
+    layout.itemSize = CGSizeMake((APPW*2)/3, 140);
+    layout.sectionInset = UIEdgeInsetsMake(10, 10, 0, 10);
+    layout.minimumInteritemSpacing = 50;
+    layout.minimumLineSpacing = 10;
+    self.collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH-TabBarH) collectionViewLayout:layout];
    
-    self.collectionView.dataArray = [NSMutableArray arrayWithObjects:@{@"name":@"进入公众号",@"pic":@"juheintopublic"},@{@"name":@"查看历史消息",@"pic":@"juhelookhistory"},@{@"name":@"关于我们",@"pic":@"juheaboutus"},@{@"name":@"聊天",@"pic":PuserLogo}, nil];
-    [self fillTheCollectionViewDataWithCanMove:NO sectionN:1 itemN:4 itemName:@"JuheContectUSViewCell"];
+    dataArray = [NSMutableArray arrayWithObjects:@{@"name":@"进入公众号",@"pic":@"juheintopublic"},@{@"name":@"查看历史消息",@"pic":@"juhelookhistory"},@{@"name":@"关于我们",@"pic":@"juheaboutus"},@{@"name":@"聊天",@"pic":PuserLogo}, nil];
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     [self.view addSubview:self.collectionView];
 }
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     if(indexPath.row==0){
-        [self pushController:[JuhePublicViewController class] withInfo:nil withTitle:self.collectionView.dataArray[indexPath.row][@"name"]];
-    
+        [self pushController:[JuhePublicViewController class] withInfo:nil withTitle:dataArray[indexPath.row][@"name"] withOther:nil];
     }else if(indexPath.row==1){
-        [self pushController:[JuheMessageViewController class] withInfo:nil withTitle:self.collectionView.dataArray[indexPath.row][@"name"]];
+        [self pushController:[JuheMessageViewController class] withInfo:nil withTitle:dataArray[indexPath.row][@"name"] withOther:nil];
     }else if(indexPath.row==2){
-        [self pushController:[JuheAboutUSViewController class] withInfo:nil withTitle:self.collectionView.dataArray[indexPath.row][@"name"]];
+        [self pushController:[JuheAboutUSViewController class] withInfo:nil withTitle:dataArray[indexPath.row][@"name"] withOther:nil];
     }else{
-        [self pushController:[JuheChartViewController class] withInfo:nil withTitle:self.collectionView.dataArray[indexPath.row][@"name"]];
+        [self pushController:[JuheChartViewController class] withInfo:nil withTitle:dataArray[indexPath.row][@"name"] withOther:nil];
     }
 }
 @end

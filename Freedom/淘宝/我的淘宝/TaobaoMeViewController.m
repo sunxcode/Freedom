@@ -4,7 +4,7 @@
 //
 #import "TaobaoMeViewController.h"
 #import <XCategory/UILabel+expanded.h>
-@interface TaobaoMeViewCell1 : BaseCollectionViewCell
+@interface TaobaoMeViewCell1 : BaseCollectionViewOCCell
 @end
 @implementation TaobaoMeViewCell1
 -(void)initUI{
@@ -18,7 +18,7 @@
     self.icon.image = [UIImage imageNamed:@"taobaomini2"];
 }
 @end
-@interface TaobaoMeViewCell2 : BaseCollectionViewCell
+@interface TaobaoMeViewCell2 : BaseCollectionViewOCCell
 @end
 @implementation TaobaoMeViewCell2
 -(void)initUI{
@@ -55,7 +55,10 @@
     [self addSubview:more];
 }
 @end
-@interface TaobaoMeViewController()<UICollectionViewDelegateFlowLayout>{}
+@interface TaobaoMeViewController()<UICollectionViewDelegateFlowLayout>{
+    NSArray *dataArray;
+}
+@property (nonatomic,strong) UICollectionView *collectionView;
 @end
 @implementation TaobaoMeViewController
 - (void)viewDidLoad {
@@ -78,11 +81,15 @@
     UILabel *taoqi = [UILabel labelWithFrame:CGRectMake(APPW/2-40, YH(name), 80, 15) font:fontnomal color:redcolor text:@"淘气值：710" textAlignment:NSTextAlignmentCenter];
     taoqi.clipsToBounds = YES;taoqi.layer.cornerRadius = 7;taoqi.backgroundColor = yellowcolor;
     [headView addSubviews:icon,name,taoqi,nil];
-    BaseCollectionViewLayout *layout = [BaseCollectionViewLayout sharedFlowlayoutWithCellSize:CGSizeMake((APPW-50)/4, 90) groupInset:UIEdgeInsetsMake(10, 10, 0, 10) itemSpace:10 linespace:10];
+    
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
+    layout.itemSize = CGSizeMake((APPW-50)/4, 90);
+    layout.sectionInset = UIEdgeInsetsMake(10, 10, 0, 10);
+    layout.minimumInteritemSpacing = 10;
+    layout.minimumLineSpacing = 10;
     layout.headerReferenceSize = CGSizeMake(APPW, 30);layout.footerReferenceSize = CGSizeZero;
-    self.collectionView = [[BaseCollectionView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH-110) collectionViewLayout:layout];
-    self.collectionView.dataArray = [NSMutableArray arrayWithObjects:@{@"name":@"流量充值",@"pic":PuserLogo}, nil];
-    [self fillTheCollectionViewDataWithCanMove:NO sectionN:3 itemN:20 itemName:@"TaobaoMeViewCell1"];
+    self.collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH-110) collectionViewLayout:layout];
+    dataArray = [NSMutableArray arrayWithObjects:@{@"name":@"流量充值",@"pic":PuserLogo}, nil];
     [self.collectionView registerClass:[TaobaoMeViewCell2 class] forCellWithReuseIdentifier:@"TaobaoMeViewCell2"];
     [self.collectionView registerClass:[TaobaoMeHeadView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headview"];
     [self.collectionView registerClass:[TaobaoMeHeadView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"footview"];
@@ -95,9 +102,9 @@
     if (section == 0)return 5;if (section == 1)return 12;if (section == 2)return 4;return 0;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    BaseCollectionViewCell *cell = nil;
+    BaseCollectionViewOCCell *cell = nil;
     if(indexPath.section == 0){
-        cell =  [collectionView dequeueReusableCellWithReuseIdentifier:self.collectionReuseId forIndexPath:indexPath];
+        cell =  [collectionView dequeueReusableCellWithReuseIdentifier:@"" forIndexPath:indexPath];
         [cell  setCollectionDataWithDic:nil];
     }else if (indexPath.section == 1) {
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"TaobaoMeViewCell2" forIndexPath:indexPath];

@@ -3,7 +3,7 @@
 //  Created by Super on 15/12/1.
 #import "DZHomeController.h"
 #import <XCategory/UILabel+expanded.h>
-@interface DZHomeViewCell1 : BaseCollectionViewCell
+@interface DZHomeViewCell1 : BaseCollectionViewOCCell
 @end
 @implementation DZHomeViewCell1
 -(void)initUI{//120
@@ -34,7 +34,7 @@
     self.icon.image = [UIImage imageNamed:@"image4.jpg"];
 }
 @end
-@interface DZHomeViewCell2 : BaseCollectionViewCell
+@interface DZHomeViewCell2 : BaseCollectionViewOCCell
 @end
 @implementation DZHomeViewCell2
 -(void)initUI{//100
@@ -51,7 +51,7 @@
     self.icon.image = [UIImage imageNamed:@"taobaomini2"];
 }
 @end
-@interface DZHomeViewCell3 : BaseCollectionViewCell
+@interface DZHomeViewCell3 : BaseCollectionViewOCCell
 @end
 @implementation DZHomeViewCell3
 -(void)initUI{//80
@@ -70,7 +70,7 @@
     self.icon.image = [UIImage imageNamed:@"taobaomini1"];
 }
 @end
-@interface DZHomeViewCell4 : BaseCollectionViewCell
+@interface DZHomeViewCell4 : BaseCollectionViewOCCell
 @end
 @implementation DZHomeViewCell4
 -(void)initUI{//100
@@ -99,7 +99,7 @@
 }
 @end
 @interface DZHomeHeadView1 : UICollectionReusableView{
-    BaseScrollView *DZtoutiaoV;
+    BaseScrollOCView *DZtoutiaoV;
 }
 @end
 @implementation DZHomeHeadView1
@@ -109,7 +109,7 @@
 }
 -(void)initUI{
   
-    DZtoutiaoV = [BaseScrollView sharedViewBannerWithFrame:CGRectMake(20, 0, APPW-40, 60) viewsNumber:5 viewOfIndex:^UIView *(NSInteger index) {
+    DZtoutiaoV = [BaseScrollOCView sharedViewBannerWithFrame:CGRectMake(20, 0, APPW-40, 60) viewsNumber:5 viewOfIndex:^UIView *(NSInteger index) {
         UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPW-50, 60)];
         UIImageView *icon = [[UIImageView alloc]initWithFrame:CGRectMake(10, 10, 40,40)];
         icon.clipsToBounds = YES;icon.layer.cornerRadius = 20;
@@ -144,8 +144,10 @@
 @end
 //FIXME:大众点评正式VC
 @interface DZHomeController ()<UICollectionViewDelegateFlowLayout>{
-    BaseScrollView *itemScrollView;
+    BaseScrollOCView *itemScrollView;
+    NSMutableArray *dataArray;
 }
+@property (nonatomic,strong) UICollectionView *collectionView;
 @end
 @implementation DZHomeController
 - (void)viewDidLoad {
@@ -160,12 +162,16 @@
     self.navigationItem.titleView = searchBar;
     NSArray *titles = @[@"美食",@"电影",@"酒店",@"休闲娱乐",@"外卖",@"机票/火车票",@"丽人",@"周边游",@"亲子",@"KTV",@"高端酒店",@"足疗按摩",@"结婚",@"家族",@"学习培训",@"景点",@"游乐园",@"生活服务",@"洗浴",@"全部分类"];
     NSArray *icons = @[@"taobaomini1",@"taobaomini2",@"taobaomini3",@"taobaomini4",@"taobaomini5",@"taobaomini1",@"taobaomini2",@"taobaomini3",@"taobaomini4",@"taobaomini5",@"taobaomini1",@"taobaomini2",@"taobaomini3",@"taobaomini4",@"taobaomini5",@"taobaomini1",@"taobaomini2",@"taobaomini3",@"taobaomini4",@"taobaomini5"];
-    itemScrollView = [BaseScrollView sharedScrollItemWithFrame:CGRectMake(0, 60, APPW, 200) icons:icons titles:titles size:CGSizeMake(APPW/5.0, 70) hang:2 round:YES];
+    itemScrollView = [BaseScrollOCView sharedScrollItemWithFrame:CGRectMake(0, 60, APPW, 200) icons:icons titles:titles size:CGSizeMake(APPW/5.0, 70) hang:2 round:YES];
     itemScrollView.backgroundColor = whitecolor;
-    BaseCollectionViewLayout *layout = [BaseCollectionViewLayout sharedFlowlayoutWithCellSize:CGSizeMake((APPW-50)/4, 90) groupInset:UIEdgeInsetsMake(10, 10, 0, 10) itemSpace:10 linespace:10];
-    self.collectionView = [[BaseCollectionView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH-110) collectionViewLayout:layout];
-    self.collectionView.dataArray = [NSMutableArray arrayWithObjects:@{@"name":@"流量充值",@"pic":PuserLogo}, nil];
-    [self fillTheCollectionViewDataWithCanMove:NO sectionN:4 itemN:20 itemName:@"DZHomeViewCell1"];
+    
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
+    layout.itemSize = CGSizeMake((APPW-50)/4, 90);
+    layout.sectionInset = UIEdgeInsetsMake(10, 10, 0, 10);
+    layout.minimumInteritemSpacing = 10;
+    layout.minimumLineSpacing = 10;
+    self.collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH-110) collectionViewLayout:layout];
+    dataArray = [NSMutableArray arrayWithObjects:@{@"name":@"流量充值",@"pic":PuserLogo}, nil];
     [self.collectionView registerClass:[DZHomeViewCell2 class] forCellWithReuseIdentifier:@"DZHomeViewCell2"];
     [self.collectionView registerClass:[DZHomeViewCell3 class] forCellWithReuseIdentifier:@"DZHomeViewCell3"];
     [self.collectionView registerClass:[DZHomeViewCell4 class] forCellWithReuseIdentifier:@"DZHomeViewCell4"];
@@ -180,9 +186,9 @@
     if (section == 0)return 1;if (section == 1)return 6;if (section == 2)return 8;return 20;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    BaseCollectionViewCell *cell = nil;
+    BaseCollectionViewOCCell *cell = nil;
     if(indexPath.section == 0){
-        cell =  [collectionView dequeueReusableCellWithReuseIdentifier:self.collectionReuseId forIndexPath:indexPath];
+        cell =  [collectionView dequeueReusableCellWithReuseIdentifier:@"" forIndexPath:indexPath];
         [cell  setCollectionDataWithDic:nil];
     }else if (indexPath.section == 1) {
         cell =  [collectionView dequeueReusableCellWithReuseIdentifier:@"DZHomeViewCell2" forIndexPath:indexPath];

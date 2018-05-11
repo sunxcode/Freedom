@@ -174,7 +174,6 @@ static NSString *cellId1 = @"cellId1";
 static NSString *cellId2 = @"cellId2";
 static FirstViewController *FVC = nil;
 @implementation FirstViewController
-@synthesize managedObjectContext = __managedObjectContext;
 + (FirstViewController *) sharedViewController{
     static dispatch_once_t once;
     dispatch_once(&once, ^{
@@ -184,7 +183,6 @@ static FirstViewController *FVC = nil;
 }
 - (void)viewDidLoad{
     [super viewDidLoad];
-    [self readData];
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(50, 0, APPW-110, 44)];
     searchBar.delegate = self;
@@ -336,7 +334,8 @@ static FirstViewController *FVC = nil;
     NSString *controlName = [self.items[indexPath.row] valueForKey:@"control"];
       [[UIApplication sharedApplication] setStatusBarHidden:NO];
     if(![controlName isEqualToString:@"Sina"]){
-    [self showStoryboardWithStoryboardName:controlName andViewIdentifier:[NSString stringWithFormat:@"%@TabBarController",controlName]];
+        UIStoryboard *StoryBoard = [UIStoryboard storyboardWithName:controlName bundle:nil];
+        [self showViewController:[StoryBoard instantiateViewControllerWithIdentifier:[NSString stringWithFormat:@"%@TabBarController",controlName]] sender:self];
         return;
     }
     NSString *s =[NSString stringWithFormat:@"%@TabBarController",controlName];
@@ -387,7 +386,6 @@ static FirstViewController *FVC = nil;
 }
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     if (!searchText.length) {
-        [self readData];
         return;
     }
     NSPredicate *pre = [NSPredicate predicateWithFormat:@"title CONTAINS %@ OR icon CONTAINS[c] %@ OR icon MATCHES %@", searchText, searchText,@"[F-j]+"];

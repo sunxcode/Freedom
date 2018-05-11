@@ -4,6 +4,7 @@
 //  Copyright © 2016年 Super. All rights reserved.
 //
 #import "FreeDomNavigationController.h"
+#import "Freedom-Swift.h"
 @implementation FreeDomNavigationController
 //第一次使用这个类的时候调用一次
 +(void)initialize{

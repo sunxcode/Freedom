@@ -6,7 +6,6 @@
 #import "TLFriendsViewController.h"
 #import "TLDiscoverViewController.h"
 #import "TLMineViewController.h"
-#import "UINavigationController+JZExtension.h"
 #import "TLMessageManager.h"
 #import "TLExpressionHelper.h"
 #import "JPEngine.h"
@@ -54,7 +53,8 @@ static TLRootViewController *rootVC = nil;
     [self setViewControllers:self.childVCArray];       // 初始化子控制器
 }
 - (id)childViewControllerAtIndex:(NSUInteger)index{
-    return [[self.childViewControllers objectAtIndex:index] rootViewController];
+    UINavigationController *nav = [self.childViewControllers objectAtIndex:index];
+    return [nav topViewController];
 }
 #pragma mark - Getters
 - (NSArray *) childVCArray{

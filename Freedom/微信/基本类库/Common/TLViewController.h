@@ -2,6 +2,7 @@
 //  Freedom
 // Created by Super
 #import <UIKit/UIKit.h>
-@interface TLViewController : UIViewController
+#import "WechatBaseViewController.h"
+@interface TLViewController : WechatBaseViewController
 @property (nonatomic, strong) NSString *analyzeTitle;
 @end

@@ -6,9 +6,9 @@
 #import "MWPhotoBrowser.h"
 #import "TLRootViewController.h"
 #import "TLMessageManager.h"
-#define     HEIGHT_COLLECTIONVIEW_HEADER    28
-#define     WIDTH_COLLECTIONVIEW_CELL       APPW / 4 * 0.98
-#define     SPACE_COLLECTIONVIEW_CELL       (APPW - WIDTH_COLLECTIONVIEW_CELL * 4) / 3
+#define     HEIGHT_collectionView_HEADER    28
+#define     WIDTH_collectionView_CELL       APPW / 4 * 0.98
+#define     SPACE_collectionView_CELL       (APPW - WIDTH_collectionView_CELL * 4) / 3
 @interface TLChatFileCell : UICollectionViewCell
 @property (nonatomic, strong) TLMessage * message;
 @end
@@ -98,16 +98,32 @@
     return _titleLabel;
 }
 @end
-@interface TLChatFileViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
-@property (nonatomic, strong) UICollectionView *collectionView;
+@interface TLChatFileViewController ()
 @property (nonatomic, strong) NSMutableArray *mediaData;
 @property (nonatomic, strong) NSMutableArray *browserData;
+@property (nonatomic,strong) UICollectionView *collectionView;
 @end
 @implementation TLChatFileViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationItem setTitle:@"聊天文件"];
     [self.view setBackgroundColor:RGBACOLOR(46.0, 49.0, 50.0, 1.0)];
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+    if ([UIDevice currentDevice].systemVersion.floatValue >= 9.0) {
+        [layout setSectionHeadersPinToVisibleBounds:YES];
+    }
+    [layout setItemSize:CGSizeMake(WIDTH_collectionView_CELL, WIDTH_collectionView_CELL)];
+    [layout setMinimumInteritemSpacing:SPACE_collectionView_CELL];
+    [layout setMinimumLineSpacing:SPACE_collectionView_CELL];
+    [layout setHeaderReferenceSize:CGSizeMake(APPW, HEIGHT_collectionView_HEADER)];
+    [layout setFooterReferenceSize:CGSizeMake(APPW, 0)];
+    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
+    [self.collectionView setBackgroundColor:[UIColor clearColor]];
+    [self.collectionView setDataSource:self];
+    [self.collectionView setDelegate:self];
+    [self.collectionView setShowsHorizontalScrollIndicator:NO];
+    [self.collectionView setShowsHorizontalScrollIndicator:NO];
+    [self.collectionView setAlwaysBounceVertical:YES];
     
     [self.view addSubview:self.collectionView];
     [self p_addMasonry];
@@ -130,8 +146,8 @@
     }];
 }
 #pragma mark - Delegate -
-//MARK: UICollectionViewDataSource
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+//MARK: UIcollectionViewDataSource
+- (NSInteger)numberOfSectionsIncollectionView:(UICollectionView *)collectionView{
     return self.data.count;
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
@@ -176,27 +192,6 @@
     }];
 }
 #pragma mark - Getter -
-- (UICollectionView *)collectionView{
-    if (_collectionView == nil) {
-        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-        if ([UIDevice currentDevice].systemVersion.floatValue >= 9.0) {
-            [layout setSectionHeadersPinToVisibleBounds:YES];
-        }
-        [layout setItemSize:CGSizeMake(WIDTH_COLLECTIONVIEW_CELL, WIDTH_COLLECTIONVIEW_CELL)];
-        [layout setMinimumInteritemSpacing:SPACE_COLLECTIONVIEW_CELL];
-        [layout setMinimumLineSpacing:SPACE_COLLECTIONVIEW_CELL];
-        [layout setHeaderReferenceSize:CGSizeMake(APPW, HEIGHT_COLLECTIONVIEW_HEADER)];
-        [layout setFooterReferenceSize:CGSizeMake(APPW, 0)];
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
-        [_collectionView setBackgroundColor:[UIColor clearColor]];
-        [_collectionView setDataSource:self];
-        [_collectionView setDelegate:self];
-        [_collectionView setShowsHorizontalScrollIndicator:NO];
-        [_collectionView setShowsHorizontalScrollIndicator:NO];
-        [_collectionView setAlwaysBounceVertical:YES];
-    }
-    return _collectionView;
-}
 - (NSMutableArray *)data{
     if (_data == nil) {
         _data = [[NSMutableArray alloc] init];

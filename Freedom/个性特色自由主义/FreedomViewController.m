@@ -5,7 +5,7 @@
 //
 #import "FreedomViewController.h"
 #import "FreedomBooksViewController.h"
-@interface FreedomViewCell : BaseCollectionViewCell
+@interface FreedomViewCell : BaseCollectionViewOCCell
 @end
 @implementation FreedomViewCell
 -(void)initUI{
@@ -19,7 +19,10 @@
     self.icon.image = [UIImage imageNamed:dict[@"pic"]];
 }
 @end
-@interface FreedomViewController()<UICollectionViewDelegateFlowLayout>{}
+@interface FreedomViewController()<UICollectionViewDelegateFlowLayout>{
+    NSArray *dataArray;
+}
+@property (nonatomic,strong) UICollectionView *collectionView;
 @end
 @implementation FreedomViewController
 - (void)viewDidLoad {
@@ -29,11 +32,15 @@
     UIBarButtonItem *right = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:Padd] style:UIBarButtonItemStyleDone actionBlick:^{}];
     self.navigationItem.leftBarButtonItem  = left;
     self.navigationItem.rightBarButtonItem = right;
-    BaseCollectionViewLayout *layout = [BaseCollectionViewLayout sharedFlowlayoutWithCellSize:CGSizeMake((APPW-50)/4, 60) groupInset:UIEdgeInsetsMake(0, 10, 0, 10) itemSpace:10 linespace:10];
+    
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
+    layout.itemSize = CGSizeMake((APPW-50)/4, 60);
+    layout.sectionInset = UIEdgeInsetsMake(0, 10, 0, 10);
+    layout.minimumInteritemSpacing = 10;
+    layout.minimumLineSpacing = 10;
     layout.headerReferenceSize = CGSizeMake(APPW, 30);layout.footerReferenceSize = CGSizeZero;
-    self.collectionView = [[BaseCollectionView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH-110) collectionViewLayout:layout];
-    self.collectionView.dataArray = [NSMutableArray arrayWithObjects:@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo}, nil];
-    [self fillTheCollectionViewDataWithCanMove:NO sectionN:1 itemN:20 itemName:@"FreedomViewCell"];
+    self.collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH-110) collectionViewLayout:layout];
+    dataArray = [NSMutableArray arrayWithObjects:@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo}, nil];
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
     self.collectionView.backgroundColor = whitecolor;
@@ -47,6 +54,6 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSString *log = [NSString stringWithFormat:@"你选择的是%zd，%zd", indexPath.section, indexPath.row];
     [SVProgressHUD showSuccessWithStatus:log];DLog(@"%@",log);
-    [self pushController:[FreedomBooksViewController class] withInfo:self.collectionView.dataArray[indexPath.row] withTitle:@"书籍详情"];
+    [self pushController:[FreedomBooksViewController class] withInfo:dataArray[indexPath.row] withTitle:@"书籍详情" withOther:nil];
 }
 @end

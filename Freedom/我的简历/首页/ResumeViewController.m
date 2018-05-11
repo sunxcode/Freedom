@@ -6,7 +6,7 @@
 #import "ResumeViewController.h"
 #import "ResumeListViewController.h"
 #import "ResumeDetailViewController.h"
-@interface ResumeViewCell:BaseTableViewCell
+@interface ResumeViewCell:BaseTableViewOCCell
 @end
 @implementation ResumeViewCell
 -(void)initUI{
@@ -18,7 +18,7 @@
 @interface ResumeViewController ()<UITableViewDelegate,UITableViewDataSource>{
     UITableView *refTableView;
     UILabel *label;
-    BaseScrollView *ResumeHomeScrollV;
+    BaseScrollOCView *ResumeHomeScrollV;
 }
 @end
 @implementation ResumeViewController
@@ -35,7 +35,7 @@
     
     NSArray *titles = @[@"我的成长史",@"我的作品",@"我的经历"];
     NSArray *controllers = @[@"ResumeListViewController",@"ResumeListViewController",@"ResumeListViewController"];
-    ResumeHomeScrollV = [BaseScrollView sharedContentTitleViewWithFrame:CGRectMake(0, 0, APPW, APPH-TabBarH) titles:titles controllers:controllers inViewController:self];
+    ResumeHomeScrollV = [BaseScrollOCView sharedContentTitleViewWithFrame:CGRectMake(0, 0, APPW, APPH-TabBarH) titles:titles controllers:controllers inViewController:self];
     @weakobj(ResumeHomeScrollV);
     ResumeHomeScrollV.selectBlock = ^(NSInteger index, NSDictionary *dict) {
         ResumeListViewController *con = weak_ResumeHomeScrollV.contentScrollView.pushDelegateVC.childViewControllers[index];

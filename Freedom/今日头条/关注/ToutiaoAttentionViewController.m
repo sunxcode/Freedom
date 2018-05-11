@@ -3,7 +3,7 @@
 //  Copyright © 2016年 Super. All rights reserved.
 //
 #import "ToutiaoAttentionViewController.h"
-@interface ToutiaoAttentionViewCell:BaseTableViewCell
+@interface ToutiaoAttentionViewCell:BaseTableViewOCCell
 @end
 @implementation ToutiaoAttentionViewCell
 -(void)initUI{
@@ -32,9 +32,8 @@
     self.title = @"我关注的";
     UIBarButtonItem *more = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(moreAction)];
     self.navigationItem.rightBarButtonItem = more;
-    self.tableView = [[BaseTableView alloc]initWithFrame:CGRectMake(0,0, APPW, APPH-TabBarH-44) style:UITableViewStylePlain];
-    [self fillTheTableDataWithHeadV:nil footV:nil canMove:NO canEdit:NO headH:0 footH:0 rowH:70 sectionN:1 rowN:10 cellName:@"ToutiaoAttentionViewCell"];
-    self.tableView.dataArray = [NSMutableArray arrayWithObjects:@"b",@"a",@"v",@"f",@"d",@"a",@"w",@"u",@"n",@"o",@"2", nil];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0,0, APPW, APPH-TabBarH-44) style:UITableViewStylePlain];
+    self.dataArray = [NSMutableArray arrayWithObjects:@"b",@"a",@"v",@"f",@"d",@"a",@"w",@"u",@"n",@"o",@"2", nil];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self.view addSubview:self.tableView];

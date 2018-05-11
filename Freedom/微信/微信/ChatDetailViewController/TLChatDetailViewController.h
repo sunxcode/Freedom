@@ -5,4 +5,5 @@
 #import "TLUserHelper.h"
 @interface TLChatDetailViewController : TLSettingViewController
 @property (nonatomic, strong) TLUser *user;
+@property (nonatomic,strong) UICollectionView *collectionView;
 @end

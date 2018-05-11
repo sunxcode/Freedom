@@ -4,7 +4,7 @@
 //
 #import "JuheDynamicViewController.h"
 #import <XCategory/UILabel+expanded.h>
-@interface JuheDynamicCollectionViewCell : BaseCollectionViewCell{
+@interface JuheDynamicCollectionViewCell : BaseCollectionViewOCCell{
     NSMutableDictionary *thumbnailCache;
 }
 @end
@@ -63,12 +63,16 @@
     backimagev.image = [UIImage imageNamed:@"backgroundImage.jpg"];
     backimagev.contentMode = UIViewContentModeScaleAspectFill;
     [self.view addSubview:backimagev];
-    BaseCollectionViewLayout *layout = [BaseCollectionViewLayout sharedFlowlayoutWithCellSize:CGSizeMake((APPW-50)/4, 110) groupInset:UIEdgeInsetsMake(10, 10, 0, 10) itemSpace:10 linespace:10];
-    self.collectionView = [[BaseCollectionView alloc]initWithFrame:CGRectMake(0, APPH-360, APPW, 300) collectionViewLayout:layout];
-    self.collectionView.dataArray = [NSMutableArray arrayWithObjects:
+    
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
+    layout.itemSize = CGSizeMake((APPW-50)/4, 110);
+    layout.sectionInset = UIEdgeInsetsMake(10, 10, 0, 10);
+    layout.minimumInteritemSpacing = 10;
+    layout.minimumLineSpacing = 10;
+    self.collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, APPH-360, APPW, 300) collectionViewLayout:layout];
+    dataArray = [NSMutableArray arrayWithObjects:
                                      @{@"name":@"身份证认证",@"pic":@"juheintopublic"},@{@"name":@"手机归属地",@"pic":@"juhelookhistory"},@{@"name":@"身份证查询",@"pic":@"juheaboutus"},@{@"name":@"常用快递",@"pic":PuserLogo},
                                      @{@"name":@"餐饮美食",@"pic":PuserLogo},@{@"name":@"菜谱大全",@"pic":PuserLogo},@{@"name":@"彩票开奖",@"pic":PuserLogo},@{@"name":@"邮编查询",@"pic":PuserLogo}, nil];
-    [self fillTheCollectionViewDataWithCanMove:NO sectionN:1 itemN:8 itemName:@"JuheDynamicCollectionViewCell"];
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
     self.collectionView.backgroundColor = clearcolor;

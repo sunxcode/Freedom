@@ -6,7 +6,7 @@
 #import "BooksViewController.h"
 #import "WXViewController.h"
 #import "E_ScrollViewController.h"
-@interface BooksViewCell : BaseCollectionViewCell
+@interface BooksViewCell : BaseCollectionViewOCCell
 @end
 @implementation BooksViewCell
 -(void)initUI{
@@ -20,7 +20,10 @@
     self.icon.image = [UIImage imageNamed:dict[@"pic"]];
 }
 @end
-@interface BooksViewController()<UICollectionViewDelegateFlowLayout>{}
+@interface BooksViewController()<UICollectionViewDelegateFlowLayout>{
+    NSArray *dataArray;
+}
+@property (nonatomic,strong) UICollectionView *collectionView;
 @end
 @implementation BooksViewController
 - (void)viewDidLoad {
@@ -40,11 +43,14 @@
     }];
     self.navigationItem.leftBarButtonItem  = left;
     self.navigationItem.rightBarButtonItem = right;
-    BaseCollectionViewLayout *layout = [BaseCollectionViewLayout sharedFlowlayoutWithCellSize:CGSizeMake((APPW-50)/4, 60) groupInset:UIEdgeInsetsMake(0, 10, 0, 10) itemSpace:10 linespace:10];
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
+    layout.itemSize = CGSizeMake((APPW-50)/4, 60);
+    layout.sectionInset = UIEdgeInsetsMake(0, 10, 0, 10);
+    layout.minimumInteritemSpacing = 10;
+    layout.minimumLineSpacing = 10;
     layout.headerReferenceSize = CGSizeMake(APPW, 30);layout.footerReferenceSize = CGSizeZero;
-    self.collectionView = [[BaseCollectionView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH-110) collectionViewLayout:layout];
-    self.collectionView.dataArray = [NSMutableArray arrayWithObjects:@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo}, nil];
-    [self fillTheCollectionViewDataWithCanMove:NO sectionN:1 itemN:20 itemName:@"BooksViewCell"];
+    self.collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH-110) collectionViewLayout:layout];
+    dataArray = [NSMutableArray arrayWithObjects:@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo}, nil];
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
     self.collectionView.backgroundColor = whitecolor;

@@ -3,5 +3,5 @@
 //  Copyright © 2016年 Super. All rights reserved.
 //
 #import <UIKit/UIKit.h>
-@interface JuheAPIViewController : BaseViewController
+@interface JuheAPIViewController : BaseOCViewController
 @end

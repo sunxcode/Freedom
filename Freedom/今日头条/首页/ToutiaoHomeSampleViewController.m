@@ -5,7 +5,7 @@
 #import "ToutiaoHomeSampleViewController.h"
 #import "ToutiaoHomeDetailViewController.h"
 #import <XCategory/UILabel+expanded.h>
-@interface ToutiaoHomeSampleViewCell:BaseTableViewCell{
+@interface ToutiaoHomeSampleViewCell:BaseTableViewOCCell{
     UIImageView *icon1, *icon2, *icon3;
     UILabel *source;
 }
@@ -55,7 +55,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.tableView = [[BaseTableView alloc]initWithFrame:CGRectMake(0,0, APPW, APPH) style:UITableViewStyleGrouped];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0,0, APPW, APPH) style:UITableViewStyleGrouped];
     WS(weakSelf);
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [weakSelf refresh];
@@ -63,36 +63,31 @@
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         [weakSelf loadMore];
     }];
-    [self fillTheTableDataWithHeadV:nil footV:nil canMove:NO canEdit:NO headH:120 footH:0 rowH:0 sectionN:1 rowN:11 cellName:@"ToutiaoHomeSampleViewCell"];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self.view addSubview:self.tableView];
     [self refresh];
 }
 -(void)refresh{
-    [self.tableView stopLoadmore];
     [NetEngine createGetAction:[NSString stringWithFormat:TTEnergyURL,_tagID] onCompletion:^(id resData, BOOL isCache) {
         DLog(@"%@",resData);
-        self.tableView.dataArray = [NSMutableArray arrayWithArray:resData[@"data"][@"lists"]];
+        self.dataArray = [NSMutableArray arrayWithArray:resData[@"data"][@"lists"]];
         tops = [resData[@"data"] objectForJSONKey:@"top"];
         nextURL = [resData[@"data"]valueForJSONKey:@"nextUrl"];
         [self.tableView reloadData];
-        [self.tableView stopRefresh];
         [self.tableView setContentOffset:CGPointMake(0, 35)];
     }];
 }
 -(void)loadMore{
-    [self.tableView stopRefresh];
     if(!nextURL){
-        [self.tableView stopLoadmore];return;
+        return;
     }
     [Net GET:nextURL parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         DLog(@"\n%@",responseObject);
-        [self.tableView.dataArray addObjectsFromArray:[responseObject[@"data"] objectForJSONKey:@"lists"]];
+        [self.dataArray addObjectsFromArray:[responseObject[@"data"] objectForJSONKey:@"lists"]];
         nextURL = [responseObject[@"data"] valueForJSONKey:@"nextUrl"];
         [self.tableView reloadData];
-        [self.tableView stopLoadmore];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [SVProgressHUD showErrorWithStatus:alertErrorTxt];
     }];
@@ -101,14 +96,14 @@
     self.tableView.frameHeight = self.view.frameHeight;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSDictionary *d =self.tableView.dataArray[indexPath.row];
+    NSDictionary *d =self.dataArray[indexPath.row];
     CGSize size = [d[@"title"] sizeOfFont:fontTitle maxSize:CGSizeMake([d[@"media"]count]==1?(APPW-50)*2/3.0 : APPW - 2*Boardseperad, 40)];
     if([d[@"media"]count]==0)return 50+size.height;// 70;
     else if([d[@"media"]count]==1)return 110;
     else return 150+size.height;
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    BaseScrollView *headBanner = [BaseScrollView sharedViewBannerWithFrame:CGRectMake(0, 0, APPW, 120) viewsNumber:tops.count?tops.count:1 viewOfIndex:^UIView *(NSInteger index) {
+    BaseScrollOCView *headBanner = [BaseScrollOCView sharedViewBannerWithFrame:CGRectMake(0, 0, APPW, 120) viewsNumber:tops.count?tops.count:1 viewOfIndex:^UIView *(NSInteger index) {
         UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPW, 120)];
         UIImageView *imageV = [[UIImageView alloc]initWithFrame:view.bounds];
         NSArray *medias = [tops[index]objectForJSONKey:@"media"];
@@ -123,7 +118,7 @@
     return headBanner;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSDictionary *dict = self.tableView.dataArray[indexPath.row];
-    [self pushController:[ToutiaoHomeDetailViewController class] withInfo:dict withTitle:dict[@"title"]];
+    NSDictionary *dict = self.dataArray[indexPath.row];
+    [self pushController:[ToutiaoHomeDetailViewController class] withInfo:dict withTitle:dict[@"title"] withOther:nil];
 }
 @end

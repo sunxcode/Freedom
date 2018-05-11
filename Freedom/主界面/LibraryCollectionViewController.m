@@ -4,7 +4,7 @@
 //  Copyright © 2016年 Super. All rights reserved.
 #import "LibraryCollectionViewController.h"
 #import "User.h"
-@interface LibraryCollectionViewCell : BaseCollectionViewCell
+@interface LibraryCollectionViewCell : BaseCollectionViewOCCell
 @end
 @implementation LibraryCollectionViewCell
 -(void)initUI{

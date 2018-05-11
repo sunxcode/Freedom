@@ -22,7 +22,7 @@
 #import <BlocksKit/BlocksKit.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "Foundation.h"
-#import "BaseViewController.h"
+#import "BaseOCViewController.h"
 #import "BaseTabBarController.h"
 #import "BaseNavigationController.h"
 #import "NetEngine.h"

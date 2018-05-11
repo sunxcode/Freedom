@@ -14,35 +14,7 @@
     [super viewDidLoad];
     [[UINavigationBar appearance]setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
     self.navigationController.navigationBarHidden = YES;
-    // 1.创建组
-    SBaseGroup *group1 = [[SBaseGroup alloc]init];
-    SBaseGroup *group2 = [[SBaseGroup alloc]init];
-    SBaseGroup *group3 = [[SBaseGroup alloc]init];
-    SBaseCell *c2 = [SBaseCell cellWithTableView:(UITableView *)self.tableView];
-    SBaseCell *c3 = [SBaseCell cellWithTableView:(UITableView *)self.tableView];
-    SBaseCell *c4 = [SBaseCell cellWithTableView:(UITableView *)self.tableView];
-    SBaseCell *c5 = [SBaseCell cellWithTableView:(UITableView *)self.tableView];
-    SBaseCell *c6 = [SBaseCell cellWithTableView:(UITableView *)self.tableView];
-    self.c1.title = @"消息通知";
-    __weak __typeof__(self) weakSelf = self;
-    self.c1.operation = ^{
-        [weakSelf doSomething];
-    };
-    c2.title = @"头条商城";
-    c3.subtitle = @"点击速领200元新年红包";
-    c3.title = @"京东特供";
-    c4.title = @"我要爆料";
-    c5.title = @"用户反馈";
-    c6.title = @"系统设置";
-    self.c1.accessoryType = c2.accessoryType = c3.accessoryType = c4.accessoryType = c5.accessoryType = c6.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    
-    group1.items = @[self.c1];
-    group2.items = @[c2,c3];
-    group3.items = @[c4,c5,c6];
-    [self.groups addObjectsFromArray:@[group1,group2,group3]];
-    self.tableView.tableHeaderView = [self creatTableHeadView];
-    self.tableView.frame = CGRectMake(0, 0, APPW, APPH);
-    self.tableView.bounces = NO;
+    [self.view addSubview:[self creatTableHeadView]];
 }
 -(UIView*)creatTableHeadView{
     UIView *head = [[UIView alloc]initWithFrame:CGRectMake(0, 0, APPW, 200)];
@@ -71,11 +43,5 @@
         [head addSubview:buton];
     }
     return head;
-}
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [tableView deselectRowAtIndexPath:indexPath animated:NO];
-}
--(void)doSomething{
-    DLog(@"阿拉啦");
 }
 @end

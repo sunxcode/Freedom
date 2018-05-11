@@ -4,6 +4,7 @@
 #import <UIKit/UIKit.h>
 #import "TLTableViewCell.h"
 #import "WechartModes.h"
+#import "WechatBaseViewController.h"
 @protocol TLInfoButtonCellDelegate <NSObject>
 - (void)infoButtonCellClicked:(TLInfo *)info;
 @end

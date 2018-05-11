@@ -6,7 +6,6 @@
 #import "TLUserHelper.h"
 #import "TLChatViewController.h"
 #import "TLRootViewController.h"
-#import "UINavigationController+JZExtension.h"
 #define     FRIENDS_SPACE_X         10.0f
 #define     FRIENDS_SPACE_Y         9.5f
 @interface TLGroupCell ()

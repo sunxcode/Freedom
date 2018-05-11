@@ -1,6 +1,6 @@
 
 #import "TaobaoCommunityViewController.h"
-@interface TaobaoCommunityViewCell1 : BaseCollectionViewCell
+@interface TaobaoCommunityViewCell1 : BaseCollectionViewOCCell
 @end
 @implementation TaobaoCommunityViewCell1
 -(void)initUI{
@@ -23,7 +23,7 @@
     self.script.text = @"👌这款笔记本电脑💻，用料考究，做工精细，运行速度快，携带方便，是您居家旅行的不二之选，它极致的性能堪比外挂，性价比特别高，建议选联想拯救者或惠普精灵系列的电脑，买电脑千万别图便宜，一分价格一分货。";
 }
 @end
-@interface TaobaoCommunityViewCell2 : BaseCollectionViewCell
+@interface TaobaoCommunityViewCell2 : BaseCollectionViewOCCell
 @end
 @implementation TaobaoCommunityViewCell2
 -(void)initUI{
@@ -57,8 +57,10 @@
 }
 @end
 @interface TaobaoCommunityViewController()<UICollectionViewDelegateFlowLayout>{
-    BaseScrollView *banner;
+    BaseScrollOCView *banner;
+    NSArray *dataArray;
 }
+@property (nonatomic,strong) UICollectionView *collectionView;
 @end
 @implementation TaobaoCommunityViewController
 - (void)viewDidLoad {
@@ -72,7 +74,7 @@
     UIBarButtonItem *rightI = [[UIBarButtonItem alloc]initWithImage:image style:UIBarButtonItemStyleDone actionBlick:^{}];
     self.navigationItem.leftBarButtonItem  = leftI;
     self.navigationItem.rightBarButtonItem = rightI;
-    banner = [[BaseScrollView alloc]initWithFrame:CGRectMake(0,30, APPW, 130)];
+    banner = [[BaseScrollOCView alloc]initWithFrame:CGRectMake(0,30, APPW, 130)];
     NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:@"1",@"type", nil];
     [Net GET:GETBanner parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSArray *adViewArr = responseObject[@"data"][@"list"];
@@ -87,13 +89,17 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [SVProgressHUD showErrorWithStatus:alertErrorTxt];
     }];
-    BaseCollectionViewLayout *layout = [BaseCollectionViewLayout sharedFlowlayoutWithCellSize:CGSizeMake((APPW-50)/4, 90) groupInset:UIEdgeInsetsMake(10, 10, 0, 10) itemSpace:10 linespace:10];
+    
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
+    layout.itemSize = CGSizeMake((APPW-50)/4, 90);
+    layout.sectionInset = UIEdgeInsetsMake(10, 10, 0, 10);
+    layout.minimumInteritemSpacing = 10;
+    layout.minimumLineSpacing = 10;
 //    layout.headerReferenceSize = CGSizeMake(320, 40);layout.footerReferenceSize = CGSizeMake(APPW, 30);
-    self.collectionView = [[BaseCollectionView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH-110) collectionViewLayout:layout];
-    self.collectionView.dataArray = [NSMutableArray arrayWithObjects:@{@"name":@"流量充值",@"pic":PuserLogo}, nil];
-    [self fillTheCollectionViewDataWithCanMove:NO sectionN:3 itemN:20 itemName:@"TaobaoCommunityViewCell1"];
+    self.collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH-110) collectionViewLayout:layout];
+    dataArray = [NSMutableArray arrayWithObjects:@{@"name":@"流量充值",@"pic":PuserLogo}, nil];
     [self.collectionView registerClass:[TaobaoCommunityViewCell2 class] forCellWithReuseIdentifier:@"TaobaoCommunityViewCell2"];
-    [self.collectionView registerClass:[BaseCollectionViewCell class] forCellWithReuseIdentifier:@"basecell"];
+    [self.collectionView registerClass:[BaseCollectionViewOCCell class] forCellWithReuseIdentifier:@"basecell"];
     [self.collectionView registerClass:[TaobaoCommunityHeadView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headview"];
     [self.collectionView registerClass:[TaobaoCommunityHeadView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"footview"];
     self.collectionView.dataSource = self;
@@ -104,7 +110,7 @@
     if (section == 0)return 1;if (section == 1)return 5;if (section == 2)return 10;return 0;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    BaseCollectionViewCell *cell = nil;
+    BaseCollectionViewOCCell *cell = nil;
     if(indexPath.section == 0){
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"basecell" forIndexPath:indexPath];
         cell.frame=CGRectMake(0, 0, APPW, 100);

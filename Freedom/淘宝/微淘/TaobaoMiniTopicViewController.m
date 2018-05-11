@@ -4,7 +4,7 @@
 //
 #import "TaobaoMiniTopicViewController.h"
 #import <XCategory/UILabel+expanded.h>
-@interface TaobaoMiniTopicViewCell:BaseTableViewCell{
+@interface TaobaoMiniTopicViewCell:BaseTableViewOCCell{
     UILabel *sees;
 }
 @end
@@ -29,7 +29,7 @@
 @implementation TaobaoMiniTopicViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
-    BaseScrollView *banner = [[BaseScrollView alloc]initWithFrame:CGRectMake(0,0, APPW, 120)];
+    BaseScrollOCView *banner = [[BaseScrollOCView alloc]initWithFrame:CGRectMake(0,0, APPW, 120)];
     NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:@"1",@"type", nil];
     [Net GET:GETBanner parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSArray *adViewArr = responseObject[@"data"][@"list"];
@@ -46,9 +46,8 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [SVProgressHUD showErrorWithStatus:alertErrorTxt];
     }];
-    self.tableView = [[BaseTableView alloc]initWithFrame:CGRectMake(0,0, APPW, self.view.frameHeight-20) style:UITableViewStylePlain];
-    [self fillTheTableDataWithHeadV:banner footV:nil canMove:NO canEdit:NO headH:0 footH:0 rowH:90 sectionN:1 rowN:11 cellName:@"TaobaoMiniTopicViewCell"];
-    self.tableView.dataArray = [NSMutableArray arrayWithObjects:@"b",@"a",@"v",@"f",@"d",@"a",@"w",@"u",@"n",@"o",@"2", nil];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0,0, APPW, self.view.frameHeight-20) style:UITableViewStylePlain];
+    self.dataArray = [NSMutableArray arrayWithObjects:@"b",@"a",@"v",@"f",@"d",@"a",@"w",@"u",@"n",@"o",@"2", nil];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;

@@ -12,5 +12,4 @@
 - (void)loadMoreData;
 @property (nonatomic, strong) NSMutableArray *data;
 @property (nonatomic, strong) TLExpressionHelper *proxy;
-@property (nonatomic, strong) UICollectionView *collectionView;
 @end

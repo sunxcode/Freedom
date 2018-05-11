@@ -3,7 +3,7 @@
 //  Copyright © 2016年 Super. All rights reserved.
 #import "EnergyHomeViewController.h"
 #import "EnergyDetailViewController.h"
-@interface EnergyHomeViewCell : BaseCollectionViewCell
+@interface EnergyHomeViewCell : BaseCollectionViewOCCell
 @end
 @implementation EnergyHomeViewCell
 -(void)initUI{
@@ -31,7 +31,7 @@
     searchBar.placeholder = @"输入问题关键字";
     self.navigationItem.titleView = searchBar;
     
-    BaseScrollView *banner = [[BaseScrollView alloc]initWithFrame:CGRectMake(0,0, APPW, 120)];
+    BaseScrollOCView *banner = [[BaseScrollOCView alloc]initWithFrame:CGRectMake(0,0, APPW, 120)];
     NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:@"1",@"type", nil];
     [Net GET:GETBanner parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSArray *adViewArr = responseObject[@"data"][@"list"];
@@ -49,21 +49,24 @@
         [SVProgressHUD showErrorWithStatus:alertErrorTxt];
     }];
     
-    BaseCollectionViewLayout *layout = [BaseCollectionViewLayout sharedFlowlayoutWithCellSize:CGSizeMake(APPW/5, 80) groupInset:UIEdgeInsetsMake(YH(banner)+10, 10, 0, 10) itemSpace:10 linespace:10];
-    self.collectionView = [[BaseCollectionView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH-110) collectionViewLayout:layout];
-    self.collectionView.dataArray = [NSMutableArray arrayWithObjects:
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
+    layout.itemSize = CGSizeMake(APPW/5, 80);
+    layout.sectionInset = UIEdgeInsetsMake(YH(banner)+10, 10, 0, 10);
+    layout.minimumInteritemSpacing = 10;
+    layout.minimumLineSpacing = 10;
+    self.collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH-110) collectionViewLayout:layout];
+    dataArray = [NSMutableArray arrayWithObjects:
     @"微请柬",@"微渠道",@"微助手",@"分销版",@"微政务",@"微社区",@"微外卖",@"微配送",
     @"微挂号",@"微游戏",@"微OA",@"微名片",@"全景720",@"微贺卡",@"优惠券",@"微团购",
     @"微点菜",@"微小店",@"微彩票",@"问卷调查",@"微信打印机",@"微信wifi",@"客户备忘",@"微报名",
     @"订房易",@"抢元宝",@"微现场",@"超级加油",@"微网站",@"微商城",@"会员卡",@"微相册",
     @"微信支付",@"微喜帖",@"微测试",@"超级秒杀",@"全民经纪人",@"微投票",@"微签到",@"微预约",nil];
-    [self fillTheCollectionViewDataWithCanMove:NO sectionN:1 itemN:40 itemName:@"EnergyHomeViewCell"];
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
     [self.collectionView addSubview:banner];
     [self.view addSubviews:self.collectionView,nil];
 }
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    [self pushController:[EnergyDetailViewController class] withInfo:nil withTitle:self.collectionView.dataArray[indexPath.row]];
+    [self pushController:[EnergyDetailViewController class] withInfo:nil withTitle:dataArray[indexPath.row]withOther:nil];
 }
 @end

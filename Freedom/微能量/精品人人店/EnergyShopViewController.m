@@ -3,7 +3,7 @@
 //  Copyright © 2016年 Super. All rights reserved.
 #import "EnergyShopViewController.h"
 #import "EnergyShopTabBarController.h"
-@interface EnergyShopViewCell:BaseTableViewCell
+@interface EnergyShopViewCell:BaseTableViewOCCell
 @end
 @implementation EnergyShopViewCell
 -(void)initUI{
@@ -26,9 +26,8 @@
     [self loadUI];
 }
 -(void)loadUI{
-    self.tableView = [[BaseTableView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH-110)];
-    [self fillTheTableDataWithHeadV:nil footV:nil canMove:NO canEdit:NO headH:0 footH:0 rowH:80 sectionN:1 rowN:18 cellName:@"EnergyShopViewCell"];
-    self.tableView.dataArray = [NSMutableArray arrayWithObjects:@"酒水",@"茶饮",@"水果",@"生鲜",@"土地产",@"旅游",@"美丽人生",@"养生",@"服饰鞋袜",@"百货",@"美食",@"坚果零食",@"饰品",@"手工制品",@"家电家居",@"健身",@"宠品",nil];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH-110)];
+    self.dataArray = [NSMutableArray arrayWithObjects:@"酒水",@"茶饮",@"水果",@"生鲜",@"土地产",@"旅游",@"美丽人生",@"养生",@"服饰鞋袜",@"百货",@"美食",@"坚果零食",@"饰品",@"手工制品",@"家电家居",@"健身",@"宠品",nil];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];

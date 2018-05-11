@@ -1,7 +1,7 @@
 
 #import "JuheAPIViewController.h"
 #import "JuheAPIDetailViewController.h"
-@interface JuheAPICollectionViewCell : BaseCollectionViewCell{
+@interface JuheAPICollectionViewCell : BaseCollectionViewOCCell{
     NSMutableDictionary *thumbnailCache;
 }
 @end
@@ -34,8 +34,10 @@
 }
 @end
 @interface JuheAPIViewController(){
-    BaseScrollView *banner;
+    BaseScrollOCView *banner;
+    NSMutableArray *dataArray;
 }
+@property (nonatomic,strong) UICollectionView *collectionView;
 @end
 @implementation JuheAPIViewController
 - (void)viewDidLoad {
@@ -51,7 +53,7 @@
     searchBar.placeholder = @"请输入想要查找的接口";
     self.navigationItem.titleView = searchBar;
     
-    banner = [[BaseScrollView alloc]initWithFrame:CGRectMake(0,0, APPW, 120)];
+    banner = [[BaseScrollOCView alloc]initWithFrame:CGRectMake(0,0, APPW, 120)];
     NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:@"1",@"type", nil];
     [Net GET:GETBanner parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSArray *adViewArr = responseObject[@"data"][@"list"];
@@ -69,16 +71,20 @@
         [SVProgressHUD showErrorWithStatus:alertErrorTxt];
     }];
     
-    BaseCollectionViewLayout *layout = [BaseCollectionViewLayout sharedFlowlayoutWithCellSize:CGSizeMake((APPW-50)/4, 90) groupInset:UIEdgeInsetsMake(YH(banner)+10, 10, 0, 10) itemSpace:10 linespace:10];
-    self.collectionView = [[BaseCollectionView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH-100) collectionViewLayout:layout];
-    self.collectionView.dataArray = [NSMutableArray arrayWithObjects:
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
+    layout.itemSize = CGSizeMake((APPW-50)/4, 90);
+    layout.sectionInset = UIEdgeInsetsMake(YH(banner)+10, 10, 0, 10);
+    layout.minimumInteritemSpacing = 10;
+    layout.minimumLineSpacing = 10;
+    
+    self.collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH-100) collectionViewLayout:layout];
+    dataArray = [NSMutableArray arrayWithObjects:
   @{@"name":@"IP地址",@"pic":@"juheintopublic"},@{@"name":@"手机号码归属地",@"pic":@"juhelookhistory"},@{@"name":@"身份证查询",@"pic":@"juheaboutus"},@{@"name":@"常用快递",@"pic":PuserLogo},
   @{@"name":@"餐饮美食",@"pic":PuserLogo},@{@"name":@"菜谱大全",@"pic":PuserLogo},@{@"name":@"彩票开奖结果",@"pic":PuserLogo},@{@"name":@"邮编查询",@"pic":PuserLogo},
   @{@"name":@"律师查询",@"pic":PuserLogo},@{@"name":@"笑话大全",@"pic":PuserLogo},@{@"name":@"小说大全",@"pic":PuserLogo},@{@"name":@"恋爱物语",@"pic":PuserLogo},
   @{@"name":@"商品比价",@"pic":PuserLogo},@{@"name":@"新闻",@"pic":PuserLogo},@{@"name":@"微信精选",@"pic":PuserLogo},@{@"name":@"经典日至",@"pic":PuserLogo},
   @{@"name":@"天气查询",@"pic":PuserLogo},@{@"name":@"手机话费",@"pic":PuserLogo},@{@"name":@"个人缴费",@"pic":PuserLogo},@{@"name":@"移动出行",@"pic":PuserLogo},
   @{@"name":@"足球赛事",@"pic":PuserLogo},@{@"name":@"新闻资讯",@"pic":PuserLogo},@{@"name":@"视频播放",@"pic":PuserLogo},@{@"name":@"流量充值",@"pic":PuserLogo}, nil];
-    [self fillTheCollectionViewDataWithCanMove:NO sectionN:1 itemN:20 itemName:@"JuheAPICollectionViewCell"];
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
     [self.collectionView addSubview:banner];
@@ -88,6 +94,6 @@
     DLog(@"更多");
 }
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    [self pushController:[JuheAPIDetailViewController class] withInfo:self.collectionView.dataArray[indexPath.row] withTitle:self.collectionView.dataArray[indexPath.row][@"name"]];
+    [self pushController:[JuheAPIDetailViewController class] withInfo:dataArray[indexPath.row] withTitle:dataArray[indexPath.row][@"name"] withOther:nil];
 }
 @end

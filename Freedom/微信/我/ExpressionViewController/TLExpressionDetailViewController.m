@@ -206,10 +206,19 @@
     NSInteger kPageIndex;
 }
 @property (nonatomic, strong) TLExpressionHelper *proxy;
+
+@property (nonatomic,strong) UICollectionView *collectionView;
 @end
 @implementation TLExpressionDetailViewController
 - (void)viewDidLoad{
     [super viewDidLoad];
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+    self.collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
+    [self.collectionView setBackgroundColor:[UIColor whiteColor]];
+    [self.collectionView setDataSource:self];
+    [self.collectionView setDelegate:self];
+    [self.collectionView setAlwaysBounceVertical:YES];
+    
     [self.view addSubview:self.collectionView];
     
     [self registerCellForCollectionView:self.collectionView];
@@ -256,17 +265,6 @@
         _proxy = [TLExpressionHelper sharedHelper];
     }
     return _proxy;
-}
-- (UICollectionView *)collectionView{
-    if (_collectionView == nil) {
-        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-        _collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
-        [_collectionView setBackgroundColor:[UIColor whiteColor]];
-        [_collectionView setDataSource:self];
-        [_collectionView setDelegate:self];
-        [_collectionView setAlwaysBounceVertical:YES];
-    }
-    return _collectionView;
 }
 - (TLImageExpressionDisplayView *)emojiDisplayView{
     if (_emojiDisplayView == nil) {

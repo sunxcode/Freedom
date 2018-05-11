@@ -3,5 +3,5 @@
 //  Copyright © 2016年 Super. All rights reserved.
 //
 #import <UIKit/UIKit.h>
-@interface JuheQuestionViewController : BaseViewController
+@interface JuheQuestionViewController : BaseOCViewController
 @end

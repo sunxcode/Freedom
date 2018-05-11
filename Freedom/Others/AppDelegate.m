@@ -54,12 +54,8 @@
     if ([prefs boolForKey:@"hasRunBefore"] != YES) {
         [prefs setBool:YES forKey:@"hasRunBefore"];
         [prefs synchronize];
-        [self readData];
     }
     return YES;
-}
-- (void)readData {
-    self.items = [NSMutableArray arrayWithArray:[User getControllerData]];
 }
 - (void)applicationWillResignActive:(UIApplication *)application {
     // 设置音频会话类型
@@ -121,11 +117,4 @@
     [mgr cancelAll];
     [mgr.imageCache clearMemory];
 }
-#pragma mark - Application's Documents directory
-- (NSURL *)applicationDocumentsDirectory{
-    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-}
-//- (PPRevealSideDirection)pprevealSideViewController:(PPRevealSideViewController *)controller directionsAllowedForPanningOnView:(UIView *)view {
-//    return PPRevealSideDirectionLeft | PPRevealSideDirectionRight | PPRevealSideDirectionTop | PPRevealSideDirectionBottom;
-//}
 @end

@@ -6,7 +6,7 @@
 #import "DZDealDetailViewController.h"
 #import <XCategory/UILabel+expanded.h>
 //FIXME:横着的cell
-@interface DZDealListViewTransverseCell:BaseTableViewCell
+@interface DZDealListViewTransverseCell:BaseTableViewOCCell
 @end
 @implementation DZDealListViewTransverseCell
 -(void)initUI{
@@ -25,7 +25,7 @@
 }
 @end
 //FIXME:竖着的cell
-@interface DZDealListViewVerticalCell:BaseTableViewCell{
+@interface DZDealListViewVerticalCell:BaseTableViewOCCell{
     UILabel *name,*sees,*times;
 }
 @end
@@ -57,15 +57,14 @@
 @implementation DZDealListViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.tableView = [[BaseTableView alloc]initWithFrame:CGRectMake(0,0, APPW, self.view.frameHeight-20) style:UITableViewStylePlain];
-    [self fillTheTableDataWithHeadV:nil footV:nil canMove:NO canEdit:NO headH:0 footH:0 rowH:100 sectionN:1 rowN:20 cellName:@"TaobaoMiniDynamicViewCell"];
-    self.tableView.dataArray = [NSMutableArray arrayWithObjects:@"b",@"a",@"v",@"f",@"d",@"a",@"w",@"u",@"n",@"o",@"b",@"a",@"v",@"f",@"d",@"a",@"w",@"u",@"n",@"o",@"b",@"a",@"v",@"f",@"d",@"a",@"w",@"u",@"n",@"o",@"2", nil];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0,0, APPW, self.view.frameHeight-20) style:UITableViewStylePlain];
+    self.dataArray = [NSMutableArray arrayWithObjects:@"b",@"a",@"v",@"f",@"d",@"a",@"w",@"u",@"n",@"o",@"b",@"a",@"v",@"f",@"d",@"a",@"w",@"u",@"n",@"o",@"b",@"a",@"v",@"f",@"d",@"a",@"w",@"u",@"n",@"o",@"2", nil];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self.view addSubview:self.tableView];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    BaseTableViewCell *cell;
+    BaseTableViewOCCell *cell;
     if(indexPath.row%5){
         //竖着的
         cell = [tableView dequeueReusableCellWithIdentifier:[DZDealListViewVerticalCell getTableCellIdentifier]];
@@ -86,6 +85,6 @@
     self.tableView.frameHeight = self.view.frameHeight;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [self pushController:[DZDealDetailViewController class] withInfo:nil withTitle:@"详情"];
+    [self pushController:[DZDealDetailViewController class] withInfo:nil withTitle:@"详情" withOther:nil];
 }
 @end

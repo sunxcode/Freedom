@@ -4,7 +4,7 @@
 //  Copyright (c) 2015年 dengw. All rights reserved.
 #import "DZDiscoverController.h"
 @interface DZDiscoverController (){
-    BaseScrollView *contentScrollView;
+    BaseScrollOCView *contentScrollView;
 }
 @end
 @implementation DZDiscoverController
@@ -22,7 +22,7 @@
     self.navigationItem.leftBarButtonItem = map;
     NSArray *titles = @[@"精选",@"嗨周末",@"变漂亮",@"潮餐厅",@"出去浪",@"探店报告"];
     NSArray *controllers = @[@"DZDealListViewController",@"DZDealListViewController",@"DZDealListViewController",@"DZDealListViewController",@"DZDealListViewController",@"DZDealListViewController"];
-    contentScrollView = [BaseScrollView sharedContentTitleViewWithFrame:CGRectMake(0, 0, APPW, APPH-55) titles:titles controllers:controllers inViewController:self];
+    contentScrollView = [BaseScrollOCView sharedContentTitleViewWithFrame:CGRectMake(0, 0, APPW, APPH-55) titles:titles controllers:controllers inViewController:self];
     contentScrollView.selectBlock = ^(NSInteger index, NSDictionary *dict) {
         DLog(@"点击了%ld,%@",index,dict);
     };

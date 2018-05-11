@@ -5,7 +5,6 @@
 #import "TLExpressionChosenViewController.h"
 #import "TLExpressionPublicViewController.h"
 #import "TLMyExpressionViewController.h"
-#import "UINavigationController+JZExtension.h"
 #define     WIDTH_EXPRESSION_SEGMENT    APPW * 0.55
 @interface TLExpressionViewController ()
 @property (nonatomic, strong) UISegmentedControl *segmentedControl;
@@ -24,7 +23,7 @@
     UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav_setting"] style:UIBarButtonItemStylePlain target:self action:@selector(rightBarButtonDown)];
     [self.navigationItem setRightBarButtonItem:rightBarButton];
     
-    if (self.navigationController.rootViewController == self) {
+    if (self.navigationController.topViewController == self) {
         UIBarButtonItem *dismissBarButton = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain actionBlick:^{
             [self dismissViewControllerAnimated:YES completion:nil];
         }];

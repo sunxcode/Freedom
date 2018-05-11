@@ -75,11 +75,22 @@
 @interface TLExpressionPublicViewController () <UISearchBarDelegate>
 @property (nonatomic, strong) TLSearchController *searchController;
 @property (nonatomic, strong) TLExpressionSearchViewController *searchVC;
+
+@property (nonatomic,strong) UICollectionView *collectionView;
 @end
 @implementation TLExpressionPublicViewController
 - (void)viewDidLoad{
     [super viewDidLoad];
     [self setAutomaticallyAdjustsScrollViewInsets:NO];
+    
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+    CGRect rect = CGRectMake(0, HEIGHT_NAVBAR + NavY, APPW, APPH - HEIGHT_NAVBAR - NavY);
+    self.collectionView = [[UICollectionView alloc] initWithFrame:rect collectionViewLayout:layout];
+    [self.collectionView setBackgroundColor:[UIColor whiteColor]];
+    [self.collectionView setDataSource:self];
+    [self.collectionView setDelegate:self];
+    [self.collectionView setAlwaysBounceVertical:YES];
+    
     [self.view addSubview:self.collectionView];
     [self.collectionView setBackgroundColor:[UIColor whiteColor]];
 //    [self.collectionView setTableHeaderView:self.searchController.searchBar];
@@ -125,18 +136,6 @@
         _proxy = [TLExpressionHelper sharedHelper];
     }
     return _proxy;
-}
-- (UICollectionView *)collectionView{
-    if (_collectionView == nil) {
-        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-        CGRect rect = CGRectMake(0, HEIGHT_NAVBAR + NavY, APPW, APPH - HEIGHT_NAVBAR - NavY);
-        _collectionView = [[UICollectionView alloc] initWithFrame:rect collectionViewLayout:layout];
-        [_collectionView setBackgroundColor:[UIColor whiteColor]];
-        [_collectionView setDataSource:self];
-        [_collectionView setDelegate:self];
-        [_collectionView setAlwaysBounceVertical:YES];
-    }
-    return _collectionView;
 }
 - (void)registerCellForCollectionView:(UICollectionView *)collectionView{
     [collectionView registerClass:[TLExpressionPublicCell class] forCellWithReuseIdentifier:@"TLExpressionPublicCell"];

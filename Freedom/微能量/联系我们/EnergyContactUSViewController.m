@@ -5,7 +5,7 @@
 //
 #import "EnergyContactUSViewController.h"
 #import "EnergyContactDetailViewController.h"
-@interface EnergyContactUSViewCell:BaseTableViewCell
+@interface EnergyContactUSViewCell:BaseTableViewOCCell
 @end
 @implementation EnergyContactUSViewCell
 -(void)initUI{
@@ -29,7 +29,7 @@
 }
 -(void)loadUI{
     self.title = @"联系我们";
-    BaseScrollView *banner = [[BaseScrollView alloc]initWithFrame:CGRectMake(0,0, APPW, 120)];
+    BaseScrollOCView *banner = [[BaseScrollOCView alloc]initWithFrame:CGRectMake(0,0, APPW, 120)];
     NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:@"1",@"type", nil];
     [Net GET:GETBanner parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSArray *adViewArr = responseObject[@"data"][@"list"];
@@ -46,15 +46,14 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [SVProgressHUD showErrorWithStatus:alertErrorTxt];
     }];
-    self.tableView = [[BaseTableView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH-64)];
-    [self fillTheTableDataWithHeadV:banner footV:nil canMove:NO canEdit:NO headH:0 footH:0 rowH:80 sectionN:1 rowN:6 cellName:@"EnergyContactUSViewCell"];
-    self.tableView.dataArray = [NSMutableArray arrayWithObjects:@"一键导航",@"关注公众号",@"查看历史消息",@"微信营销交流",@"客服聊天",@"诚聘精英",nil];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH-64)];
+    self.dataArray = [NSMutableArray arrayWithObjects:@"一键导航",@"关注公众号",@"查看历史消息",@"微信营销交流",@"客服聊天",@"诚聘精英",nil];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSString *value = self.tableView.dataArray[indexPath.row];
+    NSString *value = self.dataArray[indexPath.row];
     [self pushController:[EnergyContactDetailViewController class] withInfo:nil withTitle:value withOther:value];
     
 }

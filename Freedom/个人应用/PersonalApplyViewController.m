@@ -16,7 +16,7 @@
 #import "PersonalHouseViewController.h"
 #import "PersonalCarViewController.h"
 #import "PersonalLuxuryViewController.h"
-@interface PersonalApplyViewCell:BaseTableViewCell
+@interface PersonalApplyViewCell:BaseTableViewOCCell
 @end
 @implementation PersonalApplyViewCell
 -(void)initUI{
@@ -35,12 +35,12 @@
 @end
 @implementation PersonalApplyViewController{
     NSArray *controllers;
-    BaseScrollView *banner;
+    BaseScrollOCView *banner;
 }
 - (void)viewDidLoad{
     [super viewDidLoad];
     self.title = @"个人应用";
-    banner = [[BaseScrollView alloc]initWithFrame:CGRectMake(0,0, APPW, 120)];
+    banner = [[BaseScrollOCView alloc]initWithFrame:CGRectMake(0,0, APPW, 120)];
     NSDictionary *param = [NSDictionary dictionaryWithObjectsAndKeys:@"1",@"type", nil];
     [Net GET:GETBanner parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSArray *adViewArr = responseObject[@"data"][@"list"];
@@ -57,9 +57,8 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [SVProgressHUD showErrorWithStatus:alertErrorTxt];
     }];
-    self.tableView = [[BaseTableView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH-TabBarH) style:UITableViewStylePlain];
-    [self fillTheTableDataWithHeadV:nil footV:nil canMove:NO canEdit:NO headH:0 footH:0 rowH:80 sectionN:1 rowN:11 cellName:@"PersonalApplyViewCell"];
-    self.tableView.dataArray = [NSMutableArray arrayWithObjects:
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH-TabBarH) style:UITableViewStylePlain];
+    self.dataArray = [NSMutableArray arrayWithObjects:
   @{@"pic":PuserLogo,@"name":@"互联网行业",@"url":ResumeURL},@{@"pic":PuserLogo,@"name":@"教育培训行业1",@"url":WeChatApplet1},@{@"pic":PuserLogo,@"name":@"计算机软件",@"url":WeChatApplet2},
   @{@"pic":PuserLogo,@"name":@"计算机硬件",@"url":MicroPage1},@{@"pic":PuserLogo,@"name":@"个人电脑",@"url":MicroPage2},@{@"pic":PuserLogo,@"name":@"食品连锁",@"url":MicroPage3},
   @{@"pic":PuserLogo,@"name":@"快消品行业",@"url":MicroPage3}, @{@"pic":PuserLogo,@"name":@"耐消品行业",@"url":MicroPage3}, @{@"pic":PuserLogo,@"name":@"手机市场",@"url":MicroPage3},
@@ -78,7 +77,7 @@
     self.edgesForExtendedLayout = UIRectEdgeLeft | UIRectEdgeRight|UIRectEdgeBottom;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSDictionary *dict = self.tableView.dataArray[indexPath.row];
+    NSDictionary *dict = self.dataArray[indexPath.row];
     [self pushController:NSClassFromString(controllers[indexPath.row]) withInfo:dict withTitle:dict[@"name"] withOther:dict];
 }
 @end

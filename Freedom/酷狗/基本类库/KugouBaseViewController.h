@@ -3,7 +3,7 @@
 //  Copyright © 2016年 Super. All rights reserved.
 //
 #import <UIKit/UIKit.h>
-@interface KugouBaseViewController : UIViewController
+@interface KugouBaseViewController : BaseOCViewController
 @property (strong, nonatomic) UIView       *navBar;
 @property (strong, nonatomic) UIImageView            *backItem;
 @property (strong, nonatomic) UIImageView            *leftItem;

@@ -98,7 +98,7 @@
     CGPoint _lastPoint;
     UIButton *_placeholderButton;
     SDHomeGridViewListItemView *_currentPressedView;
-    BaseScrollView *_cycleScrollADView;
+    BaseScrollOCView *_cycleScrollADView;
     UIView *_cycleScrollADViewBackgroundView;
     UIButton *_moreItemButton;
     CGRect _currentPresssViewFrame;
@@ -147,7 +147,7 @@
         _cycleScrollADViewBackgroundView = cycleScrollADViewBackgroundView;
         _cycleScrollADViewBackgroundView.backgroundColor = [UIColor redColor];
         NSArray *temp = @[@"http://ww3.sinaimg.cn/bmiddle/9d857daagw1er7lgd1bg1j20ci08cdg3.jpg",@"http://ww4.sinaimg.cn/bmiddle/763cc1a7jw1esr747i13xj20dw09g0tj.jpg",@"http://ww4.sinaimg.cn/bmiddle/67307b53jw1esr4z8pimxj20c809675d.jpg"];
-        _cycleScrollADView = [BaseScrollView sharedBannerWithFrame:CGRectMake(0, 0, APPW, 100) icons:temp];
+        _cycleScrollADView = [BaseScrollOCView sharedBannerWithFrame:CGRectMake(0, 0, APPW, 100) icons:temp];
         [self addSubview:_cycleScrollADView];
     }
     return self;

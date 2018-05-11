@@ -4,7 +4,7 @@
 //
 #import "EnergySampleViewController.h"
 #import "EnergyBusinessListViewController.h"
-@interface EnergySampleViewCell:BaseTableViewCell
+@interface EnergySampleViewCell:BaseTableViewOCCell
 @end
 @implementation EnergySampleViewCell
 -(void)initUI{
@@ -26,15 +26,14 @@
 }
 -(void)loadUI{
     self.title = @"经典案例";
-    self.tableView = [[BaseTableView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH-110)];
-    [self fillTheTableDataWithHeadV:nil footV:nil canMove:NO canEdit:NO headH:0 footH:0 rowH:70 sectionN:1 rowN:17 cellName:@"EnergySampleViewCell"];
-    self.tableView.dataArray = [NSMutableArray arrayWithObjects:@"政府机构/媒体",@"母婴/儿童",@"教育/培训",@"商场百货",@"电商/商贸/零售",@"金融/投资/保险",@"医疗/健康/保健/养生",@"旅游",@"酒店",@"婚庆",@"房产",@"装饰",@"娱乐",@"金融",@"政务",@"汽车",@"餐饮",nil];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH-110)];
+    self.dataArray = [NSMutableArray arrayWithObjects:@"政府机构/媒体",@"母婴/儿童",@"教育/培训",@"商场百货",@"电商/商贸/零售",@"金融/投资/保险",@"医疗/健康/保健/养生",@"旅游",@"酒店",@"婚庆",@"房产",@"装饰",@"娱乐",@"金融",@"政务",@"汽车",@"餐饮",nil];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSString *value = self.tableView.dataArray[indexPath.row];
+    NSString *value = self.dataArray[indexPath.row];
     [self pushController:[EnergyBusinessListViewController class] withInfo:nil withTitle:value withOther:value];
     
 }

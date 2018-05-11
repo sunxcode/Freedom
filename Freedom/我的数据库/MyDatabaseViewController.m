@@ -6,9 +6,9 @@
 #import "MyDatabaseViewController.h"
 #import "MyDatabaseEditViewController.h"
 #import "User.h"
-@interface DatabaseCollectionViewCell : BaseCollectionViewCell
+@interface DataBaseCollectionViewOCCell : BaseCollectionViewOCCell
 @end
-@implementation DatabaseCollectionViewCell
+@implementation DataBaseCollectionViewOCCell
 -(void)initUI{
     self.icon = [[UIImageView alloc]initWithFrame:CGRectMake(10,0, APPW/5-20,40)];
     self.title = [[UILabel alloc]initWithFrame:CGRectMake(0,YH(self.icon), APPW/5-12, 20)];
@@ -20,7 +20,10 @@
     self.icon.image = [UIImage imageNamed:[dict valueForKey:@"icon"]];
 }
 @end
-@interface MyDatabaseViewController()<UICollectionViewDelegateFlowLayout>{}
+@interface MyDatabaseViewController()<UICollectionViewDelegateFlowLayout>{
+    NSMutableArray *dataArray;
+}
+@property (nonatomic,strong) UICollectionView *collectionView;
 @end
 @implementation MyDatabaseViewController
 - (void)viewDidLoad {
@@ -30,12 +33,16 @@
     UIBarButtonItem *right = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:Padd] style:UIBarButtonItemStyleDone actionBlick:^{}];
     self.navigationItem.leftBarButtonItem  = left;
     self.navigationItem.rightBarButtonItem = right;
-    BaseCollectionViewLayout *layout = [BaseCollectionViewLayout sharedFlowlayoutWithCellSize:CGSizeMake((APPW-50)/4, 60) groupInset:UIEdgeInsetsMake(0, 10, 0, 10) itemSpace:10 linespace:10];
+    
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
+    layout.itemSize = CGSizeMake((APPW-50)/4, 60);
+    layout.sectionInset = UIEdgeInsetsMake(0, 10, 0, 10);
+    layout.minimumInteritemSpacing = 10;
+    layout.minimumLineSpacing = 10;
     
     layout.headerReferenceSize = CGSizeMake(APPW, 30);layout.footerReferenceSize = CGSizeZero;
-    self.collectionView = [[BaseCollectionView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH-110) collectionViewLayout:layout];
-    self.collectionView.dataArray = [NSMutableArray arrayWithArray:[User getControllerData]];
-    [self fillTheCollectionViewDataWithCanMove:NO sectionN:1 itemN:15 itemName:@"DatabaseCollectionViewCell"];
+    self.collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH-110) collectionViewLayout:layout];
+    dataArray = [NSMutableArray arrayWithArray:[User getControllerData]];
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
     self.collectionView.frame = self.view.bounds;
@@ -48,6 +55,6 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSString *log = [NSString stringWithFormat:@"你选择的是%zd，%zd", indexPath.section, indexPath.row];
     [SVProgressHUD showSuccessWithStatus:log];DLog(@"%@",log);
-    [self pushController:[MyDatabaseEditViewController class] withInfo:self.collectionView.dataArray[indexPath.row] withTitle:@"数据库编辑详情"];
+    [self pushController:[MyDatabaseEditViewController class] withInfo:dataArray[indexPath.row] withTitle:@"数据库编辑详情" withOther:nil];
 }
 @end

@@ -4,7 +4,7 @@
 #import "DZDealController.h"
 #import "DZDealListViewController.h"
 @interface DZDealController (){
-    BaseScrollView *contentScrollView;
+    BaseScrollOCView *contentScrollView;
 }
 @end
 @implementation DZDealController
@@ -21,7 +21,7 @@
     self.navigationItem.title = @"团购";
     NSArray *titles = @[@"精选",@"享美食",@"点外卖",@"看电影",@"趣休闲"];
     NSArray *controllers = @[@"DZDealListViewController",@"DZDealListViewController",@"DZDealListViewController",@"DZDealListViewController",@"DZDealListViewController"];
-    contentScrollView = [BaseScrollView sharedContentTitleViewWithFrame:CGRectMake(0, 0, APPW, APPH-100) titles:titles controllers:controllers inViewController:self];
+    contentScrollView = [BaseScrollOCView sharedContentTitleViewWithFrame:CGRectMake(0, 0, APPW, APPH-100) titles:titles controllers:controllers inViewController:self];
     contentScrollView.selectBlock = ^(NSInteger index, NSDictionary *dict) {
         DLog(@"点击了%ld,%@",index,dict);
     };

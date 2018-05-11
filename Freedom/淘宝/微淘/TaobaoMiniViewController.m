@@ -10,7 +10,7 @@
 #import "TaobaoMiniArticleViewController.h"
 #import "TaobaoMiniTopicViewController.h"
 @interface TaobaoMiniViewController (){
-    BaseScrollView *TaobaoMiniScrollV;
+    BaseScrollOCView *TaobaoMiniScrollV;
 }
 @end
 @implementation TaobaoMiniViewController
@@ -28,7 +28,7 @@
     NSArray *titles = @[@"动态",@"上新",@"视频",@"热文",@"话题榜"];
     NSArray *icons = @[@"taobaomini1",@"taobaomini2",@"taobaomini3",@"taobaomini4",@"taobaomini5"];
     NSArray *controllers = @[@"TaobaoMiniDynamicViewController",@"TaobaoMiniNewViewController",@"TaobaoMiniVideoViewController",@"TaobaoMiniArticleViewController",@"TaobaoMiniTopicViewController"];
-    TaobaoMiniScrollV = [BaseScrollView sharedContentIconViewWithFrame:CGRectMake(0, 0, APPW,APPH-TabBarH-55) titles:titles icons:icons controllers:controllers inViewController:self];
+    TaobaoMiniScrollV = [BaseScrollOCView sharedContentIconViewWithFrame:CGRectMake(0, 0, APPW,APPH-TabBarH-55) titles:titles icons:icons controllers:controllers inViewController:self];
     TaobaoMiniScrollV.selectBlock = ^(NSInteger index, NSDictionary *dict) {
         DLog(@"点击了%ld,%@",index,dict);
     };

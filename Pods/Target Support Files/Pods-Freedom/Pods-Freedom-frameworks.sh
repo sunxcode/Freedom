@@ -148,11 +148,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/ACMediaFrame/ACMediaFrame.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/BaseCollectionView/BaseCollectionView.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/BaseFillTableViewController/BaseFillTableViewController.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/BaseScrollView/BaseScrollView.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/BaseStaticTableView/BaseStaticTableView.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/BaseTableView/BaseTableView.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/BaseFile/BaseFile.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/BlocksKit/BlocksKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/CocoaAsyncSocket/CocoaAsyncSocket.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework"
@@ -192,6 +188,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/UAProgressView/UAProgressView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/XCarryOn/XCarryOn.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/XCategory/XCategory.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/XExtension/XExtension.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/XMLDictionary/XMLDictionary.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -200,11 +197,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/ACMediaFrame/ACMediaFrame.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/BaseCollectionView/BaseCollectionView.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/BaseFillTableViewController/BaseFillTableViewController.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/BaseScrollView/BaseScrollView.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/BaseStaticTableView/BaseStaticTableView.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/BaseTableView/BaseTableView.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/BaseFile/BaseFile.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/BlocksKit/BlocksKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/CocoaAsyncSocket/CocoaAsyncSocket.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework"
@@ -244,6 +237,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/UAProgressView/UAProgressView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/XCarryOn/XCarryOn.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/XCategory/XCategory.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/XExtension/XExtension.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/XMLDictionary/XMLDictionary.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then

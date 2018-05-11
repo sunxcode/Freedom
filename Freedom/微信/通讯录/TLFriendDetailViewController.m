@@ -5,7 +5,6 @@
 #import "TLChatViewController.h"
 #import "TLRootViewController.h"
 #import "MWPhotoBrowser.h"
-#import "UINavigationController+JZExtension.h"
 #import "TLUserHelper.h"
 #import "TLTableViewCell.h"
 #import "WechartModes.h"
