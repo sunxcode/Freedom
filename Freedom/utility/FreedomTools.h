@@ -45,7 +45,6 @@
 + (void)saveAccount:(XFAccount *)account;
 /*返回账号信息 @return 账号模型（如果账号过期，返回nil）*/
 + (XFAccount *)account;
-
 + (NSArray *)itemIndexesWithPattern:(NSString *)pattern inString:(NSString *)findingString;
 + (NSMutableArray *)matchMobileLink:(NSString *)pattern;
 + (NSMutableArray *)matchWebLink:(NSString *)pattern;

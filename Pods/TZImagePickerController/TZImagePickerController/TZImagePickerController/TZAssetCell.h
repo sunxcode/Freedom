@@ -21,7 +21,9 @@ typedef enum : NSUInteger {
 @interface TZAssetCell : UICollectionViewCell
 
 @property (weak, nonatomic) UIButton *selectPhotoButton;
+@property (weak, nonatomic) UIButton *cannotSelectLayerButton;
 @property (nonatomic, strong) TZAssetModel *model;
+@property (assign, nonatomic) NSInteger index;
 @property (nonatomic, copy) void (^didSelectPhotoBlock)(BOOL);
 @property (nonatomic, assign) TZAssetCellType type;
 @property (nonatomic, assign) BOOL allowPickingGif;
@@ -29,12 +31,12 @@ typedef enum : NSUInteger {
 @property (nonatomic, copy) NSString *representedAssetIdentifier;
 @property (nonatomic, assign) int32_t imageRequestID;
 
-@property (nonatomic, copy) NSString *photoSelImageName;
-@property (nonatomic, copy) NSString *photoDefImageName;
+@property (nonatomic, strong) UIImage *photoSelImage;
+@property (nonatomic, strong) UIImage *photoDefImage;
 
 @property (nonatomic, assign) BOOL showSelectBtn;
 @property (assign, nonatomic) BOOL allowPreview;
-
+@property (assign, nonatomic) BOOL useCachedImage;
 @end
 
 

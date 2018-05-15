@@ -1,11 +1,5 @@
 //
 //  BookFriendsMode.m
-//  Freedom
-//
-//  Created by htf on 2018/4/27.
-//  Copyright © 2018年 薛超. All rights reserved.
-//
-
 #import "BookFriendsMode.h"
 #import <CoreText/CoreText.h>
 #import "FreedomTools.h"
@@ -26,7 +20,6 @@
 - (id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
     }
     return self;
 }
@@ -34,12 +27,10 @@
     WFHudView *alert = [[WFHudView alloc] initWithMsg:msg];
     if (!theView){
         [[self getUnhiddenFrontWindowOfApplication] addSubview:alert];
-    }
-    else{
+    }else{
         [[WFHudView getWindow] addSubview:alert];
     }
     [alert showAlert];
-    
 }
 -(void)showAlert{
     self.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.8];
@@ -49,30 +40,20 @@
     //    center.y -= (int)((SCREEN_HEIGHT - self.frame.size.height) / 164.0f * 36 / 2);
     self.center=center;
     CAKeyframeAnimation* opacityAnimation= [CAKeyframeAnimation animationWithKeyPath:@"opacity"];
-    
-    opacityAnimation.duration = totalDuration;
+opacityAnimation.duration = totalDuration;
     opacityAnimation.cumulative = YES;
     opacityAnimation.repeatCount = 1;
     opacityAnimation.removedOnCompletion = NO;
     opacityAnimation.fillMode = kCAFillModeBoth;
     opacityAnimation.values = [NSArray arrayWithObjects:
-                               [NSNumber numberWithFloat:0.2],
-                               [NSNumber numberWithFloat:0.92],
-                               [NSNumber numberWithFloat:0.92],
-                               [NSNumber numberWithFloat:0.1], nil];
-    
-    opacityAnimation.keyTimes = [NSArray arrayWithObjects:
-                                 [NSNumber numberWithFloat:0.0f],
-                                 [NSNumber numberWithFloat:0.08f],
-                                 [NSNumber numberWithFloat:0.92f],
-                                 [NSNumber numberWithFloat:1.0f], nil];
-    
-    opacityAnimation.timingFunctions = [NSArray arrayWithObjects:
-                                        [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn],
-                                        [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear],
-                                        [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut], nil];
-    
-    
+                               @0.2,@0.92,@0.92,@0.1,nil];
+opacityAnimation.keyTimes = [NSArray arrayWithObjects:
+@0.0f,@0.08f,@0.92f,@1.0f,nil];
+opacityAnimation.timingFunctions = [NSArray arrayWithObjects:
+[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn],
+[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear],
+[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut], nil];
+
     CAKeyframeAnimation* scaleAnimation =[CAKeyframeAnimation animationWithKeyPath:@"transform.scale"];
     scaleAnimation.duration = totalDuration;
     scaleAnimation.cumulative = YES;
@@ -80,26 +61,15 @@
     scaleAnimation.removedOnCompletion = NO;
     scaleAnimation.fillMode = kCAFillModeForwards;
     scaleAnimation.values = [NSArray arrayWithObjects:
-                             [NSNumber numberWithFloat:self.animationTopScale],
-                             [NSNumber numberWithFloat:1.0f],
-                             [NSNumber numberWithFloat:1.0f],
-                             [NSNumber numberWithFloat:self.animationTopScale],
-                             nil];
-    
-    scaleAnimation.keyTimes = [NSArray arrayWithObjects:
-                               [NSNumber numberWithFloat:0.0f],
-                               [NSNumber numberWithFloat:0.085f],
-                               [NSNumber numberWithFloat:0.92f],
-                               [NSNumber numberWithFloat:1.0f], nil];
-    
-    scaleAnimation.timingFunctions = [NSArray arrayWithObjects:
+     [NSNumber numberWithFloat:self.animationTopScale],@1.0f,@1.0f,[NSNumber numberWithFloat:self.animationTopScale],nil];
+scaleAnimation.keyTimes = [NSArray arrayWithObjects:
+@0.0f,@0.085f,@0.92f,@1.0f, nil];
+scaleAnimation.timingFunctions = [NSArray arrayWithObjects:
                                       [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn],
                                       [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear],
                                       [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut], nil];
-    
-    
-    
-    CAAnimationGroup *group = [CAAnimationGroup animation];
+
+CAAnimationGroup *group = [CAAnimationGroup animation];
     group.duration = totalDuration;
     group.delegate = self;
     group.animations = [NSArray arrayWithObjects:opacityAnimation,scaleAnimation, nil];
@@ -108,19 +78,14 @@
 }
 -(id)initWithMsg:(NSString*)_msg{
     if (self = [super init]) {
-        
         self.msg = _msg;
         self.leftMargin = 20;
-        
         self.topMargin = 10;
         self.totalDuration = 1.2f;
-        
         self.animationTopScale = 1.2;
         self.animationLeftScale = 1.2;
-        
         msgFont = [UIFont systemFontOfSize:14.0f];
         CGSize textSize = [self getSizeFromString:msg];
-        
         self.bounds = CGRectMake(0, 0, 160, 50);
         self.labelText = [[UILabel alloc] init];
         labelText.text = _msg;
@@ -130,13 +95,11 @@
         labelText.textColor = [UIColor whiteColor];
         labelText.textAlignment = NSTextAlignmentCenter;
         [labelText setFrame:CGRectMake((160 - textSize.width) / 2, 18,textSize.width, textSize.height)];
-        
         if ([self getSizeFromString:_msg].height > 32) {
             [labelText setFrame:CGRectMake((160 - textSize.width) / 2, 8,textSize.width, textSize.height)];
         }
         [self  addSubview:labelText];
         self.layer.cornerRadius = 10;
-        
     }
     return self;
 }
@@ -167,49 +130,37 @@
     //    CGSize tempSize = [_theString sizeWithFont:theFont constrainedToSize:size lineBreakMode:NSLineBreakByWordWrapping];
     NSDictionary *attributes = @{ NSFontAttributeName:theFont, NSParagraphStyleAttributeName:[[NSMutableParagraphStyle alloc]init]};
     CGSize tempSize = [_theString boundingRectWithSize:size options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attributes context:nil].size;
-    
-    return tempSize;
+return tempSize;
 }
 -(void)dealloc{
-    
 }
 @end
-
 @implementation WFTextView{
-    
-    NSString *_oldString;//未替换含有如[em:02:]的字符串
+NSString *_oldString;//未替换含有如[em:02:]的字符串
     NSString *_newString;//替换过含有如[em:02:]的字符串
-    
-    NSMutableArray *_selectionsViews;
-    
-    CTTypesetterRef typesetter;
+NSMutableArray *_selectionsViews;
+CTTypesetterRef typesetter;
     CTFontRef helvetica;
 }
 @synthesize isDraw = _isDraw;
 - (id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
-        
         _selectionsViews = [NSMutableArray arrayWithCapacity:0];
         _isFold = YES;
         _canClickAll = YES;//默认可点击全部
         UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapMyself:)];
         [self addGestureRecognizer:tapGes];
-        
         _replyIndex = -1;//默认为-1 代表点击的是说说的整块区域
-        
         UILongPressGestureRecognizer *longGes = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressMyself:)];
         [self addGestureRecognizer:longGes];
-        
         self.userInteractionEnabled = YES;
         self.backgroundColor = [UIColor clearColor];
     }
     return self;
 }
 - (void)dealloc{
-    
-    if (typesetter != NULL) {
-        
+if (typesetter != NULL) {
         CFRelease(typesetter);
     }
 }
@@ -223,89 +174,63 @@
 }
 #pragma mark -
 - (void)cookEmotionString{
-    
-    // 使用正则表达式查找特殊字符的位置
-    NSArray *itemIndexes = [FreedomTools itemIndexesWithPattern:
-                            EmotionItemPattern inString:_oldString];
-    
-    NSArray *names = nil;
-    
-    NSArray *newRanges = nil;
-    
-    names = [_oldString itemsForPattern:EmotionItemPattern captureGroupIndex:1];
-    
-    newRanges = [itemIndexes offsetRangesInArrayBy:[PlaceHolder length]];
+// 使用正则表达式查找特殊字符的位置
+    NSArray *itemIndexes = [FreedomTools itemIndexesWithPattern:EmotionItemPattern inString:_oldString];
+NSArray *names = nil;
+NSArray *newRanges = nil;
+names = [_oldString itemsForPattern:EmotionItemPattern captureGroupIndex:1];
+newRanges = [itemIndexes offsetRangesInArrayBy:[PlaceHolder length]];
     _emotionNames = names;
     _attrEmotionString = [self createAttributedEmotionStringWithRanges:newRanges
-                                                             forString:_newString];
+                                            forString:_newString];
     typesetter = CTTypesetterCreateWithAttributedString((CFAttributedStringRef)
-                                                        (_attrEmotionString));
-    
-    if (_isDraw == NO) {
+                                        (_attrEmotionString));
+if (_isDraw == NO) {
         // CFRelease(typesetter);
         return;
     }
     [self setNeedsDisplay];
-    
 }
 #pragma mark -
 /*根据调整后的字符串，生成绘图时使用的 attribute string
- *
  *  @param ranges  占位符的位置数组
  *  @param aString 替换过含有如[em:02:]的字符串
- *
  *  @return 富文本String*/
-- (NSAttributedString *)createAttributedEmotionStringWithRanges:(NSArray *)ranges
-                                                      forString:(NSString*)aString{
-    
-    NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:aString];
+- (NSAttributedString *)createAttributedEmotionStringWithRanges:(NSArray *)ranges forString:(NSString*)aString{
+NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:aString];
     helvetica = CTFontCreateWithName(CFSTR("Helvetica"),FontSize, NULL);
     [attrString addAttribute:(id)kCTFontAttributeName value: (id)CFBridgingRelease(helvetica) range:NSMakeRange(0,[attrString.string length])];
-    
-    [attrString addAttribute:(id)kCTForegroundColorAttributeName value:(id)([UIColor blackColor].CGColor) range:NSMakeRange(0,[attrString length])];
-    
-    if (_textColor == nil) {
+[attrString addAttribute:(id)kCTForegroundColorAttributeName value:(id)([UIColor blackColor].CGColor) range:NSMakeRange(0,[attrString length])];
+if (_textColor == nil) {
         _textColor = [UIColor blueColor];
     }
-    
-    for (int i = 0; i < _attributedData.count; i ++) {
-        
+for (int i = 0; i < _attributedData.count; i ++) {
         NSString *str = [[[_attributedData objectAtIndex:i] allKeys] objectAtIndex:0];
-        
         [attrString addAttribute:(id)kCTForegroundColorAttributeName value:(id)(_textColor.CGColor) range:NSRangeFromString(str)];
-        
     }
-    
-    for(NSInteger i = 0; i < [ranges count]; i++){
-        
+for(NSInteger i = 0; i < [ranges count]; i++){
         NSRange range = NSRangeFromString([ranges objectAtIndex:i]);
         NSString *emotionName = [self.emotionNames objectAtIndex:i];
         [attrString addAttribute:AttributedImageNameKey value:emotionName range:range];
         [attrString addAttribute:(NSString *)kCTRunDelegateAttributeName value:(__bridge id)newEmotionRunDelegate() range:range];
     }
-    
-    return attrString;
+return attrString;
 }
 // 通过表情名获得表情的图片
 - (UIImage *)getEmotionForKey:(NSString *)key{
-    
-    NSString *nameStr = [NSString stringWithFormat:@"%@.png",key];
+NSString *nameStr = [NSString stringWithFormat:@"%@.png",key];
     return [UIImage imageNamed:nameStr];
 }
 CTRunDelegateRef newEmotionRunDelegate(){
-    
-    static NSString *emotionRunName = @"emotionRunName";
-    
-    CTRunDelegateCallbacks imageCallbacks;
+static NSString *emotionRunName = @"emotionRunName";
+CTRunDelegateCallbacks imageCallbacks;
     imageCallbacks.version = kCTRunDelegateVersion1;
     imageCallbacks.dealloc = WFRunDelegateDeallocCallback;
     imageCallbacks.getAscent = WFRunDelegateGetAscentCallback;
     imageCallbacks.getDescent = WFRunDelegateGetDescentCallback;
     imageCallbacks.getWidth = WFRunDelegateGetWidthCallback;
-    CTRunDelegateRef runDelegate = CTRunDelegateCreate(&imageCallbacks,
-                                                       (__bridge void *)(emotionRunName));
-    
-    return runDelegate;
+    CTRunDelegateRef runDelegate = CTRunDelegateCreate(&imageCallbacks,(__bridge void *)(emotionRunName));
+return runDelegate;
 }
 #pragma mark - Run delegate
 void WFRunDelegateDeallocCallback( void* refCon ){
@@ -325,45 +250,33 @@ CGFloat WFRunDelegateGetWidthCallback(void *refCon){
 - (void)drawRect:(CGRect)rect{
     // 没有内容时取消本次绘制
     if (!typesetter)   return;
-    
-    CGFloat w = CGRectGetWidth(self.frame);
+CGFloat w = CGRectGetWidth(self.frame);
     CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    UIGraphicsPushContext(context);
-    
-    // 翻转坐标系
+UIGraphicsPushContext(context);
+// 翻转坐标系
     Flip_Context(context, FontHeight);
-    
-    CGFloat y = 0;
+CGFloat y = 0;
     CFIndex start = 0;
     NSInteger length = [_attrEmotionString length];
     int tempK = 0;
-    while (start < length)
-    {
+    while (start < length){
         CFIndex count = CTTypesetterSuggestClusterBreak(typesetter, start, w);
         CTLineRef line = CTTypesetterCreateLine(typesetter, CFRangeMake(start, count));
         CGContextSetTextPosition(context, 0, y);
-        
         // 画字
         CTLineDraw(line, context);
-        
         // 画表情
         Draw_Emoji_For_Line(context, line, self, CGPointMake(0, y));
-        
         start += count;
         y -= FontSize + LineSpacing;
         CFRelease(line);
-        
         tempK ++;
         if (tempK == limitline) {
-            
-            _limitCharIndex = start;
+                _limitCharIndex = start;
             //  DLog(@"limitCharIndex = %ld",self.limitCharIndex);
         }
-        
     }
-    
-    UIGraphicsPopContext();
+UIGraphicsPopContext();
 }
 // 翻转坐标系
 static inline
@@ -381,13 +294,10 @@ CGPoint Emoji_Origin_For_Line(CTLineRef line, CGPoint lineOrigin, CTRunRef run){
 // 绘制每行中的表情
 void Draw_Emoji_For_Line(CGContextRef context, CTLineRef line, id owner, CGPoint lineOrigin){
     CFArrayRef runs = CTLineGetGlyphRuns(line);
-    
-    // 统计有多少个run
+// 统计有多少个run
     NSUInteger count = CFArrayGetCount(runs);
-    
-    // 遍历查找表情run
+// 遍历查找表情run
     for(NSInteger i = 0; i < count; i++){
-        
         CTRunRef aRun = CFArrayGetValueAtIndex(runs, i);
         CFDictionaryRef attributes = CTRunGetAttributes(aRun);
         NSString *emojiName = (NSString *)CFDictionaryGetValue(attributes, AttributedImageNameKey);
@@ -402,14 +312,12 @@ void Draw_Emoji_For_Line(CGContextRef context, CTLineRef line, id owner, CGPoint
     }
 }
 - (float)getTextHeight{
-    
-    CGFloat w = CGRectGetWidth(self.frame);
+CGFloat w = CGRectGetWidth(self.frame);
     CGFloat y = 0;
     CFIndex start = 0;
     NSInteger length = [_attrEmotionString length];
     int tempK = 0;
     while (start < length){
-        
         CFIndex count = CTTypesetterSuggestClusterBreak(typesetter, start, w);
         CTLineRef line = CTTypesetterCreateLine(typesetter, CFRangeMake(start, count));
         start += count;
@@ -417,196 +325,143 @@ void Draw_Emoji_For_Line(CGContextRef context, CTLineRef line, id owner, CGPoint
         CFRelease(line);
         tempK++;
         if (tempK == limitline  && _isFold == YES) {
-            
-            break;
+                break;
         }
     }
-    
-    return -y;
+return -y;
 }
 #pragma mark - 获得行数
 - (int)getTextLines{
-    
-    int textlines = 0;
+int textlines = 0;
     CGFloat w = CGRectGetWidth(self.frame);
     CGFloat y = 0;
     CFIndex start = 0;
     NSInteger length = [_attrEmotionString length];
-    
-    while (start < length){
-        
+while (start < length){
         CFIndex count = CTTypesetterSuggestClusterBreak(typesetter, start, w);
         CTLineRef line = CTTypesetterCreateLine(typesetter, CFRangeMake(start, count));
         start += count;
         y -= FontSize + LineSpacing;
         CFRelease(line);
-        
         textlines ++;
     }
     return textlines;
-    
 }
 - (void)manageGesture:(UIGestureRecognizer *)gesture gestureType:(GestureType)gestureType{
-    
-    CGPoint point = [gesture locationInView:self];
-    
-    CGFloat w = CGRectGetWidth(self.frame);
+CGPoint point = [gesture locationInView:self];
+CGFloat w = CGRectGetWidth(self.frame);
     CGFloat y = 0;
     CFIndex start = 0;
     NSInteger length = [_newString length];
-    
-    BOOL isSelected = NO;//判断是否点到selectedRange内 默认没点到
-    
-    while (start < length){
-        
+BOOL isSelected = NO;//判断是否点到selectedRange内 默认没点到
+while (start < length){
         CFIndex count = CTTypesetterSuggestClusterBreak(typesetter, start, w);
         CTLineRef line = CTTypesetterCreateLine(typesetter, CFRangeMake(start, count));
         CGFloat ascent, descent;
         CGFloat lineWidth = CTLineGetTypographicBounds(line, &ascent, &descent, NULL);
-        
         CGRect lineFrame = CGRectMake(0, -y, lineWidth, ascent + descent);
-        
         if (CGRectContainsPoint(lineFrame, point)) { //没进此判断 说明没点到文字 ，点到了文字间距处
-            
-            CFIndex index = CTLineGetStringIndexForPosition(line, point);
+                CFIndex index = CTLineGetStringIndexForPosition(line, point);
             if ([self judgeIndexInSelectedRange:index withWorkLine:line] == YES) {//点到selectedRange内
-                
-                isSelected = YES;
-                
-            }else{
+                        isSelected = YES;
+                    }else{
                 //点在了文字上 但是不在selectedRange内
-                
-            }
+                    }
         }
         start += count;
         y -= FontSize + LineSpacing;
         CFRelease(line);
     }
-    
-    if (isSelected == YES) {
+if (isSelected == YES) {
         DELAYEXECUTE(0.3, [_selectionsViews makeObjectsPerformSelector:@selector(removeFromSuperview)];);
         return;
     }else{
         if (gestureType == TapGesType) {
             if (_canClickAll == YES) {
-                
-                [self clickAllContext];
-                
+                        [self clickAllContext];
+                    }else{
+                    }
             }else{
-                
-            }
-            
-        }else{
             if (_canClickAll == YES) {
-                
-                [self longClickAllContext];
-                
-            }else{
-                
+                        [self longClickAllContext];
+                    }else{
+                    }
             }
-            
-        }
-        
         return;
-        
     }
-    
-    DELAYEXECUTE(0.3, [_selectionsViews makeObjectsPerformSelector:@selector(removeFromSuperview)]);
-    
+DELAYEXECUTE(0.3, [_selectionsViews makeObjectsPerformSelector:@selector(removeFromSuperview)]);
 }
 #pragma mark - 长按自己
 - (void)longPressMyself:(UILongPressGestureRecognizer *)gesture{
     if (gesture.state == UIGestureRecognizerStateBegan) {
         [self manageGesture:gesture gestureType:LongGesType];
     }
-    
-    if (gesture.state == UIGestureRecognizerStateEnded) {
+if (gesture.state == UIGestureRecognizerStateEnded) {
         [self removeLongClickArea];
     }
-    
 }
 #pragma mark -点击自己
 - (void)tapMyself:(UITapGestureRecognizer *)gesture{
-    
-    [self manageGesture:gesture gestureType:TapGesType];
+[self manageGesture:gesture gestureType:TapGesType];
 }
 - (BOOL)judgeIndexInSelectedRange:(CFIndex) index withWorkLine:(CTLineRef)workctLine{
-    
-    for (int i = 0; i < _attributedData.count; i ++) {
-        
+for (int i = 0; i < _attributedData.count; i ++) {
         NSString *key = [[[_attributedData objectAtIndex:i] allKeys] objectAtIndex:0];
         NSRange keyRange = NSRangeFromString(key);
         if (index>=keyRange.location && index<= keyRange.location + keyRange.length) {
             if (_isFold) {
-                if ((_limitCharIndex > keyRange.location) && (_limitCharIndex < keyRange.location + keyRange.length)) {
-                    
-                    keyRange = NSMakeRange(keyRange.location, _limitCharIndex - keyRange.location);
+                if ((_limitCharIndex > keyRange.location) && (_limitCharIndex < keyRange.location + keyRange.length)){
+        keyRange = NSMakeRange(keyRange.location, _limitCharIndex - keyRange.location);
                 }
             }else{
                 //Do nothing
             }
-            
-            NSMutableArray *arr = [self getSelectedCGRectWithClickRange:keyRange];
+        NSMutableArray *arr = [self getSelectedCGRectWithClickRange:keyRange];
             [self drawViewFromRects:arr withDictValue:[[_attributedData objectAtIndex:i] valueForKey:key]];
-            
-            NSString *feedString = [[_attributedData objectAtIndex:i] valueForKey:key];
+                NSString *feedString = [[_attributedData objectAtIndex:i] valueForKey:key];
             [_delegate clickWFCoretext:feedString replyIndex:_replyIndex];
             return YES;
         }
-        
     }
-    
-    return NO;
+return NO;
 }
 - (NSMutableArray *)getSelectedCGRectWithClickRange:(NSRange)tempRange{
-    
-    NSMutableArray *clickRects = [[NSMutableArray alloc] init];
+NSMutableArray *clickRects = [[NSMutableArray alloc] init];
     CGFloat w = CGRectGetWidth(self.frame);
     CGFloat y = 0;
     CFIndex start = 0;
     NSInteger length = [_attrEmotionString length];
-    
-    while (start < length){
-        
+while (start < length){
         CFIndex count = CTTypesetterSuggestClusterBreak(typesetter, start, w);
         CTLineRef line = CTTypesetterCreateLine(typesetter, CFRangeMake(start, count));
         start += count;
-        
         CFRange lineRange = CTLineGetStringRange(line);
         NSRange range = NSMakeRange(lineRange.location==kCFNotFound ? NSNotFound : lineRange.location, lineRange.length);
         NSRange intersection = [self rangeIntersection:range withSecond:tempRange];
         if (intersection.length > 0){
-            
-            CGFloat xStart = CTLineGetOffsetForStringIndex(line, intersection.location, NULL);//获取整段文字中charIndex位置的字符相对line的原点的x值
+                CGFloat xStart = CTLineGetOffsetForStringIndex(line, intersection.location, NULL);//获取整段文字中charIndex位置的字符相对line的原点的x值
             CGFloat xEnd = CTLineGetOffsetForStringIndex(line, intersection.location + intersection.length, NULL);
-            
-            CGFloat ascent, descent;
+                CGFloat ascent, descent;
             //,leading;
             CTLineGetTypographicBounds(line, &ascent, &descent, NULL);
             CGRect selectionRect = CGRectMake(xStart, -y, xEnd -  xStart , ascent + descent + 2);//所画选择之后背景的 大小 和起始坐标 2为微调
             [clickRects addObject:NSStringFromCGRect(selectionRect)];
-            
-        }
-        
+            }
         y -= FontSize + LineSpacing;
         CFRelease(line);
-        
     }
     return clickRects;
     
 }
 //超出1行 处理
 - (NSRange)rangeIntersection:(NSRange)first withSecond:(NSRange)second{
-    
-    NSRange result = NSMakeRange(NSNotFound, 0);
+NSRange result = NSMakeRange(NSNotFound, 0);
     if (first.location > second.location){
-        
         NSRange tmp = first;
         first = second;
         second = tmp;
     }
     if (second.location < first.location + first.length){
-        
         result.location = second.location;
         NSUInteger end = MIN(first.location + first.length, second.location + second.length);
         result.length = end - result.location;
@@ -616,36 +471,30 @@ void Draw_Emoji_For_Line(CGContextRef context, CTLineRef line, id owner, CGPoint
 - (void)drawViewFromRects:(NSArray *)array withDictValue:(NSString *)value{
     //用户名可能超过1行的内容 所以记录在数组里，有多少元素 就有多少view
     // selectedViewLinesF = array.count;
-    
-    for (int i = 0; i < [array count]; i++) {
-        
+for (int i = 0; i < [array count]; i++) {
         UIView *selectedView = [[UIView alloc] init];
         selectedView.frame = CGRectFromString([array objectAtIndex:i]);
         selectedView.backgroundColor = kUserName_SelectedColor;
         selectedView.layer.cornerRadius = 4;
         [self addSubview:selectedView];
         [_selectionsViews addObject:selectedView];
-        
     }
     
 }
 - (void)clickAllContext{
-    
-    UIView *myselfSelected = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+UIView *myselfSelected = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
     myselfSelected.tag = 10102;
     [self insertSubview:myselfSelected belowSubview:self];
     myselfSelected.backgroundColor = kSelf_SelectedColor;
     [_delegate clickWFCoretext:@"" replyIndex:_replyIndex];
-    
-    DELAYEXECUTE(0.3, {
+DELAYEXECUTE(0.3, {
         if ([self viewWithTag:10102]) {
             [[self viewWithTag:10102] removeFromSuperview];
         }
     });
 }
 - (void)longClickAllContext{
-    
-    UIView *myselfSelected = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+UIView *myselfSelected = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
     myselfSelected.tag = 10102;
     [self insertSubview:myselfSelected belowSubview:self];
     myselfSelected.backgroundColor = kSelf_SelectedColor;
@@ -662,13 +511,10 @@ void Draw_Emoji_For_Line(CGContextRef context, CTLineRef line, id owner, CGPoint
     [WFHudView showMsg:@"复制成功" inView:nil];
 }
 @end
-
 @implementation WFMessageBody
 @end
-
 @implementation WFReplyBody
 @end
-
 @implementation YMTextData{
     TypeView typeview;
     int tempInt;
@@ -696,17 +542,14 @@ void Draw_Emoji_For_Line(CGContextRef context, CTLineRef line, id owner, CGPoint
     _hasFavour = messageBody.isFavour;
 }
 - (NSMutableArray *)findAttrWith:(NSMutableArray *)replies{
-    
-    NSMutableArray *feedBackArray = [NSMutableArray arrayWithCapacity:0];
+NSMutableArray *feedBackArray = [NSMutableArray arrayWithCapacity:0];
     for (int i = 0; i < replies.count; i++) {
         WFReplyBody *replyBody = (WFReplyBody *)[replies objectAtIndex:i];
         NSMutableArray *tempArr = [[NSMutableArray alloc] init];
         if ([replyBody.repliedUser isEqualToString:@""]) {
-            
-            NSString *range = NSStringFromRange(NSMakeRange(0, replyBody.replyUser.length));
+                NSString *range = NSStringFromRange(NSMakeRange(0, replyBody.replyUser.length));
             [tempArr addObject:range];
-            
-        }else{
+            }else{
             NSString *range1 = NSStringFromRange(NSMakeRange(0, replyBody.replyUser.length));
             NSString *range2 = NSStringFromRange(NSMakeRange(replyBody.replyUser.length + 2, replyBody.repliedUser.length));
             [tempArr addObject:range1];
@@ -718,83 +561,56 @@ void Draw_Emoji_For_Line(CGContextRef context, CTLineRef line, id owner, CGPoint
     
 }
 - (float)calculateFavourHeightWithWidth:(float)sizeWidth{
-    
-    typeview = TypeFavour;
+typeview = TypeFavour;
     float height = .0f;
-    
-    NSString *matchString = [_favourArray componentsJoinedByString:@","];
+NSString *matchString = [_favourArray componentsJoinedByString:@","];
     _showFavour = matchString;
     NSArray *itemIndexs = [FreedomTools itemIndexesWithPattern:EmotionItemPattern inString:matchString];
-    
-    
+
     NSString *newString = [matchString replaceCharactersAtIndexes:itemIndexs
                                                        withString:PlaceHolder];
     //存新的
     self.completionFavour = newString;
-    
-    [self matchString:newString fromView:typeview];
-    
-    WFTextView *_wfcoreText = [[WFTextView alloc] initWithFrame:CGRectMake(offSet_X + 30,10, sizeWidth - 2*offSet_X - 30, 0)];
-    
-    _wfcoreText.isFold = NO;
+[self matchString:newString fromView:typeview];
+WFTextView *_wfcoreText = [[WFTextView alloc] initWithFrame:CGRectMake(offSet_X + 30,10, sizeWidth - 2*offSet_X - 30, 0)];
+_wfcoreText.isFold = NO;
     _wfcoreText.isDraw = NO;
-    
-    [_wfcoreText setOldString:_showFavour andNewString:newString];
-    
-    return [_wfcoreText getTextHeight];
-    
-    return height;
+[_wfcoreText setOldString:_showFavour andNewString:newString];
+return [_wfcoreText getTextHeight];
+return height;
 }
 //计算replyview高度
 - (float) calculateReplyHeightWithWidth:(float)sizeWidth{
-    
-    typeview = TypeReply;
+typeview = TypeReply;
     float height = .0f;
-    
-    for (int i = 0; i < self.replyDataSource.count; i ++ ) {
-        
+for (int i = 0; i < self.replyDataSource.count; i ++ ) {
         tempInt = i;
-        
         WFReplyBody *body = (WFReplyBody *)[self.replyDataSource objectAtIndex:i];
-        
         NSString *matchString;
-        
         if ([body.repliedUser isEqualToString:@""]) {
             matchString = [NSString stringWithFormat:@"%@:%@",body.replyUser,body.replyInfo];
-            
-        }else{
+            }else{
             matchString = [NSString stringWithFormat:@"%@回复%@:%@",body.replyUser,body.repliedUser,body.replyInfo];
-            
-        }
+            }
         NSArray *itemIndexs = [FreedomTools itemIndexesWithPattern:EmotionItemPattern inString:matchString];
-        
         NSString *newString = [matchString replaceCharactersAtIndexes:itemIndexs
                                                            withString:PlaceHolder];
         //存新的
         [self.completionReplySource addObject:newString];
-        
         [self matchString:newString fromView:typeview];
-        
         WFTextView *_ilcoreText = [[WFTextView alloc] initWithFrame:CGRectMake(offSet_X,10, sizeWidth - offSet_X * 2, 0)];
-        
         _ilcoreText.isFold = NO;
         _ilcoreText.isDraw = NO;
-        
         [_ilcoreText setOldString:matchString andNewString:newString];
-        
         height =  height + [_ilcoreText getTextHeight] + 5;
-        
     }
-    
-    [self calculateShowImageHeight];
-    
-    return height;
+[self calculateShowImageHeight];
+return height;
     
 }
 //图片高度
 - (void)calculateShowImageHeight{
-    
-    if (self.showImageArray.count == 0) {
+if (self.showImageArray.count == 0) {
         self.showImageArray = 0;
     }else{
         self.showImageHeight = (ShowImage_H + 10) * ((self.showImageArray.count - 1)/3 + 1);
@@ -802,74 +618,45 @@ void Draw_Emoji_For_Line(CGContextRef context, CTLineRef line, id owner, CGPoint
     
 }
 - (void)matchString:(NSString *)dataSourceString fromView:(TypeView) isReplyV{
-    
-    if (isReplyV == TypeReply) {
-        
+if (isReplyV == TypeReply) {
         NSMutableArray *totalArr = [NSMutableArray arrayWithCapacity:0];
-        
         //**********号码******
-        
         NSMutableArray *mobileLink = [FreedomTools matchMobileLink:dataSourceString];
         for (int i = 0; i < mobileLink.count; i ++) {
-            
-            [totalArr addObject:[mobileLink objectAtIndex:i]];
+                [totalArr addObject:[mobileLink objectAtIndex:i]];
         }
-        
         //*************************
-        
-        
         //***********匹配网址*********
-        
         NSMutableArray *webLink = [FreedomTools matchWebLink:dataSourceString];
         for (int i = 0; i < webLink.count; i ++) {
-            
-            [totalArr addObject:[webLink objectAtIndex:i]];
+                [totalArr addObject:[webLink objectAtIndex:i]];
         }
-        
         //******自行添加**********
-        
         if (_defineAttrData.count != 0) {
             NSArray *tArr = [_defineAttrData objectAtIndex:tempInt];
             for (int i = 0; i < [tArr count]; i ++) {
                 NSString *string = [dataSourceString substringWithRange:NSRangeFromString([tArr objectAtIndex:i])];
                 [totalArr addObject:[NSDictionary dictionaryWithObject:string forKey:NSStringFromRange(NSRangeFromString([tArr objectAtIndex:i]))]];
             }
-            
-        }
-        
-        
+            }
         //***********************
         [self.attributedDataReply addObject:totalArr];
-        
-        
     }
-    
-    if(isReplyV == TypeShuoshuo){
-        
+if(isReplyV == TypeShuoshuo){
         [self.attributedDataShuoshuo removeAllObjects];
         //**********号码******
-        
         NSMutableArray *mobileLink = [FreedomTools matchMobileLink:dataSourceString];
         for (int i = 0; i < mobileLink.count; i ++) {
-            
-            [self.attributedDataShuoshuo addObject:[mobileLink objectAtIndex:i]];
+                [self.attributedDataShuoshuo addObject:[mobileLink objectAtIndex:i]];
         }
-        
         //*************************
-        
-        
         //***********匹配网址*********
-        
         NSMutableArray *webLink = [FreedomTools matchWebLink:dataSourceString];
         for (int i = 0; i < webLink.count; i ++) {
-            
-            [self.attributedDataShuoshuo addObject:[webLink objectAtIndex:i]];
+                [self.attributedDataShuoshuo addObject:[webLink objectAtIndex:i]];
         }
-        
     }
-    
-    if (isReplyV == TypeFavour) {
-        
+if (isReplyV == TypeFavour) {
         [self.attributedDataFavour removeAllObjects];
         int originX = 0;
         for (int i = 0; i < _favourArray.count; i ++) {
@@ -882,36 +669,28 @@ void Draw_Emoji_For_Line(CGContextRef context, CTLineRef line, id owner, CGPoint
 }
 //说说高度
 - (float) calculateShuoshuoHeightWithWidth:(float)sizeWidth withUnFoldState:(BOOL)isUnfold{
-    
-    typeview = TypeShuoshuo;
-    
-    NSString *matchString =  _showShuoShuo;
-    
-    NSArray *itemIndexs = [FreedomTools itemIndexesWithPattern:EmotionItemPattern inString:matchString];
-    
-    //用PlaceHolder 替换掉[em:02:]这些
-    NSString *newString = [matchString replaceCharactersAtIndexes:itemIndexs
-                                                       withString:PlaceHolder];
+typeview = TypeShuoshuo;
+
+NSString *matchString =  _showShuoShuo;
+
+NSArray *itemIndexs = [FreedomTools itemIndexesWithPattern:EmotionItemPattern inString:matchString];
+
+//用PlaceHolder 替换掉[em:02:]这些
+    NSString *newString = [matchString replaceCharactersAtIndexes:itemIndexs withString:PlaceHolder];
     //存新的
     self.completionShuoshuo = newString;
-    
-    [self matchString:newString fromView:typeview];
-    
-    WFTextView *_wfcoreText = [[WFTextView alloc] initWithFrame:CGRectMake(20,10, sizeWidth - 2*20, 0)];
-    
-    _wfcoreText.isDraw = NO;
-    
-    [_wfcoreText setOldString:_showShuoShuo andNewString:newString];
-    
-    if ([_wfcoreText getTextLines] <= limitline) {
+
+[self matchString:newString fromView:typeview];
+WFTextView *_wfcoreText = [[WFTextView alloc] initWithFrame:CGRectMake(20,10, sizeWidth - 2*20, 0)];
+_wfcoreText.isDraw = NO;
+[_wfcoreText setOldString:_showShuoShuo andNewString:newString];
+if ([_wfcoreText getTextLines] <= limitline) {
         self.islessLimit = YES;
     }else{
         self.islessLimit = NO;
     }
-    
-    if (!isUnfold) {
+if (!isUnfold) {
         _wfcoreText.isFold = YES;
-        
     }else{
         _wfcoreText.isFold = NO;
     }
@@ -919,7 +698,5 @@ void Draw_Emoji_For_Line(CGContextRef context, CTLineRef line, id owner, CGPoint
     
 }
 @end
-
 @implementation BookFriendsMode
-
 @end

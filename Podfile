@@ -1,4 +1,4 @@
-platform:ios, '8.1'
+platform:ios, '10.0'
 target 'Freedom' do
     use_frameworks!
     #Objective-C.frameworks

@@ -24,6 +24,7 @@
 #import "UIImage+expanded.h"
 #import "UILabel+expanded.h"
 #import "UINavigationBar+expanded.h"
+#import "UITextField+expanded.h"
 #import "UIView+expanded.h"
 
 FOUNDATION_EXPORT double XCategoryVersionNumber;

@@ -5,8 +5,9 @@
 //  Created by Super on 2017/9/13.
 //  Copyright © 2017年 Super. All rights reserved.
 import UIKit
-class BaseTabBarViewController: UITabBarController {
-    override func viewDidLoad() {
+@objcMembers
+open class BaseTabBarViewController: UITabBarController {
+    override open func viewDidLoad() {
         super.viewDidLoad()
         let barItem = UITabBarItem.appearance()
 barItem.setTitleTextAttributes([NSAttributedStringKey.foregroundColor : UIColor.gray,NSAttributedStringKey.font : UIFont.boldSystemFont(ofSize: 12)], for: .normal)
@@ -14,10 +15,6 @@ barItem.setTitleTextAttributes([NSAttributedStringKey.foregroundColor : UIColor.
         tabBar.barTintColor = .green
         tabBar.tintColor = .yellow
         view.backgroundColor = .black
-        addChildViewControllers()
-    }
-    fileprivate func addChildViewControllers(){
-//        addChildViewController(HomeViewController(), title: "首页", imageName: "tabbar_home")
     }
     fileprivate func addChildViewController(_ controller: UIViewController, title:String, imageName:String){
         controller.tabBarItem.image = UIImage(named: imageName)

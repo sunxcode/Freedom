@@ -1,12 +1,10 @@
 //  BooksMainViewController.m
 //  Freedom
 //  Created by Super on 17/2/9.
-//  Copyright © 2017年 Super. All rights reserved.
-//
 #import "BooksMainViewController.h"
-#import "BooksViewController.h"
 #import "WXViewController.h"
 #import "E_ScrollViewController.h"
+#import "Freedom-Swift.h"
 @interface BooksMainViewController ()
 @property (nonatomic , strong) UIView *rightMaskView ;  //右半透明蒙版
 @property (nonatomic , strong) UIView *leftMaskView;    //左半透明蒙版
@@ -55,8 +53,6 @@
     [self.view addSubview:na.view];
     self.leftWidth = APPW*0.8;
     self.rightWidth = APPW;
-    
-    
     self.view.backgroundColor = [UIColor grayColor];
     //初始位置
     self.leftViewController.view.frame = CGRectMake(-APPW*0.3, 0, APPW, APPH);
@@ -64,8 +60,6 @@
     [self.rightViewController.view addSubview:self.rightMaskView];
     [self.leftViewController.view addSubview:self.leftMaskView];
     [self setupGestureRecognizer];
-    
-    
     self.navigationController.navigationBarHidden = YES;
     self.navigationController.navigationBar.hidden = YES;
 }

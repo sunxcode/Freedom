@@ -1,4 +1,3 @@
-//  FreedomViewController.h
 //  Freedom
 // Created by Super
 #import "TLChatBaseViewController.h"

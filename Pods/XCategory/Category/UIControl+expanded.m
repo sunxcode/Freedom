@@ -1,13 +1,6 @@
 //
 //  UIControl+Addition.m
-//  Freedom
-//
-//  Created by 薛超 on 16/8/10.
-//  Copyright © 2016年 薛超. All rights reserved.
-//
-
 #import "UIControl+expanded.h"
-
 static char UIButtonHandlerKey;
 @implementation UIControl (expanded)
 - (void)removeAllTargets {
@@ -15,21 +8,14 @@ static char UIButtonHandlerKey;
         [self removeTarget:target action:NULL forControlEvents:UIControlEventAllEvents];
     }
 }
-
-
-
-- (void)addEventHandler:(ActionBlock)handler forControlEvents:(UIControlEvents)controlEvents
-{
+- (void)addEventHandler:(ActionBlock)handler forControlEvents:(UIControlEvents)controlEvents{
     objc_setAssociatedObject(self, &UIButtonHandlerKey, handler, OBJC_ASSOCIATION_COPY_NONATOMIC);
-    [self addTarget:self action:@selector(callActionHandler:) forControlEvents:controlEvents];
+    [self addTarget:self action:@selector(callActionHandler) forControlEvents:controlEvents];
 }
-
-
-- (void)callActionHandler:(UIButton*)sender
-{
+- (void)callActionHandler{
     ActionBlock handler = (ActionBlock)objc_getAssociatedObject(self, &UIButtonHandlerKey);
     if (handler) {
-        handler(sender);
+        handler(self);
     }
 }
 @end

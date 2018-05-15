@@ -71,6 +71,7 @@ pod spec create name //touch name.podspec
 vim name.podspec
 echo "3.0" > .swift-version 如果swift版本不对的话s.dependency "SDWebImage", "~> 3.7.1"
 pod lib lint name.podspec --allow-warnings
+#如果饮用了包涵静态库的.a文件，则需要加上 --use-libraries
 pod lib lint --verbose
 pod trunk register 邮箱 'yangyueguang' -description='薛超'
 pod trunk me
@@ -80,42 +81,14 @@ pod trunk push name.podspec  --allow-warnings
 pod repo update
 pod search name
 ```
-```pod 'MyPageControl','~> 0.0.7'
-pod 'GRBNavigationKit', '~> 0.1.4'
-pod 'NSData+expanded','~> 0.0.7'
-pod 'NSDate+expanded','~> 0.0.7'
-pod 'NSDictionary+expanded','~> 0.0.7'
-pod 'NSMutableArray+expanded','~> 0.0.7'
-pod 'NSObject+expanded','~> 0.0.7'
-pod 'NSString+expanded','~> 0.0.7'
-pod 'SDDataCache','~> 0.0.6'
-pod 'UIColor+expanded','~> 0.0.7'
-pod 'UIControl+expanded','~> 0.0.7'
-pod 'UIImage+expanded','~> 0.0.7'
-pod 'UILabel+expanded','~> 0.0.7'
-pod 'UIView+expanded','~> 0.0.7'
-pod 'UIView+AutoLayout'
-pod 'BaseFile','~> 0.1.3'
-pod 'BaseScrollView','~> 0.0.9'
-pod 'BaseCollectionView','~> 0.1.3'
-pod 'BaseStaticTableView','~> 0.0.9'
-pod 'BaseTableView','~> 0.1.2'
-pod 'BaseFillTableViewController','~> 0.1.2'
-pod 'XCategory','~> 0.1.1'
-pod 'XUtility','~> 0.1.1'
-```
 # 更新内容
-那些小拓展和小继承的pod安装取消，进行了整合。
 ```
 pod 'BaseFile'
-pod 'BaseScrollView'
-pod 'BaseCollectionView'
-pod 'BaseTableView'
-pod 'BaseStaticTableView'
-pod 'BaseFillTableViewController'
 pod 'XCategory'
 pod 'XExtension'
 pod 'XCarryOn'
+pod 'XWechartSDK'
+#pod 'XAlipaySDK'
 ```
 # RepositoryBranch
 ## 这是只克隆一个仓库中的某个文件夹或某个分支到本地进行修改并上传的说明。

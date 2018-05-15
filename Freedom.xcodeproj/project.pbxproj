@@ -7,6 +7,48 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7115A5A320AA9ECB000D0B96 /* XBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7115A5A220AA9ECB000D0B96 /* XBaseViewController.swift */; };
+		7115A5A520AA9EF1000D0B96 /* XBaseNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7115A5A420AA9EF1000D0B96 /* XBaseNavigationViewController.swift */; };
+		7115A5A720AA9FE3000D0B96 /* FreedomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7115A5A620AA9FE3000D0B96 /* FreedomNavigationController.swift */; };
+		7115A5A920AAA191000D0B96 /* FreedomBooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7115A5A820AAA191000D0B96 /* FreedomBooksViewController.swift */; };
+		7115A5AB20AAA1C4000D0B96 /* FreedomBooksEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7115A5AA20AAA1C4000D0B96 /* FreedomBooksEditViewController.swift */; };
+		7115A5AD20AAA1F1000D0B96 /* FreedomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7115A5AC20AAA1F1000D0B96 /* FreedomViewController.swift */; };
+		7115A5AF20AABCB8000D0B96 /* XBaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7115A5AE20AABCB8000D0B96 /* XBaseTabBarController.swift */; };
+		7115A5B120AABCF6000D0B96 /* FreedomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7115A5B020AABCF6000D0B96 /* FreedomTabBarController.swift */; };
+		7115A5B420AAC2E3000D0B96 /* PersonalApplyTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7115A5B320AAC2E3000D0B96 /* PersonalApplyTabBarController.swift */; };
+		7115A5B620AAC314000D0B96 /* PersonalApplyNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7115A5B520AAC314000D0B96 /* PersonalApplyNavigationController.swift */; };
+		7115A5B820AAC348000D0B96 /* PersonalApplyBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7115A5B720AAC348000D0B96 /* PersonalApplyBaseViewController.swift */; };
+		7115A5BA20AAC3E6000D0B96 /* PersonalApplyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7115A5B920AAC3E6000D0B96 /* PersonalApplyViewController.swift */; };
+		7115A5BC20AAD31A000D0B96 /* PersonalInternetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7115A5BB20AAD31A000D0B96 /* PersonalInternetViewController.swift */; };
+		7115A5BE20AAD32E000D0B96 /* PersonalEducationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7115A5BD20AAD32E000D0B96 /* PersonalEducationViewController.swift */; };
+		7115A5C020AAD339000D0B96 /* PersonalSoftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7115A5BF20AAD339000D0B96 /* PersonalSoftViewController.swift */; };
+		7115A5C220AAD345000D0B96 /* PersonalHardwareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7115A5C120AAD345000D0B96 /* PersonalHardwareViewController.swift */; };
+		7115A5C420AAD351000D0B96 /* PersonalComputerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7115A5C320AAD351000D0B96 /* PersonalComputerViewController.swift */; };
+		7115A5C620AAD35E000D0B96 /* PersonalFoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7115A5C520AAD35E000D0B96 /* PersonalFoodViewController.swift */; };
+		7115A5C820AAD36B000D0B96 /* PersonalFastGoodsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7115A5C720AAD36B000D0B96 /* PersonalFastGoodsViewController.swift */; };
+		7115A5CA20AAD376000D0B96 /* PersonalConsumerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7115A5C920AAD376000D0B96 /* PersonalConsumerViewController.swift */; };
+		7115A5CC20AAD382000D0B96 /* PersonalPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7115A5CB20AAD382000D0B96 /* PersonalPhoneViewController.swift */; };
+		7115A5CE20AAD38C000D0B96 /* PersonalHouseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7115A5CD20AAD38C000D0B96 /* PersonalHouseViewController.swift */; };
+		7115A5D020AAD398000D0B96 /* PersonalCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7115A5CF20AAD398000D0B96 /* PersonalCarViewController.swift */; };
+		7115A5D220AAD3A3000D0B96 /* PersonalLuxuryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7115A5D120AAD3A3000D0B96 /* PersonalLuxuryViewController.swift */; };
+		7115A5D420AAD716000D0B96 /* ResumeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7115A5D320AAD716000D0B96 /* ResumeTabBarController.swift */; };
+		7115A5D620AAD73F000D0B96 /* ResumeNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7115A5D520AAD73F000D0B96 /* ResumeNavigationController.swift */; };
+		7115A5D820AAD783000D0B96 /* ResumeBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7115A5D720AAD783000D0B96 /* ResumeBaseViewController.swift */; };
+		7115A5DA20AAD9AA000D0B96 /* ResumeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7115A5D920AAD9AA000D0B96 /* ResumeViewController.swift */; };
+		7115A5DC20AAD9C2000D0B96 /* ResumeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7115A5DB20AAD9C2000D0B96 /* ResumeListViewController.swift */; };
+		7115A5DE20AAD9CE000D0B96 /* ResumeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7115A5DD20AAD9CE000D0B96 /* ResumeDetailViewController.swift */; };
+		7115A5E020AAD9D8000D0B96 /* ResumeBusinessCooperationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7115A5DF20AAD9D8000D0B96 /* ResumeBusinessCooperationVC.swift */; };
+		7115A5E220AAD9E4000D0B96 /* ResumeTheorySystemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7115A5E120AAD9E4000D0B96 /* ResumeTheorySystemViewController.swift */; };
+		7115A5E420AAD9F0000D0B96 /* ResumeCallMeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7115A5E320AAD9F0000D0B96 /* ResumeCallMeViewController.swift */; };
+		7115A5E620AAECED000D0B96 /* BooksTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7115A5E520AAECED000D0B96 /* BooksTabBarController.swift */; };
+		7115A5E820AAED13000D0B96 /* BooksNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7115A5E720AAED13000D0B96 /* BooksNavigationController.swift */; };
+		7115A5EA20AAEDF1000D0B96 /* BooksBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7115A5E920AAEDF1000D0B96 /* BooksBaseViewController.swift */; };
+		7115A5EC20AAEE1E000D0B96 /* BooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7115A5EB20AAEE1E000D0B96 /* BooksViewController.swift */; };
+		7115A5EE20AAFBBA000D0B96 /* MyDatabaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7115A5ED20AAFBBA000D0B96 /* MyDatabaseTabBarController.swift */; };
+		7115A5F020AAFBF6000D0B96 /* MyDatabaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7115A5EF20AAFBF6000D0B96 /* MyDatabaseNavigationController.swift */; };
+		7115A5F220AAFC0F000D0B96 /* MyDatabaseBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7115A5F120AAFC0F000D0B96 /* MyDatabaseBaseViewController.swift */; };
+		7115A5F420AAFC34000D0B96 /* MyDatabaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7115A5F320AAFC34000D0B96 /* MyDatabaseViewController.swift */; };
+		7115A5F620AAFC40000D0B96 /* MyDatabaseEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7115A5F520AAFC40000D0B96 /* MyDatabaseEditViewController.swift */; };
 		71250EC62091C0F20093B59B /* FreedomTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 71250EC52091C0F20093B59B /* FreedomTools.m */; };
 		71250EC92091C1DA0093B59B /* NSObject+Freedom.m in Sources */ = {isa = PBXBuildFile; fileRef = 71250EC82091C1DA0093B59B /* NSObject+Freedom.m */; };
 		71267A3F2092CD7F006E1B96 /* SinaMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 71267A3E2092CD7F006E1B96 /* SinaMode.m */; };
@@ -113,10 +155,6 @@
 		7719176F1D65C27C002F2BCD /* DianpingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7719176E1D65C27C002F2BCD /* DianpingViewController.m */; };
 		771917751D65C29B002F2BCD /* JuheDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 771917741D65C29B002F2BCD /* JuheDataViewController.m */; };
 		771917781D65C2A7002F2BCD /* MicroEnergyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 771917771D65C2A7002F2BCD /* MicroEnergyViewController.m */; };
-		7719177B1D65C2B2002F2BCD /* PersonalApplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7719177A1D65C2B2002F2BCD /* PersonalApplyViewController.m */; };
-		7719177E1D65C2BE002F2BCD /* FreedomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7719177D1D65C2BE002F2BCD /* FreedomViewController.m */; };
-		771917841D65C2DB002F2BCD /* BooksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 771917831D65C2DB002F2BCD /* BooksViewController.m */; };
-		771917871D65C2E6002F2BCD /* MyDatabaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 771917861D65C2E6002F2BCD /* MyDatabaseViewController.m */; };
 		772A131D1E2E440900B79AFB /* DZDealListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 772A131C1E2E440900B79AFB /* DZDealListViewController.m */; };
 		772A13201E2E443D00B79AFB /* DZDealDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 772A131F1E2E443D00B79AFB /* DZDealDetailViewController.m */; };
 		772E839B1D76BC15004EDF50 /* box_duty_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 772E7DC81D76BC07004EDF50 /* box_duty_icon@2x.png */; };
@@ -402,11 +440,6 @@
 		7745C2611D6723DF002212DE /* ToutiaoTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7745C2601D6723DF002212DE /* ToutiaoTabBarController.m */; };
 		7745C2641D6723EC002212DE /* JuheDataTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7745C2631D6723EC002212DE /* JuheDataTabBarController.m */; };
 		7745C2671D672409002212DE /* MicroEnergyTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7745C2661D672409002212DE /* MicroEnergyTabBarController.m */; };
-		7745C26A1D67241E002212DE /* PersonalApplyTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7745C2691D67241E002212DE /* PersonalApplyTabBarController.m */; };
-		7745C26D1D672436002212DE /* FreedomTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7745C26C1D672436002212DE /* FreedomTabBarController.m */; };
-		7745C2701D672445002212DE /* ResumeTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7745C26F1D672445002212DE /* ResumeTabBarController.m */; };
-		7745C2731D672451002212DE /* BooksTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7745C2721D672451002212DE /* BooksTabBarController.m */; };
-		7745C2761D672EE5002212DE /* MyDatabaseTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7745C2751D672EE5002212DE /* MyDatabaseTabBarController.m */; };
 		774BA6431E28DA18007FF686 /* taobaoon.png in Resources */ = {isa = PBXBuildFile; fileRef = 774BA6411E28DA18007FF686 /* taobaoon.png */; };
 		774BA6441E28DA18007FF686 /* taobaono.png in Resources */ = {isa = PBXBuildFile; fileRef = 774BA6421E28DA18007FF686 /* taobaono.png */; };
 		774BFAE41D7672A0005CA603 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 774BFAE31D7672A0005CA603 /* AudioToolbox.framework */; };
@@ -596,19 +629,6 @@
 		778E93AC1D69B1FE004D899C /* SWSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 778E93AA1D69B1FE004D899C /* SWSettingViewController.m */; };
 		778E93AF1D69B229004D899C /* SWGeneralSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 778E93AE1D69B229004D899C /* SWGeneralSettingViewController.m */; };
 		778E93B21D69CB86004D899C /* XFMessageChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 778E93B11D69CB86004D899C /* XFMessageChartViewController.m */; };
-		7795CC9F1E4AB4AF006ED4F7 /* ResumeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7795CC9E1E4AB4AF006ED4F7 /* ResumeListViewController.m */; };
-		7795CCA21E4B18D1006ED4F7 /* PersonalInternetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7795CCA11E4B18D1006ED4F7 /* PersonalInternetViewController.m */; };
-		7795CCA51E4B18F7006ED4F7 /* PersonalEducationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7795CCA41E4B18F7006ED4F7 /* PersonalEducationViewController.m */; };
-		7795CCA81E4B1906006ED4F7 /* PersonalSoftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7795CCA71E4B1906006ED4F7 /* PersonalSoftViewController.m */; };
-		7795CCAB1E4B1918006ED4F7 /* PersonalHardwareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7795CCAA1E4B1918006ED4F7 /* PersonalHardwareViewController.m */; };
-		7795CCAE1E4B1923006ED4F7 /* PersonalComputerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7795CCAD1E4B1923006ED4F7 /* PersonalComputerViewController.m */; };
-		7795CCB11E4B1934006ED4F7 /* PersonalFoodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7795CCB01E4B1934006ED4F7 /* PersonalFoodViewController.m */; };
-		7795CCB41E4B1958006ED4F7 /* PersonalFastGoodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7795CCB31E4B1958006ED4F7 /* PersonalFastGoodsViewController.m */; };
-		7795CCB71E4B197B006ED4F7 /* PersonalConsumerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7795CCB61E4B197B006ED4F7 /* PersonalConsumerViewController.m */; };
-		7795CCBA1E4B1987006ED4F7 /* PersonalPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7795CCB91E4B1987006ED4F7 /* PersonalPhoneViewController.m */; };
-		7795CCBD1E4B19A6006ED4F7 /* PersonalHouseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7795CCBC1E4B19A6006ED4F7 /* PersonalHouseViewController.m */; };
-		7795CCC01E4B19B1006ED4F7 /* PersonalCarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7795CCBF1E4B19B1006ED4F7 /* PersonalCarViewController.m */; };
-		7795CCC31E4B19D0006ED4F7 /* PersonalLuxuryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7795CCC21E4B19D0006ED4F7 /* PersonalLuxuryViewController.m */; };
 		779937B41E2F1DBC00866968 /* EnergyShopFindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779937B31E2F1DBC00866968 /* EnergyShopFindViewController.m */; };
 		779937B71E2F1DD300866968 /* EnergyShopCarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779937B61E2F1DD300866968 /* EnergyShopCarViewController.m */; };
 		779937BA1E2F1DE100866968 /* EnergyShopMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779937B91E2F1DE100866968 /* EnergyShopMeViewController.m */; };
@@ -967,18 +987,6 @@
 		779B81F71D7D478800B23DFA /* EnergyShopTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81F61D7D478800B23DFA /* EnergyShopTabBarController.m */; };
 		779B81FA1D7D47B500B23DFA /* EnergySuperMarketTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81F91D7D47B500B23DFA /* EnergySuperMarketTabBarController.m */; };
 		779B82001D7D491500B23DFA /* EnergyContactDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81FF1D7D491500B23DFA /* EnergyContactDetailViewController.m */; };
-		779B82031D7D4B2400B23DFA /* PersonalApplyNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B82021D7D4B2400B23DFA /* PersonalApplyNavigationController.m */; };
-		779B820C1D7D4F0400B23DFA /* ResumeNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B820B1D7D4F0400B23DFA /* ResumeNavigationController.m */; };
-		779B82131D7D501E00B23DFA /* ResumeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B82121D7D501E00B23DFA /* ResumeViewController.m */; };
-		779B82161D7D506700B23DFA /* ResumeBusinessCooperationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B82151D7D506700B23DFA /* ResumeBusinessCooperationVC.m */; };
-		779B82191D7D509D00B23DFA /* ResumeTheorySystemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B82181D7D509D00B23DFA /* ResumeTheorySystemViewController.m */; };
-		779B821C1D7D50B000B23DFA /* ResumeCallMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B821B1D7D50B000B23DFA /* ResumeCallMeViewController.m */; };
-		779B821F1D7D512500B23DFA /* ResumeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B821E1D7D512500B23DFA /* ResumeDetailViewController.m */; };
-		779B82221D7D533100B23DFA /* FreeDomNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B82211D7D533100B23DFA /* FreeDomNavigationController.m */; };
-		779B82251D7D556500B23DFA /* FreedomBooksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B82241D7D556500B23DFA /* FreedomBooksViewController.m */; };
-		779B82281D7D557300B23DFA /* FreedomBooksEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B82271D7D557300B23DFA /* FreedomBooksEditViewController.m */; };
-		779B822B1D7D568C00B23DFA /* MyDatabaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B822A1D7D568C00B23DFA /* MyDatabaseNavigationController.m */; };
-		779B822E1D7D574500B23DFA /* MyDatabaseEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B822D1D7D574500B23DFA /* MyDatabaseEditViewController.m */; };
 		77BD14981D6E817A00DE5DB9 /* 01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 77BD14841D6E817A00DE5DB9 /* 01.jpg */; };
 		77BD14991D6E817A00DE5DB9 /* 02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 77BD14851D6E817A00DE5DB9 /* 02.jpg */; };
 		77BD149A1D6E817A00DE5DB9 /* 03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 77BD14861D6E817A00DE5DB9 /* 03.jpg */; };
@@ -1046,7 +1054,6 @@
 		77DE73401D1CC7E600F39FDB /* LibraryCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DE733F1D1CC7E600F39FDB /* LibraryCollectionViewController.m */; };
 		77DE73431D1CDC2B00F39FDB /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DE73421D1CDC2B00F39FDB /* SettingsViewController.m */; };
 		77DFEC701E20B9090003E192 /* logs in Resources */ = {isa = PBXBuildFile; fileRef = 77DFEC6F1E20B9090003E192 /* logs */; };
-		77F0D75B1E4C59120036F5F9 /* BooksNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F0D75A1E4C59120036F5F9 /* BooksNavigationController.m */; };
 		77F0D75E1E4C5AC80036F5F9 /* BooksMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F0D75D1E4C5AC80036F5F9 /* BooksMainViewController.m */; };
 		77F2E8FB1E4967E000C7E9D5 /* ToutiaoHomeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F2E8FA1E4967E000C7E9D5 /* ToutiaoHomeDetailViewController.m */; };
 		77F7A1031E23757D00F91403 /* qylogo_p@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77F7A1021E23757D00F91403 /* qylogo_p@3x.png */; };
@@ -1073,7 +1080,7 @@
 		BF5B9B691F8E671500BD885E /* ThinkDevelopmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5B9B681F8E671500BD885E /* ThinkDevelopmentViewController.swift */; };
 		BF5B9B6B1F8E673C00BD885E /* PursuitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5B9B6A1F8E673C00BD885E /* PursuitViewController.swift */; };
 		BF5B9B6D1F8E674400BD885E /* MoneyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5B9B6C1F8E674400BD885E /* MoneyViewController.swift */; };
-		BF5B9B6F1F8E674B00BD885E /* FreedomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5B9B6E1F8E674B00BD885E /* FreedomViewController.swift */; };
+		BF5B9B6F1F8E674B00BD885E /* FreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5B9B6E1F8E674B00BD885E /* FreeViewController.swift */; };
 		BF5B9B711F8E675100BD885E /* LoveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5B9B701F8E675100BD885E /* LoveViewController.swift */; };
 		BF5B9B731F8E676500BD885E /* CareerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5B9B721F8E676500BD885E /* CareerViewController.swift */; };
 		BF5B9B751F8E676F00BD885E /* FamilyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5B9B741F8E676F00BD885E /* FamilyViewController.swift */; };
@@ -1140,6 +1147,48 @@
 /* Begin PBXFileReference section */
 		02AF73C9BE55F816B9D738C7 /* Pods_MyFirstAPP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyFirstAPP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		60338462214883C1C05F8646 /* Pods_Freedom.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Freedom.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7115A5A220AA9ECB000D0B96 /* XBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XBaseViewController.swift; sourceTree = "<group>"; };
+		7115A5A420AA9EF1000D0B96 /* XBaseNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XBaseNavigationViewController.swift; sourceTree = "<group>"; };
+		7115A5A620AA9FE3000D0B96 /* FreedomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreedomNavigationController.swift; sourceTree = "<group>"; };
+		7115A5A820AAA191000D0B96 /* FreedomBooksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreedomBooksViewController.swift; sourceTree = "<group>"; };
+		7115A5AA20AAA1C4000D0B96 /* FreedomBooksEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreedomBooksEditViewController.swift; sourceTree = "<group>"; };
+		7115A5AC20AAA1F1000D0B96 /* FreedomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreedomViewController.swift; sourceTree = "<group>"; };
+		7115A5AE20AABCB8000D0B96 /* XBaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XBaseTabBarController.swift; sourceTree = "<group>"; };
+		7115A5B020AABCF6000D0B96 /* FreedomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreedomTabBarController.swift; sourceTree = "<group>"; };
+		7115A5B320AAC2E3000D0B96 /* PersonalApplyTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalApplyTabBarController.swift; sourceTree = "<group>"; };
+		7115A5B520AAC314000D0B96 /* PersonalApplyNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalApplyNavigationController.swift; sourceTree = "<group>"; };
+		7115A5B720AAC348000D0B96 /* PersonalApplyBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalApplyBaseViewController.swift; sourceTree = "<group>"; };
+		7115A5B920AAC3E6000D0B96 /* PersonalApplyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalApplyViewController.swift; sourceTree = "<group>"; };
+		7115A5BB20AAD31A000D0B96 /* PersonalInternetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInternetViewController.swift; sourceTree = "<group>"; };
+		7115A5BD20AAD32E000D0B96 /* PersonalEducationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalEducationViewController.swift; sourceTree = "<group>"; };
+		7115A5BF20AAD339000D0B96 /* PersonalSoftViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalSoftViewController.swift; sourceTree = "<group>"; };
+		7115A5C120AAD345000D0B96 /* PersonalHardwareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalHardwareViewController.swift; sourceTree = "<group>"; };
+		7115A5C320AAD351000D0B96 /* PersonalComputerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalComputerViewController.swift; sourceTree = "<group>"; };
+		7115A5C520AAD35E000D0B96 /* PersonalFoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalFoodViewController.swift; sourceTree = "<group>"; };
+		7115A5C720AAD36B000D0B96 /* PersonalFastGoodsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalFastGoodsViewController.swift; sourceTree = "<group>"; };
+		7115A5C920AAD376000D0B96 /* PersonalConsumerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalConsumerViewController.swift; sourceTree = "<group>"; };
+		7115A5CB20AAD382000D0B96 /* PersonalPhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalPhoneViewController.swift; sourceTree = "<group>"; };
+		7115A5CD20AAD38C000D0B96 /* PersonalHouseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalHouseViewController.swift; sourceTree = "<group>"; };
+		7115A5CF20AAD398000D0B96 /* PersonalCarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalCarViewController.swift; sourceTree = "<group>"; };
+		7115A5D120AAD3A3000D0B96 /* PersonalLuxuryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalLuxuryViewController.swift; sourceTree = "<group>"; };
+		7115A5D320AAD716000D0B96 /* ResumeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumeTabBarController.swift; sourceTree = "<group>"; };
+		7115A5D520AAD73F000D0B96 /* ResumeNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumeNavigationController.swift; sourceTree = "<group>"; };
+		7115A5D720AAD783000D0B96 /* ResumeBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumeBaseViewController.swift; sourceTree = "<group>"; };
+		7115A5D920AAD9AA000D0B96 /* ResumeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumeViewController.swift; sourceTree = "<group>"; };
+		7115A5DB20AAD9C2000D0B96 /* ResumeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumeListViewController.swift; sourceTree = "<group>"; };
+		7115A5DD20AAD9CE000D0B96 /* ResumeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumeDetailViewController.swift; sourceTree = "<group>"; };
+		7115A5DF20AAD9D8000D0B96 /* ResumeBusinessCooperationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumeBusinessCooperationVC.swift; sourceTree = "<group>"; };
+		7115A5E120AAD9E4000D0B96 /* ResumeTheorySystemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumeTheorySystemViewController.swift; sourceTree = "<group>"; };
+		7115A5E320AAD9F0000D0B96 /* ResumeCallMeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumeCallMeViewController.swift; sourceTree = "<group>"; };
+		7115A5E520AAECED000D0B96 /* BooksTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksTabBarController.swift; sourceTree = "<group>"; };
+		7115A5E720AAED13000D0B96 /* BooksNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksNavigationController.swift; sourceTree = "<group>"; };
+		7115A5E920AAEDF1000D0B96 /* BooksBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksBaseViewController.swift; sourceTree = "<group>"; };
+		7115A5EB20AAEE1E000D0B96 /* BooksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksViewController.swift; sourceTree = "<group>"; };
+		7115A5ED20AAFBBA000D0B96 /* MyDatabaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDatabaseTabBarController.swift; sourceTree = "<group>"; };
+		7115A5EF20AAFBF6000D0B96 /* MyDatabaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDatabaseNavigationController.swift; sourceTree = "<group>"; };
+		7115A5F120AAFC0F000D0B96 /* MyDatabaseBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDatabaseBaseViewController.swift; sourceTree = "<group>"; };
+		7115A5F320AAFC34000D0B96 /* MyDatabaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDatabaseViewController.swift; sourceTree = "<group>"; };
+		7115A5F520AAFC40000D0B96 /* MyDatabaseEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDatabaseEditViewController.swift; sourceTree = "<group>"; };
 		71250EC42091C0F20093B59B /* FreedomTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FreedomTools.h; sourceTree = "<group>"; };
 		71250EC52091C0F20093B59B /* FreedomTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FreedomTools.m; sourceTree = "<group>"; };
 		71250EC72091C1DA0093B59B /* NSObject+Freedom.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Freedom.h"; sourceTree = "<group>"; };
@@ -1308,14 +1357,6 @@
 		771917741D65C29B002F2BCD /* JuheDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuheDataViewController.m; sourceTree = "<group>"; };
 		771917761D65C2A6002F2BCD /* MicroEnergyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MicroEnergyViewController.h; sourceTree = "<group>"; };
 		771917771D65C2A7002F2BCD /* MicroEnergyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MicroEnergyViewController.m; sourceTree = "<group>"; };
-		771917791D65C2B2002F2BCD /* PersonalApplyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalApplyViewController.h; sourceTree = "<group>"; };
-		7719177A1D65C2B2002F2BCD /* PersonalApplyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalApplyViewController.m; sourceTree = "<group>"; };
-		7719177C1D65C2BE002F2BCD /* FreedomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreedomViewController.h; sourceTree = "<group>"; };
-		7719177D1D65C2BE002F2BCD /* FreedomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreedomViewController.m; sourceTree = "<group>"; };
-		771917821D65C2DB002F2BCD /* BooksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BooksViewController.h; sourceTree = "<group>"; };
-		771917831D65C2DB002F2BCD /* BooksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BooksViewController.m; sourceTree = "<group>"; };
-		771917851D65C2E5002F2BCD /* MyDatabaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDatabaseViewController.h; sourceTree = "<group>"; };
-		771917861D65C2E6002F2BCD /* MyDatabaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyDatabaseViewController.m; sourceTree = "<group>"; };
 		772A131B1E2E440900B79AFB /* DZDealListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZDealListViewController.h; sourceTree = "<group>"; };
 		772A131C1E2E440900B79AFB /* DZDealListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZDealListViewController.m; sourceTree = "<group>"; };
 		772A131E1E2E443D00B79AFB /* DZDealDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZDealDetailViewController.h; sourceTree = "<group>"; };
@@ -1635,16 +1676,6 @@
 		7745C2631D6723EC002212DE /* JuheDataTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuheDataTabBarController.m; sourceTree = "<group>"; };
 		7745C2651D672409002212DE /* MicroEnergyTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MicroEnergyTabBarController.h; sourceTree = "<group>"; };
 		7745C2661D672409002212DE /* MicroEnergyTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MicroEnergyTabBarController.m; sourceTree = "<group>"; };
-		7745C2681D67241E002212DE /* PersonalApplyTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalApplyTabBarController.h; sourceTree = "<group>"; };
-		7745C2691D67241E002212DE /* PersonalApplyTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalApplyTabBarController.m; sourceTree = "<group>"; };
-		7745C26B1D672436002212DE /* FreedomTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreedomTabBarController.h; sourceTree = "<group>"; };
-		7745C26C1D672436002212DE /* FreedomTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreedomTabBarController.m; sourceTree = "<group>"; };
-		7745C26E1D672445002212DE /* ResumeTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResumeTabBarController.h; sourceTree = "<group>"; };
-		7745C26F1D672445002212DE /* ResumeTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResumeTabBarController.m; sourceTree = "<group>"; };
-		7745C2711D672451002212DE /* BooksTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BooksTabBarController.h; sourceTree = "<group>"; };
-		7745C2721D672451002212DE /* BooksTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BooksTabBarController.m; sourceTree = "<group>"; };
-		7745C2741D672EE5002212DE /* MyDatabaseTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDatabaseTabBarController.h; sourceTree = "<group>"; };
-		7745C2751D672EE5002212DE /* MyDatabaseTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyDatabaseTabBarController.m; sourceTree = "<group>"; };
 		774BA6411E28DA18007FF686 /* taobaoon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = taobaoon.png; sourceTree = "<group>"; };
 		774BA6421E28DA18007FF686 /* taobaono.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = taobaono.png; sourceTree = "<group>"; };
 		774BFAE31D7672A0005CA603 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -1876,32 +1907,6 @@
 		778E93AE1D69B229004D899C /* SWGeneralSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWGeneralSettingViewController.m; sourceTree = "<group>"; };
 		778E93B01D69CB86004D899C /* XFMessageChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XFMessageChartViewController.h; sourceTree = "<group>"; };
 		778E93B11D69CB86004D899C /* XFMessageChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XFMessageChartViewController.m; sourceTree = "<group>"; };
-		7795CC9D1E4AB4AF006ED4F7 /* ResumeListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResumeListViewController.h; sourceTree = "<group>"; };
-		7795CC9E1E4AB4AF006ED4F7 /* ResumeListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResumeListViewController.m; sourceTree = "<group>"; };
-		7795CCA01E4B18D1006ED4F7 /* PersonalInternetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalInternetViewController.h; sourceTree = "<group>"; };
-		7795CCA11E4B18D1006ED4F7 /* PersonalInternetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalInternetViewController.m; sourceTree = "<group>"; };
-		7795CCA31E4B18F7006ED4F7 /* PersonalEducationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalEducationViewController.h; sourceTree = "<group>"; };
-		7795CCA41E4B18F7006ED4F7 /* PersonalEducationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalEducationViewController.m; sourceTree = "<group>"; };
-		7795CCA61E4B1906006ED4F7 /* PersonalSoftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalSoftViewController.h; sourceTree = "<group>"; };
-		7795CCA71E4B1906006ED4F7 /* PersonalSoftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalSoftViewController.m; sourceTree = "<group>"; };
-		7795CCA91E4B1918006ED4F7 /* PersonalHardwareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalHardwareViewController.h; sourceTree = "<group>"; };
-		7795CCAA1E4B1918006ED4F7 /* PersonalHardwareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalHardwareViewController.m; sourceTree = "<group>"; };
-		7795CCAC1E4B1923006ED4F7 /* PersonalComputerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalComputerViewController.h; sourceTree = "<group>"; };
-		7795CCAD1E4B1923006ED4F7 /* PersonalComputerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalComputerViewController.m; sourceTree = "<group>"; };
-		7795CCAF1E4B1934006ED4F7 /* PersonalFoodViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalFoodViewController.h; sourceTree = "<group>"; };
-		7795CCB01E4B1934006ED4F7 /* PersonalFoodViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalFoodViewController.m; sourceTree = "<group>"; };
-		7795CCB21E4B1958006ED4F7 /* PersonalFastGoodsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalFastGoodsViewController.h; sourceTree = "<group>"; };
-		7795CCB31E4B1958006ED4F7 /* PersonalFastGoodsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalFastGoodsViewController.m; sourceTree = "<group>"; };
-		7795CCB51E4B197B006ED4F7 /* PersonalConsumerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalConsumerViewController.h; sourceTree = "<group>"; };
-		7795CCB61E4B197B006ED4F7 /* PersonalConsumerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalConsumerViewController.m; sourceTree = "<group>"; };
-		7795CCB81E4B1987006ED4F7 /* PersonalPhoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalPhoneViewController.h; sourceTree = "<group>"; };
-		7795CCB91E4B1987006ED4F7 /* PersonalPhoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalPhoneViewController.m; sourceTree = "<group>"; };
-		7795CCBB1E4B19A6006ED4F7 /* PersonalHouseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalHouseViewController.h; sourceTree = "<group>"; };
-		7795CCBC1E4B19A6006ED4F7 /* PersonalHouseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalHouseViewController.m; sourceTree = "<group>"; };
-		7795CCBE1E4B19B1006ED4F7 /* PersonalCarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalCarViewController.h; sourceTree = "<group>"; };
-		7795CCBF1E4B19B1006ED4F7 /* PersonalCarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalCarViewController.m; sourceTree = "<group>"; };
-		7795CCC11E4B19D0006ED4F7 /* PersonalLuxuryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalLuxuryViewController.h; sourceTree = "<group>"; };
-		7795CCC21E4B19D0006ED4F7 /* PersonalLuxuryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalLuxuryViewController.m; sourceTree = "<group>"; };
 		779937B21E2F1DBC00866968 /* EnergyShopFindViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnergyShopFindViewController.h; sourceTree = "<group>"; };
 		779937B31E2F1DBC00866968 /* EnergyShopFindViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnergyShopFindViewController.m; sourceTree = "<group>"; };
 		779937B51E2F1DD300866968 /* EnergyShopCarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnergyShopCarViewController.h; sourceTree = "<group>"; };
@@ -2292,30 +2297,6 @@
 		779B81F91D7D47B500B23DFA /* EnergySuperMarketTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnergySuperMarketTabBarController.m; sourceTree = "<group>"; };
 		779B81FE1D7D491500B23DFA /* EnergyContactDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnergyContactDetailViewController.h; sourceTree = "<group>"; };
 		779B81FF1D7D491500B23DFA /* EnergyContactDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnergyContactDetailViewController.m; sourceTree = "<group>"; };
-		779B82011D7D4B2400B23DFA /* PersonalApplyNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalApplyNavigationController.h; sourceTree = "<group>"; };
-		779B82021D7D4B2400B23DFA /* PersonalApplyNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalApplyNavigationController.m; sourceTree = "<group>"; };
-		779B820A1D7D4F0400B23DFA /* ResumeNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResumeNavigationController.h; sourceTree = "<group>"; };
-		779B820B1D7D4F0400B23DFA /* ResumeNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResumeNavigationController.m; sourceTree = "<group>"; };
-		779B82111D7D501E00B23DFA /* ResumeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResumeViewController.h; sourceTree = "<group>"; };
-		779B82121D7D501E00B23DFA /* ResumeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResumeViewController.m; sourceTree = "<group>"; };
-		779B82141D7D506700B23DFA /* ResumeBusinessCooperationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResumeBusinessCooperationVC.h; sourceTree = "<group>"; };
-		779B82151D7D506700B23DFA /* ResumeBusinessCooperationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResumeBusinessCooperationVC.m; sourceTree = "<group>"; };
-		779B82171D7D509D00B23DFA /* ResumeTheorySystemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResumeTheorySystemViewController.h; sourceTree = "<group>"; };
-		779B82181D7D509D00B23DFA /* ResumeTheorySystemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResumeTheorySystemViewController.m; sourceTree = "<group>"; };
-		779B821A1D7D50B000B23DFA /* ResumeCallMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResumeCallMeViewController.h; sourceTree = "<group>"; };
-		779B821B1D7D50B000B23DFA /* ResumeCallMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResumeCallMeViewController.m; sourceTree = "<group>"; };
-		779B821D1D7D512500B23DFA /* ResumeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResumeDetailViewController.h; sourceTree = "<group>"; };
-		779B821E1D7D512500B23DFA /* ResumeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResumeDetailViewController.m; sourceTree = "<group>"; };
-		779B82201D7D533100B23DFA /* FreeDomNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreeDomNavigationController.h; sourceTree = "<group>"; };
-		779B82211D7D533100B23DFA /* FreeDomNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreeDomNavigationController.m; sourceTree = "<group>"; };
-		779B82231D7D556500B23DFA /* FreedomBooksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreedomBooksViewController.h; sourceTree = "<group>"; };
-		779B82241D7D556500B23DFA /* FreedomBooksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreedomBooksViewController.m; sourceTree = "<group>"; };
-		779B82261D7D557300B23DFA /* FreedomBooksEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreedomBooksEditViewController.h; sourceTree = "<group>"; };
-		779B82271D7D557300B23DFA /* FreedomBooksEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreedomBooksEditViewController.m; sourceTree = "<group>"; };
-		779B82291D7D568C00B23DFA /* MyDatabaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDatabaseNavigationController.h; sourceTree = "<group>"; };
-		779B822A1D7D568C00B23DFA /* MyDatabaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyDatabaseNavigationController.m; sourceTree = "<group>"; };
-		779B822C1D7D574500B23DFA /* MyDatabaseEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDatabaseEditViewController.h; sourceTree = "<group>"; };
-		779B822D1D7D574500B23DFA /* MyDatabaseEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyDatabaseEditViewController.m; sourceTree = "<group>"; };
 		779E70041E31AA5200216928 /* Foundation_enum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Foundation_enum.h; sourceTree = "<group>"; };
 		77BD14841D6E817A00DE5DB9 /* 01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 01.jpg; sourceTree = "<group>"; };
 		77BD14851D6E817A00DE5DB9 /* 02.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 02.jpg; sourceTree = "<group>"; };
@@ -2406,8 +2387,6 @@
 		77DE73411D1CDC2B00F39FDB /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		77DE73421D1CDC2B00F39FDB /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		77DFEC6F1E20B9090003E192 /* logs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = logs; sourceTree = "<group>"; };
-		77F0D7591E4C59120036F5F9 /* BooksNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BooksNavigationController.h; sourceTree = "<group>"; };
-		77F0D75A1E4C59120036F5F9 /* BooksNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BooksNavigationController.m; sourceTree = "<group>"; };
 		77F0D75C1E4C5AC80036F5F9 /* BooksMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BooksMainViewController.h; sourceTree = "<group>"; };
 		77F0D75D1E4C5AC80036F5F9 /* BooksMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BooksMainViewController.m; sourceTree = "<group>"; };
 		77F2E8F91E4967E000C7E9D5 /* ToutiaoHomeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToutiaoHomeDetailViewController.h; sourceTree = "<group>"; };
@@ -2452,7 +2431,7 @@
 		BF5B9B681F8E671500BD885E /* ThinkDevelopmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThinkDevelopmentViewController.swift; sourceTree = "<group>"; };
 		BF5B9B6A1F8E673C00BD885E /* PursuitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PursuitViewController.swift; sourceTree = "<group>"; };
 		BF5B9B6C1F8E674400BD885E /* MoneyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyViewController.swift; sourceTree = "<group>"; };
-		BF5B9B6E1F8E674B00BD885E /* FreedomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreedomViewController.swift; sourceTree = "<group>"; };
+		BF5B9B6E1F8E674B00BD885E /* FreeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeViewController.swift; sourceTree = "<group>"; };
 		BF5B9B701F8E675100BD885E /* LoveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoveViewController.swift; sourceTree = "<group>"; };
 		BF5B9B721F8E676500BD885E /* CareerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareerViewController.swift; sourceTree = "<group>"; };
 		BF5B9B741F8E676F00BD885E /* FamilyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyViewController.swift; sourceTree = "<group>"; };
@@ -3566,8 +3545,7 @@
 		7745C21B1D671715002212DE /* 房地产行业 */ = {
 			isa = PBXGroup;
 			children = (
-				7795CCBB1E4B19A6006ED4F7 /* PersonalHouseViewController.h */,
-				7795CCBC1E4B19A6006ED4F7 /* PersonalHouseViewController.m */,
+				7115A5CD20AAD38C000D0B96 /* PersonalHouseViewController.swift */,
 			);
 			path = "房地产行业";
 			sourceTree = "<group>";
@@ -3575,8 +3553,7 @@
 		7745C21C1D671715002212DE /* 个人电脑 */ = {
 			isa = PBXGroup;
 			children = (
-				7795CCAC1E4B1923006ED4F7 /* PersonalComputerViewController.h */,
-				7795CCAD1E4B1923006ED4F7 /* PersonalComputerViewController.m */,
+				7115A5C320AAD351000D0B96 /* PersonalComputerViewController.swift */,
 			);
 			path = "个人电脑";
 			sourceTree = "<group>";
@@ -3584,8 +3561,7 @@
 		7745C21D1D671715002212DE /* 互联网行业 */ = {
 			isa = PBXGroup;
 			children = (
-				7795CCA01E4B18D1006ED4F7 /* PersonalInternetViewController.h */,
-				7795CCA11E4B18D1006ED4F7 /* PersonalInternetViewController.m */,
+				7115A5BB20AAD31A000D0B96 /* PersonalInternetViewController.swift */,
 			);
 			path = "互联网行业";
 			sourceTree = "<group>";
@@ -3593,10 +3569,9 @@
 		7745C21E1D671715002212DE /* 基本类库 */ = {
 			isa = PBXGroup;
 			children = (
-				7745C2681D67241E002212DE /* PersonalApplyTabBarController.h */,
-				7745C2691D67241E002212DE /* PersonalApplyTabBarController.m */,
-				779B82011D7D4B2400B23DFA /* PersonalApplyNavigationController.h */,
-				779B82021D7D4B2400B23DFA /* PersonalApplyNavigationController.m */,
+				7115A5B320AAC2E3000D0B96 /* PersonalApplyTabBarController.swift */,
+				7115A5B520AAC314000D0B96 /* PersonalApplyNavigationController.swift */,
+				7115A5B720AAC348000D0B96 /* PersonalApplyBaseViewController.swift */,
 			);
 			path = "基本类库";
 			sourceTree = "<group>";
@@ -3604,8 +3579,7 @@
 		7745C21F1D671715002212DE /* 计算机软件 */ = {
 			isa = PBXGroup;
 			children = (
-				7795CCA61E4B1906006ED4F7 /* PersonalSoftViewController.h */,
-				7795CCA71E4B1906006ED4F7 /* PersonalSoftViewController.m */,
+				7115A5BF20AAD339000D0B96 /* PersonalSoftViewController.swift */,
 			);
 			path = "计算机软件";
 			sourceTree = "<group>";
@@ -3613,8 +3587,7 @@
 		7745C2201D671715002212DE /* 计算机硬件 */ = {
 			isa = PBXGroup;
 			children = (
-				7795CCA91E4B1918006ED4F7 /* PersonalHardwareViewController.h */,
-				7795CCAA1E4B1918006ED4F7 /* PersonalHardwareViewController.m */,
+				7115A5C120AAD345000D0B96 /* PersonalHardwareViewController.swift */,
 			);
 			path = "计算机硬件";
 			sourceTree = "<group>";
@@ -3622,8 +3595,7 @@
 		7745C2211D671715002212DE /* 教育培训行业 */ = {
 			isa = PBXGroup;
 			children = (
-				7795CCA31E4B18F7006ED4F7 /* PersonalEducationViewController.h */,
-				7795CCA41E4B18F7006ED4F7 /* PersonalEducationViewController.m */,
+				7115A5BD20AAD32E000D0B96 /* PersonalEducationViewController.swift */,
 			);
 			path = "教育培训行业";
 			sourceTree = "<group>";
@@ -3631,8 +3603,7 @@
 		7745C2221D671715002212DE /* 快消品行业 */ = {
 			isa = PBXGroup;
 			children = (
-				7795CCB21E4B1958006ED4F7 /* PersonalFastGoodsViewController.h */,
-				7795CCB31E4B1958006ED4F7 /* PersonalFastGoodsViewController.m */,
+				7115A5C720AAD36B000D0B96 /* PersonalFastGoodsViewController.swift */,
 			);
 			path = "快消品行业";
 			sourceTree = "<group>";
@@ -3640,8 +3611,7 @@
 		7745C2231D671715002212DE /* 耐消品行业 */ = {
 			isa = PBXGroup;
 			children = (
-				7795CCB51E4B197B006ED4F7 /* PersonalConsumerViewController.h */,
-				7795CCB61E4B197B006ED4F7 /* PersonalConsumerViewController.m */,
+				7115A5C920AAD376000D0B96 /* PersonalConsumerViewController.swift */,
 			);
 			path = "耐消品行业";
 			sourceTree = "<group>";
@@ -3649,8 +3619,7 @@
 		7745C2241D671715002212DE /* 汽车行业 */ = {
 			isa = PBXGroup;
 			children = (
-				7795CCBE1E4B19B1006ED4F7 /* PersonalCarViewController.h */,
-				7795CCBF1E4B19B1006ED4F7 /* PersonalCarViewController.m */,
+				7115A5CF20AAD398000D0B96 /* PersonalCarViewController.swift */,
 			);
 			path = "汽车行业";
 			sourceTree = "<group>";
@@ -3658,8 +3627,7 @@
 		7745C2251D671715002212DE /* 奢侈品行业 */ = {
 			isa = PBXGroup;
 			children = (
-				7795CCC11E4B19D0006ED4F7 /* PersonalLuxuryViewController.h */,
-				7795CCC21E4B19D0006ED4F7 /* PersonalLuxuryViewController.m */,
+				7115A5D120AAD3A3000D0B96 /* PersonalLuxuryViewController.swift */,
 			);
 			path = "奢侈品行业";
 			sourceTree = "<group>";
@@ -3667,8 +3635,7 @@
 		7745C2261D671715002212DE /* 食品连锁 */ = {
 			isa = PBXGroup;
 			children = (
-				7795CCAF1E4B1934006ED4F7 /* PersonalFoodViewController.h */,
-				7795CCB01E4B1934006ED4F7 /* PersonalFoodViewController.m */,
+				7115A5C520AAD35E000D0B96 /* PersonalFoodViewController.swift */,
 			);
 			path = "食品连锁";
 			sourceTree = "<group>";
@@ -3676,8 +3643,7 @@
 		7745C2271D671715002212DE /* 手机市场 */ = {
 			isa = PBXGroup;
 			children = (
-				7795CCB81E4B1987006ED4F7 /* PersonalPhoneViewController.h */,
-				7795CCB91E4B1987006ED4F7 /* PersonalPhoneViewController.m */,
+				7115A5CB20AAD382000D0B96 /* PersonalPhoneViewController.swift */,
 			);
 			path = "手机市场";
 			sourceTree = "<group>";
@@ -3701,10 +3667,8 @@
 		7745C22A1D671788002212DE /* 基本类库 */ = {
 			isa = PBXGroup;
 			children = (
-				7745C26B1D672436002212DE /* FreedomTabBarController.h */,
-				7745C26C1D672436002212DE /* FreedomTabBarController.m */,
-				779B82201D7D533100B23DFA /* FreeDomNavigationController.h */,
-				779B82211D7D533100B23DFA /* FreeDomNavigationController.m */,
+				7115A5B020AABCF6000D0B96 /* FreedomTabBarController.swift */,
+				7115A5A620AA9FE3000D0B96 /* FreedomNavigationController.swift */,
 				7165A3E920A5A291001C60D6 /* FreedomBaseViewController.swift */,
 			);
 			path = "基本类库";
@@ -3809,7 +3773,7 @@
 		7745C2371D671788002212DE /* 自由 */ = {
 			isa = PBXGroup;
 			children = (
-				BF5B9B6E1F8E674B00BD885E /* FreedomViewController.swift */,
+				BF5B9B6E1F8E674B00BD885E /* FreeViewController.swift */,
 			);
 			path = "自由";
 			sourceTree = "<group>";
@@ -3817,10 +3781,9 @@
 		7745C2381D6717B3002212DE /* 基本类库 */ = {
 			isa = PBXGroup;
 			children = (
-				7745C26E1D672445002212DE /* ResumeTabBarController.h */,
-				7745C26F1D672445002212DE /* ResumeTabBarController.m */,
-				779B820A1D7D4F0400B23DFA /* ResumeNavigationController.h */,
-				779B820B1D7D4F0400B23DFA /* ResumeNavigationController.m */,
+				7115A5D320AAD716000D0B96 /* ResumeTabBarController.swift */,
+				7115A5D520AAD73F000D0B96 /* ResumeNavigationController.swift */,
+				7115A5D720AAD783000D0B96 /* ResumeBaseViewController.swift */,
 			);
 			path = "基本类库";
 			sourceTree = "<group>";
@@ -3828,10 +3791,9 @@
 		7745C23C1D671801002212DE /* 基本类库 */ = {
 			isa = PBXGroup;
 			children = (
-				7745C2711D672451002212DE /* BooksTabBarController.h */,
-				7745C2721D672451002212DE /* BooksTabBarController.m */,
-				77F0D7591E4C59120036F5F9 /* BooksNavigationController.h */,
-				77F0D75A1E4C59120036F5F9 /* BooksNavigationController.m */,
+				7115A5E520AAECED000D0B96 /* BooksTabBarController.swift */,
+				7115A5E720AAED13000D0B96 /* BooksNavigationController.swift */,
+				7115A5E920AAEDF1000D0B96 /* BooksBaseViewController.swift */,
 			);
 			path = "基本类库";
 			sourceTree = "<group>";
@@ -4050,6 +4012,9 @@
 				77CC4F431D90E07A00DD2EC8 /* BaseTabBarController.m */,
 				77CC4F3C1D90E03200DD2EC8 /* BaseNavigationController.h */,
 				77CC4F3D1D90E03200DD2EC8 /* BaseNavigationController.m */,
+				7115A5AE20AABCB8000D0B96 /* XBaseTabBarController.swift */,
+				7115A5A420AA9EF1000D0B96 /* XBaseNavigationViewController.swift */,
+				7115A5A220AA9ECB000D0B96 /* XBaseViewController.swift */,
 				7165A3B020A57EFE001C60D6 /* XTableView.swift */,
 				77CC4F121D90DCA400DD2EC8 /* BaseOCViewController.h */,
 				77CC4F131D90DCA400DD2EC8 /* BaseOCViewController.m */,
@@ -4270,8 +4235,7 @@
 				7745C2241D671715002212DE /* 汽车行业 */,
 				7745C2251D671715002212DE /* 奢侈品行业 */,
 				771917461D6599EB002F2BCD /* PersonalApply.storyboard */,
-				771917791D65C2B2002F2BCD /* PersonalApplyViewController.h */,
-				7719177A1D65C2B2002F2BCD /* PersonalApplyViewController.m */,
+				7115A5B920AAC3E6000D0B96 /* PersonalApplyViewController.swift */,
 			);
 			path = "个人应用";
 			sourceTree = "<group>";
@@ -4417,15 +4381,12 @@
 		7772A7FA1D64636F00444973 /* 我的数据库 */ = {
 			isa = PBXGroup;
 			children = (
-				7745C2741D672EE5002212DE /* MyDatabaseTabBarController.h */,
-				7745C2751D672EE5002212DE /* MyDatabaseTabBarController.m */,
-				779B82291D7D568C00B23DFA /* MyDatabaseNavigationController.h */,
-				779B822A1D7D568C00B23DFA /* MyDatabaseNavigationController.m */,
+				7115A5ED20AAFBBA000D0B96 /* MyDatabaseTabBarController.swift */,
+				7115A5EF20AAFBF6000D0B96 /* MyDatabaseNavigationController.swift */,
+				7115A5F120AAFC0F000D0B96 /* MyDatabaseBaseViewController.swift */,
 				7719174E1D659A68002F2BCD /* MyDatabase.storyboard */,
-				771917851D65C2E5002F2BCD /* MyDatabaseViewController.h */,
-				771917861D65C2E6002F2BCD /* MyDatabaseViewController.m */,
-				779B822C1D7D574500B23DFA /* MyDatabaseEditViewController.h */,
-				779B822D1D7D574500B23DFA /* MyDatabaseEditViewController.m */,
+				7115A5F320AAFC34000D0B96 /* MyDatabaseViewController.swift */,
+				7115A5F520AAFC40000D0B96 /* MyDatabaseEditViewController.swift */,
 			);
 			path = "我的数据库";
 			sourceTree = "<group>";
@@ -4450,12 +4411,9 @@
 				7745C2311D671788002212DE /* 能力 */,
 				7745C22F1D671788002212DE /* 快乐 */,
 				771917481D659A00002F2BCD /* Freedom.storyboard */,
-				7719177C1D65C2BE002F2BCD /* FreedomViewController.h */,
-				7719177D1D65C2BE002F2BCD /* FreedomViewController.m */,
-				779B82231D7D556500B23DFA /* FreedomBooksViewController.h */,
-				779B82241D7D556500B23DFA /* FreedomBooksViewController.m */,
-				779B82261D7D557300B23DFA /* FreedomBooksEditViewController.h */,
-				779B82271D7D557300B23DFA /* FreedomBooksEditViewController.m */,
+				7115A5AC20AAA1F1000D0B96 /* FreedomViewController.swift */,
+				7115A5A820AAA191000D0B96 /* FreedomBooksViewController.swift */,
+				7115A5AA20AAA1C4000D0B96 /* FreedomBooksEditViewController.swift */,
 			);
 			path = "个性特色自由主义";
 			sourceTree = "<group>";
@@ -4483,8 +4441,7 @@
 				71267A4C2092DC6F006E1B96 /* 朋友圈 */,
 				7745C23E1D671801002212DE /* 书籍阅读 */,
 				7719174C1D659A5E002F2BCD /* Books.storyboard */,
-				771917821D65C2DB002F2BCD /* BooksViewController.h */,
-				771917831D65C2DB002F2BCD /* BooksViewController.m */,
+				7115A5EB20AAEE1E000D0B96 /* BooksViewController.swift */,
 				77F0D75C1E4C5AC80036F5F9 /* BooksMainViewController.h */,
 				77F0D75D1E4C5AC80036F5F9 /* BooksMainViewController.m */,
 			);
@@ -5000,8 +4957,7 @@
 		779B820D1D7D4FEA00B23DFA /* 理论体系 */ = {
 			isa = PBXGroup;
 			children = (
-				779B82171D7D509D00B23DFA /* ResumeTheorySystemViewController.h */,
-				779B82181D7D509D00B23DFA /* ResumeTheorySystemViewController.m */,
+				7115A5E120AAD9E4000D0B96 /* ResumeTheorySystemViewController.swift */,
 			);
 			path = "理论体系";
 			sourceTree = "<group>";
@@ -5009,8 +4965,7 @@
 		779B820E1D7D4FEA00B23DFA /* 联系我 */ = {
 			isa = PBXGroup;
 			children = (
-				779B821A1D7D50B000B23DFA /* ResumeCallMeViewController.h */,
-				779B821B1D7D50B000B23DFA /* ResumeCallMeViewController.m */,
+				7115A5E320AAD9F0000D0B96 /* ResumeCallMeViewController.swift */,
 			);
 			path = "联系我";
 			sourceTree = "<group>";
@@ -5018,8 +4973,7 @@
 		779B820F1D7D4FEA00B23DFA /* 事业合作 */ = {
 			isa = PBXGroup;
 			children = (
-				779B82141D7D506700B23DFA /* ResumeBusinessCooperationVC.h */,
-				779B82151D7D506700B23DFA /* ResumeBusinessCooperationVC.m */,
+				7115A5DF20AAD9D8000D0B96 /* ResumeBusinessCooperationVC.swift */,
 			);
 			path = "事业合作";
 			sourceTree = "<group>";
@@ -5027,12 +4981,9 @@
 		779B82101D7D4FEA00B23DFA /* 首页 */ = {
 			isa = PBXGroup;
 			children = (
-				779B82111D7D501E00B23DFA /* ResumeViewController.h */,
-				779B82121D7D501E00B23DFA /* ResumeViewController.m */,
-				7795CC9D1E4AB4AF006ED4F7 /* ResumeListViewController.h */,
-				7795CC9E1E4AB4AF006ED4F7 /* ResumeListViewController.m */,
-				779B821D1D7D512500B23DFA /* ResumeDetailViewController.h */,
-				779B821E1D7D512500B23DFA /* ResumeDetailViewController.m */,
+				7115A5D920AAD9AA000D0B96 /* ResumeViewController.swift */,
+				7115A5DB20AAD9C2000D0B96 /* ResumeListViewController.swift */,
+				7115A5DD20AAD9CE000D0B96 /* ResumeDetailViewController.swift */,
 			);
 			path = "首页";
 			sourceTree = "<group>";
@@ -6351,9 +6302,11 @@
 			files = (
 				71ECE04B2092128E00495467 /* TLChatFileViewController.m in Sources */,
 				BF6E57BF1FAC0723005F7DF8 /* TLExpressionSearchViewController.m in Sources */,
+				7115A5CA20AAD376000D0B96 /* PersonalConsumerViewController.swift in Sources */,
 				71ECE04D2092128E00495467 /* TLChatGroupDetailViewController.m in Sources */,
 				BF6E57BE1FAC071C005F7DF8 /* TLExpressionViewController.m in Sources */,
 				71ECE0492092128E00495467 /* TLEmojiKeyboard.m in Sources */,
+				7115A5E420AAD9F0000D0B96 /* ResumeCallMeViewController.swift in Sources */,
 				BF6E57BD1FAC0714005F7DF8 /* TLExpressionDetailViewController.m in Sources */,
 				BF6E57BC1FAC070C005F7DF8 /* TLExpressionPublicViewController.m in Sources */,
 				BF6E57B81FAC06C6005F7DF8 /* TLMyQRCodeViewController.m in Sources */,
@@ -6361,6 +6314,7 @@
 				BF6E57B31FAC0692005F7DF8 /* TLExpressionChosenViewController.m in Sources */,
 				BF6E57B01FAC0673005F7DF8 /* TLMineViewController.m in Sources */,
 				BF6E57AF1FAC066B005F7DF8 /* TLMineInfoViewController.m in Sources */,
+				7115A5D220AAD3A3000D0B96 /* PersonalLuxuryViewController.swift in Sources */,
 				BF6E572F1FABFCF2005F7DF8 /* TLPrivacySettingViewController.m in Sources */,
 				BF6E572E1FABFCEA005F7DF8 /* TLAccountAndSafetyViewController.m in Sources */,
 				BF6E572D1FABFCE0005F7DF8 /* TLNewMessageSettingViewController.m in Sources */,
@@ -6369,15 +6323,20 @@
 				BF6E572A1FABFCCE005F7DF8 /* TLAboutViewController.m in Sources */,
 				BF6E57291FABFCB7005F7DF8 /* TLChatBackgroundSettingViewController.m in Sources */,
 				BF6E57281FABFCB0005F7DF8 /* TLMineSettingViewController.m in Sources */,
+				7115A5D420AAD716000D0B96 /* ResumeTabBarController.swift in Sources */,
 				BF6BB2AC1FAC5CB6003720C3 /* XFHomeViewController+Views.m in Sources */,
+				7115A5D820AAD783000D0B96 /* ResumeBaseViewController.swift in Sources */,
 				BF6E56A61FAAF563005F7DF8 /* TLImageBrowserController.m in Sources */,
+				7115A5F220AAFC0F000D0B96 /* MyDatabaseBaseViewController.swift in Sources */,
 				BF6E56A51FAAF559005F7DF8 /* TLActionSheet.m in Sources */,
 				BF6E56A41FAAF524005F7DF8 /* TLTableViewCell.m in Sources */,
 				BF6E56A31FAAF51B005F7DF8 /* TLTabBarController.m in Sources */,
 				BF6E56A21FAAF510005F7DF8 /* TLInfoViewController.m in Sources */,
+				7115A5C620AAD35E000D0B96 /* PersonalFoodViewController.swift in Sources */,
 				71ECE0472092128E00495467 /* TLMoreKeyboard.m in Sources */,
 				71ECE0202092121F00495467 /* TLBottleViewController.m in Sources */,
 				71250EC92091C1DA0093B59B /* NSObject+Freedom.m in Sources */,
+				7115A5CC20AAD382000D0B96 /* PersonalPhoneViewController.swift in Sources */,
 				BF6E569E1FAAF4B8005F7DF8 /* TLTableViewController.m in Sources */,
 				BF6E569D1FAAF48A005F7DF8 /* TLMenuViewController.m in Sources */,
 				BF6E569B1FAAF475005F7DF8 /* TLQRCodeViewController.m in Sources */,
@@ -6392,37 +6351,38 @@
 				BF5B9B731F8E676500BD885E /* CareerViewController.swift in Sources */,
 				77DE73431D1CDC2B00F39FDB /* SettingsViewController.m in Sources */,
 				77FD03CA1E25E4D900E5099E /* TaobaoMiniArticleViewController.m in Sources */,
+				7115A5F420AAFC34000D0B96 /* MyDatabaseViewController.swift in Sources */,
 				7741F1D71D6D530300EED332 /* SDHomeViewController.m in Sources */,
-				7795CCC31E4B19D0006ED4F7 /* PersonalLuxuryViewController.m in Sources */,
 				778E939D1D69AA92004D899C /* DiscoverDetailViewController.m in Sources */,
 				773D56141D7953A100A0C615 /* JFVideoDetailViewController.m in Sources */,
 				7741F1D21D6D530300EED332 /* SDAddItemViewController.m in Sources */,
+				7115A5A320AA9ECB000D0B96 /* XBaseViewController.swift in Sources */,
 				773D56151D7953A100A0C615 /* JFWatchRecordViewController.m in Sources */,
 				BF5B9B601F8E63CF00BD885E /* SearchDownloadBookViewController.swift in Sources */,
 				7165A3B120A57EFE001C60D6 /* XTableView.swift in Sources */,
-				7745C26A1D67241E002212DE /* PersonalApplyTabBarController.m in Sources */,
+				7115A5DA20AAD9AA000D0B96 /* ResumeViewController.swift in Sources */,
 				773D563D1D79540000A0C615 /* JFImageScrollCell.m in Sources */,
-				779B82161D7D506700B23DFA /* ResumeBusinessCooperationVC.m in Sources */,
 				778913921D0FDDDB0096AB3B /* main.m in Sources */,
-				779B82131D7D501E00B23DFA /* ResumeViewController.m in Sources */,
 				778E93A61D69B1C2004D899C /* SWCommonTableViewController.m in Sources */,
+				7115A5F020AAFBF6000D0B96 /* MyDatabaseNavigationController.swift in Sources */,
 				779B81F71D7D478800B23DFA /* EnergyShopTabBarController.m in Sources */,
 				71ECE01F2092121F00495467 /* TLShakeViewController.m in Sources */,
 				77DE73401D1CC7E600F39FDB /* LibraryCollectionViewController.m in Sources */,
+				7115A5CE20AAD38C000D0B96 /* PersonalHouseViewController.swift in Sources */,
 				BF5B9B5E1F8E636E00BD885E /* EconomicsViewController.swift in Sources */,
 				7788AC311D7996B100376C95 /* E_Paging.mm in Sources */,
 				77BD16D61D6EEED500DE5DB9 /* ToutiaoAttentionViewController.m in Sources */,
 				BF5B9B751F8E676F00BD885E /* FamilyViewController.swift in Sources */,
-				779B82281D7D557300B23DFA /* FreedomBooksEditViewController.m in Sources */,
 				778E93691D699D8C004D899C /* XFEmotion.m in Sources */,
 				779937F71E2F5E7100866968 /* EnergyNavigationController.m in Sources */,
 				77BD16461D6EC53300DE5DB9 /* DetailTableViewController.m in Sources */,
 				773D569A1D7955EE00A0C615 /* JFWebViewController.m in Sources */,
 				779B82001D7D491500B23DFA /* EnergyContactDetailViewController.m in Sources */,
 				778E8EFE1D696020004D899C /* XFHomeViewController.m in Sources */,
+				7115A5E020AAD9D8000D0B96 /* ResumeBusinessCooperationVC.swift in Sources */,
 				77FD03DD1E25FC3B00E5099E /* TaobaoShopCarViewController.m in Sources */,
 				771917601D65C239002F2BCD /* WechartViewController.m in Sources */,
-				771917841D65C2DB002F2BCD /* BooksViewController.m in Sources */,
+				7115A5BA20AAC3E6000D0B96 /* PersonalApplyViewController.swift in Sources */,
 				BF5B9B831F8E67CC00BD885E /* HappyViewController.swift in Sources */,
 				71ECDFC82091F9F800495467 /* WechartModes.m in Sources */,
 				71ECE04F2092128E00495467 /* TLChatDetailViewController.m in Sources */,
@@ -6430,73 +6390,73 @@
 				773D56A51D79564600A0C615 /* JFSubscribeViewController.m in Sources */,
 				774BFB171D767389005CA603 /* PlayAudioViewController.m in Sources */,
 				7788AC651D7996E000376C95 /* E_SearchViewController.m in Sources */,
-				779B821C1D7D50B000B23DFA /* ResumeCallMeViewController.m in Sources */,
-				7795CCB71E4B197B006ED4F7 /* PersonalConsumerViewController.m in Sources */,
 				77FD03DA1E25FC2000E5099E /* TaobaoCommunityViewController.m in Sources */,
 				774BFB221D767389005CA603 /* LinsenViewController.m in Sources */,
 				718540F320A539200015A123 /* BaseScrollOCView.m in Sources */,
 				7165A3EA20A5A291001C60D6 /* FreedomBaseViewController.swift in Sources */,
-				7795CCAB1E4B1918006ED4F7 /* PersonalHardwareViewController.m in Sources */,
 				7165A3E520A59DA7001C60D6 /* IqiyiBaseViewController.m in Sources */,
+				7115A5C820AAD36B000D0B96 /* PersonalFastGoodsViewController.swift in Sources */,
 				7165A3E820A5A1D8001C60D6 /* TaobaoBaseViewController.m in Sources */,
+				7115A5EC20AAEE1E000D0B96 /* BooksViewController.swift in Sources */,
 				BF5B9ADF1F8DBE1300BD885E /* User.m in Sources */,
-				7745C2731D672451002212DE /* BooksTabBarController.m in Sources */,
 				71ECE01E2092121F00495467 /* TLScannerViewController.m in Sources */,
 				7780D8D81E237FD500807502 /* TaobaoHomeViewController.m in Sources */,
 				779937B71E2F1DD300866968 /* EnergyShopCarViewController.m in Sources */,
-				7795CCC01E4B19B1006ED4F7 /* PersonalCarViewController.m in Sources */,
 				BF5B9B811F8E67C000BD885E /* PowerViewController.swift in Sources */,
 				BF5B9B671F8E66D900BD885E /* EconomicDevelopmentViewController.swift in Sources */,
 				77CC4F221D90DCA400DD2EC8 /* BaseOCViewController.m in Sources */,
 				778E93B21D69CB86004D899C /* XFMessageChartViewController.m in Sources */,
 				779B81D91D7D3F3100B23DFA /* EnergyNewsViewController.m in Sources */,
+				7115A5C420AAD351000D0B96 /* PersonalComputerViewController.swift in Sources */,
 				779B81FA1D7D47B500B23DFA /* EnergySuperMarketTabBarController.m in Sources */,
+				7115A5DE20AAD9CE000D0B96 /* ResumeDetailViewController.swift in Sources */,
 				779B81A91D7D0D4000B23DFA /* JuheNavigationController.m in Sources */,
 				7788AC641D7996E000376C95 /* E_ScrollViewController.m in Sources */,
 				77BFCC001E1F413C00C95B5E /* notes.md in Sources */,
 				71ECE0242092121F00495467 /* TLDiscoverViewController.m in Sources */,
+				7115A5D020AAD398000D0B96 /* PersonalCarViewController.swift in Sources */,
 				77FD03E01E25FC4E00E5099E /* TaobaoMeViewController.m in Sources */,
-				779B822B1D7D568C00B23DFA /* MyDatabaseNavigationController.m in Sources */,
 				7772A7F41D64434200444973 /* CKRadialMenu.m in Sources */,
 				779B81E81D7D424900B23DFA /* EnergyBusinessListViewController.m in Sources */,
 				BF6BB2A91FAC453B003720C3 /* DetailView.m in Sources */,
-				779B820C1D7D4F0400B23DFA /* ResumeNavigationController.m in Sources */,
+				7115A5C220AAD345000D0B96 /* PersonalHardwareViewController.swift in Sources */,
 				71ECDFC22091F9EF00495467 /* TLExpressionHelper.m in Sources */,
 				71ECE0432092128E00495467 /* TLChatTableViewController.m in Sources */,
-				BF5B9B6F1F8E674B00BD885E /* FreedomViewController.swift in Sources */,
+				7115A5AD20AAA1F1000D0B96 /* FreedomViewController.swift in Sources */,
+				BF5B9B6F1F8E674B00BD885E /* FreeViewController.swift in Sources */,
 				773D568A1D7955AE00A0C615 /* JFDiscoverViewController.m in Sources */,
 				772A13201E2E443D00B79AFB /* DZDealDetailViewController.m in Sources */,
 				BF5B9B771F8E677F00BD885E /* RelativeViewController.swift in Sources */,
+				7115A5B620AAC314000D0B96 /* PersonalApplyNavigationController.swift in Sources */,
 				71267A3F2092CD7F006E1B96 /* SinaMode.m in Sources */,
 				7745C2671D672409002212DE /* MicroEnergyTabBarController.m in Sources */,
+				7115A5AF20AABCB8000D0B96 /* XBaseTabBarController.swift in Sources */,
 				71ECE0252092121F00495467 /* TLScanningViewController.m in Sources */,
+				7115A5A520AA9EF1000D0B96 /* XBaseNavigationViewController.swift in Sources */,
 				779B81DF1D7D3F6D00B23DFA /* EnergyShopViewController.m in Sources */,
 				779B81B81D7D0E8D00B23DFA /* JuheUserViewController.m in Sources */,
-				779B822E1D7D574500B23DFA /* MyDatabaseEditViewController.m in Sources */,
+				7115A5A720AA9FE3000D0B96 /* FreedomNavigationController.swift in Sources */,
 				77BD16CD1D6ECBB800DE5DB9 /* DianpingNavigationController.m in Sources */,
-				7745C2701D672445002212DE /* ResumeTabBarController.m in Sources */,
 				779B81CD1D7D12BC00B23DFA /* JuheDetailQuestion.m in Sources */,
 				71ECDFC72091F9F800495467 /* TLRootViewController.m in Sources */,
+				7115A5E220AAD9E4000D0B96 /* ResumeTheorySystemViewController.swift in Sources */,
 				BF5B9B691F8E671500BD885E /* ThinkDevelopmentViewController.swift in Sources */,
 				772E896F1D76BC75004EDF50 /* NSData+KRCParse.m in Sources */,
 				71267A472092CF9B006E1B96 /* XFOAuthController.m in Sources */,
 				77FD03BE1E25DEFE00E5099E /* TaobaoMiniViewController.m in Sources */,
 				71ECE01C2092121F00495467 /* TLShoppingViewController.m in Sources */,
-				7795CCB11E4B1934006ED4F7 /* PersonalFoodViewController.m in Sources */,
 				7745C24F1D672336002212DE /* AlipayTabBarController.m in Sources */,
 				77BD16D01D6ED6B400DE5DB9 /* ToutiaoViewController.m in Sources */,
 				779B81C41D7D11CD00B23DFA /* JuheChartViewController.m in Sources */,
 				772A131D1E2E440900B79AFB /* DZDealListViewController.m in Sources */,
 				71ECE000209210BF00495467 /* TLFriendDetailViewController.m in Sources */,
 				BF5B9B6B1F8E673C00BD885E /* PursuitViewController.swift in Sources */,
+				7115A5B420AAC2E3000D0B96 /* PersonalApplyTabBarController.swift in Sources */,
 				773D56991D7955EE00A0C615 /* JFClassifyViewController.m in Sources */,
 				7788ACB81D79A91800376C95 /* NewSliderViewController.m in Sources */,
-				7719177E1D65C2BE002F2BCD /* FreedomViewController.m in Sources */,
 				7741F0BC1D6D380800EED332 /* README.md in Sources */,
 				71ECE04E2092128E00495467 /* TLUserGroupCell.m in Sources */,
 				778E8F721D696335004D899C /* XFNewFeatureController.m in Sources */,
-				7795CCA21E4B18D1006ED4F7 /* PersonalInternetViewController.m in Sources */,
-				779B82191D7D509D00B23DFA /* ResumeTheorySystemViewController.m in Sources */,
 				71ECE0222092121F00495467 /* TLShakeSettingViewController.m in Sources */,
 				771917631D65C247002F2BCD /* KugouViewController.m in Sources */,
 				7745C2551D67235E002212DE /* IqiyiTabBarController.m in Sources */,
@@ -6504,11 +6464,11 @@
 				7719176C1D65C26C002F2BCD /* SinaViewController.m in Sources */,
 				77BD16D31D6EEE8A00DE5DB9 /* ToutiaoVideoViewController.m in Sources */,
 				71ECDFC12091F9EF00495467 /* TLUserHelper.m in Sources */,
+				7115A5DC20AAD9C2000D0B96 /* ResumeListViewController.swift in Sources */,
 				779937C01E2F1EF500866968 /* EnergySuperHomeViewController.m in Sources */,
 				774BFB251D767389005CA603 /* LocalMusicViewController.m in Sources */,
 				7741F1E21D6D538D00EED332 /* SDAssetsTableViewController.m in Sources */,
 				7745C2451D67188C002212DE /* WechartNavigationController.m in Sources */,
-				779B821F1D7D512500B23DFA /* ResumeDetailViewController.m in Sources */,
 				773D56BB1D79568500A0C615 /* JFLoginViewController.m in Sources */,
 				77FD03E31E26173B00E5099E /* ToutiaoHomeSampleViewController.m in Sources */,
 				7741F1D81D6D530300EED332 /* SDScanViewController.m in Sources */,
@@ -6517,6 +6477,8 @@
 				77BD16C61D6ECA6F00DE5DB9 /* DZDiscoverController.m in Sources */,
 				71ECE04C2092128E00495467 /* TLGroupQRCodeViewController.m in Sources */,
 				778E8F081D696020004D899C /* XFTitleMenuViewController.m in Sources */,
+				7115A5EE20AAFBBA000D0B96 /* MyDatabaseTabBarController.swift in Sources */,
+				7115A5A920AAA191000D0B96 /* FreedomBooksViewController.swift in Sources */,
 				771917751D65C29B002F2BCD /* JuheDataViewController.m in Sources */,
 				77BFCC011E1F413C00C95B5E /* technology.md in Sources */,
 				71ECE007209210BF00495467 /* TLAddFriendViewController.m in Sources */,
@@ -6524,26 +6486,28 @@
 				BF5B9B7D1F8E67A700BD885E /* HonorViewController.swift in Sources */,
 				BF5B9B6D1F8E674400BD885E /* MoneyViewController.swift in Sources */,
 				779B81D61D7D3F1F00B23DFA /* EnergySampleViewController.m in Sources */,
-				7745C26D1D672436002212DE /* FreedomTabBarController.m in Sources */,
+				7115A5BC20AAD31A000D0B96 /* PersonalInternetViewController.swift in Sources */,
 				7745C2581D672373002212DE /* TaobaoTabBarController.m in Sources */,
+				7115A5F620AAFC40000D0B96 /* MyDatabaseEditViewController.swift in Sources */,
 				773D56901D7955AE00A0C615 /* JFSearchHistoryViewController.m in Sources */,
 				776460701D68437F00ACCCAC /* TLDBManager.m in Sources */,
 				779B81D01D7D1A2E00B23DFA /* JuheAPIDetailViewController.m in Sources */,
 				BF5B9B791F8E678900BD885E /* FriendViewController.swift in Sources */,
 				71ECE0212092121F00495467 /* TLGameViewController.m in Sources */,
+				7115A5B120AABCF6000D0B96 /* FreedomTabBarController.swift in Sources */,
+				7115A5AB20AAA1C4000D0B96 /* FreedomBooksEditViewController.swift in Sources */,
 				7745C2611D6723DF002212DE /* ToutiaoTabBarController.m in Sources */,
 				779937B41E2F1DBC00866968 /* EnergyShopFindViewController.m in Sources */,
-				7745C2761D672EE5002212DE /* MyDatabaseTabBarController.m in Sources */,
 				779B81B51D7D0E7300B23DFA /* JuheDynamicViewController.m in Sources */,
 				7741F1F51D6D53B700EED332 /* SDYuEBaoTableViewController.m in Sources */,
 				77CC4F441D90E07A00DD2EC8 /* BaseTabBarController.m in Sources */,
 				71517B1C2094803300B40538 /* JSONObject.swift in Sources */,
-				7719177B1D65C2B2002F2BCD /* PersonalApplyViewController.m in Sources */,
 				779937BA1E2F1DE100866968 /* EnergyShopMeViewController.m in Sources */,
 				77CC4F3E1D90E03200DD2EC8 /* BaseNavigationController.m in Sources */,
 				77BD16D91D6EF25900DE5DB9 /* ToutiaoMeViewController.m in Sources */,
 				77BD16B11D6ECA1900DE5DB9 /* DZDealController.m in Sources */,
 				7165A3E220A5903D001C60D6 /* WechatBaseViewController.m in Sources */,
+				7115A5E620AAECED000D0B96 /* BooksTabBarController.swift in Sources */,
 				779B81E21D7D3F7D00B23DFA /* EnergyContactUSViewController.m in Sources */,
 				7745C2521D67234B002212DE /* KugouTabBarController.m in Sources */,
 				71267A512092DC7B006E1B96 /* WXViewController.m in Sources */,
@@ -6553,6 +6517,7 @@
 				7741F1AB1D6D524400EED332 /* SDDiscoverTableViewController.m in Sources */,
 				7745C25E1D6723A9002212DE /* DianpingTabBarController.m in Sources */,
 				7719175D1D65C227002F2BCD /* AlipayViewController.m in Sources */,
+				7115A5E820AAED13000D0B96 /* BooksNavigationController.swift in Sources */,
 				71267A5B2092E736006E1B96 /* BookSubViews.m in Sources */,
 				773D56BC1D79568500A0C615 /* JFMineViewController.m in Sources */,
 				778E8F121D696096004D899C /* XFProfileViewController.m in Sources */,
@@ -6562,7 +6527,6 @@
 				773D56CC1D796A7D00A0C615 /* IqiyiNavigationController.m in Sources */,
 				774BFB271D767389005CA603 /* KugouRightSettingViewController.m in Sources */,
 				778E8F0C1D696059004D899C /* XFMessageViewController.m in Sources */,
-				7795CCBD1E4B19A6006ED4F7 /* PersonalHouseViewController.m in Sources */,
 				77BD16481D6EC53300DE5DB9 /* SingleOneSectionTableViewController.m in Sources */,
 				778E93AF1D69B229004D899C /* SWGeneralSettingViewController.m in Sources */,
 				71ECE002209210BF00495467 /* TLPublicServerViewController.m in Sources */,
@@ -6575,32 +6539,27 @@
 				779B81C11D7D11BE00B23DFA /* JuheAboutUSViewController.m in Sources */,
 				71267A582092E726006E1B96 /* BookReadMode.m in Sources */,
 				71ECE04A2092128E00495467 /* TLConversationViewController.m in Sources */,
+				7115A5BE20AAD32E000D0B96 /* PersonalEducationViewController.swift in Sources */,
 				77FD03C11E25DF6800E5099E /* TaobaoMiniDynamicViewController.m in Sources */,
-				7795CCB41E4B1958006ED4F7 /* PersonalFastGoodsViewController.m in Sources */,
 				71ECE006209210BF00495467 /* TLFriendSearchViewController.m in Sources */,
 				77BD16451D6EC53300DE5DB9 /* DetailScrollViewController.m in Sources */,
 				779B81DC1D7D3F3F00B23DFA /* EnergyHomeViewController.m in Sources */,
 				7788AC611D7996E000376C95 /* DetailViewController.m in Sources */,
 				77BD16C91D6ECA7F00DE5DB9 /* DZMeController.m in Sources */,
-				779B82031D7D4B2400B23DFA /* PersonalApplyNavigationController.m in Sources */,
 				71ECE004209210BF00495467 /* TLGroupViewController.m in Sources */,
 				7741F1BF1D6D528E00EED332 /* SDServiceTableViewController.m in Sources */,
 				71250EC62091C0F20093B59B /* FreedomTools.m in Sources */,
 				779937C31E2F1F0300866968 /* EnergySuperMeViewController.m in Sources */,
-				7795CCA51E4B18F7006ED4F7 /* PersonalEducationViewController.m in Sources */,
-				779B82221D7D533100B23DFA /* FreeDomNavigationController.m in Sources */,
 				779B81B21D7D0E3500B23DFA /* JuheAPIViewController.m in Sources */,
-				77F0D75B1E4C59120036F5F9 /* BooksNavigationController.m in Sources */,
-				7795CCA81E4B1906006ED4F7 /* PersonalSoftViewController.m in Sources */,
+				7115A5B820AAC348000D0B96 /* PersonalApplyBaseViewController.swift in Sources */,
 				7719176F1D65C27C002F2BCD /* DianpingViewController.m in Sources */,
 				77FD03CD1E25E4E900E5099E /* TaobaoMiniTopicViewController.m in Sources */,
 				77F0D75E1E4C5AC80036F5F9 /* BooksMainViewController.m in Sources */,
-				779B82251D7D556500B23DFA /* FreedomBooksViewController.m in Sources */,
 				71ECE0442092128E00495467 /* TLChatBaseViewController.m in Sources */,
 				77F2E8FB1E4967E000C7E9D5 /* ToutiaoHomeDetailViewController.m in Sources */,
+				7115A5C020AAD339000D0B96 /* PersonalSoftViewController.swift in Sources */,
 				71267A482092CF9B006E1B96 /* XFNavigationController.m in Sources */,
 				BF5B9B621F8E641000BD885E /* PhilosophyViewController.swift in Sources */,
-				7795CCAE1E4B1923006ED4F7 /* PersonalComputerViewController.m in Sources */,
 				71ECE001209210BF00495467 /* TLTagsViewController.m in Sources */,
 				774BFB3D1D76744F005CA603 /* TabBarView.m in Sources */,
 				77BD16C31D6ECA5E00DE5DB9 /* DZHomeController.m in Sources */,
@@ -6611,7 +6570,7 @@
 				779B81EB1D7D428C00B23DFA /* EnergyBusinessDetailViewController.m in Sources */,
 				7745C2641D6723EC002212DE /* JuheDataTabBarController.m in Sources */,
 				71ECE005209210BF00495467 /* TLFriendsViewController.m in Sources */,
-				771917871D65C2E6002F2BCD /* MyDatabaseViewController.m in Sources */,
+				7115A5D620AAD73F000D0B96 /* ResumeNavigationController.swift in Sources */,
 				779937BD1E2F1E1500866968 /* EnergyShopHomeViewController.m in Sources */,
 				779B81AC1D7D0E0B00B23DFA /* JuheContectUSViewController.m in Sources */,
 				7745C2461D67188C002212DE /* WechartTabBarController.m in Sources */,
@@ -6621,7 +6580,6 @@
 				BF5B9B711F8E675100BD885E /* LoveViewController.swift in Sources */,
 				771917691D65C25F002F2BCD /* TaobaoViewController.m in Sources */,
 				71ECE003209210BF00495467 /* TLNewFriendViewController.m in Sources */,
-				7795CC9F1E4AB4AF006ED4F7 /* ResumeListViewController.m in Sources */,
 				778E93681D699D8C004D899C /* XFComposeViewController.m in Sources */,
 				779B81C71D7D11E300B23DFA /* JuheMessageViewController.m in Sources */,
 				77FD03C41E25E48100E5099E /* TaobaoMiniNewViewController.m in Sources */,
@@ -6631,10 +6589,10 @@
 				71ECE01D2092121F00495467 /* TLMomentDetailViewController.m in Sources */,
 				779B81EE1D7D438C00B23DFA /* EnergyNewsDetailViewController.m in Sources */,
 				774BFB281D767389005CA603 /* SettingViewController.m in Sources */,
+				7115A5EA20AAEDF1000D0B96 /* BooksBaseViewController.swift in Sources */,
 				7741F1961D6D514100EED332 /* SDBasicViewContoller.m in Sources */,
 				71ECE0232092121F00495467 /* TLMomentsViewController.m in Sources */,
 				71267A462092CF9B006E1B96 /* SinaTabBarController.m in Sources */,
-				7795CCBA1E4B1987006ED4F7 /* PersonalPhoneViewController.m in Sources */,
 				779B81F41D7D45B600B23DFA /* EnergyDetailViewController.m in Sources */,
 				BF5B9B7B1F8E679300BD885E /* HealthViewController.swift in Sources */,
 			);
@@ -6798,7 +6756,7 @@
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/Others/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Freedom/Others/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.freedom.zyzy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -6830,7 +6788,7 @@
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/Others/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Freedom/Others/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.freedom.zyzy;

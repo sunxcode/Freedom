@@ -1,5 +1,6 @@
 
 import UIKit
+@objcMembers
 open class BaseTableViewCell : UITableViewCell {
     open var icon: UIImageView!
     open var line: UIView!
@@ -21,7 +22,7 @@ open class BaseTableViewCell : UITableViewCell {
         }
         return instance!
     }
-    class func getTableCellIdentifier() -> String {
+    public class func getTableCellIdentifier() -> String {
         return "\(NSStringFromClass(self))Identifier"
     }
     required override public init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -34,25 +35,13 @@ open class BaseTableViewCell : UITableViewCell {
     }
     func loadBaseTableCellSubviews() {
         initUI()
-        loadSubViews()
-    }
-    func loadSubViews() {
-        for obj: Any in subviews {
-            if ("UITableViewCellScrollView" == NSStringFromClass(obj as! AnyClass)) {
-                let scrollView = obj as? UIScrollView
-                scrollView?.delaysContentTouches = false
-                //是否先等待一会儿看scrollview 是否有touch 事件发生
-                scrollView?.isExclusiveTouch = true
-                //避免两个对象同时被触发
-                break
-            }
-        }
+        isExclusiveTouch = true
         isUserInteractionEnabled = true
         contentView.isUserInteractionEnabled = true
         selectionStyle = .none
     }
     //MARK: 以下子类重写
-    func initUI() {
+    open func initUI() {
         backgroundColor = UIColor(red: 245, green: 245, blue: 245, alpha: 1)
         icon = UIImageView()
         icon.contentMode = .scaleToFill

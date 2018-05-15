@@ -257,7 +257,7 @@ static UILabel *textLabel;
 }
 - (NSAttributedString *)attrText{
     if (_attrText == nil) {
-        _attrText = [self.text toMessageString];
+        _attrText = [[NSAttributedString alloc]initWithString:self.text];
     }
     return _attrText;
 }

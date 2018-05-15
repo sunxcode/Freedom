@@ -15,7 +15,7 @@
 + (UIFont *)fontConversationUsername;
 + (UIFont *)fontConversationDetail;
 + (UIFont *)fontConversationTime;
-+ (UIFont *) fontFriendsUsername;
++ (UIFont *)fontFriendsUsername;
 + (UIFont *)fontMineNikename;
 + (UIFont *)fontMineUsername;
 + (UIFont *)fontSettingHeaderAndFooterTitle;

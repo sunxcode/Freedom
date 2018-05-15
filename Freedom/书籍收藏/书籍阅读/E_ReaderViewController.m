@@ -1,4 +1,3 @@
-//   FreedomViewController.m
 //   Freedom
 //  Created by Super on 14-8-8.
 #import "E_ReaderViewController.h"

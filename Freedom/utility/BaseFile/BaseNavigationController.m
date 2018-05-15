@@ -9,6 +9,5 @@
 @implementation BaseNavigationController
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = redcolor;
 }
 @end

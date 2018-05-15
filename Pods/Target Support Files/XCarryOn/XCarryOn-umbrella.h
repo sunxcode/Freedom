@@ -10,9 +10,12 @@
 #endif
 #endif
 
-#import "MyPageControl.h"
+#import "BaseExcelView.h"
+#import "BaseSegButtons.h"
+#import "ChineseToPinyin.h"
 #import "RGBNavigationController.h"
 #import "SDDataCache.h"
+#import "SelectButtons.h"
 #import "Utility.h"
 
 FOUNDATION_EXPORT double XCarryOnVersionNumber;

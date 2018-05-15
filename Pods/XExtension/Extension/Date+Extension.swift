@@ -1,16 +1,10 @@
 
 //
 //  Date+Extension.swift
-//  project
-//
-//  Created by Super on 2017/9/13.
-//  Copyright © 2017年 Super. All rights reserved.
-//
-
 import Foundation
 // MARK: - 计算
 private var moren :TimeInterval = Foundation.Date().timeIntervalSince1970
-extension Date {
+public extension Date {
     var timeInterval:TimeInterval {
         get {
             guard let isFinished = objc_getAssociatedObject(self, &moren) as? TimeInterval else {
@@ -25,11 +19,9 @@ extension Date {
     mutating func addDay(_ day:Int) {
         timeInterval += Double(day) * 24 * 3600
     }
-    
     mutating func reduceDay(_ day:Int) {
         timeInterval -= Double(day) * 24 * 3600
     }
-    
     mutating func addHour(_ hour:Int) {
         timeInterval += Double(hour) * 3600
     }
@@ -67,7 +59,6 @@ extension Date {
             // Fallback on earlier versions
         }
     }
-    
     // for example : let (year, month, day) = date.getDay()
     func getDay() -> (year:Int, month:Int, day:Int) {
         var year:Int = 0, month:Int = 0, day:Int = 0
@@ -79,7 +70,6 @@ extension Date {
         }
         return (year, month, day)
     }
-    
     // for example : let (hour, minute, second) = date.getTime()
     func getTime() -> (hour:Int, minute:Int, second:Int) {
         var hour:Int = 0, minute:Int = 0, second:Int = 0
@@ -91,31 +81,19 @@ extension Date {
         }
         return (hour, minute, second)
     }
-    /**
-     获取当前时间戳
-     */
-    static func getCurrentTimeStamp() -> String {
+    //获取当前时间戳
+    func getCurrentTimeStamp() -> String {
         let timeStamp : String = "\(Int64(floor(Date().timeIntervalSince1970 * 1000)))"
         return timeStamp
     }
-    
-    /**
-     获取当前年月日
-     */
-    static func getCurrentDate() -> String {
+    //获取当前年月日
+    func getCurrentDate() -> String {
         let formatter : DateFormatter = DateFormatter()
         formatter.date(from: "yyyy-MM-dd")
         return formatter.string(from: Date())
     }
-    
-    /**
-     将时间转换为时间戳
-     
-     - parameter date: 要转化的时间
-     
-     - returns: 时间戳
-     */
-    static func change2TimeStamp(_ date : String) -> String {
+    //将时间转换为时间戳
+    func change2TimeStamp(_ date : String) -> String {
         let formatter : DateFormatter = DateFormatter()
         formatter.date(from: "yyyy-MM-dd")
         formatter.dateStyle = .medium
@@ -124,19 +102,11 @@ extension Date {
         let dateNow = formatter.date(from: date)
         return "\(String(describing: dateNow?.timeIntervalSince1970))000"
     }
-    
-    /**
-     将时间戳转化成时间
-     
-     - parameter timestamp: 要转化的时间戳
-     
-     - returns: 时间
-     */
-    static func change2Date(_ timestamp : String) -> String {
+    ///将时间戳转化成时间
+    func change2Date(_ timestamp : String) -> String {
         guard timestamp.utf8.count > 3 else {
             return ""
         }
-        
         let newTimestamp = (timestamp as NSString).substring(from: timestamp.utf8.count - 3)
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
@@ -263,11 +233,11 @@ extension Date {
             return "后天"
         }else{
             //直接返回当时日期的字符串(这里让它返回空)
-            return Date.getWeekString(fromInteger: weekIntValue)//周几
+            return self.getWeekString(fromInteger: weekIntValue)//周几
         }
     }
     //通过数字返回星期几
-    static func getWeekString(fromInteger week: Int) -> String {
+    func getWeekString(fromInteger week: Int) -> String {
         var str_week: String
         switch week {
         case 1:str_week = "周日"
@@ -281,6 +251,5 @@ extension Date {
         }
         return str_week
     }
-
 }
 

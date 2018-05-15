@@ -19,7 +19,6 @@ typedef  void(^didRemoveImage)(void);
 - (void)show:(UIView *)bgView didFinish:(didRemoveImage)tempBlock;
 - (id)initWithFrame:(CGRect)frame byClick:(NSInteger)clickTag appendArray:(NSArray *)appendArray;
 @end
-
 @implementation YMShowImageView{
     UIScrollView *_scrollView;
     CGRect self_Frame;
@@ -29,29 +28,22 @@ typedef  void(^didRemoveImage)(void);
 - (id)initWithFrame:(CGRect)frame byClick:(NSInteger)clickTag appendArray:(NSArray *)appendArray{
     self = [super initWithFrame:frame];
     if (self) {
-        
         self_Frame = frame;
-        
         self.backgroundColor = [UIColor redColor];
         self.alpha = 0.0f;
         page = 0;
         doubleClick = YES;
-        
         [self configScrollViewWith:clickTag andAppendArray:appendArray];
-        
         UITapGestureRecognizer *tapGser = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(disappear)];
         tapGser.numberOfTouchesRequired = 1;
         tapGser.numberOfTapsRequired = 1;
         [self addGestureRecognizer:tapGser];
-        
         UITapGestureRecognizer *doubleTapGser = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeBig:)];
         doubleTapGser.numberOfTapsRequired = 2;
         [self addGestureRecognizer:doubleTapGser];
         [tapGser requireGestureRecognizerToFail:doubleTapGser];
-        
     }
     return self;
-    
 }
 - (void)configScrollViewWith:(NSInteger)clickTag andAppendArray:(NSArray *)appendArray{
     _scrollView = [[UIScrollView alloc] initWithFrame:self_Frame];
@@ -60,64 +52,46 @@ typedef  void(^didRemoveImage)(void);
     _scrollView.delegate = self;
     _scrollView.contentSize = CGSizeMake(self.frame.size.width * appendArray.count, 0);
     [self addSubview:_scrollView];
-    
     float W = self.frame.size.width;
-    
-    
     for (int i = 0; i < appendArray.count; i ++) {
-        
         UIScrollView *imageScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(self.frame.size.width * i, 0, self.frame.size.width, self.frame.size.height)];
         imageScrollView.backgroundColor = [UIColor blackColor];
         imageScrollView.contentSize = CGSizeMake(self.frame.size.width, self.frame.size.height);
         imageScrollView.delegate = self;
         imageScrollView.maximumZoomScale = 4;
         imageScrollView.minimumZoomScale = 1;
-        
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.bounds];
         UIImage *img = [UIImage imageNamed:[NSString stringWithFormat:@"%@",[appendArray objectAtIndex:i]]];
         imageView.image = img;
         imageView.contentMode = UIViewContentModeScaleAspectFit;
         [imageScrollView addSubview:imageView];
         [_scrollView addSubview:imageScrollView];
-        
         imageScrollView.tag = 100 + i ;
         imageView.tag = 1000 + i;
-        
-        
     }
     [_scrollView setContentOffset:CGPointMake(W * (clickTag - 9999), 0) animated:YES];
     page = clickTag - 9999;
 }
 - (void)disappear{
-    
     _removeImg();
-    
 }
 - (void)changeBig:(UITapGestureRecognizer *)tapGes{
     CGFloat newscale = 1.9;
     UIScrollView *currentScrollView = (UIScrollView *)[self viewWithTag:page + 100];
     CGRect zoomRect = [self zoomRectForScale:newscale withCenter:[tapGes locationInView:tapGes.view] andScrollView:currentScrollView];
-    
-    if (doubleClick == YES)  {
-        
+    if (doubleClick == YES){
         [currentScrollView zoomToRect:zoomRect animated:YES];
-        
-    }else {
-        
+    }else{
         [currentScrollView zoomToRect:currentScrollView.frame animated:YES];
     }
-    
     doubleClick = !doubleClick;
 }
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView{
-    
     UIImageView *imageView = (UIImageView *)[self viewWithTag:scrollView.tag + 900];
     return imageView;
 }
 - (CGRect)zoomRectForScale:(CGFloat)newscale withCenter:(CGPoint)center andScrollView:(UIScrollView *)scrollV{
-    
     CGRect zoomRect = CGRectZero;
-    
     zoomRect.size.height = scrollV.frame.size.height / newscale;
     zoomRect.size.width = scrollV.frame.size.width  / newscale;
     zoomRect.origin.x = center.x - (zoomRect.size.width  / 2.0);
@@ -126,45 +100,30 @@ typedef  void(^didRemoveImage)(void);
     return zoomRect;
 }
 - (void)show:(UIView *)bgView didFinish:(didRemoveImage)tempBlock{
-    
     [bgView addSubview:self];
-    
     _removeImg = tempBlock;
-    
     [UIView animateWithDuration:.4f animations:^(){
-        
         self.alpha = 1.0f;
-        
     } completion:^(BOOL finished) {
-        
     }];
 }
 #pragma mark - ScorllViewDelegate
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-    
     CGPoint offset = _scrollView.contentOffset;
-    page = offset.x / self.frame.size.width ;
-    
-    
+    page = offset.x / self.frame.size.width;
     UIScrollView *scrollV_next = (UIScrollView *)[self viewWithTag:page+100+1]; //前一页
-    
     if (scrollV_next.zoomScale != 1.0){
-        
         scrollV_next.zoomScale = 1.0;
     }
-    
     UIScrollView *scollV_pre = (UIScrollView *)[self viewWithTag:page+100-1]; //后一页
     if (scollV_pre.zoomScale != 1.0){
         scollV_pre.zoomScale = 1.0;
     }
-    
     // DLog(@"page == %d",page);
 }
 - (void)scrollViewDidZoom:(UIScrollView *)scrollView{
-    
 }
 @end
-
 @protocol InputDelegate <NSObject>
 - (void)YMReplyInputWithReply:(NSString *)replyText appendTag:(NSInteger)inputTag;
 - (void)destorySelf;
@@ -178,8 +137,6 @@ typedef  void(^didRemoveImage)(void);
     int inputHeightWithShadow;
     BOOL autoResizeOnKeyboardVisibilityChanged;
     UIView *tapView;
-    
-    
 }
 @property (strong, nonatomic) UIButton* sendButton;
 @property (strong, nonatomic) UITextView* textView;
@@ -197,13 +154,11 @@ typedef  void(^didRemoveImage)(void);
 - (id) initWithFrame:(CGRect)frame andAboveView:(UIView *)bgView;
 - (void)disappear;
 @end
-
 @interface NSString (YMReplyInputView)
 @end
 @implementation NSString (HXReplyInputView)
 - (CGSize) sizeForFont:(UIFont *)font{
-    if ([self respondsToSelector:@selector(sizeWithAttributes:)])
-    {
+    if ([self respondsToSelector:@selector(sizeWithAttributes:)]){
         NSDictionary* attribs = @{NSFontAttributeName:font};
         return ([self sizeWithAttributes:attribs]);
     }
@@ -214,21 +169,15 @@ typedef  void(^didRemoveImage)(void);
      constrainedToSize:(CGSize)constraint
          lineBreakMode:(NSLineBreakMode)lineBreakMode{
     CGSize size;
-    if ([self respondsToSelector:@selector(sizeWithAttributes:)])
-    {
+    if ([self respondsToSelector:@selector(sizeWithAttributes:)]){
         NSDictionary *attributes = @{NSFontAttributeName:font};
-        
         CGSize boundingBox = [self boundingRectWithSize:constraint options: NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
-        
         size = CGSizeMake(ceil(boundingBox.width), ceil(boundingBox.height));
-    }
-    else
-    {
+    }else{
         //        size = [self sizeWithFont:font constrainedToSize:constraint lineBreakMode:lineBreakMode];
         NSDictionary *attributes = @{ NSFontAttributeName:font, NSParagraphStyleAttributeName:[[NSMutableParagraphStyle alloc]init]};
         size = [self boundingRectWithSize:constraint options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attributes context:nil].size;
     }
-    
     return size;
 }
 @end
@@ -240,32 +189,24 @@ typedef  void(^didRemoveImage)(void);
 @synthesize sendButton;
 @synthesize keyboardHeight;
 - (void) composeView{
-    
     keyboardAnimationDuration = 0.4f;
     self.keyboardHeight = 216;
     topGap = 8;
-    
     inputHeight = 38.0f;
     inputHeightWithShadow = 44.0f;
     _autoResizeOnKeyboardVisibilityChanged = NO;
-    
     CGSize size = self.frame.size;
-    
     inputBackgroundView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
     inputBackgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     inputBackgroundView.contentMode = UIViewContentModeScaleToFill;
     inputBackgroundView.backgroundColor = [UIColor clearColor];
     [self addSubview:inputBackgroundView];
-    
-    
-    
     textViewBackgroundView = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
     textViewBackgroundView.borderStyle = UITextBorderStyleRoundedRect;
     textViewBackgroundView.autoresizingMask = UIViewAutoresizingNone;
     textViewBackgroundView.userInteractionEnabled = NO;
     textViewBackgroundView.enabled = NO;
     [self addSubview:textViewBackgroundView];
-    
     textView = [[UITextView alloc] initWithFrame:CGRectMake(70.0f, topGap, 185 + screenWidth - 320, 0)];
     textView.backgroundColor = [UIColor clearColor];
     textView.delegate = self;
@@ -275,16 +216,13 @@ typedef  void(^didRemoveImage)(void);
     textView.returnKeyType = UIReturnKeySend;
     textView.font = [UIFont systemFontOfSize:15.0f];
     [self addSubview:textView];
-    
     [self adjustTextInputHeightForText:@"" animated:NO];
-    
     lblPlaceholder = [[UILabel alloc] initWithFrame:CGRectMake(78.0f, topGap+2, 160, 20)];
     lblPlaceholder.font = [UIFont systemFontOfSize:15.0f];
     lblPlaceholder.text = @"评论...";
     lblPlaceholder.textColor = [UIColor lightGrayColor];
     lblPlaceholder.backgroundColor = [UIColor clearColor];
     [self addSubview:lblPlaceholder];
-    
     sendButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [sendButton setTitle:@"发表" forState:0];
     [sendButton setBackgroundImage:[[UIImage imageNamed:@"button_send_comment.png"] stretchableImageWithLeftCapWidth:3 topCapHeight:22] forState:UIControlStateNormal];
@@ -299,16 +237,11 @@ typedef  void(^didRemoveImage)(void);
 }
 - (void)layoutSubviews{
     [super layoutSubviews];
-    
     //最上面的一条细线
     UILabel *dividLbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, screenWidth, 1)];
-    
     dividLbl.backgroundColor = [UIColor colorWithRed:227/255.0 green:227/255.0 blue:229/255.0 alpha:1.0];
     [self addSubview:dividLbl];
-    
-    
     self.backgroundColor = [UIColor whiteColor];
-    
     textView.frame = CGRectMake(5, textView.frame.origin.y, screenWidth - 10 - 65, textView.frame.size.height);
     CGRect f = textView.frame;
     f.size.height = f.size.height+3;
@@ -322,21 +255,16 @@ typedef  void(^didRemoveImage)(void);
 }
 - (void)willMoveToSuperview:(UIView *)newSuperview{
     [super willMoveToSuperview:newSuperview];
-    
-    if (newSuperview == nil)
-    {
+    if (newSuperview == nil){
         [self listenForKeyboardNotifications:NO];
-    }
-    else
-    {
+    }else{
         [self listenForKeyboardNotifications:YES];
     }
 }
 - (void) adjustTextInputHeightForText:(NSString*)text animated:(BOOL)animated{
     int h1 = [text sizeForFont:textView.font].height;
     int h2 = [text sizeForFont:textView.font constrainedToSize:CGSizeMake(textView.frame.size.width - 16, 170.0f) lineBreakMode:NSLineBreakByWordWrapping].height;
-    [UIView animateWithDuration:(animated ? .1f : 0) animations:^
-     {
+    [UIView animateWithDuration:(animated ? .1f : 0) animations:^{
          int h = h2 == h1 ? inputHeightWithShadow : h2 + 24;
          if (h>78) {
              h =78;
@@ -345,30 +273,22 @@ typedef  void(^didRemoveImage)(void);
          CGRect r2 = CGRectMake(0, self.frame.origin.y - delta, self.frame.size.width, h);
          self.frame = r2;
          inputBackgroundView.frame = CGRectMake(0, 0, self.frame.size.width, h);
-         
          CGRect r = textView.frame;
          r.origin.y = topGap;
          r.size.height = h - 18;
          textView.frame = r;
-         
      } completion:^(BOOL finished){ }];
 }
 - (id) initWithFrame:(CGRect)frame andAboveView:(UIView *)bgView{
     self = [super initWithFrame:frame];
-    
-    if (self)
-    {
+    if (self){
         tapView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, screenHeight)];
         tapView.backgroundColor = [UIColor blackColor];
         tapView.userInteractionEnabled = YES;
         [bgView addSubview:tapView];
-        
         tapView.hidden = YES;
-        
         UITapGestureRecognizer *tapGer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(disappear)];
         [tapView addGestureRecognizer:tapGer];
-        
-        
         [self composeView];
     }
     return self;
@@ -396,44 +316,33 @@ typedef  void(^didRemoveImage)(void);
 }
 #pragma mark - Display
 - (void)beganEditing{
-    if (_autoResizeOnKeyboardVisibilityChanged)
-    {
+    if (_autoResizeOnKeyboardVisibilityChanged){
         UIViewAnimationOptions opt = animationOptionsWithCurve(keyboardAnimationCurve);
-        
-        [UIView animateWithDuration:keyboardAnimationDuration delay:0 options:opt animations:^
-         {
+        [UIView animateWithDuration:keyboardAnimationDuration delay:0 options:opt animations:^{
              self.transform = CGAffineTransformMakeTranslation(0, -self.keyboardHeight);
          } completion:^(BOOL fin){}];
         [self fitText];
     }
 }
 - (void)endedEditing{
-    if (_autoResizeOnKeyboardVisibilityChanged)
-    {
+    if (_autoResizeOnKeyboardVisibilityChanged){
         UIViewAnimationOptions opt = animationOptionsWithCurve(keyboardAnimationCurve);
-        
-        [UIView animateWithDuration:keyboardAnimationDuration delay:0 options:opt animations:^
-         {
+        [UIView animateWithDuration:keyboardAnimationDuration delay:0 options:opt animations:^{
              self.transform = CGAffineTransformIdentity;
          } completion:^(BOOL fin){}];
-        
         [self fitText];
     }
-    
     lblPlaceholder.hidden = textView.text.length > 0;
 }
 #pragma mark - Keyboard Notifications
 - (void)listenForKeyboardNotifications:(BOOL)listen{
-    if (listen)
-    {
+    if (listen){
         [self listenForKeyboardNotifications:NO];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
-    }
-    else
-    {
+    }else{
         [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
         [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
         [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
@@ -448,8 +357,7 @@ typedef  void(^didRemoveImage)(void);
     if (d!=nil && [d isKindOfClass:[NSNumber class]])
         keyboardAnimationCurve = [d integerValue];
     NSValue *v = [[n userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey];
-    if ([v isKindOfClass:[NSValue class]])
-    {
+    if ([v isKindOfClass:[NSValue class]]){
         CGRect r = [v CGRectValue];
         r = [self.window convertRect:r toView:self];
         self.keyboardHeight = r.size.height;
@@ -465,8 +373,7 @@ typedef  void(^didRemoveImage)(void);
 - (void)keyboardDidHide:(NSNotification*)n{
 }
 - (void)keyboardDidShow:(NSNotification*)n{
-    if ([textView isFirstResponder])
-    {
+    if ([textView isFirstResponder]){
         [self beganEditing];
     }
 }
@@ -477,64 +384,48 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
 #pragma mark - UITextFieldDelegate Delegate
 - (void) textViewDidBeginEditing:(UITextView*)textview{
     [self beganEditing];
-    
 }
 - (void) textViewDidEndEditing:(UITextView*)textview{
     [self endedEditing];
-    
     _autoResizeOnKeyboardVisibilityChanged = NO;
 }
 - (BOOL) textView:(UITextView*)textview shouldChangeTextInRange:(NSRange)range replacementText:(NSString*)text{
-    if ([text isEqualToString:@"\n"])
-    {
+    if ([text isEqualToString:@"\n"]){
         [self performSelector:@selector(returnButtonPressed:) withObject:nil afterDelay:.1];
         return NO;
     }else if (range.location >= 140||range.location + text.length >140){
-        
         //[self.superview makeToast:@"超过字数限制啦" duration:0.5f position:@"center-38"];
         return  YES;
-    }else if (text.length > 0)
-    {
+    }else if (text.length > 0){
         [self adjustTextInputHeightForText:[NSString stringWithFormat:@"%@%@", textview.text, text] animated:YES];
     }
     return YES;
 }
 - (void) textViewDidChange:(UITextView*)textview{
     lblPlaceholder.hidden = textview.text.length > 0;
-    
     [self fitText];
-    
     if(textView.text.length == 141){
-        
-        // [self.superview makeToast:@"超过字数限制啦" duration:0.5f position:@"center-38"];
+// [self.superview makeToast:@"超过字数限制啦" duration:0.5f position:@"center-38"];
     }
 }
 #pragma mark THChatInput Delegate
 - (void) sendButtonPressed:(id)sender{
-    
     if ([textView.text isEqualToString:@""]) {
-        
-        //DLog(@"无内容");
         return;
     }
-    
     [_delegate YMReplyInputWithReply:textView.text appendTag:_replyTag];
     [self disappear];
-    
 }
 - (void)returnButtonPressed:(id)sender{
     [self sendButtonPressed:sender];
 }
 - (void)showCommentView{
-    
     self.hidden = NO;
     tapView.hidden = NO;
     tapView.alpha = 0.6;
     _autoResizeOnKeyboardVisibilityChanged = YES;
     [self.textView becomeFirstResponder];
     [self beganEditing];
-    
-    
 }
 - (void)disappear{
     [self endedEditing];
@@ -543,12 +434,9 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
     tapView.alpha = 1.0;
     _autoResizeOnKeyboardVisibilityChanged = NO;
     [self.textView resignFirstResponder];
-    
     [_delegate destorySelf];
-    
 }
 @end
-
 typedef void(^DidSelectedOperationBlock)(WFOperationType operationType);
 @interface WFPopView : UIView
 @property (nonatomic, assign) BOOL shouldShowed;
@@ -557,7 +445,6 @@ typedef void(^DidSelectedOperationBlock)(WFOperationType operationType);
 - (void)showAtView:(UIView *)containerView rect:(CGRect)targetRect isFavour:(BOOL)isFavour;
 - (void)dismiss;
 @end
-
 #define kXHALbumOperationViewSize CGSizeMake(120, 34)
 #define kXHAlbumSpatorY 5
 @interface WFPopView ()
@@ -617,15 +504,11 @@ typedef void(^DidSelectedOperationBlock)(WFOperationType operationType);
     if (self.shouldShowed) {
         return;
     }
-    
     [containerView addSubview:self];
-    
     CGFloat width = kXHALbumOperationViewSize.width;
     CGFloat height = kXHALbumOperationViewSize.height;
-    
     self.frame = CGRectMake(targetRect.origin.x, targetRect.origin.y - kXHAlbumSpatorY, 0, height);
     self.shouldShowed = YES;
-    
     [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
         self.frame = CGRectMake(targetRect.origin.x - width, targetRect.origin.y - kXHAlbumSpatorY, width, height);
     } completion:^(BOOL finished) {
@@ -637,48 +520,31 @@ typedef void(^DidSelectedOperationBlock)(WFOperationType operationType);
     if (!self.shouldShowed) {
         return;
     }
-    
     self.shouldShowed = NO;
-    
     [UIView animateWithDuration:0.25f animations:^{
         [_replyButton setTitle:nil forState:UIControlStateNormal];
         [_likeButton setTitle:nil forState:UIControlStateNormal];
         CGFloat height = kXHALbumOperationViewSize.height;
         self.frame = CGRectMake(self.targetRect.origin.x, self.targetRect.origin.y - kXHAlbumSpatorY, 0, height);
     } completion:^(BOOL finished) {
-        
         [self removeFromSuperview];
-        
     }];
 }
 @end
-
 @interface WFActionSheet : UIActionSheet
 @property (nonatomic, assign)NSInteger actionIndex;
 @end
-
 @implementation WFActionSheet
-
 @end
-
 @interface WXViewController ()<UITableViewDataSource,UITableViewDelegate,cellDelegate,InputDelegate,UIActionSheetDelegate>{
     NSMutableArray *_imageDataSource;
-    
     NSMutableArray *_contentDataSource;//模拟接口给的数据
-    
     NSMutableArray *_tableDataSource;//tableview数据源
-    
     NSMutableArray *_shuoshuoDatasSource;//说说数据源
-    
     UITableView *mainTable;
-    
     UIView *popView;
-    
     YMReplyInputView *replyView ;
-    
     NSInteger _replyIndex;
-    
-    
 }
 @property (nonatomic,strong) WFPopView *operationView;
 @property (nonatomic,strong) NSIndexPath *selectedIndexPath;
@@ -686,48 +552,33 @@ typedef void(^DidSelectedOperationBlock)(WFOperationType operationType);
 @implementation WXViewController
 #pragma mark - 数据源
 - (void)configData{
-    
     _tableDataSource = [[NSMutableArray alloc] init];
     _contentDataSource = [[NSMutableArray alloc] init];
     _replyIndex = -1;//代表是直接评论
-    
-    
     WFReplyBody *body1 = [[WFReplyBody alloc] init];
     body1.replyUser = kAdmin;
     body1.repliedUser = @"红领巾";
     body1.replyInfo = kContentText1;
-    
-    
     WFReplyBody *body2 = [[WFReplyBody alloc] init];
     body2.replyUser = @"迪恩";
     body2.repliedUser = @"";
     body2.replyInfo = kContentText2;
-   
-    
     WFReplyBody *body3 = [[WFReplyBody alloc] init];
     body3.replyUser = @"山姆";
     body3.repliedUser = @"";
     body3.replyInfo = kContentText3;
-   
-    
     WFReplyBody *body4 = [[WFReplyBody alloc] init];
     body4.replyUser = @"雷锋";
     body4.repliedUser = @"简森·阿克斯";
     body4.replyInfo = kContentText4;
-    
-    
     WFReplyBody *body5 = [[WFReplyBody alloc] init];
     body5.replyUser = kAdmin;
     body5.repliedUser = @"";
     body5.replyInfo = kContentText5;
-    
-    
     WFReplyBody *body6 = [[WFReplyBody alloc] init];
     body6.replyUser = @"红领巾";
     body6.repliedUser = @"";
     body6.replyInfo = kContentText6;
-    
-    
     WFMessageBody *messBody1 = [[WFMessageBody alloc] init];
     messBody1.posterContent = kShuoshuoText1;
     messBody1.posterPostImage = @[@"1.png",@"2.png",@"3.png"];
@@ -737,7 +588,6 @@ typedef void(^DidSelectedOperationBlock)(WFOperationType operationType);
     messBody1.posterIntro = @"这个人很懒，什么都没有留下";
     messBody1.posterFavour = [NSMutableArray arrayWithObjects:@"路人甲",@"希尔瓦娜斯",kAdmin,@"鹿盔", nil];
     messBody1.isFavour = YES;
-    
     WFMessageBody *messBody2 = [[WFMessageBody alloc] init];
     messBody2.posterContent = kShuoshuoText1;
     messBody2.posterPostImage = @[@"1.png",@"2.png",@"3.png"];
@@ -747,8 +597,6 @@ typedef void(^DidSelectedOperationBlock)(WFOperationType operationType);
     messBody2.posterIntro = @"这个人很懒，什么都没有留下";
     messBody2.posterFavour = [NSMutableArray arrayWithObjects:@"塞纳留斯",@"希尔瓦娜斯",@"鹿盔", nil];
     messBody2.isFavour = NO;
-    
-    
     WFMessageBody *messBody3 = [[WFMessageBody alloc] init];
     messBody3.posterContent = kShuoshuoText3;
     messBody3.posterPostImage = @[@"1.png",@"2.png",@"3.png",@"2.png",@"1.png",@"3.png"];
@@ -758,7 +606,6 @@ typedef void(^DidSelectedOperationBlock)(WFOperationType operationType);
     messBody3.posterIntro = @"这个人很懒，什么都没有留下";
     messBody3.posterFavour = [NSMutableArray arrayWithObjects:@"路人甲",kAdmin,@"希尔瓦娜斯",@"鹿盔",@"黑手", nil];
     messBody3.isFavour = YES;
-    
     WFMessageBody *messBody4 = [[WFMessageBody alloc] init];
     messBody4.posterContent = kShuoshuoText4;
     messBody4.posterPostImage = @[@"1.png",@"2.png",@"3.png",@"1.png",@"3.png"];
@@ -768,7 +615,6 @@ typedef void(^DidSelectedOperationBlock)(WFOperationType operationType);
     messBody4.posterIntro = @"这个人很懒，什么都没有留下";
     messBody4.posterFavour = [NSMutableArray arrayWithObjects:@"",nil];
     messBody4.isFavour = NO;
-    
     WFMessageBody *messBody5 = [[WFMessageBody alloc] init];
     messBody5.posterContent = kShuoshuoText5;
     messBody5.posterPostImage = @[@"1.png",@"2.png",@"3.png",@"3.png"];
@@ -778,7 +624,6 @@ typedef void(^DidSelectedOperationBlock)(WFOperationType operationType);
     messBody5.posterIntro = @"这个人很懒，什么都没有留下";
     messBody5.posterFavour = [NSMutableArray arrayWithObjects:@"希尔瓦娜斯",@"格鲁尔",@"魔兽世界5区石锤人类联盟女圣骑丨阿诺丨",@"钢铁女武神",@"魔兽世界5区石锤人类联盟女盗贼chaotics",@"克苏恩",@"克尔苏加德",@"钢铁议会", nil];
     messBody5.isFavour = NO;
-    
     WFMessageBody *messBody6 = [[WFMessageBody alloc] init];
     messBody6.posterContent = kShuoshuoText5;
     messBody6.posterPostImage = @[@"1.png",@"2.png",@"3.png",@"3.png",@"2.png"];
@@ -788,85 +633,56 @@ typedef void(^DidSelectedOperationBlock)(WFOperationType operationType);
     messBody6.posterIntro = @"这个人很懒，什么都没有留下";
     messBody6.posterFavour = [NSMutableArray arrayWithObjects:@"爆裂熔炉",@"希尔瓦娜斯",@"阿尔萨斯",@"死亡之翼",@"玛里苟斯", nil];
     messBody6.isFavour = NO;
-    
-    
     [_contentDataSource addObject:messBody1];
     [_contentDataSource addObject:messBody2];
     [_contentDataSource addObject:messBody3];
     [_contentDataSource addObject:messBody4];
     [_contentDataSource addObject:messBody5];
     [_contentDataSource addObject:messBody6];
- 
 }
 - (void)viewDidLoad {
-    
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     backBtn.frame = CGRectMake(0, 20, self.view.frame.size.width, 44);
     [backBtn setTitle:[NSString stringWithFormat:@"我是返回,该登陆用户为%@",kAdmin] forState:UIControlStateNormal];
     backBtn.backgroundColor = [UIColor clearColor];
     [self.view addSubview:backBtn];
     [backBtn addTarget:self action:@selector(backToPre) forControlEvents:UIControlEventTouchUpInside];
-   
     [self configData];
-    
     [self initTableview];
-    
     [self loadTextData];
 }
 #pragma mark -加载数据
 - (void)loadTextData{
-     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-         
+ dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
        NSMutableArray * ymDataArray =[[NSMutableArray alloc]init];
-       
         for (int i = 0 ; i < _contentDataSource.count; i ++) {
-             
              WFMessageBody *messBody = [_contentDataSource objectAtIndex:i];
-            
              YMTextData *ymData = [[YMTextData alloc] init ];
              ymData.messageBody = messBody;
-            
              [ymDataArray addObject:ymData];
-             
          }
          [self calculateHeight:ymDataArray];
-         
     });
 }
 #pragma mark - 计算高度
 - (void)calculateHeight:(NSMutableArray *)dataArray{
-    
     NSDate* tmpStartData = [NSDate date];
-    
     for (YMTextData *ymData in dataArray) {
-        
         ymData.shuoshuoHeight = [ymData calculateShuoshuoHeightWithWidth:self.view.frame.size.width withUnFoldState:NO];//折叠
-        
         ymData.unFoldShuoHeight = [ymData calculateShuoshuoHeightWithWidth:self.view.frame.size.width withUnFoldState:YES];//展开
-        
         ymData.replyHeight = [ymData calculateReplyHeightWithWidth:self.view.frame.size.width];
-        
         ymData.favourHeight = [ymData calculateFavourHeightWithWidth:self.view.frame.size.width];
-        
         [_tableDataSource addObject:ymData];
-        
     }
-    
     double deltaTime = [[NSDate date] timeIntervalSinceDate:tmpStartData];
     DLog(@"cost time = %f", deltaTime);
-    
     dispatch_async(dispatch_get_main_queue(), ^{
-        
-               [mainTable reloadData];
-      
+       [mainTable reloadData];
     });
-   
 }
 - (void)backToPre{
-    
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 - (void) initTableview{
@@ -877,23 +693,17 @@ typedef void(^DidSelectedOperationBlock)(WFOperationType operationType);
     mainTable.dataSource = self;
     [self.view addSubview:mainTable];
 }
-//**
-// *  ///////////////////////////////////////////////////
+//**///////////////////////////////////////////////////
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
     return  _tableDataSource.count;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-   
     YMTextData *ym = [_tableDataSource objectAtIndex:indexPath.row];
     BOOL unfold = ym.foldOrNot;
     return TableHeader + kLocationToBottom + ym.replyHeight + ym.showImageHeight  + kDistance + (ym.islessLimit?0:30) + (unfold?ym.shuoshuoHeight:ym.unFoldShuoHeight) + kReplyBtnDistance + ym.favourHeight + (ym.favourHeight == 0?0:kReply_FavourDistance);
-   
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
     static NSString *CellIdentifier = @"ILTableViewCell";
-    
     YMTableViewCell *cell = (YMTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[YMTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
@@ -908,7 +718,6 @@ typedef void(^DidSelectedOperationBlock)(WFOperationType operationType);
 ////////////////////////////////////////////////////////////////////
 #pragma mark - 按钮动画
 - (void)replyAction:(YMButton *)sender{
-     
     CGRect rectInTableView = [mainTable rectForRowAtIndexPath:sender.appendIndexPath];
     CGFloat origin_Y = rectInTableView.origin.y + sender.frame.origin.y;
     CGRect targetRect = CGRectMake(CGRectGetMinX(sender.frame), origin_Y, CGRectGetWidth(sender.bounds), CGRectGetHeight(sender.bounds));
@@ -926,15 +735,9 @@ typedef void(^DidSelectedOperationBlock)(WFOperationType operationType);
         WS(ws);
         _operationView.didSelectedOperationCompletion = ^(WFOperationType operationType) {
             switch (operationType) {
-                case WFOperationTypeLike:
-                    
-                    [ws addLike];
-                    break;
-                case WFOperationTypeReply:
-                     [ws replyMessage: nil];
-                    break;
-                default:
-                    break;
+                case WFOperationTypeLike:[ws addLike];break;
+                case WFOperationTypeReply:[ws replyMessage: nil];break;
+                default:break;
             }
         };
     }
@@ -942,7 +745,6 @@ typedef void(^DidSelectedOperationBlock)(WFOperationType operationType);
 }
 #pragma mark - 赞
 - (void)addLike{
-    
     YMTextData *ymData = (YMTextData *)[_tableDataSource objectAtIndex:_selectedIndexPath.row];
     WFMessageBody *m = ymData.messageBody;
     if (m.isFavour == YES) {//此时该取消赞
@@ -953,13 +755,8 @@ typedef void(^DidSelectedOperationBlock)(WFOperationType operationType);
         m.isFavour = YES;
     }
     ymData.messageBody = m;
-    
-    
     //清空属性数组。否则会重复添加
-    
     [ymData.attributedDataFavour removeAllObjects];
-    
-    
     ymData.favourHeight = [ymData calculateFavourHeightWithWidth:self.view.frame.size.width];
     [_tableDataSource replaceObjectAtIndex:_selectedIndexPath.row withObject:ymData];
     
@@ -967,7 +764,6 @@ typedef void(^DidSelectedOperationBlock)(WFOperationType operationType);
 }
 #pragma mark - 真の评论
 - (void)replyMessage:(YMButton *)sender{
-    
     if (replyView) {
         return;
     }
@@ -978,36 +774,27 @@ typedef void(^DidSelectedOperationBlock)(WFOperationType operationType);
 }
 #pragma mark -移除评论按钮
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    
     [self.operationView dismiss];
 }
 #pragma mark -cellDelegate
 - (void)changeFoldState:(YMTextData *)ymD onCellRow:(NSInteger)cellStamp{
-    
     [_tableDataSource replaceObjectAtIndex:cellStamp withObject:ymD];
     [mainTable reloadData];
 }
 #pragma mark - 图片点击事件回调
 - (void)showImageViewWithImageViews:(NSArray *)imageViews byClickWhich:(NSInteger)clickTag{
-   
     UIView *maskview = [[UIView alloc] initWithFrame:self.view.bounds];
     maskview.backgroundColor = [UIColor blackColor];
     [self.view addSubview:maskview];
-    
     YMShowImageView *ymImageV = [[YMShowImageView alloc] initWithFrame:self.view.bounds byClick:clickTag appendArray:imageViews];
     [ymImageV show:maskview didFinish:^(){
-        
         [UIView animateWithDuration:0.5f animations:^{
-            
             ymImageV.alpha = 0.0f;
             maskview.alpha = 0.0f;
-            
         } completion:^(BOOL finished) {
-            
             [ymImageV removeFromSuperview];
             [maskview removeFromSuperview];
         }];
-       
     }];
 }
 #pragma mark - 长按评论整块区域的回调
@@ -1015,26 +802,19 @@ typedef void(^DidSelectedOperationBlock)(WFOperationType operationType);
     [self.operationView dismiss];
     YMTextData *ymData = (YMTextData *)[_tableDataSource objectAtIndex:index];
     WFReplyBody *b = [ymData.messageBody.posterReplies objectAtIndex:replyIndex];
-    
     UIPasteboard *pboard = [UIPasteboard generalPasteboard];
     pboard.string = b.replyInfo;
 }
 #pragma mark - 点评论整块区域的回调
 - (void)clickRichText:(NSInteger)index replyIndex:(NSInteger)replyIndex{
-    
     [self.operationView dismiss];
-    
     _replyIndex = replyIndex;
-    
     YMTextData *ymData = (YMTextData *)[_tableDataSource objectAtIndex:index];
     WFReplyBody *b = [ymData.messageBody.posterReplies objectAtIndex:replyIndex];
     if ([b.replyUser isEqualToString:kAdmin]) {
         WFActionSheet *actionSheet = [[WFActionSheet alloc] initWithTitle:@"删除评论？" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"确定" otherButtonTitles:nil, nil];
         actionSheet.actionIndex = index;
         [actionSheet showInView:self.view];
-        
-        
-        
     }else{
        //回复
         if (replyView) {
@@ -1049,48 +829,34 @@ typedef void(^DidSelectedOperationBlock)(WFOperationType operationType);
 }
 #pragma mark - 评论说说回调
 - (void)YMReplyInputWithReply:(NSString *)replyText appendTag:(NSInteger)inputTag{
-    
     YMTextData *ymData = nil;
     if (_replyIndex == -1) {
-        
         WFReplyBody *body = [[WFReplyBody alloc] init];
         body.replyUser = kAdmin;
         body.repliedUser = @"";
         body.replyInfo = replyText;
-        
         ymData = (YMTextData *)[_tableDataSource objectAtIndex:inputTag];
         WFMessageBody *m = ymData.messageBody;
         [m.posterReplies addObject:body];
         ymData.messageBody = m;
-        
     }else{
-        
         ymData = (YMTextData *)[_tableDataSource objectAtIndex:inputTag];
         WFMessageBody *m = ymData.messageBody;
-        
         WFReplyBody *body = [[WFReplyBody alloc] init];
         body.replyUser = kAdmin;
         body.repliedUser = [(WFReplyBody *)[m.posterReplies objectAtIndex:_replyIndex] replyUser];
         body.replyInfo = replyText;
-        
         [m.posterReplies addObject:body];
         ymData.messageBody = m;
     }
-   
-    
-    
     //清空属性数组。否则会重复添加
     [ymData.completionReplySource removeAllObjects];
     [ymData.attributedDataReply removeAllObjects];
-    
     ymData.replyHeight = [ymData calculateReplyHeightWithWidth:self.view.frame.size.width];
     [_tableDataSource replaceObjectAtIndex:inputTag withObject:ymData];
-    
     [mainTable reloadData];
-    
 }
 - (void)destorySelf{
-    
   //  DLog(@"dealloc reply");
     [replyView removeFromSuperview];
     replyView = nil;
@@ -1105,20 +871,14 @@ typedef void(^DidSelectedOperationBlock)(WFOperationType operationType);
         ymData.messageBody = m;
         [ymData.completionReplySource removeAllObjects];
         [ymData.attributedDataReply removeAllObjects];
-        
-        
         ymData.replyHeight = [ymData calculateReplyHeightWithWidth:self.view.frame.size.width];
         [_tableDataSource replaceObjectAtIndex:actionSheet.actionIndex withObject:ymData];
-        
         [mainTable reloadData];
-        
     }else{
-        
     }
     _replyIndex = -1;
 }
 - (void)dealloc{
-    
     DLog(@"销毁");
 }
 @end
