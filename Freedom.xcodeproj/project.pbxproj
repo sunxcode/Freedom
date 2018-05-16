@@ -49,6 +49,50 @@
 		7115A5F220AAFC0F000D0B96 /* MyDatabaseBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7115A5F120AAFC0F000D0B96 /* MyDatabaseBaseViewController.swift */; };
 		7115A5F420AAFC34000D0B96 /* MyDatabaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7115A5F320AAFC34000D0B96 /* MyDatabaseViewController.swift */; };
 		7115A5F620AAFC40000D0B96 /* MyDatabaseEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7115A5F520AAFC40000D0B96 /* MyDatabaseEditViewController.swift */; };
+		7121191E20ABC46F0087E05B /* EnergyNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7121191D20ABC46F0087E05B /* EnergyNavigationController.swift */; };
+		7121192020ABC4990087E05B /* EnergyBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7121191F20ABC4990087E05B /* EnergyBaseViewController.swift */; };
+		7121192220ABC4B80087E05B /* EnergySampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7121192120ABC4B80087E05B /* EnergySampleViewController.swift */; };
+		7121192420ABC4C30087E05B /* EnergyBusinessListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7121192320ABC4C30087E05B /* EnergyBusinessListViewController.swift */; };
+		7121192620ABC4D10087E05B /* EnergyBusinessDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7121192520ABC4D10087E05B /* EnergyBusinessDetailViewController.swift */; };
+		7121192820ABC4E10087E05B /* EnergyNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7121192720ABC4E10087E05B /* EnergyNewsViewController.swift */; };
+		7121192A20ABC4EE0087E05B /* EnergyNewsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7121192920ABC4EE0087E05B /* EnergyNewsDetailViewController.swift */; };
+		7121192C20ABC4FB0087E05B /* EnergyHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7121192B20ABC4FB0087E05B /* EnergyHomeViewController.swift */; };
+		7121192E20ABC5060087E05B /* EnergyDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7121192D20ABC5060087E05B /* EnergyDetailViewController.swift */; };
+		7121193020ABC5270087E05B /* EnergySuperHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7121192F20ABC5270087E05B /* EnergySuperHomeViewController.swift */; };
+		7121193220ABC5320087E05B /* EnergyShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7121193120ABC5320087E05B /* EnergyShopViewController.swift */; };
+		7121193420ABC5420087E05B /* EnergySuperMeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7121193320ABC5420087E05B /* EnergySuperMeViewController.swift */; };
+		7121193620ABC55C0087E05B /* EnergyShopHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7121193520ABC55C0087E05B /* EnergyShopHomeViewController.swift */; };
+		7121193820ABC5670087E05B /* EnergyShopFindViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7121193720ABC5670087E05B /* EnergyShopFindViewController.swift */; };
+		7121193A20ABC5710087E05B /* EnergyShopCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7121193920ABC5710087E05B /* EnergyShopCarViewController.swift */; };
+		7121193C20ABC57C0087E05B /* EnergyShopMeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7121193B20ABC57C0087E05B /* EnergyShopMeViewController.swift */; };
+		7121193E20ABC58A0087E05B /* EnergyContactUSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7121193D20ABC58A0087E05B /* EnergyContactUSViewController.swift */; };
+		7121194020ABC5940087E05B /* EnergyContactDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7121193F20ABC5940087E05B /* EnergyContactDetailViewController.swift */; };
+		7121194220ABDD4B0087E05B /* EnergyShopTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7121194120ABDD4B0087E05B /* EnergyShopTabBarController.swift */; };
+		7121194420ABE1280087E05B /* EnergySuperMarketTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7121194320ABE1280087E05B /* EnergySuperMarketTabBarController.swift */; };
+		7121194620ABE3660087E05B /* MicroEnergyTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7121194520ABE3660087E05B /* MicroEnergyTabBarController.swift */; };
+		7121194820AC03220087E05B /* JuheDataTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7121194720AC03220087E05B /* JuheDataTabBarController.swift */; };
+		7121194A20AC03800087E05B /* JuheNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7121194920AC03800087E05B /* JuheNavigationController.swift */; };
+		7121194C20AC03BC0087E05B /* JuheBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7121194B20AC03BC0087E05B /* JuheBaseViewController.swift */; };
+		7121194E20AC0BF00087E05B /* JuheContectUSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7121194D20AC0BF00087E05B /* JuheContectUSViewController.swift */; };
+		7121195020AC0C000087E05B /* JuhePublicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7121194F20AC0C000087E05B /* JuhePublicViewController.swift */; };
+		7121195220AC0C0C0087E05B /* JuheMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7121195120AC0C0C0087E05B /* JuheMessageViewController.swift */; };
+		7121195420AC0C170087E05B /* JuheAboutUSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7121195320AC0C170087E05B /* JuheAboutUSViewController.swift */; };
+		7121195620AC0C210087E05B /* JuheChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7121195520AC0C210087E05B /* JuheChartViewController.swift */; };
+		7121195820AC0C2F0087E05B /* JuheAPIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7121195720AC0C2F0087E05B /* JuheAPIViewController.swift */; };
+		7121195A20AC0C390087E05B /* JuheAPIDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7121195920AC0C390087E05B /* JuheAPIDetailViewController.swift */; };
+		7121195C20AC0C450087E05B /* JuheQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7121195B20AC0C450087E05B /* JuheQuestionViewController.swift */; };
+		7121195E20AC0C4F0087E05B /* JuheDetailQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7121195D20AC0C4F0087E05B /* JuheDetailQuestion.swift */; };
+		7121196020AC0C620087E05B /* JuheDynamicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7121195F20AC0C620087E05B /* JuheDynamicViewController.swift */; };
+		7121196220AC0C6E0087E05B /* JuheUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7121196120AC0C6E0087E05B /* JuheUserViewController.swift */; };
+		7121196420AC24790087E05B /* ToutiaoTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7121196320AC24790087E05B /* ToutiaoTabBarController.swift */; };
+		7121196620AC24940087E05B /* ToutiaoNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7121196520AC24940087E05B /* ToutiaoNavigationViewController.swift */; };
+		7121196820AC24A70087E05B /* ToutiaoBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7121196720AC24A70087E05B /* ToutiaoBaseViewController.swift */; };
+		7121196A20AC24D30087E05B /* ToutiaoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7121196920AC24D30087E05B /* ToutiaoViewController.swift */; };
+		7121196C20AC24DF0087E05B /* ToutiaoHomeSampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7121196B20AC24DF0087E05B /* ToutiaoHomeSampleViewController.swift */; };
+		7121196E20AC24EA0087E05B /* ToutiaoHomeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7121196D20AC24EA0087E05B /* ToutiaoHomeDetailViewController.swift */; };
+		7121197020AC24F60087E05B /* ToutiaoVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7121196F20AC24F60087E05B /* ToutiaoVideoViewController.swift */; };
+		7121197220AC25000087E05B /* ToutiaoAttentionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7121197120AC25000087E05B /* ToutiaoAttentionViewController.swift */; };
+		7121197420AC250D0087E05B /* ToutiaoMeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7121197320AC250D0087E05B /* ToutiaoMeViewController.swift */; };
 		71250EC62091C0F20093B59B /* FreedomTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 71250EC52091C0F20093B59B /* FreedomTools.m */; };
 		71250EC92091C1DA0093B59B /* NSObject+Freedom.m in Sources */ = {isa = PBXBuildFile; fileRef = 71250EC82091C1DA0093B59B /* NSObject+Freedom.m */; };
 		71267A3F2092CD7F006E1B96 /* SinaMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 71267A3E2092CD7F006E1B96 /* SinaMode.m */; };
@@ -153,8 +197,6 @@
 		771917691D65C25F002F2BCD /* TaobaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 771917681D65C25F002F2BCD /* TaobaoViewController.m */; };
 		7719176C1D65C26C002F2BCD /* SinaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7719176B1D65C26C002F2BCD /* SinaViewController.m */; };
 		7719176F1D65C27C002F2BCD /* DianpingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7719176E1D65C27C002F2BCD /* DianpingViewController.m */; };
-		771917751D65C29B002F2BCD /* JuheDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 771917741D65C29B002F2BCD /* JuheDataViewController.m */; };
-		771917781D65C2A7002F2BCD /* MicroEnergyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 771917771D65C2A7002F2BCD /* MicroEnergyViewController.m */; };
 		772A131D1E2E440900B79AFB /* DZDealListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 772A131C1E2E440900B79AFB /* DZDealListViewController.m */; };
 		772A13201E2E443D00B79AFB /* DZDealDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 772A131F1E2E443D00B79AFB /* DZDealDetailViewController.m */; };
 		772E839B1D76BC15004EDF50 /* box_duty_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 772E7DC81D76BC07004EDF50 /* box_duty_icon@2x.png */; };
@@ -437,9 +479,6 @@
 		7745C2551D67235E002212DE /* IqiyiTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7745C2541D67235E002212DE /* IqiyiTabBarController.m */; };
 		7745C2581D672373002212DE /* TaobaoTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7745C2571D672373002212DE /* TaobaoTabBarController.m */; };
 		7745C25E1D6723A9002212DE /* DianpingTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7745C25D1D6723A9002212DE /* DianpingTabBarController.m */; };
-		7745C2611D6723DF002212DE /* ToutiaoTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7745C2601D6723DF002212DE /* ToutiaoTabBarController.m */; };
-		7745C2641D6723EC002212DE /* JuheDataTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7745C2631D6723EC002212DE /* JuheDataTabBarController.m */; };
-		7745C2671D672409002212DE /* MicroEnergyTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7745C2661D672409002212DE /* MicroEnergyTabBarController.m */; };
 		774BA6431E28DA18007FF686 /* taobaoon.png in Resources */ = {isa = PBXBuildFile; fileRef = 774BA6411E28DA18007FF686 /* taobaoon.png */; };
 		774BA6441E28DA18007FF686 /* taobaono.png in Resources */ = {isa = PBXBuildFile; fileRef = 774BA6421E28DA18007FF686 /* taobaono.png */; };
 		774BFAE41D7672A0005CA603 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 774BFAE31D7672A0005CA603 /* AudioToolbox.framework */; };
@@ -629,13 +668,6 @@
 		778E93AC1D69B1FE004D899C /* SWSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 778E93AA1D69B1FE004D899C /* SWSettingViewController.m */; };
 		778E93AF1D69B229004D899C /* SWGeneralSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 778E93AE1D69B229004D899C /* SWGeneralSettingViewController.m */; };
 		778E93B21D69CB86004D899C /* XFMessageChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 778E93B11D69CB86004D899C /* XFMessageChartViewController.m */; };
-		779937B41E2F1DBC00866968 /* EnergyShopFindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779937B31E2F1DBC00866968 /* EnergyShopFindViewController.m */; };
-		779937B71E2F1DD300866968 /* EnergyShopCarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779937B61E2F1DD300866968 /* EnergyShopCarViewController.m */; };
-		779937BA1E2F1DE100866968 /* EnergyShopMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779937B91E2F1DE100866968 /* EnergyShopMeViewController.m */; };
-		779937BD1E2F1E1500866968 /* EnergyShopHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779937BC1E2F1E1500866968 /* EnergyShopHomeViewController.m */; };
-		779937C01E2F1EF500866968 /* EnergySuperHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779937BF1E2F1EF500866968 /* EnergySuperHomeViewController.m */; };
-		779937C31E2F1F0300866968 /* EnergySuperMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779937C21E2F1F0300866968 /* EnergySuperMeViewController.m */; };
-		779937F71E2F5E7100866968 /* EnergyNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779937F61E2F5E7100866968 /* EnergyNavigationController.m */; };
 		779937FA1E2F63C000866968 /* NetEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 779937F91E2F63C000866968 /* NetEngine.m */; };
 		779938B61E2F7B6400866968 /* d_aini.png in Resources */ = {isa = PBXBuildFile; fileRef = 779937FD1E2F7B6300866968 /* d_aini.png */; };
 		779938B71E2F7B6400866968 /* d_aoteman.png in Resources */ = {isa = PBXBuildFile; fileRef = 779937FE1E2F7B6300866968 /* d_aoteman.png */; };
@@ -963,30 +995,6 @@
 		77993A881E2F7B9D00866968 /* [麻将]@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 779939FA1E2F7B9C00866968 /* [麻将]@2x.png */; };
 		77993A891E2F7B9D00866968 /* [鼓掌]@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 779939FB1E2F7B9C00866968 /* [鼓掌]@2x.png */; };
 		77993A8A1E2F7B9D00866968 /* [龇牙]@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 779939FC1E2F7B9C00866968 /* [龇牙]@2x.png */; };
-		779B81A91D7D0D4000B23DFA /* JuheNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81A81D7D0D4000B23DFA /* JuheNavigationController.m */; };
-		779B81AC1D7D0E0B00B23DFA /* JuheContectUSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81AB1D7D0E0B00B23DFA /* JuheContectUSViewController.m */; };
-		779B81AF1D7D0E2800B23DFA /* JuheQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81AE1D7D0E2800B23DFA /* JuheQuestionViewController.m */; };
-		779B81B21D7D0E3500B23DFA /* JuheAPIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81B11D7D0E3500B23DFA /* JuheAPIViewController.m */; };
-		779B81B51D7D0E7300B23DFA /* JuheDynamicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81B41D7D0E7300B23DFA /* JuheDynamicViewController.m */; };
-		779B81B81D7D0E8D00B23DFA /* JuheUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81B71D7D0E8D00B23DFA /* JuheUserViewController.m */; };
-		779B81C11D7D11BE00B23DFA /* JuheAboutUSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81C01D7D11BE00B23DFA /* JuheAboutUSViewController.m */; };
-		779B81C41D7D11CD00B23DFA /* JuheChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81C31D7D11CD00B23DFA /* JuheChartViewController.m */; };
-		779B81C71D7D11E300B23DFA /* JuheMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81C61D7D11E300B23DFA /* JuheMessageViewController.m */; };
-		779B81CA1D7D120400B23DFA /* JuhePublicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81C91D7D120400B23DFA /* JuhePublicViewController.m */; };
-		779B81CD1D7D12BC00B23DFA /* JuheDetailQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81CC1D7D12BC00B23DFA /* JuheDetailQuestion.m */; };
-		779B81D01D7D1A2E00B23DFA /* JuheAPIDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81CF1D7D1A2E00B23DFA /* JuheAPIDetailViewController.m */; };
-		779B81D61D7D3F1F00B23DFA /* EnergySampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81D51D7D3F1F00B23DFA /* EnergySampleViewController.m */; };
-		779B81D91D7D3F3100B23DFA /* EnergyNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81D81D7D3F3100B23DFA /* EnergyNewsViewController.m */; };
-		779B81DC1D7D3F3F00B23DFA /* EnergyHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81DB1D7D3F3F00B23DFA /* EnergyHomeViewController.m */; };
-		779B81DF1D7D3F6D00B23DFA /* EnergyShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81DE1D7D3F6D00B23DFA /* EnergyShopViewController.m */; };
-		779B81E21D7D3F7D00B23DFA /* EnergyContactUSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81E11D7D3F7D00B23DFA /* EnergyContactUSViewController.m */; };
-		779B81E81D7D424900B23DFA /* EnergyBusinessListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81E71D7D424900B23DFA /* EnergyBusinessListViewController.m */; };
-		779B81EB1D7D428C00B23DFA /* EnergyBusinessDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81EA1D7D428C00B23DFA /* EnergyBusinessDetailViewController.m */; };
-		779B81EE1D7D438C00B23DFA /* EnergyNewsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81ED1D7D438C00B23DFA /* EnergyNewsDetailViewController.m */; };
-		779B81F41D7D45B600B23DFA /* EnergyDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81F31D7D45B600B23DFA /* EnergyDetailViewController.m */; };
-		779B81F71D7D478800B23DFA /* EnergyShopTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81F61D7D478800B23DFA /* EnergyShopTabBarController.m */; };
-		779B81FA1D7D47B500B23DFA /* EnergySuperMarketTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81F91D7D47B500B23DFA /* EnergySuperMarketTabBarController.m */; };
-		779B82001D7D491500B23DFA /* EnergyContactDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779B81FF1D7D491500B23DFA /* EnergyContactDetailViewController.m */; };
 		77BD14981D6E817A00DE5DB9 /* 01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 77BD14841D6E817A00DE5DB9 /* 01.jpg */; };
 		77BD14991D6E817A00DE5DB9 /* 02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 77BD14851D6E817A00DE5DB9 /* 02.jpg */; };
 		77BD149A1D6E817A00DE5DB9 /* 03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 77BD14861D6E817A00DE5DB9 /* 03.jpg */; };
@@ -1020,10 +1028,6 @@
 		77BD16C61D6ECA6F00DE5DB9 /* DZDiscoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77BD16C51D6ECA6F00DE5DB9 /* DZDiscoverController.m */; };
 		77BD16C91D6ECA7F00DE5DB9 /* DZMeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77BD16C81D6ECA7F00DE5DB9 /* DZMeController.m */; };
 		77BD16CD1D6ECBB800DE5DB9 /* DianpingNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77BD16CC1D6ECBB800DE5DB9 /* DianpingNavigationController.m */; };
-		77BD16D01D6ED6B400DE5DB9 /* ToutiaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77BD16CF1D6ED6B400DE5DB9 /* ToutiaoViewController.m */; };
-		77BD16D31D6EEE8A00DE5DB9 /* ToutiaoVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77BD16D21D6EEE8A00DE5DB9 /* ToutiaoVideoViewController.m */; };
-		77BD16D61D6EEED500DE5DB9 /* ToutiaoAttentionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77BD16D51D6EEED500DE5DB9 /* ToutiaoAttentionViewController.m */; };
-		77BD16D91D6EF25900DE5DB9 /* ToutiaoMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77BD16D81D6EF25900DE5DB9 /* ToutiaoMeViewController.m */; };
 		77BE53531D2CAFC50001AA09 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77BE53521D2CAFC50001AA09 /* SystemConfiguration.framework */; };
 		77BE53551D2CAFD20001AA09 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77BE53541D2CAFD20001AA09 /* QuartzCore.framework */; };
 		77BE53571D2CAFDB0001AA09 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77BE53561D2CAFDB0001AA09 /* CoreTelephony.framework */; };
@@ -1055,7 +1059,6 @@
 		77DE73431D1CDC2B00F39FDB /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DE73421D1CDC2B00F39FDB /* SettingsViewController.m */; };
 		77DFEC701E20B9090003E192 /* logs in Resources */ = {isa = PBXBuildFile; fileRef = 77DFEC6F1E20B9090003E192 /* logs */; };
 		77F0D75E1E4C5AC80036F5F9 /* BooksMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F0D75D1E4C5AC80036F5F9 /* BooksMainViewController.m */; };
-		77F2E8FB1E4967E000C7E9D5 /* ToutiaoHomeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F2E8FA1E4967E000C7E9D5 /* ToutiaoHomeDetailViewController.m */; };
 		77F7A1031E23757D00F91403 /* qylogo_p@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77F7A1021E23757D00F91403 /* qylogo_p@3x.png */; };
 		77FD03BE1E25DEFE00E5099E /* TaobaoMiniViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FD03BD1E25DEFE00E5099E /* TaobaoMiniViewController.m */; };
 		77FD03C11E25DF6800E5099E /* TaobaoMiniDynamicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FD03C01E25DF6800E5099E /* TaobaoMiniDynamicViewController.m */; };
@@ -1071,7 +1074,6 @@
 		77FD03DA1E25FC2000E5099E /* TaobaoCommunityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FD03D91E25FC2000E5099E /* TaobaoCommunityViewController.m */; };
 		77FD03DD1E25FC3B00E5099E /* TaobaoShopCarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FD03DC1E25FC3B00E5099E /* TaobaoShopCarViewController.m */; };
 		77FD03E01E25FC4E00E5099E /* TaobaoMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FD03DF1E25FC4E00E5099E /* TaobaoMeViewController.m */; };
-		77FD03E31E26173B00E5099E /* ToutiaoHomeSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FD03E21E26173B00E5099E /* ToutiaoHomeSampleViewController.m */; };
 		BF5B9ADF1F8DBE1300BD885E /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = BF5B9ADE1F8DBE1200BD885E /* User.m */; };
 		BF5B9B5E1F8E636E00BD885E /* EconomicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5B9B5D1F8E636E00BD885E /* EconomicsViewController.swift */; };
 		BF5B9B601F8E63CF00BD885E /* SearchDownloadBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5B9B5F1F8E63CF00BD885E /* SearchDownloadBookViewController.swift */; };
@@ -1189,6 +1191,50 @@
 		7115A5F120AAFC0F000D0B96 /* MyDatabaseBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDatabaseBaseViewController.swift; sourceTree = "<group>"; };
 		7115A5F320AAFC34000D0B96 /* MyDatabaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDatabaseViewController.swift; sourceTree = "<group>"; };
 		7115A5F520AAFC40000D0B96 /* MyDatabaseEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDatabaseEditViewController.swift; sourceTree = "<group>"; };
+		7121191D20ABC46F0087E05B /* EnergyNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyNavigationController.swift; sourceTree = "<group>"; };
+		7121191F20ABC4990087E05B /* EnergyBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyBaseViewController.swift; sourceTree = "<group>"; };
+		7121192120ABC4B80087E05B /* EnergySampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergySampleViewController.swift; sourceTree = "<group>"; };
+		7121192320ABC4C30087E05B /* EnergyBusinessListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyBusinessListViewController.swift; sourceTree = "<group>"; };
+		7121192520ABC4D10087E05B /* EnergyBusinessDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyBusinessDetailViewController.swift; sourceTree = "<group>"; };
+		7121192720ABC4E10087E05B /* EnergyNewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyNewsViewController.swift; sourceTree = "<group>"; };
+		7121192920ABC4EE0087E05B /* EnergyNewsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyNewsDetailViewController.swift; sourceTree = "<group>"; };
+		7121192B20ABC4FB0087E05B /* EnergyHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyHomeViewController.swift; sourceTree = "<group>"; };
+		7121192D20ABC5060087E05B /* EnergyDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyDetailViewController.swift; sourceTree = "<group>"; };
+		7121192F20ABC5270087E05B /* EnergySuperHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergySuperHomeViewController.swift; sourceTree = "<group>"; };
+		7121193120ABC5320087E05B /* EnergyShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyShopViewController.swift; sourceTree = "<group>"; };
+		7121193320ABC5420087E05B /* EnergySuperMeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergySuperMeViewController.swift; sourceTree = "<group>"; };
+		7121193520ABC55C0087E05B /* EnergyShopHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyShopHomeViewController.swift; sourceTree = "<group>"; };
+		7121193720ABC5670087E05B /* EnergyShopFindViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyShopFindViewController.swift; sourceTree = "<group>"; };
+		7121193920ABC5710087E05B /* EnergyShopCarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyShopCarViewController.swift; sourceTree = "<group>"; };
+		7121193B20ABC57C0087E05B /* EnergyShopMeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyShopMeViewController.swift; sourceTree = "<group>"; };
+		7121193D20ABC58A0087E05B /* EnergyContactUSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyContactUSViewController.swift; sourceTree = "<group>"; };
+		7121193F20ABC5940087E05B /* EnergyContactDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyContactDetailViewController.swift; sourceTree = "<group>"; };
+		7121194120ABDD4B0087E05B /* EnergyShopTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyShopTabBarController.swift; sourceTree = "<group>"; };
+		7121194320ABE1280087E05B /* EnergySuperMarketTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergySuperMarketTabBarController.swift; sourceTree = "<group>"; };
+		7121194520ABE3660087E05B /* MicroEnergyTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicroEnergyTabBarController.swift; sourceTree = "<group>"; };
+		7121194720AC03220087E05B /* JuheDataTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuheDataTabBarController.swift; sourceTree = "<group>"; };
+		7121194920AC03800087E05B /* JuheNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuheNavigationController.swift; sourceTree = "<group>"; };
+		7121194B20AC03BC0087E05B /* JuheBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuheBaseViewController.swift; sourceTree = "<group>"; };
+		7121194D20AC0BF00087E05B /* JuheContectUSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuheContectUSViewController.swift; sourceTree = "<group>"; };
+		7121194F20AC0C000087E05B /* JuhePublicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuhePublicViewController.swift; sourceTree = "<group>"; };
+		7121195120AC0C0C0087E05B /* JuheMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuheMessageViewController.swift; sourceTree = "<group>"; };
+		7121195320AC0C170087E05B /* JuheAboutUSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuheAboutUSViewController.swift; sourceTree = "<group>"; };
+		7121195520AC0C210087E05B /* JuheChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuheChartViewController.swift; sourceTree = "<group>"; };
+		7121195720AC0C2F0087E05B /* JuheAPIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuheAPIViewController.swift; sourceTree = "<group>"; };
+		7121195920AC0C390087E05B /* JuheAPIDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuheAPIDetailViewController.swift; sourceTree = "<group>"; };
+		7121195B20AC0C450087E05B /* JuheQuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuheQuestionViewController.swift; sourceTree = "<group>"; };
+		7121195D20AC0C4F0087E05B /* JuheDetailQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuheDetailQuestion.swift; sourceTree = "<group>"; };
+		7121195F20AC0C620087E05B /* JuheDynamicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuheDynamicViewController.swift; sourceTree = "<group>"; };
+		7121196120AC0C6E0087E05B /* JuheUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuheUserViewController.swift; sourceTree = "<group>"; };
+		7121196320AC24790087E05B /* ToutiaoTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToutiaoTabBarController.swift; sourceTree = "<group>"; };
+		7121196520AC24940087E05B /* ToutiaoNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToutiaoNavigationViewController.swift; sourceTree = "<group>"; };
+		7121196720AC24A70087E05B /* ToutiaoBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToutiaoBaseViewController.swift; sourceTree = "<group>"; };
+		7121196920AC24D30087E05B /* ToutiaoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToutiaoViewController.swift; sourceTree = "<group>"; };
+		7121196B20AC24DF0087E05B /* ToutiaoHomeSampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToutiaoHomeSampleViewController.swift; sourceTree = "<group>"; };
+		7121196D20AC24EA0087E05B /* ToutiaoHomeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToutiaoHomeDetailViewController.swift; sourceTree = "<group>"; };
+		7121196F20AC24F60087E05B /* ToutiaoVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToutiaoVideoViewController.swift; sourceTree = "<group>"; };
+		7121197120AC25000087E05B /* ToutiaoAttentionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToutiaoAttentionViewController.swift; sourceTree = "<group>"; };
+		7121197320AC250D0087E05B /* ToutiaoMeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToutiaoMeViewController.swift; sourceTree = "<group>"; };
 		71250EC42091C0F20093B59B /* FreedomTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FreedomTools.h; sourceTree = "<group>"; };
 		71250EC52091C0F20093B59B /* FreedomTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FreedomTools.m; sourceTree = "<group>"; };
 		71250EC72091C1DA0093B59B /* NSObject+Freedom.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Freedom.h"; sourceTree = "<group>"; };
@@ -1353,10 +1399,6 @@
 		7719176B1D65C26C002F2BCD /* SinaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinaViewController.m; sourceTree = "<group>"; };
 		7719176D1D65C27C002F2BCD /* DianpingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DianpingViewController.h; sourceTree = "<group>"; };
 		7719176E1D65C27C002F2BCD /* DianpingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DianpingViewController.m; sourceTree = "<group>"; };
-		771917731D65C29B002F2BCD /* JuheDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuheDataViewController.h; sourceTree = "<group>"; };
-		771917741D65C29B002F2BCD /* JuheDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuheDataViewController.m; sourceTree = "<group>"; };
-		771917761D65C2A6002F2BCD /* MicroEnergyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MicroEnergyViewController.h; sourceTree = "<group>"; };
-		771917771D65C2A7002F2BCD /* MicroEnergyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MicroEnergyViewController.m; sourceTree = "<group>"; };
 		772A131B1E2E440900B79AFB /* DZDealListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZDealListViewController.h; sourceTree = "<group>"; };
 		772A131C1E2E440900B79AFB /* DZDealListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZDealListViewController.m; sourceTree = "<group>"; };
 		772A131E1E2E443D00B79AFB /* DZDealDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZDealDetailViewController.h; sourceTree = "<group>"; };
@@ -1670,12 +1712,6 @@
 		7745C2571D672373002212DE /* TaobaoTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaobaoTabBarController.m; sourceTree = "<group>"; };
 		7745C25C1D6723A9002212DE /* DianpingTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DianpingTabBarController.h; sourceTree = "<group>"; };
 		7745C25D1D6723A9002212DE /* DianpingTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DianpingTabBarController.m; sourceTree = "<group>"; };
-		7745C25F1D6723DF002212DE /* ToutiaoTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToutiaoTabBarController.h; sourceTree = "<group>"; };
-		7745C2601D6723DF002212DE /* ToutiaoTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToutiaoTabBarController.m; sourceTree = "<group>"; };
-		7745C2621D6723EC002212DE /* JuheDataTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuheDataTabBarController.h; sourceTree = "<group>"; };
-		7745C2631D6723EC002212DE /* JuheDataTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuheDataTabBarController.m; sourceTree = "<group>"; };
-		7745C2651D672409002212DE /* MicroEnergyTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MicroEnergyTabBarController.h; sourceTree = "<group>"; };
-		7745C2661D672409002212DE /* MicroEnergyTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MicroEnergyTabBarController.m; sourceTree = "<group>"; };
 		774BA6411E28DA18007FF686 /* taobaoon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = taobaoon.png; sourceTree = "<group>"; };
 		774BA6421E28DA18007FF686 /* taobaono.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = taobaono.png; sourceTree = "<group>"; };
 		774BFAE31D7672A0005CA603 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -1907,19 +1943,6 @@
 		778E93AE1D69B229004D899C /* SWGeneralSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWGeneralSettingViewController.m; sourceTree = "<group>"; };
 		778E93B01D69CB86004D899C /* XFMessageChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XFMessageChartViewController.h; sourceTree = "<group>"; };
 		778E93B11D69CB86004D899C /* XFMessageChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XFMessageChartViewController.m; sourceTree = "<group>"; };
-		779937B21E2F1DBC00866968 /* EnergyShopFindViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnergyShopFindViewController.h; sourceTree = "<group>"; };
-		779937B31E2F1DBC00866968 /* EnergyShopFindViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnergyShopFindViewController.m; sourceTree = "<group>"; };
-		779937B51E2F1DD300866968 /* EnergyShopCarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnergyShopCarViewController.h; sourceTree = "<group>"; };
-		779937B61E2F1DD300866968 /* EnergyShopCarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnergyShopCarViewController.m; sourceTree = "<group>"; };
-		779937B81E2F1DE100866968 /* EnergyShopMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnergyShopMeViewController.h; sourceTree = "<group>"; };
-		779937B91E2F1DE100866968 /* EnergyShopMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnergyShopMeViewController.m; sourceTree = "<group>"; };
-		779937BB1E2F1E1500866968 /* EnergyShopHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnergyShopHomeViewController.h; sourceTree = "<group>"; };
-		779937BC1E2F1E1500866968 /* EnergyShopHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnergyShopHomeViewController.m; sourceTree = "<group>"; };
-		779937BE1E2F1EF500866968 /* EnergySuperHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnergySuperHomeViewController.h; sourceTree = "<group>"; };
-		779937BF1E2F1EF500866968 /* EnergySuperHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnergySuperHomeViewController.m; sourceTree = "<group>"; };
-		779937C11E2F1F0300866968 /* EnergySuperMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnergySuperMeViewController.h; sourceTree = "<group>"; };
-		779937C21E2F1F0300866968 /* EnergySuperMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnergySuperMeViewController.m; sourceTree = "<group>"; };
-		779937F61E2F5E7100866968 /* EnergyNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnergyNavigationController.m; sourceTree = "<group>"; };
 		779937F81E2F63C000866968 /* NetEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetEngine.h; sourceTree = "<group>"; };
 		779937F91E2F63C000866968 /* NetEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetEngine.m; sourceTree = "<group>"; };
 		779937FD1E2F7B6300866968 /* d_aini.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = d_aini.png; sourceTree = "<group>"; };
@@ -2248,55 +2271,6 @@
 		779939FA1E2F7B9C00866968 /* [麻将]@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "[麻将]@2x.png"; sourceTree = "<group>"; };
 		779939FB1E2F7B9C00866968 /* [鼓掌]@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "[鼓掌]@2x.png"; sourceTree = "<group>"; };
 		779939FC1E2F7B9C00866968 /* [龇牙]@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "[龇牙]@2x.png"; sourceTree = "<group>"; };
-		779B81A71D7D0D4000B23DFA /* JuheNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuheNavigationController.h; sourceTree = "<group>"; };
-		779B81A81D7D0D4000B23DFA /* JuheNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuheNavigationController.m; sourceTree = "<group>"; };
-		779B81AA1D7D0E0B00B23DFA /* JuheContectUSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuheContectUSViewController.h; sourceTree = "<group>"; };
-		779B81AB1D7D0E0B00B23DFA /* JuheContectUSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuheContectUSViewController.m; sourceTree = "<group>"; };
-		779B81AD1D7D0E2800B23DFA /* JuheQuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuheQuestionViewController.h; sourceTree = "<group>"; };
-		779B81AE1D7D0E2800B23DFA /* JuheQuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuheQuestionViewController.m; sourceTree = "<group>"; };
-		779B81B01D7D0E3500B23DFA /* JuheAPIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuheAPIViewController.h; sourceTree = "<group>"; };
-		779B81B11D7D0E3500B23DFA /* JuheAPIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuheAPIViewController.m; sourceTree = "<group>"; };
-		779B81B31D7D0E7300B23DFA /* JuheDynamicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuheDynamicViewController.h; sourceTree = "<group>"; };
-		779B81B41D7D0E7300B23DFA /* JuheDynamicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuheDynamicViewController.m; sourceTree = "<group>"; };
-		779B81B61D7D0E8D00B23DFA /* JuheUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuheUserViewController.h; sourceTree = "<group>"; };
-		779B81B71D7D0E8D00B23DFA /* JuheUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuheUserViewController.m; sourceTree = "<group>"; };
-		779B81BF1D7D11BE00B23DFA /* JuheAboutUSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuheAboutUSViewController.h; sourceTree = "<group>"; };
-		779B81C01D7D11BE00B23DFA /* JuheAboutUSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuheAboutUSViewController.m; sourceTree = "<group>"; };
-		779B81C21D7D11CD00B23DFA /* JuheChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuheChartViewController.h; sourceTree = "<group>"; };
-		779B81C31D7D11CD00B23DFA /* JuheChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuheChartViewController.m; sourceTree = "<group>"; };
-		779B81C51D7D11E300B23DFA /* JuheMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuheMessageViewController.h; sourceTree = "<group>"; };
-		779B81C61D7D11E300B23DFA /* JuheMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuheMessageViewController.m; sourceTree = "<group>"; };
-		779B81C81D7D120400B23DFA /* JuhePublicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuhePublicViewController.h; sourceTree = "<group>"; };
-		779B81C91D7D120400B23DFA /* JuhePublicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuhePublicViewController.m; sourceTree = "<group>"; };
-		779B81CB1D7D12BC00B23DFA /* JuheDetailQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuheDetailQuestion.h; sourceTree = "<group>"; };
-		779B81CC1D7D12BC00B23DFA /* JuheDetailQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuheDetailQuestion.m; sourceTree = "<group>"; };
-		779B81CE1D7D1A2E00B23DFA /* JuheAPIDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JuheAPIDetailViewController.h; sourceTree = "<group>"; };
-		779B81CF1D7D1A2E00B23DFA /* JuheAPIDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JuheAPIDetailViewController.m; sourceTree = "<group>"; };
-		779B81D11D7D3EBD00B23DFA /* EnergyNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnergyNavigationController.h; sourceTree = "<group>"; };
-		779B81D41D7D3F1F00B23DFA /* EnergySampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnergySampleViewController.h; sourceTree = "<group>"; };
-		779B81D51D7D3F1F00B23DFA /* EnergySampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnergySampleViewController.m; sourceTree = "<group>"; };
-		779B81D71D7D3F3100B23DFA /* EnergyNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnergyNewsViewController.h; sourceTree = "<group>"; };
-		779B81D81D7D3F3100B23DFA /* EnergyNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnergyNewsViewController.m; sourceTree = "<group>"; };
-		779B81DA1D7D3F3F00B23DFA /* EnergyHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnergyHomeViewController.h; sourceTree = "<group>"; };
-		779B81DB1D7D3F3F00B23DFA /* EnergyHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnergyHomeViewController.m; sourceTree = "<group>"; };
-		779B81DD1D7D3F6D00B23DFA /* EnergyShopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnergyShopViewController.h; sourceTree = "<group>"; };
-		779B81DE1D7D3F6D00B23DFA /* EnergyShopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnergyShopViewController.m; sourceTree = "<group>"; };
-		779B81E01D7D3F7D00B23DFA /* EnergyContactUSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnergyContactUSViewController.h; sourceTree = "<group>"; };
-		779B81E11D7D3F7D00B23DFA /* EnergyContactUSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnergyContactUSViewController.m; sourceTree = "<group>"; };
-		779B81E61D7D424900B23DFA /* EnergyBusinessListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnergyBusinessListViewController.h; sourceTree = "<group>"; };
-		779B81E71D7D424900B23DFA /* EnergyBusinessListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnergyBusinessListViewController.m; sourceTree = "<group>"; };
-		779B81E91D7D428C00B23DFA /* EnergyBusinessDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnergyBusinessDetailViewController.h; sourceTree = "<group>"; };
-		779B81EA1D7D428C00B23DFA /* EnergyBusinessDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnergyBusinessDetailViewController.m; sourceTree = "<group>"; };
-		779B81EC1D7D438C00B23DFA /* EnergyNewsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnergyNewsDetailViewController.h; sourceTree = "<group>"; };
-		779B81ED1D7D438C00B23DFA /* EnergyNewsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnergyNewsDetailViewController.m; sourceTree = "<group>"; };
-		779B81F21D7D45B600B23DFA /* EnergyDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnergyDetailViewController.h; sourceTree = "<group>"; };
-		779B81F31D7D45B600B23DFA /* EnergyDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnergyDetailViewController.m; sourceTree = "<group>"; };
-		779B81F51D7D478800B23DFA /* EnergyShopTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnergyShopTabBarController.h; sourceTree = "<group>"; };
-		779B81F61D7D478800B23DFA /* EnergyShopTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnergyShopTabBarController.m; sourceTree = "<group>"; };
-		779B81F81D7D47B500B23DFA /* EnergySuperMarketTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnergySuperMarketTabBarController.h; sourceTree = "<group>"; };
-		779B81F91D7D47B500B23DFA /* EnergySuperMarketTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnergySuperMarketTabBarController.m; sourceTree = "<group>"; };
-		779B81FE1D7D491500B23DFA /* EnergyContactDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnergyContactDetailViewController.h; sourceTree = "<group>"; };
-		779B81FF1D7D491500B23DFA /* EnergyContactDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnergyContactDetailViewController.m; sourceTree = "<group>"; };
 		779E70041E31AA5200216928 /* Foundation_enum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Foundation_enum.h; sourceTree = "<group>"; };
 		77BD14841D6E817A00DE5DB9 /* 01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 01.jpg; sourceTree = "<group>"; };
 		77BD14851D6E817A00DE5DB9 /* 02.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 02.jpg; sourceTree = "<group>"; };
@@ -2340,14 +2314,6 @@
 		77BD16C81D6ECA7F00DE5DB9 /* DZMeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZMeController.m; sourceTree = "<group>"; };
 		77BD16CB1D6ECBB800DE5DB9 /* DianpingNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DianpingNavigationController.h; sourceTree = "<group>"; };
 		77BD16CC1D6ECBB800DE5DB9 /* DianpingNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DianpingNavigationController.m; sourceTree = "<group>"; };
-		77BD16CE1D6ED6B400DE5DB9 /* ToutiaoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToutiaoViewController.h; sourceTree = "<group>"; };
-		77BD16CF1D6ED6B400DE5DB9 /* ToutiaoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToutiaoViewController.m; sourceTree = "<group>"; };
-		77BD16D11D6EEE8A00DE5DB9 /* ToutiaoVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToutiaoVideoViewController.h; sourceTree = "<group>"; };
-		77BD16D21D6EEE8A00DE5DB9 /* ToutiaoVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToutiaoVideoViewController.m; sourceTree = "<group>"; };
-		77BD16D41D6EEED500DE5DB9 /* ToutiaoAttentionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToutiaoAttentionViewController.h; sourceTree = "<group>"; };
-		77BD16D51D6EEED500DE5DB9 /* ToutiaoAttentionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToutiaoAttentionViewController.m; sourceTree = "<group>"; };
-		77BD16D71D6EF25900DE5DB9 /* ToutiaoMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToutiaoMeViewController.h; sourceTree = "<group>"; };
-		77BD16D81D6EF25900DE5DB9 /* ToutiaoMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToutiaoMeViewController.m; sourceTree = "<group>"; };
 		77BE53521D2CAFC50001AA09 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		77BE53541D2CAFD20001AA09 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		77BE53561D2CAFDB0001AA09 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -2389,8 +2355,6 @@
 		77DFEC6F1E20B9090003E192 /* logs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = logs; sourceTree = "<group>"; };
 		77F0D75C1E4C5AC80036F5F9 /* BooksMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BooksMainViewController.h; sourceTree = "<group>"; };
 		77F0D75D1E4C5AC80036F5F9 /* BooksMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BooksMainViewController.m; sourceTree = "<group>"; };
-		77F2E8F91E4967E000C7E9D5 /* ToutiaoHomeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToutiaoHomeDetailViewController.h; sourceTree = "<group>"; };
-		77F2E8FA1E4967E000C7E9D5 /* ToutiaoHomeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToutiaoHomeDetailViewController.m; sourceTree = "<group>"; };
 		77F7A1021E23757D00F91403 /* qylogo_p@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qylogo_p@3x.png"; sourceTree = "<group>"; };
 		77FD03BC1E25DEFE00E5099E /* TaobaoMiniViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaobaoMiniViewController.h; sourceTree = "<group>"; };
 		77FD03BD1E25DEFE00E5099E /* TaobaoMiniViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaobaoMiniViewController.m; sourceTree = "<group>"; };
@@ -2415,8 +2379,6 @@
 		77FD03DC1E25FC3B00E5099E /* TaobaoShopCarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaobaoShopCarViewController.m; sourceTree = "<group>"; };
 		77FD03DE1E25FC4E00E5099E /* TaobaoMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaobaoMeViewController.h; sourceTree = "<group>"; };
 		77FD03DF1E25FC4E00E5099E /* TaobaoMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaobaoMeViewController.m; sourceTree = "<group>"; };
-		77FD03E11E26173B00E5099E /* ToutiaoHomeSampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToutiaoHomeSampleViewController.h; sourceTree = "<group>"; };
-		77FD03E21E26173B00E5099E /* ToutiaoHomeSampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToutiaoHomeSampleViewController.m; sourceTree = "<group>"; };
 		7CABB42BD8BCF303E342C69E /* Pods-MyFirstAPP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyFirstAPP.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyFirstAPP/Pods-MyFirstAPP.release.xcconfig"; sourceTree = "<group>"; };
 		B97D0F488B188B225A75FB33 /* Pods-Freedom.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Freedom.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Freedom/Pods-Freedom.debug.xcconfig"; sourceTree = "<group>"; };
 		BF5B9ADD1F8DBE1100BD885E /* User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -3346,8 +3308,7 @@
 		7745C20A1D6715E7002212DE /* 关注 */ = {
 			isa = PBXGroup;
 			children = (
-				77BD16D41D6EEED500DE5DB9 /* ToutiaoAttentionViewController.h */,
-				77BD16D51D6EEED500DE5DB9 /* ToutiaoAttentionViewController.m */,
+				7121197120AC25000087E05B /* ToutiaoAttentionViewController.swift */,
 			);
 			path = "关注";
 			sourceTree = "<group>";
@@ -3355,8 +3316,9 @@
 		7745C20B1D6715E7002212DE /* 基本类库 */ = {
 			isa = PBXGroup;
 			children = (
-				7745C25F1D6723DF002212DE /* ToutiaoTabBarController.h */,
-				7745C2601D6723DF002212DE /* ToutiaoTabBarController.m */,
+				7121196320AC24790087E05B /* ToutiaoTabBarController.swift */,
+				7121196520AC24940087E05B /* ToutiaoNavigationViewController.swift */,
+				7121196720AC24A70087E05B /* ToutiaoBaseViewController.swift */,
 			);
 			path = "基本类库";
 			sourceTree = "<group>";
@@ -3364,8 +3326,7 @@
 		7745C20C1D6715E7002212DE /* 视频 */ = {
 			isa = PBXGroup;
 			children = (
-				77BD16D11D6EEE8A00DE5DB9 /* ToutiaoVideoViewController.h */,
-				77BD16D21D6EEE8A00DE5DB9 /* ToutiaoVideoViewController.m */,
+				7121196F20AC24F60087E05B /* ToutiaoVideoViewController.swift */,
 			);
 			path = "视频";
 			sourceTree = "<group>";
@@ -3373,12 +3334,9 @@
 		7745C20D1D6715E7002212DE /* 首页 */ = {
 			isa = PBXGroup;
 			children = (
-				77BD16CE1D6ED6B400DE5DB9 /* ToutiaoViewController.h */,
-				77BD16CF1D6ED6B400DE5DB9 /* ToutiaoViewController.m */,
-				77FD03E11E26173B00E5099E /* ToutiaoHomeSampleViewController.h */,
-				77FD03E21E26173B00E5099E /* ToutiaoHomeSampleViewController.m */,
-				77F2E8F91E4967E000C7E9D5 /* ToutiaoHomeDetailViewController.h */,
-				77F2E8FA1E4967E000C7E9D5 /* ToutiaoHomeDetailViewController.m */,
+				7121196920AC24D30087E05B /* ToutiaoViewController.swift */,
+				7121196B20AC24DF0087E05B /* ToutiaoHomeSampleViewController.swift */,
+				7121196D20AC24EA0087E05B /* ToutiaoHomeDetailViewController.swift */,
 			);
 			path = "首页";
 			sourceTree = "<group>";
@@ -3386,8 +3344,7 @@
 		7745C20E1D6715E7002212DE /* 我的 */ = {
 			isa = PBXGroup;
 			children = (
-				77BD16D71D6EF25900DE5DB9 /* ToutiaoMeViewController.h */,
-				77BD16D81D6EF25900DE5DB9 /* ToutiaoMeViewController.m */,
+				7121197320AC250D0087E05B /* ToutiaoMeViewController.swift */,
 			);
 			path = "我的";
 			sourceTree = "<group>";
@@ -3395,10 +3352,8 @@
 		7745C20F1D67162F002212DE /* 常见问题 */ = {
 			isa = PBXGroup;
 			children = (
-				779B81AD1D7D0E2800B23DFA /* JuheQuestionViewController.h */,
-				779B81AE1D7D0E2800B23DFA /* JuheQuestionViewController.m */,
-				779B81CB1D7D12BC00B23DFA /* JuheDetailQuestion.h */,
-				779B81CC1D7D12BC00B23DFA /* JuheDetailQuestion.m */,
+				7121195B20AC0C450087E05B /* JuheQuestionViewController.swift */,
+				7121195D20AC0C4F0087E05B /* JuheDetailQuestion.swift */,
 			);
 			path = "常见问题";
 			sourceTree = "<group>";
@@ -3406,10 +3361,9 @@
 		7745C2101D67162F002212DE /* 基本类库 */ = {
 			isa = PBXGroup;
 			children = (
-				7745C2621D6723EC002212DE /* JuheDataTabBarController.h */,
-				7745C2631D6723EC002212DE /* JuheDataTabBarController.m */,
-				779B81A71D7D0D4000B23DFA /* JuheNavigationController.h */,
-				779B81A81D7D0D4000B23DFA /* JuheNavigationController.m */,
+				7121194720AC03220087E05B /* JuheDataTabBarController.swift */,
+				7121194920AC03800087E05B /* JuheNavigationController.swift */,
+				7121194B20AC03BC0087E05B /* JuheBaseViewController.swift */,
 			);
 			path = "基本类库";
 			sourceTree = "<group>";
@@ -3417,8 +3371,7 @@
 		7745C2111D67162F002212DE /* 聚合动态 */ = {
 			isa = PBXGroup;
 			children = (
-				779B81B31D7D0E7300B23DFA /* JuheDynamicViewController.h */,
-				779B81B41D7D0E7300B23DFA /* JuheDynamicViewController.m */,
+				7121195F20AC0C620087E05B /* JuheDynamicViewController.swift */,
 			);
 			path = "聚合动态";
 			sourceTree = "<group>";
@@ -3426,16 +3379,11 @@
 		7745C2121D67162F002212DE /* 联系我们 */ = {
 			isa = PBXGroup;
 			children = (
-				779B81AA1D7D0E0B00B23DFA /* JuheContectUSViewController.h */,
-				779B81AB1D7D0E0B00B23DFA /* JuheContectUSViewController.m */,
-				779B81C81D7D120400B23DFA /* JuhePublicViewController.h */,
-				779B81C91D7D120400B23DFA /* JuhePublicViewController.m */,
-				779B81C51D7D11E300B23DFA /* JuheMessageViewController.h */,
-				779B81C61D7D11E300B23DFA /* JuheMessageViewController.m */,
-				779B81BF1D7D11BE00B23DFA /* JuheAboutUSViewController.h */,
-				779B81C01D7D11BE00B23DFA /* JuheAboutUSViewController.m */,
-				779B81C21D7D11CD00B23DFA /* JuheChartViewController.h */,
-				779B81C31D7D11CD00B23DFA /* JuheChartViewController.m */,
+				7121194D20AC0BF00087E05B /* JuheContectUSViewController.swift */,
+				7121194F20AC0C000087E05B /* JuhePublicViewController.swift */,
+				7121195120AC0C0C0087E05B /* JuheMessageViewController.swift */,
+				7121195320AC0C170087E05B /* JuheAboutUSViewController.swift */,
+				7121195520AC0C210087E05B /* JuheChartViewController.swift */,
 			);
 			path = "联系我们";
 			sourceTree = "<group>";
@@ -3443,10 +3391,8 @@
 		7745C2131D67162F002212DE /* 数据接口 */ = {
 			isa = PBXGroup;
 			children = (
-				779B81B01D7D0E3500B23DFA /* JuheAPIViewController.h */,
-				779B81B11D7D0E3500B23DFA /* JuheAPIViewController.m */,
-				779B81CE1D7D1A2E00B23DFA /* JuheAPIDetailViewController.h */,
-				779B81CF1D7D1A2E00B23DFA /* JuheAPIDetailViewController.m */,
+				7121195720AC0C2F0087E05B /* JuheAPIViewController.swift */,
+				7121195920AC0C390087E05B /* JuheAPIDetailViewController.swift */,
 			);
 			path = "数据接口";
 			sourceTree = "<group>";
@@ -3454,8 +3400,7 @@
 		7745C2141D67162F002212DE /* 用户中心 */ = {
 			isa = PBXGroup;
 			children = (
-				779B81B61D7D0E8D00B23DFA /* JuheUserViewController.h */,
-				779B81B71D7D0E8D00B23DFA /* JuheUserViewController.m */,
+				7121196120AC0C6E0087E05B /* JuheUserViewController.swift */,
 			);
 			path = "用户中心";
 			sourceTree = "<group>";
@@ -3463,10 +3408,9 @@
 		7745C2151D67168E002212DE /* 基本类库 */ = {
 			isa = PBXGroup;
 			children = (
-				7745C2651D672409002212DE /* MicroEnergyTabBarController.h */,
-				7745C2661D672409002212DE /* MicroEnergyTabBarController.m */,
-				779B81D11D7D3EBD00B23DFA /* EnergyNavigationController.h */,
-				779937F61E2F5E7100866968 /* EnergyNavigationController.m */,
+				7121194520ABE3660087E05B /* MicroEnergyTabBarController.swift */,
+				7121191D20ABC46F0087E05B /* EnergyNavigationController.swift */,
+				7121191F20ABC4990087E05B /* EnergyBaseViewController.swift */,
 			);
 			path = "基本类库";
 			sourceTree = "<group>";
@@ -3474,12 +3418,9 @@
 		7745C2161D67168E002212DE /* 经典案例 */ = {
 			isa = PBXGroup;
 			children = (
-				779B81D41D7D3F1F00B23DFA /* EnergySampleViewController.h */,
-				779B81D51D7D3F1F00B23DFA /* EnergySampleViewController.m */,
-				779B81E61D7D424900B23DFA /* EnergyBusinessListViewController.h */,
-				779B81E71D7D424900B23DFA /* EnergyBusinessListViewController.m */,
-				779B81E91D7D428C00B23DFA /* EnergyBusinessDetailViewController.h */,
-				779B81EA1D7D428C00B23DFA /* EnergyBusinessDetailViewController.m */,
+				7121192120ABC4B80087E05B /* EnergySampleViewController.swift */,
+				7121192320ABC4C30087E05B /* EnergyBusinessListViewController.swift */,
+				7121192520ABC4D10087E05B /* EnergyBusinessDetailViewController.swift */,
 			);
 			path = "经典案例";
 			sourceTree = "<group>";
@@ -3487,24 +3428,15 @@
 		7745C2171D67168E002212DE /* 精品人人店 */ = {
 			isa = PBXGroup;
 			children = (
-				779B81F81D7D47B500B23DFA /* EnergySuperMarketTabBarController.h */,
-				779B81F91D7D47B500B23DFA /* EnergySuperMarketTabBarController.m */,
-				779937BE1E2F1EF500866968 /* EnergySuperHomeViewController.h */,
-				779937BF1E2F1EF500866968 /* EnergySuperHomeViewController.m */,
-				779B81DD1D7D3F6D00B23DFA /* EnergyShopViewController.h */,
-				779B81DE1D7D3F6D00B23DFA /* EnergyShopViewController.m */,
-				779937C11E2F1F0300866968 /* EnergySuperMeViewController.h */,
-				779937C21E2F1F0300866968 /* EnergySuperMeViewController.m */,
-				779B81F51D7D478800B23DFA /* EnergyShopTabBarController.h */,
-				779B81F61D7D478800B23DFA /* EnergyShopTabBarController.m */,
-				779937BB1E2F1E1500866968 /* EnergyShopHomeViewController.h */,
-				779937BC1E2F1E1500866968 /* EnergyShopHomeViewController.m */,
-				779937B21E2F1DBC00866968 /* EnergyShopFindViewController.h */,
-				779937B31E2F1DBC00866968 /* EnergyShopFindViewController.m */,
-				779937B51E2F1DD300866968 /* EnergyShopCarViewController.h */,
-				779937B61E2F1DD300866968 /* EnergyShopCarViewController.m */,
-				779937B81E2F1DE100866968 /* EnergyShopMeViewController.h */,
-				779937B91E2F1DE100866968 /* EnergyShopMeViewController.m */,
+				7121194320ABE1280087E05B /* EnergySuperMarketTabBarController.swift */,
+				7121192F20ABC5270087E05B /* EnergySuperHomeViewController.swift */,
+				7121193120ABC5320087E05B /* EnergyShopViewController.swift */,
+				7121193320ABC5420087E05B /* EnergySuperMeViewController.swift */,
+				7121194120ABDD4B0087E05B /* EnergyShopTabBarController.swift */,
+				7121193520ABC55C0087E05B /* EnergyShopHomeViewController.swift */,
+				7121193720ABC5670087E05B /* EnergyShopFindViewController.swift */,
+				7121193920ABC5710087E05B /* EnergyShopCarViewController.swift */,
+				7121193B20ABC57C0087E05B /* EnergyShopMeViewController.swift */,
 			);
 			path = "精品人人店";
 			sourceTree = "<group>";
@@ -3512,10 +3444,8 @@
 		7745C2181D67168E002212DE /* 联系我们 */ = {
 			isa = PBXGroup;
 			children = (
-				779B81E01D7D3F7D00B23DFA /* EnergyContactUSViewController.h */,
-				779B81E11D7D3F7D00B23DFA /* EnergyContactUSViewController.m */,
-				779B81FE1D7D491500B23DFA /* EnergyContactDetailViewController.h */,
-				779B81FF1D7D491500B23DFA /* EnergyContactDetailViewController.m */,
+				7121193D20ABC58A0087E05B /* EnergyContactUSViewController.swift */,
+				7121193F20ABC5940087E05B /* EnergyContactDetailViewController.swift */,
 			);
 			path = "联系我们";
 			sourceTree = "<group>";
@@ -3523,10 +3453,8 @@
 		7745C2191D67168E002212DE /* 新闻动态 */ = {
 			isa = PBXGroup;
 			children = (
-				779B81D71D7D3F3100B23DFA /* EnergyNewsViewController.h */,
-				779B81D81D7D3F3100B23DFA /* EnergyNewsViewController.m */,
-				779B81EC1D7D438C00B23DFA /* EnergyNewsDetailViewController.h */,
-				779B81ED1D7D438C00B23DFA /* EnergyNewsDetailViewController.m */,
+				7121192720ABC4E10087E05B /* EnergyNewsViewController.swift */,
+				7121192920ABC4EE0087E05B /* EnergyNewsDetailViewController.swift */,
 			);
 			path = "新闻动态";
 			sourceTree = "<group>";
@@ -3534,10 +3462,8 @@
 		7745C21A1D67168E002212DE /* HOME */ = {
 			isa = PBXGroup;
 			children = (
-				779B81DA1D7D3F3F00B23DFA /* EnergyHomeViewController.h */,
-				779B81DB1D7D3F3F00B23DFA /* EnergyHomeViewController.m */,
-				779B81F21D7D45B600B23DFA /* EnergyDetailViewController.h */,
-				779B81F31D7D45B600B23DFA /* EnergyDetailViewController.m */,
+				7121192B20ABC4FB0087E05B /* EnergyHomeViewController.swift */,
+				7121192D20ABC5060087E05B /* EnergyDetailViewController.swift */,
 			);
 			path = HOME;
 			sourceTree = "<group>";
@@ -4263,8 +4189,6 @@
 				7745C2111D67162F002212DE /* 聚合动态 */,
 				7745C2141D67162F002212DE /* 用户中心 */,
 				771917421D659993002F2BCD /* JuheData.storyboard */,
-				771917731D65C29B002F2BCD /* JuheDataViewController.h */,
-				771917741D65C29B002F2BCD /* JuheDataViewController.m */,
 			);
 			path = "聚合数据";
 			sourceTree = "<group>";
@@ -4312,8 +4236,6 @@
 				7745C2171D67168E002212DE /* 精品人人店 */,
 				7745C2181D67168E002212DE /* 联系我们 */,
 				771917441D6599C4002F2BCD /* MicroEnergy.storyboard */,
-				771917761D65C2A6002F2BCD /* MicroEnergyViewController.h */,
-				771917771D65C2A7002F2BCD /* MicroEnergyViewController.m */,
 			);
 			path = "微能量";
 			sourceTree = "<group>";
@@ -6305,6 +6227,7 @@
 				7115A5CA20AAD376000D0B96 /* PersonalConsumerViewController.swift in Sources */,
 				71ECE04D2092128E00495467 /* TLChatGroupDetailViewController.m in Sources */,
 				BF6E57BE1FAC071C005F7DF8 /* TLExpressionViewController.m in Sources */,
+				7121196420AC24790087E05B /* ToutiaoTabBarController.swift in Sources */,
 				71ECE0492092128E00495467 /* TLEmojiKeyboard.m in Sources */,
 				7115A5E420AAD9F0000D0B96 /* ResumeCallMeViewController.swift in Sources */,
 				BF6E57BD1FAC0714005F7DF8 /* TLExpressionDetailViewController.m in Sources */,
@@ -6318,12 +6241,15 @@
 				BF6E572F1FABFCF2005F7DF8 /* TLPrivacySettingViewController.m in Sources */,
 				BF6E572E1FABFCEA005F7DF8 /* TLAccountAndSafetyViewController.m in Sources */,
 				BF6E572D1FABFCE0005F7DF8 /* TLNewMessageSettingViewController.m in Sources */,
+				7121194020ABC5940087E05B /* EnergyContactDetailViewController.swift in Sources */,
 				BF6E572C1FABFCDA005F7DF8 /* TLCommonSettingViewController.m in Sources */,
+				7121196E20AC24EA0087E05B /* ToutiaoHomeDetailViewController.swift in Sources */,
 				BF6E572B1FABFCD4005F7DF8 /* TLHelpAndFeedbackViewController.m in Sources */,
 				BF6E572A1FABFCCE005F7DF8 /* TLAboutViewController.m in Sources */,
 				BF6E57291FABFCB7005F7DF8 /* TLChatBackgroundSettingViewController.m in Sources */,
 				BF6E57281FABFCB0005F7DF8 /* TLMineSettingViewController.m in Sources */,
 				7115A5D420AAD716000D0B96 /* ResumeTabBarController.swift in Sources */,
+				7121196220AC0C6E0087E05B /* JuheUserViewController.swift in Sources */,
 				BF6BB2AC1FAC5CB6003720C3 /* XFHomeViewController+Views.m in Sources */,
 				7115A5D820AAD783000D0B96 /* ResumeBaseViewController.swift in Sources */,
 				BF6E56A61FAAF563005F7DF8 /* TLImageBrowserController.m in Sources */,
@@ -6332,6 +6258,8 @@
 				BF6E56A41FAAF524005F7DF8 /* TLTableViewCell.m in Sources */,
 				BF6E56A31FAAF51B005F7DF8 /* TLTabBarController.m in Sources */,
 				BF6E56A21FAAF510005F7DF8 /* TLInfoViewController.m in Sources */,
+				7121194C20AC03BC0087E05B /* JuheBaseViewController.swift in Sources */,
+				7121197220AC25000087E05B /* ToutiaoAttentionViewController.swift in Sources */,
 				7115A5C620AAD35E000D0B96 /* PersonalFoodViewController.swift in Sources */,
 				71ECE0472092128E00495467 /* TLMoreKeyboard.m in Sources */,
 				71ECE0202092121F00495467 /* TLBottleViewController.m in Sources */,
@@ -6339,13 +6267,16 @@
 				7115A5CC20AAD382000D0B96 /* PersonalPhoneViewController.swift in Sources */,
 				BF6E569E1FAAF4B8005F7DF8 /* TLTableViewController.m in Sources */,
 				BF6E569D1FAAF48A005F7DF8 /* TLMenuViewController.m in Sources */,
+				7121196620AC24940087E05B /* ToutiaoNavigationViewController.swift in Sources */,
 				BF6E569B1FAAF475005F7DF8 /* TLQRCodeViewController.m in Sources */,
 				71ECDFFE209210BF00495467 /* TLPublicServerSearchViewController.m in Sources */,
 				BF6E57C41FAC1424005F7DF8 /* SDAssetsTableViewControllerCellModel.m in Sources */,
 				BF6E569A1FAAF45A005F7DF8 /* TLSearchController.m in Sources */,
 				BF6E56981FAAF3F7005F7DF8 /* TLWebViewController.m in Sources */,
+				7121194820AC03220087E05B /* JuheDataTabBarController.swift in Sources */,
 				BF6E56971FAAF374005F7DF8 /* TLViewController.m in Sources */,
 				71ECE0482092128E00495467 /* TLEmojiBaseCell.m in Sources */,
+				7121195820AC0C2F0087E05B /* JuheAPIViewController.swift in Sources */,
 				BF6E56961FAAF341005F7DF8 /* TLPictureCarouselView.m in Sources */,
 				778913901D0FDDDB0096AB3B /* AppDelegate.m in Sources */,
 				BF5B9B731F8E676500BD885E /* CareerViewController.swift in Sources */,
@@ -6359,65 +6290,67 @@
 				7115A5A320AA9ECB000D0B96 /* XBaseViewController.swift in Sources */,
 				773D56151D7953A100A0C615 /* JFWatchRecordViewController.m in Sources */,
 				BF5B9B601F8E63CF00BD885E /* SearchDownloadBookViewController.swift in Sources */,
+				7121191E20ABC46F0087E05B /* EnergyNavigationController.swift in Sources */,
 				7165A3B120A57EFE001C60D6 /* XTableView.swift in Sources */,
 				7115A5DA20AAD9AA000D0B96 /* ResumeViewController.swift in Sources */,
 				773D563D1D79540000A0C615 /* JFImageScrollCell.m in Sources */,
 				778913921D0FDDDB0096AB3B /* main.m in Sources */,
 				778E93A61D69B1C2004D899C /* SWCommonTableViewController.m in Sources */,
 				7115A5F020AAFBF6000D0B96 /* MyDatabaseNavigationController.swift in Sources */,
-				779B81F71D7D478800B23DFA /* EnergyShopTabBarController.m in Sources */,
+				7121193620ABC55C0087E05B /* EnergyShopHomeViewController.swift in Sources */,
 				71ECE01F2092121F00495467 /* TLShakeViewController.m in Sources */,
 				77DE73401D1CC7E600F39FDB /* LibraryCollectionViewController.m in Sources */,
 				7115A5CE20AAD38C000D0B96 /* PersonalHouseViewController.swift in Sources */,
 				BF5B9B5E1F8E636E00BD885E /* EconomicsViewController.swift in Sources */,
 				7788AC311D7996B100376C95 /* E_Paging.mm in Sources */,
-				77BD16D61D6EEED500DE5DB9 /* ToutiaoAttentionViewController.m in Sources */,
 				BF5B9B751F8E676F00BD885E /* FamilyViewController.swift in Sources */,
 				778E93691D699D8C004D899C /* XFEmotion.m in Sources */,
-				779937F71E2F5E7100866968 /* EnergyNavigationController.m in Sources */,
+				7121192C20ABC4FB0087E05B /* EnergyHomeViewController.swift in Sources */,
 				77BD16461D6EC53300DE5DB9 /* DetailTableViewController.m in Sources */,
 				773D569A1D7955EE00A0C615 /* JFWebViewController.m in Sources */,
-				779B82001D7D491500B23DFA /* EnergyContactDetailViewController.m in Sources */,
 				778E8EFE1D696020004D899C /* XFHomeViewController.m in Sources */,
 				7115A5E020AAD9D8000D0B96 /* ResumeBusinessCooperationVC.swift in Sources */,
 				77FD03DD1E25FC3B00E5099E /* TaobaoShopCarViewController.m in Sources */,
 				771917601D65C239002F2BCD /* WechartViewController.m in Sources */,
 				7115A5BA20AAC3E6000D0B96 /* PersonalApplyViewController.swift in Sources */,
 				BF5B9B831F8E67CC00BD885E /* HappyViewController.swift in Sources */,
+				7121194220ABDD4B0087E05B /* EnergyShopTabBarController.swift in Sources */,
 				71ECDFC82091F9F800495467 /* WechartModes.m in Sources */,
+				7121195E20AC0C4F0087E05B /* JuheDetailQuestion.swift in Sources */,
 				71ECE04F2092128E00495467 /* TLChatDetailViewController.m in Sources */,
 				71267A552092DC93006E1B96 /* YMTableViewCell.m in Sources */,
 				773D56A51D79564600A0C615 /* JFSubscribeViewController.m in Sources */,
 				774BFB171D767389005CA603 /* PlayAudioViewController.m in Sources */,
+				7121195620AC0C210087E05B /* JuheChartViewController.swift in Sources */,
 				7788AC651D7996E000376C95 /* E_SearchViewController.m in Sources */,
 				77FD03DA1E25FC2000E5099E /* TaobaoCommunityViewController.m in Sources */,
 				774BFB221D767389005CA603 /* LinsenViewController.m in Sources */,
 				718540F320A539200015A123 /* BaseScrollOCView.m in Sources */,
 				7165A3EA20A5A291001C60D6 /* FreedomBaseViewController.swift in Sources */,
+				7121192220ABC4B80087E05B /* EnergySampleViewController.swift in Sources */,
 				7165A3E520A59DA7001C60D6 /* IqiyiBaseViewController.m in Sources */,
 				7115A5C820AAD36B000D0B96 /* PersonalFastGoodsViewController.swift in Sources */,
 				7165A3E820A5A1D8001C60D6 /* TaobaoBaseViewController.m in Sources */,
+				7121197420AC250D0087E05B /* ToutiaoMeViewController.swift in Sources */,
 				7115A5EC20AAEE1E000D0B96 /* BooksViewController.swift in Sources */,
 				BF5B9ADF1F8DBE1300BD885E /* User.m in Sources */,
 				71ECE01E2092121F00495467 /* TLScannerViewController.m in Sources */,
 				7780D8D81E237FD500807502 /* TaobaoHomeViewController.m in Sources */,
-				779937B71E2F1DD300866968 /* EnergyShopCarViewController.m in Sources */,
 				BF5B9B811F8E67C000BD885E /* PowerViewController.swift in Sources */,
 				BF5B9B671F8E66D900BD885E /* EconomicDevelopmentViewController.swift in Sources */,
 				77CC4F221D90DCA400DD2EC8 /* BaseOCViewController.m in Sources */,
+				7121193820ABC5670087E05B /* EnergyShopFindViewController.swift in Sources */,
 				778E93B21D69CB86004D899C /* XFMessageChartViewController.m in Sources */,
-				779B81D91D7D3F3100B23DFA /* EnergyNewsViewController.m in Sources */,
+				7121193420ABC5420087E05B /* EnergySuperMeViewController.swift in Sources */,
 				7115A5C420AAD351000D0B96 /* PersonalComputerViewController.swift in Sources */,
-				779B81FA1D7D47B500B23DFA /* EnergySuperMarketTabBarController.m in Sources */,
+				7121194420ABE1280087E05B /* EnergySuperMarketTabBarController.swift in Sources */,
 				7115A5DE20AAD9CE000D0B96 /* ResumeDetailViewController.swift in Sources */,
-				779B81A91D7D0D4000B23DFA /* JuheNavigationController.m in Sources */,
 				7788AC641D7996E000376C95 /* E_ScrollViewController.m in Sources */,
 				77BFCC001E1F413C00C95B5E /* notes.md in Sources */,
 				71ECE0242092121F00495467 /* TLDiscoverViewController.m in Sources */,
 				7115A5D020AAD398000D0B96 /* PersonalCarViewController.swift in Sources */,
 				77FD03E01E25FC4E00E5099E /* TaobaoMeViewController.m in Sources */,
 				7772A7F41D64434200444973 /* CKRadialMenu.m in Sources */,
-				779B81E81D7D424900B23DFA /* EnergyBusinessListViewController.m in Sources */,
 				BF6BB2A91FAC453B003720C3 /* DetailView.m in Sources */,
 				7115A5C220AAD345000D0B96 /* PersonalHardwareViewController.swift in Sources */,
 				71ECDFC22091F9EF00495467 /* TLExpressionHelper.m in Sources */,
@@ -6429,15 +6362,13 @@
 				BF5B9B771F8E677F00BD885E /* RelativeViewController.swift in Sources */,
 				7115A5B620AAC314000D0B96 /* PersonalApplyNavigationController.swift in Sources */,
 				71267A3F2092CD7F006E1B96 /* SinaMode.m in Sources */,
-				7745C2671D672409002212DE /* MicroEnergyTabBarController.m in Sources */,
 				7115A5AF20AABCB8000D0B96 /* XBaseTabBarController.swift in Sources */,
 				71ECE0252092121F00495467 /* TLScanningViewController.m in Sources */,
 				7115A5A520AA9EF1000D0B96 /* XBaseNavigationViewController.swift in Sources */,
-				779B81DF1D7D3F6D00B23DFA /* EnergyShopViewController.m in Sources */,
-				779B81B81D7D0E8D00B23DFA /* JuheUserViewController.m in Sources */,
 				7115A5A720AA9FE3000D0B96 /* FreedomNavigationController.swift in Sources */,
 				77BD16CD1D6ECBB800DE5DB9 /* DianpingNavigationController.m in Sources */,
-				779B81CD1D7D12BC00B23DFA /* JuheDetailQuestion.m in Sources */,
+				7121192820ABC4E10087E05B /* EnergyNewsViewController.swift in Sources */,
+				7121195A20AC0C390087E05B /* JuheAPIDetailViewController.swift in Sources */,
 				71ECDFC72091F9F800495467 /* TLRootViewController.m in Sources */,
 				7115A5E220AAD9E4000D0B96 /* ResumeTheorySystemViewController.swift in Sources */,
 				BF5B9B691F8E671500BD885E /* ThinkDevelopmentViewController.swift in Sources */,
@@ -6446,31 +6377,29 @@
 				77FD03BE1E25DEFE00E5099E /* TaobaoMiniViewController.m in Sources */,
 				71ECE01C2092121F00495467 /* TLShoppingViewController.m in Sources */,
 				7745C24F1D672336002212DE /* AlipayTabBarController.m in Sources */,
-				77BD16D01D6ED6B400DE5DB9 /* ToutiaoViewController.m in Sources */,
-				779B81C41D7D11CD00B23DFA /* JuheChartViewController.m in Sources */,
 				772A131D1E2E440900B79AFB /* DZDealListViewController.m in Sources */,
 				71ECE000209210BF00495467 /* TLFriendDetailViewController.m in Sources */,
 				BF5B9B6B1F8E673C00BD885E /* PursuitViewController.swift in Sources */,
 				7115A5B420AAC2E3000D0B96 /* PersonalApplyTabBarController.swift in Sources */,
 				773D56991D7955EE00A0C615 /* JFClassifyViewController.m in Sources */,
+				7121197020AC24F60087E05B /* ToutiaoVideoViewController.swift in Sources */,
 				7788ACB81D79A91800376C95 /* NewSliderViewController.m in Sources */,
 				7741F0BC1D6D380800EED332 /* README.md in Sources */,
 				71ECE04E2092128E00495467 /* TLUserGroupCell.m in Sources */,
 				778E8F721D696335004D899C /* XFNewFeatureController.m in Sources */,
 				71ECE0222092121F00495467 /* TLShakeSettingViewController.m in Sources */,
 				771917631D65C247002F2BCD /* KugouViewController.m in Sources */,
+				7121193A20ABC5710087E05B /* EnergyShopCarViewController.swift in Sources */,
 				7745C2551D67235E002212DE /* IqiyiTabBarController.m in Sources */,
 				77FD03C71E25E49100E5099E /* TaobaoMiniVideoViewController.m in Sources */,
 				7719176C1D65C26C002F2BCD /* SinaViewController.m in Sources */,
-				77BD16D31D6EEE8A00DE5DB9 /* ToutiaoVideoViewController.m in Sources */,
 				71ECDFC12091F9EF00495467 /* TLUserHelper.m in Sources */,
 				7115A5DC20AAD9C2000D0B96 /* ResumeListViewController.swift in Sources */,
-				779937C01E2F1EF500866968 /* EnergySuperHomeViewController.m in Sources */,
 				774BFB251D767389005CA603 /* LocalMusicViewController.m in Sources */,
 				7741F1E21D6D538D00EED332 /* SDAssetsTableViewController.m in Sources */,
 				7745C2451D67188C002212DE /* WechartNavigationController.m in Sources */,
 				773D56BB1D79568500A0C615 /* JFLoginViewController.m in Sources */,
-				77FD03E31E26173B00E5099E /* ToutiaoHomeSampleViewController.m in Sources */,
+				7121192A20ABC4EE0087E05B /* EnergyNewsDetailViewController.swift in Sources */,
 				7741F1D81D6D530300EED332 /* SDScanViewController.m in Sources */,
 				774BFB211D767389005CA603 /* LookViewController.m in Sources */,
 				77BD16471D6EC53300DE5DB9 /* DetailWapViewController.m in Sources */,
@@ -6479,40 +6408,34 @@
 				778E8F081D696020004D899C /* XFTitleMenuViewController.m in Sources */,
 				7115A5EE20AAFBBA000D0B96 /* MyDatabaseTabBarController.swift in Sources */,
 				7115A5A920AAA191000D0B96 /* FreedomBooksViewController.swift in Sources */,
-				771917751D65C29B002F2BCD /* JuheDataViewController.m in Sources */,
+				7121193E20ABC58A0087E05B /* EnergyContactUSViewController.swift in Sources */,
+				7121192420ABC4C30087E05B /* EnergyBusinessListViewController.swift in Sources */,
 				77BFCC011E1F413C00C95B5E /* technology.md in Sources */,
 				71ECE007209210BF00495467 /* TLAddFriendViewController.m in Sources */,
-				771917781D65C2A7002F2BCD /* MicroEnergyViewController.m in Sources */,
 				BF5B9B7D1F8E67A700BD885E /* HonorViewController.swift in Sources */,
 				BF5B9B6D1F8E674400BD885E /* MoneyViewController.swift in Sources */,
-				779B81D61D7D3F1F00B23DFA /* EnergySampleViewController.m in Sources */,
 				7115A5BC20AAD31A000D0B96 /* PersonalInternetViewController.swift in Sources */,
 				7745C2581D672373002212DE /* TaobaoTabBarController.m in Sources */,
 				7115A5F620AAFC40000D0B96 /* MyDatabaseEditViewController.swift in Sources */,
 				773D56901D7955AE00A0C615 /* JFSearchHistoryViewController.m in Sources */,
 				776460701D68437F00ACCCAC /* TLDBManager.m in Sources */,
-				779B81D01D7D1A2E00B23DFA /* JuheAPIDetailViewController.m in Sources */,
 				BF5B9B791F8E678900BD885E /* FriendViewController.swift in Sources */,
 				71ECE0212092121F00495467 /* TLGameViewController.m in Sources */,
 				7115A5B120AABCF6000D0B96 /* FreedomTabBarController.swift in Sources */,
 				7115A5AB20AAA1C4000D0B96 /* FreedomBooksEditViewController.swift in Sources */,
-				7745C2611D6723DF002212DE /* ToutiaoTabBarController.m in Sources */,
-				779937B41E2F1DBC00866968 /* EnergyShopFindViewController.m in Sources */,
-				779B81B51D7D0E7300B23DFA /* JuheDynamicViewController.m in Sources */,
 				7741F1F51D6D53B700EED332 /* SDYuEBaoTableViewController.m in Sources */,
 				77CC4F441D90E07A00DD2EC8 /* BaseTabBarController.m in Sources */,
 				71517B1C2094803300B40538 /* JSONObject.swift in Sources */,
-				779937BA1E2F1DE100866968 /* EnergyShopMeViewController.m in Sources */,
 				77CC4F3E1D90E03200DD2EC8 /* BaseNavigationController.m in Sources */,
-				77BD16D91D6EF25900DE5DB9 /* ToutiaoMeViewController.m in Sources */,
+				7121195020AC0C000087E05B /* JuhePublicViewController.swift in Sources */,
 				77BD16B11D6ECA1900DE5DB9 /* DZDealController.m in Sources */,
 				7165A3E220A5903D001C60D6 /* WechatBaseViewController.m in Sources */,
 				7115A5E620AAECED000D0B96 /* BooksTabBarController.swift in Sources */,
-				779B81E21D7D3F7D00B23DFA /* EnergyContactUSViewController.m in Sources */,
 				7745C2521D67234B002212DE /* KugouTabBarController.m in Sources */,
 				71267A512092DC7B006E1B96 /* WXViewController.m in Sources */,
+				7121193C20ABC57C0087E05B /* EnergyShopMeViewController.swift in Sources */,
+				7121193220ABC5320087E05B /* EnergyShopViewController.swift in Sources */,
 				71ECDFFF209210BF00495467 /* TLContactsViewController.m in Sources */,
-				779B81AF1D7D0E2800B23DFA /* JuheQuestionViewController.m in Sources */,
 				BF5B9B7F1F8E67B900BD885E /* WidomViewController.swift in Sources */,
 				7741F1AB1D6D524400EED332 /* SDDiscoverTableViewController.m in Sources */,
 				7745C25E1D6723A9002212DE /* DianpingTabBarController.m in Sources */,
@@ -6532,33 +6455,36 @@
 				71ECE002209210BF00495467 /* TLPublicServerViewController.m in Sources */,
 				71ECDFC02091F9EF00495467 /* TLMessageManager.m in Sources */,
 				71ECE0452092128E00495467 /* TLImageExpressionDisplayView.m in Sources */,
+				7121194A20AC03800087E05B /* JuheNavigationController.swift in Sources */,
 				7788AC661D7996E000376C95 /* E_WebViewControler.m in Sources */,
-				779B81CA1D7D120400B23DFA /* JuhePublicViewController.m in Sources */,
 				779937FA1E2F63C000866968 /* NetEngine.m in Sources */,
 				BF6E56AF1FAAF7D6005F7DF8 /* TLSettingViewController.m in Sources */,
-				779B81C11D7D11BE00B23DFA /* JuheAboutUSViewController.m in Sources */,
+				7121196020AC0C620087E05B /* JuheDynamicViewController.swift in Sources */,
+				7121192020ABC4990087E05B /* EnergyBaseViewController.swift in Sources */,
+				7121194620ABE3660087E05B /* MicroEnergyTabBarController.swift in Sources */,
 				71267A582092E726006E1B96 /* BookReadMode.m in Sources */,
 				71ECE04A2092128E00495467 /* TLConversationViewController.m in Sources */,
 				7115A5BE20AAD32E000D0B96 /* PersonalEducationViewController.swift in Sources */,
 				77FD03C11E25DF6800E5099E /* TaobaoMiniDynamicViewController.m in Sources */,
+				7121195220AC0C0C0087E05B /* JuheMessageViewController.swift in Sources */,
 				71ECE006209210BF00495467 /* TLFriendSearchViewController.m in Sources */,
 				77BD16451D6EC53300DE5DB9 /* DetailScrollViewController.m in Sources */,
-				779B81DC1D7D3F3F00B23DFA /* EnergyHomeViewController.m in Sources */,
 				7788AC611D7996E000376C95 /* DetailViewController.m in Sources */,
 				77BD16C91D6ECA7F00DE5DB9 /* DZMeController.m in Sources */,
 				71ECE004209210BF00495467 /* TLGroupViewController.m in Sources */,
 				7741F1BF1D6D528E00EED332 /* SDServiceTableViewController.m in Sources */,
 				71250EC62091C0F20093B59B /* FreedomTools.m in Sources */,
-				779937C31E2F1F0300866968 /* EnergySuperMeViewController.m in Sources */,
-				779B81B21D7D0E3500B23DFA /* JuheAPIViewController.m in Sources */,
 				7115A5B820AAC348000D0B96 /* PersonalApplyBaseViewController.swift in Sources */,
 				7719176F1D65C27C002F2BCD /* DianpingViewController.m in Sources */,
 				77FD03CD1E25E4E900E5099E /* TaobaoMiniTopicViewController.m in Sources */,
+				7121192620ABC4D10087E05B /* EnergyBusinessDetailViewController.swift in Sources */,
 				77F0D75E1E4C5AC80036F5F9 /* BooksMainViewController.m in Sources */,
 				71ECE0442092128E00495467 /* TLChatBaseViewController.m in Sources */,
-				77F2E8FB1E4967E000C7E9D5 /* ToutiaoHomeDetailViewController.m in Sources */,
+				7121193020ABC5270087E05B /* EnergySuperHomeViewController.swift in Sources */,
+				7121194E20AC0BF00087E05B /* JuheContectUSViewController.swift in Sources */,
 				7115A5C020AAD339000D0B96 /* PersonalSoftViewController.swift in Sources */,
 				71267A482092CF9B006E1B96 /* XFNavigationController.m in Sources */,
+				7121195C20AC0C450087E05B /* JuheQuestionViewController.swift in Sources */,
 				BF5B9B621F8E641000BD885E /* PhilosophyViewController.swift in Sources */,
 				71ECE001209210BF00495467 /* TLTagsViewController.m in Sources */,
 				774BFB3D1D76744F005CA603 /* TabBarView.m in Sources */,
@@ -6567,33 +6493,31 @@
 				774BFB451D767618005CA603 /* KugouBaseViewController.m in Sources */,
 				774BFB201D767389005CA603 /* SingViewController.m in Sources */,
 				778E8F0F1D69607E004D899C /* XFDiscoverViewController.m in Sources */,
-				779B81EB1D7D428C00B23DFA /* EnergyBusinessDetailViewController.m in Sources */,
-				7745C2641D6723EC002212DE /* JuheDataTabBarController.m in Sources */,
 				71ECE005209210BF00495467 /* TLFriendsViewController.m in Sources */,
+				7121196C20AC24DF0087E05B /* ToutiaoHomeSampleViewController.swift in Sources */,
 				7115A5D620AAD73F000D0B96 /* ResumeNavigationController.swift in Sources */,
-				779937BD1E2F1E1500866968 /* EnergyShopHomeViewController.m in Sources */,
-				779B81AC1D7D0E0B00B23DFA /* JuheContectUSViewController.m in Sources */,
 				7745C2461D67188C002212DE /* WechartTabBarController.m in Sources */,
 				71267A522092DC7B006E1B96 /* BookFriendsMode.m in Sources */,
 				7788AC621D7996E000376C95 /* E_CommentViewController.m in Sources */,
 				773D56C91D7968EC00A0C615 /* IqiyiViewController.m in Sources */,
 				BF5B9B711F8E675100BD885E /* LoveViewController.swift in Sources */,
+				7121192E20ABC5060087E05B /* EnergyDetailViewController.swift in Sources */,
 				771917691D65C25F002F2BCD /* TaobaoViewController.m in Sources */,
+				7121196A20AC24D30087E05B /* ToutiaoViewController.swift in Sources */,
 				71ECE003209210BF00495467 /* TLNewFriendViewController.m in Sources */,
 				778E93681D699D8C004D899C /* XFComposeViewController.m in Sources */,
-				779B81C71D7D11E300B23DFA /* JuheMessageViewController.m in Sources */,
 				77FD03C41E25E48100E5099E /* TaobaoMiniNewViewController.m in Sources */,
 				778E93AC1D69B1FE004D899C /* SWSettingViewController.m in Sources */,
 				7788AC631D7996E000376C95 /* E_ReaderViewController.m in Sources */,
 				7741F1941D6D514100EED332 /* SDBasicTableViewController.m in Sources */,
 				71ECE01D2092121F00495467 /* TLMomentDetailViewController.m in Sources */,
-				779B81EE1D7D438C00B23DFA /* EnergyNewsDetailViewController.m in Sources */,
 				774BFB281D767389005CA603 /* SettingViewController.m in Sources */,
+				7121196820AC24A70087E05B /* ToutiaoBaseViewController.swift in Sources */,
+				7121195420AC0C170087E05B /* JuheAboutUSViewController.swift in Sources */,
 				7115A5EA20AAEDF1000D0B96 /* BooksBaseViewController.swift in Sources */,
 				7741F1961D6D514100EED332 /* SDBasicViewContoller.m in Sources */,
 				71ECE0232092121F00495467 /* TLMomentsViewController.m in Sources */,
 				71267A462092CF9B006E1B96 /* SinaTabBarController.m in Sources */,
-				779B81F41D7D45B600B23DFA /* EnergyDetailViewController.m in Sources */,
 				BF5B9B7B1F8E679300BD885E /* HealthViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
