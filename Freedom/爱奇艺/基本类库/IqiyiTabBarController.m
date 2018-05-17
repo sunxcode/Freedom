@@ -3,7 +3,6 @@
 //  Copyright © 2016年 Super. All rights reserved.
 //
 #import "IqiyiTabBarController.h"
-#import "KugouViewController.h"
 #import "JFClassifyViewController.h"
 #import "JFDiscoverViewController.h"
 #import "JFMineViewController.h"
@@ -36,18 +35,6 @@
 -(void)setHighlighted:(BOOL)highlighted{
     
 }
-//-(CGRect)imageRectForContentRect:(CGRect)contentRect
-//{
-//    CGFloat imageW = contentRect.size.width;
-//    CGFloat imageH = contentRect.size.height * JFTabBarButtonImageRatio;
-//    return CGRectMake(0, 0, imageW, imageH);
-//}
-//-(CGRect)titleRectForContentRect:(CGRect)contentRect{
-//    CGFloat  titleY = contentRect.size.height * JFTabBarButtonImageRatio;
-//    CGFloat titleW = contentRect.size.width;
-//    CGFloat titleH = contentRect.size.height -titleY ;
-//    return  CGRectMake(0, titleY, titleW, titleH);
-//}
 -(void)setItem:(UITabBarItem *)item{
     _item = item;
     [self setTitle:item.title forState:UIControlStateNormal];

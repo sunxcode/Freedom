@@ -1,0 +1,88 @@
+//
+//  TaobaoMiniVideoViewController.swift
+//  Freedom
+//
+//  Created by htf on 2018/5/17.
+//  Copyright © 2018年 薛超. All rights reserved.
+//
+
+import UIKit
+import BaseFile
+import XExtension
+class TaobaoMiniVideoViewCell:BaseTableViewCell{
+    //  The converted code is limited to 1 KB.
+    //  Please Sign Up (Free!) to remove this limitation.
+    //
+    //  Converted to Swift 4 by Swiftify v4.1.6710 - https://objectivec2swift.com/
+    func initUI() {
+        super.initUI()
+        icon.frame = CGRect(x: 10, y: 10, width: 30, height: 30)
+        name = UILabel(frame: CGRect(x: XW(icon) + 10, y: Y(icon) - 5, width: APPW - XW(icon) - 20, height: 20), font: fontSmallTitle, color: RGBCOLOR(0, 111, 255), text: nil)
+        times = UILabel(frame: CGRect(x: X(name), y: YH(name), width: W(name), height: 15), font: fontnomal, color: graycolor, text: nil)
+        picV = UIImageView(frame: CGRect(x: X(icon), y: YH(icon) + 10, width: APPW - 20, height: 130))
+        cellContentView = UIView(frame: CGRect(x: X(picV), y: YH(picV), width: W(picV), height: 60))
+        cellContentView.backgroundColor = gradcolor
+        title.removeFromSuperview()
+        script.removeFromSuperview()
+        title.frame = CGRect(x: 0, y: 0, width: W(cellContentView), height: 20)
+        script.frame = CGRect(x: X(title), y: YH(title), width: W(title), height: 40)
+            script.numberOfLines = 0
+            cellContentView.addSubviews(title, script, nil)
+            sees = UILabel(frame: CGRect(x: 10, y: YH(cellContentView) + 10, width: 100, height: 15), font: fontnomal, color: graycolor, text: nil)
+            zan = UIButton(frame: CGRect(x: APPW - 130, y: Y(sees) - 2, width: 55, height: 19))
+            pinglun = UIButton(frame: CGRect(x: XW(zan) + 10, y: Y(zan), width: W(zan), height: H(zan)))
+            zan.layer.cornerRadius = 7.5
+            zan.layer.borderWidth = 0.5
+            zan.clipsToBounds = true
+            pinglun.layer.cornerRadius = 7.5
+            pinglun.layer.borderWidth = 0.5
+            pinglun.clipsToBounds = true
+            sees.font = Font(12)
+            zan.titleLabel?.font = Font(12)
+            pinglun.titleLabel?.font = Font(12)
+            line.frame = CGRect(x: 0, y: 280 - 1, width: APPW, height: 1)
+            addSubviews(name, times, picV, cellContentView, sees, zan, pinglun, nil)
+        }
+    func setDataWithDict(_ dict: [AnyHashable: Any]?) {
+        icon.image = UIImage(named: "xin@2x")
+        name.text = "微淘发现"
+        times.text = "1-7"
+        picV.image = UIImage(named: "image4.jpg")
+        title.text = "#初心品质#不忘初心，惊喜大发现，原来。。。"
+        script.text = "与爱齐名，为有初心不变，小编为大家收集了超多好文好店，从手工匠人到原型设计，他们并没有忘记"
+        sees.text = " 145"
+        zan.setTitle("3031", for: .normal)
+        pinglun.setTitle("评论", for: .normal)
+    }
+
+}
+class TaobaoMiniVideoViewController: TaobaoBaseViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView = UITableView(frame: CGRect(x: 0, y: 0, width: APPW, height: view.frameHeight - 20), style: .plain)
+        dataArray = ["b", "a", "v", "f", "d", "a", "w", "u", "n", "o", "2"]
+        tableView.dataSource = self
+        tableView.delegate = self
+        view.addSubview(tableView)
+
+        // Do any additional setup after loading the view.
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+}
