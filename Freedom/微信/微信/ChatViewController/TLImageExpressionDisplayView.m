@@ -58,12 +58,12 @@ static NSString *curID;
     self.frameY = rect.origin.y - self.frameHeight + 13;
     CGFloat w = WIDTH_TIPS - WIDTH_CENTER;
     CGFloat centerX = rect.origin.x + rect.size.width / 2;
-    if (rect.origin.x + rect.size.width < self.frameWidth) {     // 箭头在左边
+    if (rect.origin.x + rect.size.width < self.frame.size.width) {     // 箭头在左边
         self.center = CGPointMake(centerX + (WIDTH_TIPS - w / 4 - WIDTH_CENTER) / 2 - SPACE_IMAGE,self.center.y);
         [self.bgLeftView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.width.mas_equalTo(w / 4);
         }];
-    }else if (APPW - rect.origin.x < self.frameWidth) {   // 箭头在右边
+    }else if (APPW - rect.origin.x < self.frame.size.width) {   // 箭头在右边
         self.center = CGPointMake(centerX - (WIDTH_TIPS - w / 4 - WIDTH_CENTER) / 2 + SPACE_IMAGE,self.center.y);
         [self.bgLeftView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.width.mas_equalTo(w / 4 * 3);

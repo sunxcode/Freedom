@@ -1,10 +1,6 @@
 //
 //  SDHomeViewController.swift
 //  Freedom
-//
-//  Created by htf on 2018/5/17.
-//  Copyright © 2018年 薛超. All rights reserved.
-//
 
 import UIKit
 import BaseFile
@@ -14,7 +10,6 @@ class SDHomeGridItemModel: NSObject {
     var title = ""
     var destinationClass: AnyClass?
 }
-
 class SDHomeGridViewListItemView: UIView {
     var itemModel: SDHomeGridItemModel?
     var hidenIcon = false
@@ -22,25 +17,28 @@ class SDHomeGridViewListItemView: UIView {
     var itemLongPressedOperationBlock: ((_ longPressed: UILongPressGestureRecognizer?) -> Void)?
     var buttonClickedOperationBlock: ((_ item: SDHomeGridViewListItemView?) -> Void)?
     var iconViewClickedOperationBlock: ((_ view: SDHomeGridViewListItemView?) -> Void)?
-    private var button: UIButton?
+    private var button = UIButton()
     private var iconView: UIButton?
     
-    init(frame: CGRect) {
+    override init(frame: CGRect) {
         super.init(frame: frame)
         
         initialization()
         
     }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     func initialization() {
         backgroundColor = UIColor.white
-        button = UIButton()
         button.setTitleColor(UIColor.gray, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
         button.titleLabel?.textAlignment = .center
         button.addTarget(self, action: #selector(self.buttonClicked), for: .touchUpInside)
         addSubview(button)
         let icon = UIButton()
-        icon.setImage(UIImage(named: Pdelete), for: .normal)
+        icon.setImage(UIImage(named:"delete"), for: .normal)
         icon.addTarget(self, action: #selector(self.iconViewClicked), for: .touchUpInside)
         icon.isHidden = true
         addSubview(icon)
@@ -49,20 +47,20 @@ class SDHomeGridViewListItemView: UIView {
         addGestureRecognizer(longPressed)
     }
     func itemLongPressed(_ longPressed: UILongPressGestureRecognizer?) {
-        if itemLongPressedOperationBlock {
-            itemLongPressedOperationBlock(longPressed)
+        if (itemLongPressedOperationBlock != nil) {
+            itemLongPressedOperationBlock!(longPressed)
         }
     }
     
-    func buttonClicked() {
-        if buttonClickedOperationBlock {
-            buttonClickedOperationBlock(self)
+    @objc func buttonClicked() {
+        if (buttonClickedOperationBlock != nil) {
+            buttonClickedOperationBlock!(self)
         }
     }
     
-    func iconViewClicked() {
-        if iconViewClickedOperationBlock {
-            iconViewClickedOperationBlock(self)
+    @objc func iconViewClicked() {
+        if (iconViewClickedOperationBlock != nil) {
+            iconViewClickedOperationBlock!(self)
         }
     }
     func setItemModel(_ itemModel: SDHomeGridItemModel?) {
@@ -80,15 +78,15 @@ class SDHomeGridViewListItemView: UIView {
     }
     func setHidenIcon(_ hidenIcon: Bool) {
         self.hidenIcon = hidenIcon
-        iconView.hidden = hidenIcon
+        iconView?.hidden = hidenIcon
     }
     
     func setIconImage(_ iconImage: UIImage?) {
         self.iconImage = iconImage
-        iconView.setImage(iconImage, for: .normal)
+        iconView?.setImage(iconImage, for: .normal)
     }
     
-    func layoutSubviews() {
+    override func layoutSubviews() {
         super.layoutSubviews()
         let margin: CGFloat = 10
         button.frame = bounds
@@ -96,7 +94,7 @@ class SDHomeGridViewListItemView: UIView {
         let w: CGFloat = W(button)
         button.imageEdgeInsets = UIEdgeInsetsMake(h * 0.2, w * 0.32, h * 0.3, w * 0.32)
         button.titleEdgeInsets = UIEdgeInsetsMake(h * 0.6, -w * 0.4, 0, 0)
-        iconView.frame = CGRect(x: frameWidth - iconView.frameWidth - margin, y: margin, width: 20, height: 20)
+        iconView.frame = CGRect(x: frame.size.width - iconView.frame.size.width - margin, y: margin, width: 20, height: 20)
     }
 
 
@@ -119,7 +117,7 @@ class SDHomeGridView: UIScrollView, UIScrollViewDelegate {
     private var lastPoint = CGPoint.zero
     private var placeholderButton: UIButton?
     private var currentPressedView: SDHomeGridViewListItemView?
-    private var cycleScrollADView: BaseScrollOCView?
+    private var cycleScrollADView: BaseScrollView?
     private var cycleScrollADViewBackgroundView: UIView?
     private var moreItemButton: UIButton?
     private var currentPresssViewFrame = CGRect.zero
@@ -157,11 +155,11 @@ class SDHomeGridView: UIScrollView, UIScrollViewDelegate {
         let header = UIView()
         header.frame = CGRect(x: 0, y: 0, width: APPW, height: 100)
         header.backgroundColor = UIColor(red: 38 / 255.0, green: 42 / 255.0, blue: 59 / 255.0, alpha: 1)
-        let scan = UIButton(frame: CGRect(x: 0, y: 0, width: header.frameWidth * 0.5, height: header.frameHeight))
+        let scan = UIButton(frame: CGRect(x: 0, y: 0, width: header.frame.size.width * 0.5, height: header.frameHeight))
         scan.setImage(UIImage(named: Pscan_y), for: .normal)
         scan.addTarget(self, action: #selector(self.scanButtonClicked), for: .touchUpInside)
         header.addSubview(scan)
-        let pay = UIButton(frame: CGRect(x: scan.frameWidth, y: 0, width: header.frameWidth * 0.5, height: header.frameHeight))
+        let pay = UIButton(frame: CGRect(x: scan.frame.size.width, y: 0, width: header.frame.size.width * 0.5, height: header.frameHeight))
         pay.setImage(UIImage(named: "home_pay"), for: .normal)
         header.addSubview(pay)
         let line = UIView(frame: CGRect(x: APPW / 2, y: 0, width: 0.5, height: 100))
@@ -178,10 +176,6 @@ class SDHomeGridView: UIScrollView, UIScrollViewDelegate {
         addSubview(cycleScrollADView)
         
     }
-    //  The converted code is limited to 1 KB.
-    //  Please Sign Up (Free!) to remove this limitation.
-    //
-    //  Converted to Swift 4 by Swiftify v4.1.6710 - https://objectivec2swift.com/
     func setGridModelsArray(_ gridModelsArray: [Any]?) {
         self.gridModelsArray = gridModelsArray
         itemsArray.removeAll()
@@ -247,11 +241,6 @@ class SDHomeGridView: UIScrollView, UIScrollViewDelegate {
         rowCount = (rowCount < 4) ? 4 : rowCount
         return rowCount
     }
-
-    //  The converted code is limited to 1 KB.
-    //  Please Sign Up (Free!) to remove this limitation.
-    //
-    //  Converted to Swift 4 by Swiftify v4.1.6710 - https://objectivec2swift.com/
     func buttonLongPressed(_ longPressed: UILongPressGestureRecognizer?) {
         let pressedView = longPressed?.view as? SDHomeGridViewListItemView
         let point: CGPoint? = longPressed?.location(in: self)
@@ -316,7 +305,7 @@ class SDHomeGridView: UIScrollView, UIScrollViewDelegate {
     })
     }
 }
-//  Converted to Swift 4 by Swiftify v4.1.6710 - https://objectivec2swift.com/
+
 func delete(_ view: SDHomeGridViewListItemView?) {
     if let aView = view {
         while let elementIndex = itemsArray.index(of: aView) { itemsArray.remove(at: elementIndex) }
@@ -341,7 +330,7 @@ func saveItemsSettingCache() {
 }
 
 func setupSubViewsFrame() {
-    let itemW: CGFloat = frameWidth / 4
+    let itemW: CGFloat = frame.size.width / 4
     let itemH: CGFloat = itemW * 1.1
     itemsArray.enumerateObjects({(_ item: UIView?, _ idx: Int, _ stop: UnsafeMutablePointer<ObjCBool>?) -> Void in
         let rowIndex: Int = idx / 4
@@ -359,18 +348,14 @@ func setupSubViewsFrame() {
         }
     })
 }
-//  The converted code is limited to 1 KB.
-//  Please Sign Up (Free!) to remove this limitation.
-//
-//  Converted to Swift 4 by Swiftify v4.1.6710 - https://objectivec2swift.com/
 func layoutSubviews() {
     super.layoutSubviews()
-    let itemW: CGFloat = frameWidth / 4
+    let itemW: CGFloat = frame.size.width / 4
     let itemH: CGFloat = itemW * 1.1
     setupSubViewsFrame()
     if shouldAdjustedSeparators {
         rowSeparatorsArray.enumerateObjects({(_ view: UIView?, _ idx: Int, _ stop: UnsafeMutablePointer<ObjCBool>?) -> Void in
-            let w: CGFloat = self.frameWidth
+            let w: CGFloat = self.frame.size.width
             let h: CGFloat = 0.4
             let x: CGFloat = 0
             let y = CGFloat(idx) * itemH + 100
@@ -385,8 +370,8 @@ func layoutSubviews() {
         })
         shouldAdjustedSeparators = false
     }
-    cycleScrollADViewBackgroundView.frame = CGRect(x: 0, y: itemH * 3, width: frameWidth, height: itemH)
-    cycleScrollADView.frame = CGRect(x: 0, y: cycleScrollADViewBackgroundView.frameY + 10, width: frameWidth, height: itemH - 10 * 2)
+    cycleScrollADViewBackgroundView.frame = CGRect(x: 0, y: itemH * 3, width: frame.size.width, height: itemH)
+    cycleScrollADView.frame = CGRect(x: 0, y: cycleScrollADViewBackgroundView.frameY + 10, width: frame.size.width, height: itemH - 10 * 2)
 }
 func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
     currentPressedView.hidenIcon = true
@@ -411,7 +396,7 @@ class SDHomeViewController: AlipayBaseViewController {
     func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         let tabbarHeight: CGFloat? = tabBarController?.tabBar.frameHeight()
-        mainView.frame = CGRect(x: 0, y: 0, width: view.frameWidth, height: APPH - (tabbarHeight ?? 0.0))
+        mainView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: APPH - (tabbarHeight ?? 0.0))
     }
     func setupDataArray() {
         let itemsArray = AlipayTools.itemsArray()

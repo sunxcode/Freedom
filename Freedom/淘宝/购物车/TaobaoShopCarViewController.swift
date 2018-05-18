@@ -1,20 +1,13 @@
 //
 //  TaobaoShopCarViewController.swift
 //  Freedom
-//
-//  Created by htf on 2018/5/17.
-//  Copyright © 2018年 薛超. All rights reserved.
-//
 
 import UIKit
 import BaseFile
 import XExtension
+import XCategory
 class TaobaoShopCarViewCell:BaseTableViewCell{
-    //  The converted code is limited to 1 KB.
-    //  Please Sign Up (Free!) to remove this limitation.
-    //
-    //  Converted to Swift 4 by Swiftify v4.1.6710 - https://objectivec2swift.com/
-    func initUI() {
+    override func initUI() {
         icon = UIImageView()
         icon.contentMode = .scaleToFill
         title = UILabel()
@@ -32,13 +25,12 @@ class TaobaoShopCarViewCell:BaseTableViewCell{
         selecth.setImage(UIImage(named: "taobaoon"), for: .selected)
         let headTitle = UILabel(frame: CGRect(x: XW(selecth), y: 0, width: APPW - 150, height: 20), font: fontnomal, color: gradtextcolor, text: "中华精品城 >")
         let lingquan = UIButton(frame: CGRect(x: APPW - 100, y: 0, width: 40, height: 20))
-        let lingquan = UIButton(frame: CGRect(x: APPW - 100, y: 0, width: 40, height: 20))
-        lingquan.setTitle("领券", for: UIWindowLevelNormal)
+        lingquan.setTitle("领券", for: .normal)
         let edit = UIButton(frame: CGRect(x: XW(lingquan) + 10, y: 0, width: 40, height: 20))
         edit.setTitle("编辑", for: .normal)
         edit.titleLabel?.font = fontnomal
         lingquan.titleLabel?.font = edit.titleLabel?.font
-        headView.addSubviews(selecth, headTitle, lingquan, edit, nil)
+        headView.addSubviews([selecth, headTitle!, lingquan, edit])
         let contentV = UIView(frame: CGRect(x: 0, y: YH(headView), width: APPW, height: 80))
         let selectc = UIButton(frame: CGRect(x: 10, y: 32, width: 15, height: 15))
         selectc.setImage(UIImage(named: "taobaono"), for: .normal)
@@ -50,13 +42,11 @@ class TaobaoShopCarViewCell:BaseTableViewCell{
         script.textColor = graycolor
         script.frame = CGRect(x: X(title), y: YH(title), width: W(title), height: 20)
         let newPrice = UILabel(frame: CGRect(x: X(script), y: YH(script), width: 60, height: 20), font: fontnomal, color: redcolor, text: "￥199")
-        let oldPrice = UILabel(frame: CGRect(x: XW(newPrice), y: Y(newPrice), width: 80, height: H(newPrice)), font: fontnomal, color: graycolor, text: "￥299")
-        let num = UILabel(frame: CGRect(x: APPW - 50, y: Y(newPrice), width: 40, height: 20), font: fontnomal, color: graycolor, text: "x1")
-        num.textAlignment = .right
-        contentV.addSubviews(selectc, icon, title, script, newPrice, oldPrice, num, nil)
-        addSubviews(headView, contentV, line, nil)
-    }
-    func setDataWithDict(_ dict: [AnyHashable: Any]?) {
+        let oldPrice = UILabel(frame: CGRect(x: XW(newPrice), y: Y(newPrice!), width: 80, height: H(newPrice)), font: fontnomal, color: graycolor, text: "￥299")
+        let num = UILabel(frame: CGRect(x: APPW - 50, y: Y(newPrice!), width: 40, height: 20), font: fontnomal, color: graycolor, text: "x1")
+        num?.textAlignment = .right
+        contentV.addSubviews([selectc, icon, title, script, newPrice!, oldPrice!, num!])
+        addSubviews([headView, contentV, line])
         icon.image = UIImage(named: "05.jpg")
         title.text = "冬季外套女装学生韩版棉衣女中长款面包服女加厚棉服宽松冬装棉袄"
         script.text = "颜色分类:红色;尺码:M"
@@ -64,39 +54,31 @@ class TaobaoShopCarViewCell:BaseTableViewCell{
 
 }
 class TaobaoShopCarViewController: TaobaoBaseViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
     func buildUI() {
         title = "购物车(10)"
-        let more = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(self.moreAction))
-        let edit = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(self.moreAction))
-        navigationItem?.rightBarButtonItems = [edit, more]
-        tableView = UITableView(frame: CGRect(x: 0, y: 0, width: APPW, height: Int(APPH - TabBarH) - 44 - 50), style: .plain)
-        dataArray = ["b", "a", "v", "f", "d", "a", "w", "u", "n", "o", "2"]
+        let more = UIBarButtonItem(barButtonSystemItem: .action, target:nil, action:nil)
+        let edit = UIBarButtonItem(barButtonSystemItem: .edit, target:nil, action:nil)
+        navigationItem.rightBarButtonItems = [edit, more]
+        tableView = BaseTableView(frame: CGRect(x: 0, y: 0, width: Int(APPW), height: Int(APPH - TabBarH) - 44 - 50), style: .plain)
+        tableView.dataArray = ["b", "a", "v", "f", "d", "a", "w", "u", "n", "o", "2"]
         tableView.dataSource = self
         tableView.delegate = self
         view.addSubview(tableView)
-        let totalView = UIView(frame: CGRect(x: 0, y: APPH - 50 - Int(TabBarH) - 44, width: APPW, height: 40))
+        let totalView = UIView(frame: CGRect(x: 0, y: APPH - 50 - TabBarH - 44, width: APPW, height: 40))
         let totalb = UIButton(frame: CGRect(x: 10, y: 12, width: 56, height: 16))
         totalb.setTitle("全选", for: .normal)
         totalb.setImage(UIImage(named: "taobaono"), for: .normal)
-        func buildUI() {
-            totalb.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 40)
-            totalb.setImage(UIImage(named: "taobaoon"), for: .selected)
-            let heji = UILabel(frame: CGRect(x: XW(totalb) + 20, y: 10, width: 200, height: 20))
-            heji.text = "合计：￥100 不含运费"
-            heji.font = fontTitle
-            let pay = UIButton(frame: CGRect(x: APPW - 80, y: 0, width: 80, height: 40))
-            pay.setTitle("结算(0)", for: .normal)
-            pay.backgroundColor = RGBCOLOR(252, 74, 1)
-            totalView.addSubviews(totalb, heji, pay, nil)
-            view.addSubview(totalView)
-        }
+        totalb.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 40)
+        totalb.setImage(UIImage(named: "taobaoon"), for: .selected)
+        let heji = UILabel(frame: CGRect(x: XW(totalb) + 20, y: 10, width: 200, height: 20))
+        heji.text = "合计：￥100 不含运费"
+        heji.font = fontTitle
+        let pay = UIButton(frame: CGRect(x: APPW - 80, y: 0, width: 80, height: 40))
+        pay.setTitle("结算(0)", for: .normal)
+        pay.backgroundColor = RGBAColor(252, 74, 1)
+        totalView.addSubviews([totalb, heji, pay])
+        view.addSubview(totalView)
+    }
 
 
 }

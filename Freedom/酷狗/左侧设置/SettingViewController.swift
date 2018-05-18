@@ -1,10 +1,6 @@
 //
 //  SettingViewController.swift
 //  Freedom
-//
-//  Created by htf on 2018/5/17.
-//  Copyright © 2018年 薛超. All rights reserved.
-//
 
 import UIKit
 import BaseFile
@@ -47,13 +43,13 @@ class SettingViewController: KugouBaseViewController {
         let img = UIImageView(frame: CGRect(x: 15, y: 0, width: 40, height: 40))
         img.image = UIImage(named: "placeHoder-128")
         img.center = CGPoint(x: img.center.x, y: topView.center.y)
-        img.layer.cornerRadius = img.frameWidth * 0.5
+        img.layer.cornerRadius = img.frame.size.width * 0.5
         img.layer.masksToBounds = true
         topView.addSubview(img)
         let img2 = UIImageView(frame: CGRect(x: APPW - 80, y: 0, width: 40, height: 40))
         img2.image = UIImage(named: "placeHoder-128")
         img2.center = CGPoint(x: img2.center.x, y: topView.center.y)
-        img2.layer.cornerRadius = img.frameWidth * 0.5
+        img2.layer.cornerRadius = img.frame.size.width * 0.5
         img2.layer.masksToBounds = true
         topView.addSubview(img2)
         let lineView = UIView(frame: CGRect(x: 10, y: 99, width: APPW - 70, height: 0.5))
@@ -130,7 +126,7 @@ class SettingViewController: KugouBaseViewController {
         let scare = CGFloat(1 - deltaX / 1000.0)
         let tranX = CGFloat(-fabs(Float(deltaX)) / 200.0)
         let tranY = CGFloat(fabs(Float(deltaX)) / 1000.0)
-        DLog("%f", scare)
+        Dlog(scare)
         if 0.5 < scare < 1 {
             bottomView.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
         } else {

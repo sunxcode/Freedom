@@ -132,7 +132,7 @@
     label.textAlignment = NSTextAlignmentCenter;
     label.textColor = [UIColor whiteColor];
     label.font = [UIFont systemFontOfSize:16];
-    label.frameWidth = [UIScreen mainScreen].bounds.size.width;
+    label.frame.size.width = [UIScreen mainScreen].bounds.size.width;
     label.frameHeight = 35;
     label.frameY = 64 - label.frameHeight;
     if (count) {

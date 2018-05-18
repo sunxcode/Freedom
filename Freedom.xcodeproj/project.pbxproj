@@ -106,6 +106,7 @@
 		71267A5B2092E736006E1B96 /* BookSubViews.m in Sources */ = {isa = PBXBuildFile; fileRef = 71267A5A2092E736006E1B96 /* BookSubViews.m */; };
 		713728CA20AE733F00A3227A /* AlipayModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713728C920AE733F00A3227A /* AlipayModels.swift */; };
 		713728CC20AE839900A3227A /* SDYuEBaoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713728CB20AE839900A3227A /* SDYuEBaoTableViewController.swift */; };
+		713728CF20AE9FC600A3227A /* FoundationSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713728CE20AE9FC500A3227A /* FoundationSwift.swift */; };
 		713EE2A420AD8F160085B65D /* DianpingTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713EE2A320AD8F160085B65D /* DianpingTabBarController.swift */; };
 		713EE2A620AD8F290085B65D /* TaobaoTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713EE2A520AD8F290085B65D /* TaobaoTabBarController.swift */; };
 		713EE2A820AD8F500085B65D /* AlipayTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713EE2A720AD8F500085B65D /* AlipayTabBarController.swift */; };
@@ -1261,6 +1262,7 @@
 		71267A5A2092E736006E1B96 /* BookSubViews.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookSubViews.m; sourceTree = "<group>"; };
 		713728C920AE733F00A3227A /* AlipayModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlipayModels.swift; sourceTree = "<group>"; };
 		713728CB20AE839900A3227A /* SDYuEBaoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDYuEBaoTableViewController.swift; sourceTree = "<group>"; };
+		713728CE20AE9FC500A3227A /* FoundationSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationSwift.swift; sourceTree = "<group>"; };
 		713EE2A320AD8F160085B65D /* DianpingTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DianpingTabBarController.swift; sourceTree = "<group>"; };
 		713EE2A520AD8F290085B65D /* TaobaoTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaobaoTabBarController.swift; sourceTree = "<group>"; };
 		713EE2A720AD8F500085B65D /* AlipayTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlipayTabBarController.swift; sourceTree = "<group>"; };
@@ -3828,6 +3830,7 @@
 				71250EC82091C1DA0093B59B /* NSObject+Freedom.m */,
 				779937F81E2F63C000866968 /* NetEngine.h */,
 				779937F91E2F63C000866968 /* NetEngine.m */,
+				713728CE20AE9FC500A3227A /* FoundationSwift.swift */,
 				77CC4F3B1D90DF6200DD2EC8 /* Foundation.h */,
 				77CC4F361D90DCC700DD2EC8 /* Foundation_API.h */,
 				77C3297E1E309F4E00DFEC89 /* Foundation_string.h */,
@@ -6184,6 +6187,7 @@
 				7115A5F420AAFC34000D0B96 /* MyDatabaseViewController.swift in Sources */,
 				778E939D1D69AA92004D899C /* DiscoverDetailViewController.m in Sources */,
 				713728CA20AE733F00A3227A /* AlipayModels.swift in Sources */,
+				713728CF20AE9FC600A3227A /* FoundationSwift.swift in Sources */,
 				713EE2D620AD9BAE0085B65D /* TaobaoCommunityViewController.swift in Sources */,
 				713EE2EA20AD9CC00085B65D /* LookViewController.swift in Sources */,
 				7115A5A320AA9ECB000D0B96 /* XBaseViewController.swift in Sources */,

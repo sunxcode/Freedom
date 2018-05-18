@@ -289,8 +289,8 @@
     CGContextSetLineWidth(context, 0.5);
     CGContextSetStrokeColorWithColor(context, colorGrayLine.CGColor);
     CGContextBeginPath(context);
-    CGContextMoveToPoint(context, self.frameWidth - 0.5, 5);
-    CGContextAddLineToPoint(context, self.frameWidth - 0.5, self.frameHeight - 5);
+    CGContextMoveToPoint(context, self.frame.size.width - 0.5, 5);
+    CGContextAddLineToPoint(context, self.frame.size.width - 0.5, self.frameHeight - 5);
     CGContextStrokePath(context);
 }
 #pragma mark - Getter -

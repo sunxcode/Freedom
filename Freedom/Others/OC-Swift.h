@@ -2,5 +2,5 @@
 //
 #import "E_ScrollViewController.h"
 #import "WXViewController.h"
-
+#import "DetailView.h"
 

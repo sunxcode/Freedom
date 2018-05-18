@@ -41,7 +41,7 @@
             return;
         }
         self.scannerLine.center = CGPointMake(self.bgView.center.x,self.scannerLine.center.y);
-        self.scannerLine.frameWidth = self.bgView.frameWidth * 1.4;
+        self.scannerLine.frameWidth = self.bgView.frame.size.width * 1.4;
         self.scannerLine.frameHeight = 10;
         if (self.scannerLine.frameY + self.scannerLine.frameHeight >= self.frameHeight) {
             self.scannerLine.frameY = 0;
@@ -304,7 +304,7 @@
     }];
     
     // rect值范围0-1，基准点在右上角
-    CGRect rect = CGRectMake(self.scannerView.frameY / APPH, self.scannerView.frameX / APPW, self.scannerView.frameHeight / APPH, self.scannerView.frameWidth / APPW);
+    CGRect rect = CGRectMake(self.scannerView.frameY / APPH, self.scannerView.frameX / APPW, self.scannerView.frameHeight / APPH, self.scannerView.frame.size.width / APPW);
     [self.scannerSession.outputs[0] setRectOfInterest:rect];
     if (!self.isRunning) {
         [self startCodeReading];

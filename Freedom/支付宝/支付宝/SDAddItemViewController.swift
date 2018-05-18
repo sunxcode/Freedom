@@ -1,10 +1,6 @@
 //
 //  SDAddItemViewController.swift
 //  Freedom
-//
-//  Created by htf on 2018/5/17.
-//  Copyright © 2018年 薛超. All rights reserved.
-//
 
 import UIKit
 import BaseFile
@@ -35,12 +31,12 @@ class SDAddItemGridView: UIScrollView, UIScrollViewDelegate {
     //  Converted to Swift 4 by Swiftify v4.1.6710 - https://objectivec2swift.com/
     func layoutSubviews() {
         super.layoutSubviews()
-        let itemW: CGFloat = frameWidth / 4
+        let itemW: CGFloat = frame.size.width / 4
         let itemH: CGFloat = itemW * 1.1
         if true {
             setupSubViewsFrame()
             rowSeparatorsArray.enumerateObjects({(_ view: UIView?, _ idx: Int, _ stop: UnsafeMutablePointer<ObjCBool>?) -> Void in
-                let w: CGFloat = self.frameWidth
+                let w: CGFloat = self.frame.size.width
                 let h: CGFloat = 0.4
                 let x: CGFloat = 0
                 let y = CGFloat(idx) * itemH
@@ -165,7 +161,7 @@ class SDAddItemGridView: UIScrollView, UIScrollViewDelegate {
                 }
             }
             func setupSubViewsFrame() {
-                let itemW: CGFloat = frameWidth / 4
+                let itemW: CGFloat = frame.size.width / 4
                 let itemH: CGFloat = itemW * 1.1
                 itemsArray.enumerateObjects({(_ item: UIView?, _ idx: Int, _ stop: UnsafeMutablePointer<ObjCBool>?) -> Void in
                     let rowIndex: Int = idx / 4

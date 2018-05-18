@@ -103,7 +103,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     LocalMusicCell *cell = [LocalMusicCell cellWithTableView:tableView];
     cell.iconView.image = self.iconArr[indexPath.row];
-    cell.iconView.layer.cornerRadius = cell.iconView.frameWidth*0.5;
+    cell.iconView.layer.cornerRadius = cell.iconView.frame.size.width*0.5;
     cell.iconView.layer.masksToBounds = YES;
     cell.mainLable.text = self.songArr[indexPath.row];
     cell.subLable.text = self.singerArr[indexPath.row];

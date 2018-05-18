@@ -2,7 +2,7 @@
 //  PublicFunction.swift
 import Foundation
 import UIKit
-public func Dlog<T>(message: T,logError: Bool = false,file: String = #file,method: String = #function,line: Int = #line){
+public func Dlog<T>(_ message: T,logError: Bool = false,file: String = #file,method: String = #function,line: Int = #line){
     if logError {
         print("\((file as NSString).lastPathComponent)[\(line)], \(method): \(message)")
     } else {
@@ -23,41 +23,41 @@ public func getTopHeight()->CGFloat{
     }
     return 64.0
 }
-public func RGBAColor(R:CGFloat,G:CGFloat,B:CGFloat,A:CGFloat)->UIColor{
+public func RGBAColor(_ R:CGFloat,_ G:CGFloat,_ B:CGFloat,_ A:CGFloat = 1)->UIColor{
     return UIColor(red: R, green: G, blue: B, alpha: A)
 }
-public func W(obj:UIView?)->CGFloat{
+public func W(_ obj:UIView?)->CGFloat{
     if obj != nil {
         return obj!.frame.size.width
     }else{
         return 0
     }
 }
-public func H(obj:UIView?)->CGFloat{
+public func H(_ obj:UIView?)->CGFloat{
     if obj != nil {
         return obj!.frame.size.height
     }else{
         return 0
     }
 }
-public func X(obj:UIView?)->CGFloat{
+public func X(_ obj:UIView?)->CGFloat{
     if obj != nil {
         return obj!.frame.origin.x
     }else{
         return 0
     }
 }
-public func Y(obj:UIView)->CGFloat{
+public func Y(_ obj:UIView)->CGFloat{
     return obj.frame.origin.y
 }
-public func XW(obj:UIView?)->CGFloat{
+public func XW(_ obj:UIView?)->CGFloat{
     if obj != nil{
         return obj!.frame.origin.x + obj!.frame.size.width
     }else{
         return 0
     }
 }
-public func YH(obj:UIView?)->CGFloat{
+public func YH(_ obj:UIView?)->CGFloat{
     if obj != nil{
         return obj!.frame.origin.y + obj!.frame.size.height
     }else{

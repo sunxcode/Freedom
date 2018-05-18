@@ -110,7 +110,7 @@
     if (self.useMPageTitleAsNavTitle) {
         [self.navigationItem setTitle:webView.title];
         [self.authLabel setText:[NSString stringWithFormat:@"网页由 %@ 提供", webView.URL.host]];
-        [self.authLabel setFrameHeight:[self.authLabel sizeThatFits:CGSizeMake(self.authLabel.frameWidth, MAXFLOAT)].height];
+        [self.authLabel setFrameHeight:[self.authLabel sizeThatFits:CGSizeMake(self.authLabel.frame.size.width, MAXFLOAT)].height];
     }
 }
 #pragma mark - Getter -

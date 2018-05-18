@@ -1,10 +1,6 @@
 //
 //  SDScanViewController.swift
 //  Freedom
-//
-//  Created by htf on 2018/5/17.
-//  Copyright © 2018年 薛超. All rights reserved.
-//
 
 import UIKit
 
@@ -29,13 +25,13 @@ class SDScanViewController: AlipayBaseViewController {
         maskView = mask
         mask.layer.borderColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.7).cgColor
         mask.layer.borderWidth = kBorderW
-        mask.bounds = CGRect(x: 0, y: 0, width: view.frameWidth + kBorderW + kMargin * 2, height: view.frameHeight * 0.9)
-        mask.center = CGPoint(x: view.frameWidth * 0.5, y: view.frameHeight * 0.5)
+        mask.bounds = CGRect(x: 0, y: 0, width: view.frame.size.width + kBorderW + kMargin * 2, height: view.frameHeight * 0.9)
+        mask.center = CGPoint(x: view.frame.size.width * 0.5, y: view.frameHeight * 0.5)
         mask.frameY = 0
         view.addSubview(mask)
     }
     func setupBottomBar() {
-        let bottomBar = UIView(frame: CGRect(x: 0, y: view.frameHeight * 0.9, width: view.frameWidth, height: view.frameHeight * 0.1))
+        let bottomBar = UIView(frame: CGRect(x: 0, y: view.frameHeight * 0.9, width: view.frame.size.width, height: view.frameHeight * 0.1))
         bottomBar.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.8)
         view.addSubview(bottomBar)
     }
@@ -45,12 +41,12 @@ class SDScanViewController: AlipayBaseViewController {
     //  Converted to Swift 4 by Swiftify v4.1.6710 - https://objectivec2swift.com/
     func setupScanWindowView() {
         let scanWindowH: CGFloat = view.frameHeight * 0.9 - kBorderW * 2
-        let scanWindowW: CGFloat = view.frameWidth - kMargin * 2
+        let scanWindowW: CGFloat = view.frame.size.width - kMargin * 2
         let scanWindow = UIView(frame: CGRect(x: kMargin, y: kBorderW, width: scanWindowW, height: scanWindowH))
         scanWindow.clipsToBounds = true
         view.addSubview(scanWindow)
         let scanNetImageViewH: CGFloat = 241
-        let scanNetImageViewW: CGFloat = scanWindow.frameWidth
+        let scanNetImageViewW: CGFloat = scanWindow.frame.size.width
         let scanNetImageView = UIImageView(image: UIImage(named: "scan_net"))
         scanNetImageView.frame = CGRect(x: 0, y: -scanNetImageViewH, width: scanNetImageViewW, height: scanNetImageViewH)
         let scanNetAnimation = CABasicAnimation()

@@ -17,7 +17,7 @@
     UIScrollView *scrollView = [[UIScrollView alloc]init];
     scrollView.delegate = self;
     scrollView.frame = self.view.bounds;
-    CGFloat scrollW = scrollView.frameWidth;
+    CGFloat scrollW = scrollView.frame.size.width;
     CGFloat scrollH = scrollView.frameHeight;
     scrollView.contentSize = CGSizeMake(scrollW * KCount, 0);
     scrollView.pagingEnabled = YES;
@@ -32,7 +32,7 @@
         UIImageView *imageView = [[UIImageView alloc]init];
         imageView.frameX = i * scrollW;
         imageView.frameY = 0;
-        imageView.frameWidth = scrollW;
+        imageView.frame.size.width = scrollW;
         imageView.frameHeight = scrollH;
         NSString *imageName = [NSString stringWithFormat:@"new_feature_%d@2x",i+1];
         imageView.image = [UIImage imageNamed:imageName];
@@ -46,9 +46,9 @@
             [shareBtn setTitle:@"分享至微博" forState:UIControlStateNormal];
             [shareBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
             shareBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 30);
-            shareBtn.center = CGPointMake(imageView.frameWidth *0.24,imageView.frameHeight * 0.70);
+            shareBtn.center = CGPointMake(imageView.frame.size.width *0.24,imageView.frameHeight * 0.70);
             shareBtn.frameHeight = 30;
-            shareBtn.frameWidth = 200;
+            shareBtn.frame.size.width = 200;
             [shareBtn addTarget:self action:@selector(shareClick) forControlEvents:UIControlEventTouchUpInside];
             self.shareBtn = shareBtn;
             [imageView addSubview:shareBtn];
@@ -96,7 +96,7 @@
 //监听pageControl
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView {
     
-    double page = scrollView.contentOffset.x / scrollView.frameWidth;
+    double page = scrollView.contentOffset.x / scrollView.frame.size.width;
     
     self.pageControl.currentPage = (int)(page + 0.5);
     

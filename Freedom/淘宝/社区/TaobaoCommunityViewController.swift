@@ -1,16 +1,13 @@
 //
 //  TaobaoCommunityViewController.swift
 //  Freedom
-//
-//  Created by htf on 2018/5/17.
-//  Copyright © 2018年 薛超. All rights reserved.
-//
 
 import UIKit
 import BaseFile
 import XExtension
+import XCategory
 class TaobaoCommunityViewCell1:BaseCollectionViewCell{
-    func initUI() {
+    override func initUI() {
         title = UILabel(frame: CGRect(x: 10, y: 0, width: APPW - 20, height: 40))
         title.numberOfLines = 0
         title.font = fontTitle
@@ -23,24 +20,20 @@ class TaobaoCommunityViewCell1:BaseCollectionViewCell{
         script.textColor = gradtextcolor
         line = UIView(frame: CGRect(x: 0, y: 198, width: APPW, height: 2))
         line.backgroundColor = whitecolor
-        addSubviews(title, icon, script, line, nil)
-    }
-    func setCollectionDataWithDic(_ dict: [AnyHashable: Any]?) {
+        addSubviews([title, icon, script, line])
         title.text = "我想买一个6000到8000左右的游戏本，求各位大神给个推荐"
         icon.image = UIImage(named: "image4.jpg")
         script.text = "这款笔记本电脑，用料考究，做工精细，运行速度快，携带方便，是您居家旅行的不二之选，它极致的性能堪比外挂，性价比特别高，建议选联想拯救者或惠普精灵系列的电脑，买电脑千万别图便宜，一分价格一分货。"
     }
 }
-class TaobaoCommunityViewCell2 {
-    func initUI() {
+class TaobaoCommunityViewCell2:BaseTableViewCell {
+    override func initUI() {
         icon = UIImageView(frame: CGRect(x: 0, y: 0, width: APPW / 2 - 20, height: 100))
         title = UILabel(frame: CGRect(x: 0, y: YH(icon), width: W(icon), height: 70))
         title.font = fontnomal
         title.textColor = gradtextcolor
         title.numberOfLines = 0
-        addSubviews(icon, title, nil)
-    }
-    func setCollectionDataWithDic(_ dict: [AnyHashable: Any]?) {
+        addSubviews([icon, title])
         title.text = "做工很精细，大品牌，值得信赖！用了几天才评价，真实堪称完美！质量上乘，使用方便，是您居家旅行，过节送礼，朋友关系维护的绝佳产品，可以送老人，送孩子，送长辈，价格合理，你值得拥有！"
         icon.image = UIImage(named: "mini4")
     }
@@ -49,13 +42,13 @@ class TaobaoCommunityViewCell2 {
 class TaobaoCommunityHeadView: UICollectionReusableView {
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         initUI()
-        
     }
-    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     func initUI() {
-        titleLabel = UILabel(frame: CGRect(x: 0, y: 5, width: APPW, height: 20))
+        let titleLabel = UILabel(frame: CGRect(x: 0, y: 5, width: APPW, height: 20))
         titleLabel.textColor = redcolor
         titleLabel.textAlignment = .center
         titleLabel.text = "每日必看"
@@ -63,31 +56,22 @@ class TaobaoCommunityHeadView: UICollectionReusableView {
         addSubview(titleLabel)
     }
 }
-class TaobaoCommunityViewController: TaobaoBaseViewController {
-
+class TaobaoCommunityViewController: TaobaoBaseViewController,UICollectionViewDelegate,UICollectionViewDataSource {
+    
+    let banner = BaseScrollView(banner: CGRect(x: 0, y: 30, width: APPW, height: 130), icons:["",""])
     override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-    //  The converted code is limited to 1 KB.
-    //  Please Sign Up (Free!) to remove this limitation.
-    //
-    //  Converted to Swift 4 by Swiftify v4.1.6710 - https://objectivec2swift.com/
-    func viewDidLoad() {
         super.viewDidLoad()
         let searchBar = UISearchBar()
         searchBar.placeholder = "你想要的购物经验，这里都能找到"
-        navigationItem?.titleView = searchBar
+        navigationItem.titleView = searchBar
         navigationController?.navigationBar.tintColor = UIColor.gray
         let image = UIImage(named: "Taobaomessage@2x")?.withRenderingMode(.alwaysOriginal)
         let leftI = UIBarButtonItem(image: UIImage(named: "TaobaoScanner@2x"), style: .done, actionBlick: {() -> Void in
         })
         let rightI = UIBarButtonItem(image: image, style: .done, actionBlick: {() -> Void in
         })
-        navigationItem?.leftBarButtonItem = leftI
-        navigationItem?.rightBarButtonItem = rightI
-        banner = BaseScrollOCView(frame: CGRect(x: 0, y: 30, width: APPW, height: 130))
+        navigationItem.leftBarButtonItem = leftI
+        navigationItem.rightBarButtonItem = rightI
         let param = [
             "type" : "1"
         ]
@@ -96,10 +80,10 @@ class TaobaoCommunityViewController: TaobaoBaseViewController {
         layout.sectionInset = UIEdgeInsetsMake(10, 10, 0, 10)
         layout.minimumInteritemSpacing = 10
         layout.minimumLineSpacing = 10
-        collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: APPW, height: APPH - 110), collectionViewLayout: layout)
-        dataArray = [["name": "流量充值", "pic": PuserLogo]]
+        collectionView = BaseCollectionView(frame: CGRect(x: 0, y: 0, width: APPW, height: APPH - 110), collectionViewLayout: layout)
+        collectionView.dataArray = [["name": "流量充值", "pic": "userLogo"]]
         collectionView?.register(TaobaoCommunityViewCell2.self, forCellWithReuseIdentifier: "TaobaoCommunityViewCell2")
-        collectionView?.register(BaseCollectionViewOCCell.self, forCellWithReuseIdentifier: "basecell")
+        collectionView?.register(BaseCollectionViewCell.self, forCellWithReuseIdentifier: "basecell")
         collectionView?.register(TaobaoCommunityHeadView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "headview")
         collectionView?.register(TaobaoCommunityHeadView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: "footview")
        
@@ -122,17 +106,15 @@ class TaobaoCommunityViewController: TaobaoBaseViewController {
         return 0
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        var cell: BaseCollectionViewOCCell? = nil
+        var cell: BaseCollectionViewCell? = nil
         if indexPath.section == 0 {
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: "basecell", for: indexPath)
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: "basecell", for: indexPath) as? BaseCollectionViewCell
             cell?.frame = CGRect(x: 0, y: 0, width: APPW, height: 100)
             cell?.addSubview(banner)
         } else if indexPath.section == 1 {
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: "basecell", for: indexPath)
-            cell?.collectionDataWithDic = nil
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: "basecell", for: indexPath) as? BaseCollectionViewCell
         } else {
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TaobaoCommunityViewCell2", for: indexPath)
-            cell?.collectionDataWithDic = nil
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TaobaoCommunityViewCell2", for: indexPath) as? BaseCollectionViewCell
         }
         if let aCell = cell {
             return aCell
@@ -162,16 +144,13 @@ class TaobaoCommunityViewController: TaobaoBaseViewController {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionElementKindSectionHeader {
             return collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "headview", for: indexPath)
-        }
-        if kind == UICollectionElementKindSectionFooter {
+        }else if kind == UICollectionElementKindSectionFooter {
             return collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionFooter, withReuseIdentifier: "footview", for: indexPath)
         }
-        return nil
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let log = "你选择的是\(indexPath.section)，\(indexPath.row)"
-        SVProgressHUD.showSuccess(withStatus: log)
-        DLog("%@", log)
+        Dlog(log)
     }
 
     

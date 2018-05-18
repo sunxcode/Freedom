@@ -130,13 +130,13 @@ static const NSString *TLThirdPartFriendTypeGoogle = @"3";
     CGContextSetStrokeColorWithColor(context, colorGrayLine.CGColor);
     CGContextBeginPath(context);
     if (self.thridPartItems.count == 2) {
-        CGContextMoveToPoint(context, self.frameWidth / 2.0, 0);
-        CGContextAddLineToPoint(context, self.frameWidth / 2.0, self.frameHeight);
+        CGContextMoveToPoint(context, self.frame.size.width / 2.0, 0);
+        CGContextAddLineToPoint(context, self.frame.size.width / 2.0, self.frameHeight);
     }else if (self.thridPartItems.count == 3) {
-        CGContextMoveToPoint(context, self.frameWidth / 3.0, 0);
-        CGContextAddLineToPoint(context, self.frameWidth / 3.0, self.frameHeight);
-        CGContextMoveToPoint(context, self.frameWidth / 3.0 * 2, 0);
-        CGContextAddLineToPoint(context, self.frameWidth / 3.0 * 2, self.frameHeight);
+        CGContextMoveToPoint(context, self.frame.size.width / 3.0, 0);
+        CGContextAddLineToPoint(context, self.frame.size.width / 3.0, self.frameHeight);
+        CGContextMoveToPoint(context, self.frame.size.width / 3.0 * 2, 0);
+        CGContextAddLineToPoint(context, self.frame.size.width / 3.0 * 2, self.frameHeight);
     }
     CGContextStrokePath(context);
 }

@@ -1,13 +1,9 @@
 //
 //  JFWebViewController.swift
 //  Freedom
-//
-//  Created by htf on 2018/5/17.
-//  Copyright © 2018年 薛超. All rights reserved.
-//
-
 import UIKit
-
+import BaseFile
+import XExtension
 class JFWebViewController: IqiyiBaseViewController {
     func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +21,7 @@ class JFWebViewController: IqiyiBaseViewController {
         if let aView = webView {
             view.addSubview(aView)
         }
-        DLog("webview URL:%@", self.urlStr)
+        Dlog("webview URL:\( self.urlStr)")
         let urlStr = self.urlStr.addingPercentEscapes(using: .utf8)
         var request: URLRequest? = nil
         if let aStr = URL(string: urlStr ?? "") {
@@ -37,9 +33,9 @@ class JFWebViewController: IqiyiBaseViewController {
             view.addSubview(activityView)
             view.bringSubview(toFront: activityView)
         }
-        //  Converted to Swift 4 by Swiftify v4.1.6710 - https://objectivec2swift.com/
+    }
         func onBackBtn(_ sender: UIButton?) {
-            DLog("_isFirstIn:%d", isFirstIn)
+            Dlog("_isFirstIn:\(isFirstIn)")
             if isFirstIn <= 1 {
                 navigationController?.popViewController(animated: true)
             } else {
@@ -50,25 +46,24 @@ class JFWebViewController: IqiyiBaseViewController {
         
         // MARK: - UIWebViewDelegate
         func webViewDidStartLoad(_ webView: UIWebView) {
-            DLog("开始加载webview")
+            Dlog("开始加载webview")
         }
         
         func webViewDidFinishLoad(_ webView: UIWebView) {
-            DLog("加载webview完成")
+            Dlog("加载webview完成")
             let theTitle = webView.stringByEvaluatingJavaScript(from: "document.title")
             title = theTitle
             activityView.stopAnimating()
         }
         
         func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
-            DLog("加载webview失败")
+            Dlog("加载webview失败")
         }
 
         func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
             activityView.startAnimating()
             isFirstIn += 1
-            DLog("第几次加载:%d", isFirstIn)
+            Dlog("第几次加载:%d", isFirstIn)
             return true
         }
-
 }

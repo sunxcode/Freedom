@@ -167,7 +167,7 @@ static TLMoreKeyboard *moreKB;
     }
 }
 - (void)reset{
-    [self.collectionView scrollRectToVisible:CGRectMake(0, 0, self.collectionView.frameWidth, self.collectionView.frameHeight) animated:NO];
+    [self.collectionView scrollRectToVisible:CGRectMake(0, 0, self.collectionView.frame.size.width, self.collectionView.frameHeight) animated:NO];
 }
 - (void)setChatMoreKeyboardData:(NSMutableArray *)chatMoreKeyboardData{
     _chatMoreKeyboardData = chatMoreKeyboardData;
@@ -177,7 +177,7 @@ static TLMoreKeyboard *moreKB;
 }
 #pragma mark - Event Response -
 - (void) pageControlChanged:(UIPageControl *)pageControl{
-    [self.collectionView scrollRectToVisible:CGRectMake(self.collectionView.frameWidth * pageControl.currentPage, 0, self.collectionView.frameWidth, self.collectionView.frameHeight) animated:YES];
+    [self.collectionView scrollRectToVisible:CGRectMake(self.collectionView.frame.size.width * pageControl.currentPage, 0, self.collectionView.frame.size.width, self.collectionView.frameHeight) animated:YES];
 }
 #pragma mark - Private Methods -
 - (void)p_addMasonry{

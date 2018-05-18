@@ -24,7 +24,7 @@
 {
     if (!_emotionKeyboard) {
         self.emotionKeyboard = [[XFEmotionKeyboard alloc] init];
-        self.emotionKeyboard.frameWidth = self.view.frameWidth;
+        self.emotionKeyboard.frameWidth = self.view.frame.size.width;
         self.emotionKeyboard.frameHeight = 256;
     }
     return _emotionKeyboard;
@@ -89,10 +89,7 @@
 //添加工具条
 -(void)setupToolbar {
     XFComposeToolbar *toolbar = [[XFComposeToolbar alloc]init];
-    toolbar.frameHeight = 44;
-    toolbar.frameX = 0;
-    toolbar.frameY = self.view.frameHeight - toolbar.frameHeight;
-    toolbar.frameWidth = self.view.frameWidth;
+    toolbar.frame = CGRectMake(0, self.view.frameHeight - toolbar.frameHeight, self.view.frame.size.width, 44);
     toolbar.delegate = self;
     [self.view addSubview:toolbar];
     self.toolbar = toolbar;
@@ -123,9 +120,7 @@
 -(void)setupPhotoView {
     
     XFComposePhotosView *photoView = [[XFComposePhotosView alloc]init];
-    photoView.frameWidth = self.view.frameWidth;
-    photoView.frameHeight = 400;
-    photoView.frameY = 130;
+    photoView.frame = CGRectMake(photoView.frame.origin.x, 130, self.view.frame.size.width, 400);
     [self.textView addSubview:photoView];
     self.photoView = photoView;
     

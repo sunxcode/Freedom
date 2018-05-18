@@ -826,8 +826,8 @@ static const int block_key;
         }break;
         case MyScrollTypeContentIconView:{
              //不用做什么
-//            CGFloat centx =btn.frameX-APPW/2+btn.frameWidth/2;
-//            if(self.contentSize.width< btn.frameX+(APPW+btn.frameWidth)/2){
+//            CGFloat centx =btn.frameX-APPW/2+btn.frame.size.width/2;
+//            if(self.contentSize.width< btn.frameX+(APPW+btn.frame.size.width)/2){
 //                centx = self.contentSize.width-APPW+29;
 //            }else if(centx<0){
 //                centx = 0;

@@ -1,10 +1,6 @@
 //
 //  SDDiscoverTableViewController.swift
 //  Freedom
-//
-//  Created by htf on 2018/5/17.
-//  Copyright © 2018年 薛超. All rights reserved.
-//
 
 import UIKit
 import BaseFile
@@ -77,7 +73,7 @@ class SDDiscoverTableViewHeader: UIView {
         if subviews.count == 0 {
             return
         }
-        let w: CGFloat = frameWidth / subviews.count
+        let w: CGFloat = frame.size.width / subviews.count
         let h: CGFloat = frameHeight
         subviews.enumerateObjects({(_ button: UIView?, _ idx: Int, _ stop: UnsafeMutablePointer<ObjCBool>?) -> Void in
             button?.frame = CGRect(x: CGFloat(idx) * w, y: 0, width: w, height: h)

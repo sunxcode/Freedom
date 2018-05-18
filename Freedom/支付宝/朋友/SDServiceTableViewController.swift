@@ -1,10 +1,6 @@
 //
 //  SDServiceTableViewController.swift
 //  Freedom
-//
-//  Created by htf on 2018/5/17.
-//  Copyright © 2018年 薛超. All rights reserved.
-//
 
 import UIKit
 import BaseFile
@@ -80,7 +76,7 @@ class SDServiceTableViewHeader : UIView{
     
     func layoutSubviews() {
         let margin: CGFloat = 8
-        textField.frame = CGRect(x: margin, y: margin, width: frameWidth - margin * 2, height: frameHeight - margin * 2)
+        textField.frame = CGRect(x: margin, y: margin, width: frame.size.width - margin * 2, height: frameHeight - margin * 2)
         layoutTextFieldSubviews()
         if textField.leftView == nil {
             let leftView = UIView(frame: CGRect(x: 0, y: 0, width: textFieldSearchIcon.frameHeight * 1.4, height: textFieldSearchIcon.frameHeight))
@@ -89,11 +85,11 @@ class SDServiceTableViewHeader : UIView{
         }
     }
     func layoutTextFieldSubviews() {
-        let rect: CGRect = placeholderText.boundingRect(with: CGSize(width: textField.frameWidth * 0.7, height: textField.frameHeight), options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName: textFieldPlaceholderLabel.font], context: nil)
+        let rect: CGRect = placeholderText.boundingRect(with: CGSize(width: textField.frame.size.width * 0.7, height: textField.frameHeight), options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName: textFieldPlaceholderLabel.font], context: nil)
         textFieldPlaceholderLabel.bounds = CGRect(x: 0, y: 0, width: rect.size.width, height: textField.frameHeight)
-        textFieldPlaceholderLabel.center = CGPoint(x: textField.frameWidth * 0.5, y: textField.frameHeight * 0.5)
+        textFieldPlaceholderLabel.center = CGPoint(x: textField.frame.size.width * 0.5, y: textField.frameHeight * 0.5)
         textFieldSearchIcon.bounds = CGRect(x: 0, y: 0, width: textField.frameHeight * 0.6, height: textField.frameHeight * 0.6)
-        textFieldSearchIcon.center = CGPoint(x: textFieldPlaceholderLabel.frameX - textFieldSearchIcon.frameWidth * 0.5, y: textFieldPlaceholderLabel.center.y)
+        textFieldSearchIcon.center = CGPoint(x: textFieldPlaceholderLabel.frameX - textFieldSearchIcon.frame.size.width * 0.5, y: textFieldPlaceholderLabel.center.y)
     }
     
     func textFieldValueChanged(_ field: UITextField?) {

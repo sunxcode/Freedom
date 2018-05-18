@@ -1,18 +1,10 @@
 //
 //  IqiyiViewController.swift
 //  Freedom
-//
-//  Created by htf on 2018/5/17.
-//  Copyright © 2018年 薛超. All rights reserved.
-//
 
 import UIKit
 import BaseFile
 import XExtension
-//  The converted code is limited to 1 KB.
-//  Please Sign Up (Free!) to remove this limitation.
-//
-//  Converted to Swift 4 by Swiftify v4.1.6710 - https://objectivec2swift.com/
 class JFHomeModel: NSObject {
     var search_default_word_for_ipad = ""
     var boxes = [AnyHashable]()
@@ -195,7 +187,7 @@ class JFImageCardView: UIView {
         }
     }
     func onTapImageCard(_ sender: UITapGestureRecognizer?) {
-        DLog("video==%@", video)
+        Dlog(video)
         if delegate.responds(to: Selector("didSelectImageCard:video:")) {
             delegate.didSelectImageCard(self, video: video)
         }

@@ -1,18 +1,11 @@
 //
 //  JFSubscribeViewController.swift
 //  Freedom
-//
-//  Created by htf on 2018/5/17.
-//  Copyright © 2018年 薛超. All rights reserved.
-//
 
 import UIKit
 import BaseFile
 import XExtension
-//  The converted code is limited to 1 KB.
-//  Please Sign Up (Free!) to remove this limitation.
-//
-//  Converted to Swift 4 by Swiftify v4.1.6710 - https://objectivec2swift.com/
+import XCategory
 class JFSubItemModel: NSObject {
     var itemID: NSNumber?
     var formatTotalTime = ""
@@ -35,7 +28,7 @@ class JFSubItemModel: NSObject {
 
 class JFSubscribeModel: NSObject {
     var video_count: NSNumber?
-    var description = ""
+    var des = ""
     var title = ""
     var channelized_type = ""
     var subed_count = ""
@@ -50,7 +43,7 @@ protocol JFSubScribeCardViewDelegate: NSObjectProtocol {
 }
 
 class JFSubImageScrollView: UIView {
-    weak var delegate: JFSubImageScrollViewDelegate?
+    weak var delegate: JFSubScribeCardViewDelegate?
     var scrollView: UIScrollView?
     var dataArray = [Any]()
 }
@@ -62,17 +55,12 @@ class JFSubScribeCardView: UIView {
     var cardLabel: UILabel?
     var subItem: JFSubItemModel?
     weak var delegate: JFSubScribeCardViewDelegate?
-    
-    //  The converted code is limited to 1 KB.
-    //  Please Sign Up (Free!) to remove this limitation.
-    //
-    //  Converted to Swift 4 by Swiftify v4.1.6710 - https://objectivec2swift.com/
-    init(frame: CGRect) {
+    override init(frame: CGRect) {
         super.init(frame: frame)
         
         cardImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 200, height: 100))
         cardLabel = UILabel(frame: CGRect(x: 0, y: 100, width: 200, height: 20))
-        addSubviews(cardImageView, cardLabel, nil)
+        addSubviews([cardImageView!, cardLabel!])
         imageView = UIImageView(frame: CGRect(x: 5, y: 0, width: frame.size.width - 5, height: frame.size.height - 30))
         if let aView = imageView {
             addSubview(aView)
@@ -81,59 +69,46 @@ class JFSubScribeCardView: UIView {
         titleLabel = UILabel(frame: CGRect(x: 5, y: frame.size.height - 30, width: frame.size.width - 5, height: 30))
         titleLabel?.font = UIFont.systemFont(ofSize: 14)
         titleLabel?.textColor = UIColor.black
-        //        self.titleLabel.lineBreakMode = UILineBreakModeTailTruncation;
         if let aLabel = titleLabel {
             addSubview(aLabel)
         }
         let tap = UITapGestureRecognizer(target: self, action: Selector("TapImageCard:"))
     }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     func setSubItem(_ subItem: JFSubItemModel?) {
         self.subItem = subItem
         imageView?.sd_setImage(with: URL(string: subItem?.picurl ?? ""), placeholderImage: UIImage(named: "rec_holder"))
         titleLabel?.text = subItem?.title
-        //    [self.cardImageView sd_setImageWithURL:[NSURL URLWithString:subItem.picurl]  placeholderImage:[UIImage imageNamed:@"rec_holder"]];
-        //    self.cardLabel .text = subItem.title;
     }
-    
     func tapImageCard(_ sender: UITapGestureRecognizer?) {
-        if delegate.responds(to: Selector("didSelectSubImageCard:subItem:")) {
-            delegate.didSelectSubImageCard(self, subItem: subItem)
-        }
     }
-        
-        
-        
-        
 }
 
 class JFSubscribeCell:BaseTableViewCell{
-    //  The converted code is limited to 1 KB.
-    //  Please Sign Up (Free!) to remove this limitation.
-    //
-    //  Converted to Swift 4 by Swiftify v4.1.6710 - https://objectivec2swift.com/
-    func initViews() {
+    override func initUI() {
         let backview = UIView(frame: CGRect(x: 0, y: 0, width: APPW, height: 210))
         backview.backgroundColor = UIColor.white
         addSubview(backview)
-        //
-        imageView = UIImageView(frame: CGRect(x: 10, y: 5, width: 40, height: 40))
+        let imageView = UIImageView(frame: CGRect(x: 10, y: 5, width: 40, height: 40))
         imageView.layer.cornerRadius = 20
         imageView.layer.masksToBounds = true
         backview.addSubview(imageView)
-        titleLabel = UILabel(frame: CGRect(x: 65, y: 5, width: 120, height: 25))
+        let titleLabel = UILabel(frame: CGRect(x: 65, y: 5, width: 120, height: 25))
         titleLabel.font = UIFont.systemFont(ofSize: 14)
         titleLabel.textColor = UIColor.black
         backview.addSubview(titleLabel)
-        subedLabel = UILabel(frame: CGRect(x: 65, y: 25, width: 120, height: 25))
+        let subedLabel = UILabel(frame: CGRect(x: 65, y: 25, width: 120, height: 25))
         subedLabel.font = UIFont.systemFont(ofSize: 12)
         subedLabel.textColor = UIColor.lightGray
         backview.addSubview(subedLabel)
-        dingyueBtn = UIButton(type: .custom)
+        let dingyueBtn = UIButton(type: .custom)
         dingyueBtn.frame = CGRect(x: APPW - 10 - 70, y: 10, width: 70, height: 29)
         dingyueBtn.setImage(UIImage(named: "search_channel_subscribe_noPlay"), for: .normal)
         dingyueBtn.setImage(UIImage(named: "search_channel_subscribed"), for: .selected)
         backview.addSubview(dingyueBtn)
-        //
         scrollV = JFSubImageScrollView(frame: CGRect(x: 0, y: 55, width: APPW, height: 155))
         scrollV.delegate = self
         backview.addSubview(scrollV)
@@ -155,11 +130,8 @@ class JFSubscribeCell:BaseTableViewCell{
 
 }
 class JFSubscribeScrollView: UIScrollView {
-    //  Converted to Swift 4 by Swiftify v4.1.6710 - https://objectivec2swift.com/
-    init(frame: CGRect) {
+    override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        //
         scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height))
         scrollView.contentSize = CGSize(width: 2 * APPW, height: frame.size.height)
         scrollView.showsHorizontalScrollIndicator = false
@@ -173,8 +145,6 @@ class JFSubscribeScrollView: UIScrollView {
             scrollView.addSubview(card)
             card.delegate = self
         }
-        
-        return self
     }
     func setDataArray(_ dataArray: [Any]?) {
         self.dataArray = dataArray
@@ -186,9 +156,6 @@ class JFSubscribeScrollView: UIScrollView {
     }
     
     func didSelectSubImageCard(_ subImageCard: JFSubScribeCardView?, subItem: JFSubItemModel?) {
-        if delegate.responds(to: Selector("didSelectSubScrollView:subItem:")) {
-            delegate.didSelectSubScroll(subImageCard, subItem: subItem)
-        }
     }
 
 }
@@ -201,7 +168,7 @@ class JFSubscribeViewController: IqiyiBaseViewController {
         subscribeTableView.mj_header.beginRefreshing()
     }
     
-    func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = false
     }
     
@@ -226,11 +193,11 @@ class JFSubscribeViewController: IqiyiBaseViewController {
         return dataSource.count
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 215
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIndentifier = "JFSubscribeCell"
         var cell = tableView.dequeueReusableCell(withIdentifier: cellIndentifier) as? JFSubscribeCell
         if cell == nil {
@@ -247,7 +214,7 @@ class JFSubscribeViewController: IqiyiBaseViewController {
 
     func didSelect(_ subCell: JFSubscribeCell?, subItem: JFSubItemModel?) {
         let videoDetailVC = JFVideoDetailViewController()
-        videoDetailVC.iid = subItem?.code
+        videoDetailVC.iid = (subItem?.code)!
         navigationController?.pushViewController(videoDetailVC, animated: true)
     }
 

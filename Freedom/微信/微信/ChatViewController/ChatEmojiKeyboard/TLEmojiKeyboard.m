@@ -94,7 +94,7 @@ static TLEmojiKeyboard *emojiKB;
     }
 }
 - (void)reset{
-    [self.collectionView scrollRectToVisible:CGRectMake(0, 0, self.collectionView.frameWidth, self.collectionView.frameHeight) animated:NO];
+    [self.collectionView scrollRectToVisible:CGRectMake(0, 0, self.collectionView.frame.size.width, self.collectionView.frameHeight) animated:NO];
     // 更新发送按钮状态
     [self updateSendButtonStatus];
 }
@@ -301,7 +301,7 @@ static TLEmojiKeyboard *emojiKB;
     [self.pageControl setNumberOfPages:group.pageNumber];
     [self.pageControl setCurrentPage:0];
     [self.collectionView reloadData];
-    [self.collectionView scrollRectToVisible:CGRectMake(0, 0, self.collectionView.frameWidth, self.collectionView.frameHeight) animated:NO];
+    [self.collectionView scrollRectToVisible:CGRectMake(0, 0, self.collectionView.frame.size.width, self.collectionView.frameHeight) animated:NO];
     // 更新发送按钮状态
     [self updateSendButtonStatus];
     // 更新chatBar的textView状态
@@ -343,7 +343,7 @@ static UICollectionViewCell *lastCell;
         CGPoint point = [sender locationInView:self.collectionView];
         
         for (UICollectionViewCell *cell in self.collectionView.visibleCells) {
-            if (cell.frameX - minimumLineSpacing / 2.0 <= point.x && cell.frameY - minimumInteritemSpacing / 2.0 <= point.y && cell.frameX + cell.frameWidth + minimumLineSpacing / 2.0 >= point.x && cell.frameY + cell.frameHeight + minimumInteritemSpacing / 2.0 >= point.y) {
+            if (cell.frameX - minimumLineSpacing / 2.0 <= point.x && cell.frameY - minimumInteritemSpacing / 2.0 <= point.y && cell.frameX + cell.frame.size.width + minimumLineSpacing / 2.0 >= point.x && cell.frameY + cell.frameHeight + minimumInteritemSpacing / 2.0 >= point.y) {
                 if (lastCell == cell) {
                     return;
                 }
@@ -361,7 +361,7 @@ static UICollectionViewCell *lastCell;
                 if (self.delegate && [self.delegate respondsToSelector:@selector(emojiKeyboard:didTouchEmojiItem:atRect:)]) {
                     emoji.type = self.curGroup.type;
                     CGRect rect = [cell frame];
-                    rect.origin.x = rect.origin.x - self.frameWidth * (int)(rect.origin.x / self.frameWidth);
+                    rect.origin.x = rect.origin.x - self.frame.size.width * (int)(rect.origin.x / self.frame.size.width);
                     [self.delegate emojiKeyboard:self didTouchEmojiItem:emoji atRect:rect];
                 }
                 return;

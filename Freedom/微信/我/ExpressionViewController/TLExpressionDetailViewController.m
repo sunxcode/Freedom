@@ -282,7 +282,7 @@
     }else{
         CGPoint point = [sender locationInView:self.collectionView];
         for (UICollectionViewCell *cell in self.collectionView.visibleCells) {
-            if (cell.frameX <= point.x && cell.frameY <= point.y && cell.frameX + cell.frameWidth >= point.x && cell.frameY + cell.frameHeight >= point.y) {
+            if (cell.frameX <= point.x && cell.frameY <= point.y && cell.frameX + cell.frame.size.width >= point.x && cell.frameY + cell.frameHeight >= point.y) {
                 NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
                 TLEmoji *emoji = [self.group objectAtIndex:indexPath.row];
                 CGRect rect = cell.frame;
@@ -298,7 +298,7 @@
 - (void)didTap5TimesScreen:(UITapGestureRecognizer *)sender{
     CGPoint point = [sender locationInView:self.collectionView];
     for (UICollectionViewCell *cell in self.collectionView.visibleCells) {
-        if (cell.frameX <= point.x && cell.frameY <= point.y && cell.frameX + cell.frameWidth >= point.x && cell.frameY + cell.frameHeight >= point.y) {
+        if (cell.frameX <= point.x && cell.frameY <= point.y && cell.frameX + cell.frame.size.width >= point.x && cell.frameY + cell.frameHeight >= point.y) {
             NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
             TLEmoji *emoji = [self.group objectAtIndex:indexPath.row];
             [SVProgressHUD showWithStatus:@"正在将表情保存到系统相册"];
@@ -348,7 +348,7 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         CGFloat height = [TLExpressionDetailCell cellHeightForModel:self.group];
-        return CGSizeMake(collectionView.frameWidth, height);
+        return CGSizeMake(collectionView.frame.size.width, height);
     }else{
         return CGSizeMake(WIDTH_CELL, WIDTH_CELL);
     }

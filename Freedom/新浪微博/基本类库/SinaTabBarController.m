@@ -633,7 +633,7 @@
     for (UIView *child in self.subviews) {
         Class class = NSClassFromString(@"UITabBarButton");
         if ([child isKindOfClass:class]) {
-            child.frameWidth = tabBarButtonW;
+            child.frame.size.width = tabBarButtonW;
             child.frameX = tabbarButtonIndex *tabBarButtonW;
             
             //增加索引

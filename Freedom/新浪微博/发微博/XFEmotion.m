@@ -133,14 +133,11 @@ MJCodingImplementation
     
     // 设置按钮的frame
     NSUInteger btnCount = self.subviews.count;
-    CGFloat btnW = self.frameWidth / btnCount;
+    CGFloat btnW = self.frame.size.width / btnCount;
     CGFloat btnH = self.frameHeight;
     for (int i = 0; i<btnCount; i++) {
         XFEmotionTabBarButton *btn = self.subviews[i];
-        btn.frameY = 0;
-        btn.frameWidth = btnW;
-        btn.frameX = i * btnW;
-        btn.frameHeight = btnH;
+        btn.frame = CGRectMake(i * btnW, 0, btnW, btnH);
     }
 }
 @end
@@ -460,18 +457,18 @@ static NSMutableArray *_recentEmotions;
     //内边距
     CGFloat inset = 20;
     NSUInteger count = self.emotions.count;
-    CGFloat btnw = (self.frameWidth - 2 * inset) /XFEmotionMaxCols;
+    CGFloat btnw = (self.frame.size.width - 2 * inset) /XFEmotionMaxCols;
     CGFloat btnH = (self.frameHeight - inset) /XFEmotionMaxRows;
     for (int i = 0; i<count; i++) {
         UIButton *btn = self.subviews[i+1];
-        btn.frameWidth = btnw;
+        btn.frame.size.width = btnw;
         btn.frameHeight = btnH;
         btn.frameX = inset + (i%XFEmotionMaxCols) * btnw;
         btn.frameY = inset + (i/XFEmotionMaxCols) * btnH;
         
     }
     // 删除按钮
-    self.deleteButton.frame = CGRectMake(self.frameWidth - inset - btnw,  self.frameHeight - btnH, btnw, btnH);
+    self.deleteButton.frame = CGRectMake(self.frame.size.width - inset - btnw,  self.frameHeight - btnH, btnw, btnH);
 }
 @end
 // 版权属于原作者
@@ -550,34 +547,21 @@ static NSMutableArray *_recentEmotions;
 -(void)layoutSubviews {
     
     [super layoutSubviews];
-    
-    //1.pageControl
-    self.pageControl.frameWidth = self.frameWidth;
-    self.pageControl.frameHeight = 35;
-    self.pageControl.frameX = 0;
-    self.pageControl.frameY = self.frameHeight - self.pageControl.frameHeight;
-    
-    //2.scrollView
-    self.scrollView.frameWidth = self.frameWidth;
-    self.scrollView.frameHeight = self.pageControl.frameY;
-    self.scrollView.frameX = self.scrollView.frameY = 0;
-    //3.设置scrollerView内部每一页的尺寸
+    self.pageControl.frame = CGRectMake(0, self.frameHeight - self.pageControl.frameHeight, self.frame.size.width, 35);
+    self.scrollView.frame = CGRectMake(0, 0, self.frame.size.width, self.pageControl.frameY);
     NSUInteger count = self.scrollView.subviews.count;
     for (int i = 0; i<count; i++) {
         XFEmotionPageView *pageView = self.scrollView.subviews[i];
-        pageView.frameHeight = self.scrollView.frameHeight;
-        pageView.frameWidth = self.scrollView.frameWidth;
-        pageView.frameX = i * pageView.frameWidth;
-        pageView.frameY = 0;
+        pageView.frame = CGRectMake(i * pageView.frame.size.width, 0, self.scrollView.frame.size.width, self.scrollView.frameHeight);
     }
     //4.设置scrollView的contentSize
-    self.scrollView.contentSize = CGSizeMake(count * self.scrollView.frameWidth, 0);
+    self.scrollView.contentSize = CGSizeMake(count * self.scrollView.frame.size.width, 0);
     
 }
 #pragma mark - scrollViewDelegate
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView {
     
-    double pageNum = scrollView.contentOffset.x / scrollView.frameWidth;
+    double pageNum = scrollView.contentOffset.x / scrollView.frame.size.width;
     
     self.pageControl.currentPage = (int)(pageNum + 0.5);
     
@@ -664,14 +648,14 @@ static NSMutableArray *_recentEmotions;
     [super layoutSubviews];
     
     // 1.tabbar
-    self.tabBar.frameWidth = self.frameWidth;
+    self.tabBar.frame.size.width = self.frame.size.width;
     self.tabBar.frameHeight = 37;
     self.tabBar.frameX = 0;
     self.tabBar.frameY = self.frameHeight - self.tabBar.frameHeight;
     
     // 2.表情内容
     self.showingListView.frameX = self.showingListView.frameY = 0;
-    self.showingListView.frameWidth = self.frameWidth;
+    self.showingListView.frame.size.width = self.frame.size.width;
     self.showingListView.frameHeight = self.tabBar.frameY;
     
 }
@@ -776,14 +760,11 @@ static NSMutableArray *_recentEmotions;
     
     // 设置所有按钮的frame
     NSUInteger count = self.subviews.count;
-    CGFloat btnW = self.frameWidth / count;
+    CGFloat btnW = self.frame.size.width / count;
     CGFloat btnH = self.frameHeight;
     for (NSUInteger i = 0; i<count; i++) {
         UIButton *btn = self.subviews[i];
-        btn.frameY = 0;
-        btn.frameWidth = btnW;
-        btn.frameX = i * btnW;
-        btn.frameHeight = btnH;
+        btn.frame = CGRectMake(i * btnW, 0, btnW, btnH);
     }
 }
 @end
@@ -821,12 +802,9 @@ static NSMutableArray *_recentEmotions;
         UIImageView *image = self.subviews[i];
         
         int col = i % maxCol;
-        image.frameX = col * (imageWH + imageMargin) + imageMargin;
         
         int row = i / maxCol;
-        image.frameY = row * (imageWH + imageMargin);
-        image.frameWidth = imageWH;
-        image.frameHeight = imageWH;
+        image.frame = CGRectMake(col * (imageWH + imageMargin) + imageMargin, row * (imageWH + imageMargin), imageWH, imageWH);
         
         
     }

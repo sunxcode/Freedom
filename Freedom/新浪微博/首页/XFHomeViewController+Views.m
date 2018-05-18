@@ -65,7 +65,7 @@
 }
 - (void)layoutSubviews{
     [super layoutSubviews];
-    self.gifView.frameX = self.frameWidth - self.gifView.frameWidth;
+    self.gifView.frameX = self.frame.size.width - self.gifView.frame.size.width;
     self.gifView.frameY = self.frameHeight - self.gifView.frameHeight;
 }
 @end
@@ -107,7 +107,7 @@
         photoView.frameX = col * (XFStatusPhotoWH + XFStatusPhotoMargin);
         int row = i / maxCol;
         photoView.frameY = row * (XFStatusPhotoWH + XFStatusPhotoMargin);
-        photoView.frameWidth = XFStatusPhotoWH;
+        photoView.frame.size.width = XFStatusPhotoWH;
         photoView.frameHeight = XFStatusPhotoWH;
     }
 }
@@ -312,7 +312,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         UILabel *label = [[UILabel alloc]init];
-        label.frameWidth = [UIScreen mainScreen].bounds.size.width;
+        label.frame.size.width = [UIScreen mainScreen].bounds.size.width;
         label.frameHeight = 44;
         label.text = @"加载更多内容";
         label.textAlignment = NSTextAlignmentCenter;
@@ -333,7 +333,7 @@
         // 添加一个灰色图片控件
         UIImageView *containerView = [[UIImageView alloc] init];
         containerView.image = [UIImage imageNamed:@"popover_background"];
-        containerView.frameWidth = 180;
+        containerView.frame.size.width = 180;
         containerView.frameHeight = 217;
         containerView.userInteractionEnabled = YES; // 开启交互
         [self addSubview:containerView];
@@ -358,7 +358,7 @@
     content.frameX = 10;
     content.frameY = 15;
     // 调整内容的宽度
-    content.frameWidth = self.containerView.frameWidth - 2 * content.frameX;
+    content.frame.size.width = self.containerView.frame.size.width - 2 * content.frameX;
     // 设置灰色的高度
     self.containerView.frameHeight = CGRectGetMaxY(content.frame) + 10;
     // 添加内容到灰色图片中
@@ -466,25 +466,19 @@
     [super layoutSubviews];
     // 设置按钮的frame
     int btnCount = (int)self.btns.count;
-    CGFloat btnw = self.frameWidth / btnCount;
+    CGFloat btnw = self.frame.size.width / btnCount;
     CGFloat btnH = self.frameHeight;
     
     for (int i = 0; i<btnCount; i++) {
         UIButton *btn = self.subviews[i];
-        btn.frameHeight = btnH;
-        btn.frameWidth = btnw;
-        btn.frameX = i * btnw;
-        btn.frameY = 0;
+        btn.frame = CGRectMake(i * btnw, 0, btnw, btnH);
         
     }
     // 设置分割线的frame
     int dividerCount = (int)self.dividers.count;
     for (int i = 0; i<dividerCount; i++) {
         UIImageView *divider = self.dividers[i];
-        divider.frameWidth = 1;
-        divider.frameHeight = btnH;
-        divider.frameX = (i+1) * btnw;
-        divider.frameY = 0;
+        divider.frame = CGRectMake((i+1) * btnw, 0, 1, btnH)
     }
 }
 -(void)setStatus:(XFStatus *)status {
@@ -558,7 +552,7 @@
 -(void)layoutSubviews {
     [super layoutSubviews];
     self.verifiedView.frameSize = self.verifiedView.image.size;
-    self.verifiedView.frameX = self.frameWidth - self.verifiedView.frameWidth * 0.6;
+    self.verifiedView.frameX = self.frame.size.width - self.verifiedView.frame.size.width * 0.6;
     self.verifiedView.frameY = self.frameHeight - self.verifiedView.frameHeight * 0.6;
 }
 @end

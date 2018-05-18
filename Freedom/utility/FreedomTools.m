@@ -17,7 +17,7 @@ static UILabel *hLabel = nil;
         hLabel = [[UILabel alloc] initWithFrame:[UIScreen mainScreen].bounds];
         [hLabel setNumberOfLines:0];
     }
-    [hLabel setFrameWidth:width];
+    hLabel.frameWidth = width;
     [hLabel setFont:font];
     [hLabel setText:text];
     return [hLabel sizeThatFits:CGSizeMake(width, MAXFLOAT)].height;
@@ -48,7 +48,7 @@ static UILabel *hLabel = nil;
                     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
                     UIGraphicsEndImageContext();
                     CGImageRef imageRef = image.CGImage;
-                    CGImageRef imageRefRect =CGImageCreateWithImageInRect(imageRef, CGRectMake(0, 0, view.frameWidth * 2, view.frameHeight * 2));
+                    CGImageRef imageRefRect =CGImageCreateWithImageInRect(imageRef, CGRectMake(0, 0, view.frame.size.width * 2, view.frameHeight * 2));
                     UIImage *ansImage = [[UIImage alloc] initWithCGImage:imageRefRect];
                     NSData *imageViewData = UIImagePNGRepresentation(ansImage);
                     NSString *savedImagePath = [NSFileManager pathUserAvatar:group.groupAvatarPath];

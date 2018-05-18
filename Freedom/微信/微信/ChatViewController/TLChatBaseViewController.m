@@ -6,7 +6,7 @@
 #import "TLMessageManager.h"
 #import "TLUserHelper.h"
 #define     SIZE_TIPS    CGSizeMake(55, 100)
-#define     WIDTH_TEXTVIEW          self.frameWidth * 0.94
+#define     WIDTH_TEXTVIEW          self.frame.size.width * 0.94
 @interface TLTextDisplayView : UIView
 @property (nonatomic, strong) NSAttributedString *attrString;
 - (void)showInView:(UIView *)view withAttrText:(NSAttributedString *)attrText animation:(BOOL)animation;
@@ -294,7 +294,7 @@
     return YES;
 }
 - (void)textViewDidChange:(UITextView *)textView{
-    CGFloat height = [textView sizeThatFits:CGSizeMake(self.textView.frameWidth, MAXFLOAT)].height;
+    CGFloat height = [textView sizeThatFits:CGSizeMake(self.textView.frame.size.width, MAXFLOAT)].height;
     height = height > HEIGHT_CHATBAR_TEXTVIEW ? height : HEIGHT_CHATBAR_TEXTVIEW;
     height = (height <= HEIGHT_MAX_CHATBAR_TEXTVIEW ? height : textView.frameHeight);
     if (height != textView.frameHeight) {
