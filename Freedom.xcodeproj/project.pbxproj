@@ -104,6 +104,8 @@
 		71267A552092DC93006E1B96 /* YMTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 71267A542092DC92006E1B96 /* YMTableViewCell.m */; };
 		71267A582092E726006E1B96 /* BookReadMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 71267A572092E726006E1B96 /* BookReadMode.m */; };
 		71267A5B2092E736006E1B96 /* BookSubViews.m in Sources */ = {isa = PBXBuildFile; fileRef = 71267A5A2092E736006E1B96 /* BookSubViews.m */; };
+		713728CA20AE733F00A3227A /* AlipayModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713728C920AE733F00A3227A /* AlipayModels.swift */; };
+		713728CC20AE839900A3227A /* SDYuEBaoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713728CB20AE839900A3227A /* SDYuEBaoTableViewController.swift */; };
 		713EE2A420AD8F160085B65D /* DianpingTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713EE2A320AD8F160085B65D /* DianpingTabBarController.swift */; };
 		713EE2A620AD8F290085B65D /* TaobaoTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713EE2A520AD8F290085B65D /* TaobaoTabBarController.swift */; };
 		713EE2A820AD8F500085B65D /* AlipayTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713EE2A720AD8F500085B65D /* AlipayTabBarController.swift */; };
@@ -188,7 +190,6 @@
 		7165A3DE20A58D77001C60D6 /* game_center@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7165A3C720A58D76001C60D6 /* game_center@2x.png */; };
 		7165A3DF20A58D77001C60D6 /* near@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7165A3C820A58D77001C60D6 /* near@2x.png */; };
 		7165A3E220A5903D001C60D6 /* WechatBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7165A3E120A5903D001C60D6 /* WechatBaseViewController.m */; };
-		7165A3E520A59DA7001C60D6 /* IqiyiBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7165A3E420A59DA7001C60D6 /* IqiyiBaseViewController.m */; };
 		7165A3EA20A5A291001C60D6 /* FreedomBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7165A3E920A5A291001C60D6 /* FreedomBaseViewController.swift */; };
 		718540F320A539200015A123 /* BaseScrollOCView.m in Sources */ = {isa = PBXBuildFile; fileRef = 718540E720A5391B0015A123 /* BaseScrollOCView.m */; };
 		71ECDFB52091EB4B00495467 /* JSPatch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71ECDFB22091EB4A00495467 /* JSPatch.framework */; };
@@ -435,15 +436,7 @@
 		772E896B1D76BC15004EDF50 /* 来自天堂的魔鬼.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 772E83991D76BC15004EDF50 /* 来自天堂的魔鬼.mp3 */; };
 		772E896C1D76BC15004EDF50 /* 走在冷风中.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 772E839A1D76BC15004EDF50 /* 走在冷风中.mp3 */; };
 		772E896F1D76BC75004EDF50 /* NSData+KRCParse.m in Sources */ = {isa = PBXBuildFile; fileRef = 772E896E1D76BC75004EDF50 /* NSData+KRCParse.m */; };
-		773D56141D7953A100A0C615 /* JFVideoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 773D560C1D7953A000A0C615 /* JFVideoDetailViewController.m */; };
-		773D56151D7953A100A0C615 /* JFWatchRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 773D560E1D7953A000A0C615 /* JFWatchRecordViewController.m */; };
 		773D563D1D79540000A0C615 /* JFImageScrollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 773D56311D79540000A0C615 /* JFImageScrollCell.m */; };
-		773D568A1D7955AE00A0C615 /* JFDiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 773D56751D7955AE00A0C615 /* JFDiscoverViewController.m */; };
-		773D56901D7955AE00A0C615 /* JFSearchHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 773D567F1D7955AE00A0C615 /* JFSearchHistoryViewController.m */; };
-		773D56A51D79564600A0C615 /* JFSubscribeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 773D56A41D79564600A0C615 /* JFSubscribeViewController.m */; };
-		773D56BB1D79568500A0C615 /* JFLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 773D56B81D79568500A0C615 /* JFLoginViewController.m */; };
-		773D56C91D7968EC00A0C615 /* IqiyiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 773D56C81D7968EC00A0C615 /* IqiyiViewController.m */; };
-		773D56CC1D796A7D00A0C615 /* IqiyiNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 773D56CB1D796A7D00A0C615 /* IqiyiNavigationController.m */; };
 		774019681E1F514600640916 /* juheintopublic.png in Resources */ = {isa = PBXBuildFile; fileRef = 774019671E1F514600640916 /* juheintopublic.png */; };
 		7740196A1E1F518100640916 /* juhelookhistory.png in Resources */ = {isa = PBXBuildFile; fileRef = 774019691E1F518100640916 /* juhelookhistory.png */; };
 		7740196C1E1F51BB00640916 /* juheaboutus.png in Resources */ = {isa = PBXBuildFile; fileRef = 7740196B1E1F51BB00640916 /* juheaboutus.png */; };
@@ -509,19 +502,9 @@
 		7741F1671D6D50F900EED332 /* tf_home_more@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7741F1111D6D50F900EED332 /* tf_home_more@2x.png */; };
 		7741F1681D6D50F900EED332 /* tmall_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7741F1121D6D50F900EED332 /* tmall_icon@2x.png */; };
 		7741F1691D6D50F900EED332 /* xiaobao@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7741F1131D6D50F900EED332 /* xiaobao@2x.png */; };
-		7741F1941D6D514100EED332 /* SDBasicTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7741F1811D6D514100EED332 /* SDBasicTableViewController.m */; };
-		7741F1961D6D514100EED332 /* SDBasicViewContoller.m in Sources */ = {isa = PBXBuildFile; fileRef = 7741F1851D6D514100EED332 /* SDBasicViewContoller.m */; };
-		7741F1AB1D6D524400EED332 /* SDDiscoverTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7741F19D1D6D524400EED332 /* SDDiscoverTableViewController.m */; };
-		7741F1BF1D6D528E00EED332 /* SDServiceTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7741F1B91D6D528E00EED332 /* SDServiceTableViewController.m */; };
-		7741F1D21D6D530300EED332 /* SDAddItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7741F1C41D6D530300EED332 /* SDAddItemViewController.m */; };
-		7741F1D71D6D530300EED332 /* SDHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7741F1CE1D6D530300EED332 /* SDHomeViewController.m */; };
-		7741F1D81D6D530300EED332 /* SDScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7741F1D01D6D530300EED332 /* SDScanViewController.m */; };
-		7741F1E21D6D538D00EED332 /* SDAssetsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7741F1DA1D6D538D00EED332 /* SDAssetsTableViewController.m */; };
-		7741F1F51D6D53B700EED332 /* SDYuEBaoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7741F1F01D6D53B700EED332 /* SDYuEBaoTableViewController.m */; };
 		7745C2451D67188C002212DE /* WechartNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7745C2421D67188C002212DE /* WechartNavigationController.m */; };
 		7745C2461D67188C002212DE /* WechartTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7745C2441D67188C002212DE /* WechartTabBarController.m */; };
 		7745C2521D67234B002212DE /* KugouTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7745C2511D67234B002212DE /* KugouTabBarController.m */; };
-		7745C2551D67235E002212DE /* IqiyiTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7745C2541D67235E002212DE /* IqiyiTabBarController.m */; };
 		774BA6431E28DA18007FF686 /* taobaoon.png in Resources */ = {isa = PBXBuildFile; fileRef = 774BA6411E28DA18007FF686 /* taobaoon.png */; };
 		774BA6441E28DA18007FF686 /* taobaono.png in Resources */ = {isa = PBXBuildFile; fileRef = 774BA6421E28DA18007FF686 /* taobaono.png */; };
 		774BFAE41D7672A0005CA603 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 774BFAE31D7672A0005CA603 /* AudioToolbox.framework */; };
@@ -532,13 +515,8 @@
 		774BFB171D767389005CA603 /* PlayAudioViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 774BFAEE1D767389005CA603 /* PlayAudioViewController.m */; };
 		774BFB181D767389005CA603 /* vocal.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 774BFAEF1D767389005CA603 /* vocal.mp3 */; };
 		774BFB1A1D767389005CA603 /* SHLrcsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 774BFAF41D767389005CA603 /* SHLrcsView.m */; };
-		774BFB201D767389005CA603 /* SingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 774BFB021D767389005CA603 /* SingViewController.m */; };
-		774BFB211D767389005CA603 /* LookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 774BFB051D767389005CA603 /* LookViewController.m */; };
-		774BFB221D767389005CA603 /* LinsenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 774BFB081D767389005CA603 /* LinsenViewController.m */; };
 		774BFB251D767389005CA603 /* LocalMusicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 774BFB0D1D767389005CA603 /* LocalMusicViewController.m */; };
 		774BFB261D767389005CA603 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 774BFB0F1D767389005CA603 /* MainViewController.m */; };
-		774BFB271D767389005CA603 /* KugouRightSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 774BFB121D767389005CA603 /* KugouRightSettingViewController.m */; };
-		774BFB281D767389005CA603 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 774BFB151D767389005CA603 /* SettingViewController.m */; };
 		774BFB3D1D76744F005CA603 /* TabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 774BFB301D76744F005CA603 /* TabBarView.m */; };
 		774BFB3E1D76744F005CA603 /* TabBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 774BFB311D76744F005CA603 /* TabBarView.xib */; };
 		774BFB451D767618005CA603 /* KugouBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 774BFB441D767618005CA603 /* KugouBaseViewController.m */; };
@@ -1150,7 +1128,6 @@
 		BF6E57BD1FAC0714005F7DF8 /* TLExpressionDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6E57A21FAC055D005F7DF8 /* TLExpressionDetailViewController.m */; };
 		BF6E57BE1FAC071C005F7DF8 /* TLExpressionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6E57A81FAC055D005F7DF8 /* TLExpressionViewController.m */; };
 		BF6E57BF1FAC0723005F7DF8 /* TLExpressionSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6E57A61FAC055D005F7DF8 /* TLExpressionSearchViewController.m */; };
-		BF6E57C41FAC1424005F7DF8 /* SDAssetsTableViewControllerCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6E57C21FAC1420005F7DF8 /* SDAssetsTableViewControllerCellModel.m */; };
 		CE7D3D02561A884A24654308 /* Pods_Freedom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60338462214883C1C05F8646 /* Pods_Freedom.framework */; };
 /* End PBXBuildFile section */
 
@@ -1282,6 +1259,8 @@
 		71267A572092E726006E1B96 /* BookReadMode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookReadMode.m; sourceTree = "<group>"; };
 		71267A592092E736006E1B96 /* BookSubViews.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookSubViews.h; sourceTree = "<group>"; };
 		71267A5A2092E736006E1B96 /* BookSubViews.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookSubViews.m; sourceTree = "<group>"; };
+		713728C920AE733F00A3227A /* AlipayModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlipayModels.swift; sourceTree = "<group>"; };
+		713728CB20AE839900A3227A /* SDYuEBaoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDYuEBaoTableViewController.swift; sourceTree = "<group>"; };
 		713EE2A320AD8F160085B65D /* DianpingTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DianpingTabBarController.swift; sourceTree = "<group>"; };
 		713EE2A520AD8F290085B65D /* TaobaoTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaobaoTabBarController.swift; sourceTree = "<group>"; };
 		713EE2A720AD8F500085B65D /* AlipayTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlipayTabBarController.swift; sourceTree = "<group>"; };
@@ -1367,8 +1346,6 @@
 		7165A3C820A58D77001C60D6 /* near@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "near@2x.png"; sourceTree = "<group>"; };
 		7165A3E020A5903D001C60D6 /* WechatBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WechatBaseViewController.h; sourceTree = "<group>"; };
 		7165A3E120A5903D001C60D6 /* WechatBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WechatBaseViewController.m; sourceTree = "<group>"; };
-		7165A3E320A59DA7001C60D6 /* IqiyiBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IqiyiBaseViewController.h; sourceTree = "<group>"; };
-		7165A3E420A59DA7001C60D6 /* IqiyiBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IqiyiBaseViewController.m; sourceTree = "<group>"; };
 		7165A3E920A5A291001C60D6 /* FreedomBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreedomBaseViewController.swift; sourceTree = "<group>"; };
 		718540E720A5391B0015A123 /* BaseScrollOCView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseScrollOCView.m; sourceTree = "<group>"; };
 		718540EE20A5391F0015A123 /* BaseScrollOCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseScrollOCView.h; sourceTree = "<group>"; };
@@ -1656,24 +1633,8 @@
 		772E839A1D76BC15004EDF50 /* 走在冷风中.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "走在冷风中.mp3"; sourceTree = "<group>"; };
 		772E896D1D76BC75004EDF50 /* NSData+KRCParse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+KRCParse.h"; sourceTree = "<group>"; };
 		772E896E1D76BC75004EDF50 /* NSData+KRCParse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+KRCParse.m"; sourceTree = "<group>"; };
-		773D560B1D7953A000A0C615 /* JFVideoDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFVideoDetailViewController.h; sourceTree = "<group>"; };
-		773D560C1D7953A000A0C615 /* JFVideoDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFVideoDetailViewController.m; sourceTree = "<group>"; };
-		773D560D1D7953A000A0C615 /* JFWatchRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFWatchRecordViewController.h; sourceTree = "<group>"; };
-		773D560E1D7953A000A0C615 /* JFWatchRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFWatchRecordViewController.m; sourceTree = "<group>"; };
 		773D56301D79540000A0C615 /* JFImageScrollCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFImageScrollCell.h; sourceTree = "<group>"; };
 		773D56311D79540000A0C615 /* JFImageScrollCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFImageScrollCell.m; sourceTree = "<group>"; };
-		773D56741D7955AE00A0C615 /* JFDiscoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFDiscoverViewController.h; sourceTree = "<group>"; };
-		773D56751D7955AE00A0C615 /* JFDiscoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFDiscoverViewController.m; sourceTree = "<group>"; };
-		773D567E1D7955AE00A0C615 /* JFSearchHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFSearchHistoryViewController.h; sourceTree = "<group>"; };
-		773D567F1D7955AE00A0C615 /* JFSearchHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFSearchHistoryViewController.m; sourceTree = "<group>"; };
-		773D56A31D79564600A0C615 /* JFSubscribeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFSubscribeViewController.h; sourceTree = "<group>"; };
-		773D56A41D79564600A0C615 /* JFSubscribeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFSubscribeViewController.m; sourceTree = "<group>"; };
-		773D56B71D79568500A0C615 /* JFLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFLoginViewController.h; sourceTree = "<group>"; };
-		773D56B81D79568500A0C615 /* JFLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFLoginViewController.m; sourceTree = "<group>"; };
-		773D56C71D7968EC00A0C615 /* IqiyiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IqiyiViewController.h; sourceTree = "<group>"; };
-		773D56C81D7968EC00A0C615 /* IqiyiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IqiyiViewController.m; sourceTree = "<group>"; };
-		773D56CA1D796A7D00A0C615 /* IqiyiNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IqiyiNavigationController.h; sourceTree = "<group>"; };
-		773D56CB1D796A7D00A0C615 /* IqiyiNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IqiyiNavigationController.m; sourceTree = "<group>"; };
 		774019671E1F514600640916 /* juheintopublic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = juheintopublic.png; sourceTree = "<group>"; };
 		774019691E1F518100640916 /* juhelookhistory.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = juhelookhistory.png; sourceTree = "<group>"; };
 		7740196B1E1F51BB00640916 /* juheaboutus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = juheaboutus.png; sourceTree = "<group>"; };
@@ -1739,32 +1700,12 @@
 		7741F1111D6D50F900EED332 /* tf_home_more@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tf_home_more@2x.png"; sourceTree = "<group>"; };
 		7741F1121D6D50F900EED332 /* tmall_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tmall_icon@2x.png"; sourceTree = "<group>"; };
 		7741F1131D6D50F900EED332 /* xiaobao@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xiaobao@2x.png"; sourceTree = "<group>"; };
-		7741F1801D6D514100EED332 /* SDBasicTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBasicTableViewController.h; sourceTree = "<group>"; };
-		7741F1811D6D514100EED332 /* SDBasicTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBasicTableViewController.m; sourceTree = "<group>"; };
-		7741F1841D6D514100EED332 /* SDBasicViewContoller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBasicViewContoller.h; sourceTree = "<group>"; };
-		7741F1851D6D514100EED332 /* SDBasicViewContoller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBasicViewContoller.m; sourceTree = "<group>"; };
-		7741F19C1D6D524400EED332 /* SDDiscoverTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDDiscoverTableViewController.h; sourceTree = "<group>"; };
-		7741F19D1D6D524400EED332 /* SDDiscoverTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDDiscoverTableViewController.m; sourceTree = "<group>"; };
-		7741F1B81D6D528E00EED332 /* SDServiceTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDServiceTableViewController.h; sourceTree = "<group>"; };
-		7741F1B91D6D528E00EED332 /* SDServiceTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDServiceTableViewController.m; sourceTree = "<group>"; };
-		7741F1C31D6D530300EED332 /* SDAddItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDAddItemViewController.h; sourceTree = "<group>"; };
-		7741F1C41D6D530300EED332 /* SDAddItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDAddItemViewController.m; sourceTree = "<group>"; };
-		7741F1CD1D6D530300EED332 /* SDHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDHomeViewController.h; sourceTree = "<group>"; };
-		7741F1CE1D6D530300EED332 /* SDHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDHomeViewController.m; sourceTree = "<group>"; };
-		7741F1CF1D6D530300EED332 /* SDScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDScanViewController.h; sourceTree = "<group>"; };
-		7741F1D01D6D530300EED332 /* SDScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDScanViewController.m; sourceTree = "<group>"; };
-		7741F1D91D6D538D00EED332 /* SDAssetsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDAssetsTableViewController.h; sourceTree = "<group>"; };
-		7741F1DA1D6D538D00EED332 /* SDAssetsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDAssetsTableViewController.m; sourceTree = "<group>"; };
-		7741F1EF1D6D53B700EED332 /* SDYuEBaoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDYuEBaoTableViewController.h; sourceTree = "<group>"; };
-		7741F1F01D6D53B700EED332 /* SDYuEBaoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDYuEBaoTableViewController.m; sourceTree = "<group>"; };
 		7745C2411D67188C002212DE /* WechartNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechartNavigationController.h; sourceTree = "<group>"; };
 		7745C2421D67188C002212DE /* WechartNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WechartNavigationController.m; sourceTree = "<group>"; };
 		7745C2431D67188C002212DE /* WechartTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechartTabBarController.h; sourceTree = "<group>"; };
 		7745C2441D67188C002212DE /* WechartTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WechartTabBarController.m; sourceTree = "<group>"; };
 		7745C2501D67234B002212DE /* KugouTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KugouTabBarController.h; sourceTree = "<group>"; };
 		7745C2511D67234B002212DE /* KugouTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KugouTabBarController.m; sourceTree = "<group>"; };
-		7745C2531D67235E002212DE /* IqiyiTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IqiyiTabBarController.h; sourceTree = "<group>"; };
-		7745C2541D67235E002212DE /* IqiyiTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IqiyiTabBarController.m; sourceTree = "<group>"; };
 		774BA6411E28DA18007FF686 /* taobaoon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = taobaoon.png; sourceTree = "<group>"; };
 		774BA6421E28DA18007FF686 /* taobaono.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = taobaono.png; sourceTree = "<group>"; };
 		774BFAE31D7672A0005CA603 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -1777,20 +1718,10 @@
 		774BFAEF1D767389005CA603 /* vocal.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = vocal.mp3; sourceTree = "<group>"; };
 		774BFAF31D767389005CA603 /* SHLrcsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHLrcsView.h; sourceTree = "<group>"; };
 		774BFAF41D767389005CA603 /* SHLrcsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHLrcsView.m; sourceTree = "<group>"; };
-		774BFB011D767389005CA603 /* SingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingViewController.h; sourceTree = "<group>"; };
-		774BFB021D767389005CA603 /* SingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingViewController.m; sourceTree = "<group>"; };
-		774BFB041D767389005CA603 /* LookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LookViewController.h; sourceTree = "<group>"; };
-		774BFB051D767389005CA603 /* LookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LookViewController.m; sourceTree = "<group>"; };
-		774BFB071D767389005CA603 /* LinsenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinsenViewController.h; sourceTree = "<group>"; };
-		774BFB081D767389005CA603 /* LinsenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinsenViewController.m; sourceTree = "<group>"; };
 		774BFB0C1D767389005CA603 /* LocalMusicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalMusicViewController.h; sourceTree = "<group>"; };
 		774BFB0D1D767389005CA603 /* LocalMusicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalMusicViewController.m; sourceTree = "<group>"; };
 		774BFB0E1D767389005CA603 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		774BFB0F1D767389005CA603 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
-		774BFB111D767389005CA603 /* KugouRightSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KugouRightSettingViewController.h; sourceTree = "<group>"; };
-		774BFB121D767389005CA603 /* KugouRightSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KugouRightSettingViewController.m; sourceTree = "<group>"; };
-		774BFB141D767389005CA603 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
-		774BFB151D767389005CA603 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		774BFB2F1D76744F005CA603 /* TabBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarView.h; sourceTree = "<group>"; };
 		774BFB301D76744F005CA603 /* TabBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarView.m; sourceTree = "<group>"; };
 		774BFB311D76744F005CA603 /* TabBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TabBarView.xib; sourceTree = "<group>"; };
@@ -2491,8 +2422,6 @@
 		BF6E57A91FAC055D005F7DF8 /* TLMyExpressionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TLMyExpressionViewController.h; sourceTree = "<group>"; };
 		BF6E57AA1FAC055D005F7DF8 /* TLMyExpressionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TLMyExpressionViewController.m; sourceTree = "<group>"; };
 		BF6E57AB1FAC055D005F7DF8 /* TLMineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TLMineViewController.h; sourceTree = "<group>"; };
-		BF6E57C21FAC1420005F7DF8 /* SDAssetsTableViewControllerCellModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDAssetsTableViewControllerCellModel.m; sourceTree = "<group>"; };
-		BF6E57C51FAC1464005F7DF8 /* SDAssetsTableViewControllerCellModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDAssetsTableViewControllerCellModel.h; sourceTree = "<group>"; };
 		CF6599DF222DA1221C0BD6DC /* Pods-Freedom.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Freedom.release.xcconfig"; path = "Pods/Target Support Files/Pods-Freedom/Pods-Freedom.release.xcconfig"; sourceTree = "<group>"; };
 		ECEF9FF4F388896C86BFA3B3 /* Pods-MyFirstAPP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyFirstAPP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyFirstAPP/Pods-MyFirstAPP.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -2886,8 +2815,7 @@
 		7741F1E71D6D53A500EED332 /* 余额宝 */ = {
 			isa = PBXGroup;
 			children = (
-				7741F1EF1D6D53B700EED332 /* SDYuEBaoTableViewController.h */,
-				7741F1F01D6D53B700EED332 /* SDYuEBaoTableViewController.m */,
+				713728CB20AE839900A3227A /* SDYuEBaoTableViewController.swift */,
 			);
 			path = "余额宝";
 			sourceTree = "<group>";
@@ -2998,12 +2926,7 @@
 		7745C1E61D671430002212DE /* 基本类库 */ = {
 			isa = PBXGroup;
 			children = (
-				BF6E57C51FAC1464005F7DF8 /* SDAssetsTableViewControllerCellModel.h */,
-				BF6E57C21FAC1420005F7DF8 /* SDAssetsTableViewControllerCellModel.m */,
-				7741F1801D6D514100EED332 /* SDBasicTableViewController.h */,
-				7741F1811D6D514100EED332 /* SDBasicTableViewController.m */,
-				7741F1841D6D514100EED332 /* SDBasicViewContoller.h */,
-				7741F1851D6D514100EED332 /* SDBasicViewContoller.m */,
+				713728C920AE733F00A3227A /* AlipayModels.swift */,
 				713EE2A720AD8F500085B65D /* AlipayTabBarController.swift */,
 				713EE2AF20AD8FDB0085B65D /* AlipayNavigationViewController.swift */,
 				713EE2B720AD903F0085B65D /* AlipayBaseViewController.swift */,
@@ -3014,8 +2937,6 @@
 		7745C1E71D671430002212DE /* 口碑 */ = {
 			isa = PBXGroup;
 			children = (
-				7741F19C1D6D524400EED332 /* SDDiscoverTableViewController.h */,
-				7741F19D1D6D524400EED332 /* SDDiscoverTableViewController.m */,
 				713EE2E120AD9C240085B65D /* SDDiscoverTableViewController.swift */,
 			);
 			path = "口碑";
@@ -3024,8 +2945,6 @@
 		7745C1E81D671430002212DE /* 朋友 */ = {
 			isa = PBXGroup;
 			children = (
-				7741F1B81D6D528E00EED332 /* SDServiceTableViewController.h */,
-				7741F1B91D6D528E00EED332 /* SDServiceTableViewController.m */,
 				713EE2E320AD9C2F0085B65D /* SDServiceTableViewController.swift */,
 			);
 			path = "朋友";
@@ -3035,8 +2954,6 @@
 			isa = PBXGroup;
 			children = (
 				7741F1E71D6D53A500EED332 /* 余额宝 */,
-				7741F1D91D6D538D00EED332 /* SDAssetsTableViewController.h */,
-				7741F1DA1D6D538D00EED332 /* SDAssetsTableViewController.m */,
 				713EE2E520AD9C3A0085B65D /* SDAssetsTableViewController.swift */,
 			);
 			path = "我的";
@@ -3045,14 +2962,8 @@
 		7745C1EA1D671430002212DE /* 支付宝 */ = {
 			isa = PBXGroup;
 			children = (
-				7741F1CD1D6D530300EED332 /* SDHomeViewController.h */,
-				7741F1CE1D6D530300EED332 /* SDHomeViewController.m */,
 				713EE2DB20AD9BFC0085B65D /* SDHomeViewController.swift */,
-				7741F1CF1D6D530300EED332 /* SDScanViewController.h */,
-				7741F1D01D6D530300EED332 /* SDScanViewController.m */,
 				713EE2DD20AD9C070085B65D /* SDScanViewController.swift */,
-				7741F1C31D6D530300EED332 /* SDAddItemViewController.h */,
-				7741F1C41D6D530300EED332 /* SDAddItemViewController.m */,
 				713EE2DF20AD9C120085B65D /* SDAddItemViewController.swift */,
 			);
 			path = "支付宝";
@@ -3078,11 +2989,7 @@
 		7745C1F31D6714CE002212DE /* 服务 */ = {
 			isa = PBXGroup;
 			children = (
-				773D56741D7955AE00A0C615 /* JFDiscoverViewController.h */,
-				773D56751D7955AE00A0C615 /* JFDiscoverViewController.m */,
 				713EE30920ADA0790085B65D /* JFDiscoverViewController.swift */,
-				773D567E1D7955AE00A0C615 /* JFSearchHistoryViewController.h */,
-				773D567F1D7955AE00A0C615 /* JFSearchHistoryViewController.m */,
 				713EE30B20ADA0850085B65D /* JFSearchHistoryViewController.swift */,
 			);
 			path = "服务";
@@ -3091,14 +2998,8 @@
 		7745C1F41D6714CE002212DE /* 基本类库 */ = {
 			isa = PBXGroup;
 			children = (
-				7745C2531D67235E002212DE /* IqiyiTabBarController.h */,
-				7745C2541D67235E002212DE /* IqiyiTabBarController.m */,
 				713EE2FD20AD9FF30085B65D /* IqiyiTabBarController.swift */,
-				773D56CA1D796A7D00A0C615 /* IqiyiNavigationController.h */,
-				773D56CB1D796A7D00A0C615 /* IqiyiNavigationController.m */,
 				713EE2FF20ADA00E0085B65D /* IqiyiNavigationController.swift */,
-				7165A3E320A59DA7001C60D6 /* IqiyiBaseViewController.h */,
-				7165A3E420A59DA7001C60D6 /* IqiyiBaseViewController.m */,
 				713EE30120ADA0320085B65D /* IqiyiBaseViewController.swift */,
 			);
 			path = "基本类库";
@@ -3116,14 +3017,8 @@
 		7745C1F61D6714CE002212DE /* 视频 */ = {
 			isa = PBXGroup;
 			children = (
-				773D56C71D7968EC00A0C615 /* IqiyiViewController.h */,
-				773D56C81D7968EC00A0C615 /* IqiyiViewController.m */,
 				713EE30320ADA0490085B65D /* IqiyiViewController.swift */,
-				773D560B1D7953A000A0C615 /* JFVideoDetailViewController.h */,
-				773D560C1D7953A000A0C615 /* JFVideoDetailViewController.m */,
 				713EE30520ADA05F0085B65D /* JFVideoDetailViewController.swift */,
-				773D560D1D7953A000A0C615 /* JFWatchRecordViewController.h */,
-				773D560E1D7953A000A0C615 /* JFWatchRecordViewController.m */,
 				713EE30720ADA06B0085B65D /* JFWatchRecordViewController.swift */,
 				773D56301D79540000A0C615 /* JFImageScrollCell.h */,
 				773D56311D79540000A0C615 /* JFImageScrollCell.m */,
@@ -3134,8 +3029,6 @@
 		7745C1F71D6714CE002212DE /* 我的 */ = {
 			isa = PBXGroup;
 			children = (
-				773D56B71D79568500A0C615 /* JFLoginViewController.h */,
-				773D56B81D79568500A0C615 /* JFLoginViewController.m */,
 				713EE30F20ADA0990085B65D /* JFLoginViewController.swift */,
 				713EE31120ADA0A40085B65D /* JFMineViewController.swift */,
 			);
@@ -3145,8 +3038,6 @@
 		7745C1F81D6714CE002212DE /* VIP会员 */ = {
 			isa = PBXGroup;
 			children = (
-				773D56A31D79564600A0C615 /* JFSubscribeViewController.h */,
-				773D56A41D79564600A0C615 /* JFSubscribeViewController.m */,
 				713EE30D20ADA08F0085B65D /* JFSubscribeViewController.swift */,
 			);
 			path = "VIP会员";
@@ -3801,8 +3692,6 @@
 		774BFB001D767389005CA603 /* 唱 */ = {
 			isa = PBXGroup;
 			children = (
-				774BFB011D767389005CA603 /* SingViewController.h */,
-				774BFB021D767389005CA603 /* SingViewController.m */,
 				713EE2E720AD9CB60085B65D /* SingViewController.swift */,
 			);
 			path = "唱";
@@ -3811,8 +3700,6 @@
 		774BFB031D767389005CA603 /* 看 */ = {
 			isa = PBXGroup;
 			children = (
-				774BFB041D767389005CA603 /* LookViewController.h */,
-				774BFB051D767389005CA603 /* LookViewController.m */,
 				713EE2E920AD9CC00085B65D /* LookViewController.swift */,
 			);
 			path = "看";
@@ -3821,8 +3708,6 @@
 		774BFB061D767389005CA603 /* 听 */ = {
 			isa = PBXGroup;
 			children = (
-				774BFB071D767389005CA603 /* LinsenViewController.h */,
-				774BFB081D767389005CA603 /* LinsenViewController.m */,
 				713EE2EB20AD9CCE0085B65D /* LinsenViewController.swift */,
 				774BFB0C1D767389005CA603 /* LocalMusicViewController.h */,
 				774BFB0D1D767389005CA603 /* LocalMusicViewController.m */,
@@ -3837,8 +3722,6 @@
 		774BFB101D767389005CA603 /* 右侧界面 */ = {
 			isa = PBXGroup;
 			children = (
-				774BFB111D767389005CA603 /* KugouRightSettingViewController.h */,
-				774BFB121D767389005CA603 /* KugouRightSettingViewController.m */,
 				713EE2F120AD9CF20085B65D /* KugouRightSettingViewController.swift */,
 			);
 			path = "右侧界面";
@@ -3847,8 +3730,6 @@
 		774BFB131D767389005CA603 /* 左侧设置 */ = {
 			isa = PBXGroup;
 			children = (
-				774BFB141D767389005CA603 /* SettingViewController.h */,
-				774BFB151D767389005CA603 /* SettingViewController.m */,
 				713EE2F320AD9CFD0085B65D /* SettingViewController.swift */,
 			);
 			path = "左侧设置";
@@ -6265,6 +6146,7 @@
 				BF6E57281FABFCB0005F7DF8 /* TLMineSettingViewController.m in Sources */,
 				7115A5D420AAD716000D0B96 /* ResumeTabBarController.swift in Sources */,
 				7121196220AC0C6E0087E05B /* JuheUserViewController.swift in Sources */,
+				713728CC20AE839900A3227A /* SDYuEBaoTableViewController.swift in Sources */,
 				BF6BB2AC1FAC5CB6003720C3 /* XFHomeViewController+Views.m in Sources */,
 				7115A5D820AAD783000D0B96 /* ResumeBaseViewController.swift in Sources */,
 				BF6E56A61FAAF563005F7DF8 /* TLImageBrowserController.m in Sources */,
@@ -6288,7 +6170,6 @@
 				713EE2F020AD9CE50085B65D /* MainViewController.swift in Sources */,
 				BF6E569B1FAAF475005F7DF8 /* TLQRCodeViewController.m in Sources */,
 				71ECDFFE209210BF00495467 /* TLPublicServerSearchViewController.m in Sources */,
-				BF6E57C41FAC1424005F7DF8 /* SDAssetsTableViewControllerCellModel.m in Sources */,
 				BF6E569A1FAAF45A005F7DF8 /* TLSearchController.m in Sources */,
 				BF6E56981FAAF3F7005F7DF8 /* TLWebViewController.m in Sources */,
 				7121194820AC03220087E05B /* JuheDataTabBarController.swift in Sources */,
@@ -6301,15 +6182,12 @@
 				713EE2C620AD9B2B0085B65D /* DZMeController.swift in Sources */,
 				77DE73431D1CDC2B00F39FDB /* SettingsViewController.m in Sources */,
 				7115A5F420AAFC34000D0B96 /* MyDatabaseViewController.swift in Sources */,
-				7741F1D71D6D530300EED332 /* SDHomeViewController.m in Sources */,
 				778E939D1D69AA92004D899C /* DiscoverDetailViewController.m in Sources */,
-				773D56141D7953A100A0C615 /* JFVideoDetailViewController.m in Sources */,
-				7741F1D21D6D530300EED332 /* SDAddItemViewController.m in Sources */,
+				713728CA20AE733F00A3227A /* AlipayModels.swift in Sources */,
 				713EE2D620AD9BAE0085B65D /* TaobaoCommunityViewController.swift in Sources */,
 				713EE2EA20AD9CC00085B65D /* LookViewController.swift in Sources */,
 				7115A5A320AA9ECB000D0B96 /* XBaseViewController.swift in Sources */,
 				713EE2B820AD903F0085B65D /* AlipayBaseViewController.swift in Sources */,
-				773D56151D7953A100A0C615 /* JFWatchRecordViewController.m in Sources */,
 				BF5B9B601F8E63CF00BD885E /* SearchDownloadBookViewController.swift in Sources */,
 				7121191E20ABC46F0087E05B /* EnergyNavigationController.swift in Sources */,
 				7165A3B120A57EFE001C60D6 /* XTableView.swift in Sources */,
@@ -6339,15 +6217,12 @@
 				7121195E20AC0C4F0087E05B /* JuheDetailQuestion.swift in Sources */,
 				71ECE04F2092128E00495467 /* TLChatDetailViewController.m in Sources */,
 				71267A552092DC93006E1B96 /* YMTableViewCell.m in Sources */,
-				773D56A51D79564600A0C615 /* JFSubscribeViewController.m in Sources */,
 				774BFB171D767389005CA603 /* PlayAudioViewController.m in Sources */,
 				7121195620AC0C210087E05B /* JuheChartViewController.swift in Sources */,
 				7788AC651D7996E000376C95 /* E_SearchViewController.m in Sources */,
-				774BFB221D767389005CA603 /* LinsenViewController.m in Sources */,
 				718540F320A539200015A123 /* BaseScrollOCView.m in Sources */,
 				7165A3EA20A5A291001C60D6 /* FreedomBaseViewController.swift in Sources */,
 				7121192220ABC4B80087E05B /* EnergySampleViewController.swift in Sources */,
-				7165A3E520A59DA7001C60D6 /* IqiyiBaseViewController.m in Sources */,
 				7115A5C820AAD36B000D0B96 /* PersonalFastGoodsViewController.swift in Sources */,
 				7121197420AC250D0087E05B /* ToutiaoMeViewController.swift in Sources */,
 				7115A5EC20AAEE1E000D0B96 /* BooksViewController.swift in Sources */,
@@ -6385,7 +6260,6 @@
 				713EE2D820AD9BBA0085B65D /* TaobaoShopCarViewController.swift in Sources */,
 				7115A5AD20AAA1F1000D0B96 /* FreedomViewController.swift in Sources */,
 				BF5B9B6F1F8E674B00BD885E /* FreeViewController.swift in Sources */,
-				773D568A1D7955AE00A0C615 /* JFDiscoverViewController.m in Sources */,
 				BF5B9B771F8E677F00BD885E /* RelativeViewController.swift in Sources */,
 				7115A5B620AAC314000D0B96 /* PersonalApplyNavigationController.swift in Sources */,
 				71267A3F2092CD7F006E1B96 /* SinaMode.m in Sources */,
@@ -6416,21 +6290,16 @@
 				71ECE0222092121F00495467 /* TLShakeSettingViewController.m in Sources */,
 				7121193A20ABC5710087E05B /* EnergyShopCarViewController.swift in Sources */,
 				713EE2AC20AD8F8E0085B65D /* DianpingNavigationController.swift in Sources */,
-				7745C2551D67235E002212DE /* IqiyiTabBarController.m in Sources */,
 				713EE2C820AD9B600085B65D /* TaobaoHomeViewController.swift in Sources */,
 				71ECDFC12091F9EF00495467 /* TLUserHelper.m in Sources */,
 				713EE2BA20AD906F0085B65D /* KugouNavigationViewController.swift in Sources */,
 				7115A5DC20AAD9C2000D0B96 /* ResumeListViewController.swift in Sources */,
 				713EE2D220AD9B970085B65D /* TaobaoMiniArticleViewController.swift in Sources */,
 				774BFB251D767389005CA603 /* LocalMusicViewController.m in Sources */,
-				7741F1E21D6D538D00EED332 /* SDAssetsTableViewController.m in Sources */,
 				7745C2451D67188C002212DE /* WechartNavigationController.m in Sources */,
-				773D56BB1D79568500A0C615 /* JFLoginViewController.m in Sources */,
 				713EE2CA20AD9B6C0085B65D /* TaobaoMiniViewController.swift in Sources */,
 				7121192A20ABC4EE0087E05B /* EnergyNewsDetailViewController.swift in Sources */,
 				713EE2AE20AD8FAB0085B65D /* TaobaoNavigationViewController.swift in Sources */,
-				7741F1D81D6D530300EED332 /* SDScanViewController.m in Sources */,
-				774BFB211D767389005CA603 /* LookViewController.m in Sources */,
 				71ECE04C2092128E00495467 /* TLGroupQRCodeViewController.m in Sources */,
 				778E8F081D696020004D899C /* XFTitleMenuViewController.m in Sources */,
 				7115A5EE20AAFBBA000D0B96 /* MyDatabaseTabBarController.swift in Sources */,
@@ -6444,13 +6313,11 @@
 				BF5B9B6D1F8E674400BD885E /* MoneyViewController.swift in Sources */,
 				7115A5BC20AAD31A000D0B96 /* PersonalInternetViewController.swift in Sources */,
 				7115A5F620AAFC40000D0B96 /* MyDatabaseEditViewController.swift in Sources */,
-				773D56901D7955AE00A0C615 /* JFSearchHistoryViewController.m in Sources */,
 				776460701D68437F00ACCCAC /* TLDBManager.m in Sources */,
 				BF5B9B791F8E678900BD885E /* FriendViewController.swift in Sources */,
 				71ECE0212092121F00495467 /* TLGameViewController.m in Sources */,
 				7115A5B120AABCF6000D0B96 /* FreedomTabBarController.swift in Sources */,
 				7115A5AB20AAA1C4000D0B96 /* FreedomBooksEditViewController.swift in Sources */,
-				7741F1F51D6D53B700EED332 /* SDYuEBaoTableViewController.m in Sources */,
 				713EE2EE20AD9CD90085B65D /* LocalMusicViewController.swift in Sources */,
 				77CC4F441D90E07A00DD2EC8 /* BaseTabBarController.m in Sources */,
 				71517B1C2094803300B40538 /* JSONObject.swift in Sources */,
@@ -6466,7 +6333,6 @@
 				71ECDFFF209210BF00495467 /* TLContactsViewController.m in Sources */,
 				BF5B9B7F1F8E67B900BD885E /* WidomViewController.swift in Sources */,
 				713EE30820ADA06B0085B65D /* JFWatchRecordViewController.swift in Sources */,
-				7741F1AB1D6D524400EED332 /* SDDiscoverTableViewController.m in Sources */,
 				7115A5E820AAED13000D0B96 /* BooksNavigationController.swift in Sources */,
 				71267A5B2092E736006E1B96 /* BookSubViews.m in Sources */,
 				713EE31620ADA0BA0085B65D /* JFWebViewController.swift in Sources */,
@@ -6476,8 +6342,6 @@
 				713EE2B620AD901F0085B65D /* KugouBaseViewController.swift in Sources */,
 				778913A51D101DB10096AB3B /* FirstViewController.m in Sources */,
 				774BFB1A1D767389005CA603 /* SHLrcsView.m in Sources */,
-				773D56CC1D796A7D00A0C615 /* IqiyiNavigationController.m in Sources */,
-				774BFB271D767389005CA603 /* KugouRightSettingViewController.m in Sources */,
 				778E8F0C1D696059004D899C /* XFMessageViewController.m in Sources */,
 				778E93AF1D69B229004D899C /* SWGeneralSettingViewController.m in Sources */,
 				71ECE002209210BF00495467 /* TLPublicServerViewController.m in Sources */,
@@ -6504,7 +6368,6 @@
 				713EE2F820AD9D3C0085B65D /* DetailTableViewController.swift in Sources */,
 				713EE2BE20AD9AF90085B65D /* DZDealController.swift in Sources */,
 				71ECE004209210BF00495467 /* TLGroupViewController.m in Sources */,
-				7741F1BF1D6D528E00EED332 /* SDServiceTableViewController.m in Sources */,
 				71250EC62091C0F20093B59B /* FreedomTools.m in Sources */,
 				7115A5B820AAC348000D0B96 /* PersonalApplyBaseViewController.swift in Sources */,
 				713EE2A420AD8F160085B65D /* DianpingTabBarController.swift in Sources */,
@@ -6523,7 +6386,6 @@
 				713EE31420ADA0AF0085B65D /* JFClassifyViewController.swift in Sources */,
 				71ECE0462092128E00495467 /* TLChatViewController.m in Sources */,
 				774BFB451D767618005CA603 /* KugouBaseViewController.m in Sources */,
-				774BFB201D767389005CA603 /* SingViewController.m in Sources */,
 				713EE2FA20AD9D490085B65D /* DetailWapViewController.swift in Sources */,
 				713EE2BC20AD9AEC0085B65D /* DZHomeController.swift in Sources */,
 				778E8F0F1D69607E004D899C /* XFDiscoverViewController.m in Sources */,
@@ -6533,7 +6395,6 @@
 				7745C2461D67188C002212DE /* WechartTabBarController.m in Sources */,
 				71267A522092DC7B006E1B96 /* BookFriendsMode.m in Sources */,
 				7788AC621D7996E000376C95 /* E_CommentViewController.m in Sources */,
-				773D56C91D7968EC00A0C615 /* IqiyiViewController.m in Sources */,
 				BF5B9B711F8E675100BD885E /* LoveViewController.swift in Sources */,
 				7121192E20ABC5060087E05B /* EnergyDetailViewController.swift in Sources */,
 				713EE2B020AD8FDB0085B65D /* AlipayNavigationViewController.swift in Sources */,
@@ -6543,13 +6404,10 @@
 				778E93AC1D69B1FE004D899C /* SWSettingViewController.m in Sources */,
 				713EE2E020AD9C120085B65D /* SDAddItemViewController.swift in Sources */,
 				7788AC631D7996E000376C95 /* E_ReaderViewController.m in Sources */,
-				7741F1941D6D514100EED332 /* SDBasicTableViewController.m in Sources */,
 				71ECE01D2092121F00495467 /* TLMomentDetailViewController.m in Sources */,
-				774BFB281D767389005CA603 /* SettingViewController.m in Sources */,
 				7121196820AC24A70087E05B /* ToutiaoBaseViewController.swift in Sources */,
 				7121195420AC0C170087E05B /* JuheAboutUSViewController.swift in Sources */,
 				7115A5EA20AAEDF1000D0B96 /* BooksBaseViewController.swift in Sources */,
-				7741F1961D6D514100EED332 /* SDBasicViewContoller.m in Sources */,
 				71ECE0232092121F00495467 /* TLMomentsViewController.m in Sources */,
 				71267A462092CF9B006E1B96 /* SinaTabBarController.m in Sources */,
 				BF5B9B7B1F8E679300BD885E /* HealthViewController.swift in Sources */,

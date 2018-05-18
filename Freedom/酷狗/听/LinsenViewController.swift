@@ -9,37 +9,194 @@
 import UIKit
 import BaseFile
 import XExtension
-class TEMPBASEC:BaseTableViewCell{
-    override func initUI() {
-        self.icon = UIImageView(frame: CGRect(x:0, y:0, width:0, height:120))
-        self.title = UILabel(frame: CGRect(x:0, y:0, width:0, height: 20))
-        self.addSubviews([self.title,self.icon])
-        self.title.text = "name"
-        self.icon.image = UIImage(named:"taobaomini2")
+typealias clickLocalMusicBlock = () -> Void
+
+class mainHeaderView: UIView {
+    var localMusic: clickLocalMusicBlock?
+    
+    var imageView: UIImageView?
+    var bottomView: UIView?
+    init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        // 最底层
+        imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: APPW, height: 170))
+        imageView?.isUserInteractionEnabled = true
+        if let aView = imageView {
+            addSubview(aView)
+        }
+        //最上面
+        setupTopButtoms()
+        
     }
-}
-class LinsenViewController: KugouBaseViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    //  The converted code is limited to 1 KB.
+    //  Please Sign Up (Free!) to remove this limitation.
+    //
+    //  Converted to Swift 4 by Swiftify v4.1.6710 - https://objectivec2swift.com/
+    func setupTopButtoms() {
+        let btnW: CGFloat = 60
+        let btnH: CGFloat = 60
+        let magin: CGFloat = (APPW - 4 * btnW) / 5.0
+        let titleArr = ["我喜欢", "歌单", "下载", "最近"]
+        for i in 0..<4 {
+            let btnX: CGFloat = magin + (magin + btnW) * i
+            let btn = UIButton(frame: CGRect(x: btnX, y: 30, width: btnW, height: btnH))
+            btn.imageView?.contentMode = .scaleAspectFit
+            btn.titleLabel?.textAlignment = .center
+            btn.imageView?.contentMode = .scaleAspectFit
+            btn.titleLabel?.textAlignment = .center
+            btn.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+            btn.setImage(UIImage(named: "main_clock"), for: .normal)
+            btn.setTitle(titleArr[i], for: .normal)
+            addSubview(btn)
+        }
+        let lineView = UIView(frame: CGRect(x: 10, y: btnH + 30 + 30, width: APPW - 20, height: 0.5))
+        lineView.backgroundColor = UIColor.white
+        lineView.alpha = 0.3
+        addSubview(lineView)
+        let phoneimage = UIImageView(frame: CGRect(x: 20, y: lineView.frame.maxY + 15, width: 20, height: 20))
+        phoneimage.image = UIImage(named: "main_phone")
+        addSubview(phoneimage)
+        let lable = UILabel(frame: CGRect(x: phoneimage.frame.maxX + 8, y: phoneimage.frameY, width: 100, height: 25))
+        lable.text = "本地音乐"
+        lable.font = UIFont.systemFont(ofSize: 14)
+        lable.textColor = UIColor.white
+        addSubview(lable)
+        let everyMusic = MPMediaQuery()
+        let musicArr = everyMusic.items
+        let lable2 = UILabel(frame: CGRect(x: APPW - 130, y: phoneimage.frameY, width: 100, height: 25))
+        lable2.text = "\(musicArr?.count ?? 0)首"
+        lable2.font = UIFont.systemFont(ofSize: 12)
+        lable2.textColor = UIColor.white
+        lable2.textAlignment = .right
+        addSubview(lable2)
+        lable2.isUserInteractionEnabled = true
+        let lable3 = UILabel(frame: CGRect(x: 0, y: lable2.frameY, width: APPW, height: lable2.frameHeight))
+        addSubview(lable3)
+        lable3.isUserInteractionEnabled = true
+        lable3.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.clickLable2)))
+        let imageArrow = UIImageView(frame: CGRect(x: lable2.frame.maxX, y: lable2.frameY, width: 25, height: 25))
+        imageArrow.image = UIImage(named: "arrow")
+        addSubview(imageArrow)
+        // 底部
+        setupBottonButtons()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    //  The converted code is limited to 1 KB.
+    //  Please Sign Up (Free!) to remove this limitation.
+    //
+    //  Converted to Swift 4 by Swiftify v4.1.6710 - https://objectivec2swift.com/
+    func setupBottonButtons() {
+        let bView = UIView(frame: CGRect(x: 0, y: imageView?.frame.maxY, width: APPW, height: 130))
+        bView.backgroundColor = UIColor.white
+        addSubview(bView)
+        let btnW: CGFloat = 80
+        let btnH: CGFloat = 100
+        let magin: CGFloat = (APPW - 3 * btnW) / 4.0
+        let titleArr = ["乐库", "电台", "库群"]
+        for i in 0..<3 {
+            let btnX: CGFloat = magin + (magin + btnW) * i
+            let btn = UIButton(frame: CGRect(x: btnX, y: 15, width: btnW, height: btnH))
+            btn.imageView?.contentMode = .scaleAspectFit
+            btn.titleLabel?.textAlignment = .center
+            btn.imageView?.contentMode = .scaleAspectFit
+            btn.titleLabel?.textAlignment = .center
+            btn.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+            btn.setImage(UIImage(named: "n\(i + 1)"), for: .normal)
+            btn.setTitle(titleArr[i], for: .normal)
+            btn.setTitleColor(UIColor.black, for: .normal)
+            bView.addSubview(btn)
+        }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func clickLable2() {
+        localMusic()
     }
-    */
 
+}
+
+class LinsenViewController: KugouBaseViewController {
+    weak var tableView: UITableView?
+    var titlesArr = [Any]()
+    var headerView: mainHeaderView?
+    func viewDidLoad() {
+        super.viewDidLoad()
+        titlesArr = ["工具", "游戏", "推广"]
+        setupTableView()
+        setupRightGesture()
+    }
+    
+    func setupRightGesture() {
+        let leftSwipe = UISwipeGestureRecognizer(target: self, action: Selector("swipe:"))
+        leftSwipe.direction = .right
+        leftSwipe.numberOfTouchesRequired = 1
+        view.addGestureRecognizer(leftSwipe)
+    }
+    
+    @objc func swipe(_ sender: UISwipeGestureRecognizer?) {
+        sideMenuViewController.presentLeftMenuViewController()
+    }
+    var headerView: NSTableHeaderView? {
+        if headerView == nil {
+            headerView = mainHeaderView(frame: CGRect(x: 0, y: 0, width: APPW, height: headerH))
+        }
+        return headerView
+    }
+    //  The converted code is limited to 1 KB.
+    //  Please Sign Up (Free!) to remove this limitation.
+    //
+    //  Converted to Swift 4 by Swiftify v4.1.6710 - https://objectivec2swift.com/
+    func setupTableView() {
+        let tableView = UITableView(frame: CGRect(x: 0, y: 0, width: APPW, height: Int(APPH - TabBarH) + 2), style: .plain)
+        tableView.delegate = self
+        tableView.dataSource = self
+        self.tableView = tableView
+        tableView.tableFooterView = UIView()
+        tableView.showsVerticalScrollIndicator = false
+        tableView.backgroundView = UIImageView(image: UIImage(named: "bj"))
+        tableView.backgroundView?.contentMode = .redraw
+        tableView.tableHeaderView = headerView
+        tableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0)
+        view.addSubview(tableView)
+        let viewtab = UIView(frame: CGRect(x: 0, y: headerH + 44 * titlesArr.count, width: APPW, height: 500))
+        viewtab.backgroundColor = UIColor.white
+        tableView.addSubview(viewtab)
+        // 访问系统本地音乐
+        WS(weakSelf)
+        headerView?.localMusic = {() -> Void in
+            let localVC = LocalMusicViewController()
+            weakSelf.navigationController?.pushViewController(localVC, animated: false)
+        }
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let mainCellID = "mainID"
+        var cell: UITableViewCell? = tableView.dequeueReusableCell(withIdentifier: mainCellID)
+        if cell == nil {
+            cell = UITableViewCell(style: .default, reuseIdentifier: mainCellID)
+        }
+        cell?.imageView?.image = UIImage(named: "music")
+        cell?.textLabel?.text = titlesArr[indexPath.row]
+        if let aCell = cell {
+            return aCell
+        }
+        return UITableViewCell()
+    }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return titlesArr.count
+    }
+    
+    // MARK: - UITableViewDelegate
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 44
+    }
+        
+
+    
+    
 }

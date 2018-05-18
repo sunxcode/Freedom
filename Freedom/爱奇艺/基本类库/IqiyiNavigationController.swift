@@ -9,27 +9,23 @@
 import UIKit
 
 class IqiyiNavigationController: XBaseNavigationViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    view.backgroundColor = UIColor.white
+    navigationBar.isTranslucent = false
+    //不是半透明
+    navigationBar.titleTextAttributes = [
+    NSForegroundColorAttributeName : UIColor.white,
+    NSFontAttributeName : Font(16)
+    ]
+    navigationBar.barTintColor = RGBCOLOR(47, 47, 47)
+    if (Double(UIDevice.current.systemVersion) ?? 0.0 >= 7.0) {
+    edgesForExtendedLayout = []
+    //视图控制器，四条边不指定
+    extendedLayoutIncludesOpaqueBars = false
+    //不透明的操作栏
+    modalPresentationCapturesStatusBarAppearance = false
+    UINavigationBar.appearance().setBackgroundImage(UIImage(named: ""), for: .top, barMetrics: .default)
+    } else {
+    navigationBar.setBackgroundImage(UIImage(named: ""), for: .default)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

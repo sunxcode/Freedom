@@ -12,6 +12,8 @@ class AlipayBaseViewController: XBaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem?.backBarButtonItem?.setTitleTextAttributes([NSFontAttributeName: UIFont.systemFont(ofSize: 5)], for: .normal)
 
         // Do any additional setup after loading the view.
     }
