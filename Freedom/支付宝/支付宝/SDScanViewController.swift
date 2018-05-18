@@ -3,14 +3,15 @@
 //  Freedom
 
 import UIKit
-
+import BaseFile
+import XExtension
+import AVFoundation
 class SDScanViewController: AlipayBaseViewController {
     private let kBorderW: CGFloat = 60
     private let kMargin: CGFloat = 15
-    
     var session: AVCaptureSession?
     weak var maskView: UIView?
-    func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.disMiss)))
@@ -35,10 +36,6 @@ class SDScanViewController: AlipayBaseViewController {
         bottomBar.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.8)
         view.addSubview(bottomBar)
     }
-    //  The converted code is limited to 1 KB.
-    //  Please Sign Up (Free!) to remove this limitation.
-    //
-    //  Converted to Swift 4 by Swiftify v4.1.6710 - https://objectivec2swift.com/
     func setupScanWindowView() {
         let scanWindowH: CGFloat = view.frameHeight * 0.9 - kBorderW * 2
         let scanWindowW: CGFloat = view.frame.size.width - kMargin * 2
@@ -89,29 +86,27 @@ class SDScanViewController: AlipayBaseViewController {
         let output = AVCaptureMetadataOutput()
         output.rectOfInterest = CGRect(x: 0.1, y: 0, width: 0.9, height: 1)
         //设置代理 在主线程里刷新
-        output.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
+        output.setMetadataObjectsDelegate(self as! AVCaptureMetadataOutputObjectsDelegate, queue: DispatchQueue.main)
         //初始化链接对象
         session = AVCaptureSession()
         //高质量采集率
-        session.sessionPreset = .high
-        if let anInput = input {
-            session.add(anInput)
-        }
-        session.add(output)
+        session?.sessionPreset = .high
+//        session?.add(input)
+//        session?.add(output)
         //设置扫码支持的编码格式(如下设置条形码和二维码兼容)
         output.metadataObjectTypes = [.qr, .ean13, .ean8, .code128]
-        let layer = AVCaptureVideoPreviewLayer(session: session)
+        let layer = AVCaptureVideoPreviewLayer(session: session!)
         layer.videoGravity = .resizeAspectFill
         layer.frame = view.layer.bounds
         view.layer.insertSublayer(layer, at: 0)
         //开始捕获
-        session.startRunning()
+        session?.startRunning()
     }
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
-        if (metadataObjects?.count ?? 0) > 0 {
-            session.stopRunning()
-            let metadataObject = metadataObjects?[0] as? AVMetadataMachineReadableCodeObject
-            let alert = UIAlertView(title: "扫描结果", message: metadataObject?.stringValue, delegate: self, cancelButtonTitle: "退出", otherButtonTitles: "再次扫描")
+        if (metadataObjects.count ?? 0) > 0 {
+            session?.stopRunning()
+            let metadataObject = metadataObjects[0] as? AVMetadataMachineReadableCodeObject
+            let alert = UIAlertView(title: "扫描结果", message: (metadataObject?.stringValue)!, delegate: self as! UIAlertViewDelegate, cancelButtonTitle: "退出", otherButtonTitles: "再次扫描")
             alert.show()
         }
     }
@@ -119,18 +114,16 @@ class SDScanViewController: AlipayBaseViewController {
         navigationController?.popViewController(animated: true)
     }
     
-    func willMove(toParentViewController parent: UIViewController?) {
+    override func willMove(toParentViewController parent: UIViewController?) {
         if parent == nil {
             navigationController?.navigationBar.isHidden = false
         }
     }
-    
-    // MARK: - UIAlertViewDelegate
     func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int) {
         if buttonIndex == 0 {
             disMiss()
         } else if buttonIndex == 1 {
-            session.startRunning()
+            session?.startRunning()
         }
     }
 

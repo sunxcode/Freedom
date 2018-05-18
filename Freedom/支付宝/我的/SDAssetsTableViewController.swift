@@ -33,10 +33,6 @@ class SDAssetsTableViewController: AlipayBaseViewController {
         let header = UIView()
         tableView.tableHeaderView = header
     }
-    //  The converted code is limited to 1 KB.
-    //  Please Sign Up (Free!) to remove this limitation.
-    //
-    //  Converted to Swift 4 by Swiftify v4.1.6710 - https://objectivec2swift.com/
     func setupModel() {
         // section 0 的model
         let model01 = SDAssetsTableViewControllerCellModel(title: "余额宝", iconImageName: "20000032Icon", destinationControllerClass: SDYuEBaoTableViewController.self)
@@ -58,14 +54,10 @@ class SDAssetsTableViewController: AlipayBaseViewController {
             navigationController?.pushViewController(aVc, animated: true)
         }
     }
-    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 20
     }
-    
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return (section == dataArray.count - 1) ? 10 : 0
     }
-
-
 }

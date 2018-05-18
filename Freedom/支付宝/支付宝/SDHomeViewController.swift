@@ -43,10 +43,10 @@ class SDHomeGridViewListItemView: UIView {
         icon.isHidden = true
         addSubview(icon)
         iconView = icon
-        let longPressed = UILongPressGestureRecognizer(target: self, action: Selector("itemLongPressed:"))
+        let longPressed = UILongPressGestureRecognizer(target: self, action:#selector(itemLongPressed(_:)))
         addGestureRecognizer(longPressed)
     }
-    func itemLongPressed(_ longPressed: UILongPressGestureRecognizer?) {
+    @objc func itemLongPressed(_ longPressed: UILongPressGestureRecognizer?) {
         if (itemLongPressedOperationBlock != nil) {
             itemLongPressedOperationBlock!(longPressed)
         }
@@ -78,7 +78,7 @@ class SDHomeGridViewListItemView: UIView {
     }
     func setHidenIcon(_ hidenIcon: Bool) {
         self.hidenIcon = hidenIcon
-        iconView?.hidden = hidenIcon
+        iconView?.isHidden = hidenIcon
     }
     
     func setIconImage(_ iconImage: UIImage?) {
@@ -94,7 +94,7 @@ class SDHomeGridViewListItemView: UIView {
         let w: CGFloat = W(button)
         button.imageEdgeInsets = UIEdgeInsetsMake(h * 0.2, w * 0.32, h * 0.3, w * 0.32)
         button.titleEdgeInsets = UIEdgeInsetsMake(h * 0.6, -w * 0.4, 0, 0)
-        iconView.frame = CGRect(x: frame.size.width - iconView.frame.size.width - margin, y: margin, width: 20, height: 20)
+        iconView?.frame = CGRect(x: frame.size.width - (iconView?.frame.size.width)! - margin, y: margin, width: 20, height: 20)
     }
 
 
@@ -109,7 +109,6 @@ protocol SDHomeGridViewDeleate: NSObjectProtocol {
 class SDHomeGridView: UIScrollView, UIScrollViewDelegate {
     weak var gridViewDelegate: SDHomeGridViewDeleate?
     var gridModelsArray = [Any]()
-    
     private var itemsArray = [AnyHashable]()
     private var rowSeparatorsArray = [AnyHashable]()
     private var columnSeparatorsArray = [AnyHashable]()
@@ -121,11 +120,9 @@ class SDHomeGridView: UIScrollView, UIScrollViewDelegate {
     private var cycleScrollADViewBackgroundView: UIView?
     private var moreItemButton: UIButton?
     private var currentPresssViewFrame = CGRect.zero
-    func scanButtonClicked() {
-        let desVc = SDScanViewController() as? SDBasicViewContoller
-        if let aVc = desVc {
-            getCurrentViewController()?.navigationController?.pushViewController(aVc, animated: true)
-        }
+    @objc func scanButtonClicked() {
+        let desVc = SDScanViewController()
+    getCurrentViewController()?.navigationController?.pushViewController(desVc, animated: true)
     }
     
     func getCurrentViewController() -> UIViewController? {
@@ -138,13 +135,8 @@ class SDHomeGridView: UIScrollView, UIScrollViewDelegate {
         } while next != nil
         return nil
     }
-    //  The converted code is limited to 1 KB.
-    //  Please Sign Up (Free!) to remove this limitation.
-    //
-    //  Converted to Swift 4 by Swiftify v4.1.6710 - https://objectivec2swift.com/
-    init(frame: CGRect) {
+    override init(frame: CGRect) {
         super.init(frame: frame)
-        
         delegate = self
         itemsArray = [AnyHashable]()
         rowSeparatorsArray = [AnyHashable]()
@@ -156,7 +148,7 @@ class SDHomeGridView: UIScrollView, UIScrollViewDelegate {
         header.frame = CGRect(x: 0, y: 0, width: APPW, height: 100)
         header.backgroundColor = UIColor(red: 38 / 255.0, green: 42 / 255.0, blue: 59 / 255.0, alpha: 1)
         let scan = UIButton(frame: CGRect(x: 0, y: 0, width: header.frame.size.width * 0.5, height: header.frameHeight))
-        scan.setImage(UIImage(named: Pscan_y), for: .normal)
+        scan.setImage(UIImage(named: "scan_y"), for: .normal)
         scan.addTarget(self, action: #selector(self.scanButtonClicked), for: .touchUpInside)
         header.addSubview(scan)
         let pay = UIButton(frame: CGRect(x: scan.frame.size.width, y: 0, width: header.frame.size.width * 0.5, height: header.frameHeight))
@@ -170,40 +162,41 @@ class SDHomeGridView: UIScrollView, UIScrollViewDelegate {
         cycleScrollADViewBackgroundView.backgroundColor = UIColor(red: 235 / 255.0, green: 235 / 255.0, blue: 235 / 255.0, alpha: 1)
         addSubview(cycleScrollADViewBackgroundView)
         self.cycleScrollADViewBackgroundView = cycleScrollADViewBackgroundView
-        self.cycleScrollADViewBackgroundView.backgroundColor = UIColor.red
+        self.cycleScrollADViewBackgroundView?.backgroundColor = UIColor.red
         let temp = ["http://ww3.sinaimg.cn/bmiddle/9d857daagw1er7lgd1bg1j20ci08cdg3.jpg", "http://ww4.sinaimg.cn/bmiddle/763cc1a7jw1esr747i13xj20dw09g0tj.jpg", "http://ww4.sinaimg.cn/bmiddle/67307b53jw1esr4z8pimxj20c809675d.jpg"]
-        cycleScrollADView = BaseScrollOCView.sharedBanner(withFrame: CGRect(x: 0, y: 0, width: APPW, height: 100), icons: temp)
-        addSubview(cycleScrollADView)
+        cycleScrollADView = BaseScrollView(banner: CGRect(x: 0, y: 0, width: APPW, height: 100), icons: temp)
+        addSubview(cycleScrollADView!)
         
     }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     func setGridModelsArray(_ gridModelsArray: [Any]?) {
-        self.gridModelsArray = gridModelsArray
+        self.gridModelsArray = gridModelsArray!
         itemsArray.removeAll()
         rowSeparatorsArray.removeAll()
         columnSeparatorsArray.removeAll()
-        (gridModelsArray as NSArray?)?.enumerateObjects({(_ model: SDHomeGridItemModel?, _ idx: Int, _ stop: UnsafeMutablePointer<ObjCBool>?) -> Void in
+        for model in gridModelsArray!{
             let item = SDHomeGridViewListItemView()
-            item.itemModel = model
-            weak var weakSelf = self
+            item.itemModel = model as? SDHomeGridItemModel
             item.itemLongPressedOperationBlock = {(_ longPressed: UILongPressGestureRecognizer?) -> Void in
-                weakSelf.buttonLongPressed(longPressed)
+                self.buttonLongPressed(longPressed)
             }
             item.iconViewClickedOperationBlock = {(_ view: SDHomeGridViewListItemView?) -> Void in
-                weakSelf.delete(view)
+                self.delete(view)
             }
             item.buttonClickedOperationBlock = {(_ view: SDHomeGridViewListItemView?) -> Void in
-                if !currentPressedView.hidenIcon && currentPressedView {
-                    currentPressedView.hidenIcon = true
+                if !self.currentPressedView!.hidenIcon && (self.currentPressedView != nil) {
+                    self.currentPressedView?.hidenIcon = true
                     return
                 }
-                if self.gridViewDelegate.responds(to: Selector("homeGrideView:selectItemAtIndex:")) {
-                    if let aView = view {
-                        self.gridViewDelegate.homeGrideView(self, selectItemAt: itemsArray.index(of: aView))
-                    }
+                if let aView = view {
+                    self.gridViewDelegate?.homeGrideView(self, selectItemAt: self.itemsArray.index(of: aView)!)
                 }
             }
             self.addSubview(item)
-        })
+        }
         let more = UIButton()
         more.setImage(UIImage(named: "tf_home_more"), for: .normal)
         more.addTarget(self, action: #selector(self.moreItemButtonClicked), for: .touchUpInside)
@@ -211,30 +204,27 @@ class SDHomeGridView: UIScrollView, UIScrollViewDelegate {
         itemsArray.append(more)
         moreItemButton = more
         // MARK: 设置中间分割线的位置
-        let rowCount: Int = self.rowCount(withItemsCount: gridModelsArray?.count)
+        let rowCount: Int = self.rowCount(withItemsCount: (gridModelsArray?.count)!)
         let lineColor: UIColor? = UIColor.lightGray.withAlphaComponent(0.8)
-        for i in 0..<(rowCount + 1) {
+        for _ in 0..<(rowCount + 1) {
             let rowSeparator = UIView()
             rowSeparator.backgroundColor = lineColor
             addSubview(rowSeparator)
             rowSeparatorsArray.append(rowSeparator)
         }
-        for i in 0..<(4 + 1) {
+        for _ in 0..<(4 + 1) {
             let columnSeparator = UIView()
             columnSeparator.backgroundColor = lineColor
             addSubview(columnSeparator)
             columnSeparatorsArray.append(columnSeparator)
         }
         shouldAdjustedSeparators = true
-        bringSubview(toFront: cycleScrollADViewBackgroundView)
-        bringSubview(toFront: cycleScrollADView)
+        bringSubview(toFront: cycleScrollADViewBackgroundView!)
+        bringSubview(toFront: cycleScrollADView!)
     }
-    func moreItemButtonClicked() {
-        if gridViewDelegate.responds(to: Selector("homeGrideViewmoreItemButtonClicked:")) {
-            gridViewDelegate.homeGrideViewmoreItemButtonClicked(self)
-        }
+    @objc func moreItemButtonClicked() {
+        gridViewDelegate?.homeGrideViewmoreItemButtonClicked(self)
     }
-    
     func rowCount(withItemsCount count: Int) -> Int {
         var rowCount: Int = (count + 4 - 1) / 4
         rowCount += 1
@@ -245,9 +235,9 @@ class SDHomeGridView: UIScrollView, UIScrollViewDelegate {
         let pressedView = longPressed?.view as? SDHomeGridViewListItemView
         let point: CGPoint? = longPressed?.location(in: self)
         if longPressed?.state == .began {
-            currentPressedView.hidenIcon = true
+            currentPressedView?.hidenIcon = true
             currentPressedView = pressedView
-            currentPresssViewFrame = pressedView?.frame
+            currentPresssViewFrame = (pressedView?.frame)!
             longPressed?.view?.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
             pressedView?.hidenIcon = false
             var index: Int? = nil
@@ -257,168 +247,122 @@ class SDHomeGridView: UIScrollView, UIScrollViewDelegate {
             if let aView = longPressed?.view {
                 while let elementIndex = itemsArray.index(of: aView) { itemsArray.remove(at: elementIndex) }
             }
-            itemsArray.insert(placeholderButton, at: index ?? 0)
-            lastPoint = point
-            bringSubview(toFront: aView)
+            itemsArray.insert(placeholderButton!, at: index ?? 0)
+            lastPoint = point!
+            var temp: CGRect? = longPressed?.view?.frame
+            temp?.origin.x += (point?.x)! - lastPoint.x
+            temp?.origin.y += (point?.y)! - lastPoint.y
+            longPressed?.view?.frame = temp ?? CGRect.zero
+            lastPoint = point!
         }
-    }
-    let temp: CGRect? = longPressed?.view?.frame
-    temp?.origin.x += point.x - lastPoint.x
-    temp?.origin.y += point.y - lastPoint.y
-    longPressed?.view?.frame = temp ?? CGRect.zero
-    lastPoint = point
-    itemsArray.enumerateObjects({(_ button: UIButton?, _ idx: Int, _ stop: UnsafeMutablePointer<ObjCBool>?) -> Void in
-    if button == moreItemButton {
-    return
-    }
-    if button?.frame.contains(point) && button != longPressed?.view {
-    while let elementIndex = itemsArray.index(of: placeholderButton) { itemsArray.remove(at: elementIndex) }
-    itemsArray.insert(placeholderButton, at: idx)
-    return
-    }
-    if button?.frame.contains(point) && button != longPressed?.view {
-    while let elementIndex = itemsArray.index(of: placeholderButton) { itemsArray.remove(at: elementIndex) }
-    stop = true
-    UIView.animate(withDuration: 0.5, animations: {() -> Void in
-    self.setupSubViewsFrame()
-    })
-    }
-    })
-    if longPressed?.state == .ended {
-    let index: Int = itemsArray.index(of: placeholderButton)
-    while let elementIndex = itemsArray.index(of: placeholderButton) { itemsArray.remove(at: elementIndex) }
-    if let aView = longPressed?.view {
-    itemsArray.insert(aView, at: index)
-    }
-    if let aView = longPressed?.view {
-    sendSubview(toBack: aView)
-    }
-    // 保存数据
-    saveItemsSettingCache()
-    UIView.animate(withDuration: 0.4, animations: {() -> Void in
-    longPressed?.view?.transform = .identity
-    self.setupSubViewsFrame()
-    }, completion: {(_ finished: Bool) -> Void in
-    if !currentPresssViewFrame.equalTo(currentPressedView.frame) {
-    currentPressedView.hidenIcon = true
-    }
-    })
-    }
-}
-
-func delete(_ view: SDHomeGridViewListItemView?) {
-    if let aView = view {
-        while let elementIndex = itemsArray.index(of: aView) { itemsArray.remove(at: elementIndex) }
-    }
-    view?.removeFromSuperview()
-    saveItemsSettingCache()
-    UIView.animate(withDuration: 0.4, animations: {() -> Void in
-        self.setupSubViewsFrame()
-    })
-}
-func saveItemsSettingCache() {
-    var tempItemsContainer = [AnyHashable]()
-    itemsArray.enumerateObjects({(_ button: SDHomeGridViewListItemView?, _ idx: Int, _ stop: UnsafeMutablePointer<ObjCBool>?) -> Void in
-        if (button is SDHomeGridViewListItemView) {
-            tempItemsContainer.append([button?.itemModel.title: button?.itemModel.imageResString])
+        if longPressed?.state == .ended {
+            let index: Int = itemsArray.index(of: placeholderButton!)!
+            while let elementIndex = itemsArray.index(of: placeholderButton!) { itemsArray.remove(at: elementIndex) }
+            if let aView = longPressed?.view {
+            itemsArray.insert(aView, at: index)
         }
-    })
-    AlipayTools.saveItemsArray(tempItemsContainer)
-    if gridViewDelegate.responds(to: Selector("homeGrideViewDidChangeItems:")) {
-        gridViewDelegate.homeGrideViewDidChangeItems(self)
-    }
-}
-
-func setupSubViewsFrame() {
-    let itemW: CGFloat = frame.size.width / 4
-    let itemH: CGFloat = itemW * 1.1
-    itemsArray.enumerateObjects({(_ item: UIView?, _ idx: Int, _ stop: UnsafeMutablePointer<ObjCBool>?) -> Void in
-        let rowIndex: Int = idx / 4
-        let columnIndex: Int = idx % 4
-        let x = itemW * CGFloat(columnIndex)
-        var y: CGFloat = 0
-        if idx < 4 * 3 {
-            y = itemH * CGFloat(rowIndex) + 100
-        } else {
-            y = itemH * CGFloat((rowIndex + 1))
+        if let aView = longPressed?.view {
+            sendSubview(toBack: aView)
         }
-        item?.frame = CGRect(x: x, y: y, width: itemW, height: itemH)
-        if idx == (itemsArray.count - 1) {
-            self.contentSize = CGSize(width: 0, height: item?.frameHeight + item?.frameY)
-        }
-    })
-}
-func layoutSubviews() {
-    super.layoutSubviews()
-    let itemW: CGFloat = frame.size.width / 4
-    let itemH: CGFloat = itemW * 1.1
-    setupSubViewsFrame()
-    if shouldAdjustedSeparators {
-        rowSeparatorsArray.enumerateObjects({(_ view: UIView?, _ idx: Int, _ stop: UnsafeMutablePointer<ObjCBool>?) -> Void in
-            let w: CGFloat = self.frame.size.width
-            let h: CGFloat = 0.4
-            let x: CGFloat = 0
-            let y = CGFloat(idx) * itemH + 100
-            view?.frame = CGRect(x: x, y: y, width: w, height: h)
+        // 保存数据
+//        self.saveItemsSettingCache()
+        UIView.animate(withDuration: 0.4, animations: {() -> Void in
+            longPressed?.view?.transform = .identity
+        }, completion: {(_ finished: Bool) -> Void in
+            if !self.currentPresssViewFrame.equalTo((self.currentPressedView?.frame)!) {
+                self.currentPressedView?.hidenIcon = true
+            }
         })
-        columnSeparatorsArray.enumerateObjects({(_ view: UIView?, _ idx: Int, _ stop: UnsafeMutablePointer<ObjCBool>?) -> Void in
-            let w: CGFloat = 0.4
-            let h: CGFloat = max(self.contentSize.height - 100, self.frameHeight - 100)
-            let x = CGFloat(idx) * itemW
-            let y: CGFloat = 100
-            view?.frame = CGRect(x: x, y: y, width: w, height: h)
-        })
+        }
+    }
+    func delete(_ view: SDHomeGridViewListItemView?) {
+        if let aView = view {
+            while let elementIndex = itemsArray.index(of: aView) {
+                itemsArray.remove(at: elementIndex)
+            }
+        }
+        view?.removeFromSuperview()
+        saveItemsSettingCache()
+    }
+    func saveItemsSettingCache() {
+        var tempItemsContainer = [SDHomeGridViewListItemView]()
+        for button in itemsArray{
+            if (button is SDHomeGridViewListItemView) {
+            }
+        }
+        AlipayTools.saveItemsArray(tempItemsContainer)
+        gridViewDelegate?.homeGrideViewDidChangeItems(self)
+    }
+
+    func setupSubViewsFrame() {
+        let itemW: CGFloat = frame.size.width / 4
+        let itemH: CGFloat = itemW * 1.1
+        for idx in 0..<itemsArray.count{
+            let rowIndex: Int = idx / 4
+            let columnIndex: Int = idx % 4
+            let x = itemW * CGFloat(columnIndex)
+            var y: CGFloat = 0
+            if idx < 4 * 3 {
+                y = itemH * CGFloat(rowIndex) + 100
+            } else {
+                y = itemH * CGFloat((rowIndex + 1))
+            }
+            let item = self.itemsArray[idx] as? UIView
+            item?.frame = CGRect(x: x, y: y, width: itemW, height: itemH)
+            if idx == (itemsArray.count - 1) {
+                self.contentSize = CGSize(width: 0, height: (item?.frame.size.height)! + (item?.frame.origin.y)!)
+            }
+        }
+    }
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        let itemW: CGFloat = frame.size.width / 4
+        let itemH: CGFloat = itemW * 1.1
+        setupSubViewsFrame()
+        if shouldAdjustedSeparators {
+            for idx in 0 ..< self.rowSeparatorsArray.count{
+                let view = self.rowSeparatorsArray[idx] as? UIView
+                view?.frame = CGRect(x:0, y: CGFloat(idx) * itemH + 100, width:self.frame.size.width, height: 0.4)
+            }
+        }
         shouldAdjustedSeparators = false
     }
-    cycleScrollADViewBackgroundView.frame = CGRect(x: 0, y: itemH * 3, width: frame.size.width, height: itemH)
-    cycleScrollADView.frame = CGRect(x: 0, y: cycleScrollADViewBackgroundView.frameY + 10, width: frame.size.width, height: itemH - 10 * 2)
-}
-func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-    currentPressedView.hidenIcon = true
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        currentPressedView?.hidenIcon = true
+    }
 }
 
-
-}
-
-class SDHomeViewController: AlipayBaseViewController {
-    func viewDidLoad() {
+class SDHomeViewController: AlipayBaseViewController,SDHomeGridViewDeleate {
+    var dataArray :[Any]!
+    let mainView = SDHomeGridView()
+    override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem?.title = "支付宝"
-        let mainView = SDHomeGridView()
+        navigationItem.title = "支付宝"
         mainView.gridViewDelegate = self
         mainView.showsVerticalScrollIndicator = false
-        setupDataArray()
-        mainView.gridModelsArray = dataArray
-        view.addSubview(mainView)
-        self.mainView = mainView
-    }
-    
-    func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        let tabbarHeight: CGFloat? = tabBarController?.tabBar.frameHeight()
-        mainView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: APPH - (tabbarHeight ?? 0.0))
-    }
-    func setupDataArray() {
         let itemsArray = AlipayTools.itemsArray()
         var temp = [AnyHashable]()
         for itemDict: [AnyHashable: Any] in itemsArray as? [[AnyHashable: Any]] ?? [[AnyHashable: Any]]() {
             let model = SDHomeGridItemModel()
-            model.destinationClass = SDBasicViewContoller.self
-            model.imageResString = itemDict.allValues.first
-            model.title = itemDict.keys.first
+            model.destinationClass = SDHomeViewController.self
             temp.append(model)
         }
         dataArray = temp
-    }
-    func homeGrideView(_ gridView: SDHomeGridView?, selectItemAt index: Int) {
-        let model: SDHomeGridItemModel? = dataArray[index]
-        let vc: UIViewController? = model?.destinationClass()
-        vc?.title = model?.title
-        if let aVc = vc {
-            navigationController?.pushViewController(aVc, animated: true)
-        }
+        mainView.gridModelsArray = dataArray
+        view.addSubview(mainView)
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        let tabbarHeight: CGFloat? = tabBarController?.tabBar.frame.size.height
+        mainView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: APPH - (tabbarHeight ?? 0.0))
+    }
+    func homeGrideView(_ gridView: SDHomeGridView?, selectItemAt index: Int) {
+        let model: SDHomeGridItemModel? = dataArray[index] as? SDHomeGridItemModel
+        let vc = UIViewController()
+        vc.title = model?.title
+        navigationController?.pushViewController(vc, animated: true)
+    }
     func homeGrideViewmoreItemButtonClicked(_ gridView: SDHomeGridView?) {
         let addVc = SDAddItemViewController()
         addVc.title = "添加更多"
@@ -426,6 +370,5 @@ class SDHomeViewController: AlipayBaseViewController {
     }
     
     func homeGrideViewDidChangeItems(_ gridView: SDHomeGridView?) {
-        setupDataArray()
-}
+    }
 }
