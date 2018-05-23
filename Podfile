@@ -31,6 +31,7 @@ target 'Freedom' do
     pod 'XCategory'
     pod 'XCarryOn'
     pod 'ObjectDictionary'
+    pod 'ScottAlertController'
 #Swift.frameworks
 pod 'XExtension'
 pod 'BaseFile'
