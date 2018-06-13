@@ -461,11 +461,7 @@ static NSMutableArray *_recentEmotions;
     CGFloat btnH = (self.frameHeight - inset) /XFEmotionMaxRows;
     for (int i = 0; i<count; i++) {
         UIButton *btn = self.subviews[i+1];
-        btn.frame.size.width = btnw;
-        btn.frameHeight = btnH;
-        btn.frameX = inset + (i%XFEmotionMaxCols) * btnw;
-        btn.frameY = inset + (i/XFEmotionMaxCols) * btnH;
-        
+        btn.frame = CGRectMake(inset + (i%XFEmotionMaxCols) * btnw, inset + (i/XFEmotionMaxCols) * btnH, btnw, btnH);
     }
     // 删除按钮
     self.deleteButton.frame = CGRectMake(self.frame.size.width - inset - btnw,  self.frameHeight - btnH, btnw, btnH);
@@ -648,15 +644,9 @@ static NSMutableArray *_recentEmotions;
     [super layoutSubviews];
     
     // 1.tabbar
-    self.tabBar.frame.size.width = self.frame.size.width;
-    self.tabBar.frameHeight = 37;
-    self.tabBar.frameX = 0;
-    self.tabBar.frameY = self.frameHeight - self.tabBar.frameHeight;
-    
+    self.tabBar.frame = CGRectMake(0, self.frameHeight - self.tabBar.frameHeight, self.frame.size.width, 37) ;
     // 2.表情内容
-    self.showingListView.frameX = self.showingListView.frameY = 0;
-    self.showingListView.frame.size.width = self.frame.size.width;
-    self.showingListView.frameHeight = self.tabBar.frameY;
+    self.showingListView.frame = CGRectMake(0,0,self.frame.size.width,self.tabBar.frameY);
     
 }
 #pragma mark - XFEmotionTabBarDelegate

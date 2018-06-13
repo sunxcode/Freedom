@@ -1,17 +1,17 @@
 //
 //  IqiyiViewController.swift
 //  Freedom
-
 import UIKit
 import BaseFile
 import XExtension
+import MJRefresh
+import MJExtension
 class JFHomeModel: NSObject {
     var search_default_word_for_ipad = ""
     var boxes = [AnyHashable]()
     var banner = [AnyHashable]()
     var index_channel_content_version = ""
 }
-
 class JFBoxesModel: NSObject {
     var videos = [AnyHashable]()
     var ipad_display_type: NSNumber?
@@ -27,10 +27,6 @@ class JFBoxesModel: NSObject {
     var is_podcast = ""
     var height: Float = 0.0
 }
-//  The converted code is limited to 1 KB.
-//  Please Sign Up (Free!) to remove this limitation.
-//
-//  Converted to Swift 4 by Swiftify v4.1.6710 - https://objectivec2swift.com/
 class JFBannerModel: NSObject {
     var is_albumcover: NSNumber?
     var image_1452_578 = ""
@@ -52,7 +48,6 @@ class JFBannerModel: NSObject {
     var type = ""
     var browser_for_url_type: NSNumber?
 }
-//  Converted to Swift 4 by Swiftify v4.1.6710 - https://objectivec2swift.com/
 class JFVideosModel: NSObject {
     var yaofeng = ""
     var is_albumcover: NSNumber?
@@ -82,13 +77,7 @@ protocol JFImageCardViewDelegate: NSObjectProtocol {
     func didSelectImageCard(_ imageCard: JFImageCardView?, video: JFVideosModel?)
 }
 
-class JFHomeBoxCell: UITableViewCell {
-    var boxes: JFBoxesModel?
-    weak var delegate: JFHomeBoxCellDelegate?
-    
-    convenience init(tableView: UITableView?) {
-    }
-}
+
 class JFImageCardView: UIView {
     var imageView: UIImageView?
     var titleLabel: UILabel?
@@ -96,11 +85,7 @@ class JFImageCardView: UIView {
     var yaofengLabel: UILabel?
     var video: JFVideosModel?
     weak var delegate: JFImageCardViewDelegate?
-    //  The converted code is limited to 1 KB.
-    //  Please Sign Up (Free!) to remove this limitation.
-    //
-    //  Converted to Swift 4 by Swiftify v4.1.6710 - https://objectivec2swift.com/
-    init(frame: CGRect) {
+    override init(frame: CGRect) {
         super.init(frame: frame)
         
         imageView = UIImageView(frame: CGRect(x: 5, y: 5, width: frame.size.width - 5, height: frame.size.height - 45))
@@ -118,23 +103,19 @@ class JFImageCardView: UIView {
         }
         //
         pvLabel = UILabel(frame: CGRect(x: 5, y: frame.size.height - 20, width: frame.size.width - 5, height: 20))
-        pvLabel.font = UIFont.systemFont(ofSize: 11)
-        pvLabel.textColor = UIColor.lightGray
-        addSubview(pvLabel)
+        pvLabel?.font = UIFont.systemFont(ofSize: 11)
+        pvLabel?.textColor = UIColor.lightGray
+        addSubview(pvLabel!)
         //
         yaofengLabel = UILabel(frame: CGRect(x: 10, y: frame.size.height - 60, width: frame.size.width - 10, height: 20))
-        yaofengLabel.font = UIFont.systemFont(ofSize: 11)
-        yaofengLabel.textColor = UIColor.white
+        yaofengLabel?.font = UIFont.systemFont(ofSize: 11)
+        yaofengLabel?.textColor = UIColor.white
         //        self.yaofengLabel.text = video.yaofeng;
-        addSubview(yaofengLabel)
+        addSubview(yaofengLabel!)
         let tap = UITapGestureRecognizer(target: self, action: Selector("OnTapImageCard:"))
         addGestureRecognizer(tap)
         
     }
-    //  The converted code is limited to 1 KB.
-    //  Please Sign Up (Free!) to remove this limitation.
-    //
-    //  Converted to Swift 4 by Swiftify v4.1.6710 - https://objectivec2swift.com/
     init(frame: CGRect, video: JFVideosModel?) {
         super.init(frame: frame)
         
@@ -153,68 +134,69 @@ class JFImageCardView: UIView {
         }
         //
         pvLabel = UILabel(frame: CGRect(x: 5, y: frame.size.height - 20, width: frame.size.width - 5, height: 20))
-        pvLabel.font = UIFont.systemFont(ofSize: 11)
-        pvLabel.textColor = UIColor.lightGray
-        addSubview(pvLabel)
+        pvLabel?.font = UIFont.systemFont(ofSize: 11)
+        pvLabel?.textColor = UIColor.lightGray
+        addSubview(pvLabel!)
         //
         yaofengLabel = UILabel(frame: CGRect(x: 10, y: frame.size.height - 60, width: frame.size.width - 10, height: 20))
-        yaofengLabel.font = UIFont.systemFont(ofSize: 11)
-        yaofengLabel.textColor = UIColor.white
+        yaofengLabel?.font = UIFont.systemFont(ofSize: 11)
+        yaofengLabel?.textColor = UIColor.white
         //        self.yaofengLabel.text = video.yaofeng;
-        addSubview(yaofengLabel)
+        addSubview(yaofengLabel!)
         
     }
-    //  Converted to Swift 4 by Swiftify v4.1.6710 - https://objectivec2swift.com/
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     func setVideo(_ video: JFVideosModel?) {
         self.video = video
         //这里不能用self.video,只能用_video
         imageView?.sd_setImage(with: URL(string: video?.small_img ?? ""), placeholderImage: UIImage(named: "rec_holder"))
         titleLabel?.text = video?.title
         if (video?.type == "playlist") {
-            pvLabel.text = video?.pv
+            pvLabel?.text = video?.pv
             if (video?.yaofeng == "") {
-                yaofengLabel.text = video?.stripe_b_r
+                yaofengLabel?.text = video?.stripe_b_r
             } else {
-                yaofengLabel.text = video?.yaofeng
+                yaofengLabel?.text = video?.yaofeng
             }
         } else {
             if (video?.short_desc == "") {
-                pvLabel.text = video?.pv
+                pvLabel?.text = video?.pv
             } else {
-                pvLabel.text = video?.short_desc
+                pvLabel?.text = video?.short_desc
             }
-            yaofengLabel.text = video?.stripe_b_r
+            yaofengLabel?.text = video?.stripe_b_r
         }
     }
     func onTapImageCard(_ sender: UITapGestureRecognizer?) {
         Dlog(video)
-        if delegate.responds(to: Selector("didSelectImageCard:video:")) {
-            delegate.didSelectImageCard(self, video: video)
+        if (delegate?.responds(to: Selector("didSelectImageCard:video:")))! {
+            delegate?.didSelectImageCard(self, video: video)
         }
     }
 
 
 }
-class JFHomeBoxCell: JFImageCardViewDelegate {
+class JFHomeBoxCell: UITableViewCell,JFImageCardViewDelegate {
     private var titleLabel: UILabel?
-    private var imageView: UIImageView?
-    private var cardView1: JFImageCardView?
-    private var cardView2: JFImageCardView?
-    private var cardView3: JFImageCardView?
-    private var cardView4: JFImageCardView?
-    convenience init(tableView: UITableView?) {
+    private var iconV : UIImageView!
+    private var cardView1: JFImageCardView!
+    private var cardView2: JFImageCardView!
+    private var cardView3: JFImageCardView!
+    private var cardView4: JFImageCardView!
+    var boxes: JFBoxesModel?
+    weak var delegate: JFHomeBoxCellDelegate?
+
+    func ainit(tableView: UITableView?) {
         let menuID = "JFHomeBoxCell"
         var cell = tableView?.dequeueReusableCell(withIdentifier: menuID) as? JFHomeBoxCell
         if cell == nil {
             cell = JFHomeBoxCell(style: .default, reuseIdentifier: menuID)
         }
         cell?.selectionStyle = .none
-        return cell ?? JFHomeBoxCell()
     }
-    //  The converted code is limited to 1 KB.
-    //  Please Sign Up (Free!) to remove this limitation.
-    //
-    //  Converted to Swift 4 by Swiftify v4.1.6710 - https://objectivec2swift.com/
     func initViews() {
         //背景
         let backView = UIView(frame: CGRect(x: 0, y: 5, width: APPW, height: 40 + 300))
@@ -224,12 +206,12 @@ class JFHomeBoxCell: JFImageCardViewDelegate {
         let headView = UIView(frame: CGRect(x: 0, y: 0, width: APPW, height: 40))
         backView.addSubview(headView)
         //
-        imageView = UIImageView(frame: CGRect(x: 5, y: 5, width: 30, height: 30))
-        backView.addSubview(imageView)
+        iconV = UIImageView(frame: CGRect(x: 5, y: 5, width: 30, height: 30))
+        backView.addSubview(imageView!)
         //
         titleLabel = UILabel(frame: CGRect(x: 50, y: 0, width: 100, height: 40))
-        titleLabel.textColor = blacktextcolor
-        headView.addSubview(titleLabel)
+        titleLabel?.textColor = blacktextcolor
+        headView.addSubview(titleLabel!)
         //
         let lineView = UIView(frame: CGRect(x: 5, y: 38, width: APPW - 10, height: 1))
         lineView.backgroundColor = gradcolor
@@ -253,8 +235,8 @@ class JFHomeBoxCell: JFImageCardViewDelegate {
         backView.addSubview(cardView4)
     }
     func setBoxes(_ boxes: JFBoxesModel?) {
-        titleLabel.text = boxes?.title
-        imageView.sd_setImage(with: URL(string: boxes?.index_page_channel_icon ?? ""), placeholderImage: nil)
+        titleLabel?.text = boxes?.title
+        imageView?.sd_setImage(with: URL(string: boxes?.index_page_channel_icon ?? ""), placeholderImage: nil)
         let video1 = JFVideosModel.mj_object(withKeyValues: boxes?.videos[0])
         let video2 = JFVideosModel.mj_object(withKeyValues: boxes?.videos[1])
         let video3 = JFVideosModel.mj_object(withKeyValues: boxes?.videos[2])
@@ -266,8 +248,8 @@ class JFHomeBoxCell: JFImageCardViewDelegate {
         cardView4.video = video4
     }
     func didSelectImageCard(_ imageCard: JFImageCardView?, video: JFVideosModel?) {
-        if delegate.responds(to: Selector("didSelectHomeBox:")) {
-            delegate.didSelectHomeBox(video)
+        if (delegate?.responds(to: #selector(IqiyiViewController.didSelectHomeBox(_:))))! {
+            delegate?.didSelectHomeBox(video)
         }
     }
 
@@ -276,28 +258,15 @@ class JFHomeBoxCell: JFImageCardViewDelegate {
 class JFHomeVideoBoxCell: UITableViewCell {
     var boxes: JFBoxesModel?
     
-    private var titleLabel: UILabel?
-    private var imageView: UIImageView?
-    private var cardView1: JFImageCardView?
-    private var cardView2: JFImageCardView?
-    private var cardView3: JFImageCardView?
-    private var cardView4: JFImageCardView?
-    private var cardView5: JFImageCardView?
-    private var cardView6: JFImageCardView?
-    
-    convenience init(tableView: UITableView?) {
-        let JFHomeVideoBoxCellID = "JFHomeVideoBoxCell"
-        var cell = tableView?.dequeueReusableCell(withIdentifier: JFHomeVideoBoxCellID) as? JFHomeVideoBoxCell
-        if cell == nil {
-            cell = JFHomeVideoBoxCell(style: .default, reuseIdentifier: JFHomeVideoBoxCellID)
-        }
-        cell?.selectionStyle = .none
-        return cell ?? JFHomeVideoBoxCell()
-    }
-    //  The converted code is limited to 1 KB.
-    //  Please Sign Up (Free!) to remove this limitation.
-    //
-    //  Converted to Swift 4 by Swiftify v4.1.6710 - https://objectivec2swift.com/
+    private var titleLabel: UILabel!
+    private var icon: UIImageView!
+    private var cardView1: JFImageCardView!
+    private var cardView2: JFImageCardView!
+    private var cardView3: JFImageCardView!
+    private var cardView4: JFImageCardView!
+    private var cardView5: JFImageCardView!
+    private var cardView6: JFImageCardView!
+
     func initViews() {
         //背景
         let backView = UIView(frame: CGRect(x: 0, y: 5, width: APPW, height: 40 + 230 + 230))
@@ -307,8 +276,8 @@ class JFHomeVideoBoxCell: UITableViewCell {
         let headView = UIView(frame: CGRect(x: 0, y: 0, width: APPW, height: 40))
         backView.addSubview(headView)
         //
-        imageView = UIImageView(frame: CGRect(x: 5, y: 5, width: 30, height: 30))
-        backView.addSubview(imageView)
+        icon = UIImageView(frame: CGRect(x: 5, y: 5, width: 30, height: 30))
+        backView.addSubview(icon)
         //
         titleLabel = UILabel(frame: CGRect(x: 50, y: 0, width: 100, height: 40))
         titleLabel.textColor = gradtextcolor
@@ -333,7 +302,7 @@ class JFHomeVideoBoxCell: UITableViewCell {
     }
     func setBoxes(_ boxes: JFBoxesModel?) {
         titleLabel.text = boxes?.title
-        imageView.sd_setImage(with: URL(string: boxes?.index_page_channel_icon ?? ""), placeholderImage: nil)
+        imageView?.sd_setImage(with: URL(string: boxes?.index_page_channel_icon ?? ""), placeholderImage: nil)
         let video1 = JFVideosModel.mj_object(withKeyValues: boxes?.videos[0])
         let video2 = JFVideosModel.mj_object(withKeyValues: boxes?.videos[1])
         let video3 = JFVideosModel.mj_object(withKeyValues: boxes?.videos[2])
@@ -358,7 +327,7 @@ class IqiyiViewController: IqiyiBaseViewController ,JFHomeBoxCellDelegate {
         private var boxesSource = [AnyHashable]()
         private var bannerSource = [AnyHashable]()
         private var headImageArray = [AnyHashable]()
-    func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
         initNav()
@@ -366,23 +335,27 @@ class IqiyiViewController: IqiyiBaseViewController ,JFHomeBoxCellDelegate {
         setUpRefresh()
     }
     
-    func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = false
     }
     
     func setUpRefresh() {
-        homeTableView.mj_header = MJRefreshNormalHeader(refreshingBlock: {() -> Void in
+        homeTableView?.mj_header = MJRefreshNormalHeader(refreshingBlock: {() -> Void in
             self.initData()
         })
-        homeTableView.mj_header.beginRefreshing()
+        homeTableView?.mj_header.beginRefreshing()
     }
     func initNav() {
-        let leftBarButtonItem = UIBarButtonItem(normalImage: "qylogo_p@3x", target: nil, action: nil, width: 65, height: 24)
-        navigationItem?.leftBarButtonItem = leftBarButtonItem
-        let rightUploadBarButtonItem = UIBarButtonItem(normalImage: Pwcamera, target: nil, action: nil, width: 22, height: 22)
-        let rightHistoryBarButtonItem = UIBarButtonItem(normalImage: Pwhistory, target: self, action: #selector(self.rightHistoryBarButtonItemClick), width: 22, height: 22)
-        let rightSearchBarButtonItem = UIBarButtonItem(normalImage: Pwsearch, target: self, action: #selector(self.rightSearchBarButtonItemClick), width: 22, height: 22)
-        navigationItem?.rightBarButtonItems = [rightSearchBarButtonItem, rightUploadBarButtonItem, rightHistoryBarButtonItem]
+        let leftBarButtonItem = UIBarButtonItem(image: UIImage(named:"qylogo_p@3x"), style: .plain) {
+
+        }
+        navigationItem.leftBarButtonItem = leftBarButtonItem
+        let rightUploadBarButtonItem = UIBarButtonItem(image: UIImage(named:"wcamera"), style: .plain) {
+
+        }
+        let rightHistoryBarButtonItem = UIBarButtonItem(image: UIImage(named:"whistory"), style: .plain, target: self, action: #selector(self.rightHistoryBarButtonItemClick))
+        let rightSearchBarButtonItem = UIBarButtonItem(image: UIImage(named:"wsearch"), style: .plain, target: self, action: #selector(self.rightSearchBarButtonItemClick))
+        navigationItem.rightBarButtonItems = [rightSearchBarButtonItem, rightUploadBarButtonItem, rightHistoryBarButtonItem] as! [UIBarButtonItem]
     }
     /*搜索*/
     
@@ -400,98 +373,91 @@ class IqiyiViewController: IqiyiBaseViewController ,JFHomeBoxCellDelegate {
         boxesSource = [AnyHashable]()
         bannerSource = [AnyHashable]()
         headImageArray = [AnyHashable]()
-        let urlStr = FreedomTools.shared().urlWithHomeData()
-        NetBase.get(urlStr, parameters: nil, progress: nil, success: {(_ task: URLSessionDataTask, _ responseObject: Any?) -> Void in
-            self.homeTableView.mj_header.endRefreshing()
-            headImageArray.removeAll()
-            let homeModel = JFHomeModel.mj_object(withKeyValues: responseObject)
-            var boxesArray = [AnyHashable]()
-            var bannerArray = [AnyHashable]()
-            var i = 0
-            while i < homeModel.boxes.count {
-                var boxesModel = JFBoxesModel.mj_object(withKeyValues: homeModel.boxes[i])
-                boxesModel.height = self.getHeight(boxesModel)
-                boxesArray.append(boxesModel)
-            }
-            for j in 0..<homeModel.banner.count {
-                var bannerModel = JFBannerModel.mj_object(withKeyValues: homeModel.banner[j])
-                bannerArray.append(bannerModel)
-                headImageArray.append(bannerModel.small_img)
-            }
-            boxesSource = boxesArray
-            bannerSource = bannerArray
-            homeTableView.reloadData()
+//        let urlStr = FreedomTools.shared().urlWithHomeData()
+//        NetBase.get(urlStr, parameters: nil, progress: nil, success: {(_ task: URLSessionDataTask, _ responseObject: Any?) -> Void in
+//            self.homeTableView.mj_header.endRefreshing()
+//            headImageArray.removeAll()
+//            let homeModel = JFHomeModel.mj_object(withKeyValues: responseObject)
+//            var boxesArray = [AnyHashable]()
+//            var bannerArray = [AnyHashable]()
+//            var i = 0
+//            while i < homeModel.boxes.count {
+//                var boxesModel = JFBoxesModel.mj_object(withKeyValues: homeModel.boxes[i])
+//                boxesModel.height = self.getHeight(boxesModel)
+//                boxesArray.append(boxesModel)
+//            }
+//            for j in 0..<homeModel.banner.count {
+//                var bannerModel = JFBannerModel.mj_object(withKeyValues: homeModel.banner[j])
+//                bannerArray.append(bannerModel)
+//                headImageArray.append(bannerModel.small_img)
+//            }
+//            boxesSource = boxesArray
+//            bannerSource = bannerArray
+//            homeTableView.reloadData()
+//        }
+    }
+
+    func initView() {
+        let tableView = UITableView(frame: CGRect(x: 0, y: 0, width: APPW, height: APPH - 64), style: .plain)
+        tableView.delegate = self
+        tableView.dataSource = self
+        //将系统的Separator左边不留间隙
+        tableView.separatorInset = UIEdgeInsets.zero
+        homeTableView = tableView
+        view.addSubview(homeTableView!)
+    }
+
+    func getHeight(_ boxes: JFBoxesModel?) -> Float {
+        var height: Float = 0
+        height = height + 40
+        if boxes?.display_type ?? 0 == 1 {
+            height = height + 2 * 150
+            return height + 5
+        } else if boxes?.display_type ?? 0 == 2 {
+            height = height + 2 * 230
+            return height + 5
+        } else {
+            return height + 5
         }
-        //  Converted to Swift 4 by Swiftify v4.1.6710 - https://objectivec2swift.com/
-        func initView() {
-            let tableView = UITableView(frame: CGRect(x: 0, y: 0, width: APPW, height: APPH - 64), style: .plain)
-            tableView.delegate = self
-            tableView.dataSource = self
-            //将系统的Separator左边不留间隙
-            tableView.separatorInset = UIEdgeInsetsZero
-            homeTableView = tableView
-            view.addSubview(homeTableView)
+        return height
+    }
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == 0 {
+            return 180
+        } else {
+            let height: CGFloat? = CGFloat(((boxesSource[indexPath.row - 1] as? JFBoxesModel)?.height)!)
+            return height ?? 0.0
         }
-        
-        func getHeight(_ boxes: JFBoxesModel?) -> Float {
-            var height: Float = 0
-            height = height + 40
-            if boxes?.display_type ?? 0 == 1 {
-                height = height + 2 * 150
-                return height + 5
-            } else if boxes?.display_type ?? 0 == 2 {
-                height = height + 2 * 230
-                return height + 5
-            } else {
-                return height + 5
-            }
-            return height
+    }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if bannerSource.count > 0 {
+            return boxesSource.count + 1
+        }else{
+            return 0
         }
-        func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-            if indexPath.row == 0 {
-                return 180
-            } else {
-                let height: CGFloat? = (boxesSource[indexPath.row - 1] as? JFBoxesModel)?.height
-                return height ?? 0.0
-            }
+    }
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let box: JFBoxesModel? = boxesSource[indexPath.row - 1] as! JFBoxesModel
+        if box?.display_type ?? 0 == 1 {
+            let cell = JFHomeBoxCell(style: .default, reuseIdentifier: "")
+            cell.boxes = boxesSource[indexPath.row - 1] as! JFBoxesModel
+            cell.delegate = self
+            return cell
+        } else if box?.display_type ?? 0 == 2 {
+            let cell = JFHomeVideoBoxCell(style: .default, reuseIdentifier: "")
+            cell.initViews()
+            cell.boxes = box
+            return cell
+        } else {
+            return UITableViewCell()
         }
-        
-        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            if bannerSource.count > 0 {
-                return boxesSource.count + 1
-            } else {
-                return 0
-            }
-        }
-        //  Converted to Swift 4 by Swiftify v4.1.6710 - https://objectivec2swift.com/
-        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            if indexPath.row == 0 {
-                let cell = JFImageScrollCell(tableView: tableView, frame: CGRect(x: 0, y: 0, width: APPW, height: 180))
-                if headImageArray.count > 0 {
-                    cell.imageArray = headImageArray
-                }
-                return cell
-            } else {
-                let box: JFBoxesModel? = boxesSource[indexPath.row - 1]
-                if box?.display_type ?? 0 == 1 {
-                    let cell = JFHomeBoxCell(tableView: tableView)
-                    cell.boxes = boxesSource[indexPath.row - 1]
-                    cell.delegate = self
-                    return cell
-                } else if box?.display_type ?? 0 == 2 {
-                    let cell = JFHomeVideoBoxCell(tableView: tableView)
-                    cell.boxes = box
-                    return cell
-                } else {
-                    return nil
-                }
-            }
-        }
-        func didSelectHomeBox(_ video: JFVideosModel?) {
-            let videoDetailVC = JFVideoDetailViewController()
-            videoDetailVC.iid = video?.iid
-            navigationController?.pushViewController(videoDetailVC, animated: true)
-        }
+    }
+    func didSelectHomeBox(_ video: JFVideosModel?) {
+        let videoDetailVC = JFVideoDetailViewController()
+        videoDetailVC.iid = (video?.iid)!
+        navigationController?.pushViewController(videoDetailVC, animated: true)
+    }
 
     
 }

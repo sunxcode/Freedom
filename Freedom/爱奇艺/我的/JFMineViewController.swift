@@ -3,12 +3,8 @@
 //  Freedom
 
 import UIKit
-
+import XExtension
 class JFMineViewController: IqiyiBaseViewController {
-    //  The converted code is limited to 1 KB.
-    //  Please Sign Up (Free!) to remove this limitation.
-    //
-    //  Converted to Swift 4 by Swiftify v4.1.6710 - https://objectivec2swift.com/
     func setNav() {
         navigationController?.navigationBar.isHidden = true
         let backImage = UIImageView(frame: CGRect(x: 0, y: 0, width: APPW, height: 147))
@@ -23,19 +19,19 @@ class JFMineViewController: IqiyiBaseViewController {
         //
         //设置
         let settingBtn = UIButton(frame: CGRect(x: APPW - 30, y: 30, width: 22, height: 22))
-        settingBtn.setImage(UIImage(named: Pwsetting), for: .normal)
+        settingBtn.setImage(UIImage(named: "wsetting"), for: .normal)
         view.addSubview(settingBtn)
         //消息
         let msgBtn = UIButton(type: .custom)
         msgBtn.frame = CGRect(x: APPW - 60, y: 30, width: 22, height: 22)
-        msgBtn.setImage(UIImage(named: Pwbell), for: .normal)
+        msgBtn.setImage(UIImage(named: "wbell"), for: .normal)
         view.addSubview(msgBtn)
         //头像
         var userImage = UIImageView(frame: CGRect(x: 10, y: 30, width: 50, height: 50))
         userImage.isUserInteractionEnabled = true
         userImage.layer.masksToBounds = true
         userImage.layer.cornerRadius = 25
-        userImage.image = UIImage(named: PuserLogo)
+        userImage.image = UIImage(named: "userLogo")
         view.addSubview(userImage)
         var tapGR = UITapGestureRecognizer(target: self, action: #selector(self.tapGROnIconClick))
         userImage.addGestureRecognizer(tapGR)
@@ -59,11 +55,11 @@ class JFMineViewController: IqiyiBaseViewController {
         view.addSubview(backImage)
         //
         let titleArrar = ["历史", "收藏", "上传", "特权"]
-        let picArray = [Pwhistory, Pwfavourite, Pwcamera, Pwvip]
+        let picArray = ["whistory", "wfavourite", "wcamera", "wvip"]
         for i in 0..<4 {
             let segmentBtn = UIButton(type: .custom)
             segmentBtn.tag = i
-            segmentBtn.frame = CGRect(x: APPW / 4 * i, y: 107, width: APPW / 4, height: 40)
+            segmentBtn.frame = CGRect(x: APPW / 4 * CGFloat(i), y: 107, width: APPW / 4, height: 40)
             segmentBtn.setImage(UIImage(named: picArray[i]), for: .normal)
             segmentBtn.setTitle(titleArrar[i], for: .normal)
             segmentBtn.addTarget(self, action: Selector("segmentBtn:"), for: .touchUpInside)

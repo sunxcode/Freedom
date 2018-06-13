@@ -5,48 +5,41 @@
 import UIKit
 import BaseFile
 import XExtension
+import MJRefresh
 class SDServiceTableViewCellModel: NSObject {
     var title = ""
     var detailString = ""
     var iconImageURLString = ""
-    
-    convenience init(title: String?, detailString: String?, iconImageURLString: String?) {
-        let model = SDServiceTableViewCellModel()
-        model.title = title ?? ""
-        model.detailString = detailString ?? ""
-        model.iconImageURLString = iconImageURLString ?? ""
-        return model
-    }
 }
 class SDServiceTableViewCell:BaseTableViewCell{
-    init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    required init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        iconView = UIImageView(frame: CGRect(x: 10, y: 10, width: 100, height: 80))
-        titleLabel = UILabel(frame: CGRect(x: 120, y: 10, width: 200, height: 20))
-        detailLabel = UILabel(frame: CGRect(x: 120, y: 40, width: 200, height: 20))
-        iconView.layer.cornerRadius = 4
-        iconView.clipsToBounds = true
-        titleLabel?.font = Font(16)
-        detailLabel.font = Font(14)
-        detailLabel.textColor = UIColor.gray
-        addSubviews(iconView, titleLabel, detailLabel, nil)
+        icon = UIImageView(frame: CGRect(x: 10, y: 10, width: 100, height: 80))
+        title = UILabel(frame: CGRect(x: 120, y: 10, width: 200, height: 20))
+        script = UILabel(frame: CGRect(x: 120, y: 40, width: 200, height: 20))
+        icon.layer.cornerRadius = 4
+        icon.clipsToBounds = true
+        title.font = Font(16)
+        script.font = Font(14)
+        script.textColor = UIColor.gray
+        addSubviews([icon, title, script])
     }
-
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     func setModel(_ model: NSObject?) {
-        super.setModel(model)
         let cellModel = model as? SDServiceTableViewCellModel
-        titleLabel?.text = cellModel?.title
-        detailLabel.text = cellModel?.detailString
-        iconView.sd_setImage(with: URL(string: cellModel?.iconImageURLString ?? ""), placeholderImage: nil)
+        title.text = cellModel?.title
+        script.text = cellModel?.detailString
+        icon.sd_setImage(with: URL(string: cellModel?.iconImageURLString ?? ""), placeholderImage: nil)
     }
-    
-
 }
-class SDServiceTableViewHeader : UIView{
-
-    init(frame: CGRect) {
+class SDServiceTableViewHeader : UIView,UITextFieldDelegate{
+    var textField = UITextField()
+    var textFieldSearchIcon = UIImageView()
+    let textFieldPlaceholderLabel = UILabel()
+    override init(frame: CGRect) {
         super.init(frame: frame)
-        
         backgroundColor = UIColor.lightGray.withAlphaComponent(0.7)
         let textField = UITextField()
         textField.layer.cornerRadius = 5
@@ -55,37 +48,34 @@ class SDServiceTableViewHeader : UIView{
         textField.font = UIFont.systemFont(ofSize: 15)
         textField.addTarget(self, action: Selector("textFieldValueChanged:"), for: .editingChanged)
         textField.clearButtonMode = .always
-        textField.delegate = self
+        textField.delegate = self as! UITextFieldDelegate
         addSubview(textField)
         self.textField = textField
-        let searchIcon = UIImageView(image: UIImage(named: Psearch))
+        let searchIcon = UIImageView(image: UIImage(named: "search"))
         searchIcon.contentMode = .scaleAspectFill
         self.textField.addSubview(searchIcon)
         textFieldSearchIcon = searchIcon
-        let placeholderLabel = UILabel()
-        placeholderLabel.font = self.textField.font
-        placeholderLabel.textColor = UIColor.lightGray
-        textField.addSubview(placeholderLabel)
-        textFieldPlaceholderLabel = placeholderLabel
+        textFieldPlaceholderLabel.font = self.textField.font
+        textFieldPlaceholderLabel.textColor = UIColor.lightGray
+        textField.addSubview(textFieldPlaceholderLabel)
         
     }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     func setPlaceholderText(_ placeholderText: String?) {
-        self.placeholderText = placeholderText
         textFieldPlaceholderLabel.text = placeholderText
     }
     
-    func layoutSubviews() {
+    override func layoutSubviews() {
         let margin: CGFloat = 8
-        textField.frame = CGRect(x: margin, y: margin, width: frame.size.width - margin * 2, height: frameHeight - margin * 2)
         layoutTextFieldSubviews()
-        if textField.leftView == nil {
-            let leftView = UIView(frame: CGRect(x: 0, y: 0, width: textFieldSearchIcon.frameHeight * 1.4, height: textFieldSearchIcon.frameHeight))
-            textField.leftView = leftView
-            textField.leftViewMode = .always
-        }
+        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: textFieldSearchIcon.frameHeight * 1.4, height: textFieldSearchIcon.frameHeight))
+        textField.leftViewMode = .always
     }
     func layoutTextFieldSubviews() {
-        let rect: CGRect = placeholderText.boundingRect(with: CGSize(width: textField.frame.size.width * 0.7, height: textField.frameHeight), options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName: textFieldPlaceholderLabel.font], context: nil)
+        let rect: CGRect = CGRect(x: 0, y: 0, width: APPW, height: 200)
         textFieldPlaceholderLabel.bounds = CGRect(x: 0, y: 0, width: rect.size.width, height: textField.frameHeight)
         textFieldPlaceholderLabel.center = CGPoint(x: textField.frame.size.width * 0.5, y: textField.frameHeight * 0.5)
         textFieldSearchIcon.bounds = CGRect(x: 0, y: 0, width: textField.frameHeight * 0.6, height: textField.frameHeight * 0.6)
@@ -93,51 +83,54 @@ class SDServiceTableViewHeader : UIView{
     }
     
     func textFieldValueChanged(_ field: UITextField?) {
-        textFieldPlaceholderLabel.hidden = (field?.text?.count ?? 0) != 0
+        textFieldPlaceholderLabel.isHidden = (field?.text?.count ?? 0) != 0
     }
-    //  Converted to Swift 4 by Swiftify v4.1.6710 - https://objectivec2swift.com/
     func textFieldDidBeginEditing(_ textField: UITextField) {
         self.textField.becomeFirstResponder()
         let deltaX: CGFloat = textFieldSearchIcon.frameX - 5
         UIView.animate(withDuration: 0.4, animations: {() -> Void in
-            textFieldSearchIcon.transform = CGAffineTransform(translationX: -deltaX, y: 0)
-            textFieldPlaceholderLabel.transform = CGAffineTransform(translationX: -deltaX, y: 0)
+            self.textFieldSearchIcon.transform = CGAffineTransform(translationX: -deltaX, y: 0)
+            self.textFieldPlaceholderLabel.transform = CGAffineTransform(translationX: -deltaX, y: 0)
         })
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         UIView.animate(withDuration: 0.4, animations: {() -> Void in
-            textFieldSearchIcon.transform = .identity
-            textFieldPlaceholderLabel.transform = .identity
+            self.textFieldSearchIcon.transform = .identity
+            self.textFieldPlaceholderLabel.transform = .identity
         })
         self.textField.text = ""
-        textFieldPlaceholderLabel.hidden = false
+        textFieldPlaceholderLabel.isHidden = false
     }
         
 }
 class SDServiceTableViewController: AlipayBaseViewController {
-    func viewDidLoad() {
+
+    let cellClass = SDServiceTableViewCell.self
+    var dataArray = [SDServiceTableViewCellModel]()
+    override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem?.title = "朋友"
-        refreshMode = BaseTableViewRefeshModeHeaderRefresh
+        navigationItem.title = "朋友"
         tableView.rowHeight = 70
-        let header = SDServiceTableViewHeader()
+        let header = SDServiceTableViewHeader(frame: CGRect.zero)
         header.frameHeight = 44
-        header.placeholderText = "搜索朋友"
+        header.setPlaceholderText("搜索朋友")
         tableView.tableHeaderView = header
-        cellClass = SDServiceTableViewCell.self
         setupModel()
     }
     func setupModel() {
         var temp = [AnyHashable]()
         for i in 0..<12 {
-            let model = SDServiceTableViewCellModel(title: "服务提醒 -- \(i)", detailString: "服务提醒摘要 -- \(i)", iconImageURLString: "http://f.vip.duba.net/data/avatar//201309/9/328/137871226483UB.jpg")
+            let model = SDServiceTableViewCellModel()
+            model.title = "服务提醒 -- \(i)"
+            model.detailString = "服务提醒摘要 -- \(i)"
+            model.iconImageURLString = "http://f.vip.duba.net/data/avatar//201309/9/328/137871226483UB.jpg"
             temp.append(model)
         }
-        sectionsNumber = 1
-        dataArray = temp
+//        sectionsNumber = 1
+        dataArray = temp as! [SDServiceTableViewCellModel]
     }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let model: SDServiceTableViewCellModel? = dataArray[indexPath.row]
         let vc = BaseTableView() as? UIViewController
         vc?.title = model?.title
@@ -145,15 +138,13 @@ class SDServiceTableViewController: AlipayBaseViewController {
             navigationController?.pushViewController(aVc, animated: true)
         }
     }
-    
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         tableView.endEditing(true)
     }
-    //  Converted to Swift 4 by Swiftify v4.1.6710 - https://objectivec2swift.com/
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let insets: UIEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0)
         // 三个方法并用，实现自定义分割线效果
-        if cell.responds(to: Selector("setSeparatorInset:")) {
+        if cell.responds(to: #selector(setter: UITableViewCell.separatorInset)) {
             cell.separatorInset = insets
         }
         if cell.responds(to: Selector("setLayoutMargins:")) {
@@ -163,15 +154,11 @@ class SDServiceTableViewController: AlipayBaseViewController {
             cell.preservesSuperviewLayoutMargins = false
         }
     }
-    
     // MARK: - pull down refresh
     func pullDownRefreshOperation() {
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double((int64_t)(2.0 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: {() -> Void in
-            self.refreshControl?.endRefreshing()
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(2.0 * Double(NSEC_PER_SEC)) / Double(NSEC_PER_SEC), execute: {() -> Void in
+//            self.refreshControl?.endRefreshing()
         })
     }
-
-
-    
     
 }

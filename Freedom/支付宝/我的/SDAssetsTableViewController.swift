@@ -6,16 +6,19 @@ import UIKit
 import BaseFile
 import XExtension
 class SDAssetsTableViewControllerCell:BaseTableViewCell{
-    init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    required init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         textLabel?.textColor = UIColor.darkGray
         textLabel?.font = UIFont.systemFont(ofSize: 15)
         
     }
-    
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     func setModel(_ model: NSObject?) {
-        super.setModel(model)
         let cellModel = model as? SDAssetsTableViewControllerCellModel
         textLabel?.text = cellModel?.title
         imageView?.image = UIImage(named: cellModel?.iconImageName ?? "")
@@ -24,11 +27,10 @@ class SDAssetsTableViewControllerCell:BaseTableViewCell{
 
 }
 class SDAssetsTableViewController: AlipayBaseViewController {
-    func viewDidLoad() {
+    var dataArray = [[SDAssetsTableViewControllerCellModel]]()
+    override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem?.title = "我的"
-        sectionsNumber = 3
-        cellClass = SDAssetsTableViewControllerCell.self
+        navigationItem.title = "我的"
         setupModel()
         let header = UIView()
         tableView.tableHeaderView = header
@@ -46,18 +48,18 @@ class SDAssetsTableViewController: AlipayBaseViewController {
         let model21 = SDAssetsTableViewControllerCellModel(title: "爱心捐赠", iconImageName: "09999978Icon", destinationControllerClass: BaseTableView.self)
         dataArray = [[model01, model02, model03], [model11, model12, model13], [model21]]
     }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let model = dataArray[indexPath.section][indexPath.row] as? SDAssetsTableViewControllerCellModel
-        let vc: UIViewController? = model?.destinationControllerClass()
+        let vc: UIViewController? = UIViewController()// model?.destinationControllerClass
         vc?.title = model?.title
         if let aVc = vc {
             navigationController?.pushViewController(aVc, animated: true)
         }
     }
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 20
     }
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return (section == dataArray.count - 1) ? 10 : 0
     }
 }

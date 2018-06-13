@@ -55,7 +55,6 @@
 - (UISegmentedControl *)segmentedControl{
     if (_segmentedControl == nil) {
         _segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"精选表情", @"网络表情"]];
-        [_segmentedControl setframe.size.width:WIDTH_EXPRESSION_SEGMENT];
         [_segmentedControl setSelectedSegmentIndex:0];
         [_segmentedControl addTarget:self action:@selector(segmentedControlChanged:) forControlEvents:UIControlEventValueChanged];
     }

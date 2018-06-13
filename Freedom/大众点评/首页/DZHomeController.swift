@@ -29,7 +29,7 @@ class DZHomeViewCell1:BaseCollectionViewCell{
         c?.layer.cornerRadius = 7
         c?.layer.borderWidth = 1
         c?.layer.borderColor = redcolor.cgColor
-        view.addSubviews([a!, b, c!])
+        view.addSubviews([a!, b!, c!])
         return view
     }
 
@@ -265,8 +265,10 @@ class DZHomeController: DianpingBaseViewController,UICollectionViewDataSource,UI
                 } else {
                     return collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "headview2", for: indexPath)
                 }
+            }else{
+                 return collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "headview1", for: indexPath)
             }
-    }
+        }
             func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
                 let log = "你选择的是\(indexPath.section)，\(indexPath.row)"
                 Dlog(log)

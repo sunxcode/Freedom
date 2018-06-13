@@ -3,8 +3,6 @@
 //  Created by boguang on 15/6/23.
 #import "DetailView.h"
 #include <objc/runtime.h>
-#define kMinZoomScale 1.0f
-#define kMaxZoomScale 2.5f
 typedef NS_ENUM(NSInteger, DetailRefreshState) {
     DetailRefreshStateNormal,
     DetailRefreshStateLoading,
@@ -114,8 +112,8 @@ typedef NS_ENUM(NSInteger, DetailRefreshViewAnimateType) {
         if (maxHeightScale < 1.0f) {
             maxHeightScale = 1.0f / maxHeightScale;
         }
-        self.scrollview.minimumZoomScale = kMinZoomScale;
-        self.scrollview.maximumZoomScale = MAX(kMaxZoomScale, maxHeightScale);
+        self.scrollview.minimumZoomScale = 1;
+        self.scrollview.maximumZoomScale = MAX(2.5, maxHeightScale);
         [self.scrollview setZoomScale:1.0 animated:YES];
     } else {
         frame.origin = CGPointZero;
@@ -223,9 +221,6 @@ typedef NS_ENUM(NSInteger, DetailRefreshViewAnimateType) {
         self.state = DetailRefreshStateNormal;
     
     CGFloat offset = contentOffset.y + self.scrollView.contentInset.top;
-    //    DLog(@"offset = %f | contentOffset= %f", offset, contentOffset.y);
-    
-    //move when cross the points
     if (offset <= -self.bounds.size.height && contentOffset.y <= -self.bounds.size.height) {
         switch (self.animateType) {
             case DetailRefreshViewAnimateTypeAttachTop:   //吸顶

@@ -2,10 +2,8 @@
 #import "TaobaoHomeViewController.h"
 #import <XCategory/UIGestureRecognizer+expanded.h>
 //cell等比高
-#define cell_height(i) APPW*((i)/375.0f)
 @interface YYFPSLabel : UILabel
 @end
-#define kSize CGSizeMake(70, 22)
 @implementation YYFPSLabel {
     CADisplayLink *_link;
     NSUInteger _count;
@@ -17,7 +15,7 @@
 }
 - (instancetype)initWithFrame:(CGRect)frame {
     if (frame.size.width == 0 && frame.size.height == 0) {
-        frame.size = kSize;
+        frame.size = CGSizeMake(70, 22);
     }
     self = [super initWithFrame:frame];
     
@@ -44,7 +42,7 @@
     [_link invalidate];
 }
 - (CGSize)sizeThatFits:(CGSize)size {
-    return kSize;
+    return CGSizeMake(70, 22);
 }
 - (void)tick:(CADisplayLink *)link {
     if (_lastTime == 0) {
@@ -189,7 +187,7 @@
     UIButton *daren = [[UIButton alloc]initWithFrame:CGRectMake(APPW/2-50, 0, 100, 20)];
     [daren setImage:[UIImage imageNamed:@"mini01.jpg"] forState:UIControlStateNormal];
     [daren setTitle:@"达人淘" forState:UIControlStateNormal];
-    [daren setTitleColor:redcolor forState:UIControlStateNormal];
+    [daren setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     UILabel *more = [[UILabel alloc]initWithFrame:CGRectMake(APPW-80, 0, 60, 20)];
     more.text = @"更多 >";
     mainView = [[UIView alloc]initWithFrame:CGRectMake(0, YH(daren), APPW, H(self)-YH(daren)-30)];
@@ -281,7 +279,7 @@
     titleLab = [[UILabel alloc]initWithFrame:CGRectMake(0, YH(iv), W(self), 40)];
     priceLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, YH(titleLab), 100, 20)];
     flagLab = [[UILabel alloc]initWithFrame:CGRectMake(W(self)-60, Y(priceLabel), 40, 20)];
-    flagLab.backgroundColor = redcolor;
+    flagLab.backgroundColor = [UIColor redColor];
     [self addSubviews:bgview,iv,titleLab,priceLabel,flagLab,nil];
     [self setDataWithDict:nil];
 }
@@ -318,7 +316,7 @@
     image3 = [[UIImageView alloc]initWithFrame:CGRectMake(X(image2), YH(image2), W(image2), H(image2))];
     label1 = [[UILabel alloc]initWithFrame:CGRectMake(10, YH(image1), W(self)-20, 20)];
     label2 = [[UILabel alloc]initWithFrame:CGRectMake(X(label1), YH(label1), W(label1), H(label1))];
-    label2.font = fontnomal;
+    label2.font = Font(13);
     [self addSubviews:image1,image2,image3,label1,label2,nil];
     [self setDataWithDict:nil];
 }
@@ -511,7 +509,7 @@
 }
 -(void)initUI{
     UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, 20, APPW, 1)];
-    line.backgroundColor = gradcolor;
+    line.backgroundColor = RGBACOLOR(224, 225, 226, 1);
     lable = [[UILabel alloc]initWithFrame:CGRectMake(100, 10, 300, 20)];
     lable.textAlignment = NSTextAlignmentCenter;
     lable.text = @"实时推荐最适合你的宝贝";
@@ -636,7 +634,7 @@
 -(void)initUI{
     title = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, W(self)-20, 20)];
     subTitle = [[UILabel alloc]initWithFrame:CGRectMake(X(title), YH(title), W(title), H(title))];
-    subTitle.font = fontnomal;
+    subTitle.font = Font(13);
     imageview = [[UIImageView alloc]initWithFrame:CGRectMake(0, YH(subTitle), W(self), H(self)-YH(subTitle))];
     [self addSubviews:title,subTitle,nil];
 }
@@ -776,10 +774,10 @@
         return CGSizeMake((APPW-4-4-1)/5 , APPW/5 + 20);
     }
     if (indexPath.section == 1) {//乱七八糟组
-        if (indexPath.row == 0)return CGSizeMake(APPW, cell_height(190)+8);
+        if (indexPath.row == 0)return CGSizeMake(APPW,  APPW*((190)/375.0f)+8);
         if (indexPath.row == 4)return CGSizeMake(APPW, 8+30+1+120+1+70 +2*101);
         if (indexPath.row == 5)return CGSizeMake(APPW, (APPW-32)/3 +8+30+8+42+40);
-        return CGSizeMake(APPW, cell_height(190)+8);
+        return CGSizeMake(APPW,  APPW*((190)/375.0f)+8);
     }
     if (indexPath.section == 2) {//喜欢组
         return CGSizeMake(APPW/2-4/2, (APPW/2-4/2)*2/3 +48);

@@ -2,6 +2,8 @@
 //  SDYuEBaoTableViewController.swift
 //  Freedom
 import UIKit
+import XExtension
+import MJRefresh
 class SDYuEBaoTableViewCellModel: NSObject {
     var yesterdayIncome: Float = 0.0
     var totalMoneyAmount: Float = 0.0
@@ -9,23 +11,16 @@ class SDYuEBaoTableViewCellModel: NSObject {
 class SDYuEBaoTableViewCellContentView: UIView {
     var yesterdayIncome: Float = 0.0
     var totalMoneyAmount: Float = 0.0
-    
     var yesterdayIncomeLabel: UILabel?
     var totalMoneyAmountLabel: UILabel?
-    
     private var yesterdayIncomeLabelAnimationTimer: Timer?
     private var totalMoneyAmountLabelAnimationTimer: Timer?
-    
-    //  The converted code is limited to 1 KB.
-    //  Please Sign Up (Free!) to remove this limitation.
-    //
-    //  Converted to Swift 4 by Swiftify v4.1.6710 - https://objectivec2swift.com/
-    init(frame: CGRect) {
+    override init(frame: CGRect) {
         super.init(frame: frame)
         let yestodayView = UIView(frame: CGRect(x: 0, y: 0, width: APPW, height: 180))
         let IncomeView = UIView(frame: CGRect(x: 0, y: 200, width: APPW, height: 100))
         let shouyiView = UIView(frame: CGRect(x: 0, y: YH(IncomeView), width: APPW, height: 150))
-        yestodayView.backgroundColor = RGBCOLOR(255, 80, 2)
+        yestodayView.backgroundColor = RGBAColor(255, 80, 2 ,1)
         shouyiView.backgroundColor = UIColor.lightGray
         let yI = UIImageView(frame: CGRect(x: 15, y: 20, width: 10, height: 10))
         let yl = UILabel(frame: CGRect(x: XW(yI), y: 15, width: 100, height: 20))
@@ -42,10 +37,10 @@ class SDYuEBaoTableViewCellContentView: UIView {
         totalL.textColor = UIColor.lightGray
         totalL.font = fontnomal
         totalL.text = "总金额（元）"
-        totalMoneyAmountLabel.textColor = UIColor.red
-        totalMoneyAmountLabel.font = BoldFont(38)
-        yesterdayIncomeLabel.text = "0.00"
-        totalMoneyAmountLabel.text = "0.00"
+        totalMoneyAmountLabel?.textColor = UIColor.red
+        totalMoneyAmountLabel?.font = BoldFont(38)
+        yesterdayIncomeLabel?.text = "0.00"
+        totalMoneyAmountLabel?.text = "0.00"
         let a = UILabel(frame: CGRect(x: 10, y: 10, width: 100, height: 20))
         let av = UILabel(frame: CGRect(x: 10, y: 30, width: 100, height: 20))
         let b = UILabel(frame: CGRect(x: APPW / 2, y: 10, width: 100, height: 20))
@@ -78,30 +73,31 @@ class SDYuEBaoTableViewCellContentView: UIView {
         cv.text = "1.823"
         d.text = "近一月收益（元）"
         dv.text = "2.023"
-        yestodayView.addSubviews(yI, yl, yesIncomeL, nil)
-        IncomeView.addSubviews(totalL, totalMoneyAmountLabel, nil)
-        shouyiView.addSubviews(a, av, b, bv, c, cv, d, dv, nil)
-        addSubviews(yestodayView, IncomeView, shouyiView, nil)
+        yestodayView.addSubviews([yI, yl, yesIncomeL])
+        IncomeView.addSubviews([totalL, totalMoneyAmountLabel!])
+        shouyiView.addSubviews([a, av, b, bv, c, cv, d, dv])
+        addSubviews([yestodayView, IncomeView, shouyiView])
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     func setYesterdayIncome(_ yesterdayIncome: Float) {
         self.yesterdayIncome = yesterdayIncome
-        setNumberTextOfLabel(yesterdayIncomeLabel, withAnimationForValueContent: yesterdayIncome)
+        setNumberTextOf(yesterdayIncomeLabel, withAnimationForValueContent: CGFloat(yesterdayIncome))
     }
-    
     func setTotalMoneyAmount(_ totalMoneyAmount: Float) {
-        self.totalMoneyAmount = totalMoneyAmount
-        setNumberTextOfLabel(totalMoneyAmountLabel, withAnimationForValueContent: totalMoneyAmount)
+        self.totalMoneyAmount = 3
     }
-    //  Converted to Swift 4 by Swiftify v4.1.6710 - https://objectivec2swift.com/
     func setNumberTextOf(_ label: UILabel?, withAnimationForValueContent value: CGFloat) {
-        let lastValue = CGFloat(Float(label?.text ?? "") ?? 0.0)
-        let delta: CGFloat = value - lastValue
+//        let lsetNumberTextOfloat;(label?.text ?? "") ?? 0.0)
+        let delta: CGFloat = value - 0
         if delta == 0 {
             return
         }
         if delta > 0 {
             let ratio: CGFloat = value / 60.0
-            let userInfo = ["label": label, "value": value, "ratio": ratio]
+            let userInfo = ["label": "label", "value": value, "ratio": ratio] as [String : Any]
             let timer = Timer.scheduledTimer(timeInterval: 0.02, target: self, selector: Selector("setupLabel:"), userInfo: userInfo, repeats: true)
             if label == yesterdayIncomeLabel {
                 yesterdayIncomeLabelAnimationTimer = timer
@@ -110,21 +106,20 @@ class SDYuEBaoTableViewCellContentView: UIView {
             }
         }
     }
-    //  Converted to Swift 4 by Swiftify v4.1.6710 - https://objectivec2swift.com/
     func setupLabel(_ timer: Timer?) {
         var timer = timer
         let userInfo = timer?.userInfo as? [AnyHashable: Any]
-        let label = userInfo["label"] as? UILabel
-        let value = CGFloat(Float(userInfo["value"]))
-        let ratio = CGFloat(Float(userInfo["ratio"]))
+        let label = userInfo!["label"] as? UILabel
+        let value:CGFloat = 2.2//CGFloat(Float(userInfo!["value"]))
+        let ratio:CGFloat = 2.2//CGFloat(Float(userInfo!["ratio"]))
         var flag: Int = 1
         let lastValue = CGFloat(Float(label?.text ?? "") ?? 0.0)
-        let randomDelta: CGFloat = (arc4random_uniform(2) + 1) * ratio
+        let randomDelta: CGFloat =  ratio
         let resValue: CGFloat = lastValue + randomDelta
         if (resValue >= value) || (flag == 50) {
             label?.text = String(format: "%.2f", value)
             flag = 1
-            timer?.invalidate()
+            !((timer?.invalidate()) != nil)
             timer = nil
             return
         } else {
@@ -132,52 +127,48 @@ class SDYuEBaoTableViewCellContentView: UIView {
         }
         flag += 1
     }
-
-    
-
 }
-class SDYuEBaoTableViewCell {
+class SDYuEBaoTableViewCell:UITableViewCell {
     private var cellContentView: SDYuEBaoTableViewCellContentView?
-    
-    init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
         let contentView = SDYuEBaoTableViewCellContentView()
-        self.contentView.addSubview(contentView)
+        self.cellContentView?.addSubview(contentView)
         cellContentView = contentView
         selectionStyle = .none
         
     }
-    func setModel(_ model: NSObject?) {
-        super.setModel(model)
-        let cellModel = model as? SDYuEBaoTableViewCellModel
-        cellContentView.totalMoneyAmount = cellModel?.totalMoneyAmount
-        cellContentView.yesterdayIncome = cellModel?.yesterdayIncome
-    }
 
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    //    func setModel(_ model: NSObject?) {
+//        super.setModel(model)
+//        let cellModel = model as? SDYuEBaoTableViewCellModel
+//        cellContentView.totalMoneyAmount = (cellModel?.totalMoneyAmount)!
+//        cellContentView.yesterdayIncome = (cellModel?.yesterdayIncome)!
+//    }
 }
 
 class SDYuEBaoTableViewController: AlipayBaseViewController {
-    //  Converted to Swift 4 by Swiftify v4.1.6710 - https://objectivec2swift.com/
-    func viewDidLoad() {
+    let cellClass = SDYuEBaoTableViewCell.self
+    var dataArray = [SDYuEBaoTableViewCellModel]()
+    override func viewDidLoad() {
         super.viewDidLoad()
-        cellClass = SDYuEBaoTableViewCell.self
         let model = SDYuEBaoTableViewCellModel()
         model.totalMoneyAmount = 8060.68
         model.yesterdayIncome = 1.12
         dataArray = [model]
-        refreshMode = BaseTableViewRefeshModeHeaderRefresh
         tableView.separatorStyle = .none
     }
-    
     // 加载数据方法
     func pullDownRefreshOperation() {
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double((int64_t)(2.0 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: {() -> Void in
-            self.refreshControl?.endRefreshing()
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(2.0 * Double(NSEC_PER_SEC)) / Double(NSEC_PER_SEC), execute: {() -> Void in
+//            self.refreshControl?.endRefreshing()
         })
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 550
     }
 

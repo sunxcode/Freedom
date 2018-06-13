@@ -6,6 +6,7 @@ import UIKit
 import BaseFile
 import XExtension
 import XCategory
+import MJRefresh
 class JFSubItemModel: NSObject {
     var itemID: NSNumber?
     var formatTotalTime = ""
@@ -109,27 +110,29 @@ class JFSubscribeCell:BaseTableViewCell{
         dingyueBtn.setImage(UIImage(named: "search_channel_subscribe_noPlay"), for: .normal)
         dingyueBtn.setImage(UIImage(named: "search_channel_subscribed"), for: .selected)
         backview.addSubview(dingyueBtn)
-        scrollV = JFSubImageScrollView(frame: CGRect(x: 0, y: 55, width: APPW, height: 155))
-        scrollV.delegate = self
+        let scrollV = JFSubImageScrollView(frame: CGRect(x: 0, y: 55, width: APPW, height: 155))
+//        scrollV.delegate = self
         backview.addSubview(scrollV)
     }
     func setSubscribeM(_ subscribeM: JFSubscribeModel?) {
-        self.subscribeM = subscribeM
-        items.removeAll()
-        for i in 0..<subscribeM?.last_item.count ?? 0 {
-            let item = JFSubItemModel.mj_object(withKeyValues: subscribeM?.last_item[i])
-            items.append(item)
-        }
-        imageView.sd_setImage(with: URL(string: subscribeM?.image ?? ""), placeholderImage: UIImage(named: "rec_holder"))
-        titleLabel.text = subscribeM?.title
-        if let aCount = subscribeM?.subed_count {
-            subedLabel.text = "订阅 \(aCount)"
-        }
-        scrollV.dataArray = items
+//        self.subscribeM = subscribeM
+//        items.removeAll()
+//        for i in 0..<subscribeM?.last_item.count ?? 0 {
+//            let item = JFSubItemModel.mj_object(withKeyValues: subscribeM?.last_item[i])
+//            items.append(item)
+//        }
+//        imageView.sd_setImage(with: URL(string: subscribeM?.image ?? ""), placeholderImage: UIImage(named: "rec_holder"))
+//        titleLabel.text = subscribeM?.title
+//        if let aCount = subscribeM?.subed_count {
+//            subedLabel.text = "订阅 \(aCount)"
+//        }
+//        scrollV.dataArray = items
     }
 
 }
 class JFSubscribeScrollView: UIScrollView {
+    var dataArray: [Any]?
+    var scrollView:UIScrollView!
     override init(frame: CGRect) {
         super.init(frame: frame)
         scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height))
@@ -137,19 +140,23 @@ class JFSubscribeScrollView: UIScrollView {
         scrollView.showsHorizontalScrollIndicator = false
         addSubview(scrollView)
         //card
-        let cardWidth: Float = (APPW * 2 - 15) / 3
+        let cardWidth: Float = Float((APPW * 2 - 15) / 3.0)
         for i in 0..<3 {
-            let card = JFSubScribeCardView(frame: CGRect(x: CGFloat(cardWidth * i), y: 0, width: CGFloat(cardWidth), height: frame.size.height))
-            card.frame = CGRect(x: CGFloat((cardWidth + 5) * i + 5), y: 0, width: CGFloat(cardWidth), height: frame.size.height)
+            let card = JFSubScribeCardView(frame: CGRect(x: CGFloat(cardWidth * Float(i)), y: 0, width: CGFloat(cardWidth), height: frame.size.height))
+            card.frame = CGRect(x: CGFloat((cardWidth + 5) * Float(i) + 5), y: 0, width: CGFloat(cardWidth), height: frame.size.height)
             card.tag = 20 + i
             scrollView.addSubview(card)
-            card.delegate = self
+//            card.delegate = self
         }
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     func setDataArray(_ dataArray: [Any]?) {
         self.dataArray = dataArray
         for i in 0..<3 {
-            let item = dataArray[i] as? JFSubItemModel
+            let item = dataArray![i] as! JFSubItemModel
             let card = scrollView.viewWithTag(20 + i) as? JFSubScribeCardView
             card?.subItem = item
         }
@@ -161,6 +168,8 @@ class JFSubscribeScrollView: UIScrollView {
 }
 
 class JFSubscribeViewController: IqiyiBaseViewController {
+    var subscribeTableView : UITableView!
+    var dataSource = [AnyHashable]()
     func setUpRefresh() {
         subscribeTableView.mj_header = MJRefreshNormalHeader(refreshingBlock: {() -> Void in
             self.initData()
@@ -174,10 +183,9 @@ class JFSubscribeViewController: IqiyiBaseViewController {
     
     func initNav() {
         title = "订阅推荐"
-        dataSource = [AnyHashable]()
     }
     func initData() {
-        let urlStr = FreedomTools.shared().urlWithSubscribeData()
+        let urlStr = FreedomTools.sharedManager().urlWithSubscribeData()
     }
     
     func initView() {
@@ -185,11 +193,11 @@ class JFSubscribeViewController: IqiyiBaseViewController {
         tableView.delegate = self
         tableView.dataSource = self
         //将系统的Separator左边不留间隙
-        tableView.separatorInset = UIEdgeInsetsZero
+        tableView.separatorInset = UIEdgeInsets.zero
         subscribeTableView = tableView
         view.addSubview(subscribeTableView)
     }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataSource.count
     }
     
@@ -203,9 +211,8 @@ class JFSubscribeViewController: IqiyiBaseViewController {
         if cell == nil {
             cell = JFSubscribeCell(style: .default, reuseIdentifier: cellIndentifier)
         }
-        cell?.delegate = self
+//        cell?.delegate = self
         let subM = dataSource[indexPath.row] as? JFSubscribeModel
-        cell?.subscribeM = subM
         if let aCell = cell {
             return aCell
         }

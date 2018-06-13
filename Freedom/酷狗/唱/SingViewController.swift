@@ -5,11 +5,11 @@
 import UIKit
 
 class SingViewController: KugouBaseViewController {
-    func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
     
-    func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         setupRightGesture()
         view.backgroundColor = UIColor.white
@@ -24,13 +24,9 @@ class SingViewController: KugouBaseViewController {
     }
     
     @objc func swipe(_ sender: UISwipeGestureRecognizer?) {
-        sideMenuViewController.presentRightMenuViewController()
+//        sideMenuViewController.presentRightMenuViewController()
     }
-    //  The converted code is limited to 1 KB.
-    //  Please Sign Up (Free!) to remove this limitation.
-    //
-    //  Converted to Swift 4 by Swiftify v4.1.6710 - https://objectivec2swift.com/
-    func initUI() {
+    override func initUI() {
         let banner = UIImageView(frame: CGRect(x: 0, y: 64, width: APPW, height: 150))
         banner.image = UIImage(named: "bj")
         let fujin = UIButton(frame: CGRect(x: 0, y: banner.frameY + banner.frameHeight + 20, width: APPW / 2, height: 80))

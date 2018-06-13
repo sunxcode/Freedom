@@ -132,9 +132,7 @@
     label.textAlignment = NSTextAlignmentCenter;
     label.textColor = [UIColor whiteColor];
     label.font = [UIFont systemFontOfSize:16];
-    label.frame.size.width = [UIScreen mainScreen].bounds.size.width;
-    label.frameHeight = 35;
-    label.frameY = 64 - label.frameHeight;
+    label.frame = CGRectMake(0, 64 - label.frameHeight, [UIScreen mainScreen].bounds.size.width, 35);
     if (count) {
         label.text = [NSString stringWithFormat:@"有%d条微博更新了",count];
     }else{

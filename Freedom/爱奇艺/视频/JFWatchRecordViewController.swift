@@ -3,16 +3,13 @@
 //  Freedom
 
 import UIKit
-
+import XExtension
 class JFWatchRecordViewController: IqiyiBaseViewController {
     func initNav() {
         title = "观看纪录"
         navigationController?.navigationBar.isHidden = false
-        let leftBarButtonItem = UIBarButtonItem(normalImage: "ic_player_back", target: self, action: #selector(self.leftBarButtonItemClick), width: 35, height: 35)
-        navigationItem?.leftBarButtonItem = leftBarButtonItem
+        let leftBarButtonItem = UIBarButtonItem(image: UIImage(named:"ic_player_back"), style: .plain, actionBlick: {
+            self.navigationController?.popViewController(animated: true)
+        })
     }
-    
-    @objc func leftBarButtonItemClick() {
-        navigationController?.popViewController(animated: true)
-}
 }

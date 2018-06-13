@@ -6,15 +6,12 @@ import UIKit
 import BaseFile
 import XExtension
 typealias clickLocalMusicBlock = () -> Void
-
 class mainHeaderView: UIView {
     var localMusic: clickLocalMusicBlock?
-    
     var imageView: UIImageView?
     var bottomView: UIView?
-    init(frame: CGRect) {
+    override init(frame: CGRect) {
         super.init(frame: frame)
-        
         // 最底层
         imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: APPW, height: 170))
         imageView?.isUserInteractionEnabled = true
@@ -23,19 +20,18 @@ class mainHeaderView: UIView {
         }
         //最上面
         setupTopButtoms()
-        
     }
-    //  The converted code is limited to 1 KB.
-    //  Please Sign Up (Free!) to remove this limitation.
-    //
-    //  Converted to Swift 4 by Swiftify v4.1.6710 - https://objectivec2swift.com/
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     func setupTopButtoms() {
         let btnW: CGFloat = 60
         let btnH: CGFloat = 60
         let magin: CGFloat = (APPW - 4 * btnW) / 5.0
         let titleArr = ["我喜欢", "歌单", "下载", "最近"]
         for i in 0..<4 {
-            let btnX: CGFloat = magin + (magin + btnW) * i
+            let btnX: CGFloat = magin + (magin + btnW) * CGFloat(i)
             let btn = UIButton(frame: CGRect(x: btnX, y: 30, width: btnW, height: btnH))
             btn.imageView?.contentMode = .scaleAspectFit
             btn.titleLabel?.textAlignment = .center
@@ -58,10 +54,10 @@ class mainHeaderView: UIView {
         lable.font = UIFont.systemFont(ofSize: 14)
         lable.textColor = UIColor.white
         addSubview(lable)
-        let everyMusic = MPMediaQuery()
-        let musicArr = everyMusic.items
+//        let everyMusic = MPMediaQuery()
+//        let musicArr = everyMusic.items
         let lable2 = UILabel(frame: CGRect(x: APPW - 130, y: phoneimage.frameY, width: 100, height: 25))
-        lable2.text = "\(musicArr?.count ?? 0)首"
+        lable2.text = "3首"
         lable2.font = UIFont.systemFont(ofSize: 12)
         lable2.textColor = UIColor.white
         lable2.textAlignment = .right
@@ -77,12 +73,8 @@ class mainHeaderView: UIView {
         // 底部
         setupBottonButtons()
     }
-    //  The converted code is limited to 1 KB.
-    //  Please Sign Up (Free!) to remove this limitation.
-    //
-    //  Converted to Swift 4 by Swiftify v4.1.6710 - https://objectivec2swift.com/
     func setupBottonButtons() {
-        let bView = UIView(frame: CGRect(x: 0, y: imageView?.frame.maxY, width: APPW, height: 130))
+        let bView = UIView(frame: CGRect(x: 0, y: (imageView?.frame.maxY)!, width: APPW, height: 130))
         bView.backgroundColor = UIColor.white
         addSubview(bView)
         let btnW: CGFloat = 80
@@ -90,7 +82,7 @@ class mainHeaderView: UIView {
         let magin: CGFloat = (APPW - 3 * btnW) / 4.0
         let titleArr = ["乐库", "电台", "库群"]
         for i in 0..<3 {
-            let btnX: CGFloat = magin + (magin + btnW) * i
+            let btnX: CGFloat = magin + (magin + btnW) * CGFloat(i)
             let btn = UIButton(frame: CGRect(x: btnX, y: 15, width: btnW, height: btnH))
             btn.imageView?.contentMode = .scaleAspectFit
             btn.titleLabel?.textAlignment = .center
@@ -104,17 +96,15 @@ class mainHeaderView: UIView {
         }
     }
     
-    func clickLable2() {
-        localMusic()
+    @objc func clickLable2() {
+        localMusic!()
     }
 
 }
 
 class LinsenViewController: KugouBaseViewController {
-    weak var tableView: UITableView?
     var titlesArr = [Any]()
-    var headerView: mainHeaderView?
-    func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         titlesArr = ["工具", "游戏", "推广"]
         setupTableView()
@@ -129,23 +119,13 @@ class LinsenViewController: KugouBaseViewController {
     }
     
     @objc func swipe(_ sender: UISwipeGestureRecognizer?) {
-        sideMenuViewController.presentLeftMenuViewController()
+
     }
-    var headerView: NSTableHeaderView? {
-        if headerView == nil {
-            headerView = mainHeaderView(frame: CGRect(x: 0, y: 0, width: APPW, height: headerH))
-        }
-        return headerView
-    }
-    //  The converted code is limited to 1 KB.
-    //  Please Sign Up (Free!) to remove this limitation.
-    //
-    //  Converted to Swift 4 by Swiftify v4.1.6710 - https://objectivec2swift.com/
+    var headerView = mainHeaderView(frame: CGRect(x: 0, y: 0, width: APPW, height: 100))
     func setupTableView() {
-        let tableView = UITableView(frame: CGRect(x: 0, y: 0, width: APPW, height: Int(APPH - TabBarH) + 2), style: .plain)
+        self.tableView = UITableView(frame: CGRect(x: 0, y: 0, width: Int(APPW), height: Int(APPH - TabBarH) + 2), style: .plain) as! BaseTableView
         tableView.delegate = self
         tableView.dataSource = self
-        self.tableView = tableView
         tableView.tableFooterView = UIView()
         tableView.showsVerticalScrollIndicator = false
         tableView.backgroundView = UIImageView(image: UIImage(named: "bj"))
@@ -153,42 +133,41 @@ class LinsenViewController: KugouBaseViewController {
         tableView.tableHeaderView = headerView
         tableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0)
         view.addSubview(tableView)
-        let viewtab = UIView(frame: CGRect(x: 0, y: headerH + 44 * titlesArr.count, width: APPW, height: 500))
+        let viewtab = UIView(frame: CGRect(x: 0, y: 100 + 44 * titlesArr.count, width: Int(APPW), height: 500))
         viewtab.backgroundColor = UIColor.white
         tableView.addSubview(viewtab)
         // 访问系统本地音乐
-        WS(weakSelf)
-        headerView?.localMusic = {() -> Void in
+        headerView.localMusic = {() -> Void in
             let localVC = LocalMusicViewController()
-            weakSelf.navigationController?.pushViewController(localVC, animated: false)
+            self.navigationController?.pushViewController(localVC, animated: false)
         }
     }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let mainCellID = "mainID"
         var cell: UITableViewCell? = tableView.dequeueReusableCell(withIdentifier: mainCellID)
         if cell == nil {
             cell = UITableViewCell(style: .default, reuseIdentifier: mainCellID)
         }
         cell?.imageView?.image = UIImage(named: "music")
-        cell?.textLabel?.text = titlesArr[indexPath.row]
+        cell?.textLabel?.text = titlesArr[indexPath.row] as! String
         if let aCell = cell {
             return aCell
         }
         return UITableViewCell()
     }
-    func numberOfSections(in tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return titlesArr.count
     }
     
     // MARK: - UITableViewDelegate
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 44
     }
         

@@ -104,11 +104,8 @@
     for (int i = 0; i<photosCount; i++) {
         XFStatusPhotoView *photoView = self.subviews[i];
         int col = i % maxCol;
-        photoView.frameX = col * (XFStatusPhotoWH + XFStatusPhotoMargin);
         int row = i / maxCol;
-        photoView.frameY = row * (XFStatusPhotoWH + XFStatusPhotoMargin);
-        photoView.frame.size.width = XFStatusPhotoWH;
-        photoView.frameHeight = XFStatusPhotoWH;
+        photoView.frame = CGRectMake(col * (XFStatusPhotoWH + XFStatusPhotoMargin), row * (XFStatusPhotoWH + XFStatusPhotoMargin), XFStatusPhotoWH, XFStatusPhotoWH) ;
     }
 }
 + (CGSize)sizeWithCount:(int)count{
@@ -311,9 +308,7 @@
 -(id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        UILabel *label = [[UILabel alloc]init];
-        label.frame.size.width = [UIScreen mainScreen].bounds.size.width;
-        label.frameHeight = 44;
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0,[UIScreen mainScreen].bounds.size.width,44)];
         label.text = @"加载更多内容";
         label.textAlignment = NSTextAlignmentCenter;
         label.textColor = [UIColor grayColor];
@@ -331,10 +326,8 @@
 - (UIImageView *)containerView{
     if (!_containerView) {
         // 添加一个灰色图片控件
-        UIImageView *containerView = [[UIImageView alloc] init];
+        UIImageView *containerView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 180, 217)];
         containerView.image = [UIImage imageNamed:@"popover_background"];
-        containerView.frame.size.width = 180;
-        containerView.frameHeight = 217;
         containerView.userInteractionEnabled = YES; // 开启交互
         [self addSubview:containerView];
         self.containerView = containerView;
@@ -355,12 +348,7 @@
 - (void)setContent:(UIView *)content{
     _content = content;
     // 调整内容的位置
-    content.frameX = 10;
-    content.frameY = 15;
-    // 调整内容的宽度
-    content.frame.size.width = self.containerView.frame.size.width - 2 * content.frameX;
-    // 设置灰色的高度
-    self.containerView.frameHeight = CGRectGetMaxY(content.frame) + 10;
+    content.frame = CGRectMake(10, 15, self.containerView.frame.size.width - 2 * content.frameX, CGRectGetMaxY(content.frame) + 10);
     // 添加内容到灰色图片中
     [self.containerView addSubview:content];
 }
@@ -478,7 +466,7 @@
     int dividerCount = (int)self.dividers.count;
     for (int i = 0; i<dividerCount; i++) {
         UIImageView *divider = self.dividers[i];
-        divider.frame = CGRectMake((i+1) * btnw, 0, 1, btnH)
+        divider.frame = CGRectMake((i+1) * btnw, 0, 1, btnH);
     }
 }
 -(void)setStatus:(XFStatus *)status {

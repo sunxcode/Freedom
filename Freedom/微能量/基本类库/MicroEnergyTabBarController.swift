@@ -8,7 +8,7 @@ class MicroEnergyTabBarController: XBaseTabBarController,UITabBarControllerDeleg
     let myTabBar = EnergySuperMarketTabBarController.sharedRootViewController
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tabBar.barTintColor = RGBAColor(R: 59, G: 59, B: 59, A: 1);
+        self.tabBar.barTintColor = RGBAColor(59, 59,59, 1);
         myTabBar.hidesBottomBarWhenPushed = true
         myTabBar.superTabbar = self;
        var i=0

@@ -29,4 +29,5 @@ public let blacktextcolor = RGBAColor(33, 34, 35, 1)
 public let gradtextcolor = RGBAColor(116, 117, 118, 1)
 public let graycolor = UIColor.gray
 public let TabBarH:CGFloat = 49
+public let APPW = UIScreen.main.bounds.size.width
 

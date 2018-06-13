@@ -18,7 +18,7 @@ class SDDiscoverTableViewHeaderItemButton: UIButton {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    func imageRect(forContentRect contentRect: CGRect) -> CGRect {
+    override func imageRect(forContentRect contentRect: CGRect) -> CGRect {
         let x: CGFloat = contentRect.size.width * 0.2
         let y: CGFloat = contentRect.size.height * 0.15
         let w: CGFloat = contentRect.size.width - x * 2
@@ -75,6 +75,7 @@ class SDDiscoverTableViewHeaderItemModel: NSObject {
     var title = ""
     var destinationControllerClass: AnyClass?
     convenience init(title: String?, imageName: String?, destinationControllerClass: AnyClass) {
+        self.init()
         self.title = title!
         self.imageName = imageName!
         self.destinationControllerClass = destinationControllerClass
@@ -98,7 +99,7 @@ class SDDiscoverTableViewControllerCell:BaseTableViewCell{
     }
 }
 class SDDiscoverTableViewController: AlipayBaseViewController {
-    var dataArray = [SDAssetsTableViewControllerCellModel]()
+    var dataArray = [[SDAssetsTableViewControllerCellModel]]()
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "口碑"
@@ -116,12 +117,10 @@ class SDDiscoverTableViewController: AlipayBaseViewController {
         let header = SDDiscoverTableViewHeader(frame: CGRect.zero)
         header.frameHeight = 90
         header.headerItemModelsArray = headerDataArray
-        weak var weakSelf = self
         header.buttonClickedOperationBlock = {(_ index: Int) -> Void in
-            let model: SDDiscoverTableViewHeaderItemModel? = weakSelf.headerDataArray[index]
-            let vc: UIViewController? = model?.destinationControllerClass()
-            vc?.title = model?.title
-        weakSelf.navigationController?.pushViewController(vc, animated: true)
+            let vc: UIViewController? = UIViewController()//model?.destinationControllerClass
+            vc?.title = ""// model?.title
+            self.navigationController?.pushViewController(vc!, animated: true)
         }
         tableView.tableHeaderView = header
     }
@@ -137,7 +136,7 @@ class SDDiscoverTableViewController: AlipayBaseViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let model = dataArray[indexPath.section][indexPath.row] as? SDAssetsTableViewControllerCellModel
-        let vc: UIViewController? = model?.destinationControllerClass()
+        let vc: UIViewController? = UIViewController()// model?.destinationControllerClass
         vc?.title = model?.title
         if let aVc = vc {
             navigationController?.pushViewController(aVc, animated: true)

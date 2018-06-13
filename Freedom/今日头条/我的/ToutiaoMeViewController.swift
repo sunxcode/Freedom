@@ -30,7 +30,7 @@ class ToutiaoMeViewController: ToutiaoBaseViewController {
             button.setImage(UIImage(named:"userLogo"), for: .normal)
             topView.addSubview(button)
         }
-        topView.backgroundColor = RGBAColor(R: 10, G: 10, B: 10, A: 1)
+        topView.backgroundColor = RGBAColor(10, 10, 10,  1)
         let label = UILabel(frame: CGRect(x: 10, y: view.bounds.size.height-30, width: APPW-20, height: 20))
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = .white
@@ -40,7 +40,7 @@ class ToutiaoMeViewController: ToutiaoBaseViewController {
         head.addSubview(topView)
         let titles = ["收藏","历史","夜间"]
         for i in 0..<3{
-            let buton = UIButton(frame: CGRect(x: CGFloat(i)*APPW/3, y: YH(obj: view), width: APPW/3, height: 60))
+            let buton = UIButton(frame: CGRect(x: CGFloat(i)*APPW/3, y: YH( view), width: APPW/3, height: 60))
             buton.setImage(UIImage(named:"wechart"), for: .normal)
             buton.setImage(UIImage(named:titles[i]), for: .normal)
             buton.imageEdgeInsets = UIEdgeInsets(top: 5, left: 45, bottom: 20, right: 45)

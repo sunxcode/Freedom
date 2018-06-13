@@ -7,9 +7,7 @@
 @end
 @implementation XFDiscoverViewController
 - (void)setupSearchBar{
-    UISearchBar *searchBar = [[UISearchBar alloc]init];
-    searchBar.frame.size.width = 375;
-    searchBar.frameHeight = 30;
+    UISearchBar *searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, 375, 30)];
     self.navigationItem.titleView = searchBar;
     searchBar.placeholder = @"大家都在搜：男模遭趴光";
 }

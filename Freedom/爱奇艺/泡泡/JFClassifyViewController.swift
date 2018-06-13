@@ -5,6 +5,7 @@
 import UIKit
 import BaseFile
 import XExtension
+import MJRefresh
 class JFClassifyModel: NSObject {
     var normal_icon_for_ipad_v_4 = ""
     var top_state: NSNumber?
@@ -34,27 +35,12 @@ class JFClassifyModel: NSObject {
 }
 class JFClassifyCell: UITableViewCell {
     var classifyModel: JFClassifyModel?
-    
-    convenience init(tableView: UITableView?) {
-        let ID = "JFClassifyCell"
-        var cell = tableView?.dequeueReusableCell(withIdentifier: ID) as? JFClassifyCell
-        if cell == nil {
-            // 从xib中加载cell
-            cell = JFClassifyCell(style: .default, reuseIdentifier: ID)
-        }
-        cell?.selectionStyle = .none
-        if let aCell = cell {
-            return aCell
-        }
-        return JFClassifyCell()
+    func setClassifyModel(_ classifyModel: JFClassifyModel?) {
+        self.classifyModel = classifyModel
+        imageView?.sd_setImage(with: URL(string: classifyModel?.image_at_bottom ?? ""), placeholderImage: UIImage(named: "home_GaoXiao"))
+        textLabel?.text = classifyModel?.image_at_top
     }
 }
-func setClassifyModel(_ classifyModel: JFClassifyModel?) {
-    self.classifyModel = classifyModel
-    imageView?.sd_setImage(with: URL(string: classifyModel?.image_at_bottom ?? ""), placeholderImage: UIImage(named: "home_GaoXiao"))
-    textLabel?.text = classifyModel?.name
-}
-
 
 class TEMPBASEC:BaseTableViewCell{
     override func initUI() {
@@ -66,53 +52,53 @@ class TEMPBASEC:BaseTableViewCell{
     }
 }
 class JFClassifyViewController: IqiyiBaseViewController {
-    func viewDidLoad() {
+    let urlStr = FreedomTools.sharedManager().urlWithclassifyData()
+    var dataSource = [AnyHashable]()
+    override func viewDidLoad() {
         super.viewDidLoad()
-        urlStr = FreedomTools.shared().urlWithclassifyData()
-        dataSource = [AnyHashable]()
         initView()
         setUpRefresh()
     }
     
     // MARK: - 设置普通模式下啦刷新
     func setUpRefresh() {
-        classifyTableView.mj_header = MJRefreshNormalHeader(refreshingBlock: {() -> Void in
-            self.initData()
+        tableView.mj_header = MJRefreshNormalHeader(refreshingBlock: {() -> Void in
+          
         })
-        classifyTableView.mj_header.beginRefreshing()
+        tableView.mj_header.beginRefreshing()
     }
     func initView() {
-        let tableView = UITableView(frame: CGRect(x: 0, y: 0, width: APPW, height: APPH - 64), style: .plain)
+        tableView = UITableView(frame: CGRect(x: 0, y: 0, width: APPW, height: APPH - 64), style: .plain) as! BaseTableView
         tableView.delegate = self
         tableView.dataSource = self
         //将系统的Separator左边不留间隙
-        tableView.separatorInset = UIEdgeInsetsZero
-        classifyTableView = tableView
-        view.addSubview(classifyTableView)
+        tableView.separatorInset = UIEdgeInsets.zero
+        view.addSubview(tableView)
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if dataSource {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
             return dataSource.count
-        } else {
-            return 0
-        }
+
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 40
     }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = JFClassifyCell(tableView: tableView)
-        if dataSource {
-            cell.classifyModel = dataSource[indexPath.row]
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let ID = "JFClassifyCell"
+        var cell = tableView.dequeueReusableCell(withIdentifier: ID) as? JFClassifyCell
+        if cell == nil {
+            // 从xib中加载cell
+            cell = JFClassifyCell(style: .default, reuseIdentifier: ID)
         }
-        return cell
+        cell?.selectionStyle = .none
+        return cell!
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let webVC = JFWebViewController()
-        webVC.urlStr = FreedomTools.shared().urlWithJianShuData()
+        webVC.urlStr = FreedomTools.sharedManager().urlWithJianShuData()
         navigationController?.pushViewController(webVC, animated: true)
     }
 

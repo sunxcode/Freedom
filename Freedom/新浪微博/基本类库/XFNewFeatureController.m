@@ -29,11 +29,7 @@
    
     for (int i = 0; i < KCount; i++) {
         
-        UIImageView *imageView = [[UIImageView alloc]init];
-        imageView.frameX = i * scrollW;
-        imageView.frameY = 0;
-        imageView.frame.size.width = scrollW;
-        imageView.frameHeight = scrollH;
+        UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(i * scrollW, 0, scrollW, scrollH)];
         NSString *imageName = [NSString stringWithFormat:@"new_feature_%d@2x",i+1];
         imageView.image = [UIImage imageNamed:imageName];
         [scrollView addSubview:imageView];
@@ -47,8 +43,7 @@
             [shareBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
             shareBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 30);
             shareBtn.center = CGPointMake(imageView.frame.size.width *0.24,imageView.frameHeight * 0.70);
-            shareBtn.frameHeight = 30;
-            shareBtn.frame.size.width = 200;
+            shareBtn.frameSize = CGSizeMake(200, 30);
             [shareBtn addTarget:self action:@selector(shareClick) forControlEvents:UIControlEventTouchUpInside];
             self.shareBtn = shareBtn;
             [imageView addSubview:shareBtn];

@@ -1,14 +1,9 @@
 //
 //  JFVideoDetailViewController.swift
 //  Freedom
-
 import UIKit
 import BaseFile
 import XExtension
-//  The converted code is limited to 1 KB.
-//  Please Sign Up (Free!) to remove this limitation.
-//
-//  Converted to Swift 4 by Swiftify v4.1.6710 - https://objectivec2swift.com/
 class JFVideoDetailModel: NSObject {
     var total_vv = ""
     var duration: NSNumber?
@@ -37,10 +32,6 @@ class JFVideoDetailModel: NSObject {
     var limit: NSNumber?
     var item_media_type = ""
 }
-//  The converted code is limited to 1 KB.
-//  Please Sign Up (Free!) to remove this limitation.
-//
-//  Converted to Swift 4 by Swiftify v4.1.6710 - https://objectivec2swift.com/
 class JFRecommentModel: NSObject {
     var total_pv: NSNumber?
     var pubdate = ""
@@ -68,35 +59,24 @@ class JFRecommentModel: NSObject {
     var time = ""
 }
 class JFRecommentVideoCell:BaseTableViewCell{
-    //  The converted code is limited to 1 KB.
-    //  Please Sign Up (Free!) to remove this limitation.
-    //
-    //  Converted to Swift 4 by Swiftify v4.1.6710 - https://objectivec2swift.com/
-    convenience init(tableView: UITableView?) {
-        let ID = "JFRecommentVideoCell"
-        var cell = tableView?.dequeueReusableCell(withIdentifier: ID) as? JFRecommentVideoCell
-        if cell == nil {
-            // 从xib中加载cell
-            cell = JFRecommentVideoCell(style: .default, reuseIdentifier: ID)
-            cell?.iconImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
-            cell?.titleLabel = UILabel(frame: CGRect(x: 100, y: 10, width: 200, height: 20))
-            cell?.timeLabel = UILabel(frame: CGRect(x: 100, y: 40, width: 200, height: 20))
-            cell?.pvLabel = UILabel(frame: CGRect(x: APPW - 100, y: 20, width: 80, height: 20))
-            cell?.iconImageView.image = UIImage(named: PuserLogo)
-            cell?.titleLabel.text = "title"
-            cell?.timeLabel.text = "time"
-            cell?.pvLabel.text = "pvlabel"
-            cell?.addSubviews(cell?.iconImageView, cell?.titleLabel, cell?.timeLabel, cell?.pvLabel, nil)
-        }
-        cell?.selectionStyle = .none
-        return cell ?? JFRecommentVideoCell()
+
+    let iconImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
+    let titleLabel = UILabel(frame: CGRect(x: 100, y: 10, width: 200, height: 20))
+    let timeLabel = UILabel(frame: CGRect(x: 100, y: 40, width: 200, height: 20))
+    let pvLabel = UILabel(frame: CGRect(x: APPW - 100, y: 20, width: 80, height: 20))
+    override func initUI() {
+        self.addSubviews([iconImageView, titleLabel, timeLabel,pvLabel])
     }
+
     func setRecommentModel(_ recommentModel: JFRecommentModel?) {
-        self.recommentModel = recommentModel
         iconImageView.sd_setImage(with: URL(string: recommentModel?.img ?? ""), placeholderImage: UIImage(named: "rec_holder"))
         titleLabel.text = recommentModel?.title
         pvLabel.text = recommentModel?.pv_pr
         timeLabel.text = recommentModel?.time
+        iconImageView.image = UIImage(named: "userLogo")
+        titleLabel.text = "title"
+        timeLabel.text = "time"
+        pvLabel.text = "pvlabel"
     }
 
 }
@@ -110,40 +90,17 @@ class JFVideoDetailCell: UITableViewCell {
     var titleLabel: UILabel?
     var descLabel: UILabel?
     var videoDetailModel: JFVideoDetailModel?
-    //  The converted code is limited to 1 KB.
-    //  Please Sign Up (Free!) to remove this limitation.
-    //
-    //  Converted to Swift 4 by Swiftify v4.1.6710 - https://objectivec2swift.com/
-    convenience init(tableView: UITableView?) {
-        let ID = "JFVideoDetailCell"
-        var cell = tableView?.dequeueReusableCell(withIdentifier: ID) as? JFVideoDetailCell
-        if cell == nil {
-            cell = JFVideoDetailCell(style: .default, reuseIdentifier: ID)
-            cell?.iconImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
-            cell?.userNameLabel = UILabel(frame: CGRect(x: 80, y: 0, width: 200, height: 20))
-            cell?.playItemsLabel = UILabel(frame: CGRect(x: 80, y: 20, width: 200, height: 20))
-            cell?.userDesLabel = UILabel(frame: CGRect(x: 200, y: 10, width: 100, height: 20))
-            cell?.subscribeButton = UIButton(frame: CGRect(x: 200, y: 30, width: 100, height: 30))
-            cell?.subedNumberLabel = UILabel(frame: CGRect(x: 0, y: 100, width: 100, height: 20))
-            cell?.titleLabel = UILabel(frame: CGRect(x: 0, y: 120, width: 100, height: 20))
-            cell?.descLabel = UILabel(frame: CGRect(x: 0, y: 140, width: 100, height: 20))
-            cell?.subscribeButton.backgroundColor = UIColor.green
-            cell?.addSubviews(cell?.iconImageView, cell?.userNameLabel, cell?.playItemsLabel, cell?.userDesLabel, cell?.subscribeButton, cell?.subedNumberLabel, cell?.titleLabel, cell?.descLabel, nil)
-        }
-        cell?.selectionStyle = .none
-        return cell ?? JFVideoDetailCell()
-    }
     func setVideoDetailModel(_ videoDetailModel: JFVideoDetailModel?) {
         self.videoDetailModel = videoDetailModel
-        iconImageView.sd_setImage(with: URL(string: videoDetailModel?.channel_pic ?? ""), placeholderImage: UIImage(named: "tudoulogo"))
-        userNameLabel.text = videoDetailModel?.username
+        iconImageView?.sd_setImage(with: URL(string: videoDetailModel?.channel_pic ?? ""), placeholderImage: UIImage(named: "tudoulogo"))
+        userNameLabel?.text = videoDetailModel?.username
         if let aTimes = videoDetailModel?.user_play_times {
-            playItemsLabel.text = "播放：\(aTimes)"
+            playItemsLabel?.text = "播放：\(aTimes)"
         }
-        userDesLabel.text = videoDetailModel?.user_desc
-        subedNumberLabel.text = "\(videoDetailModel?.subed_num ?? 0)人订阅"
-        titleLabel.text = videoDetailModel?.title
-        descLabel.text = videoDetailModel?.desc
+        userDesLabel?.text = videoDetailModel?.user_desc
+        subedNumberLabel?.text = "\(videoDetailModel?.subed_num ?? 0)人订阅"
+        titleLabel?.text = videoDetailModel?.title
+        descLabel?.text = videoDetailModel?.desc
     }
 
 }
@@ -155,8 +112,7 @@ class JFVideoDetailViewController: IqiyiBaseViewController {
         
         private var videoDM: JFVideoDetailModel?
         private var recommendArray = [AnyHashable]()
-    //  Converted to Swift 4 by Swiftify v4.1.6710 - https://objectivec2swift.com/
-    func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         hidesBottomBarWhenPushed = true
         //用push方法推出时，Tabbar隐藏
@@ -175,7 +131,7 @@ class JFVideoDetailViewController: IqiyiBaseViewController {
         let backBtn = UIButton(type: .custom)
         backBtn.frame = CGRect(x: 15, y: 20, width: 30, height: 30)
         backBtn.addTarget(self, action: Selector("OnBackBtn:"), for: .touchUpInside)
-        backBtn.setImage(UIImage(named: PcellLeft), for: .normal)
+        backBtn.setImage(UIImage(named: "cellLeft"), for: .normal)
         view.addSubview(backBtn)
     }
     func initTableView() {
@@ -183,15 +139,15 @@ class JFVideoDetailViewController: IqiyiBaseViewController {
         tableView.delegate = self
         tableView.dataSource = self
         //将系统的Separator左边不留间隙
-        tableView.separatorInset = UIEdgeInsetsZero
+        tableView.separatorInset = UIEdgeInsets.zero
         videoDetailTableView = tableView
-        view.addSubview(videoDetailTableView)
+        view.addSubview(videoDetailTableView!)
     }
     
     // MARK: - 初始化webView
     func initWebView() {
         videoDetailWebView = UIWebView(frame: CGRect(x: 0, y: 20, width: APPW, height: 220))
-        view.addSubview(videoDetailWebView)
+        view.addSubview(videoDetailWebView!)
     }
     
     func onBackBtn(_ sender: UIButton?) {
@@ -200,44 +156,43 @@ class JFVideoDetailViewController: IqiyiBaseViewController {
     func loadVideoDetailData() {
         self.videoDM = JFVideoDetailModel()
         recommendArray = [AnyHashable]()
-        let urlStr = FreedomTools.shared().url(withVideoDetailData: iid)
-        let url = (urlStr as NSString).addingPercentEscapes(using: .utf8)
-        NetBase.get(url, parameters: nil, progress: nil, success: {(_ task: URLSessionDataTask, _ responseObject: Any?) -> Void in
-            let videoDM = JFVideoDetailModel.mj_object(withKeyValues: responseObject?["detail"])
-            self.videoDM = videoDM
-            let videoUrl = FreedomTools.shared().url(withVideo: self.iid)
-            if let anUrl = URL(string: videoUrl) {
-                self.videoDetailWebView.loadRequest(URLRequest(url: anUrl))
-            }
-            self.videoDetailTableView.reloadData()
-        }, failure: {(_ task: URLSessionDataTask?, _ error: Error) -> Void in
-        })
+//        let urlStr = FreedomTools.sharedManager().url(withVideoDetailData: iid)
+//            NetBase.get(url, parameters: nil, progress: nil, success: {(_ task: URLSessionDataTask, _ responseObject: Any?) -> Void in
+//                let videoDM = JFVideoDetailModel.mj_object(withKeyValues: responseObject?["detail"])
+//                self.videoDM = videoDM
+//                let videoUrl = FreedomTools.shared().url(withVideo: self.iid)
+//                if let anUrl = URL(string: videoUrl) {
+//                    self.videoDetailWebView.loadRequest(URLRequest(url: anUrl))
+//                }
+//                self.videoDetailTableView.reloadData()
+//            }, failure: {(_ task: URLSessionDataTask?, _ error: Error) -> Void in
+//            })
     }
     func loadRecommentData() {
-        let urlStr = FreedomTools.shared().url(withRecommentdata: iid)
-        let url = (urlStr as NSString).addingPercentEscapes(using: .utf8)
-        NetBase.get(url, parameters: nil, progress: nil, success: {(_ task: URLSessionDataTask, _ responseObject: Any?) -> Void in
-            //这个地方要先移除模型数组里面数据
-            recommendArray.removeAll()
-            var resultArray = responseObject?["results"] as? [AnyHashable]
-            var i = 0
-            while i < (resultArray?.count ?? 0) {
-                let recommendM = JFRecommentModel.mj_object(withKeyValues: resultArray[i])
-                recommendM.time = self.convertTime(recommendM.duration)
-                recommendArray.append(recommendM)
-                i
-            }
-            i += 1
-            self.videoDetailTableView.reloadData()
-        }, failure: {(_ task: URLSessionDataTask?, _ error: Error) -> Void in
-        })
+        let urlStr = FreedomTools.sharedManager().url(withRecommentdata: iid)
+        let url = (urlStr! as NSString)//.addingPercentEscapes(using: .utf8)
+//        NetBase.get(url, parameters: nil, progress: nil, success: {(_ task: URLSessionDataTask, _ responseObject: Any?) -> Void in
+//            //这个地方要先移除模型数组里面数据
+//            recommendArray.removeAll()
+//            var resultArray = responseObject?["results"] as? [AnyHashable]
+//            var i = 0
+//            while i < (resultArray?.count ?? 0) {
+//                let recommendM = JFRecommentModel.mj_object(withKeyValues: resultArray[i])
+//                recommendM.time = self.convertTime(recommendM.duration)
+//                recommendArray.append(recommendM)
+//                i
+//            }
+//            i += 1
+//            self.videoDetailTableView.reloadData()
+//        }, failure: {(_ task: URLSessionDataTask?, _ error: Error) -> Void in
+//        })
     }
     func convertTime(_ time: Int) -> String? {
         let currentSeconds = Float64(time)
         var mins = Int(currentSeconds / 60.0)
         let hours = Int(Double(mins) / 60.0)
-        let secs: Int = fmodf(currentSeconds, 60.0)
-        mins = fmodf(mins, 60.0)
+        let secs: Int = Int(fmodf(Float(currentSeconds), 60.0))
+        mins = Int(fmodf(Float(mins), 60.0))
         let hoursString = hours < 10 ? "0\(hours)" : "\(hours)"
         let minsString = mins < 10 ? "0\(mins)" : "\(mins)"
         let secsString = secs < 10 ? "0\(secs)" : "\(secs)"
@@ -247,12 +202,11 @@ class JFVideoDetailViewController: IqiyiBaseViewController {
             return "\(hoursString):\(minsString):\(secsString)"
         }
     }
-    //  Converted to Swift 4 by Swiftify v4.1.6710 - https://objectivec2swift.com/
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return recommendArray.count + 1
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0 {
             return 160
         } else {
@@ -260,24 +214,45 @@ class JFVideoDetailViewController: IqiyiBaseViewController {
         }
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
-            let cell = JFVideoDetailCell(tableView: tableView)
-            if videoDM {
-                cell.videoDetailModel = videoDM
+            let ID = "JFVideoDetailCell"
+            var cell = tableView.dequeueReusableCell(withIdentifier: ID) as? JFVideoDetailCell
+            if cell == nil {
+                cell = JFVideoDetailCell(style: .default, reuseIdentifier: ID)
+                cell?.iconImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
+                cell?.userNameLabel = UILabel(frame: CGRect(x: 80, y: 0, width: 200, height: 20))
+                cell?.playItemsLabel = UILabel(frame: CGRect(x: 80, y: 20, width: 200, height: 20))
+                cell?.userDesLabel = UILabel(frame: CGRect(x: 200, y: 10, width: 100, height: 20))
+                cell?.subscribeButton = UIButton(frame: CGRect(x: 200, y: 30, width: 100, height: 30))
+                cell?.subedNumberLabel = UILabel(frame: CGRect(x: 0, y: 100, width: 100, height: 20))
+                cell?.titleLabel = UILabel(frame: CGRect(x: 0, y: 120, width: 100, height: 20))
+                cell?.descLabel = UILabel(frame: CGRect(x: 0, y: 140, width: 100, height: 20))
+                cell?.subscribeButton?.backgroundColor = UIColor.green
+                cell?.addSubviews([(cell?.iconImageView)!, (cell?.userNameLabel)!, (cell?.playItemsLabel)!, (cell?.userDesLabel)!, (cell?.subscribeButton)!, (cell?.subedNumberLabel)!, (cell?.titleLabel)!, (cell?.descLabel)!])
             }
-            return cell
+            cell?.selectionStyle = .none
+            if (videoDM != nil) {
+                cell?.videoDetailModel = videoDM
+            }
+            return cell!
         } else {
-            let cell = JFRecommentVideoCell(tableView: tableView)
-            cell.recommentModel = recommendArray[indexPath.row - 1]
-            return cell
+            let ID = "JFRecommentVideoCell"
+            var cell = tableView.dequeueReusableCell(withIdentifier: ID) as? JFRecommentVideoCell
+            if cell == nil {
+                // 从xib中加载cell
+                cell = JFRecommentVideoCell(style: .default, reuseIdentifier: ID)
+            }
+            cell?.selectionStyle = .none
+//            cell.setRecommentModel = recommendArray[indexPath.row - 1]
+            return cell!
         }
     }
 
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row > 0 {
-            let recommendM: JFRecommentModel? = recommendArray[indexPath.row - 1]
-            iid = recommendM?.itemCode
+//            let recommendM: JFRecommentModel? = recommendArray[indexPath.row - 1]
+//            iid = recommendM?.itemCode
             DispatchQueue.main.async(execute: {() -> Void in
                 self.loadVideoDetailData()
                 self.loadRecommentData()

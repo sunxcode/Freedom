@@ -3,6 +3,5 @@
 //  Copyright © 2017年 Super. All rights reserved.
 //
 #import <UIKit/UIKit.h>
-#import "TaobaoBaseViewController.h"
-@interface TaobaoHomeViewController : TaobaoBaseViewController
+@interface TaobaoHomeViewController : UIViewController
 @end

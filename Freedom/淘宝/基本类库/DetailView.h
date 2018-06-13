@@ -8,21 +8,17 @@
 @property (nonatomic, assign) BOOL                           isAppear;          //记录当前状态
 - (void) appearOnView:(UIView *) view;
 - (void) disAppearOnView:(UIView *) view;
-@end
-@interface MFullScreenControl()
 @property (nonatomic, strong) UIWindow                      *screenWindow;      //全屏窗体
 @property (nonatomic, strong) UIView                        *contentView;       //视图容器
 @property (nonatomic, strong) UIView                        *fromView;          //启动视图
 @property (nonatomic, strong) UIImageView                   *sourceImageView;   //克隆的启动视图，用于动画展示
 @end
-@interface MFullScreenView : UIView
+@interface MFullScreenView : UIView<UIScrollViewDelegate>
 @property (nonatomic, strong) UIScrollView  *scrollView;    //容器
 @property (nonatomic, strong) UIImageView   *imageView;     //执行动画的图片视图
 @property (nonatomic, assign, setter=enableDoubleTap:) BOOL isDoubleTapEnabled; //是否允许双击放大
 @property (nonatomic, strong) void (^singleTapBlock)(UITapGestureRecognizer *recognizer);   //单击的回调处理
 - (void) reloadData;
-@end
-@interface MFullScreenView() <UIScrollViewDelegate>
 @property (nonatomic, strong) UITapGestureRecognizer *doubleTap;
 @property (nonatomic, strong) UITapGestureRecognizer *singleTap;
 @end

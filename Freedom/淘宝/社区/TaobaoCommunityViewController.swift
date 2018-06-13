@@ -144,7 +144,7 @@ class TaobaoCommunityViewController: TaobaoBaseViewController,UICollectionViewDe
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionElementKindSectionHeader {
             return collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "headview", for: indexPath)
-        }else if kind == UICollectionElementKindSectionFooter {
+        }else{
             return collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionFooter, withReuseIdentifier: "footview", for: indexPath)
         }
     }
