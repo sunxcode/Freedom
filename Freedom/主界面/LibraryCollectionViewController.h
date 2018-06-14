@@ -4,6 +4,7 @@
 //  Copyright © 2016年 Super. All rights reserved.
 //
 #import <UIKit/UIKit.h>
-#import "ElasticTransition.h"
+#import <ElasticTransitionObjC/ElasticTransitionObjC-umbrella.h>
+//#import "ElasticTransition.h"
 @interface LibraryCollectionViewController : UICollectionViewController<ElasticMenuTransitionDelegate>
 @end

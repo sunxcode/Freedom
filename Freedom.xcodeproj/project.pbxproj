@@ -664,8 +664,6 @@
 		7788AC811D79977200376C95 /* mao@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7788AC791D79977200376C95 /* mao@2x.jpg */; };
 		7788AC821D79977200376C95 /* personal_showBac@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7788AC7A1D79977200376C95 /* personal_showBac@2x.png */; };
 		7788AC831D79977200376C95 /* zan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7788AC7B1D79977200376C95 /* zan@2x.png */; };
-		778913901D0FDDDB0096AB3B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7789136E1D0FDDDB0096AB3B /* AppDelegate.m */; };
-		778913921D0FDDDB0096AB3B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 778913701D0FDDDB0096AB3B /* main.m */; };
 		778913A51D101DB10096AB3B /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 778913A21D101DB10096AB3B /* FirstViewController.m */; };
 		778E8EFE1D696020004D899C /* XFHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 778E8EE71D696020004D899C /* XFHomeViewController.m */; };
 		778E8F081D696020004D899C /* XFTitleMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 778E8EFB1D696020004D899C /* XFTitleMenuViewController.m */; };
@@ -1115,6 +1113,7 @@
 		BF6E57BF1FAC0723005F7DF8 /* TLExpressionSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6E57A61FAC055D005F7DF8 /* TLExpressionSearchViewController.m */; };
 		BFAC491920D23BD600E5CB8D /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAC491820D23BD600E5CB8D /* DetailView.swift */; };
 		BFAC491B20D2470F00E5CB8D /* BooksMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAC491A20D2470F00E5CB8D /* BooksMainViewController.swift */; };
+		BFAC49BF20D25EE700E5CB8D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAC49BE20D25EE700E5CB8D /* AppDelegate.swift */; };
 		CE7D3D02561A884A24654308 /* Pods_Freedom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60338462214883C1C05F8646 /* Pods_Freedom.framework */; };
 /* End PBXBuildFile section */
 
@@ -1863,10 +1862,7 @@
 		7788AC791D79977200376C95 /* mao@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "mao@2x.jpg"; sourceTree = "<group>"; };
 		7788AC7A1D79977200376C95 /* personal_showBac@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "personal_showBac@2x.png"; sourceTree = "<group>"; };
 		7788AC7B1D79977200376C95 /* zan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zan@2x.png"; sourceTree = "<group>"; };
-		7789136D1D0FDDDB0096AB3B /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		7789136E1D0FDDDB0096AB3B /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		7789136F1D0FDDDB0096AB3B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		778913701D0FDDDB0096AB3B /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7789138D1D0FDDDB0096AB3B /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		778913A11D101DB10096AB3B /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
 		778913A21D101DB10096AB3B /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
@@ -2379,6 +2375,7 @@
 		BF6E57AB1FAC055D005F7DF8 /* TLMineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TLMineViewController.h; sourceTree = "<group>"; };
 		BFAC491820D23BD600E5CB8D /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		BFAC491A20D2470F00E5CB8D /* BooksMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksMainViewController.swift; sourceTree = "<group>"; };
+		BFAC49BE20D25EE700E5CB8D /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CF6599DF222DA1221C0BD6DC /* Pods-Freedom.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Freedom.release.xcconfig"; path = "Pods/Target Support Files/Pods-Freedom/Pods-Freedom.release.xcconfig"; sourceTree = "<group>"; };
 		ECEF9FF4F388896C86BFA3B3 /* Pods-MyFirstAPP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyFirstAPP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyFirstAPP/Pods-MyFirstAPP.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -4285,8 +4282,7 @@
 		7789136C1D0FDDDB0096AB3B /* Others */ = {
 			isa = PBXGroup;
 			children = (
-				7789136D1D0FDDDB0096AB3B /* AppDelegate.h */,
-				7789136E1D0FDDDB0096AB3B /* AppDelegate.m */,
+				BFAC49BE20D25EE700E5CB8D /* AppDelegate.swift */,
 				7789138D1D0FDDDB0096AB3B /* PrefixHeader.pch */,
 				BF5B9B631F8E645100BD885E /* OC-Swift.h */,
 				77DFEC6F1E20B9090003E192 /* logs */,
@@ -4294,7 +4290,6 @@
 				77BFCBFE1E1F413C00C95B5E /* notes.md */,
 				77BFCBFF1E1F413C00C95B5E /* technology.md */,
 				7789136F1D0FDDDB0096AB3B /* Info.plist */,
-				778913701D0FDDDB0096AB3B /* main.m */,
 			);
 			path = Others;
 			sourceTree = "<group>";
@@ -6042,6 +6037,7 @@
 				BF6E57BF1FAC0723005F7DF8 /* TLExpressionSearchViewController.m in Sources */,
 				7115A5CA20AAD376000D0B96 /* PersonalConsumerViewController.swift in Sources */,
 				71ECE04D2092128E00495467 /* TLChatGroupDetailViewController.m in Sources */,
+				BFAC49BF20D25EE700E5CB8D /* AppDelegate.swift in Sources */,
 				BF6E57BE1FAC071C005F7DF8 /* TLExpressionViewController.m in Sources */,
 				7121196420AC24790087E05B /* ToutiaoTabBarController.swift in Sources */,
 				71ECE0492092128E00495467 /* TLEmojiKeyboard.m in Sources */,
@@ -6103,7 +6099,6 @@
 				71ECE0482092128E00495467 /* TLEmojiBaseCell.m in Sources */,
 				7121195820AC0C2F0087E05B /* JuheAPIViewController.swift in Sources */,
 				BF6E56961FAAF341005F7DF8 /* TLPictureCarouselView.m in Sources */,
-				778913901D0FDDDB0096AB3B /* AppDelegate.m in Sources */,
 				BF5B9B731F8E676500BD885E /* CareerViewController.swift in Sources */,
 				713EE2C620AD9B2B0085B65D /* DZMeController.swift in Sources */,
 				77DE73431D1CDC2B00F39FDB /* SettingsViewController.m in Sources */,
@@ -6119,7 +6114,6 @@
 				7121191E20ABC46F0087E05B /* EnergyNavigationController.swift in Sources */,
 				7165A3B120A57EFE001C60D6 /* XTableView.swift in Sources */,
 				7115A5DA20AAD9AA000D0B96 /* ResumeViewController.swift in Sources */,
-				778913921D0FDDDB0096AB3B /* main.m in Sources */,
 				778E93A61D69B1C2004D899C /* SWCommonTableViewController.m in Sources */,
 				7115A5F020AAFBF6000D0B96 /* MyDatabaseNavigationController.swift in Sources */,
 				7121193620ABC55C0087E05B /* EnergyShopHomeViewController.swift in Sources */,

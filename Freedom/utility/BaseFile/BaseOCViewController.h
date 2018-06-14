@@ -1,6 +1,5 @@
 #import <UIKit/UIKit.h>
 #import "NSDictionary+expanded.h"
-#import "AppDelegate.h"
 #import "CKRadialMenu.h"
 @interface BaseTableViewOCCell : UITableViewCell
 @property(nonatomic,strong)UIImageView *icon;

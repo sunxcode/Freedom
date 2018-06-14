@@ -3,6 +3,7 @@
 #import "ElasticTransition.h"
 #import "SettingsViewController.h"
 #import "LibraryCollectionViewController.h"
+#import <ElasticTransitionObjC/HelperFunctions.h>
 @interface CollectionViewCell1 : UICollectionViewCell{
     UIView *view;
     UIImageView *imageView;
@@ -208,7 +209,7 @@ static FirstViewController *FVC = nil;
     transition.showShadow       = YES;
     transition.panThreshold     = 0.55;
     transition.radiusFactor     = 0.3;
-    transition.transformType    = ROTATE;
+//    transition.transformType    = ROTATE;
     transition.overlayColor     = [UIColor colorWithWhite:0 alpha:0.5];
     transition.shadowColor      = [UIColor colorWithWhite:0 alpha:0.5];
     // gesture recognizers
@@ -236,7 +237,7 @@ static FirstViewController *FVC = nil;
 #pragma mark 设置与收藏的跳转
 -(void)gotoSettingsView:(UIButton*)sender{
     [timer setFireDate:[NSDate distantFuture]];
-    transition.edge = LEFT;
+//    transition.edge = LEFT;
     transition.translation    = CGPointMake(320, 15);
     transition.dragPoint = CGPointMake(230, 170);
     [self performSegueWithIdentifier:@"settings" sender:transition];
@@ -245,13 +246,13 @@ static FirstViewController *FVC = nil;
     if (pan.state != UIGestureRecognizerStateBegan){
         [transition updateInteractiveTransitionWithGestureRecognizer:pan];
     }else{
-        transition.edge = LEFT;
+//        transition.edge = LEFT;
         [transition startInteractiveTransitionFromViewController:self SegueIdentifier:@"settings" GestureRecognizer:pan];
     }
 }
 -(void)gotoLibrary:(UIPanGestureRecognizer*)pan{
     if (pan.state == UIGestureRecognizerStateBegan){
-        transition.edge = RIGHT;
+//        transition.edge = RIGHT;
         [transition startInteractiveTransitionFromViewController:self SegueIdentifier:@"library" GestureRecognizer:pan];
     }else{
         [transition updateInteractiveTransitionWithGestureRecognizer:pan];
@@ -320,7 +321,7 @@ static FirstViewController *FVC = nil;
         frame.origin.y = 44;
     }
     [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-        transition.edge = BOTTOM;
+//        transition.edge = BOTTOM;
         transition.startingPoint = CGPointMake(settingsView.frame.origin.x+settingsView.frame.size.width/2.0, settingsView.frame.origin.y);
         //[self performSegueWithIdentifier:@"navigation" sender:self];
         settingsView.frame = frame;
