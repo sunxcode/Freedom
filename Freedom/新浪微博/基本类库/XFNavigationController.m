@@ -24,10 +24,10 @@
     if (self.viewControllers.count > 1) {
         
         
-        viewController.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(back) image:PcellLeftA heighlightImage:PcellLeftA_y];
+        viewController.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(back) image:@"u_cellLeftA" heighlightImage:@"u_cellLeftA_y"];
         
         
-        viewController.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(more) image:Pnavi3p_b heighlightImage:Pnavi3p_y];
+        viewController.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(more) image:@"u_navi3p_b" heighlightImage:@"u_navi3p_y"];
     }
     
     

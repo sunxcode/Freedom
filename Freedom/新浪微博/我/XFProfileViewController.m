@@ -55,7 +55,7 @@
     [self.groups addObject:group];
     
     // 2.设置组的所有行数据
-    SWCommonArrowItem *album = [SWCommonArrowItem itemWithTitle:@"我的相册" icon:Palbum_g];
+    SWCommonArrowItem *album = [SWCommonArrowItem itemWithTitle:@"我的相册" icon:@"u_album_g"];
     album.subtitle = @"(100)";
     
     

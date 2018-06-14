@@ -2,6 +2,5 @@
 //
 #import "E_ScrollViewController.h"
 #import "WXViewController.h"
-#import "DetailView.h"
 #import "FreedomTools.h"
 #import "PlayAudioViewController.h"

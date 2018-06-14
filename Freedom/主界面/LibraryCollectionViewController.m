@@ -3,7 +3,6 @@
 //  Created by Super on 16/6/24.
 //  Copyright © 2016年 Super. All rights reserved.
 #import "LibraryCollectionViewController.h"
-#import "User.h"
 @interface LibraryCollectionViewCell : BaseCollectionViewOCCell
 @end
 @implementation LibraryCollectionViewCell
@@ -54,7 +53,7 @@ static NSString * const reuseIdentifier = @"Cell";
     ElasticTransition *ET = (ElasticTransition*)self.transitioningDelegate;
     DLog(@"\ntransition.edge = %@\ntransition.transformType = %@\ntransition.sticky = %@\ntransition.showShadow = %@", [HelperFunctions typeToStringOfEdge:ET.edge], [ET transformTypeToString], ET.sticky ? @"YES" : @"NO", ET.showShadow ? @"YES" : @"NO");
     
-    libraryBooks = [NSMutableArray arrayWithArray:[User getControllerData]];
+    libraryBooks = [NSMutableArray arrayWithArray:FREEDOMItems];
     [self.collectionView registerClass:[LibraryCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
@@ -92,23 +91,4 @@ static NSString * const reuseIdentifier = @"Cell";
     }];
     [SVProgressHUD showSuccessWithStatus:[libraryBooks[indexPath.row] valueForKey:@"title"]];
 }
-#pragma mark <UICollectionViewDelegate>
-//- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-//	return YES;
-//}
-//- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-//    return YES;
-//}
-//- (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
-//	return NO;
-//}
-//- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-//	return NO;
-//}
-//- (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-//	
-//}
-//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-//    return CGSizeMake(APPW/5, 80);
-//}
 @end

@@ -699,7 +699,7 @@ static NSMutableArray *_recentEmotions;
         // 初始化按钮
         [self setupBtn:@"compose_camerabutton_background" highImage:@"compose_camerabutton_background_highlighted" type:XFComposeToolbarButtonTypeCamera];
         
-        [self setupBtn:Palbum_gray highImage:Palbum_y type:XFComposeToolbarButtonTypePicture];
+        [self setupBtn:@"u_album_gray" highImage:@"u_album_y" type:XFComposeToolbarButtonTypePicture];
         
         [self setupBtn:@"compose_mentionbutton_background" highImage:@"compose_mentionbutton_background_highlighted" type:XFComposeToolbarButtonTypeMention];
         

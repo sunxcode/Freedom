@@ -15,8 +15,8 @@
     self.statusFrames  = [NSMutableArray array];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(friendSearch) image:PpersonAdd  heighlightImage:PpersonAddHL];
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(pop) image:Pscan  heighlightImage:Pscan_y];
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(friendSearch) image:@"u_personAdd"  heighlightImage:@"u_personAddHL"];
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(pop) image:@"u_scan"  heighlightImage:@"u_scan_y"];
     // 设置图片和文字
     NSString *name = [FreedomTools account].name;
     XFTitleButton *homePageBtn = [[XFTitleButton alloc]init];

@@ -23,9 +23,6 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "Foundation.h"
 #import "BaseOCViewController.h"
-#import "BaseTabBarController.h"
-#import "BaseNavigationController.h"
-#import "NetEngine.h"
 #import "FreedomTools.h"
 #import "NSObject+Freedom.h"
 #endif

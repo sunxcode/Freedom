@@ -57,7 +57,7 @@
     SWCommonGroup *group = [SWCommonGroup group];
     [self.groups addObject:group];
     // 2.设置组的所有行数据
-    SinaMode *video = [SinaMode itemWithTitle:@"视频" icon:Pshok_b];
+    SinaMode *video = [SinaMode itemWithTitle:@"视频" icon:@"u_shok_b"];
     video.operation = ^{
         DLog(@"----点击了视频---");
     };

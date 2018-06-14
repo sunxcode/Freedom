@@ -1,7 +1,6 @@
 
 #import "BaseOCViewController.h"
 #include <objc/runtime.h>
-#import "User.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 @implementation BaseTableViewOCCell
 #pragma mark 初始化
@@ -154,8 +153,8 @@
     self.automaticallyAdjustsScrollViewInsets=NO;
     self.edgesForExtendedLayout = UIRectEdgeNone;
     [self.navigationController.navigationBar setFrame:CGRectMake(0, 0,APPW, TopHeight)];
-    [[UINavigationBar appearance] setBackIndicatorImage:[[UIImage imageNamed:PcellLeft]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-    [[UINavigationBar appearance] setBackIndicatorTransitionMaskImage:[[UIImage imageNamed:PcellLeft]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ]];
+    [[UINavigationBar appearance] setBackIndicatorImage:[[UIImage imageNamed:@"u_cellLeft"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    [[UINavigationBar appearance] setBackIndicatorTransitionMaskImage:[[UIImage imageNamed:@"u_cellLeft"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ]];
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
     backItem.title = @"返回";
     self.navigationItem.backBarButtonItem = backItem;
@@ -285,7 +284,7 @@
 }
 -(NSArray *)items{
     if(!_items){
-        _items = [NSMutableArray arrayWithArray:[User getControllerData]];
+        _items = [NSMutableArray arrayWithArray:FREEDOMItems];
     }
     return _items;
 }

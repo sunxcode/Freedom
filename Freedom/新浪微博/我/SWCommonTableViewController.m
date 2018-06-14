@@ -29,7 +29,7 @@
 #pragma mark - 懒加载右边的view
 - (UIImageView *)rightArrow{
     if (_rightArrow == nil) {
-        self.rightArrow = [[UIImageView alloc] initWithImage:[UIImage imageNamed:PcellRight]];
+        self.rightArrow = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"u_cellRight"]];
     }
     return _rightArrow;
 }

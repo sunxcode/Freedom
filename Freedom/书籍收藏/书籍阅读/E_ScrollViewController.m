@@ -171,9 +171,9 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     [E_HUDView showMsg:@"长按选择文本" inView:nil];
-    UIImage *sina = [UIImage imageNamed:Psina];
+    UIImage *sina = [UIImage imageNamed:@"u_icon_sina"];
     UIImage *friend=[UIImage imageNamed:@"friend.png"];
-    UIImage *weixin = [UIImage imageNamed:Pwechart];
+    UIImage *weixin = [UIImage imageNamed:@"u_icon_wechart"];
     UIImage *menu = [UIImage imageNamed:@"menuClose.png"];
     NSArray *imageList = [NSArray arrayWithObjects:sina,friend,weixin,menu,nil];
     sideBar = [[CDSideBarController alloc] initWithImages:imageList];

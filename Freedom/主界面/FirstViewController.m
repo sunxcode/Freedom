@@ -3,7 +3,6 @@
 #import "ElasticTransition.h"
 #import "SettingsViewController.h"
 #import "LibraryCollectionViewController.h"
-#import "User.h"
 @interface CollectionViewCell1 : UICollectionViewCell{
     UIView *view;
     UIImageView *imageView;
@@ -191,7 +190,7 @@ static FirstViewController *FVC = nil;
     UIBarButtonItem *leftNav = [[UIBarButtonItem alloc]initWithTitle:@"设置" style:UIBarButtonItemStyleDone actionBlick:^{
         [self gotoSettingsView:nil];
     }];
-    UIBarButtonItem *rightNav = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:Pseting] style:UIBarButtonItemStyleDone actionBlick:^{
+    UIBarButtonItem *rightNav = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"u_seting"] style:UIBarButtonItemStyleDone actionBlick:^{
         [self showSettingsView:nil];
     }];
     UINavigationItem * navigationItem = [[UINavigationItem alloc] initWithTitle:@"自由主义"];
@@ -389,7 +388,8 @@ static FirstViewController *FVC = nil;
         return;
     }
     NSPredicate *pre = [NSPredicate predicateWithFormat:@"title CONTAINS %@ OR icon CONTAINS[c] %@ OR icon MATCHES %@", searchText, searchText,@"[F-j]+"];
-    NSArray *b = [[User getControllerData]filteredArrayUsingPredicate:pre];
+    NSArray *temp = FREEDOMItems;
+    NSArray *b = [temp filteredArrayUsingPredicate:pre];
     self.items = [[NSMutableArray alloc] initWithArray:b];
     [homecollectionView reloadData];
 }

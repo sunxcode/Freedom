@@ -282,8 +282,8 @@
         //[self setTitle:@"首页" forState:UIControlStateNormal];
         [self setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         self.titleLabel.font = [UIFont systemFontOfSize:17];
-        [self setImage:[UIImage imageNamed:PcellDown_y] forState:UIControlStateNormal];
-        [self setImage:[UIImage imageNamed:PcellUp_y] forState:UIControlStateSelected];
+        [self setImage:[UIImage imageNamed:@"u_cellDown_y"] forState:UIControlStateNormal];
+        [self setImage:[UIImage imageNamed:@"u_cellUp_y"] forState:UIControlStateSelected];
     }
     return self;
 }

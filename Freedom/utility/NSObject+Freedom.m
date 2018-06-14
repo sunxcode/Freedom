@@ -290,7 +290,6 @@
     return nil;
 }
 @end
-#import "User.h"
 @implementation UIViewController (add)
 -(void)radialMenu:(CKRadialMenu *)radialMenu didSelectPopoutWithIndentifier:(NSString *)identifier{
     DLog(@"代理通知发现点击了控制器%@", identifier);
@@ -324,7 +323,7 @@
 #pragma mark 摇一摇
 /** 开始摇一摇 */
 - (void) motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event{
-    NSArray *theNewItems = [User getControllerData];
+    NSArray *theNewItems = FREEDOMItems;
     CKRadialMenu *theMenu = [[CKRadialMenu alloc] initWithFrame:CGRectMake(APPW/2-25, APPH/2-25, 50, 50)];
     for(int i = 0;i<theNewItems.count;i++){
         UIImageView *a = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];

@@ -279,7 +279,7 @@
 }
 - (TLScannerButton *)qrButton{
     if (_qrButton == nil) {
-        _qrButton = [[TLScannerButton alloc] initWithType:TLScannerTypeQR title:@"扫码" iconPath:PscanQRCode iconHLPath:PscanQRCodeHL];
+        _qrButton = [[TLScannerButton alloc] initWithType:TLScannerTypeQR title:@"扫码" iconPath:@"u_scanQRCode" iconHLPath:@"u_scanQRCodeHL"];
         [_qrButton addTarget:self action:@selector(scannerButtonDown:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _qrButton;

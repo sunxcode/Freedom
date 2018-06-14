@@ -3,7 +3,6 @@
 #import "FirstViewController.h"
 #import "SettingsViewController.h"
 #import "LibraryCollectionViewController.h"
-#import "User.h"
 #import "PlayAudioViewController.h"
 //#import "TheAmazingAudioEngine.h"
 #import <AVFoundation/AVFoundation.h>

@@ -3,7 +3,7 @@
 //  Copyright © 2016年 Super. All rights reserved.
 //
 #import <UIKit/UIKit.h>
-@interface WechartTabBarController : BaseTabBarController
+@interface WechartTabBarController : UITabBarController
 //+ (WechartTabBarController *) sharedRootViewController;
 /*获取tabbarController的第Index个VC（不是navController）
  *

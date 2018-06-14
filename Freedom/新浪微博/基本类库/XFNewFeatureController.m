@@ -37,8 +37,8 @@
         
         if (i == KCount -1) {
             UIButton *shareBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-            [shareBtn setImage:[UIImage imageNamed:Pgou_gray] forState:UIControlStateNormal];
-            [shareBtn setImage:[UIImage imageNamed:Pgou_g] forState:UIControlStateSelected];
+            [shareBtn setImage:[UIImage imageNamed:@"u_gou_gray"] forState:UIControlStateNormal];
+            [shareBtn setImage:[UIImage imageNamed:@"u_gou_g"] forState:UIControlStateSelected];
             [shareBtn setTitle:@"分享至微博" forState:UIControlStateNormal];
             [shareBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
             shareBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 30);

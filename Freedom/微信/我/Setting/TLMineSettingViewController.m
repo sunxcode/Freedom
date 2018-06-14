@@ -26,10 +26,10 @@ typedef void (^ CompleteBlock)(NSMutableArray *data);
     TLSettingItem *item1 = TLCreateSettingItem(@"账号与安全");
     if (/* DISABLES CODE */ (1)) {
         item1.subTitle = @"已保护";
-        item1.rightImagePath = PprotectHL;
+        item1.rightImagePath = @"u_protectHL";
     }else {
         item1.subTitle = @"未保护";
-        item1.rightImagePath = Pprotect;
+        item1.rightImagePath = @"u_protect";
     }
     TLSettingGroup *group1 = TLCreateSettingGroup(nil, nil, @[item1]);
     

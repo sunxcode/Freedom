@@ -30,7 +30,7 @@
             NSString *imagePath = [NSFileManager pathUserChatImage:[(TLImageMessage *)message imagePath]];
             [self.imageView setImage:[UIImage imageNamed:imagePath]];
         }else if ([(TLImageMessage *)message imageURL].length > 0) {
-            [self.imageView sd_setImageWithURL:TLURL([(TLImageMessage *)message imageURL]) placeholderImage:[UIImage imageNamed:PuserLogo]];
+            [self.imageView sd_setImageWithURL:TLURL([(TLImageMessage *)message imageURL]) placeholderImage:[UIImage imageNamed:@"userLogo"]];
         }else{
             [self.imageView setImage:nil];
         }
