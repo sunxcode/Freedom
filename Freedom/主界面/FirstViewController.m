@@ -62,6 +62,7 @@
 -(void)setDataWithDic:(NSDictionary *)dic andColor:(UIColor *)color{
     nameLabel.text = [dic valueForKey:@"title"];
     nameLabel.textColor = color;
+    
 }
 @end
 //FIXME:Layout
