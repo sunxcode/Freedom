@@ -3,7 +3,7 @@
 //  Created by Super on 16/2/17.
 #import "TLMoreKeyboard.h"
 #define     HEIGHT_TOP_SPACE            15
-#define     HEIGHT_COLLECTIONVIEW       (HEIGHT_CHAT_KEYBOARD * 0.85 - HEIGHT_TOP_SPACE)
+#define     HEIGHT_COLLECTIONVIEW       (215.0f * 0.85 - HEIGHT_TOP_SPACE)
 #define     WIDTH_COLLECTION_CELL       60
     
 @implementation TLMoreKeyboardItem
@@ -112,8 +112,8 @@ static TLMoreKeyboard *moreKB;
     [view addSubview:self];
     [self mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.and.right.mas_equalTo(view);
-        make.height.mas_equalTo(HEIGHT_CHAT_KEYBOARD);
-        make.bottom.mas_equalTo(view).mas_offset(HEIGHT_CHAT_KEYBOARD);
+        make.height.mas_equalTo(215.0f);
+        make.bottom.mas_equalTo(view).mas_offset(215.0f);
     }];
     [view layoutIfNeeded];
     if (animation) {
@@ -147,7 +147,7 @@ static TLMoreKeyboard *moreKB;
     if (animation) {
         [UIView animateWithDuration:0.3 animations:^{
             [self mas_updateConstraints:^(MASConstraintMaker *make) {
-                make.bottom.mas_equalTo(self.superview).mas_offset(HEIGHT_CHAT_KEYBOARD);
+                make.bottom.mas_equalTo(self.superview).mas_offset(215.0f);
             }];
             [self.superview layoutIfNeeded];
             if (_keyboardDelegate && [_keyboardDelegate respondsToSelector:@selector(chatKeyboard:didChangeHeight:)]) {

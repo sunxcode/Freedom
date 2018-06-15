@@ -11,7 +11,7 @@
 @implementation XFHomeViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.tableView.backgroundColor = gradcolor;
+    self.tableView.backgroundColor = [UIColor grayColor];
     self.statusFrames  = [NSMutableArray array];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;

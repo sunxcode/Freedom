@@ -415,7 +415,19 @@
 #pragma mark - 动画显示或隐藏多功能下拉按钮
 - (void)showMultifunctionButton{
     if (_searchBtn) {
-        DELAYEXECUTE(0.15,{[_shareBtn removeFromSuperview];_shareBtn = nil;DELAYEXECUTE(0.12, {[_markBtn removeFromSuperview];_markBtn = nil;DELAYEXECUTE(0.09, [_searchBtn removeFromSuperview];_searchBtn = nil;);});});
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.15 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+           [_shareBtn removeFromSuperview];
+            _shareBtn = nil;
+   dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.12 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [_markBtn removeFromSuperview];
+                _markBtn = nil;
+          dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.09 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                 [_searchBtn removeFromSuperview];
+                                            _searchBtn = nil;
+          });
+
+            });
+        });
         return;
     }
    
@@ -451,7 +463,18 @@
     _shareBtn.layer.cornerRadius = 22;
     [_shareBtn addTarget:self action:@selector(doShare) forControlEvents:UIControlEventTouchUpInside];
     _shareBtn.titleLabel.font = [UIFont systemFontOfSize:14.0];
-    DELAYEXECUTE(0.15,{[self.view addSubview:_searchBtn];DELAYEXECUTE(0.12, {[self.view addSubview:_markBtn];DELAYEXECUTE(0.09, [self.view addSubview:_shareBtn]);});});
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.15 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+[self.view addSubview:_searchBtn];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.12 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.view addSubview:_markBtn];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.09 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self.view addSubview:_shareBtn];
+
+            });
+
+            });
+    });
+
     
 }
 #pragma mark - 多功能按钮群中的搜索按钮触发事件
@@ -470,7 +493,21 @@
         UIGestureRecognizer *ges = (UIGestureRecognizer *)[_pageViewController.gestureRecognizers objectAtIndex:i];
         ges.enabled = NO;
     }
-    DELAYEXECUTE(0.15,{[_shareBtn removeFromSuperview];_shareBtn = nil;DELAYEXECUTE(0.12, {[_markBtn removeFromSuperview];_markBtn = nil;DELAYEXECUTE(0.09, [_searchBtn removeFromSuperview];_searchBtn = nil;[self hideTheSettingBar]; [sideBar showMenu];);});});
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.15 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.15 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [_shareBtn removeFromSuperview];_shareBtn = nil;
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.12 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [_markBtn removeFromSuperview];_markBtn = nil;
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.09 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                     [_searchBtn removeFromSuperview];_searchBtn = nil;[self hideTheSettingBar]; [sideBar showMenu];
+
+                });
+
+            });
+
+        });
+    });
 }
 - (void)doMark{
     _markBtn.selected = !_markBtn.selected;
@@ -522,8 +559,10 @@
     [self callToolBar];
     tapGesRec.enabled = NO;
     sideBar.singleTap.enabled = NO;
-    DELAYEXECUTE(0.18, {E_DrawerView *drawerView = [[E_DrawerView alloc] initWithFrame:self.view.frame parentView:self.view];drawerView.delegate = self;
-        [self.view addSubview:drawerView];});
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.18 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        E_DrawerView *drawerView = [[E_DrawerView alloc] initWithFrame:self.view.frame parentView:self.view];drawerView.delegate = self;
+        [self.view addSubview:drawerView];
+    });
     
 }
 #pragma mark - 底部右侧按钮触发事件

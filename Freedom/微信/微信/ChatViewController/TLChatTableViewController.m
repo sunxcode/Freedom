@@ -268,7 +268,7 @@ static UILabel *textLabel;
         if (self.messageType == TLMessageTypeText) {
             kMessageFrame.height += 20;
             [textLabel setAttributedText:self.attrText];
-            kMessageFrame.contentSize = [textLabel sizeThatFits:CGSizeMake(MAX_MESSAGE_WIDTH, MAXFLOAT)];
+            kMessageFrame.contentSize = [textLabel sizeThatFits:CGSizeMake(APPW * 0.58, MAXFLOAT)];
         }
         kMessageFrame.height += kMessageFrame.contentSize.height;
     }

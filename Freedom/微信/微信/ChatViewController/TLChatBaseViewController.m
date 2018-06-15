@@ -295,8 +295,8 @@
 }
 - (void)textViewDidChange:(UITextView *)textView{
     CGFloat height = [textView sizeThatFits:CGSizeMake(self.textView.frame.size.width, MAXFLOAT)].height;
-    height = height > HEIGHT_CHATBAR_TEXTVIEW ? height : HEIGHT_CHATBAR_TEXTVIEW;
-    height = (height <= HEIGHT_MAX_CHATBAR_TEXTVIEW ? height : textView.frameHeight);
+    height = height > 36 ? height : 36;
+    height = (height <= 115 ? height : textView.frameHeight);
     if (height != textView.frameHeight) {
         [UIView animateWithDuration:0.2 animations:^{
             [textView mas_updateConstraints:^(MASConstraintMaker *make) {
@@ -444,7 +444,7 @@
         make.bottom.mas_equalTo(self).mas_offset(-7);
         make.left.mas_equalTo(self.voiceButton.mas_right).mas_offset(4);
         make.right.mas_equalTo(self.emojiButton.mas_left).mas_offset(-4);
-        make.height.mas_equalTo(HEIGHT_CHATBAR_TEXTVIEW);
+        make.height.mas_equalTo(36);
     }];
     
     [self.talkButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -925,7 +925,7 @@ static NSInteger msgAccumulate = 0;
 - (void)keyboardFrameWillChange:(NSNotification *)notification{
     CGRect keyboardFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     if (lastStatus == TLChatBarStatusMore || lastStatus == TLChatBarStatusEmoji) {
-        if (keyboardFrame.size.height <= HEIGHT_CHAT_KEYBOARD) {
+        if (keyboardFrame.size.height <= 215.0f) {
             return;
         }
     }else if (curStatus == TLChatBarStatusEmoji || curStatus == TLChatBarStatusMore) {
@@ -978,13 +978,13 @@ static NSInteger msgAccumulate = 0;
             [self.moreKeyboard mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.top.mas_equalTo(self.chatBar.mas_bottom);
                 make.left.and.right.mas_equalTo(self.view);
-                make.height.mas_equalTo(HEIGHT_CHAT_KEYBOARD);
+                make.height.mas_equalTo(215.0f);
             }];
         }else if (fromStatus == TLChatBarStatusEmoji) {
             [self.emojiKeyboard mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.top.mas_equalTo(self.chatBar.mas_bottom);
                 make.left.and.right.mas_equalTo(self.view);
-                make.height.mas_equalTo(HEIGHT_CHAT_KEYBOARD);
+                make.height.mas_equalTo(215.0f);
             }];
         }
     }else if (toStatus == TLChatBarStatusVoice) {

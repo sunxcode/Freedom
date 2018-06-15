@@ -95,7 +95,7 @@
     UIImageView *selectedBgView = (UIImageView *)self.selectedBackgroundView;
     
     
-    bgView.image = [UIImage imageWithColor:whitecolor];
+    bgView.image = [UIImage imageWithColor:[UIColor whiteColor]];
     selectedBgView.image = [UIImage imageWithColor:RGBCOLOR(241, 241, 241)];
 }
 - (void)setItem:(SinaMode *)item{
@@ -162,7 +162,7 @@
     [super viewDidLoad];
     
     // 设置tableView属性
-    self.tableView.backgroundColor = gradcolor;
+    self.tableView.backgroundColor = [UIColor grayColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.sectionFooterHeight = 5;
     self.tableView.sectionHeaderHeight = 0;

@@ -35,8 +35,8 @@ static TLEmojiKeyboard *emojiKB;
     [view addSubview:self];
     [self mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.and.right.mas_equalTo(view);
-        make.height.mas_equalTo(HEIGHT_CHAT_KEYBOARD);
-        make.bottom.mas_equalTo(view).mas_offset(HEIGHT_CHAT_KEYBOARD);
+        make.height.mas_equalTo(215.0f);
+        make.bottom.mas_equalTo(view).mas_offset(215.0f);
     }];
     [view layoutIfNeeded];
     if (animation) {
@@ -74,7 +74,7 @@ static TLEmojiKeyboard *emojiKB;
     if (animation) {
         [UIView animateWithDuration:0.3 animations:^{
             [self mas_updateConstraints:^(MASConstraintMaker *make) {
-                make.bottom.mas_equalTo(self.superview).mas_offset(HEIGHT_CHAT_KEYBOARD);
+                make.bottom.mas_equalTo(self.superview).mas_offset(215.0f);
             }];
             [self.superview layoutIfNeeded];
             if (_keyboardDelegate && [_keyboardDelegate respondsToSelector:@selector(chatKeyboard:didChangeHeight:)]) {

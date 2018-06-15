@@ -4,13 +4,6 @@
 #import "WXViewController.h"
 #import "YMTableViewCell.h"
 #import "BookFriendsMode.h"
-#define dataCount 10
-#define kLocationToBottom 20
-#define kAdmin @"杨越光"
-typedef NS_ENUM(NSInteger, WFOperationType) {
-    WFOperationTypeReply = 0,
-    WFOperationTypeLike = 1,
-};
 typedef  void(^didRemoveImage)(void);
 @interface YMShowImageView : UIView<UIScrollViewDelegate>{
     UIImageView *showImage;
@@ -61,7 +54,7 @@ typedef  void(^didRemoveImage)(void);
         imageScrollView.maximumZoomScale = 4;
         imageScrollView.minimumZoomScale = 1;
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.bounds];
-        UIImage *img = [UIImage imageNamed:[NSString stringWithFormat:@"%@",[appendArray objectAtIndex:i]]];
+        UIImage *img = [appendArray objectAtIndex:i];
         imageView.image = img;
         imageView.contentMode = UIViewContentModeScaleAspectFit;
         [imageScrollView addSubview:imageView];
@@ -182,12 +175,6 @@ typedef  void(^didRemoveImage)(void);
 }
 @end
 @implementation YMReplyInputView
-@synthesize inputBackgroundView;
-@synthesize textViewBackgroundView;
-@synthesize textView;
-@synthesize lblPlaceholder;
-@synthesize sendButton;
-@synthesize keyboardHeight;
 - (void) composeView{
     keyboardAnimationDuration = 0.4f;
     self.keyboardHeight = 216;
@@ -196,59 +183,59 @@ typedef  void(^didRemoveImage)(void);
     inputHeightWithShadow = 44.0f;
     _autoResizeOnKeyboardVisibilityChanged = NO;
     CGSize size = self.frame.size;
-    inputBackgroundView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
-    inputBackgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    inputBackgroundView.contentMode = UIViewContentModeScaleToFill;
-    inputBackgroundView.backgroundColor = [UIColor clearColor];
-    [self addSubview:inputBackgroundView];
-    textViewBackgroundView = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
-    textViewBackgroundView.borderStyle = UITextBorderStyleRoundedRect;
-    textViewBackgroundView.autoresizingMask = UIViewAutoresizingNone;
-    textViewBackgroundView.userInteractionEnabled = NO;
-    textViewBackgroundView.enabled = NO;
-    [self addSubview:textViewBackgroundView];
-    textView = [[UITextView alloc] initWithFrame:CGRectMake(70.0f, topGap, 185 + screenWidth - 320, 0)];
-    textView.backgroundColor = [UIColor clearColor];
-    textView.delegate = self;
-    textView.contentInset = UIEdgeInsetsMake(-4, -2, -4, 0);
-    textView.showsVerticalScrollIndicator = NO;
-    textView.showsHorizontalScrollIndicator = NO;
-    textView.returnKeyType = UIReturnKeySend;
-    textView.font = [UIFont systemFontOfSize:15.0f];
-    [self addSubview:textView];
+    _inputBackgroundView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
+    _inputBackgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    _inputBackgroundView.contentMode = UIViewContentModeScaleToFill;
+    _inputBackgroundView.backgroundColor = [UIColor clearColor];
+    [self addSubview:_inputBackgroundView];
+    _textViewBackgroundView = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
+    _textViewBackgroundView.borderStyle = UITextBorderStyleRoundedRect;
+    _textViewBackgroundView.autoresizingMask = UIViewAutoresizingNone;
+    _textViewBackgroundView.userInteractionEnabled = NO;
+    _textViewBackgroundView.enabled = NO;
+    [self addSubview:_textViewBackgroundView];
+    _textView = [[UITextView alloc] initWithFrame:CGRectMake(70.0f, topGap, 185 + APPW - 320, 0)];
+    _textView.backgroundColor = [UIColor clearColor];
+    _textView.delegate = self;
+    _textView.contentInset = UIEdgeInsetsMake(-4, -2, -4, 0);
+    _textView.showsVerticalScrollIndicator = NO;
+    _textView.showsHorizontalScrollIndicator = NO;
+    _textView.returnKeyType = UIReturnKeySend;
+    _textView.font = [UIFont systemFontOfSize:15.0f];
+    [self addSubview:_textView];
     [self adjustTextInputHeightForText:@"" animated:NO];
-    lblPlaceholder = [[UILabel alloc] initWithFrame:CGRectMake(78.0f, topGap+2, 160, 20)];
-    lblPlaceholder.font = [UIFont systemFontOfSize:15.0f];
-    lblPlaceholder.text = @"评论...";
-    lblPlaceholder.textColor = [UIColor lightGrayColor];
-    lblPlaceholder.backgroundColor = [UIColor clearColor];
-    [self addSubview:lblPlaceholder];
-    sendButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [sendButton setTitle:@"发表" forState:0];
-    [sendButton setBackgroundImage:[[UIImage imageNamed:@"button_send_comment.png"] stretchableImageWithLeftCapWidth:3 topCapHeight:22] forState:UIControlStateNormal];
-    sendButton.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin;
-    [sendButton addTarget:self action:@selector(sendButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    sendButton.titleLabel.font = [UIFont systemFontOfSize:15.0f];
-    [sendButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [self addSubview:sendButton];
-    [self sendSubviewToBack:inputBackgroundView];
+    _lblPlaceholder = [[UILabel alloc] initWithFrame:CGRectMake(78.0f, topGap+2, 160, 20)];
+    _lblPlaceholder.font = [UIFont systemFontOfSize:15.0f];
+    _lblPlaceholder.text = @"评论...";
+    _lblPlaceholder.textColor = [UIColor lightGrayColor];
+    _lblPlaceholder.backgroundColor = [UIColor clearColor];
+    [self addSubview:_lblPlaceholder];
+    _sendButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_sendButton setTitle:@"发表" forState:0];
+    [_sendButton setBackgroundImage:[[UIImage imageNamed:@"button_send_comment.png"] stretchableImageWithLeftCapWidth:3 topCapHeight:22] forState:UIControlStateNormal];
+    _sendButton.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin;
+    [_sendButton addTarget:self action:@selector(sendButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    _sendButton.titleLabel.font = [UIFont systemFontOfSize:15.0f];
+    [_sendButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self addSubview:_sendButton];
+    [self sendSubviewToBack:_inputBackgroundView];
     self.backgroundColor = [UIColor colorWithRed:(0xD9 / 255.0) green:(0xDC / 255.0) blue:(0xE0 / 255.0) alpha:1.0];
     [self showCommentView];
 }
 - (void)layoutSubviews{
     [super layoutSubviews];
     //最上面的一条细线
-    UILabel *dividLbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, screenWidth, 1)];
+    UILabel *dividLbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, APPW, 1)];
     dividLbl.backgroundColor = [UIColor colorWithRed:227/255.0 green:227/255.0 blue:229/255.0 alpha:1.0];
     [self addSubview:dividLbl];
     self.backgroundColor = [UIColor whiteColor];
-    textView.frame = CGRectMake(5, textView.frame.origin.y, screenWidth - 10 - 65, textView.frame.size.height);
-    CGRect f = textView.frame;
+    _textView.frame = CGRectMake(5, _textView.frame.origin.y, APPW - 10 - 65, _textView.frame.size.height);
+    CGRect f = _textView.frame;
     f.size.height = f.size.height+3;
-    textViewBackgroundView.frame = f;
-    lblPlaceholder.frame = CGRectMake(8, topGap+2, 230, 20);
-    lblPlaceholder.backgroundColor = [UIColor clearColor];
-    sendButton.frame = CGRectMake(screenWidth - 10 - 55,textView.frame.origin.y, 55, 27);
+    _textViewBackgroundView.frame = f;
+    _lblPlaceholder.frame = CGRectMake(8, topGap+2, 230, 20);
+    _lblPlaceholder.backgroundColor = [UIColor clearColor];
+    _sendButton.frame = CGRectMake(APPW - 10 - 55,_textView.frame.origin.y, 55, 27);
 }
 - (void) awakeFromNib{[super awakeFromNib];
     [self composeView];
@@ -262,8 +249,8 @@ typedef  void(^didRemoveImage)(void);
     }
 }
 - (void) adjustTextInputHeightForText:(NSString*)text animated:(BOOL)animated{
-    int h1 = [text sizeForFont:textView.font].height;
-    int h2 = [text sizeForFont:textView.font constrainedToSize:CGSizeMake(textView.frame.size.width - 16, 170.0f) lineBreakMode:NSLineBreakByWordWrapping].height;
+    int h1 = [text sizeForFont:_textView.font].height;
+    int h2 = [text sizeForFont:_textView.font constrainedToSize:CGSizeMake(_textView.frame.size.width - 16, 170.0f) lineBreakMode:NSLineBreakByWordWrapping].height;
     [UIView animateWithDuration:(animated ? .1f : 0) animations:^{
          int h = h2 == h1 ? inputHeightWithShadow : h2 + 24;
          if (h>78) {
@@ -272,17 +259,17 @@ typedef  void(^didRemoveImage)(void);
          int delta = h - self.frame.size.height;
          CGRect r2 = CGRectMake(0, self.frame.origin.y - delta, self.frame.size.width, h);
          self.frame = r2;
-         inputBackgroundView.frame = CGRectMake(0, 0, self.frame.size.width, h);
-         CGRect r = textView.frame;
+         _inputBackgroundView.frame = CGRectMake(0, 0, self.frame.size.width, h);
+         CGRect r = _textView.frame;
          r.origin.y = topGap;
          r.size.height = h - 18;
-         textView.frame = r;
+         _textView.frame = r;
      } completion:^(BOOL finished){ }];
 }
 - (id) initWithFrame:(CGRect)frame andAboveView:(UIView *)bgView{
     self = [super initWithFrame:frame];
     if (self){
-        tapView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, screenHeight)];
+        tapView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, APPH)];
         tapView.backgroundColor = [UIColor blackColor];
         tapView.userInteractionEnabled = YES;
         [bgView addSubview:tapView];
@@ -294,25 +281,25 @@ typedef  void(^didRemoveImage)(void);
     return self;
 }
 - (void) fitText{
-    [self adjustTextInputHeightForText:textView.text animated:YES];
+    [self adjustTextInputHeightForText:_textView.text animated:YES];
 }
 - (BOOL)resignFirstResponder{
     if (super.isFirstResponder)
-        return [super resignFirstResponder];else if ([textView isFirstResponder])
-            return [textView resignFirstResponder];
+        return [super resignFirstResponder];else if ([_textView isFirstResponder])
+            return [_textView resignFirstResponder];
     return NO;
 }
 #pragma mark - Public Methods
 - (NSString*)text{
-    return textView.text;
+    return _textView.text;
 }
 - (void) setText:(NSString*)text{
-    textView.text = text;
-    lblPlaceholder.hidden = text.length > 0;
+    _textView.text = text;
+    _lblPlaceholder.hidden = text.length > 0;
     [self fitText];
 }
 - (void) setPlaceholder:(NSString*)text{
-    lblPlaceholder.text = text;
+    _lblPlaceholder.text = text;
 }
 #pragma mark - Display
 - (void)beganEditing{
@@ -332,7 +319,7 @@ typedef  void(^didRemoveImage)(void);
          } completion:^(BOOL fin){}];
         [self fitText];
     }
-    lblPlaceholder.hidden = textView.text.length > 0;
+    _lblPlaceholder.hidden = _textView.text.length > 0;
 }
 #pragma mark - Keyboard Notifications
 - (void)listenForKeyboardNotifications:(BOOL)listen{
@@ -373,7 +360,7 @@ typedef  void(^didRemoveImage)(void);
 - (void)keyboardDidHide:(NSNotification*)n{
 }
 - (void)keyboardDidShow:(NSNotification*)n{
-    if ([textView isFirstResponder]){
+    if ([_textView isFirstResponder]){
         [self beganEditing];
     }
 }
@@ -402,18 +389,18 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
     return YES;
 }
 - (void) textViewDidChange:(UITextView*)textview{
-    lblPlaceholder.hidden = textview.text.length > 0;
+    _lblPlaceholder.hidden = textview.text.length > 0;
     [self fitText];
-    if(textView.text.length == 141){
+    if(_textView.text.length == 141){
 // [self.superview makeToast:@"超过字数限制啦" duration:0.5f position:@"center-38"];
     }
 }
 #pragma mark THChatInput Delegate
 - (void) sendButtonPressed:(id)sender{
-    if ([textView.text isEqualToString:@""]) {
+    if ([_textView.text isEqualToString:@""]) {
         return;
     }
-    [_delegate YMReplyInputWithReply:textView.text appendTag:_replyTag];
+    [_delegate YMReplyInputWithReply:_textView.text appendTag:_replyTag];
     [self disappear];
 }
 - (void)returnButtonPressed:(id)sender{
@@ -437,7 +424,7 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
     [_delegate destorySelf];
 }
 @end
-typedef void(^DidSelectedOperationBlock)(WFOperationType operationType);
+typedef void(^DidSelectedOperationBlock)(NSInteger operationType);
 @interface WFPopView : UIView
 @property (nonatomic, assign) BOOL shouldShowed;
 @property (nonatomic, copy) DidSelectedOperationBlock didSelectedOperationCompletion;
@@ -445,8 +432,6 @@ typedef void(^DidSelectedOperationBlock)(WFOperationType operationType);
 - (void)showAtView:(UIView *)containerView rect:(CGRect)targetRect isFavour:(BOOL)isFavour;
 - (void)dismiss;
 @end
-#define kXHALbumOperationViewSize CGSizeMake(120, 34)
-#define kXHAlbumSpatorY 5
 @interface WFPopView ()
 @property (nonatomic, strong) UIButton *replyButton;
 @property (nonatomic, strong) UIButton *likeButton;
@@ -481,7 +466,7 @@ typedef void(^DidSelectedOperationBlock)(WFOperationType operationType);
         _replyButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _replyButton.tag = 0;
         [_replyButton addTarget:self action:@selector(operationDidClicked:) forControlEvents:UIControlEventTouchUpInside];
-        _replyButton.frame = CGRectMake(0, 0, kXHALbumOperationViewSize.width / 2.0, kXHALbumOperationViewSize.height);
+        _replyButton.frame = CGRectMake(0, 0, CGSizeMake(120, 34).width / 2.0, CGSizeMake(120, 34).height);
         [_replyButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _replyButton.titleLabel.font = [UIFont systemFontOfSize:14];
     }
@@ -505,12 +490,12 @@ typedef void(^DidSelectedOperationBlock)(WFOperationType operationType);
         return;
     }
     [containerView addSubview:self];
-    CGFloat width = kXHALbumOperationViewSize.width;
-    CGFloat height = kXHALbumOperationViewSize.height;
-    self.frame = CGRectMake(targetRect.origin.x, targetRect.origin.y - kXHAlbumSpatorY, 0, height);
+    CGFloat width = CGSizeMake(120, 34).width;
+    CGFloat height = CGSizeMake(120, 34).height;
+    self.frame = CGRectMake(targetRect.origin.x, targetRect.origin.y - 5, 0, height);
     self.shouldShowed = YES;
     [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-        self.frame = CGRectMake(targetRect.origin.x - width, targetRect.origin.y - kXHAlbumSpatorY, width, height);
+        self.frame = CGRectMake(targetRect.origin.x - width, targetRect.origin.y - 5, width, height);
     } completion:^(BOOL finished) {
         [_replyButton setTitle:@"评论" forState:UIControlStateNormal];
         [_likeButton setTitle:(isFavour?@"取消赞":@"赞") forState:UIControlStateNormal];
@@ -524,8 +509,8 @@ typedef void(^DidSelectedOperationBlock)(WFOperationType operationType);
     [UIView animateWithDuration:0.25f animations:^{
         [_replyButton setTitle:nil forState:UIControlStateNormal];
         [_likeButton setTitle:nil forState:UIControlStateNormal];
-        CGFloat height = kXHALbumOperationViewSize.height;
-        self.frame = CGRectMake(self.targetRect.origin.x, self.targetRect.origin.y - kXHAlbumSpatorY, 0, height);
+        CGFloat height = CGSizeMake(120, 34).height;
+        self.frame = CGRectMake(self.targetRect.origin.x, self.targetRect.origin.y - 5, 0, height);
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
     }];
@@ -552,6 +537,20 @@ typedef void(^DidSelectedOperationBlock)(WFOperationType operationType);
 @implementation WXViewController
 #pragma mark - 数据源
 - (void)configData{
+    NSString *kAdmin = @"杨越光";
+    NSString * kContentText1 = @"思想不会流血，不会感到痛苦，思想不会死去";
+    NSString * kContentText2 = @"这张面具之下，不是肉体，而是一种思想但思想是不怕子弹的";
+    NSString *kContentText3 = @"Most people are so ungrateful to be alive. But not you. Not anymore. ";
+    NSString *kContentText4 = @"活着本来没有什么意义，但只要活着就会发现很多有趣的13688919929事，就像你发现了花，我又发现你一样[em:03:]。";
+    NSString *kContentText5 = @"地狱的房间已满，于是，[em:02:][em:02:]死亡爬上了人间如果一个人觉得他自己死的很不值,就会把诅咒留在他生前接触过的地方[em:02:]只要有人经过这些地方[em:02:]就会被咒语套中如果一个人觉得他自己死的很不值,就会把诅咒留在他生前接触过的地方[em:02:]只要有人经过这些地方[em:02:]就会被咒语套中如果一个人觉得他自己死的很不值,就会把诅咒留在他生前接触过的地方[em:02:]只要有人经过这些地方[em:02:]就会被咒语套中如果一个人觉得他自己死的很不值,就会把诅咒留在他生前接触过的地方[em:02:]只要有人经过这些地方[em:02:]就会被咒语套中";
+    NSString *kContentText6 = @"如果一个人觉得他自己死的很不值,就会把诅咒留在他生前接触过的地方[em:02:]只要有人经过这些地方[em:02:]就会被咒语套中";
+    NSString *kShuoshuoText1 = @"驱魔人 “你可知道邪恶深藏于你心深处，但我会始终在你的[em:02:]左右，握着我的手，我会让你看到神迹，抱紧信仰，除此你一无所有！”";
+    NSString *kShuoshuoText2 = @"李太啊，我的饺子最好吃，劲道、柔软、不露馅[em:03:]揉面的时候要一直揉到面团表面象剥了壳的鸡蛋，吃起来一包鲜汁";
+    NSString *kShuoshuoText3 = @"如果晚上月亮升起的时候，月光www.baidu.com照到我的门口，我希望[em:03:]月光www.baidu.com女神能满足我一个愿望，我想要一双人类的手。我想用我的双手把我的爱人紧紧地拥在怀中，哪怕只有一次。如果我从来没有品尝过温暖的感觉，也许我不会这样寒冷；如果我从没有感受过爱情的甜美，我也许就不会这样地痛苦。如果我没有遇到善良的佩格，如果我从来不曾离开过我的房间，我就不会知道我原来是这样的孤独";
+    NSString *kShuoshuoText4 = @"人有的时候很脆弱，会遇到很多不如意18618881888的事，日积月累就会形成心结，就算想告诉亲戚朋友，他们也未必懂得怎样[em:03:]开解";
+    NSString *kShuoshuoText5 = @"如果是像金钱这种东西被抢走的话，再抢[em:03:]回来就好了！但如果是人性或温暖的心的话……那就只有遇上心中同样是空虚的人，才有www.baidu.com办法帮你填补起内心的空洞";
+    NSString *kShuoshuoText6 = @"双目瞪人玛[em:03:]丽肖,傀儡为子常怀抱,汝辈小儿需切记,梦中遇她莫尖叫";
+
     _tableDataSource = [[NSMutableArray alloc] init];
     _contentDataSource = [[NSMutableArray alloc] init];
     _replyIndex = -1;//代表是直接评论
@@ -645,16 +644,17 @@ typedef void(^DidSelectedOperationBlock)(WFOperationType operationType);
     self.view.backgroundColor = [UIColor whiteColor];
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     backBtn.frame = CGRectMake(0, 20, self.view.frame.size.width, 44);
-    [backBtn setTitle:[NSString stringWithFormat:@"我是返回,该登陆用户为%@",kAdmin] forState:UIControlStateNormal];
+    [backBtn setTitle:[NSString stringWithFormat:@"我是返回,该登陆用户为%@",@"杨越光"] forState:UIControlStateNormal];
     backBtn.backgroundColor = [UIColor clearColor];
     [self.view addSubview:backBtn];
     [backBtn addTarget:self action:@selector(backToPre) forControlEvents:UIControlEventTouchUpInside];
     [self configData];
-    [self initTableview];
-    [self loadTextData];
-}
-#pragma mark -加载数据
-- (void)loadTextData{
+    mainTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height - 64)];
+    mainTable.backgroundColor = [UIColor clearColor];
+    // mainTable.separatorStyle = UITableViewCellSeparatorStyleNone;
+    mainTable.delegate = self;
+    mainTable.dataSource = self;
+    [self.view addSubview:mainTable];
  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
        NSMutableArray * ymDataArray =[[NSMutableArray alloc]init];
         for (int i = 0 ; i < _contentDataSource.count; i ++) {
@@ -663,35 +663,23 @@ typedef void(^DidSelectedOperationBlock)(WFOperationType operationType);
              ymData.messageBody = messBody;
              [ymDataArray addObject:ymData];
          }
-         [self calculateHeight:ymDataArray];
-    });
-}
-#pragma mark - 计算高度
-- (void)calculateHeight:(NSMutableArray *)dataArray{
-    NSDate* tmpStartData = [NSDate date];
-    for (YMTextData *ymData in dataArray) {
-        ymData.shuoshuoHeight = [ymData calculateShuoshuoHeightWithWidth:self.view.frame.size.width withUnFoldState:NO];//折叠
-        ymData.unFoldShuoHeight = [ymData calculateShuoshuoHeightWithWidth:self.view.frame.size.width withUnFoldState:YES];//展开
-        ymData.replyHeight = [ymData calculateReplyHeightWithWidth:self.view.frame.size.width];
-        ymData.favourHeight = [ymData calculateFavourHeightWithWidth:self.view.frame.size.width];
-        [_tableDataSource addObject:ymData];
-    }
-    double deltaTime = [[NSDate date] timeIntervalSinceDate:tmpStartData];
-    DLog(@"cost time = %f", deltaTime);
-    dispatch_async(dispatch_get_main_queue(), ^{
-       [mainTable reloadData];
+     NSDate* tmpStartData = [NSDate date];
+     for (YMTextData *ymData in ymDataArray) {
+         ymData.shuoshuoHeight = [ymData calculateShuoshuoHeightWithWidth:self.view.frame.size.width withUnFoldState:NO];//折叠
+         ymData.unFoldShuoHeight = [ymData calculateShuoshuoHeightWithWidth:self.view.frame.size.width withUnFoldState:YES];//展开
+         ymData.replyHeight = [ymData calculateReplyHeightWithWidth:self.view.frame.size.width];
+         ymData.favourHeight = [ymData calculateFavourHeightWithWidth:self.view.frame.size.width];
+         [_tableDataSource addObject:ymData];
+     }
+     double deltaTime = [[NSDate date] timeIntervalSinceDate:tmpStartData];
+     DLog(@"cost time = %f", deltaTime);
+     dispatch_async(dispatch_get_main_queue(), ^{
+         [mainTable reloadData];
+     });
     });
 }
 - (void)backToPre{
     [self dismissViewControllerAnimated:YES completion:NULL];
-}
-- (void) initTableview{
-    mainTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height - 64)];
-    mainTable.backgroundColor = [UIColor clearColor];
-    // mainTable.separatorStyle = UITableViewCellSeparatorStyleNone;
-    mainTable.delegate = self;
-    mainTable.dataSource = self;
-    [self.view addSubview:mainTable];
 }
 //**///////////////////////////////////////////////////
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -700,7 +688,7 @@ typedef void(^DidSelectedOperationBlock)(WFOperationType operationType);
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     YMTextData *ym = [_tableDataSource objectAtIndex:indexPath.row];
     BOOL unfold = ym.foldOrNot;
-    return TableHeader + kLocationToBottom + ym.replyHeight + ym.showImageHeight  + kDistance + (ym.islessLimit?0:30) + (unfold?ym.shuoshuoHeight:ym.unFoldShuoHeight) + kReplyBtnDistance + ym.favourHeight + (ym.favourHeight == 0?0:kReply_FavourDistance);
+    return 50 + 20 + ym.replyHeight + ym.showImageHeight  + 30 + (ym.islessLimit?0:30) + (unfold?ym.shuoshuoHeight:ym.unFoldShuoHeight) + 30 + ym.favourHeight + (ym.favourHeight == 0?0:8);
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *CellIdentifier = @"ILTableViewCell";
@@ -709,23 +697,22 @@ typedef void(^DidSelectedOperationBlock)(WFOperationType operationType);
         cell = [[YMTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     cell.stamp = indexPath.row;
-    cell.replyBtn.appendIndexPath = indexPath;
+    cell.replyBtn.tag = indexPath.row;
     [cell.replyBtn addTarget:self action:@selector(replyAction:) forControlEvents:UIControlEventTouchUpInside];
     cell.delegate = self;
     [cell setYMViewWith:[_tableDataSource objectAtIndex:indexPath.row]];
     return cell;
 }
-////////////////////////////////////////////////////////////////////
 #pragma mark - 按钮动画
-- (void)replyAction:(YMButton *)sender{
-    CGRect rectInTableView = [mainTable rectForRowAtIndexPath:sender.appendIndexPath];
+- (void)replyAction:(UIButton *)sender{
+    CGRect rectInTableView = [mainTable rectForRowAtIndexPath:[NSIndexPath indexPathWithIndex:sender.tag]];
     CGFloat origin_Y = rectInTableView.origin.y + sender.frame.origin.y;
     CGRect targetRect = CGRectMake(CGRectGetMinX(sender.frame), origin_Y, CGRectGetWidth(sender.bounds), CGRectGetHeight(sender.bounds));
     if (self.operationView.shouldShowed) {
         [self.operationView dismiss];
         return;
     }
-    _selectedIndexPath = sender.appendIndexPath;
+    _selectedIndexPath = [NSIndexPath indexPathWithIndex:sender.tag];
     YMTextData *ym = [_tableDataSource objectAtIndex:_selectedIndexPath.row];
     [self.operationView showAtView:mainTable rect:targetRect isFavour:ym.hasFavour];
 }
@@ -733,10 +720,10 @@ typedef void(^DidSelectedOperationBlock)(WFOperationType operationType);
     if (!_operationView) {
         _operationView = [WFPopView initailzerWFOperationView];
         WS(ws);
-        _operationView.didSelectedOperationCompletion = ^(WFOperationType operationType) {
+        _operationView.didSelectedOperationCompletion = ^(NSInteger operationType) {
             switch (operationType) {
-                case WFOperationTypeLike:[ws addLike];break;
-                case WFOperationTypeReply:[ws replyMessage: nil];break;
+                case 0:[ws addLike];break;
+                case 1:[ws replyMessage: nil];break;
                 default:break;
             }
         };
@@ -748,10 +735,10 @@ typedef void(^DidSelectedOperationBlock)(WFOperationType operationType);
     YMTextData *ymData = (YMTextData *)[_tableDataSource objectAtIndex:_selectedIndexPath.row];
     WFMessageBody *m = ymData.messageBody;
     if (m.isFavour == YES) {//此时该取消赞
-        [m.posterFavour removeObject:kAdmin];
+        [m.posterFavour removeObject:@"杨越光"];
         m.isFavour = NO;
     }else{
-        [m.posterFavour addObject:kAdmin];
+        [m.posterFavour addObject:@"杨越光"];
         m.isFavour = YES;
     }
     ymData.messageBody = m;
@@ -763,11 +750,11 @@ typedef void(^DidSelectedOperationBlock)(WFOperationType operationType);
     [mainTable reloadData];
 }
 #pragma mark - 真の评论
-- (void)replyMessage:(YMButton *)sender{
+- (void)replyMessage:(UIButton *)sender{
     if (replyView) {
         return;
     }
-    replyView = [[YMReplyInputView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 44, screenWidth,44) andAboveView:self.view];
+    replyView = [[YMReplyInputView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 44, APPW,44) andAboveView:self.view];
     replyView.delegate = self;
     replyView.replyTag = _selectedIndexPath.row;
     [self.view addSubview:replyView];
@@ -811,7 +798,7 @@ typedef void(^DidSelectedOperationBlock)(WFOperationType operationType);
     _replyIndex = replyIndex;
     YMTextData *ymData = (YMTextData *)[_tableDataSource objectAtIndex:index];
     WFReplyBody *b = [ymData.messageBody.posterReplies objectAtIndex:replyIndex];
-    if ([b.replyUser isEqualToString:kAdmin]) {
+    if ([b.replyUser isEqualToString:@"杨越光"]) {
         WFActionSheet *actionSheet = [[WFActionSheet alloc] initWithTitle:@"删除评论？" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"确定" otherButtonTitles:nil, nil];
         actionSheet.actionIndex = index;
         [actionSheet showInView:self.view];
@@ -820,7 +807,7 @@ typedef void(^DidSelectedOperationBlock)(WFOperationType operationType);
         if (replyView) {
             return;
         }
-        replyView = [[YMReplyInputView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 44, screenWidth,44) andAboveView:self.view];
+        replyView = [[YMReplyInputView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 44, APPW,44) andAboveView:self.view];
         replyView.delegate = self;
         replyView.lblPlaceholder.text = [NSString stringWithFormat:@"回复%@:",b.replyUser];
         replyView.replyTag = index;
@@ -832,7 +819,7 @@ typedef void(^DidSelectedOperationBlock)(WFOperationType operationType);
     YMTextData *ymData = nil;
     if (_replyIndex == -1) {
         WFReplyBody *body = [[WFReplyBody alloc] init];
-        body.replyUser = kAdmin;
+        body.replyUser = @"杨越光";
         body.repliedUser = @"";
         body.replyInfo = replyText;
         ymData = (YMTextData *)[_tableDataSource objectAtIndex:inputTag];
@@ -843,7 +830,7 @@ typedef void(^DidSelectedOperationBlock)(WFOperationType operationType);
         ymData = (YMTextData *)[_tableDataSource objectAtIndex:inputTag];
         WFMessageBody *m = ymData.messageBody;
         WFReplyBody *body = [[WFReplyBody alloc] init];
-        body.replyUser = kAdmin;
+        body.replyUser = @"杨越光";
         body.repliedUser = [(WFReplyBody *)[m.posterReplies objectAtIndex:_replyIndex] replyUser];
         body.replyInfo = replyText;
         [m.posterReplies addObject:body];
@@ -857,7 +844,6 @@ typedef void(^DidSelectedOperationBlock)(WFOperationType operationType);
     [mainTable reloadData];
 }
 - (void)destorySelf{
-  //  DLog(@"dealloc reply");
     [replyView removeFromSuperview];
     replyView = nil;
     _replyIndex = -1;

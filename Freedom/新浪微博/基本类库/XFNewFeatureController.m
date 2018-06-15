@@ -3,7 +3,7 @@
 //  Created by Fay on 15/9/19.
 #import "XFNewFeatureController.h"
 #import "SinaTabBarController.h"
-#define KCount 4
+
 @interface XFNewFeatureController ()<UIScrollViewDelegate>
 @property(nonatomic,weak) UIScrollView *scrollView;
 @property (nonatomic, weak) UIPageControl *pageControl;
@@ -12,8 +12,8 @@
 @implementation XFNewFeatureController
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
+
+    int KCount = 4;
     UIScrollView *scrollView = [[UIScrollView alloc]init];
     scrollView.delegate = self;
     scrollView.frame = self.view.bounds;
@@ -50,7 +50,7 @@
             
             
             UIButton *startBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-            [startBtn setBackgroundImage:[UIImage imageWithColor:yellowcolor] forState:UIControlStateNormal];
+            [startBtn setBackgroundImage:[UIImage imageWithColor:[UIColor yellowColor]] forState:UIControlStateNormal];
             [startBtn setBackgroundImage:[UIImage imageWithColor:RGBCOLOR(235, 108, 1)] forState:UIControlStateHighlighted];
             [startBtn setTitle:@"开始微博" forState:UIControlStateNormal];
             [startBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -97,11 +97,5 @@
     
     
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+
 @end
-// 版权属于原作者
-// http://code4app.com (cn) http://code4app.net (en)
-// 发布代码于最专业的源码分享网站: Code4App.com

@@ -149,9 +149,6 @@ MJCodingImplementation
     self.image = [UIImage imageNamed:emotion.png];
 }
 @end
-// 版权属于原作者
-// http://code4app.com (cn) http://code4app.net (en)
-// 发布代码于最专业的源码分享网站: Code4App.com
 @implementation XFTextView
 -(id)initWithFrame:(CGRect)frame {
     
@@ -234,9 +231,6 @@ MJCodingImplementation
     
 }
 @end
-// 版权属于原作者
-// http://code4app.com (cn) http://code4app.net (en)
-// 发布代码于最专业的源码分享网站: Code4App.com
 @implementation XFEmotionTextView
 - (id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
@@ -316,9 +310,6 @@ MJCodingImplementation
  2.如果是属性文字（attributedText），文字大小不受textView.font控制，应该利用NSMutableAttributedString的- (void)addAttribute:(NSString *)name value:(id)value range:(NSRange)range;方法设置字体
  **/
 @end
-// 版权属于原作者
-// http://code4app.com (cn) http://code4app.net (en)
-// 发布代码于最专业的源码分享网站: Code4App.com
 @interface XFEmotionPageView : UIView
 /** 这一页显示的表情（里面都是XFEmotion模型） */
 @property (nonatomic, strong) NSArray *emotions;
@@ -351,16 +342,10 @@ static NSMutableArray *_recentEmotions;
     return _recentEmotions;
 }
 @end
-// 版权属于原作者
-// http://code4app.com (cn) http://code4app.net (en)
-// 发布代码于最专业的源码分享网站: Code4App.com
 @class XFEmotion;
 @interface XFEmotionButton : UIButton
 @property (nonatomic, strong) XFEmotion *emotion;
 @end
-// 版权属于原作者
-// http://code4app.com (cn) http://code4app.net (en)
-// 发布代码于最专业的源码分享网站: Code4App.com
 @implementation XFEmotionButton
 - (id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
@@ -387,9 +372,6 @@ static NSMutableArray *_recentEmotions;
     }
 }
 @end
-// 版权属于原作者
-// http://code4app.com (cn) http://code4app.net (en)
-// 发布代码于最专业的源码分享网站: Code4App.com
 @interface XFEmotionPageView ()
 /** 删除按钮 */
 @property (nonatomic, weak) UIButton *deleteButton;
@@ -467,9 +449,6 @@ static NSMutableArray *_recentEmotions;
     self.deleteButton.frame = CGRectMake(self.frame.size.width - inset - btnw,  self.frameHeight - btnH, btnw, btnH);
 }
 @end
-// 版权属于原作者
-// http://code4app.com (cn) http://code4app.net (en)
-// 发布代码于最专业的源码分享网站: Code4App.com
 @interface XFEmotionListView : UIView
 /** 表情(里面存放的XFEmotion模型) */
 @property (nonatomic, strong) NSArray *emotions;

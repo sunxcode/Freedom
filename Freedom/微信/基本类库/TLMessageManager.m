@@ -237,6 +237,9 @@ static TLMessageManager *messageManager;
 }
 - (void)requestClientInitInfoSuccess:(void (^)(id)) clientInitInfo
                              failure:(void (^)(NSString *))error{
+
+    NSString *HOST_URL = @"http://127.0.0.1:8000/";            // 本地测试服务器
+//    HOST_URL = @"http://121.42.29.15:8000/";        // 远程线上服务器
     NSString *urlString = [HOST_URL stringByAppendingString:@"client/getClientInitInfo/"];
     [NetBase POST:urlString parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         DLog(@"OK");

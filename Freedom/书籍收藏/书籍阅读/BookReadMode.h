@@ -19,7 +19,7 @@
 #define FilePath [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
 #define epubBookName @"倚天屠龙记"
 #define kScreenW [UIScreen mainScreen].bounds.size.width
-#define DELAYEXECUTE(delayTime,func) (dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{func;}))
+
 #endif
 /*公共管理类*/
 @interface E_CommonManager : NSObject

@@ -2,7 +2,6 @@
 //  BookFriendsMode.h
 //  Freedom
 #import <Foundation/Foundation.h>
-/*CTLine 去画 **/
 #import <UIKit/UIKit.h>
 /*弹出视图*/
 @interface WFHudView : UIView{
@@ -17,11 +16,6 @@
 @property (nonatomic, assign) float totalDuration;
 +(void)showMsg:(NSString *)msg inView:(UIView*)theView;
 @end
-
-@protocol WFCoretextDelegate <NSObject>
-- (void)clickWFCoretext:(NSString *)clickString replyIndex:(NSInteger)index;
-- (void)longClickWFCoretext:(NSString *)clickString replyIndex:(NSInteger)index;
-@end
 @interface WFTextView : UIView
 @property (nonatomic,strong) NSAttributedString *attrEmotionString;
 @property (nonatomic,strong) NSArray *emotionNames;
@@ -29,7 +23,7 @@
 @property (nonatomic,assign) BOOL isFold;//是否折叠
 @property (nonatomic,strong) NSMutableArray *attributedData;
 @property (nonatomic,assign) int textLine;
-@property (nonatomic,assign) id<WFCoretextDelegate>delegate;
+@property (nonatomic,strong) void (^didClickCoreText)(NSString *clickString,NSInteger index,BOOL isLong);
 @property (nonatomic,assign) CFIndex limitCharIndex;//限制行的最后一个char的index
 @property (nonatomic,assign) BOOL canClickAll;//是否可点击整段文字
 @property (nonatomic,assign) NSInteger replyIndex;
@@ -65,15 +59,9 @@
 /*回复内容*/
 @property (nonatomic,copy) NSString *replyInfo;
 @end
-typedef enum : NSUInteger {
-    TypeShuoshuo,
-    TypeFavour,
-    TypeReply,
-} TypeView;
 @interface YMTextData : NSObject
 @property (nonatomic,strong) WFMessageBody  *messageBody;
 @property (nonatomic,strong) NSMutableArray *replyDataSource;//回复内容数据源（未处理）
-#pragma mark - 高度部分
 @property (nonatomic,assign) float           replyHeight;//回复高度
 @property (nonatomic,assign) float           shuoshuoHeight;//折叠说说高度
 @property (nonatomic,assign) float           unFoldShuoHeight;//展开说说高度
@@ -95,14 +83,9 @@ typedef enum : NSUInteger {
 @property (nonatomic,assign) BOOL            islessLimit;//是否小于最低限制 宏定义最低限制是 limitline
 /*计算高度  @return 返回高度*/
 - (float) calculateReplyHeightWithWidth:(float)sizeWidth;
-/*计算折叠还是展开的说说的高度
- *  @param sizeWidth 宽度
- *  @param isUnfold  展开与否
- *  @return 高度*/
+/*计算折叠还是展开的说说的高度 高度*/
 - (float) calculateShuoshuoHeightWithWidth:(float)sizeWidth withUnFoldState:(BOOL)isUnfold;
 /*点赞区域高度@return 高度*/
 - (float)calculateFavourHeightWithWidth:(float)sizeWidth;
 //- (id)initWithMessage:(WFMessageBody *)messageBody;
-@end
-@interface BookFriendsMode : NSObject
 @end

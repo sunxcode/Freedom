@@ -2,7 +2,6 @@
 //  Freedom
 //  Created by Freedom on 12/7/14.
 #import "CKRadialMenu.h"
-#import "FirstViewController.h"
 #import "UIView+expanded.h"
 @interface CKRadialMenu()
 @property (nonatomic, strong) NSMutableDictionary *poputIDs;
@@ -221,7 +220,7 @@
   view.layer.shadowOpacity = 0.6;
   view.layer.shadowRadius = 3.0;
   view.layer.shadowOffset = CGSizeMake(0, 3);
-    view.backgroundColor = redcolor;
+    view.backgroundColor = [UIColor redColor];
   return view;
 }
 #pragma mark Helper Methods

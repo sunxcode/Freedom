@@ -40,7 +40,7 @@
                         message.userID,
                         fid,
                         TLNoNilString(subfid),
-                        TLTimeStamp(message.date),
+                        [NSString stringWithFormat:@"%lf", [message.date timeIntervalSince1970]],
                         [NSNumber numberWithInteger:message.partnerType],
                         [NSNumber numberWithInteger:message.ownerTyper],
                         [NSNumber numberWithInteger:message.messageType],
@@ -191,7 +191,7 @@
                         uid,
                         fid,
                         [NSNumber numberWithInteger:type],
-                        TLTimeStamp(date),
+                        [NSString stringWithFormat:@"%lf", [date timeIntervalSince1970]],
                         [NSNumber numberWithInteger:unreadCount],
                         @"", @"", @"", @"", @"", nil];
     BOOL ok = [self excuteSQL:sqlString withArrParameter:arrPara];
@@ -296,7 +296,7 @@
                     [NSNumber numberWithInteger:group.count],
                     TLNoNilString(group.authID),
                     TLNoNilString(group.authName),
-                    TLTimeStamp(group.date),
+                    [NSString stringWithFormat:@"%lf", [group.date timeIntervalSince1970]],
                     @"", @"", @"", @"", @"", nil];
     BOOL ok = [self excuteSQL:sqlString withArrParameter:arr];
     if (!ok) {

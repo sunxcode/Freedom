@@ -161,8 +161,8 @@
     NSDictionary *dict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[UIColor blackColor],[UIFont boldSystemFontOfSize:18.0f], nil] forKeys:[NSArray arrayWithObjects: NSForegroundColorAttributeName,NSFontAttributeName, nil]];
     self.navigationController.navigationBar.titleTextAttributes = dict;
     [self.view setClipsToBounds:YES];
-    [self.view setBackgroundColor:whitecolor];
-    [self.navigationController.navigationBar setBarTintColor:gradcolor];
+    [self.view setBackgroundColor:[UIColor whiteColor]];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor grayColor]];
 }
 #pragma mark - Methods
 - (BaseOCViewController*)pushController:(Class)controller withInfo:(id)info{
@@ -239,7 +239,7 @@
         NSIndexPath *firstIndexPath = [NSIndexPath indexPathForRow:0 inSection:indexPath.section];
         [tableView moveRowAtIndexPath:indexPath toIndexPath:firstIndexPath];
     }];
-    topRowAction.backgroundColor = gradcolor;
+    topRowAction.backgroundColor = [UIColor grayColor];
     // 将设置好的按钮放到数组中返回
     return @[deleteRowAction,topRowAction];
 }

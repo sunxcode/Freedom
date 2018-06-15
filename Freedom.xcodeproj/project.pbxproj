@@ -664,7 +664,6 @@
 		7788AC811D79977200376C95 /* mao@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7788AC791D79977200376C95 /* mao@2x.jpg */; };
 		7788AC821D79977200376C95 /* personal_showBac@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7788AC7A1D79977200376C95 /* personal_showBac@2x.png */; };
 		7788AC831D79977200376C95 /* zan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7788AC7B1D79977200376C95 /* zan@2x.png */; };
-		778913A51D101DB10096AB3B /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 778913A21D101DB10096AB3B /* FirstViewController.m */; };
 		778E8EFE1D696020004D899C /* XFHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 778E8EE71D696020004D899C /* XFHomeViewController.m */; };
 		778E8F081D696020004D899C /* XFTitleMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 778E8EFB1D696020004D899C /* XFTitleMenuViewController.m */; };
 		778E8F0C1D696059004D899C /* XFMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 778E8F0B1D696059004D899C /* XFMessageViewController.m */; };
@@ -1053,8 +1052,6 @@
 		77C3297D1E3068CA00DFEC89 /* search_channel_subscribed.png in Resources */ = {isa = PBXBuildFile; fileRef = 77C329791E3068CA00DFEC89 /* search_channel_subscribed.png */; };
 		77CC4F221D90DCA400DD2EC8 /* BaseOCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77CC4F131D90DCA400DD2EC8 /* BaseOCViewController.m */; };
 		77D460671D5C71DA0066B352 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77D460661D5C71DA0066B352 /* CoreData.framework */; };
-		77DE73401D1CC7E600F39FDB /* LibraryCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DE733F1D1CC7E600F39FDB /* LibraryCollectionViewController.m */; };
-		77DE73431D1CDC2B00F39FDB /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DE73421D1CDC2B00F39FDB /* SettingsViewController.m */; };
 		77DFEC701E20B9090003E192 /* logs in Resources */ = {isa = PBXBuildFile; fileRef = 77DFEC6F1E20B9090003E192 /* logs */; };
 		77F7A1031E23757D00F91403 /* qylogo_p@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77F7A1021E23757D00F91403 /* qylogo_p@3x.png */; };
 		77FD03D31E25F17C00E5099E /* taobaomini1.png in Resources */ = {isa = PBXBuildFile; fileRef = 77FD03CE1E25F17C00E5099E /* taobaomini1.png */; };
@@ -1114,6 +1111,9 @@
 		BFAC491920D23BD600E5CB8D /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAC491820D23BD600E5CB8D /* DetailView.swift */; };
 		BFAC491B20D2470F00E5CB8D /* BooksMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAC491A20D2470F00E5CB8D /* BooksMainViewController.swift */; };
 		BFAC49BF20D25EE700E5CB8D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAC49BE20D25EE700E5CB8D /* AppDelegate.swift */; };
+		BFAC49C120D36A0F00E5CB8D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAC49C020D36A0F00E5CB8D /* SettingsViewController.swift */; };
+		BFAC49C320D36A2700E5CB8D /* LibraryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAC49C220D36A2700E5CB8D /* LibraryCollectionViewController.swift */; };
+		BFAC49C520D3857700E5CB8D /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAC49C420D3857700E5CB8D /* FirstViewController.swift */; };
 		CE7D3D02561A884A24654308 /* Pods_Freedom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60338462214883C1C05F8646 /* Pods_Freedom.framework */; };
 /* End PBXBuildFile section */
 
@@ -1864,8 +1864,6 @@
 		7788AC7B1D79977200376C95 /* zan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zan@2x.png"; sourceTree = "<group>"; };
 		7789136F1D0FDDDB0096AB3B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7789138D1D0FDDDB0096AB3B /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
-		778913A11D101DB10096AB3B /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		778913A21D101DB10096AB3B /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
 		778E8EE61D696020004D899C /* XFHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XFHomeViewController.h; sourceTree = "<group>"; };
 		778E8EE71D696020004D899C /* XFHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XFHomeViewController.m; sourceTree = "<group>"; };
 		778E8EFA1D696020004D899C /* XFTitleMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XFTitleMenuViewController.h; sourceTree = "<group>"; };
@@ -2271,10 +2269,6 @@
 		77CC4F361D90DCC700DD2EC8 /* Foundation_API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Foundation_API.h; sourceTree = "<group>"; };
 		77CC4F3B1D90DF6200DD2EC8 /* Foundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Foundation.h; sourceTree = "<group>"; };
 		77D460661D5C71DA0066B352 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		77DE733E1D1CC7E600F39FDB /* LibraryCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryCollectionViewController.h; sourceTree = "<group>"; };
-		77DE733F1D1CC7E600F39FDB /* LibraryCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryCollectionViewController.m; sourceTree = "<group>"; };
-		77DE73411D1CDC2B00F39FDB /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
-		77DE73421D1CDC2B00F39FDB /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		77DFEC6F1E20B9090003E192 /* logs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = logs; sourceTree = "<group>"; };
 		77F7A1021E23757D00F91403 /* qylogo_p@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qylogo_p@3x.png"; sourceTree = "<group>"; };
 		77FD03CE1E25F17C00E5099E /* taobaomini1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = taobaomini1.png; sourceTree = "<group>"; };
@@ -2376,6 +2370,9 @@
 		BFAC491820D23BD600E5CB8D /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		BFAC491A20D2470F00E5CB8D /* BooksMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksMainViewController.swift; sourceTree = "<group>"; };
 		BFAC49BE20D25EE700E5CB8D /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		BFAC49C020D36A0F00E5CB8D /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		BFAC49C220D36A2700E5CB8D /* LibraryCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryCollectionViewController.swift; sourceTree = "<group>"; };
+		BFAC49C420D3857700E5CB8D /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		CF6599DF222DA1221C0BD6DC /* Pods-Freedom.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Freedom.release.xcconfig"; path = "Pods/Target Support Files/Pods-Freedom/Pods-Freedom.release.xcconfig"; sourceTree = "<group>"; };
 		ECEF9FF4F388896C86BFA3B3 /* Pods-MyFirstAPP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyFirstAPP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyFirstAPP/Pods-MyFirstAPP.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -3743,12 +3740,9 @@
 		7759B6C11D0EA3E900AE3A59 /* 主界面 */ = {
 			isa = PBXGroup;
 			children = (
-				778913A11D101DB10096AB3B /* FirstViewController.h */,
-				778913A21D101DB10096AB3B /* FirstViewController.m */,
-				77DE73411D1CDC2B00F39FDB /* SettingsViewController.h */,
-				77DE73421D1CDC2B00F39FDB /* SettingsViewController.m */,
-				77DE733E1D1CC7E600F39FDB /* LibraryCollectionViewController.h */,
-				77DE733F1D1CC7E600F39FDB /* LibraryCollectionViewController.m */,
+				BFAC49C420D3857700E5CB8D /* FirstViewController.swift */,
+				BFAC49C020D36A0F00E5CB8D /* SettingsViewController.swift */,
+				BFAC49C220D36A2700E5CB8D /* LibraryCollectionViewController.swift */,
 			);
 			path = "主界面";
 			sourceTree = "<group>";
@@ -6097,11 +6091,11 @@
 				7121194820AC03220087E05B /* JuheDataTabBarController.swift in Sources */,
 				BF6E56971FAAF374005F7DF8 /* TLViewController.m in Sources */,
 				71ECE0482092128E00495467 /* TLEmojiBaseCell.m in Sources */,
+				BFAC49C320D36A2700E5CB8D /* LibraryCollectionViewController.swift in Sources */,
 				7121195820AC0C2F0087E05B /* JuheAPIViewController.swift in Sources */,
 				BF6E56961FAAF341005F7DF8 /* TLPictureCarouselView.m in Sources */,
 				BF5B9B731F8E676500BD885E /* CareerViewController.swift in Sources */,
 				713EE2C620AD9B2B0085B65D /* DZMeController.swift in Sources */,
-				77DE73431D1CDC2B00F39FDB /* SettingsViewController.m in Sources */,
 				7115A5F420AAFC34000D0B96 /* MyDatabaseViewController.swift in Sources */,
 				778E939D1D69AA92004D899C /* DiscoverDetailViewController.m in Sources */,
 				713728CA20AE733F00A3227A /* AlipayModels.swift in Sources */,
@@ -6118,7 +6112,6 @@
 				7115A5F020AAFBF6000D0B96 /* MyDatabaseNavigationController.swift in Sources */,
 				7121193620ABC55C0087E05B /* EnergyShopHomeViewController.swift in Sources */,
 				71ECE01F2092121F00495467 /* TLShakeViewController.m in Sources */,
-				77DE73401D1CC7E600F39FDB /* LibraryCollectionViewController.m in Sources */,
 				713EE30420ADA0490085B65D /* IqiyiViewController.swift in Sources */,
 				7115A5CE20AAD38C000D0B96 /* PersonalHouseViewController.swift in Sources */,
 				BF5B9B5E1F8E636E00BD885E /* EconomicsViewController.swift in Sources */,
@@ -6245,13 +6238,13 @@
 				71ECDFFF209210BF00495467 /* TLContactsViewController.m in Sources */,
 				BF5B9B7F1F8E67B900BD885E /* WidomViewController.swift in Sources */,
 				713EE30820ADA06B0085B65D /* JFWatchRecordViewController.swift in Sources */,
+				BFAC49C120D36A0F00E5CB8D /* SettingsViewController.swift in Sources */,
 				7115A5E820AAED13000D0B96 /* BooksNavigationController.swift in Sources */,
 				71267A5B2092E736006E1B96 /* BookSubViews.m in Sources */,
 				713EE31620ADA0BA0085B65D /* JFWebViewController.swift in Sources */,
 				713EE2F420AD9CFD0085B65D /* SettingViewController.swift in Sources */,
 				778E8F121D696096004D899C /* XFProfileViewController.m in Sources */,
 				713EE2B620AD901F0085B65D /* KugouBaseViewController.swift in Sources */,
-				778913A51D101DB10096AB3B /* FirstViewController.m in Sources */,
 				774BFB1A1D767389005CA603 /* SHLrcsView.m in Sources */,
 				778E8F0C1D696059004D899C /* XFMessageViewController.m in Sources */,
 				778E93AF1D69B229004D899C /* SWGeneralSettingViewController.m in Sources */,
@@ -6284,6 +6277,7 @@
 				7121192620ABC4D10087E05B /* EnergyBusinessDetailViewController.swift in Sources */,
 				713EE2C420AD9B1D0085B65D /* DZDiscoverController.swift in Sources */,
 				71ECE0442092128E00495467 /* TLChatBaseViewController.m in Sources */,
+				BFAC49C520D3857700E5CB8D /* FirstViewController.swift in Sources */,
 				7121193020ABC5270087E05B /* EnergySuperHomeViewController.swift in Sources */,
 				7121194E20AC0BF00087E05B /* JuheContectUSViewController.swift in Sources */,
 				7115A5C020AAD339000D0B96 /* PersonalSoftViewController.swift in Sources */,
