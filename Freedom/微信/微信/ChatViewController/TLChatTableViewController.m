@@ -868,7 +868,7 @@ static UILabel *textLabel;
             NSString *str = [message messageCopy];
             [[UIPasteboard generalPasteboard] setString:str];
         }else if (type == TLChatMenuItemTypeDelete) {
-            TLActionSheet *actionSheet = [[TLActionSheet alloc] initWithTitle:@"是否删除该条消息" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"确定" otherButtonTitles: nil];
+            WechatActionSheet *actionSheet = [[WechatActionSheet alloc] initWithTitle:@"是否删除该条消息" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"确定" otherButtonTitles: nil];
             actionSheet.tag = [self.data indexOfObject:message];
             [actionSheet show];
         }
@@ -881,7 +881,7 @@ static UILabel *textLabel;
     }
 }
 //MARK: TLActionSheetDelegate
-- (void)actionSheet:(TLActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+- (void)actionSheet:(WechatActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 0) {
         TLMessage * message = [self.data objectAtIndex:actionSheet.tag];
         [self p_deleteMessage:message];

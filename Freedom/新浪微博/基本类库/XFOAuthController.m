@@ -1,13 +1,13 @@
 //  XFOAuthController.m
 //  Freedom
 //  Created by Fay on 15/9/20.
-#import "XFOAuthController.h"
+#import "SinaAuthController.h"
 #import "SinaMode.h"
 #import "SinaTabBarController.h"
-#import "XFNewFeatureController.h"
-@interface XFOAuthController ()<UIWebViewDelegate>
+#import "SinaNewFeatureController.h"
+@interface SinaAuthController ()<UIWebViewDelegate>
 @end
-@implementation XFOAuthController
+@implementation SinaAuthController
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -90,7 +90,7 @@
     params[@"redirect_uri"] = @"http://www.sharesdk.cn";
     params[@"code"] = code;
     
-    [NetBase POST:url parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[AFHTTPSessionManager manager] POST:url parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [SVProgressHUD dismiss];
         
         // 将返回的账号字典数据 --> 模型，存进沙盒

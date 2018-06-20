@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,7 +14,7 @@
                         <viewControllerLayoutGuide type="bottom" id="J8c-d0-U3a"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="6np-Y5-3C1">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -28,10 +24,10 @@
             </objects>
             <point key="canvasLocation" x="1358" y="1031"/>
         </scene>
-        <!--Dianping Tab Bar Controller-->
+        <!--Tab Bar Controller-->
         <scene sceneID="Mdg-a3-6hu">
             <objects>
-                <tabBarController storyboardIdentifier="DianpingTabBarController" id="Mcc-ih-d6s" customClass="DianpingTabBarController" customModule="Freedom" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="DianpingTabBarController" id="Mcc-ih-d6s" customClass="DZTabBarController" customModule="Freedom" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="XVJ-sq-Kot">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -51,7 +47,7 @@
         <!--我的-->
         <scene sceneID="OUR-Hs-qle">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="656-g9-KpQ" customClass="DianpingNavigationController" customModule="Freedom" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="656-g9-KpQ" customClass="DZNavigationController" customModule="Freedom" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="我的" image="home_footbar_icon_my" selectedImage="home_footbar_icon_my_pressed" id="UYJ-Fv-Wuj"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="H6j-AZ-g54">
@@ -70,7 +66,7 @@
         <!--发现-->
         <scene sceneID="pat-WM-wbg">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rw2-PS-gpk" customClass="DianpingNavigationController" customModule="Freedom" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rw2-PS-gpk" customClass="DZNavigationController" customModule="Freedom" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="发现" image="home_footbar_icon_found" selectedImage="home_footbar_icon_found_pressed" id="TpH-pc-bp9"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="9YK-gP-awg">
@@ -95,7 +91,7 @@
                         <viewControllerLayoutGuide type="bottom" id="CzO-vW-ZFl"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ndq-U3-2Nd">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -108,7 +104,7 @@
         <!--首页-->
         <scene sceneID="SEe-wT-R6r">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TXL-Vb-OD7" customClass="DianpingNavigationController" customModule="Freedom" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TXL-Vb-OD7" customClass="DZNavigationController" customModule="Freedom" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="首页" image="home_footbar_icon_dianping" selectedImage="home_footbar_icon_dianping_pressed" id="GnU-wC-3w1"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="fWk-G3-2O8">
@@ -133,7 +129,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Qza-bJ-ugf"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="sz6-i9-nkA">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -146,7 +142,7 @@
         <!--闪惠团购-->
         <scene sceneID="cfD-yb-Kjy">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8U3-d7-6Ze" customClass="DianpingNavigationController" customModule="Freedom" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8U3-d7-6Ze" customClass="DZNavigationController" customModule="Freedom" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="闪惠团购" image="home_footbar_icon_group" selectedImage="home_footbar_icon_group_pressed" id="awc-Uk-FIh"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="GtF-EV-7t3">
@@ -171,7 +167,7 @@
                         <viewControllerLayoutGuide type="bottom" id="AnC-OA-CEX"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="5AM-KT-Akd">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>

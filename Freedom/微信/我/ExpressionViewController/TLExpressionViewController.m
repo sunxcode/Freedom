@@ -1,17 +1,17 @@
 //  TLExpressionViewController.m
 //  Freedom
 // Created by Super
-#import "TLExpressionViewController.h"
-#import "TLExpressionChosenViewController.h"
+#import "WXExpressionViewController.h"
+#import "WXExpressionChosenViewController.h"
 #import "TLExpressionPublicViewController.h"
-#import "TLMyExpressionViewController.h"
+#import "WXMyExpressionViewController.h"
 #define     WIDTH_EXPRESSION_SEGMENT    APPW * 0.55
-@interface TLExpressionViewController ()
+@interface WXExpressionViewController ()
 @property (nonatomic, strong) UISegmentedControl *segmentedControl;
-@property (nonatomic, strong) TLExpressionChosenViewController *expChosenVC;
+@property (nonatomic, strong) WXExpressionChosenViewController *expChosenVC;
 @property (nonatomic, strong) TLExpressionPublicViewController *expPublicVC;
 @end
-@implementation TLExpressionViewController
+@implementation WXExpressionViewController
 - (void)viewDidLoad{
     [super viewDidLoad];
     [self setAutomaticallyAdjustsScrollViewInsets:NO];
@@ -60,9 +60,9 @@
     }
     return _segmentedControl;
 }
-- (TLExpressionChosenViewController *)expChosenVC{
+- (WXExpressionChosenViewController *)expChosenVC{
     if (_expChosenVC == nil) {
-        _expChosenVC = [[TLExpressionChosenViewController alloc] init];
+        _expChosenVC = [[WXExpressionChosenViewController alloc] init];
     }
     return _expChosenVC;
 }

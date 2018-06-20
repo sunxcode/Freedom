@@ -1,20 +1,20 @@
 //  TLMineSettingViewController.m
 //  Freedom
 //  Created by Super on 16/2/8.
-#import "TLMineSettingViewController.h"
-#import "TLActionSheet.h"
-#import "TLAccountAndSafetyViewController.h"
-#import "TLNewMessageSettingViewController.h"
-#import "TLPrivacySettingViewController.h"
+#import "WXMineSettingViewController.h"
+#import "WechatActionSheet.h"
+#import "WXAccountAndSafetyViewController.h"
+#import "WXNewMessageSettingViewController.h"
+#import "WXPrivacySettingViewController.h"
 #import "TLCommonSettingViewController.h"
-#import "TLHelpAndFeedbackViewController.h"
-#import "TLAboutViewController.h"
+#import "WXHelpAndFeedbackViewController.h"
+#import "WXAboutViewController.h"
 #import "WechartModes.h"
 typedef void (^ CompleteBlock)(NSMutableArray *data);
-@interface TLSettingHelper : NSObject
+@interface WXSettingHelper : NSObject
 @property (nonatomic, strong) NSMutableArray *mineSettingData;
 @end
-@implementation TLSettingHelper
+@implementation WXSettingHelper
 - (id) init{
     if (self = [super init]) {
         self.mineSettingData = [[NSMutableArray alloc] init];
@@ -49,15 +49,15 @@ typedef void (^ CompleteBlock)(NSMutableArray *data);
     [self.mineSettingData addObjectsFromArray:@[group1, group2, group3, group4]];
 }
 @end
-@interface TLMineSettingViewController () <TLActionSheetDelegate>
-@property (nonatomic, strong) TLSettingHelper *helper;
+@interface WXMineSettingViewController () <TLActionSheetDelegate>
+@property (nonatomic, strong) WXSettingHelper *helper;
 @end
-@implementation TLMineSettingViewController
+@implementation WXMineSettingViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationItem setTitle:@"设置"];
     
-    self.helper = [[TLSettingHelper alloc] init];
+    self.helper = [[WXSettingHelper alloc] init];
     self.data = self.helper.mineSettingData;
 }
 #pragma mark - 
@@ -65,7 +65,7 @@ typedef void (^ CompleteBlock)(NSMutableArray *data);
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     TLSettingItem *item = [self.data[indexPath.section] objectAtIndex:indexPath.row];
     if ([item.title isEqualToString:@"账号与安全"]) {
-        TLAccountAndSafetyViewController *accountAndSafetyVC = [[TLAccountAndSafetyViewController alloc] init];
+        WXAccountAndSafetyViewController *accountAndSafetyVC = [[WXAccountAndSafetyViewController alloc] init];
         [self setHidesBottomBarWhenPushed:YES];
         [self.navigationController pushViewController:accountAndSafetyVC animated:YES];
     }else if ([item.title isEqualToString:@"新消息通知"]) {
@@ -81,20 +81,20 @@ typedef void (^ CompleteBlock)(NSMutableArray *data);
         [self setHidesBottomBarWhenPushed:YES];
         [self.navigationController pushViewController:commonSettingVC animated:YES];
     }else if ([item.title isEqualToString:@"帮助与反馈"]) {
-        TLHelpAndFeedbackViewController *helpAndFeedbackVC = [[TLHelpAndFeedbackViewController alloc] init];
+        WXHelpAndFeedbackViewController *helpAndFeedbackVC = [[WXHelpAndFeedbackViewController alloc] init];
         [self setHidesBottomBarWhenPushed:YES];
         [self.navigationController pushViewController:helpAndFeedbackVC animated:YES];
     }else if ([item.title isEqualToString:@"关于微信"]) {
-        TLAboutViewController *aboutVC = [[TLAboutViewController alloc] init];
+        WXAboutViewController *aboutVC = [[WXAboutViewController alloc] init];
         [self setHidesBottomBarWhenPushed:YES];
         [self.navigationController pushViewController:aboutVC animated:YES];
     }else if ([item.title isEqualToString:@"退出登录"]) {
-        TLActionSheet *actionSheet = [[TLActionSheet alloc] initWithTitle:@"退出后不会删除任何历史数据，下次登录依然可以使用本账号。" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"退出登录" otherButtonTitles:nil];
+        WechatActionSheet *actionSheet = [[WechatActionSheet alloc] initWithTitle:@"退出后不会删除任何历史数据，下次登录依然可以使用本账号。" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"退出登录" otherButtonTitles:nil];
         [actionSheet show];
     }
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];
 }
 //MARK: TLActionSheetDelegate
-- (void)actionSheet:(TLActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+- (void)actionSheet:(WechatActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
 }
 @end

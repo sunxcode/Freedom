@@ -167,7 +167,7 @@ class JFSubscribeScrollView: UIScrollView {
 
 }
 
-class JFSubscribeViewController: IqiyiBaseViewController {
+class IqiyiSubscribeViewController: IqiyiBaseViewController {
     var subscribeTableView : UITableView!
     var dataSource = [AnyHashable]()
     func setUpRefresh() {
@@ -220,7 +220,7 @@ class JFSubscribeViewController: IqiyiBaseViewController {
     }
 
     func didSelect(_ subCell: JFSubscribeCell?, subItem: JFSubItemModel?) {
-        let videoDetailVC = JFVideoDetailViewController()
+        let videoDetailVC = IqiyiVideoDetailViewController()
         videoDetailVC.iid = (subItem?.code)!
         navigationController?.pushViewController(videoDetailVC, animated: true)
     }

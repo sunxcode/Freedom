@@ -2,15 +2,15 @@
 //  Freedom
 //  Created by Fay on 15/9/13.
 #import "SinaTabBarController.h"
-#import "XFHomeViewController.h"
-#import "XFMessageViewController.h"
-#import "XFProfileViewController.h"
-#import "XFDiscoverViewController.h"
-#import "XFNavigationController.h"
-#import "XFComposeViewController.h"
-#import "XFOAuthController.h"
+#import "SinaHomeViewController.h"
+#import "SinaMessageViewController.h"
+#import "SinaProfileViewController.h"
+#import "SinaDiscoverViewController.h"
+#import "SinaNavigationController.h"
+#import "SinaComposeViewController.h"
+#import "SinaAuthController.h"
 #import "SinaMode.h"
-#import "XFNewFeatureController.h"
+#import "SinaNewFeatureController.h"
 #import <objc/runtime.h>
 #import <Availability.h>
 #import <QuartzCore/QuartzCore.h>
@@ -497,18 +497,18 @@
     }
 }
 @end
-@class XFTabBar;
+@class SinaTabBar;
 @protocol XFTabBarDelegate <UITabBarDelegate>
 @optional
-- (void)tabBarDidClickPlusButton:(XFTabBar *)tabBar;
+- (void)tabBarDidClickPlusButton:(SinaTabBar *)tabBar;
 @end
-@interface XFTabBar : UITabBar
+@interface SinaTabBar : UITabBar
 @property(nonatomic,weak)id <XFTabBarDelegate> delegate;
 @end
-@interface XFTabBar ()
+@interface SinaTabBar ()
 @property (nonatomic, weak) UIButton *plusBtn;
 @end
-@implementation XFTabBar
+@implementation SinaTabBar
 @dynamic delegate;
 -(id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -569,19 +569,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // 设置子控制器
-    XFHomeViewController *home = [[XFHomeViewController alloc]init];
+    SinaHomeViewController *home = [[SinaHomeViewController alloc]init];
     [self addChildViewController:home title:@"首页" image:@"tabbar_home" selImage:@"tabbar_home_selected"];
-    XFMessageViewController *messageCenter = [[XFMessageViewController alloc] init];
+    SinaMessageViewController *messageCenter = [[SinaMessageViewController alloc] init];
     [self addChildViewController:messageCenter title:@"消息" image:@"tabbar_message_center" selImage:@"tabbar_message_center_selected"];
-    XFDiscoverViewController *discover = [[XFDiscoverViewController alloc] init];
+    SinaDiscoverViewController *discover = [[SinaDiscoverViewController alloc] init];
     [self addChildViewController:discover title:@"发现" image:@"tabbar_discoverS" selImage:@"tabbar_discover_selectedS"];
-    XFProfileViewController *profile = [[XFProfileViewController alloc] init];
+    SinaProfileViewController *profile = [[SinaProfileViewController alloc] init];
     [self addChildViewController:profile title:@"我" image:@"tabbar_profile" selImage:@"tabbar_profile_selected"];
     //更换系统自带的tabbar
-    XFTabBar *tab = [[XFTabBar alloc]init];
+    SinaTabBar *tab = [[SinaTabBar alloc]init];
     tab.delegate = self;
     [self setValue:tab forKey:@"tabBar"];
-    XFAccount *account = [FreedomTools account];
+    SinaAccount *account = [FreedomTools account];
     //设置根控制器
     if (account) {//第三方登录状态
         // 切换窗口的根控制器
@@ -593,7 +593,7 @@
         if ([currentVersion isEqualToString:lastVersion]) { // 版本号相同：这次打开和上次打开的是同一个版本
             return;
         } else { // 这次打开的版本和上一次不一样，显示新特性
-            [[UIApplication sharedApplication].delegate.window.rootViewController presentViewController:[[XFNewFeatureController alloc] init] animated:YES completion:^{
+            [[UIApplication sharedApplication].delegate.window.rootViewController presentViewController:[[SinaNewFeatureController alloc] init] animated:YES completion:^{
             }];
             // 将当前的版本号存进沙盒
             [[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:key];
@@ -605,11 +605,11 @@
                                 @"expires_in":@"2636676",
                                 @"remind_in":@"2636676",
                                 @"uid":@"5645754790"};
-        account = [XFAccount accountWithDict:acont];
+        account = [SinaAccount accountWithDict:acont];
         //储存账号信息
         [FreedomTools saveAccount:account];
 //        [NSKeyedArchiver archiveRootObject:account toFile:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"account.data"]];
-        [self presentViewController:[[XFOAuthController alloc]init] animated:YES completion:^{
+        [self presentViewController:[[SinaAuthController alloc]init] animated:YES completion:^{
         }];
 //        [UIApplication sharedApplication].delegate.window.rootViewController = [[XFOAuthController alloc]init];
     }
@@ -628,10 +628,10 @@
     selAttr[NSForegroundColorAttributeName] = [UIColor orangeColor];
     [childVc.tabBarItem setTitleTextAttributes:selAttr forState:UIControlStateSelected];
        //让子控制器包装一个导航控制器
-    XFNavigationController *nav = [[XFNavigationController alloc]initWithRootViewController:childVc];
+    SinaNavigationController *nav = [[SinaNavigationController alloc]initWithRootViewController:childVc];
     [self addChildViewController:nav];
 }
--(void)tabBarDidClickPlusButton:(XFTabBar *)tabBar {
+-(void)tabBarDidClickPlusButton:(SinaTabBar *)tabBar {
     FXBlurView *blurView = [[FXBlurView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
     blurView.tintColor = [UIColor clearColor];
     self.blurView = blurView;
@@ -699,8 +699,8 @@
 //发文字微博
 -(void)compose {
     [self closeClick];
-    XFComposeViewController *compose = [[XFComposeViewController alloc]init];
-    XFNavigationController *nav = [[XFNavigationController alloc]initWithRootViewController:compose];
+    SinaComposeViewController *compose = [[SinaComposeViewController alloc]init];
+    SinaNavigationController *nav = [[SinaNavigationController alloc]initWithRootViewController:compose];
     [self presentViewController:nav animated:YES completion:nil];
 }
 //关闭动画

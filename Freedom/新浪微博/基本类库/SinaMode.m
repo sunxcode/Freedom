@@ -6,10 +6,10 @@
 //  Copyright © 2018年 薛超. All rights reserved.
 //
 #import "SinaMode.h"
-@implementation XFAccount
+@implementation SinaAccount
 +(instancetype)accountWithDict:(NSDictionary *)dict {
     
-    XFAccount *account = [[self alloc]init];
+    SinaAccount *account = [[self alloc]init];
     
     account.access_token = dict[@"access_token"];
     account.uid = dict[@"uid"];

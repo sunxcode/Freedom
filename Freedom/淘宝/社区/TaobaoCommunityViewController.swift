@@ -26,7 +26,7 @@ class TaobaoCommunityViewCell1:BaseCollectionViewCell{
         script.text = "这款笔记本电脑，用料考究，做工精细，运行速度快，携带方便，是您居家旅行的不二之选，它极致的性能堪比外挂，性价比特别高，建议选联想拯救者或惠普精灵系列的电脑，买电脑千万别图便宜，一分价格一分货。"
     }
 }
-class TaobaoCommunityViewCell2:BaseTableViewCell {
+class TaobaoCommunityViewCell2:BaseCollectionViewCell {
     override func initUI() {
         icon = UIImageView(frame: CGRect(x: 0, y: 0, width: APPW / 2 - 20, height: 100))
         title = UILabel(frame: CGRect(x: 0, y: YH(icon), width: W(icon), height: 70))
@@ -82,16 +82,13 @@ class TaobaoCommunityViewController: TaobaoBaseViewController,UICollectionViewDe
         layout.minimumLineSpacing = 10
         collectionView = BaseCollectionView(frame: CGRect(x: 0, y: 0, width: APPW, height: APPH - 110), collectionViewLayout: layout)
         collectionView.dataArray = [["name": "流量充值", "pic": "userLogo"]]
-        collectionView?.register(TaobaoCommunityViewCell2.self, forCellWithReuseIdentifier: "TaobaoCommunityViewCell2")
-        collectionView?.register(BaseCollectionViewCell.self, forCellWithReuseIdentifier: "basecell")
-        collectionView?.register(TaobaoCommunityHeadView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "headview")
-        collectionView?.register(TaobaoCommunityHeadView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: "footview")
-       
-        collectionView?.dataSource = self
-        collectionView?.delegate = self
-        if let aView = collectionView {
-            view.addSubview(aView)
-        }
+        collectionView.register(TaobaoCommunityViewCell2.self, forCellWithReuseIdentifier:TaobaoCommunityViewCell2.getColloctionCellIdentifier())
+        collectionView.register(TaobaoCommunityViewCell1.self, forCellWithReuseIdentifier: TaobaoCommunityViewCell1.getColloctionCellIdentifier())
+        collectionView.register(TaobaoCommunityHeadView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "headview")
+        collectionView.register(TaobaoCommunityHeadView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: "footview")
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        view.addSubview(collectionView)
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if section == 0 {
@@ -108,18 +105,13 @@ class TaobaoCommunityViewController: TaobaoBaseViewController,UICollectionViewDe
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         var cell: BaseCollectionViewCell? = nil
         if indexPath.section == 0 {
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: "basecell", for: indexPath) as? BaseCollectionViewCell
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier:TaobaoCommunityViewCell1.getColloctionCellIdentifier(), for: indexPath) as? TaobaoCommunityViewCell1
             cell?.frame = CGRect(x: 0, y: 0, width: APPW, height: 100)
             cell?.addSubview(banner)
-        } else if indexPath.section == 1 {
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: "basecell", for: indexPath) as? BaseCollectionViewCell
         } else {
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TaobaoCommunityViewCell2", for: indexPath) as? BaseCollectionViewCell
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: TaobaoCommunityViewCell2.getColloctionCellIdentifier(), for: indexPath) as? BaseCollectionViewCell
         }
-        if let aCell = cell {
-            return aCell
-        }
-        return UICollectionViewCell()
+        return cell!
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if indexPath.section == 0 {

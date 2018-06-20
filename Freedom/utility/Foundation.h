@@ -23,18 +23,9 @@
 #define CN 1
 #define MAS_SHORTHAND// 定义这个常量,就可以在使用Masonry不必总带着前缀 `mas_`:
 #define MAS_SHORTHAND_GLOBALS// 定义这个常量,以支持在 Masonry 语法中自动将基本类型转换为 object 类型:
-/**********************       方        法      **********************/
-#define S2N(x)            [NSNumber numberWithInt:[x intValue]]
-#define I2N(x)            [NSNumber numberWithInt:x]
-#define F2N(x)            [NSNumber numberWithFloat:x]
-#define RViewsBorder(View,radius,width,color)\
-[View.layer setCornerRadius:(radius)];[View.layer setMasksToBounds:YES];[View.layer setBorderWidth:(width)];[View.layer setBorderColor:[color CGColor]]
 /**********************     网   络   资   源    **********************/
 #define FileResource(s)   [[NSBundle mainBundle]pathForResource:s ofType:nil]
 #define JSONWebResource(s) [NSDictionary dictionaryWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.isolar88.com/upload/xuechao/json/%@",s]]];
-#define __async_opt__  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
-#define __async_main__ dispatch_async(dispatch_get_main_queue()
-#define NetBase         [AFHTTPSessionManager manager]
 #define Net   ({AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];manager.responseSerializer = [AFJSONResponseSerializer serializer];\
               manager.requestSerializer=[AFHTTPRequestSerializer serializer];[manager.requestSerializer setValue:@"text/json"  forHTTPHeaderField:@"Accept"];\
               [manager.requestSerializer setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];\

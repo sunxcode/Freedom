@@ -2,7 +2,7 @@
 //  Freedom
 // Created by Super
 #import "TLExpressionHelper.h"
-#import "TLDBManager.h"
+#import "WXDBManager.h"
 #import "TLUserHelper.h"
 #import "TLEmojiBaseCell.h"
 #define     IEXPRESSION_HOST_URL        @"http://123.57.155.230:8080/ibiaoqing/admin/"
@@ -136,7 +136,7 @@
                                        success:(void (^)(id data))success
                                        failure:(void (^)(NSString *error))failure{
     NSString *urlString = [NSString stringWithFormat:IEXPRESSION_NEW_URL, (long)pageIndex];
-    [NetBase POST:urlString parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[AFHTTPSessionManager manager] POST:urlString parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSArray *respArray = [responseObject mj_JSONObject];
         NSString *status = respArray[0];
         if ([status isEqualToString:@"OK"]) {
@@ -153,7 +153,7 @@
 - (void)requestExpressionChosenBannerSuccess:(void (^)(id))success
                                      failure:(void (^)(NSString *))failure{
     NSString *urlString = IEXPRESSION_BANNER_URL;
-    [NetBase POST:urlString parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[AFHTTPSessionManager manager] POST:urlString parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSArray *respArray = [responseObject mj_JSONObject];
         NSString *status = respArray[0];
         if ([status isEqualToString:@"OK"]) {
@@ -171,7 +171,7 @@
                                        success:(void (^)(id data))success
                                        failure:(void (^)(NSString *error))failure{
     NSString *urlString = [NSString stringWithFormat:IEXPRESSION_PUBLIC_URL, (long)pageIndex];
-    [NetBase POST:urlString parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[AFHTTPSessionManager manager] POST:urlString parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSArray *respArray = [responseObject mj_JSONObject];
         NSString *status = respArray[0];
         if ([status isEqualToString:@"OK"]) {
@@ -189,7 +189,7 @@
                                  success:(void (^)(id data))success
                                  failure:(void (^)(NSString *error))failure{
     NSString *urlString = [NSString stringWithFormat:IEXPRESSION_SEARCH_URL, [[keyword urlEncode] urlEncode]];
-    [NetBase POST:urlString parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[AFHTTPSessionManager manager] POST:urlString parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSArray *respArray = [responseObject mj_JSONObject];
         NSString *status = respArray[0];
         if ([status isEqualToString:@"OK"]) {
@@ -208,7 +208,7 @@
                                       success:(void (^)(id data))success
                                       failure:(void (^)(NSString *error))failure{
     NSString *urlString = [NSString stringWithFormat:IEXPRESSION_DETAIL_URL, (long)pageIndex, groupID];
-    [NetBase POST:urlString parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[AFHTTPSessionManager manager] POST:urlString parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSArray *respArray = [responseObject mj_JSONObject];
         NSString *status = respArray[0];
         if ([status isEqualToString:@"OK"]) {

@@ -1,24 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="akV-W8-RTv">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Classify View Controller-->
+        <!--Iqiyi Classify View Controller-->
         <scene sceneID="K6g-Ce-agn">
             <objects>
-                <viewController storyboardIdentifier="JFClassifyViewController" id="J8b-zG-2bJ" customClass="JFClassifyViewController" customModule="Freedom" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="JFClassifyViewController" id="J8b-zG-2bJ" customClass="IqiyiClassifyViewController" customModule="Freedom" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9nv-TJ-ADz"/>
                         <viewControllerLayoutGuide type="bottom" id="gSY-Ri-YCv"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Js7-MV-mnq">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -28,16 +24,16 @@
             </objects>
             <point key="canvasLocation" x="1403" y="1367"/>
         </scene>
-        <!--Subscribe View Controller-->
+        <!--Iqiyi Subscribe View Controller-->
         <scene sceneID="7Ib-5B-h1r">
             <objects>
-                <viewController storyboardIdentifier="JFSubscribeViewController" id="yyk-yh-sOT" customClass="JFSubscribeViewController" customModule="Freedom" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="JFSubscribeViewController" id="yyk-yh-sOT" customClass="IqiyiSubscribeViewController" customModule="Freedom" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Phf-Cb-GJv"/>
                         <viewControllerLayoutGuide type="bottom" id="ZPp-1q-f5V"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="azb-9T-B9C">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -47,16 +43,16 @@
             </objects>
             <point key="canvasLocation" x="1392" y="121"/>
         </scene>
-        <!--Mine View Controller-->
+        <!--Iqiyi Mine View Controller-->
         <scene sceneID="HHW-4z-rnn">
             <objects>
-                <viewController storyboardIdentifier="JFMineViewController" id="PuH-yX-gjm" customClass="JFMineViewController" customModule="Freedom" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="JFMineViewController" id="PuH-yX-gjm" customClass="IqiyiMineViewController" customModule="Freedom" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vPS-sQ-iWw"/>
                         <viewControllerLayoutGuide type="bottom" id="9uf-UI-waQ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="RNu-OB-WrX">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -66,16 +62,16 @@
             </objects>
             <point key="canvasLocation" x="1403" y="722"/>
         </scene>
-        <!--Discover View Controller-->
+        <!--Iqiyi Discover View Controller-->
         <scene sceneID="2ZD-cZ-FbW">
             <objects>
-                <viewController storyboardIdentifier="JFDiscoverViewController" id="HRT-Ob-Ia7" customClass="JFDiscoverViewController" customModule="Freedom" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="JFDiscoverViewController" id="HRT-Ob-Ia7" customClass="IqiyiDiscoverViewController" customModule="Freedom" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jIi-Er-bwN"/>
                         <viewControllerLayoutGuide type="bottom" id="h7G-Dz-fTI"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="OZs-a3-ZRf">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -94,7 +90,7 @@
                         <viewControllerLayoutGuide type="bottom" id="7th-X9-01g"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="bVL-v4-m7D">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>

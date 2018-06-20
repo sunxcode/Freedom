@@ -2,22 +2,22 @@
 //  Freedom
 // Created by Super
 #import "TLFriendsViewController.h"
-#import "TLSearchController.h"
-#import "TLAddFriendViewController.h"
+#import "WechatSearchController.h"
+#import "WechatAddFriendViewController.h"
 #import "TLUserHelper.h"
 #import "TLNewFriendViewController.h"
-#import "TLGroupViewController.h"
-#import "TLTagsViewController.h"
-#import "TLPublicServerViewController.h"
-#import "TLFriendDetailViewController.h"
+#import "WXGroupViewController.h"
+#import "WXTagsViewController.h"
+#import "WXPublicServerViewController.h"
+#import "WechatFriendDetailViewController.h"
 #define     FRIENDS_SPACE_X         10.0f
 #define     FRIENDS_SPACE_Y         9.0f
-@interface TLFriendCell ()
+@interface WXFriendCell ()
 @property (nonatomic, strong) UIImageView *avatarImageView;
 @property (nonatomic, strong) UILabel *usernameLabel;
 @property (nonatomic, strong) UILabel *subTitleLabel;
 @end
-@implementation TLFriendCell
+@implementation WXFriendCell
 - (id) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self.leftSeparatorSpace = FRIENDS_SPACE_X;
@@ -97,10 +97,10 @@
     return _subTitleLabel;
 }
 @end
-@interface TLFriendHeaderView ()
+@interface WXFriendHeaderView ()
 @property (nonatomic, strong) UILabel *titleLabel;
 @end
-@implementation TLFriendHeaderView
+@implementation WXFriendHeaderView
 - (id) initWithReuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
         UIView *bgView = [UIView new];
@@ -130,8 +130,8 @@
 
 @interface TLFriendsViewController ()
 @property (nonatomic, strong) UILabel *footerLabel;
-@property (nonatomic, strong) TLFriendHelper *friendHelper;
-@property (nonatomic, strong) TLSearchController *searchController;
+@property (nonatomic, strong) WechatFriendHelper *friendHelper;
+@property (nonatomic, strong) WechatSearchController *searchController;
 @end
 @implementation TLFriendsViewController
 - (void)viewDidLoad {
@@ -141,7 +141,7 @@
     [self p_initUI];        // 初始化界面UI
     [self registerCellClass];
     
-    self.friendHelper = [TLFriendHelper sharedFriendHelper];      // 初始化好友数据业务类
+    self.friendHelper = [WechatFriendHelper sharedFriendHelper];      // 初始化好友数据业务类
     self.data = self.friendHelper.data;
     self.sectionHeaders = self.friendHelper.sectionHeaders;
     [self.footerLabel setText:[NSString stringWithFormat:@"%ld位联系人", (long)self.friendHelper.friendCount]];
@@ -156,7 +156,7 @@
 }
 #pragma mark - Event Response -
 - (void)rightBarButtonDown:(UIBarButtonItem *)sender{
-    TLAddFriendViewController *addFriendVC = [[TLAddFriendViewController alloc] init];
+    WechatAddFriendViewController *addFriendVC = [[WechatAddFriendViewController alloc] init];
     [self setHidesBottomBarWhenPushed:YES];
     [self.navigationController pushViewController:addFriendVC animated:YES];
     [self setHidesBottomBarWhenPushed:NO];
@@ -177,9 +177,9 @@
     [self.navigationItem setRightBarButtonItem:rightBarButtonItem];
 }
 #pragma mark - Getter -
-- (TLSearchController *)searchController{
+- (WechatSearchController *)searchController{
     if (_searchController == nil) {
-        _searchController = [[TLSearchController alloc] initWithSearchResultsController:self.searchVC];
+        _searchController = [[WechatSearchController alloc] initWithSearchResultsController:self.searchVC];
         [_searchController setSearchResultsUpdater:self.searchVC];
         [_searchController.searchBar setPlaceholder:@"搜索"];
         [_searchController.searchBar setDelegate:self];
@@ -187,9 +187,9 @@
     }
     return _searchController;
 }
-- (TLFriendSearchViewController *)searchVC{
+- (WechatFriendSearchViewController *)searchVC{
     if (_searchVC == nil) {
-        _searchVC = [[TLFriendSearchViewController alloc] init];
+        _searchVC = [[WechatFriendSearchViewController alloc] init];
     }
     return _searchVC;
 }
@@ -204,8 +204,8 @@
 }
 #pragma mark - Public Methods -
 - (void)registerCellClass{
-    [self.tableView registerClass:[TLFriendHeaderView class] forHeaderFooterViewReuseIdentifier:@"TLFriendHeaderView"];
-    [self.tableView registerClass:[TLFriendCell class] forCellReuseIdentifier:@"TLFriendCell"];
+    [self.tableView registerClass:[WXFriendHeaderView class] forHeaderFooterViewReuseIdentifier:@"TLFriendHeaderView"];
+    [self.tableView registerClass:[WXFriendCell class] forCellReuseIdentifier:@"TLFriendCell"];
 }
 #pragma mark - Delegate -
 //MARK: UITableViewDataSource
@@ -221,12 +221,12 @@
         return nil;
     }
     TLUserGroup *group = [self.data objectAtIndex:section];
-    TLFriendHeaderView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"TLFriendHeaderView"];
+    WXFriendHeaderView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"TLFriendHeaderView"];
     [view setTitle:group.groupName];
     return view;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    TLFriendCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TLFriendCell"];
+    WXFriendCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TLFriendCell"];
     TLUserGroup *group = [self.data objectAtIndex:indexPath.section];
     TLUser *user = [group objectAtIndex:indexPath.row];
     [cell setUser:user];
@@ -270,23 +270,23 @@
             [self.navigationController pushViewController:newFriendVC animated:YES];
             [self setHidesBottomBarWhenPushed:NO];
         }else if ([user.userID isEqualToString:@"-2"]) {
-            TLGroupViewController *groupVC = [[TLGroupViewController alloc] init];
+            WXGroupViewController *groupVC = [[WXGroupViewController alloc] init];
             [self setHidesBottomBarWhenPushed:YES];
             [self.navigationController pushViewController:groupVC animated:YES];
             [self setHidesBottomBarWhenPushed:NO];
         }else if ([user.userID isEqualToString:@"-3"]) {
-            TLTagsViewController *tagsVC = [[TLTagsViewController alloc] init];
+            WXTagsViewController *tagsVC = [[WXTagsViewController alloc] init];
             [self setHidesBottomBarWhenPushed:YES];
             [self.navigationController pushViewController:tagsVC animated:YES];
             [self setHidesBottomBarWhenPushed:NO];
         }else if ([user.userID isEqualToString:@"-4"]) {
-            TLPublicServerViewController *publicServer = [[TLPublicServerViewController alloc] init];
+            WXPublicServerViewController *publicServer = [[WXPublicServerViewController alloc] init];
             [self setHidesBottomBarWhenPushed:YES];
             [self.navigationController pushViewController:publicServer animated:YES];
             [self setHidesBottomBarWhenPushed:NO];
         }
     }else{
-        TLFriendDetailViewController *detailVC = [[TLFriendDetailViewController alloc] init];
+        WechatFriendDetailViewController *detailVC = [[WechatFriendDetailViewController alloc] init];
         [detailVC setUser:user];
         [self setHidesBottomBarWhenPushed:YES];
         [self.navigationController pushViewController:detailVC animated:YES];
@@ -296,7 +296,7 @@
 }
 //MARK: UISearchBarDelegate
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
-    [self.searchVC setFriendsData:[TLFriendHelper sharedFriendHelper].friendsData];
+    [self.searchVC setFriendsData:[WechatFriendHelper sharedFriendHelper].friendsData];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
 }
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{

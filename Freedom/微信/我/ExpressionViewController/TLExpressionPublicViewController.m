@@ -3,7 +3,7 @@
 // Created by Super
 #import "TLExpressionPublicViewController.h"
 #import "TLExpressionSearchViewController.h"
-#import "TLSearchController.h"
+#import "WechatSearchController.h"
 #import "TLExpressionDetailViewController.h"
 #define         EDGE                20.0
 #define         SPACE_CELL          EDGE
@@ -73,7 +73,7 @@
 }
 @end
 @interface TLExpressionPublicViewController () <UISearchBarDelegate>
-@property (nonatomic, strong) TLSearchController *searchController;
+@property (nonatomic, strong) WechatSearchController *searchController;
 @property (nonatomic, strong) TLExpressionSearchViewController *searchVC;
 
 @property (nonatomic,strong) UICollectionView *collectionView;
@@ -116,9 +116,9 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
 }
 #pragma mark - Getter
-- (TLSearchController *)searchController{
+- (WechatSearchController *)searchController{
     if (_searchController == nil) {
-        _searchController = [[TLSearchController alloc] initWithSearchResultsController:self.searchVC];
+        _searchController = [[WechatSearchController alloc] initWithSearchResultsController:self.searchVC];
         [_searchController setSearchResultsUpdater:self.searchVC];
         [_searchController.searchBar setPlaceholder:@"搜索表情"];
         [_searchController.searchBar setDelegate:self];

@@ -4,7 +4,7 @@
 #import "TLUserHelper.h"
 #import "TLExpressionHelper.h"
 #import "TLEmojiBaseCell.h"
-#import "TLDBManager.h"
+#import "WXDBManager.h"
 #import "WechartModes.h"
 #import <AddressBookUI/AddressBookUI.h>
 @implementation TLUserChatSetting
@@ -201,7 +201,7 @@
     return self.users;
 }
 @end
-@implementation TLContact
+@implementation WechatContact
 - (id)initWithCoder:(NSCoder *)decoder{
     self.name = [decoder decodeObjectForKey:@"name"];
     self.avatarPath = [decoder decodeObjectForKey:@"avatarPath"];
@@ -239,16 +239,16 @@
 }
 @end
 
-static TLFriendHelper *friendHelper = nil;
-@interface TLFriendHelper ()
+static WechatFriendHelper *friendHelper = nil;
+@interface WechatFriendHelper ()
 @property (nonatomic, strong) TLDBFriendStore *friendStore;
 @property (nonatomic, strong) TLDBGroupStore *groupStore;
 @end
-@implementation TLFriendHelper
-+ (TLFriendHelper *)sharedFriendHelper{
+@implementation WechatFriendHelper
++ (WechatFriendHelper *)sharedFriendHelper{
     static dispatch_once_t once;
     dispatch_once(&once, ^{
-        friendHelper = [[TLFriendHelper alloc] init];
+        friendHelper = [[WechatFriendHelper alloc] init];
     });
     return friendHelper;
 }
@@ -578,7 +578,7 @@ static TLFriendHelper *friendHelper = nil;
         // 3、格式转换
         NSMutableArray *data = [[NSMutableArray alloc] init];
         for (NSInteger i = 0; i < nPeople; i++) {
-            TLContact  *contact = [[TLContact  alloc] init];
+            WechatContact  *contact = [[WechatContact  alloc] init];
             ABRecordRef person = CFArrayGetValueAtIndex(allPeople, i);
             CFTypeRef abName = ABRecordCopyValue(person, kABPersonFirstNameProperty);
             CFTypeRef abLastName = ABRecordCopyValue(person, kABPersonLastNameProperty);
@@ -644,8 +644,8 @@ static TLFriendHelper *friendHelper = nil;
         // 4、排序
         NSArray *serializeArray = [data sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
             int i;
-            NSString *strA = ((TLContact *)obj1).pinyin;
-            NSString *strB = ((TLContact *)obj2).pinyin;
+            NSString *strA = ((WechatContact *)obj1).pinyin;
+            NSString *strB = ((WechatContact *)obj2).pinyin;
             for (i = 0; i < strA.length && i < strB.length; i ++) {
                 char a = toupper([strA characterAtIndex:i]);
                 char b = toupper([strB characterAtIndex:i]);
@@ -670,7 +670,7 @@ static TLFriendHelper *friendHelper = nil;
         TLUserGroup *curGroup;
         TLUserGroup *othGroup = [[TLUserGroup alloc] init];
         [othGroup setGroupName:@"#"];
-        for (TLContact *contact in serializeArray) {
+        for (WechatContact *contact in serializeArray) {
             // 获取拼音失败
             if (contact.pinyin == nil || contact.pinyin.length == 0) {
                 [othGroup addObject:contact];

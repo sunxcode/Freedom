@@ -1,8 +1,8 @@
 //  TLMineInfoViewController.m
 //  Freedom
 // Created by Super
-#import "TLMineInfoViewController.h"
-#import "TLMyQRCodeViewController.h"
+#import "WXMineInfoViewController.h"
+#import "WXMyQRCodeViewController.h"
 #import "TLUserHelper.h"
 #import "TLMineViewController.h"
 #import "WechartModes.h"
@@ -65,10 +65,10 @@
     return _avatarImageView;
 }
 @end
-@interface TLMineInfoViewController ()
+@interface WXMineInfoViewController ()
 @property (nonatomic, strong) TLMineInfoHelper *helper;
 @end
-@implementation TLMineInfoViewController
+@implementation WXMineInfoViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationItem setTitle:@"个人信息"];

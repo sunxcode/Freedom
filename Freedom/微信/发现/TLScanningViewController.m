@@ -1,10 +1,10 @@
 //  TLScanningViewController.m
 //  Freedom
 // Created by Super
-#import "TLScanningViewController.h"
-#import "TLScannerViewController.h"
-#import "TLWebViewController.h"
-#import "TLMyQRCodeViewController.h"
+#import "WXScanningViewController.h"
+#import "WXScannerViewController.h"
+#import "WechatWebViewController.h"
+#import "WXMyQRCodeViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <BlocksKit/BlocksKit+UIKit.h>
 #define     HEIGHT_BOTTOM_VIEW      82
@@ -79,9 +79,9 @@
     return _textLabel;
 }
 @end
-@interface TLScanningViewController () <TLScannerDelegate>
+@interface WXScanningViewController () <TLScannerDelegate>
 @property (nonatomic, assign) TLScannerType curType;
-@property (nonatomic, strong) TLScannerViewController *scanVC;
+@property (nonatomic, strong) WXScannerViewController *scanVC;
 @property (nonatomic, strong) UIBarButtonItem *albumBarButton;
 @property (nonatomic, strong) UIButton *myQRButton;
 @property (nonatomic, strong) UIView *bottomView;
@@ -90,7 +90,7 @@
 @property (nonatomic, strong) TLScannerButton *streetButton;
 @property (nonatomic, strong) TLScannerButton *translateButton;
 @end
-@implementation TLScanningViewController
+@implementation WXScanningViewController
 - (void)viewDidLoad{
     [super viewDidLoad];
     [self.view setBackgroundColor:[UIColor blackColor]];
@@ -112,15 +112,15 @@
     [self.bottomView setHidden:disableFunctionBar];
 }
 #pragma mark - TLScannerDelegate -
-- (void)scannerViewControllerInitSuccess:(TLScannerViewController *)scannerVC{
+- (void)scannerViewControllerInitSuccess:(WXScannerViewController *)scannerVC{
     [self scannerButtonDown:self.qrButton];    // 初始化
 }
-- (void)scannerViewController:(TLScannerViewController *)scannerVC initFailed:(NSString *)errorString{
+- (void)scannerViewController:(WXScannerViewController *)scannerVC initFailed:(NSString *)errorString{
     [UIAlertView bk_showAlertViewWithTitle:@"错误" message:errorString cancelButtonTitle:@"确定" otherButtonTitles:nil handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
         [self.navigationController popViewControllerAnimated:YES];
     }];
 }
-- (void)scannerViewController:(TLScannerViewController *)scannerVC scanAnswer:(NSString *)ansStr{
+- (void)scannerViewController:(WXScannerViewController *)scannerVC scanAnswer:(NSString *)ansStr{
     [self p_analysisQRAnswer:ansStr];
 }
 #pragma mark - Event Response -
@@ -157,7 +157,7 @@
     [picker dismissViewControllerAnimated:YES completion:^{
         UIImage *image = [editingInfo objectForKey:UIImagePickerControllerOriginalImage];
         [SVProgressHUD showWithStatus:@"扫描中，请稍候"];
-        [TLScannerViewController scannerQRCodeFromImage:image ans:^(NSString *ansStr) {
+        [WXScannerViewController scannerQRCodeFromImage:image ans:^(NSString *ansStr) {
             [SVProgressHUD dismiss];
             if (ansStr == nil) {
                 [UIAlertView bk_showAlertViewWithTitle:@"扫描失败" message:@"请换张图片，或换个设备重试~" cancelButtonTitle:@"确定" otherButtonTitles:nil handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
@@ -174,7 +174,7 @@
     [picker dismissViewControllerAnimated:YES completion:^{
         UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
         [SVProgressHUD showWithStatus:@"扫描中，请稍候"];
-        [TLScannerViewController scannerQRCodeFromImage:image ans:^(NSString *ansStr) {
+        [WXScannerViewController scannerQRCodeFromImage:image ans:^(NSString *ansStr) {
             [SVProgressHUD dismiss];
             if (ansStr == nil) {
                 [UIAlertView bk_showAlertViewWithTitle:@"扫描失败" message:@"请换张图片，或换个设备重试~" cancelButtonTitle:@"确定" otherButtonTitles:nil handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
@@ -205,7 +205,7 @@
 #pragma mark - Private Methods -
 - (void)p_analysisQRAnswer:(NSString *)ansStr{
     if ([ansStr hasPrefix:@"http"]) {
-        TLWebViewController *webVC = [[TLWebViewController alloc] init];
+        WechatWebViewController *webVC = [[WechatWebViewController alloc] init];
         [webVC setUrl:ansStr];
         __block id vc = self.navigationController.rootViewController;
         [self.navigationController popViewControllerAnimated:NO completion:^(BOOL finished) {
@@ -257,9 +257,9 @@
     }];
 }
 #pragma mark - Getter -
-- (TLScannerViewController *)scanVC{
+- (WXScannerViewController *)scanVC{
     if (_scanVC == nil) {
-        _scanVC = [[TLScannerViewController alloc] init];
+        _scanVC = [[WXScannerViewController alloc] init];
         [_scanVC setDelegate:self];
     }
     return _scanVC;

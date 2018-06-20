@@ -1,24 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Home View Controller-->
+        <!--Alipay Home View Controller-->
         <scene sceneID="Oob-tc-L10">
             <objects>
-                <viewController storyboardIdentifier="SDHomeViewController" id="U6D-dT-1MW" customClass="SDHomeViewController" customModule="Freedom" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SDHomeViewController" id="U6D-dT-1MW" customClass="AlipayHomeViewController" customModule="Freedom" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5t0-5f-fp1"/>
                         <viewControllerLayoutGuide type="bottom" id="vKy-d6-BX0"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="uxE-Vg-uv0">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -67,16 +63,16 @@
             </objects>
             <point key="canvasLocation" x="381" y="1203"/>
         </scene>
-        <!--Assets Table View Controller-->
+        <!--Alipay Assets Table View Controller-->
         <scene sceneID="POL-VU-dAa">
             <objects>
-                <viewController id="UuE-l9-g0B" customClass="SDAssetsTableViewController" customModule="Freedom" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="UuE-l9-g0B" customClass="AlipayAssetsTableViewController" customModule="Freedom" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="gFy-sc-PZr"/>
                         <viewControllerLayoutGuide type="bottom" id="fmf-Ht-Ezi"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ztj-cw-hv7">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
@@ -105,16 +101,16 @@
             </objects>
             <point key="canvasLocation" x="381" y="-58"/>
         </scene>
-        <!--Discover Table View Controller-->
+        <!--Alipay Discover Table View Controller-->
         <scene sceneID="x3H-jp-CSy">
             <objects>
-                <viewController id="OSU-Ut-Y5j" customClass="SDDiscoverTableViewController" customModule="Freedom" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="OSU-Ut-Y5j" customClass="AlipayDiscoverTableViewController" customModule="Freedom" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ipA-9n-CGD"/>
                         <viewControllerLayoutGuide type="bottom" id="Bsm-yy-Tvr"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="1y0-IR-I0a">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
@@ -141,16 +137,16 @@
             </objects>
             <point key="canvasLocation" x="345" y="583"/>
         </scene>
-        <!--Service Table View Controller-->
+        <!--Alipay Service Table View Controller-->
         <scene sceneID="fdh-2C-NDc">
             <objects>
-                <viewController id="bjr-lF-PMu" customClass="SDServiceTableViewController" customModule="Freedom" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="bjr-lF-PMu" customClass="AlipayServiceTableViewController" customModule="Freedom" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZkJ-hB-xk8"/>
                         <viewControllerLayoutGuide type="bottom" id="zyQ-3W-6bx"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="IAW-h6-H75">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>

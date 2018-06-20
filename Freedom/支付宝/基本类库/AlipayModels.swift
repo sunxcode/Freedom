@@ -18,7 +18,7 @@ class AlipayTools: NSObject {
     }
 }
 
-class SDAssetsTableViewControllerCellModel: NSObject {
+class AlipayAssetsTableViewControllerCellModel: NSObject {
     var title = ""
     var iconImageName = ""
     var destinationControllerClass: AnyClass?

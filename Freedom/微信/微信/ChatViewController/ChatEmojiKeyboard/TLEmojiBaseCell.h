@@ -3,7 +3,7 @@
 // Created by Super
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
-#import "TLPictureCarouselView.h"
+#import "WechatPictureCarouselView.h"
 @interface TLEmoji : NSObject
 @property (nonatomic, assign) TLEmojiType type;
 @property (nonatomic, strong) NSString *groupID;

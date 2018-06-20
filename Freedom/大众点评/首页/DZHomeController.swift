@@ -157,7 +157,7 @@ class DZHomeHeadView2: UICollectionReusableView {
         }
     }
 }
-class DZHomeController: DianpingBaseViewController,UICollectionViewDataSource,UICollectionViewDelegate {
+class DZHomeController: DZBaseViewController,UICollectionViewDataSource,UICollectionViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
@@ -180,6 +180,8 @@ class DZHomeController: DianpingBaseViewController,UICollectionViewDataSource,UI
         layout.minimumInteritemSpacing = 10
         layout.minimumLineSpacing = 10
         collectionView = BaseCollectionView(frame: CGRect(x: 0, y: 0, width: APPW, height: APPH - 110), collectionViewLayout: layout)
+
+        collectionView?.register(DZHomeViewCell1.self, forCellWithReuseIdentifier: "DZHomeViewCell1")
         collectionView?.register(DZHomeViewCell2.self, forCellWithReuseIdentifier: "DZHomeViewCell2")
         collectionView?.register(DZHomeViewCell3.self, forCellWithReuseIdentifier: "DZHomeViewCell3")
         collectionView?.register(DZHomeViewCell4.self, forCellWithReuseIdentifier: "DZHomeViewCell4")
@@ -207,7 +209,7 @@ class DZHomeController: DianpingBaseViewController,UICollectionViewDataSource,UI
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             var cell: BaseCollectionViewCell? = nil
             if indexPath.section == 0 {
-                cell = collectionView.dequeueReusableCell(withReuseIdentifier: "", for: indexPath) as? BaseCollectionViewCell
+                cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DZHomeViewCell1", for: indexPath) as? BaseCollectionViewCell
             } else if indexPath.section == 1 {
                 cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DZHomeViewCell2", for: indexPath) as? BaseCollectionViewCell
             } else if indexPath.section == 2 {
@@ -215,10 +217,7 @@ class DZHomeController: DianpingBaseViewController,UICollectionViewDataSource,UI
             } else {
                 cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DZHomeViewCell4", for: indexPath) as? BaseCollectionViewCell
             }
-            if let aCell = cell {
-                return aCell
-            }
-            return UICollectionViewCell()
+            return cell!
         }
         func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
             if indexPath.section == 0 {

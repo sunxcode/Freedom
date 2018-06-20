@@ -2,12 +2,12 @@
 //  Freedom
 // Created by Super
 #import "TLDiscoverViewController.h"
-#import "TLMomentsViewController.h"
-#import "TLScanningViewController.h"
-#import "TLShakeViewController.h"
-#import "TLBottleViewController.h"
-#import "TLShoppingViewController.h"
-#import "TLGameViewController.h"
+#import "WXMomentsViewController.h"
+#import "WXScanningViewController.h"
+#import "WXShakeViewController.h"
+#import "WXBottleViewController.h"
+#import "WXShoppingViewController.h"
+#import "WXGameViewController.h"
 #import "WechartModes.h"
 @interface TLDiscoverHelper : NSObject
 @property (nonatomic, strong) NSMutableArray *discoverMenuData;
@@ -37,7 +37,7 @@
 }
 @end
 @interface TLDiscoverViewController ()
-@property (nonatomic, strong) TLMomentsViewController *momentsVC;
+@property (nonatomic, strong) WXMomentsViewController *momentsVC;
 @property (nonatomic, strong) TLDiscoverHelper *discoverHelper;
 @end
 @implementation TLDiscoverViewController
@@ -58,27 +58,27 @@
         [self setHidesBottomBarWhenPushed:NO];
     }
     if ([item.title isEqualToString:@"扫一扫"]) {
-        TLScanningViewController *scannerVC = [[TLScanningViewController alloc] init];
+        WXScanningViewController *scannerVC = [[WXScanningViewController alloc] init];
         [self setHidesBottomBarWhenPushed:YES];
         [self.navigationController pushViewController:scannerVC animated:YES];
         [self setHidesBottomBarWhenPushed:NO];
     }else if ([item.title isEqualToString:@"摇一摇"]) {
-        TLShakeViewController *shakeVC = [[TLShakeViewController alloc] init];
+        WXShakeViewController *shakeVC = [[WXShakeViewController alloc] init];
         [self setHidesBottomBarWhenPushed:YES];
         [self.navigationController pushViewController:shakeVC animated:YES];
         [self setHidesBottomBarWhenPushed:NO];
     }else if ([item.title isEqualToString:@"漂流瓶"]) {
-        TLBottleViewController *bottleVC = [[TLBottleViewController alloc] init];
+        WXBottleViewController *bottleVC = [[WXBottleViewController alloc] init];
         [self setHidesBottomBarWhenPushed:YES];
         [self.navigationController pushViewController:bottleVC animated:YES];
         [self setHidesBottomBarWhenPushed:NO];
     }else if ([item.title isEqualToString:@"购物"]) {
-        TLShoppingViewController *shoppingVC = [[TLShoppingViewController alloc] init];
+        WXShoppingViewController *shoppingVC = [[WXShoppingViewController alloc] init];
         [self setHidesBottomBarWhenPushed:YES];
         [self.navigationController pushViewController:shoppingVC animated:YES];
         [self setHidesBottomBarWhenPushed:NO];
     }else if ([item.title isEqualToString:@"游戏"]) {
-        TLGameViewController *gameVC = [[TLGameViewController alloc] init];
+        WXGameViewController *gameVC = [[WXGameViewController alloc] init];
         [self setHidesBottomBarWhenPushed:YES];
         [self.navigationController pushViewController:gameVC animated:YES];
         [self setHidesBottomBarWhenPushed:NO];
@@ -86,9 +86,9 @@
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];
 }
 #pragma mark - Getter
-- (TLMomentsViewController *)momentsVC{
+- (WXMomentsViewController *)momentsVC{
     if (_momentsVC == nil) {
-        _momentsVC = [[TLMomentsViewController alloc] init];
+        _momentsVC = [[WXMomentsViewController alloc] init];
     }
     return _momentsVC;
 }

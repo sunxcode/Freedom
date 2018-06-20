@@ -1,14 +1,14 @@
 //  Freedom
 // Created by Super
 #import "TLChatViewController.h"
-#import "TLChatDetailViewController.h"
-#import "TLChatGroupDetailViewController.h"
+#import "WeChatChatDetailViewController.h"
+#import "WechatChatGroupDetailViewController.h"
 #import <UMMobClick/MobClick.h>
-#import "TLRootViewController.h"
+#import "WechatRootViewController.h"
 #import <BlocksKit/BlocksKit+UIKit.h>
-#import "TLExpressionViewController.h"
-#import "TLMyExpressionViewController.h"
-#import "TLFriendDetailViewController.h"
+#import "WXExpressionViewController.h"
+#import "WXMyExpressionViewController.h"
+#import "WechatFriendDetailViewController.h"
 #import "MWPhotoBrowser.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "TLUserHelper.h"
@@ -89,12 +89,12 @@ static TLChatViewController *chatVC;
 #pragma mark - Event Response
 - (void)rightBarButtonDown:(UINavigationBar *)sender{
     if ([self.partner chat_userType] == TLChatUserTypeUser) {
-        TLChatDetailViewController *chatDetailVC = [[TLChatDetailViewController alloc] init];
+        WeChatChatDetailViewController *chatDetailVC = [[WeChatChatDetailViewController alloc] init];
         [chatDetailVC setUser:(TLUser *)self.partner];
         [self setHidesBottomBarWhenPushed:YES];
         [self.navigationController pushViewController:chatDetailVC animated:YES];
     }else if ([self.partner chat_userType] == TLChatUserTypeGroup) {
-        TLChatGroupDetailViewController *chatGroupDetailVC = [[TLChatGroupDetailViewController alloc] init];
+        WechatChatGroupDetailViewController *chatGroupDetailVC = [[WechatChatGroupDetailViewController alloc] init];
         [chatGroupDetailVC setGroup:(TLGroup *)self.partner];
         [self setHidesBottomBarWhenPushed:YES];
         [self.navigationController pushViewController:chatGroupDetailVC animated:YES];
@@ -146,18 +146,18 @@ static TLChatViewController *chatVC;
 }
 //MARK: TLEmojiKeyboardDelegate
 - (void)emojiKeyboardEmojiEditButtonDown{
-    TLExpressionViewController *expressionVC = [[TLExpressionViewController alloc] init];
+    WXExpressionViewController *expressionVC = [[WXExpressionViewController alloc] init];
     TLNavigationController *navC = [[TLNavigationController alloc] initWithRootViewController:expressionVC];
     [self presentViewController:navC animated:YES completion:nil];
 }
 - (void)emojiKeyboardMyEmojiEditButtonDown{
-    TLMyExpressionViewController *myExpressionVC = [[TLMyExpressionViewController alloc] init];
+    WXMyExpressionViewController *myExpressionVC = [[WXMyExpressionViewController alloc] init];
     TLNavigationController *navC = [[TLNavigationController alloc] initWithRootViewController:myExpressionVC];
     [self presentViewController:navC animated:YES completion:nil];
 }
 //MARK: TLChatViewControllerProxy
 - (void)didClickedUserAvatar:(TLUser *)user{
-    TLFriendDetailViewController *detailVC = [[TLFriendDetailViewController alloc] init];
+    WechatFriendDetailViewController *detailVC = [[WechatFriendDetailViewController alloc] init];
     [detailVC setUser:user];
     [self setHidesBottomBarWhenPushed:YES];
     [self.navigationController pushViewController:detailVC animated:YES];

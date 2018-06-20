@@ -2,7 +2,7 @@
 //  DZDealDetailViewController.swift
 //  Freedom
 import UIKit
-class DZDealDetailViewController: DianpingBaseViewController {
+class DZDealDetailViewController: DZBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }

@@ -5,7 +5,7 @@
 //
 #import <Foundation/Foundation.h>
 @class TLGroup;
-@class XFAccount;
+@class SinaAccount;
 @interface FreedomTools : NSObject
 + (CGFloat)getTextHeightOfText:(NSString *)text
                           font:(UIFont *)font
@@ -42,9 +42,9 @@
 -(NSString *)urlWithJianShuData;
 @property (nonatomic, strong) NSString *version;
 /*存储账号信息@param account 账号模型*/
-+ (void)saveAccount:(XFAccount *)account;
++ (void)saveAccount:(SinaAccount *)account;
 /*返回账号信息 @return 账号模型（如果账号过期，返回nil）*/
-+ (XFAccount *)account;
++ (SinaAccount *)account;
 + (NSArray *)itemIndexesWithPattern:(NSString *)pattern inString:(NSString *)findingString;
 + (NSMutableArray *)matchMobileLink:(NSString *)pattern;
 + (NSMutableArray *)matchWebLink:(NSString *)pattern;

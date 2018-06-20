@@ -91,7 +91,8 @@ class TaobaoMeViewController: TaobaoBaseViewController,UICollectionViewDelegate,
         layout.footerReferenceSize = CGSize.zero
         collectionView = BaseCollectionView(frame: CGRect(x: 0, y: 0, width: APPW, height: APPH - 110), collectionViewLayout: layout)
         collectionView.dataArray = [["name": "流量充值", "pic": "userLogo"]]
-        collectionView?.register(TaobaoMeViewCell2.self, forCellWithReuseIdentifier: "TaobaoMeViewCell2")
+        collectionView?.register(TaobaoMeViewCell1.self, forCellWithReuseIdentifier: TaobaoMeViewCell1.getColloctionCellIdentifier())
+        collectionView?.register(TaobaoMeViewCell2.self, forCellWithReuseIdentifier: TaobaoMeViewCell2.getColloctionCellIdentifier())
         collectionView?.register(TaobaoMeHeadView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "headview")
         collectionView?.register(TaobaoMeHeadView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: "footview")
         collectionView?.addSubview(headView)
@@ -116,16 +117,11 @@ class TaobaoMeViewController: TaobaoBaseViewController,UICollectionViewDelegate,
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         var cell: BaseCollectionViewCell? = nil
         if indexPath.section == 0 {
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: "", for: indexPath) as? BaseCollectionViewCell
-        } else if indexPath.section == 1 {
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TaobaoMeViewCell2", for: indexPath) as? BaseCollectionViewCell
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: TaobaoMeViewCell1.getColloctionCellIdentifier(), for: indexPath) as? TaobaoMeViewCell1
         } else {
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TaobaoMeViewCell2", for: indexPath) as? BaseCollectionViewCell
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: TaobaoMeViewCell2.getColloctionCellIdentifier(), for: indexPath) as? TaobaoMeViewCell2
         }
-        if let aCell = cell {
-            return aCell
-        }
-        return UICollectionViewCell()
+        return cell!
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

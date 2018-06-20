@@ -2,7 +2,7 @@
 //  Freedom
 // Created by Super
 #import <Foundation/Foundation.h>
-#import "TLDBManager.h"
+#import "WXDBManager.h"
 #import "TLUserHelper.h"
 #import <MapKit/MapKit.h>
 /*消息所有者类型*/

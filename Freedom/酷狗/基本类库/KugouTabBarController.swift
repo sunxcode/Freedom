@@ -22,12 +22,11 @@ class TabBarView: UIView, AVAudioPlayerDelegate {
         av?.pan = 0// 音域  -1一边能听到  0两个耳机都能听到
         av?.enableRate = true// 允许设置速率
         av?.rate = 1// 设置速率
-        print("\(av?.duration),\(av?.currentTime),\(av?.numberOfLoops),\(av?.numberOfChannels)")
+        print("\(String(describing: av?.duration)),\(av?.currentTime),\(av?.numberOfLoops),\(av?.numberOfChannels)")
         av?.delegate = self
         return av!
     }();
     weak var timer: Timer?
-    var playBoxVC: PlayAudioViewController = PlayAudioViewController.shared() as! PlayAudioViewController
     override init(frame: CGRect) {
         super.init(frame: frame)
         iconView = UIImageView(frame: CGRect(x: 8, y: 0, width: 55, height: 55))
@@ -162,7 +161,8 @@ class TabBarView: UIView, AVAudioPlayerDelegate {
     //打开播放详情页
     func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent) {
         UIView.animate(withDuration: 0.3, delay: 0, options: [.allowUserInteraction, .beginFromCurrentState], animations: {
-            self.playBoxVC.view.transform = .identity
+            let playBoxVC: PlayAudioViewController = PlayAudioViewController.shared() as! PlayAudioViewController
+            playBoxVC.view.transform = .identity
         }) { finished in
         }
     }
@@ -173,8 +173,8 @@ class KugouTabBarController: XBaseTabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //创建RESideMenu对象(指定内容/左边/右边)
-        let navi = UINavigationController(rootViewController: MainViewController())
-        let sideViewController = RESideMenu(contentViewController: navi, leftMenuViewController: SettingViewController(), rightMenuViewController: KugouRightSettingViewController())
+        let navi = KugouNavigationViewController(rootViewController: KugouMainViewController())
+        let sideViewController = RESideMenu(contentViewController: navi, leftMenuViewController: KugouSettingViewController(), rightMenuViewController: KugouRightSettingViewController())
         sideViewController?.backgroundImage = UIImage(named:"bj");
         //设置内容控制器的阴影颜色/半径/enable
         sideViewController?.contentViewShadowColor = .black

@@ -4,8 +4,8 @@
 #import "TLExpressionSearchViewController.h"
 #import "TLExpressionDetailViewController.h"
 #import "TLExpressionHelper.h"
-#import "TLRootViewController.h"
-#import "TLExpressionChosenViewController.h"
+#import "WechatRootViewController.h"
+#import "WXExpressionChosenViewController.h"
 #define         HEGIHT_EXPCELL      80
 @interface TLExpressionSearchViewController () <TLExpressionCellDelegate>
 @property (nonatomic, strong) TLExpressionHelper *proxy;

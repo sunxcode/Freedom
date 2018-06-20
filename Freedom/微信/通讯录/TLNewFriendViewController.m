@@ -2,9 +2,9 @@
 //  Freedom
 // Created by Super
 #import "TLNewFriendViewController.h"
-#import "TLSearchController.h"
-#import "TLAddFriendViewController.h"
-#import "TLContactsViewController.h"
+#import "WechatSearchController.h"
+#import "WechatAddFriendViewController.h"
+#import "WechatContactsViewController.h"
 #import "TLTableViewCell.h"
 static const NSString *TLThirdPartFriendTypeContacts = @"1";
 static const NSString *TLThirdPartFriendTypeQQ = @"2";
@@ -19,7 +19,7 @@ static const NSString *TLThirdPartFriendTypeGoogle = @"3";
  *  }*/
 @property (nonatomic, strong) NSArray *thridPartItems;
 @end
-@interface TLAddThirdPartFriendItem : UIButton
+@interface WXAddThirdPartFriendItem : UIButton
 /*第三方类型
  *  {
  *      TLThirdPartFriendTypeContacts
@@ -29,11 +29,11 @@ static const NSString *TLThirdPartFriendTypeGoogle = @"3";
 @property (nonatomic, strong) NSString *itemTag;
 - (id)initWithImagePath:(NSString *)imagePath andTitle:(NSString *)title;
 @end
-@interface TLAddThirdPartFriendItem ()
+@interface WXAddThirdPartFriendItem ()
 @property (nonatomic, strong) UIImageView *iconImageView;
 @property (nonatomic, strong) UILabel *textLabel;
 @end
-@implementation TLAddThirdPartFriendItem
+@implementation WXAddThirdPartFriendItem
 - (id)initWithImagePath:(NSString *)imagePath andTitle:(NSString *)title{
     if (self = [super initWithFrame:CGRectZero]) {
         [self.iconImageView setImage:[UIImage imageNamed:imagePath]];
@@ -72,9 +72,9 @@ static const NSString *TLThirdPartFriendTypeGoogle = @"3";
 @end
 @interface TLAddThirdPartFriendCell ()
 @property (nonatomic, strong) NSDictionary *itemsDic;
-@property (nonatomic, strong) TLAddThirdPartFriendItem *contacts;
-@property (nonatomic, strong) TLAddThirdPartFriendItem *qq;
-@property (nonatomic, strong) TLAddThirdPartFriendItem *google;
+@property (nonatomic, strong) WXAddThirdPartFriendItem *contacts;
+@property (nonatomic, strong) WXAddThirdPartFriendItem *qq;
+@property (nonatomic, strong) WXAddThirdPartFriendItem *google;
 @end
 @implementation TLAddThirdPartFriendCell
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
@@ -93,13 +93,13 @@ static const NSString *TLThirdPartFriendTypeGoogle = @"3";
         return;
     }
     _thridPartItems = thridPartItems;
-    TLAddThirdPartFriendItem *lastItem;
+    WXAddThirdPartFriendItem *lastItem;
     for(UIView *v in self.contentView.subviews){
         [v removeFromSuperview];
     }
     for (int i = 0; i < thridPartItems.count; i++) {
         NSString *keyStr = [thridPartItems objectAtIndex:i];
-        TLAddThirdPartFriendItem *item = [self.itemsDic objectForKey:keyStr];
+        WXAddThirdPartFriendItem *item = [self.itemsDic objectForKey:keyStr];
         [self.contentView addSubview:item];
         [item mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.and.bottom.mas_equalTo(self.contentView);
@@ -141,38 +141,38 @@ static const NSString *TLThirdPartFriendTypeGoogle = @"3";
     CGContextStrokePath(context);
 }
 #pragma mark - Event Response -
-- (void)itemButtonDown:(TLAddThirdPartFriendItem *)item{
+- (void)itemButtonDown:(WXAddThirdPartFriendItem *)item{
     if (_delegate && [_delegate respondsToSelector:@selector(addThirdPartFriendCellDidSelectedType:)]) {
         [_delegate addThirdPartFriendCellDidSelectedType:item.itemTag];
     }
 }
 #pragma mark - Getter -
-- (TLAddThirdPartFriendItem *)contacts{
+- (WXAddThirdPartFriendItem *)contacts{
     if (_contacts == nil) {
-        _contacts = [[TLAddThirdPartFriendItem alloc] initWithImagePath:@"newFriend_contacts" andTitle:@"添加手机联系人"];
+        _contacts = [[WXAddThirdPartFriendItem alloc] initWithImagePath:@"newFriend_contacts" andTitle:@"添加手机联系人"];
         _contacts.itemTag = [TLThirdPartFriendTypeContacts copy];
         [_contacts addTarget:self action:@selector(itemButtonDown:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _contacts;
 }
-- (TLAddThirdPartFriendItem *)qq{
+- (WXAddThirdPartFriendItem *)qq{
     if (_qq == nil) {
-        _qq = [[TLAddThirdPartFriendItem alloc] initWithImagePath:@"newFriend_qq" andTitle:@"添加QQ好友"];
+        _qq = [[WXAddThirdPartFriendItem alloc] initWithImagePath:@"newFriend_qq" andTitle:@"添加QQ好友"];
         _qq.itemTag = [TLThirdPartFriendTypeQQ copy];
         [_qq addTarget:self action:@selector(itemButtonDown:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _qq;
 }
-- (TLAddThirdPartFriendItem *)google{
+- (WXAddThirdPartFriendItem *)google{
     if (_google == nil) {
-        _google = [[TLAddThirdPartFriendItem alloc] initWithImagePath:@"newFriend_google" andTitle:@"添加Google好友"];
+        _google = [[WXAddThirdPartFriendItem alloc] initWithImagePath:@"newFriend_google" andTitle:@"添加Google好友"];
         _google.itemTag = [TLThirdPartFriendTypeGoogle copy];
         [_google addTarget:self action:@selector(itemButtonDown:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _google;
 }
 @end
-@interface TLNewFriendSearchViewController : TLTableViewController <UISearchResultsUpdating>
+@interface TLNewFriendSearchViewController : WechatTableViewController <UISearchResultsUpdating>
 @end
 @implementation TLNewFriendSearchViewController
 #pragma mark - Delegate -
@@ -182,7 +182,7 @@ static const NSString *TLThirdPartFriendTypeGoogle = @"3";
 }
 @end
 @interface TLNewFriendViewController ()
-@property (nonatomic, strong) TLSearchController *searchController;
+@property (nonatomic, strong) WechatSearchController *searchController;
 @property (nonatomic, strong) TLNewFriendSearchViewController *searchVC;
 @end
 @implementation TLNewFriendViewController
@@ -199,14 +199,14 @@ static const NSString *TLThirdPartFriendTypeGoogle = @"3";
 }
 #pragma mark - Event Response -
 - (void)rightBarButtonDown:(UIBarButtonItem *)sender{
-    TLAddFriendViewController *addFriendVC = [[TLAddFriendViewController alloc] init];
+    WechatAddFriendViewController *addFriendVC = [[WechatAddFriendViewController alloc] init];
     [self setHidesBottomBarWhenPushed:YES];
     [self.navigationController pushViewController:addFriendVC animated:YES];
 }
 #pragma mark - Getter -
-- (TLSearchController *)searchController{
+- (WechatSearchController *)searchController{
     if (_searchController == nil) {
-        _searchController = [[TLSearchController alloc] initWithSearchResultsController:self.searchVC];
+        _searchController = [[WechatSearchController alloc] initWithSearchResultsController:self.searchVC];
         [_searchController setSearchResultsUpdater:self.searchVC];
         [_searchController.searchBar setPlaceholder:@"微信号/手机号"];
         [_searchController.searchBar setDelegate:self];
@@ -271,7 +271,7 @@ static const NSString *TLThirdPartFriendTypeGoogle = @"3";
 //MARK: TLAddThirdPartFriendCellDelegate
 - (void)addThirdPartFriendCellDidSelectedType:(NSString *)thirdPartFriendType{
     if ([TLThirdPartFriendTypeContacts isEqualToString:thirdPartFriendType]) {
-        TLContactsViewController *contactsVC = [[TLContactsViewController alloc] init];
+        WechatContactsViewController *contactsVC = [[WechatContactsViewController alloc] init];
         [self setHidesBottomBarWhenPushed:YES];
         [self.navigationController pushViewController:contactsVC animated:YES];
     }else if ([TLThirdPartFriendTypeQQ isEqualToString:thirdPartFriendType]) {

@@ -202,17 +202,17 @@ static UILabel *hLabel = nil;
 /*存储账号信息
  *
  *  @param account 账号模型*/
-+ (void)saveAccount:(XFAccount *)account{
++ (void)saveAccount:(SinaAccount *)account{
     // 自定义对象的存储必须用NSKeyedArchiver
     [NSKeyedArchiver archiveRootObject:account toFile:XFAccountPath];
 }
 /*返回账号信息
  *
  *  @return 账号模型（如果账号过期，返回nil）*/
-+ (XFAccount *)account{
++ (SinaAccount *)account{
     
     // 加载模型
-    XFAccount *account = [NSKeyedUnarchiver unarchiveObjectWithFile:XFAccountPath];
+    SinaAccount *account = [NSKeyedUnarchiver unarchiveObjectWithFile:XFAccountPath];
     
     /* 验证账号是否过期 */
     

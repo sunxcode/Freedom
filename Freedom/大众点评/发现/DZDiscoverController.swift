@@ -5,7 +5,7 @@
 import UIKit
 import BaseFile
 import XExtension
-class DZDiscoverController: DianpingBaseViewController {
+class DZDiscoverController: DZBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let searchBar = UISearchBar()
@@ -16,8 +16,9 @@ class DZDiscoverController: DianpingBaseViewController {
         })
         navigationItem.leftBarButtonItem = map
         let titles = ["精选", "嗨周末", "变漂亮", "潮餐厅", "出去浪", "探店报告"]
-        let controllers = ["DZDealListViewController", "DZDealListViewController", "DZDealListViewController", "DZDealListViewController", "DZDealListViewController", "DZDealListViewController"]
-        let contentScrollView = BaseScrollView(contentTitleView: CGRect(x: 0, y: 0, width: APPW, height: APPH - 55), titles: titles, controllers: [], in: self)
+        let vc = DZDealListViewController()
+        let controllers = [vc,vc,vc,vc,vc,vc]
+        let contentScrollView = BaseScrollView(contentTitleView: CGRect(x: 0, y: 0, width: APPW, height: APPH - 55), titles: titles, controllers:controllers, in: self)
         contentScrollView.selectBlock = {(_ index: Int, _ dict: [AnyHashable: Any]?) -> Void in
             Dlog("点击了\(String(describing: dict))")
         }

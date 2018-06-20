@@ -14,7 +14,7 @@ class DZMeViewCell:BaseTableViewCell{
         self.icon.image = UIImage(named:"taobaomini2")
     }
 }
-class DZMeController: DianpingBaseViewController {
+class DZMeController: DZBaseViewController {
     func buildTableView() {
         tableView = BaseTableView(frame: CGRect(x: 0, y: 0, width: APPW, height: APPH), style: .grouped)
         tableView.delegate = self

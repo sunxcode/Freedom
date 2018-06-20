@@ -241,7 +241,7 @@ static TLMessageManager *messageManager;
     NSString *HOST_URL = @"http://127.0.0.1:8000/";            // 本地测试服务器
 //    HOST_URL = @"http://121.42.29.15:8000/";        // 远程线上服务器
     NSString *urlString = [HOST_URL stringByAppendingString:@"client/getClientInitInfo/"];
-    [NetBase POST:urlString parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[AFHTTPSessionManager manager] POST:urlString parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         DLog(@"OK");
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         DLog(@"OK");

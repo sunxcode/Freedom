@@ -4,7 +4,7 @@
 import UIKit
 import BaseFile
 import XExtension
-class DZDealController: DianpingBaseViewController {
+class DZDealController: DZBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -15,10 +15,11 @@ class DZDealController: DianpingBaseViewController {
         navigationItem.leftBarButtonItem = map
         navigationItem.title = "团购"
         let titles = ["精选", "享美食", "点外卖", "看电影", "趣休闲"]
-        let controllers = ["DZDealListViewController", "DZDealListViewController", "DZDealListViewController", "DZDealListViewController", "DZDealListViewController"]
-        let contentScrollView = BaseScrollView(contentTitleView: CGRect(x: 0, y: 0, width: APPW, height: APPH - 100), titles: titles, controllers: [], in: self)
+        let vc = DZDealListViewController()
+        let controllers = [vc,vc,vc,vc,vc]
+        let contentScrollView = BaseScrollView(contentTitleView: CGRect(x: 0, y: 0, width: APPW, height: APPH - 100), titles: titles, controllers:controllers, in: self)
         contentScrollView.selectBlock = {(_ index: Int, _ dict: [AnyHashable: Any]?) -> Void in
-            Dlog("点击了\(dict)")
+            Dlog("点击了\(String(describing: dict))")
         }
     }
 }

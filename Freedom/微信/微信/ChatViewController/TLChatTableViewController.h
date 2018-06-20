@@ -4,7 +4,7 @@
 #import <UIKit/UIKit.h>
 #import "TLMessageManager.h"
 #import "TLEmojiKeyboard.h"
-#import "TLActionSheet.h"
+#import "WechatActionSheet.h"
 #import <Foundation/Foundation.h>
 @protocol TLMessageCellDelegate;
 typedef NS_ENUM(NSInteger, TLChatMenuItemType) {

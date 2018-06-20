@@ -5,9 +5,9 @@
  *  注意：该类TableView重载并增加section（0， 0）*/
 #import "TLMineViewController.h"
 #import "TLUserHelper.h"
-#import "TLMineInfoViewController.h"
-#import "TLExpressionViewController.h"
-#import "TLMineSettingViewController.h"
+#import "WXMineInfoViewController.h"
+#import "WXExpressionViewController.h"
+#import "WXMineSettingViewController.h"
 #import "WechartModes.h"
 #define     MINE_SPACE_X        14.0f
 #define     MINE_SPACE_Y        12.0f
@@ -197,7 +197,7 @@
 }
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
-        TLMineInfoViewController *mineInfoVC = [[TLMineInfoViewController alloc] init];
+        WXMineInfoViewController *mineInfoVC = [[WXMineInfoViewController alloc] init];
         [self setHidesBottomBarWhenPushed:YES];
         [self.navigationController pushViewController:mineInfoVC animated:YES];
         [self setHidesBottomBarWhenPushed:NO];
@@ -206,12 +206,12 @@
     }
     TLMenuItem *item = [self.data[indexPath.section] objectAtIndex:indexPath.row];
     if ([item.title isEqualToString:@"表情"]) {
-        TLExpressionViewController *expressionVC = [[TLExpressionViewController alloc] init];
+        WXExpressionViewController *expressionVC = [[WXExpressionViewController alloc] init];
         [self setHidesBottomBarWhenPushed:YES];
         [self.navigationController pushViewController:expressionVC animated:YES];
         [self setHidesBottomBarWhenPushed:NO];
     }else if ([item.title isEqualToString:@"设置"]) {
-        TLMineSettingViewController *settingVC = [[TLMineSettingViewController alloc] init];
+        WXMineSettingViewController *settingVC = [[WXMineSettingViewController alloc] init];
         [self setHidesBottomBarWhenPushed:YES];
         [self.navigationController pushViewController:settingVC animated:YES];
         [self setHidesBottomBarWhenPushed:NO];

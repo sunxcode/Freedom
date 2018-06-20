@@ -4,7 +4,7 @@
 //
 //  Created by 谭真 on 15/12/24.
 //  Copyright © 2015年 谭真. All rights reserved.
-//  version 2.1.2 - 2018.05.14
+//  version 2.1.6 - 2018.06.12
 //  更多信息，请前往项目的github地址：https://github.com/banchichen/TZImagePickerController
 
 #import "TZImagePickerController.h"
@@ -133,11 +133,6 @@
     [super viewWillAppear:animated];
     _originStatusBarStyle = [UIApplication sharedApplication].statusBarStyle;
     [UIApplication sharedApplication].statusBarStyle = self.statusBarStyle;
-    if ([self.takePictureImageName isEqualToString:@"takePicture80"]) {
-        if (self.allowTakePicture && !self.allowTakeVideo) {
-            self.takePictureImageName = @"takePicture";
-        }
-    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -167,7 +162,7 @@
     if (self) {
         self.maxImagesCount = maxImagesCount > 0 ? maxImagesCount : 9; // Default is 9 / 默认最大可选9张图片
         self.pickerDelegate = delegate;
-        self.selectedModels = [NSMutableArray array];
+        self.selectedAssets = [NSMutableArray array];
         
         // Allow user picking original photo and video, you also can set No after this method
         // 默认准许用户选择原图和视频, 你也可以在这个方法后置为NO
@@ -278,6 +273,7 @@
     self.allowPreview = YES;
     self.statusBarStyle = UIStatusBarStyleLightContent;
     self.cannotSelectLayerColor = [[UIColor whiteColor] colorWithAlphaComponent:0.8];
+    self.allowCameraLocation = YES;
     
     self.iconThemeColor = [UIColor colorWithRed:31 / 255.0 green:185 / 255.0 blue:34 / 255.0 alpha:1.0];
     [self configDefaultBtnTitle];
@@ -807,6 +803,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TZAlbumCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TZAlbumCell"];
     TZImagePickerController *imagePickerVc = (TZImagePickerController *)self.navigationController;
+    cell.albumCellDidLayoutSubviewsBlock = imagePickerVc.albumCellDidLayoutSubviewsBlock;
+    cell.albumCellDidSetModelBlock = imagePickerVc.albumCellDidSetModelBlock;
     cell.selectedCountButton.backgroundColor = imagePickerVc.iconThemeColor;
     cell.model = _albumArr[indexPath.row];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;

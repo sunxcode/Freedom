@@ -1,0 +1,6 @@
+framework module ScottAlertController {
+  umbrella header "ScottAlertController-umbrella.h"
+
+  export *
+  module * { export * }
+}

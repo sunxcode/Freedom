@@ -30,7 +30,6 @@ target 'Freedom' do
     pod 'JSPatch'#https://github.com/bang590/JSPatch
     pod 'XCategory'
     pod 'XCarryOn'
-    pod 'ObjectDictionary'
     pod 'ScottAlertController'
 #Swift.frameworks
 pod 'XExtension'

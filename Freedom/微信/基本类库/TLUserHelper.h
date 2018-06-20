@@ -17,7 +17,7 @@ typedef NS_ENUM(NSInteger, TLContactStatus) {
     TLContactStatusFriend,
     TLContactStatusWait,
 };
-@interface TLContact : NSObject
+@interface WechatContact : NSObject
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *avatarPath;
 @property (nonatomic, strong) NSString *avatarURL;
@@ -119,7 +119,7 @@ typedef NS_ENUM(NSInteger, TLContactStatus) {
 - (void)addObject:(id)anObject;
 - (id)objectAtIndex:(NSUInteger)index;
 @end
-@interface TLFriendHelper : NSObject
+@interface WechatFriendHelper : NSObject
 /// 好友列表默认项
 @property (nonatomic, strong) TLUserGroup *defaultGroup;
 #pragma mark - 好友
@@ -138,7 +138,7 @@ typedef NS_ENUM(NSInteger, TLContactStatus) {
 #pragma mark - 标签
 /// 标签数据
 @property (nonatomic, strong) NSMutableArray *tagsData;
-+ (TLFriendHelper *)sharedFriendHelper;
++ (WechatFriendHelper *)sharedFriendHelper;
 - (TLUser *)getFriendInfoByUserID:(NSString *)userID;
 - (TLGroup *)getGroupInfoByGroupID:(NSString *)groupID;
 /*获取铜须路好友

@@ -104,7 +104,7 @@ class JFVideoDetailCell: UITableViewCell {
     }
 
 }
-class JFVideoDetailViewController: IqiyiBaseViewController {
+class IqiyiVideoDetailViewController: IqiyiBaseViewController {
     
         var videoDetailTableView: UITableView?
         var videoDetailWebView: UIWebView?
@@ -157,7 +157,7 @@ class JFVideoDetailViewController: IqiyiBaseViewController {
         self.videoDM = JFVideoDetailModel()
         recommendArray = [AnyHashable]()
 //        let urlStr = FreedomTools.sharedManager().url(withVideoDetailData: iid)
-//            NetBase.get(url, parameters: nil, progress: nil, success: {(_ task: URLSessionDataTask, _ responseObject: Any?) -> Void in
+//            [AFHTTPSessionManager manager].get(url, parameters: nil, progress: nil, success: {(_ task: URLSessionDataTask, _ responseObject: Any?) -> Void in
 //                let videoDM = JFVideoDetailModel.mj_object(withKeyValues: responseObject?["detail"])
 //                self.videoDM = videoDM
 //                let videoUrl = FreedomTools.shared().url(withVideo: self.iid)
@@ -171,7 +171,7 @@ class JFVideoDetailViewController: IqiyiBaseViewController {
     func loadRecommentData() {
         let urlStr = FreedomTools.sharedManager().url(withRecommentdata: iid)
         let url = (urlStr! as NSString)//.addingPercentEscapes(using: .utf8)
-//        NetBase.get(url, parameters: nil, progress: nil, success: {(_ task: URLSessionDataTask, _ responseObject: Any?) -> Void in
+//        [AFHTTPSessionManager manager].get(url, parameters: nil, progress: nil, success: {(_ task: URLSessionDataTask, _ responseObject: Any?) -> Void in
 //            //这个地方要先移除模型数组里面数据
 //            recommendArray.removeAll()
 //            var resultArray = responseObject?["results"] as? [AnyHashable]

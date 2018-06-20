@@ -1,17 +1,17 @@
 //  TLConversationViewController.h
 //  Freedom
 // Created by Super
-#import "TLTableViewController.h"
-#import "TLFriendSearchViewController.h"
+#import "WechatTableViewController.h"
+#import "WechatFriendSearchViewController.h"
 #import "TLChatViewController.h"
 #define     HEIGHT_CONVERSATION_CELL        64.0f
 #import "TLMessageManager.h"
 #import "WechartModes.h"
-@class TLAddMenuView;
+@class WechatAddMenuView;
 @protocol TLAddMenuViewDelegate <NSObject>
-- (void)addMenuView:(TLAddMenuView *)addMenuView didSelectedItem:(TLAddMenuItem *)item;
+- (void)addMenuView:(WechatAddMenuView *)addMenuView didSelectedItem:(TLAddMenuItem *)item;
 @end
-@interface TLAddMenuView : UIView
+@interface WechatAddMenuView : UIView
 @property (nonatomic, assign) id<TLAddMenuViewDelegate>delegate;
 /*显示AddMenu
  *
@@ -22,8 +22,8 @@
 /*隐藏*/
 - (void)dismiss;
 @end
-@interface TLConversationViewController : TLTableViewController<TLMessageManagerConvVCDelegate, UISearchBarDelegate, TLAddMenuViewDelegate>
-@property (nonatomic, strong) TLFriendSearchViewController *searchVC;
+@interface TLConversationViewController : WechatTableViewController<TLMessageManagerConvVCDelegate, UISearchBarDelegate, TLAddMenuViewDelegate>
+@property (nonatomic, strong) WechatFriendSearchViewController *searchVC;
 @property (nonatomic, strong) NSMutableArray *data;
 - (void)registerCellClass;
 @end

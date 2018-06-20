@@ -16,7 +16,7 @@ class SettingsViewController: XBaseViewController ,ElasticMenuTransitionDelegate
     var dismissByForegroundDrag = true
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView = UITableView(frame: CGRect(x: 0, y: 0, width: APPW, height: APPH)) as! BaseTableView
+        tableView = BaseTableView(frame: CGRect(x: 0, y: 0, width: APPW, height: APPH))
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = UIColor.clear

@@ -128,7 +128,6 @@ class XCollectionViewDialLayout: UICollectionViewLayout {
 }
 class FirstViewController: XBaseViewController,UICollectionViewDataSource, UICollectionViewDelegate,UISearchBarDelegate {
     static let sharedVC = FirstViewController()
-    var items = [[String:String]]()
     @IBOutlet weak var homecollectionView: UICollectionView!
     var transition: ElasticTransition = ElasticTransition()
     var LibraryGR: UIScreenEdgePanGestureRecognizer = UIScreenEdgePanGestureRecognizer()
@@ -149,7 +148,6 @@ class FirstViewController: XBaseViewController,UICollectionViewDataSource, UICol
     @IBOutlet weak var firstNavigationBar: UINavigationBar!
     override func viewDidLoad() {
         super.viewDidLoad()
-        items = FreedomItems
         UIApplication.shared.isStatusBarHidden = true
         searchBar.delegate = self
         searchBar.placeholder = "搜索"
@@ -197,7 +195,7 @@ class FirstViewController: XBaseViewController,UICollectionViewDataSource, UICol
     // MARK: 设置与收藏的跳转
     func gotoSettingsView(_ sender: UIButton?) {
         timer?.fireDate = Date.distantFuture
-        //    transition.edge = LEFT;
+        transition.edge = .LEFT;
         transition.translation = CGPoint(x: 320, y: 15)
         transition.dragPoint = CGPoint(x: 230, y: 170)
         performSegue(withIdentifier: "settings", sender: transition)
@@ -283,23 +281,24 @@ class FirstViewController: XBaseViewController,UICollectionViewDataSource, UICol
         showingSettings = !showingSettings
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let controlName = items[indexPath.row]["control"]
-        UIApplication.shared.isStatusBarHidden = false
-        if !(controlName == "Sina") {
-            let StoryBoard = UIStoryboard(name: controlName!, bundle: nil)
-            show(StoryBoard.instantiateViewController(withIdentifier: "\(String(describing: controlName))TabBarController"), sender: self)
-            return
-        }
-        let s = "\(String(describing: controlName))TabBarController"
-        print(s)
-        let con: UIViewController = UIViewController()//NSClassFromString(s)
-        let animation = CATransition()
-        animation.duration = 1
-        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        view.window?.layer.add(animation, forKey: nil)
-        present(con, animated: false) {
-        }
-        SVProgressHUD.showSuccess(withStatus: items[indexPath.row]["title"])
+        radialMenu(radialView, didSelectPopoutWithIndentifier: "\(indexPath.row)")
+//        let controlName = items[indexPath.row]["control"]!
+//        UIApplication.shared.isStatusBarHidden = false
+//        if !(controlName == "Sina") {
+//            let StoryBoard = UIStoryboard(name: controlName, bundle: nil)
+//            show(StoryBoard.instantiateViewController(withIdentifier: "\(String(describing: controlName))TabBarController"), sender: self)
+//            return
+//        }
+//        let s = "\(controlName)TabBarController"
+//        print(s)
+//        let con: UIViewController = UIViewController()//NSClassFromString(s)
+//        let animation = CATransition()
+//        animation.duration = 1
+//        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+//        view.window?.layer.add(animation, forKey: nil)
+//        present(con, animated: false) {
+//        }
+//        SVProgressHUD.showSuccess(withStatus: items[indexPath.row]["title"])
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return items.count

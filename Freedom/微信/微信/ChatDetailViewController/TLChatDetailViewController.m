@@ -1,20 +1,20 @@
 //  FreedomDetailViewController.m
 //  Freedom
 // Created by Super
-#import "TLChatDetailViewController.h"
-#import "TLFriendDetailViewController.h"
+#import "WeChatChatDetailViewController.h"
+#import "WechatFriendDetailViewController.h"
 #import "TLMessageManager.h"
 #import <BlocksKit/BlocksKit+UIKit.h>
-#import "TLUserGroupCell.h"
-#import "TLActionSheet.h"
+#import "WechatUserGroupCell.h"
+#import "WechatActionSheet.h"
 #import "TLChatViewController.h"
-#import "TLChatFileViewController.h"
-#import "TLChatBackgroundSettingViewController.h"
+#import "WechatChatFileViewController.h"
+#import "WXBgSettingViewController.h"
 #define     TAG_EMPTY_CHAT_REC      1001
-@interface TLChatDetailViewController () <TLUserGroupCellDelegate, TLActionSheetDelegate>
+@interface WeChatChatDetailViewController () <WechatUserGroupCellDelegate, TLActionSheetDelegate>
 @property (nonatomic, strong) TLMessageManager *helper;
 @end
-@implementation TLChatDetailViewController
+@implementation WeChatChatDetailViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationItem setTitle:@"聊天详情"];
@@ -22,13 +22,13 @@
     self.helper = [TLMessageManager sharedInstance];
     self.data = [self.helper chatDetailDataByUserInfo:self.user];
     
-    [self.tableView registerClass:[TLUserGroupCell class] forCellReuseIdentifier:@"TLUserGroupCell"];
+    [self.tableView registerClass:[WechatUserGroupCell class] forCellReuseIdentifier:@"TLUserGroupCell"];
 }
 #pragma mark - Delegate -
 //MARK: UITableViewDataSource
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0 && indexPath.row == 0) {
-        TLUserGroupCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TLUserGroupCell"];
+        WechatUserGroupCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TLUserGroupCell"];
         [cell setUsers:[NSMutableArray arrayWithArray:@[self.user]]];
         [cell setDelegate:self];
         return cell;
@@ -49,7 +49,7 @@
         [self setHidesBottomBarWhenPushed:YES];
         [self.navigationController pushViewController:chatBGSettingVC animated:YES];
     }else if ([item.title isEqualToString:@"清空聊天记录"]) {
-        TLActionSheet *actionSheet = [[TLActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"清空聊天记录" otherButtonTitles: nil];
+        WechatActionSheet *actionSheet = [[WechatActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"清空聊天记录" otherButtonTitles: nil];
         actionSheet.tag = TAG_EMPTY_CHAT_REC;
         [actionSheet show];
     }
@@ -63,7 +63,7 @@
     return [super tableView:tableView heightForRowAtIndexPath:indexPath];
 }
 //MARK: TLActionSheetDelegate
-- (void)actionSheet:(TLActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+- (void)actionSheet:(WechatActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (actionSheet.tag == TAG_EMPTY_CHAT_REC) {
         if (buttonIndex == 0) {
             BOOL ok = [[TLMessageManager sharedInstance] deleteMessagesByPartnerID:self.user.userID];

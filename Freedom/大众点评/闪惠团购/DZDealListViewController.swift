@@ -47,7 +47,7 @@ class DZDealListViewVerticalCell:BaseTableViewCell{
         sees?.text = "月售1000"
     }
 }
-class DZDealListViewController: DianpingBaseViewController {
+class DZDealListViewController: DZBaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

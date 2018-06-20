@@ -1,10 +1,10 @@
 //  TLMineViewController.h
 //  Freedom
 // Created by Super
-#import "TLMenuViewController.h"
+#import "WechatMenuViewController.h"
 #import "TLUserHelper.h"
 @interface TLMineInfoHelper : NSObject
 - (NSMutableArray *)mineInfoDataByUserInfo:(TLUser *)userInfo;
 @end
-@interface TLMineViewController : TLMenuViewController
+@interface TLMineViewController : WechatMenuViewController
 @end

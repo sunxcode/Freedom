@@ -1,10 +1,10 @@
 //  TLCommonSettingViewController.h
 //  Freedom
 // Created by Super
-#import "TLSettingViewController.h"
+#import "WechatSettingViewController.h"
 @interface TLCommonSettingHelper : NSObject
 @property (nonatomic, strong) NSMutableArray *commonSettingData;
 + (NSMutableArray *)chatBackgroundSettingData;
 @end
-@interface TLCommonSettingViewController : TLSettingViewController
+@interface TLCommonSettingViewController : WechatSettingViewController
 @end

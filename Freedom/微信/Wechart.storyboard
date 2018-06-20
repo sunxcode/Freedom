@@ -1,11 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="OQ1-tx-Ca6">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="OQ1-tx-Ca6">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,7 +14,7 @@
                         <viewControllerLayoutGuide type="bottom" id="0aj-Ge-Cfh"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="SDI-zi-WH5">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -37,7 +33,7 @@
                         <viewControllerLayoutGuide type="bottom" id="RPK-g4-qgi"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Xhg-0R-erQ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -47,10 +43,10 @@
             </objects>
             <point key="canvasLocation" x="1044" y="301"/>
         </scene>
-        <!--Root View Controller-->
+        <!--Wechat Root View Controller-->
         <scene sceneID="A9E-vy-nRT">
             <objects>
-                <tabBarController storyboardIdentifier="WechartTabBarController" id="OQ1-tx-Ca6" customClass="TLRootViewController" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="WechartTabBarController" id="OQ1-tx-Ca6" customClass="WechatRootViewController" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="hPz-Mm-16I">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -95,7 +91,7 @@
                         <viewControllerLayoutGuide type="bottom" id="t30-oO-1c2"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="4WK-rk-h26">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -133,7 +129,7 @@
                         <viewControllerLayoutGuide type="bottom" id="f6d-a2-ikn"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="bid-X9-3rZ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>

@@ -2,7 +2,7 @@
 //  WFCoretext
 //  Created by Super on 14/10/28.
 #import "WXViewController.h"
-#import "YMTableViewCell.h"
+#import "BookFriendsTableViewCell.h"
 #import "BookFriendsMode.h"
 typedef  void(^didRemoveImage)(void);
 @interface YMShowImageView : UIView<UIScrollViewDelegate>{
@@ -692,9 +692,9 @@ typedef void(^DidSelectedOperationBlock)(NSInteger operationType);
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *CellIdentifier = @"ILTableViewCell";
-    YMTableViewCell *cell = (YMTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    BookFriendsTableViewCell *cell = (BookFriendsTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[YMTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[BookFriendsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     cell.stamp = indexPath.row;
     cell.replyBtn.tag = indexPath.row;

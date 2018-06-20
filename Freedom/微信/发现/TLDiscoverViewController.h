@@ -1,6 +1,6 @@
 //  TLDiscoverViewController.h
 //  Freedom
 // Created by Super
-#import "TLMenuViewController.h"
-@interface TLDiscoverViewController : TLMenuViewController
+#import "WechatMenuViewController.h"
+@interface TLDiscoverViewController : WechatMenuViewController
 @end

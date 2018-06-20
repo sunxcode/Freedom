@@ -2,7 +2,7 @@
 //  Freedom
 // Created by Super
 #import "TLConversationViewController.h"
-#import "TLSearchController.h"
+#import "WechatSearchController.h"
 #import <BlocksKit/BlocksKit+UIKit.h>
 #import <XCategory/NSDate+expanded.h>
 #import "TLTableViewCell.h"
@@ -13,14 +13,14 @@
 #define     REDPOINT_WIDTH          10.0f
 #define     WIDTH_TABLEVIEW             140.0f
 #define     HEIGHT_TABLEVIEW_CELL       45.0f
-@interface TLAddMenuCell : TLTableViewCell
+@interface WechatAddMenuCell : TLTableViewCell
 @property (nonatomic, strong) TLAddMenuItem *item;
 @end
-@interface TLAddMenuCell()
+@interface WechatAddMenuCell()
 @property (nonatomic, strong) UIImageView *iconImageView;
 @property (nonatomic, strong) UILabel *titleLabel;
 @end
-@implementation TLAddMenuCell
+@implementation WechatAddMenuCell
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self.rightSeparatorSpace = 16;
@@ -69,12 +69,12 @@
     return _titleLabel;
 }
 @end
-@interface TLAddMenuView () <UITableViewDataSource, UITableViewDelegate>
+@interface WechatAddMenuView () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) TLAddMenuHelper *helper;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *data;
 @end
-@implementation TLAddMenuView
+@implementation WechatAddMenuView
 - (id)init{
     if (self = [super init]) {
         [self setBackgroundColor:[UIColor clearColor]];
@@ -83,7 +83,7 @@
         UIPanGestureRecognizer *panGR = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(dismiss)];
         [self addGestureRecognizer:panGR];
         
-        [self.tableView registerClass:[TLAddMenuCell class] forCellReuseIdentifier:@"TLAddMenuCell"];
+        [self.tableView registerClass:[WechatAddMenuCell class] forCellReuseIdentifier:@"TLAddMenuCell"];
         self.data = self.helper.menuData;
     }
     return self;
@@ -119,7 +119,7 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     TLAddMenuItem *item = [self.data objectAtIndex:indexPath.row];
-    TLAddMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TLAddMenuCell"];
+    WechatAddMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TLAddMenuCell"];
     [cell setItem:item];
     return cell;
 }
@@ -171,7 +171,7 @@
     return _helper;
 }
 @end
-@interface TLConversationCell : TLTableViewCell
+@interface WechatConversationCell : TLTableViewCell
 /// 会话Model
 @property (nonatomic, strong) TLConversation *conversation;
 #pragma mark - Public Methods
@@ -180,7 +180,7 @@
 /*标记为已读*/
 - (void) markAsRead;
 @end
-@interface TLConversationCell()
+@interface WechatConversationCell()
 @property (nonatomic, strong) UIImageView *avatarImageView;
 @property (nonatomic, strong) UILabel *usernameLabel;
 @property (nonatomic, strong) UILabel *detailLabel;
@@ -188,7 +188,7 @@
 @property (nonatomic, strong) UIImageView *remindImageView;
 @property (nonatomic, strong) UIView *redPointView;
 @end
-@implementation TLConversationCell
+@implementation WechatConversationCell
 - (id) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self.leftSeparatorSpace = CONV_SPACE_X;
@@ -371,8 +371,8 @@
 @end
 @interface TLConversationViewController ()
 @property (nonatomic, strong) UIImageView *scrollTopView;
-@property (nonatomic, strong) TLSearchController *searchController;
-@property (nonatomic, strong) TLAddMenuView *addMenuView;
+@property (nonatomic, strong) WechatSearchController *searchController;
+@property (nonatomic, strong) WechatAddMenuView *addMenuView;
 @end
 @implementation TLConversationViewController
 - (void)viewDidLoad {
@@ -436,9 +436,9 @@
     [self.navigationItem setRightBarButtonItem:rightBarButtonItem];
 }
 #pragma mark - Getter -
-- (TLSearchController *) searchController{
+- (WechatSearchController *) searchController{
     if (_searchController == nil) {
-        _searchController = [[TLSearchController alloc] initWithSearchResultsController:self.searchVC];
+        _searchController = [[WechatSearchController alloc] initWithSearchResultsController:self.searchVC];
         [_searchController setSearchResultsUpdater:self.searchVC];
         [_searchController.searchBar setPlaceholder:@"搜索"];
         [_searchController.searchBar setDelegate:self];
@@ -446,9 +446,9 @@
     }
     return _searchController;
 }
-- (TLFriendSearchViewController *) searchVC{
+- (WechatFriendSearchViewController *) searchVC{
     if (_searchVC == nil) {
-        _searchVC = [[TLFriendSearchViewController alloc] init];
+        _searchVC = [[WechatFriendSearchViewController alloc] init];
     }
     return _searchVC;
 }
@@ -458,16 +458,16 @@
     }
     return _scrollTopView;
 }
-- (TLAddMenuView *)addMenuView{
+- (WechatAddMenuView *)addMenuView{
     if (_addMenuView == nil) {
-        _addMenuView = [[TLAddMenuView alloc] init];
+        _addMenuView = [[WechatAddMenuView alloc] init];
         [_addMenuView setDelegate:self];
     }
     return _addMenuView;
 }
 #pragma mark - Public Methods -
 - (void)registerCellClass{
-    [self.tableView registerClass:[TLConversationCell class] forCellReuseIdentifier:@"TLConversationCell"];
+    [self.tableView registerClass:[WechatConversationCell class] forCellReuseIdentifier:@"TLConversationCell"];
 }
 #pragma mark - Delegate -
 //MARK: TLMessageManagerConvVCDelegate
@@ -475,10 +475,10 @@
     [[TLMessageManager sharedInstance] conversationRecord:^(NSArray *data) {
         for (TLConversation *conversation in data) {
             if (conversation.convType == TLConversationTypePersonal) {
-                TLUser *user = [[TLFriendHelper sharedFriendHelper] getFriendInfoByUserID:conversation.partnerID];
+                TLUser *user = [[WechatFriendHelper sharedFriendHelper] getFriendInfoByUserID:conversation.partnerID];
                 [conversation updateUserInfo:user];
             }else if (conversation.convType == TLConversationTypeGroup) {
-                TLGroup *group = [[TLFriendHelper sharedFriendHelper] getGroupInfoByGroupID:conversation.partnerID];
+                TLGroup *group = [[WechatFriendHelper sharedFriendHelper] getGroupInfoByGroupID:conversation.partnerID];
                 [conversation updateGroupInfo:group];
             }
         }
@@ -492,7 +492,7 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     TLConversation *conversation = [self.data objectAtIndex:indexPath.row];
-    TLConversationCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TLConversationCell"];
+    WechatConversationCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TLConversationCell"];
     [cell setConversation:conversation];
     [cell setBottomLineStyle:indexPath.row == self.data.count - 1 ? TLCellLineStyleFill : TLCellLineStyleDefault];
     
@@ -509,14 +509,14 @@
     
     TLConversation *conversation = [self.data objectAtIndex:indexPath.row];
     if (conversation.convType == TLConversationTypePersonal) {
-        TLUser *user = [[TLFriendHelper sharedFriendHelper] getFriendInfoByUserID:conversation.partnerID];
+        TLUser *user = [[WechatFriendHelper sharedFriendHelper] getFriendInfoByUserID:conversation.partnerID];
         if (user == nil) {
             [UIAlertView bk_alertViewWithTitle:@"错误" message:@"您不存在此好友"];
             return;
         }
         [chatVC setPartner:user];
     }else if (conversation.convType == TLConversationTypeGroup){
-        TLGroup *group = [[TLFriendHelper sharedFriendHelper] getGroupInfoByGroupID:conversation.partnerID];
+        TLGroup *group = [[WechatFriendHelper sharedFriendHelper] getGroupInfoByGroupID:conversation.partnerID];
         if (group == nil) {
             [UIAlertView bk_alertViewWithTitle:@"错误" message:@"您不存在该讨论组"];
             return;
@@ -528,7 +528,7 @@
     [self setHidesBottomBarWhenPushed:NO];
     
     // 标为已读
-    [(TLConversationCell *)[self.tableView cellForRowAtIndexPath:indexPath] markAsRead];
+    [(WechatConversationCell *)[self.tableView cellForRowAtIndexPath:indexPath] markAsRead];
 }
 - (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath{
     TLConversation *conversation = [self.data objectAtIndex:indexPath.row];
@@ -545,7 +545,7 @@
                                            [weakSelf.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
                                            if (self.data.count > 0 && indexPath.row == self.data.count) {
                                                NSIndexPath *lastIndexPath = [NSIndexPath indexPathForRow:indexPath.row - 1 inSection:indexPath.section];
-                                               TLConversationCell *cell = [self.tableView cellForRowAtIndexPath:lastIndexPath];
+                                               WechatConversationCell *cell = [self.tableView cellForRowAtIndexPath:lastIndexPath];
                                                [cell setBottomLineStyle:TLCellLineStyleFill];
                                            }
                                        }];
@@ -553,7 +553,7 @@
                                                                           title:conversation.isRead ? @"标为未读" : @"标为已读"
                                                                         handler:^(UITableViewRowAction *action, NSIndexPath *indexPath)
                                         {
-                                            TLConversationCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+                                            WechatConversationCell *cell = [tableView cellForRowAtIndexPath:indexPath];
                                             conversation.isRead ? [cell markAsUnread] : [cell markAsRead];
                                             [tableView setEditing:NO animated:YES];
                                         }];
@@ -562,7 +562,7 @@
 }
 //MARK: UISearchBarDelegate
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
-    [self.searchVC setFriendsData:[TLFriendHelper sharedFriendHelper].friendsData];
+    [self.searchVC setFriendsData:[WechatFriendHelper sharedFriendHelper].friendsData];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
 }
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
@@ -578,7 +578,7 @@
 }
 //MARK: TLAddMenuViewDelegate
 // 选中了addMenu的某个菜单项
-- (void)addMenuView:(TLAddMenuView *)addMenuView didSelectedItem:(TLAddMenuItem *)item{
+- (void)addMenuView:(WechatAddMenuView *)addMenuView didSelectedItem:(TLAddMenuItem *)item{
     if (item.className.length > 0) {
         id vc = [[NSClassFromString(item.className) alloc] init];
         [self setHidesBottomBarWhenPushed:YES];

@@ -6,13 +6,13 @@ import BaseFile
 import XExtension
 import MJRefresh
 import MJExtension
-class JFHomeModel: NSObject {
+class IqiyiHomeModel: NSObject {
     var search_default_word_for_ipad = ""
     var boxes = [AnyHashable]()
     var banner = [AnyHashable]()
     var index_channel_content_version = ""
 }
-class JFBoxesModel: NSObject {
+class IqiyiBoxesModel: NSObject {
     var videos = [AnyHashable]()
     var ipad_display_type: NSNumber?
     var index_page_channel_icon = ""
@@ -27,7 +27,7 @@ class JFBoxesModel: NSObject {
     var is_podcast = ""
     var height: Float = 0.0
 }
-class JFBannerModel: NSObject {
+class IqiyiBannerModel: NSObject {
     var is_albumcover: NSNumber?
     var image_1452_578 = ""
     var image_800_450 = ""
@@ -48,7 +48,7 @@ class JFBannerModel: NSObject {
     var type = ""
     var browser_for_url_type: NSNumber?
 }
-class JFVideosModel: NSObject {
+class IqiyiVideosModel: NSObject {
     var yaofeng = ""
     var is_albumcover: NSNumber?
     var pv = ""
@@ -69,22 +69,22 @@ class JFVideosModel: NSObject {
     var image_800x450 = ""
     var big_img = ""
 }
-protocol JFHomeBoxCellDelegate: NSObjectProtocol {
-    func didSelectHomeBox(_ video: JFVideosModel?)
+protocol IqiyiHomeBoxCellDelegate: NSObjectProtocol {
+    func didSelectHomeBox(_ video: IqiyiVideosModel?)
 }
 
-protocol JFImageCardViewDelegate: NSObjectProtocol {
-    func didSelectImageCard(_ imageCard: JFImageCardView?, video: JFVideosModel?)
+protocol IqiyiImageCardViewDelegate: NSObjectProtocol {
+    func didSelectImageCard(_ imageCard: IqiyiImageCardView?, video: IqiyiVideosModel?)
 }
 
 
-class JFImageCardView: UIView {
+class IqiyiImageCardView: UIView {
     var imageView: UIImageView?
     var titleLabel: UILabel?
     var pvLabel: UILabel?
     var yaofengLabel: UILabel?
-    var video: JFVideosModel?
-    weak var delegate: JFImageCardViewDelegate?
+    var video: IqiyiVideosModel?
+    weak var delegate: IqiyiImageCardViewDelegate?
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -116,7 +116,7 @@ class JFImageCardView: UIView {
         addGestureRecognizer(tap)
         
     }
-    init(frame: CGRect, video: JFVideosModel?) {
+    init(frame: CGRect, video: IqiyiVideosModel?) {
         super.init(frame: frame)
         
         imageView = UIImageView(frame: CGRect(x: 5, y: 5, width: frame.size.width - 5, height: frame.size.height - 45))
@@ -149,7 +149,7 @@ class JFImageCardView: UIView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    func setVideo(_ video: JFVideosModel?) {
+    func setVideo(_ video: IqiyiVideosModel?) {
         self.video = video
         //这里不能用self.video,只能用_video
         imageView?.sd_setImage(with: URL(string: video?.small_img ?? ""), placeholderImage: UIImage(named: "rec_holder"))
@@ -179,21 +179,21 @@ class JFImageCardView: UIView {
 
 
 }
-class JFHomeBoxCell: UITableViewCell,JFImageCardViewDelegate {
+class IqiyiHomeBoxCell: UITableViewCell,IqiyiImageCardViewDelegate {
     private var titleLabel: UILabel?
     private var iconV : UIImageView!
-    private var cardView1: JFImageCardView!
-    private var cardView2: JFImageCardView!
-    private var cardView3: JFImageCardView!
-    private var cardView4: JFImageCardView!
-    var boxes: JFBoxesModel?
-    weak var delegate: JFHomeBoxCellDelegate?
+    private var cardView1: IqiyiImageCardView!
+    private var cardView2: IqiyiImageCardView!
+    private var cardView3: IqiyiImageCardView!
+    private var cardView4: IqiyiImageCardView!
+    var boxes: IqiyiBoxesModel?
+    weak var delegate: IqiyiHomeBoxCellDelegate?
 
     func ainit(tableView: UITableView?) {
         let menuID = "JFHomeBoxCell"
-        var cell = tableView?.dequeueReusableCell(withIdentifier: menuID) as? JFHomeBoxCell
+        var cell = tableView?.dequeueReusableCell(withIdentifier: menuID) as? IqiyiHomeBoxCell
         if cell == nil {
-            cell = JFHomeBoxCell(style: .default, reuseIdentifier: menuID)
+            cell = IqiyiHomeBoxCell(style: .default, reuseIdentifier: menuID)
         }
         cell?.selectionStyle = .none
     }
@@ -217,10 +217,10 @@ class JFHomeBoxCell: UITableViewCell,JFImageCardViewDelegate {
         lineView.backgroundColor = gradcolor
         backView.addSubview(lineView)
         //图
-        cardView1 = JFImageCardView(frame: CGRect(x: 0, y: 40, width: (APPW - 5) / 2, height: 150))
-        cardView2 = JFImageCardView(frame: CGRect(x: (APPW - 5) / 2, y: 40, width: (APPW - 5) / 2, height: 150))
-        cardView3 = JFImageCardView(frame: CGRect(x: 0, y: 40 + 150, width: (APPW - 5) / 2, height: 150))
-        cardView4 = JFImageCardView(frame: CGRect(x: (APPW - 5) / 2, y: 40 + 150, width: (APPW - 5) / 2, height: 150))
+        cardView1 = IqiyiImageCardView(frame: CGRect(x: 0, y: 40, width: (APPW - 5) / 2, height: 150))
+        cardView2 = IqiyiImageCardView(frame: CGRect(x: (APPW - 5) / 2, y: 40, width: (APPW - 5) / 2, height: 150))
+        cardView3 = IqiyiImageCardView(frame: CGRect(x: 0, y: 40 + 150, width: (APPW - 5) / 2, height: 150))
+        cardView4 = IqiyiImageCardView(frame: CGRect(x: (APPW - 5) / 2, y: 40 + 150, width: (APPW - 5) / 2, height: 150))
         cardView1.tag = 100
         cardView2.tag = 101
         cardView3.tag = 102
@@ -234,20 +234,20 @@ class JFHomeBoxCell: UITableViewCell,JFImageCardViewDelegate {
         backView.addSubview(cardView3)
         backView.addSubview(cardView4)
     }
-    func setBoxes(_ boxes: JFBoxesModel?) {
+    func setBoxes(_ boxes: IqiyiBoxesModel?) {
         titleLabel?.text = boxes?.title
         imageView?.sd_setImage(with: URL(string: boxes?.index_page_channel_icon ?? ""), placeholderImage: nil)
-        let video1 = JFVideosModel.mj_object(withKeyValues: boxes?.videos[0])
-        let video2 = JFVideosModel.mj_object(withKeyValues: boxes?.videos[1])
-        let video3 = JFVideosModel.mj_object(withKeyValues: boxes?.videos[2])
-        let video4 = JFVideosModel.mj_object(withKeyValues: boxes?.videos[3])
+        let video1 = IqiyiVideosModel.mj_object(withKeyValues: boxes?.videos[0])
+        let video2 = IqiyiVideosModel.mj_object(withKeyValues: boxes?.videos[1])
+        let video3 = IqiyiVideosModel.mj_object(withKeyValues: boxes?.videos[2])
+        let video4 = IqiyiVideosModel.mj_object(withKeyValues: boxes?.videos[3])
         //    [_cardView1 setVideo:video1];
         cardView1.video = video1
         cardView2.video = video2
         cardView3.video = video3
         cardView4.video = video4
     }
-    func didSelectImageCard(_ imageCard: JFImageCardView?, video: JFVideosModel?) {
+    func didSelectImageCard(_ imageCard: IqiyiImageCardView?, video: IqiyiVideosModel?) {
         if (delegate?.responds(to: #selector(IqiyiViewController.didSelectHomeBox(_:))))! {
             delegate?.didSelectHomeBox(video)
         }
@@ -255,17 +255,17 @@ class JFHomeBoxCell: UITableViewCell,JFImageCardViewDelegate {
 
         
 }
-class JFHomeVideoBoxCell: UITableViewCell {
-    var boxes: JFBoxesModel?
+class IqiyiHomeVideoBoxCell: UITableViewCell {
+    var boxes: IqiyiBoxesModel?
     
     private var titleLabel: UILabel!
     private var icon: UIImageView!
-    private var cardView1: JFImageCardView!
-    private var cardView2: JFImageCardView!
-    private var cardView3: JFImageCardView!
-    private var cardView4: JFImageCardView!
-    private var cardView5: JFImageCardView!
-    private var cardView6: JFImageCardView!
+    private var cardView1: IqiyiImageCardView!
+    private var cardView2: IqiyiImageCardView!
+    private var cardView3: IqiyiImageCardView!
+    private var cardView4: IqiyiImageCardView!
+    private var cardView5: IqiyiImageCardView!
+    private var cardView6: IqiyiImageCardView!
 
     func initViews() {
         //背景
@@ -287,12 +287,12 @@ class JFHomeVideoBoxCell: UITableViewCell {
         lineView.backgroundColor = gradcolor
         backView.addSubview(lineView)
         //图
-        cardView1 = JFImageCardView(frame: CGRect(x: 0, y: 40, width: (APPW - 5) / 3, height: 230))
-        cardView2 = JFImageCardView(frame: CGRect(x: (APPW - 5) / 3, y: 40, width: (APPW - 5) / 3, height: 230))
-        cardView3 = JFImageCardView(frame: CGRect(x: (APPW - 5) * 2 / 3, y: 40, width: (APPW - 5) / 3, height: 230))
-        cardView4 = JFImageCardView(frame: CGRect(x: 0, y: 40 + 230, width: (APPW - 5) / 3, height: 230))
-        cardView5 = JFImageCardView(frame: CGRect(x: (APPW - 5) / 3, y: 40 + 230, width: (APPW - 5) / 3, height: 230))
-        cardView6 = JFImageCardView(frame: CGRect(x: (APPW - 5) * 2 / 3, y: 40 + 230, width: (APPW - 5) / 3, height: 230))
+        cardView1 = IqiyiImageCardView(frame: CGRect(x: 0, y: 40, width: (APPW - 5) / 3, height: 230))
+        cardView2 = IqiyiImageCardView(frame: CGRect(x: (APPW - 5) / 3, y: 40, width: (APPW - 5) / 3, height: 230))
+        cardView3 = IqiyiImageCardView(frame: CGRect(x: (APPW - 5) * 2 / 3, y: 40, width: (APPW - 5) / 3, height: 230))
+        cardView4 = IqiyiImageCardView(frame: CGRect(x: 0, y: 40 + 230, width: (APPW - 5) / 3, height: 230))
+        cardView5 = IqiyiImageCardView(frame: CGRect(x: (APPW - 5) / 3, y: 40 + 230, width: (APPW - 5) / 3, height: 230))
+        cardView6 = IqiyiImageCardView(frame: CGRect(x: (APPW - 5) * 2 / 3, y: 40 + 230, width: (APPW - 5) / 3, height: 230))
         backView.addSubview(cardView1)
         backView.addSubview(cardView2)
         backView.addSubview(cardView3)
@@ -300,15 +300,15 @@ class JFHomeVideoBoxCell: UITableViewCell {
         backView.addSubview(cardView5)
         backView.addSubview(cardView6)
     }
-    func setBoxes(_ boxes: JFBoxesModel?) {
+    func setBoxes(_ boxes: IqiyiBoxesModel?) {
         titleLabel.text = boxes?.title
         imageView?.sd_setImage(with: URL(string: boxes?.index_page_channel_icon ?? ""), placeholderImage: nil)
-        let video1 = JFVideosModel.mj_object(withKeyValues: boxes?.videos[0])
-        let video2 = JFVideosModel.mj_object(withKeyValues: boxes?.videos[1])
-        let video3 = JFVideosModel.mj_object(withKeyValues: boxes?.videos[2])
-        let video4 = JFVideosModel.mj_object(withKeyValues: boxes?.videos[3])
-        let video5 = JFVideosModel.mj_object(withKeyValues: boxes?.videos[4])
-        let video6 = JFVideosModel.mj_object(withKeyValues: boxes?.videos[5])
+        let video1 = IqiyiVideosModel.mj_object(withKeyValues: boxes?.videos[0])
+        let video2 = IqiyiVideosModel.mj_object(withKeyValues: boxes?.videos[1])
+        let video3 = IqiyiVideosModel.mj_object(withKeyValues: boxes?.videos[2])
+        let video4 = IqiyiVideosModel.mj_object(withKeyValues: boxes?.videos[3])
+        let video5 = IqiyiVideosModel.mj_object(withKeyValues: boxes?.videos[4])
+        let video6 = IqiyiVideosModel.mj_object(withKeyValues: boxes?.videos[5])
         cardView1.video = video1
         cardView2.video = video2
         cardView3.video = video3
@@ -320,7 +320,7 @@ class JFHomeVideoBoxCell: UITableViewCell {
 
 }
 
-class IqiyiViewController: IqiyiBaseViewController ,JFHomeBoxCellDelegate {
+class IqiyiViewController: IqiyiBaseViewController ,IqiyiHomeBoxCellDelegate {
         var homeTableView: UITableView?
         
         private var dataSource = [AnyHashable]()
@@ -360,12 +360,12 @@ class IqiyiViewController: IqiyiBaseViewController ,JFHomeBoxCellDelegate {
     /*搜索*/
     
     func rightSearchBarButtonItemClick() {
-        let searchHistoryVC = JFSearchHistoryViewController()
+        let searchHistoryVC = IqiyiSearchHistoryViewController()
         navigationController?.pushViewController(searchHistoryVC, animated: true)
     }
     
     func rightHistoryBarButtonItemClick() {
-        let watchRecordVC = JFWatchRecordViewController()
+        let watchRecordVC = IqiyiWatchRecordViewController()
         navigationController?.pushViewController(watchRecordVC, animated: true)
     }
     func initData() {
@@ -374,7 +374,7 @@ class IqiyiViewController: IqiyiBaseViewController ,JFHomeBoxCellDelegate {
         bannerSource = [AnyHashable]()
         headImageArray = [AnyHashable]()
 //        let urlStr = FreedomTools.shared().urlWithHomeData()
-//        NetBase.get(urlStr, parameters: nil, progress: nil, success: {(_ task: URLSessionDataTask, _ responseObject: Any?) -> Void in
+//        [AFHTTPSessionManager manager].get(urlStr, parameters: nil, progress: nil, success: {(_ task: URLSessionDataTask, _ responseObject: Any?) -> Void in
 //            self.homeTableView.mj_header.endRefreshing()
 //            headImageArray.removeAll()
 //            let homeModel = JFHomeModel.mj_object(withKeyValues: responseObject)
@@ -407,7 +407,7 @@ class IqiyiViewController: IqiyiBaseViewController ,JFHomeBoxCellDelegate {
         view.addSubview(homeTableView!)
     }
 
-    func getHeight(_ boxes: JFBoxesModel?) -> Float {
+    func getHeight(_ boxes: IqiyiBoxesModel?) -> Float {
         var height: Float = 0
         height = height + 40
         if boxes?.display_type ?? 0 == 1 {
@@ -425,7 +425,7 @@ class IqiyiViewController: IqiyiBaseViewController ,JFHomeBoxCellDelegate {
         if indexPath.row == 0 {
             return 180
         } else {
-            let height: CGFloat? = CGFloat(((boxesSource[indexPath.row - 1] as? JFBoxesModel)?.height)!)
+            let height: CGFloat? = CGFloat(((boxesSource[indexPath.row - 1] as? IqiyiBoxesModel)?.height)!)
             return height ?? 0.0
         }
     }
@@ -438,14 +438,14 @@ class IqiyiViewController: IqiyiBaseViewController ,JFHomeBoxCellDelegate {
         }
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let box: JFBoxesModel? = boxesSource[indexPath.row - 1] as! JFBoxesModel
+        let box: IqiyiBoxesModel? = boxesSource[indexPath.row - 1] as! IqiyiBoxesModel
         if box?.display_type ?? 0 == 1 {
-            let cell = JFHomeBoxCell(style: .default, reuseIdentifier: "")
-            cell.boxes = boxesSource[indexPath.row - 1] as! JFBoxesModel
+            let cell = IqiyiHomeBoxCell(style: .default, reuseIdentifier: "")
+            cell.boxes = boxesSource[indexPath.row - 1] as! IqiyiBoxesModel
             cell.delegate = self
             return cell
         } else if box?.display_type ?? 0 == 2 {
-            let cell = JFHomeVideoBoxCell(style: .default, reuseIdentifier: "")
+            let cell = IqiyiHomeVideoBoxCell(style: .default, reuseIdentifier: "")
             cell.initViews()
             cell.boxes = box
             return cell
@@ -453,8 +453,8 @@ class IqiyiViewController: IqiyiBaseViewController ,JFHomeBoxCellDelegate {
             return UITableViewCell()
         }
     }
-    func didSelectHomeBox(_ video: JFVideosModel?) {
-        let videoDetailVC = JFVideoDetailViewController()
+    func didSelectHomeBox(_ video: IqiyiVideosModel?) {
+        let videoDetailVC = IqiyiVideoDetailViewController()
         videoDetailVC.iid = (video?.iid)!
         navigationController?.pushViewController(videoDetailVC, animated: true)
     }

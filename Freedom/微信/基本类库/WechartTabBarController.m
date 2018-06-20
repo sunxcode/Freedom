@@ -8,7 +8,7 @@
 #define kTitleKey   @"title"
 #define kImgKey     @"imageName"
 #define kSelImgKey  @"selectedImageName"
-#import "TLRootViewController.h"
+#import "WechatRootViewController.h"
 #import "TLMessageManager.h"
 #import "TLExpressionHelper.h"
 #import "JPEngine.h"
@@ -102,7 +102,7 @@ static WechartTabBarController *rootVC = nil;
         }];
     }
     [TLUserHelper sharedHelper];
-    [TLFriendHelper sharedFriendHelper];
+    [WechatFriendHelper sharedFriendHelper];
 }
 - (void)p_downloadDefaultExpression{
     [SVProgressHUD show];

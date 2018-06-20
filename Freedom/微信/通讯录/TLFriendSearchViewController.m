@@ -1,12 +1,12 @@
 //  TLFriendSearchViewController.m
 //  Freedom
 //  Created by Super on 16/1/25.
-#import "TLFriendSearchViewController.h"
+#import "WechatFriendSearchViewController.h"
 #import "TLFriendsViewController.h"
-@interface TLFriendSearchViewController ()
+@interface WechatFriendSearchViewController ()
 @property (nonatomic, strong) NSMutableArray *data;
 @end
-@implementation TLFriendSearchViewController
+@implementation WechatFriendSearchViewController
 - (void)viewDidLoad{
     [super viewDidLoad];
     
