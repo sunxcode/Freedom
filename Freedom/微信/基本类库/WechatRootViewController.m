@@ -13,7 +13,6 @@
 #import "CocoaLumberjack.h"
 #import <UMMobClick/MobClick.h>
 #import <BlocksKit/BlocksKit+UIKit.h>
-
 @implementation TLNavigationController
 - (void) viewDidLoad{
     [super viewDidLoad];
