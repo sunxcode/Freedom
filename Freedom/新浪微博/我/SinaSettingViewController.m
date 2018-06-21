@@ -1,6 +1,6 @@
 //  SinaSettingViewController.m
 //  Freedom
-//  Created by apple on 15-3-15.
+//  Created by Super on 15-3-15.
 #import "SinaSettingViewController.h"
 #import "SinaGeneralSettingViewController.h"
 @interface SinaSettingViewController ()

@@ -2,10 +2,10 @@
 //  Freedom
 // Created by Super
 #import "WXDBManager.h"
-#import "TLUserHelper.h"
-#import "TLMessageManager.h"
+#import "WXUserHelper.h"
+#import "WXMessageManager.h"
 #import <XCategory/NSDate+expanded.h>
-@implementation TLDBMessageStore
+@implementation WXDBMessageStore
 - (id)init{
     if (self = [super init]) {
         self.dbQueue = [WXDBManager sharedInstance].messageQueue;
@@ -20,7 +20,7 @@
     NSString *sqlString = [NSString stringWithFormat:SQL_CREATE_MESSAGE_TABLE, MESSAGE_TABLE_NAME];
     return [self createTable:MESSAGE_TABLE_NAME withSQL:sqlString];
 }
-- (BOOL)addMessage:(TLMessage *)message{
+- (BOOL)addMessage:(WXMessage *)message{
     if (message == nil || message.messageID == nil || message.userID == nil || (message.friendID == nil && message.groupID == nil)) {
         return NO;
     }
@@ -62,7 +62,7 @@
                            (long)(count + 1)];
     [self excuteQuerySQL:sqlString resultBlock:^(FMResultSet *retSet) {
         while ([retSet next]) {
-            TLMessage * message = [self p_createDBMessageByFMResultSet:retSet];
+            WXMessage * message = [self p_createDBMessageByFMResultSet:retSet];
             [data insertObject:message atIndex:0];
         }
         [retSet close];
@@ -83,7 +83,7 @@
     __block NSMutableArray *array = [[NSMutableArray alloc] init];
     [self excuteQuerySQL:sqlString resultBlock:^(FMResultSet *retSet) {
         while ([retSet next]) {
-            TLMessage * message = [self p_createDBMessageByFMResultSet:retSet];
+            WXMessage * message = [self p_createDBMessageByFMResultSet:retSet];
             if (([message.date isThisWeek] && [lastDate isThisWeek]) || (![message.date isThisWeek] && [lastDate isSameMonthAsDate:message.date])) {
                 [array addObject:message];
             }else{
@@ -107,16 +107,16 @@
     
     [self excuteQuerySQL:sqlString resultBlock:^(FMResultSet *retSet) {
         while ([retSet next]) {
-            TLMessage *message = [self p_createDBMessageByFMResultSet:retSet];
+            WXMessage *message = [self p_createDBMessageByFMResultSet:retSet];
             [data addObject:message];
         }
         [retSet close];
     }];
     return data;
 }
-- (TLMessage *)lastMessageByUserID:(NSString *)userID partnerID:(NSString *)partnerID{
+- (WXMessage *)lastMessageByUserID:(NSString *)userID partnerID:(NSString *)partnerID{
     NSString *sqlString = [NSString stringWithFormat:SQL_SELECT_LAST_MESSAGE, MESSAGE_TABLE_NAME, MESSAGE_TABLE_NAME, userID, partnerID];
-    __block TLMessage * message;
+    __block WXMessage * message;
     [self excuteQuerySQL:sqlString resultBlock:^(FMResultSet *retSet) {
         while ([retSet next]) {
             message = [self p_createDBMessageByFMResultSet:retSet];
@@ -141,9 +141,9 @@
     return ok;
 }
 #pragma mark - Private Methods -
-- (TLMessage *)p_createDBMessageByFMResultSet:(FMResultSet *)retSet{
+- (WXMessage *)p_createDBMessageByFMResultSet:(FMResultSet *)retSet{
     TLMessageType type = [retSet intForColumn:@"msg_type"];
-    TLMessage * message = [TLMessage createMessageByType:type];
+    WXMessage * message = [WXMessage createMessageByType:type];
     message.messageID = [retSet stringForColumn:@"msgid"];
     message.userID = [retSet stringForColumn:@"uid"];
     message.partnerType = [retSet intForColumn:@"partner_type"];
@@ -166,10 +166,10 @@
 }
 @end
 
-@interface TLDBConversationStore ()
-@property (nonatomic, strong) TLDBMessageStore *messageStore;
+@interface WXDBConversationStore ()
+@property (nonatomic, strong) WXDBMessageStore *messageStore;
 @end
-@implementation TLDBConversationStore
+@implementation WXDBConversationStore
 - (id)init{
     if (self = [super init]) {
         self.dbQueue = [WXDBManager sharedInstance].messageQueue;
@@ -207,7 +207,7 @@
     
     [self excuteQuerySQL:sqlString resultBlock:^(FMResultSet *retSet) {
         while ([retSet next]) {
-            TLConversation *conversation = [[TLConversation alloc] init];
+            WXConversation *conversation = [[WXConversation alloc] init];
             conversation.partnerID = [retSet stringForColumn:@"fid"];
             conversation.convType = [retSet intForColumn:@"conv_type"];
             NSString *dateString = [retSet stringForColumn:@"date"];
@@ -219,8 +219,8 @@
     }];
     
     // 获取conv对应的msg
-    for (TLConversation *conversation in data) {
-        TLMessage * message = [self.messageStore lastMessageByUserID:uid partnerID:conversation.partnerID];
+    for (WXConversation *conversation in data) {
+        WXMessage * message = [self.messageStore lastMessageByUserID:uid partnerID:conversation.partnerID];
         if (message) {
             conversation.content = [message conversationContent];
             conversation.date = message.date;
@@ -253,15 +253,15 @@
     return ok;
 }
 #pragma mark - Getter -
-- (TLDBMessageStore *)messageStore{
+- (WXDBMessageStore *)messageStore{
     if (_messageStore == nil) {
-        _messageStore = [[TLDBMessageStore alloc] init];
+        _messageStore = [[WXDBMessageStore alloc] init];
     }
     return _messageStore;
 }
 @end
 
-@implementation TLDBExpressionStore
+@implementation WXDBExpressionStore
 - (id)init{
     if (self = [super init]) {
         self.dbQueue = [WXDBManager sharedInstance].commonQueue;
@@ -382,7 +382,7 @@
 }
 @end
 
-@implementation TLDBFriendStore
+@implementation WXDBFriendStore
 - (id)init{
     if (self = [super init]) {
         self.dbQueue = [WXDBManager sharedInstance].commonQueue;
@@ -397,7 +397,7 @@
     NSString *sqlString = [NSString stringWithFormat:SQL_CREATE_FRIENDS_TABLE, FRIENDS_TABLE_NAME];
     return [self createTable:FRIENDS_TABLE_NAME withSQL:sqlString];
 }
-- (BOOL)addFriend:(TLUser *)user forUid:(NSString *)uid{
+- (BOOL)addFriend:(WXUser *)user forUid:(NSString *)uid{
     NSString *sqlString = [NSString stringWithFormat:SQL_UPDATE_FRIEND, FRIENDS_TABLE_NAME];
     NSArray *arrPara = [NSArray arrayWithObjects:
                         TLNoNilString(uid),
@@ -415,10 +415,10 @@
     if (oldData.count > 0) {
         // 建立新数据的hash表，用于删除数据库中的过时数据
         NSMutableDictionary *newDataHash = [[NSMutableDictionary alloc] init];
-        for (TLUser *user in friendData) {
+        for (WXUser *user in friendData) {
             [newDataHash setValue:@"YES" forKey:user.userID];
         }
-        for (TLUser *user in oldData) {
+        for (WXUser *user in oldData) {
             if ([newDataHash objectForKey:user.userID] == nil) {
                 BOOL ok = [self deleteFriendByFid:user.userID forUid:uid];
                 if (!ok) {
@@ -428,7 +428,7 @@
         }
     }
     
-    for (TLUser *user in friendData) {
+    for (WXUser *user in friendData) {
         BOOL ok = [self addFriend:user forUid:uid];
         if (!ok) {
             return ok;
@@ -443,7 +443,7 @@
     
     [self excuteQuerySQL:sqlString resultBlock:^(FMResultSet *retSet) {
         while ([retSet next]) {
-            TLUser *user = [[TLUser alloc] init];
+            WXUser *user = [[WXUser alloc] init];
             user.userID = [retSet stringForColumn:@"uid"];
             user.username = [retSet stringForColumn:@"username"];
             user.nikeName = [retSet stringForColumn:@"nikename"];
@@ -463,7 +463,7 @@
 }
 @end
 
-@implementation TLDBGroupStore
+@implementation WXDBGroupStore
 - (id)init{
     if (self = [super init]) {
         self.dbQueue = [WXDBManager sharedInstance].commonQueue;
@@ -483,7 +483,7 @@
     }
     return ok;
 }
-- (BOOL)addGroup:(TLGroup *)group forUid:(NSString *)uid{
+- (BOOL)addGroup:(WXGroup *)group forUid:(NSString *)uid{
     NSString *sqlString = [NSString stringWithFormat:SQL_UPDATE_GROUP, GROUPS_TABLE_NAME];
     NSArray *arrPara = [NSArray arrayWithObjects:
                         TLNoNilString(uid),
@@ -502,10 +502,10 @@
     if (oldData.count > 0) {
         // 建立新数据的hash表，用于删除数据库中的过时数据
         NSMutableDictionary *newDataHash = [[NSMutableDictionary alloc] init];
-        for (TLGroup *group in groupData) {
+        for (WXGroup *group in groupData) {
             [newDataHash setValue:@"YES" forKey:group.groupID];
         }
-        for (TLGroup *group in oldData) {
+        for (WXGroup *group in oldData) {
             if ([newDataHash objectForKey:group.groupID] == nil) {
                 BOOL ok = [self deleteGroupByGid:group.groupID forUid:uid];
                 if (!ok) {
@@ -516,7 +516,7 @@
     }
     
     // 将数据插入数据库
-    for (TLGroup *group in groupData) {
+    for (WXGroup *group in groupData) {
         BOOL ok = [self addGroup:group forUid:uid];
         if (!ok) {
             return ok;
@@ -531,7 +531,7 @@
     
     [self excuteQuerySQL:sqlString resultBlock:^(FMResultSet *retSet) {
         while ([retSet next]) {
-            TLGroup *group = [[TLGroup alloc] init];
+            WXGroup *group = [[WXGroup alloc] init];
             group.groupID = [retSet stringForColumn:@"gid"];
             group.groupName = [retSet stringForColumn:@"name"];
             [data addObject:group];
@@ -540,7 +540,7 @@
     }];
     
     // 获取讨论组成员
-    for (TLGroup *group in data) {
+    for (WXGroup *group in data) {
         group.users = [self groupMembersForUid:uid andGid:group.groupID];
     }
     
@@ -552,7 +552,7 @@
     return ok;
 }
 #pragma mark - Group Members
-- (BOOL)addGroupMember:(TLUser *)user forUid:(NSString *)uid andGid:(NSString *)gid{
+- (BOOL)addGroupMember:(WXUser *)user forUid:(NSString *)uid andGid:(NSString *)gid{
     NSString *sqlString = [NSString stringWithFormat:SQL_UPDATE_GROUP_MEMBER, GROUP_MEMBER_TABLE_NAMGE];
     NSArray *arrPara = [NSArray arrayWithObjects:
                         TLNoNilString(uid),
@@ -571,10 +571,10 @@
     if (oldData.count > 0) {
         // 建立新数据的hash表，用于删除数据库中的过时数据
         NSMutableDictionary *newDataHash = [[NSMutableDictionary alloc] init];
-        for (TLUser *user in users) {
+        for (WXUser *user in users) {
             [newDataHash setValue:@"YES" forKey:user.userID];
         }
-        for (TLUser *user in oldData) {
+        for (WXUser *user in oldData) {
             if ([newDataHash objectForKey:user.userID] == nil) {
                 BOOL ok = [self deleteGroupMemberForUid:uid gid:gid andFid:user.userID];
                 if (!ok) {
@@ -583,7 +583,7 @@
             }
         }
     }
-    for (TLUser *user in users) {
+    for (WXUser *user in users) {
         BOOL ok = [self addGroupMember:user forUid:uid andGid:gid];
         if (!ok) {
             return NO;
@@ -597,7 +597,7 @@
     
     [self excuteQuerySQL:sqlString resultBlock:^(FMResultSet *retSet) {
         while ([retSet next]) {
-            TLUser *user = [[TLUser alloc] init];
+            WXUser *user = [[WXUser alloc] init];
             user.userID = [retSet stringForColumn:@"uid"];
             user.username = [retSet stringForColumn:@"username"];
             user.nikeName = [retSet stringForColumn:@"nikename"];
@@ -617,7 +617,7 @@
 }
 @end
 
-@implementation TLDBBaseStore
+@implementation WXDBBaseStore
 - (id)init{
     if (self = [super init]) {
         self.dbQueue = [WXDBManager sharedInstance].commonQueue;
@@ -682,7 +682,7 @@ static WXDBManager *manager;
 + (WXDBManager *)sharedInstance{
     static dispatch_once_t once;
     dispatch_once(&once, ^{
-        NSString *userID = [TLUserHelper sharedHelper].user.userID;
+        NSString *userID = [WXUserHelper sharedHelper].user.userID;
         manager = [[WXDBManager alloc] initWithUserID:userID];
     });
     return manager;

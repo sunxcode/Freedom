@@ -1,17 +1,14 @@
 //  XFOAuthController.m
 //  Freedom
-//  Created by Fay on 15/9/20.
+//  Created by Super on 15/9/20.
 #import "SinaAuthController.h"
 #import "SinaMode.h"
 #import "SinaTabBarController.h"
-#import "SinaNewFeatureController.h"
 @interface SinaAuthController ()<UIWebViewDelegate>
 @end
 @implementation SinaAuthController
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
     UIWebView *webView = [[UIWebView alloc]init];
     webView.delegate = self;
     webView.frame = self.view.bounds;

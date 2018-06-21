@@ -2,8 +2,8 @@
 //  Freedom
 //  Created by Super on 16/3/10.
 #import "WXMyExpressionViewController.h"
-#import "TLExpressionDetailViewController.h"
-#import "TLExpressionHelper.h"
+#import "WXExpressionDetailViewController.h"
+#import "WXExpressionHelper.h"
 #import "TLEmojiBaseCell.h"
 @protocol WXMyExpressionCellDelegate <NSObject>
 - (void)myExpressionCellDeleteButtonDown:(TLEmojiGroup *)group;
@@ -83,7 +83,7 @@
 }
 @end
 @interface WXMyExpressionViewController () <WXMyExpressionCellDelegate>
-@property (nonatomic, strong) TLExpressionHelper *helper;
+@property (nonatomic, strong) WXExpressionHelper *helper;
 @end
 @implementation WXMyExpressionViewController
 - (void)viewDidLoad{
@@ -102,12 +102,12 @@
     
     [self.tableView registerClass:[WXMyExpressionCell class] forCellReuseIdentifier:@"TLMyExpressionCell"];
     
-    self.helper = [TLExpressionHelper sharedHelper];
+    self.helper = [WXExpressionHelper sharedHelper];
     self.data = [self.helper myExpressionListData];
 }
 #pragma mark - Delegate -
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    TLSettingGroup *group = self.data[indexPath.section];
+    WXSettingGroup *group = self.data[indexPath.section];
     if (group.headerTitle) {    // 有标题的就是表情组
         TLEmojiGroup *emojiGroup = [group objectAtIndex:indexPath.row];
         WXMyExpressionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TLMyExpressionCell"];
@@ -119,17 +119,17 @@
     }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    TLSettingGroup *group = self.data[indexPath.section];
+    WXSettingGroup *group = self.data[indexPath.section];
     if (group.headerTitle) {
         return 50.0f;
     }
     return [super tableView:tableView heightForRowAtIndexPath:indexPath];
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    TLSettingGroup *group = self.data[indexPath.section];
+    WXSettingGroup *group = self.data[indexPath.section];
     if (group.headerTitle) {    // 有标题的就是表情组
         TLEmojiGroup *emojiGroup = [group objectAtIndex:indexPath.row];
-        TLExpressionDetailViewController *detailVC = [[TLExpressionDetailViewController alloc] init];
+        WXExpressionDetailViewController *detailVC = [[WXExpressionDetailViewController alloc] init];
         [detailVC setGroup:emojiGroup];
         [self setHidesBottomBarWhenPushed:YES];
         [self.navigationController pushViewController:detailVC animated:YES];

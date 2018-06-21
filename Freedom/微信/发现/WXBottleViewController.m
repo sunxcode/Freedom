@@ -7,18 +7,18 @@ typedef NS_ENUM(NSUInteger, TLBottleButtonType) {
     TLBottleButtonTypePickUp,
     TLBottleButtonTypeMine,
 };
-@interface TLBottleButton : UIButton
+@interface WXBottleButton : UIButton
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *iconPath;
 @property (nonatomic, assign) TLBottleButtonType type;
 @property (nonatomic, assign) NSUInteger msgNumber;
 - (id) initWithType:(TLBottleButtonType)type title:(NSString *)title iconPath:(NSString *)iconPath;
 @end
-@interface TLBottleButton ()
+@interface WXBottleButton ()
 @property (nonatomic, strong) UIImageView *iconImageView;
 @property (nonatomic, strong) UILabel *textLabel;
 @end
-@implementation TLBottleButton
+@implementation WXBottleButton
 - (id)initWithType:(TLBottleButtonType)type title:(NSString *)title iconPath:(NSString *)iconPath{
     if (self = [super init]) {
         [self addSubview:self.iconImageView];
@@ -72,9 +72,9 @@ typedef NS_ENUM(NSUInteger, TLBottleButtonType) {
 }
 @property (nonatomic, strong) UIImageView *backgroundView;
 @property (nonatomic, strong) UIImageView *bottomBoard;
-@property (nonatomic, strong) TLBottleButton *throwButton;
-@property (nonatomic, strong) TLBottleButton *pickUpButton;
-@property (nonatomic, strong) TLBottleButton *mineButton;
+@property (nonatomic, strong) WXBottleButton *throwButton;
+@property (nonatomic, strong) WXBottleButton *pickUpButton;
+@property (nonatomic, strong) WXBottleButton *mineButton;
 @end
 @implementation WXBottleViewController
 - (void)viewDidLoad{
@@ -110,7 +110,7 @@ typedef NS_ENUM(NSUInteger, TLBottleButtonType) {
     [self.view removeGestureRecognizer:tapGes];
 }
 #pragma mark - Event Response
-- (void)boardButtonDown:(TLBottleButton *)sender{
+- (void)boardButtonDown:(WXBottleButton *)sender{
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:sender.title message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
     [alert show];
 }
@@ -178,23 +178,23 @@ typedef NS_ENUM(NSUInteger, TLBottleButtonType) {
     }
     return _bottomBoard;
 }
-- (TLBottleButton *)throwButton{
+- (WXBottleButton *)throwButton{
     if (_throwButton == nil) {
-        _throwButton = [[TLBottleButton alloc] initWithType:TLBottleButtonTypeThrow title:@"扔一个" iconPath:@"bottle_button_throw"];
+        _throwButton = [[WXBottleButton alloc] initWithType:TLBottleButtonTypeThrow title:@"扔一个" iconPath:@"bottle_button_throw"];
         [_throwButton addTarget:self action:@selector(boardButtonDown:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _throwButton;
 }
-- (TLBottleButton *)pickUpButton{
+- (WXBottleButton *)pickUpButton{
     if (_pickUpButton == nil) {
-        _pickUpButton = [[TLBottleButton alloc] initWithType:TLBottleButtonTypePickUp title:@"捡一个" iconPath:@"bottle_button_pickup"];
+        _pickUpButton = [[WXBottleButton alloc] initWithType:TLBottleButtonTypePickUp title:@"捡一个" iconPath:@"bottle_button_pickup"];
         [_pickUpButton addTarget:self action:@selector(boardButtonDown:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _pickUpButton;
 }
-- (TLBottleButton *)mineButton{
+- (WXBottleButton *)mineButton{
     if (_mineButton == nil) {
-        _mineButton = [[TLBottleButton alloc] initWithType:TLBottleButtonTypeMine title:@"我的瓶子" iconPath:@"bottle_button_mine"];
+        _mineButton = [[WXBottleButton alloc] initWithType:TLBottleButtonTypeMine title:@"我的瓶子" iconPath:@"bottle_button_mine"];
         [_mineButton addTarget:self action:@selector(boardButtonDown:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _mineButton;

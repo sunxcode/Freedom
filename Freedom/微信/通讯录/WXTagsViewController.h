@@ -1,8 +1,8 @@
 //  TLTagsViewController.h
 //  Freedom
 // Created by Super
-#import "WechatTableViewController.h"
-@interface WXTagsViewController : WechatTableViewController
+#import "WXTableViewController.h"
+@interface WXTagsViewController : WXTableViewController
 @property (nonatomic, strong) NSMutableArray *data;
 - (void)registerCellClass;
 @end

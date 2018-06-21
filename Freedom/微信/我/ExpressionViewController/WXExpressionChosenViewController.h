@@ -1,27 +1,27 @@
 //  TLExpressionChosenViewController.h
 //  Freedom
 //  Created by Super on 16/4/4.
-#import "WechatTableViewController.h"
-#import "TLExpressionHelper.h"
+#import "WXTableViewController.h"
+#import "WXExpressionHelper.h"
 #define         HEIGHT_BANNERCELL       140.0f
 #define         HEGIHT_EXPCELL          80.0f
 #import "TLEmojiBaseCell.h"
-#import "TLTableViewCell.h"
-@protocol TLExpressionCellDelegate <NSObject>
+#import "WXTableViewCell.h"
+@protocol WXExpressionCellDelegate <NSObject>
 - (void)expressionCellDownloadButtonDown:(TLEmojiGroup *)group;
 @end
-@interface TLExpressionCell : TLTableViewCell
-@property (nonatomic, assign) id<TLExpressionCellDelegate> delegate;
+@interface WXExpressionCell : WXTableViewCell
+@property (nonatomic, assign) id<WXExpressionCellDelegate> delegate;
 @property (nonatomic, strong) TLEmojiGroup *group;
 @end
-@protocol TLExpressionBannerCellDelegate <NSObject>
+@protocol WXExpressionBannerCellDelegate <NSObject>
 - (void)expressionBannerCellDidSelectBanner:(id)item;
 @end
-@interface TLExpressionBannerCell : TLTableViewCell
-@property (nonatomic, assign) id<TLExpressionBannerCellDelegate>delegate;
+@interface WXExpressionBannerCell : WXTableViewCell
+@property (nonatomic, assign) id<WXExpressionBannerCellDelegate>delegate;
 @property (nonatomic, strong) NSArray *data;
 @end
-@interface WXExpressionChosenViewController : WechatTableViewController<TLExpressionCellDelegate, TLExpressionBannerCellDelegate>{
+@interface WXExpressionChosenViewController : WXTableViewController<WXExpressionCellDelegate, WXExpressionBannerCellDelegate>{
     NSInteger kPageIndex;
 }
 - (void)registerCellsForTableView:(UITableView *)tableView;
@@ -29,5 +29,5 @@
 - (void)loadMoreData;
 @property (nonatomic, strong) NSMutableArray *data;
 @property (nonatomic, strong) NSArray *bannerData;
-@property (nonatomic, strong) TLExpressionHelper *proxy;
+@property (nonatomic, strong) WXExpressionHelper *proxy;
 @end

@@ -2,8 +2,8 @@
 //  XBaseViewController.swift
 //  Freedom
 //
-//  Created by htf on 2018/5/15.
-//  Copyright © 2018年 薛超. All rights reserved.
+//  Created by Super on 2018/5/15.
+//  Copyright © 2018年 Super. All rights reserved.
 //
 
 import UIKit
@@ -35,10 +35,7 @@ class XBaseViewController: BaseViewController,CKRadialMenuDelegate{
         let a: Int = Int(identifier)!
         let controlName:String = items[a]["control"]!
         let StoryBoard = UIStoryboard(name: controlName, bundle: nil)
-        var con = StoryBoard.instantiateViewController(withIdentifier:"\(controlName)TabBarController")
-//        if (controlName == "Sina") {
-//            con = SinaTabBarController()
-//        }
+        let con = StoryBoard.instantiateViewController(withIdentifier:"\(controlName)TabBarController")
         let animation = CATransition()
         animation.duration = 0.5
         animation.type = "cube"

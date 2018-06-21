@@ -1,6 +1,6 @@
 //  TLPublicServerViewController.h
 //  Freedom
 // Created by Super
-#import "WechatTableViewController.h"
-@interface WXPublicServerViewController : WechatTableViewController
+#import "WXTableViewController.h"
+@interface WXPublicServerViewController : WXTableViewController
 @end

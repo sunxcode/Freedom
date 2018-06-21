@@ -1,16 +1,16 @@
 //  FreedomTools.h
 //  Freedom
-//  Created by htf on 2018/4/26.
+//  Created by Super on 2018/4/26.
 //  Copyright © 2018年 Super. All rights reserved.
 //
 #import <Foundation/Foundation.h>
-@class TLGroup;
+@class WXGroup;
 @class SinaAccount;
 @interface FreedomTools : NSObject
 + (CGFloat)getTextHeightOfText:(NSString *)text
                           font:(UIFont *)font
                          width:(CGFloat)width;
-+ (void)createGroupAvatar:(TLGroup *)group
++ (void)createGroupAvatar:(WXGroup *)group
                  finished:(void (^)(NSString *groupID))finished;
 + (void)captureScreenshotFromView:(UIView *)view
                              rect:(CGRect)rect

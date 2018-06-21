@@ -2,15 +2,15 @@
 //  Freedom
 // Created by Super
 #import "WXTagsViewController.h"
-#import "TLTableViewCell.h"
-#import "TLUserHelper.h"
-@interface TLTagCell : TLTableViewCell
+#import "WXTableViewCell.h"
+#import "WXUserHelper.h"
+@interface WXTagCell : WXTableViewCell
 @property (nonatomic, strong) NSString *title;
 @end
-@interface TLTagCell()
+@interface WXTagCell()
 @property (nonatomic, strong) UILabel *titleLabel;
 @end
-@implementation TLTagCell
+@implementation WXTagCell
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self.leftSeparatorSpace = 15;
@@ -52,7 +52,7 @@
     UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithTitle:@"新建" style:UIBarButtonItemStylePlain target:self action:@selector(rightBarButtonDown:)];
     [self.navigationItem setRightBarButtonItem:rightBarButton];
     
-    self.data = [WechatFriendHelper sharedFriendHelper].tagsData;
+    self.data = [WXFriendHelper sharedFriendHelper].tagsData;
 }
 #pragma mark - Event Response -
 - (void)rightBarButtonDown:(UIBarButtonItem *)sender{
@@ -60,7 +60,7 @@
 }
 #pragma mark - Public Methods -
 - (void)registerCellClass{
-    [self.tableView registerClass:[TLTagCell class] forCellReuseIdentifier:@"TLTagCell"];
+    [self.tableView registerClass:[WXTagCell class] forCellReuseIdentifier:@"TLTagCell"];
 }
 #pragma mark - Delegate -
 //MARK: UITableViewDataSource
@@ -68,8 +68,8 @@
     return self.data.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    TLUserGroup *group = [self.data objectAtIndex:indexPath.row];
-    TLTagCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TLTagCell"];
+    WXUserGroup *group = [self.data objectAtIndex:indexPath.row];
+    WXTagCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TLTagCell"];
     [cell setTitle:[NSString stringWithFormat:@"%@(%ld)", group.groupName, (long)group.count]];
     [cell setTopLineStyle:(indexPath.row == 0 ? TLCellLineStyleFill : TLCellLineStyleNone)];
     [cell setBottomLineStyle:(indexPath.row == self.data.count - 1 ? TLCellLineStyleFill : TLCellLineStyleDefault)];

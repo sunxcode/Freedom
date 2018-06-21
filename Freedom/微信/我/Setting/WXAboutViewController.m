@@ -3,11 +3,11 @@
 // Created by Super
 #import "WXAboutViewController.h"
 #define     HEIGHT_TOPVIEW      100.0f
-#import "WechartModes.h"
-@interface TLAboutHelper : NSObject
+#import "WXModes.h"
+@interface WXAboutHelper : NSObject
 @property (nonatomic, strong) NSMutableArray *abouSettingtData;
 @end
-@implementation TLAboutHelper
+@implementation WXAboutHelper
 - (id) init{
     if (self = [super init]) {
         self.abouSettingtData = [[NSMutableArray alloc] init];
@@ -16,24 +16,24 @@
     return self;
 }
 - (void) p_initTestData{
-    TLSettingItem *item1 = TLCreateSettingItem(@"去评分");
-    TLSettingItem *item2 = TLCreateSettingItem(@"欢迎页");
-    TLSettingItem *item3 = TLCreateSettingItem(@"功能介绍");
-    TLSettingItem *item4 = TLCreateSettingItem(@"系统通知");
-    TLSettingItem *item5 = TLCreateSettingItem(@"举报与投诉");
-    TLSettingGroup *group1 = TLCreateSettingGroup(nil, nil, (@[item1, item2, item3, item4, item5]));
+    WXSettingItem *item1 = TLCreateSettingItem(@"去评分");
+    WXSettingItem *item2 = TLCreateSettingItem(@"欢迎页");
+    WXSettingItem *item3 = TLCreateSettingItem(@"功能介绍");
+    WXSettingItem *item4 = TLCreateSettingItem(@"系统通知");
+    WXSettingItem *item5 = TLCreateSettingItem(@"举报与投诉");
+    WXSettingGroup *group1 = TLCreateSettingGroup(nil, nil, (@[item1, item2, item3, item4, item5]));
     [self.abouSettingtData addObjectsFromArray:@[group1]];
 }
 @end
-@interface TLAboutHeaderView : UITableViewHeaderFooterView
+@interface WXAboutHeaderView : UITableViewHeaderFooterView
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *imagePath;
 @end
-@interface TLAboutHeaderView ()
+@interface WXAboutHeaderView ()
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) UILabel *titleLabel;
 @end
-@implementation TLAboutHeaderView
+@implementation WXAboutHeaderView
 - (id)initWithReuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
         [self.contentView addSubview:self.imageView];
@@ -81,7 +81,7 @@
 }
 @end
 @interface WXAboutViewController ()
-@property (nonatomic, strong) TLAboutHelper *helper;
+@property (nonatomic, strong) WXAboutHelper *helper;
 @property (nonatomic, strong) UILabel *cmpLabel;
 @end
 @implementation WXAboutViewController
@@ -89,10 +89,10 @@
     [super viewDidLoad];
     [self.navigationItem setTitle:@"关于微信"];
     
-    self.helper = [[TLAboutHelper alloc] init];
+    self.helper = [[WXAboutHelper alloc] init];
     self.data = self.helper.abouSettingtData;
     
-    [self.tableView registerClass:[TLAboutHeaderView class] forHeaderFooterViewReuseIdentifier:@"TLAboutHeaderView"];
+    [self.tableView registerClass:[WXAboutHeaderView class] forHeaderFooterViewReuseIdentifier:@"TLAboutHeaderView"];
     [self.tableView.tableFooterView addSubview:self.cmpLabel];
     [self p_addMasonry];
 }
@@ -105,7 +105,7 @@
 //MARK: UITableViewDataSource
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     if (section == 0) {
-        TLAboutHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"TLAboutHeaderView"];
+        WXAboutHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"TLAboutHeaderView"];
         [headerView setImagePath:@"AppLogo"];
         [headerView setTitle:[NSString stringWithFormat:@"微信 TLChat %@", [FreedomTools sharedManager].version]];
         return headerView;

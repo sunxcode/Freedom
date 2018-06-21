@@ -2,15 +2,15 @@
 //  Freedom
 //  Created by Super on 16/4/5.
 #import "WXMomentsViewController.h"
-#import "WechartModes.h"
+#import "WXModes.h"
 #import "WXMomentDetailViewController.h"
 #import "MWPhotoBrowser.h"
 #import "WXMomentsViewController.h"
 #import "UIButton+WebCache.h"
-#import "TLUserHelper.h"
-#import "WechatRootViewController.h"
+#import "WXUserHelper.h"
+#import "WXRootViewController.h"
 #define         WIDTH_AVATAR        65
-#import "TLTableViewCell.h"
+#import "WXTableViewCell.h"
 @interface WXMomentsProxy : NSObject
 - (NSArray *)testData;
 @end
@@ -19,13 +19,13 @@
     NSString *path = [[NSBundle mainBundle] pathForResource:@"Moments" ofType:@"json"];
     NSData *jsonData = [NSData dataWithContentsOfFile:path];
     NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:nil];
-    NSArray *arr = [TLMoment mj_objectArrayWithKeyValuesArray:jsonArray];
+    NSArray *arr = [WXMoment mj_objectArrayWithKeyValuesArray:jsonArray];
     return arr;
 }
 @end
-@interface WXMomentBaseCell : TLTableViewCell
-@property (nonatomic, assign) id<TLMomentViewDelegate> delegate;
-@property (nonatomic, strong) TLMoment *moment;
+@interface WXMomentBaseCell : WXTableViewCell
+@property (nonatomic, assign) id<WXMomentViewDelegate> delegate;
+@property (nonatomic, strong) WXMoment *moment;
 @end
 @interface WXMomentImagesCell : WXMomentBaseCell
 @end
@@ -51,11 +51,11 @@
     }
     return self;
 }
-- (void)setMoment:(TLMoment *)moment{
+- (void)setMoment:(WXMoment *)moment{
     [super setMoment:moment];
     [self.momentView setMoment:moment];
 }
-- (void)setDelegate:(id<TLMomentViewDelegate>)delegate{
+- (void)setDelegate:(id<WXMomentViewDelegate>)delegate{
     [super setDelegate:delegate];
     [self.momentView setDelegate:delegate];
 }
@@ -67,8 +67,8 @@
     return _momentView;
 }
 @end
-@interface WXMomentHeaderCell : TLTableViewCell
-@property (nonatomic, strong) TLUser *user;
+@interface WXMomentHeaderCell : WXTableViewCell
+@property (nonatomic, strong) WXUser *user;
 @end
 @interface WXMomentHeaderCell ()
 @property (nonatomic, strong) UIButton *backgroundWall;
@@ -90,7 +90,7 @@
     }
     return self;
 }
-- (void)setUser:(TLUser *)user{
+- (void)setUser:(WXUser *)user{
     _user = user;
     [self.backgroundWall sd_setImageWithURL:TLURL(user.detailInfo.momentsWallURL) forState:UIControlStateNormal];
     [self.backgroundWall sd_setImageWithURL:TLURL(user.detailInfo.momentsWallURL) forState:UIControlStateHighlighted];
@@ -157,7 +157,7 @@
     return _mottoLabel;
 }
 @end
-@interface WXMomentsViewController ()<TLMomentViewDelegate>
+@interface WXMomentsViewController ()<WXMomentViewDelegate>
 @property (nonatomic, strong) WXMomentsProxy *proxy;
 - (void)loadData;
 - (void)registerCellForTableView:(UITableView *)tableView;
@@ -191,7 +191,7 @@
 - (void)registerCellForTableView:(UITableView *)tableView{
     [tableView registerClass:[WXMomentHeaderCell class] forCellReuseIdentifier:@"TLMomentHeaderCell"];
     [tableView registerClass:[WXMomentImagesCell class] forCellReuseIdentifier:@"TLMomentImagesCell"];
-    [tableView registerClass:[TLTableViewCell class] forCellReuseIdentifier:@"EmptyCell"];
+    [tableView registerClass:[WXTableViewCell class] forCellReuseIdentifier:@"EmptyCell"];
 }
 #pragma mark - 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -200,11 +200,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
         WXMomentHeaderCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TLMomentHeaderCell"];
-        [cell setUser:[TLUserHelper sharedHelper].user];
+        [cell setUser:[WXUserHelper sharedHelper].user];
         return cell;
     }
     
-    TLMoment *moment = [self.data objectAtIndex:indexPath.row - 1];
+    WXMoment *moment = [self.data objectAtIndex:indexPath.row - 1];
     id cell;
     if (moment.detail.text.length > 0 || moment.detail.images.count > 0) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"TLMomentImagesCell"];
@@ -223,12 +223,12 @@
         return 260.0f;
     }
     
-    TLMoment *moment = [self.data objectAtIndex:indexPath.row - 1];
+    WXMoment *moment = [self.data objectAtIndex:indexPath.row - 1];
     return (int)moment.momentFrame.height;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row > 0) {
-        TLMoment *moment = [self.data objectAtIndex:indexPath.row - 1];
+        WXMoment *moment = [self.data objectAtIndex:indexPath.row - 1];
         WXMomentDetailViewController *detailVC = [[WXMomentDetailViewController alloc] init];
         [detailVC setMoment:moment];
         [self setHidesBottomBarWhenPushed:YES];
@@ -246,7 +246,7 @@
     MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithPhotos:data];
     [browser setDisplayNavArrows:YES];
     [browser setCurrentPhotoIndex:index];
-    TLNavigationController *broserNavC = [[TLNavigationController alloc] initWithRootViewController:browser];
+    WXNavigationController *broserNavC = [[WXNavigationController alloc] initWithRootViewController:browser];
     [self presentViewController:broserNavC animated:NO completion:nil];
 }
 @end

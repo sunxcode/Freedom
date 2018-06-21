@@ -3,12 +3,12 @@
 //  Created by Super on 16/3/4.
 #import "WXMyQRCodeViewController.h"
 #import "WXScanningViewController.h"
-#import "WechatQRCodeViewController.h"
+#import "WXQRCodeViewController.h"
 #define         ACTIONTAG_SHOW_SCANNER          101
-#import "WechatActionSheet.h"
-#import "TLUserHelper.h"
-@interface WXMyQRCodeViewController () <TLActionSheetDelegate>
-@property (nonatomic, strong) WechatQRCodeViewController *qrCodeVC;
+#import "WXActionSheet.h"
+#import "WXUserHelper.h"
+@interface WXMyQRCodeViewController () <WXActionSheetDelegate>
+@property (nonatomic, strong) WXQRCodeViewController *qrCodeVC;
 @end
 @implementation WXMyQRCodeViewController
 - (void)viewDidLoad {
@@ -22,9 +22,9 @@
     UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav_more"] style:UIBarButtonItemStyleDone target:self action:@selector(rightBarButtonDown:)];
     [self.navigationItem setRightBarButtonItem:rightBarButtonItem];
     
-    [self setUser:[TLUserHelper sharedHelper].user];
+    [self setUser:[WXUserHelper sharedHelper].user];
 }
-- (void)setUser:(TLUser *)user{
+- (void)setUser:(WXUser *)user{
     _user = user;
     self.qrCodeVC.avatarURL = user.avatarURL;
     self.qrCodeVC.username = self.user.showName;
@@ -34,7 +34,7 @@
 }
 #pragma mark - Delegate
 //MARK: TLActionSheetDelegate
-- (void)actionSheet:(WechatActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+- (void)actionSheet:(WXActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (actionSheet.tag == ACTIONTAG_SHOW_SCANNER && buttonIndex == 2) {
         WXScanningViewController *scannerVC = [[WXScanningViewController alloc] init];
         [scannerVC setDisableFunctionBar:YES];
@@ -46,19 +46,19 @@
 }
 #pragma mark - Event Response
 - (void)rightBarButtonDown:(UIBarButtonItem *)sender{
-    WechatActionSheet *actionSheet;
+    WXActionSheet *actionSheet;
     if ([self.navigationController findViewController:@"TLScanningViewController"]) {
-        actionSheet = [[WechatActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"换个样式", @"保存图片", nil];
+        actionSheet = [[WXActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"换个样式", @"保存图片", nil];
     }else{
-        actionSheet = [[WechatActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"换个样式", @"保存图片", @"扫描二维码", nil];
+        actionSheet = [[WXActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"换个样式", @"保存图片", @"扫描二维码", nil];
         actionSheet.tag = ACTIONTAG_SHOW_SCANNER;
     }
     [actionSheet show];
 }
 #pragma mark - Getter
-- (WechatQRCodeViewController *)qrCodeVC{
+- (WXQRCodeViewController *)qrCodeVC{
     if (_qrCodeVC == nil) {
-        _qrCodeVC = [[WechatQRCodeViewController alloc] init];
+        _qrCodeVC = [[WXQRCodeViewController alloc] init];
     }
     return _qrCodeVC;
 }

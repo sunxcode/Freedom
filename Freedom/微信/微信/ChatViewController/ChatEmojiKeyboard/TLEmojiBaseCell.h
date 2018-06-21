@@ -3,7 +3,7 @@
 // Created by Super
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
-#import "WechatPictureCarouselView.h"
+#import "WXPictureCarouselView.h"
 @interface TLEmoji : NSObject
 @property (nonatomic, assign) TLEmojiType type;
 @property (nonatomic, strong) NSString *groupID;
@@ -19,7 +19,7 @@ typedef NS_ENUM(NSInteger, TLEmojiGroupStatus) {
     TLEmojiGroupStatusDownloaded,
     TLEmojiGroupStatusDownloading,
 };
-@interface TLEmojiGroup : NSObject<TLPictureCarouselProtocol>
+@interface TLEmojiGroup : NSObject<WXPictureCarouselProtocol>
 @property (nonatomic, assign) TLEmojiType type;
 /// 基本信息
 @property (nonatomic, strong) NSString *groupID;

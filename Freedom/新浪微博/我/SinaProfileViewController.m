@@ -1,6 +1,6 @@
 //  XFProfileViewController.m
 //  Freedom
-//  Created by Fay on 15/9/13.
+//  Created by Super on 15/9/13.
 #import "SinaProfileViewController.h"
 #import "SinaSettingViewController.h"
 @interface SinaProfileViewController ()

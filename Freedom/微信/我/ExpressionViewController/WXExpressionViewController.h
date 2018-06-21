@@ -1,6 +1,6 @@
 //  TLExpressionViewController.h
 //  Freedom
 // Created by Super
-#import "TLViewController.h"
-@interface WXExpressionViewController : TLViewController
+#import "WXBaseViewController.h"
+@interface WXExpressionViewController : WXBaseViewController
 @end

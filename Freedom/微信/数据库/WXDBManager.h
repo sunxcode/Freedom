@@ -4,7 +4,7 @@
 #import <Foundation/Foundation.h>
 #import "FMDB.h"
 #import "WXDBManager.h"
-#import "TLUserHelper.h"
+#import "WXUserHelper.h"
 #import "TLEmojiBaseCell.h"
 #import "TLDBMessageStoreSQL.h"
 @interface WXDBManager : NSObject
@@ -14,9 +14,9 @@
 @property (nonatomic, strong) FMDatabaseQueue *messageQueue;
 + (WXDBManager *)sharedInstance;
 @end
-@class TLMessage;
+@class WXMessage;
 
-@interface TLDBBaseStore : NSObject
+@interface WXDBBaseStore : NSObject
 /// 数据库操作队列(从TLDBManager中获取，默认使用commonQueue)
 @property (nonatomic, weak) FMDatabaseQueue *dbQueue;
 /*表创建*/
@@ -33,10 +33,10 @@
 /*执行查询指令*/
 - (void)excuteQuerySQL:(NSString*)sqlStr resultBlock:(void(^)(FMResultSet * rsSet))resultBlock;
 @end
-@interface TLDBMessageStore : TLDBBaseStore
+@interface WXDBMessageStore : WXDBBaseStore
 #pragma mark - 添加
 /*添加消息记录*/
-- (BOOL)addMessage:(TLMessage *)message;
+- (BOOL)addMessage:(WXMessage *)message;
 #pragma mark - 查询
 /*获取与某个好友的聊天记录*/
 - (void)messagesByUserID:(NSString *)userID
@@ -49,7 +49,7 @@
 /*获取与某个好友/讨论组的聊天图片及视频*/
 - (NSArray *)chatImagesAndVideosByUserID:(NSString *)userID partnerID:(NSString *)partnerID;
 /*最后一条聊天记录（消息页用）*/
-- (TLMessage *)lastMessageByUserID:(NSString *)userID partnerID:(NSString *)partnerID;
+- (WXMessage *)lastMessageByUserID:(NSString *)userID partnerID:(NSString *)partnerID;
 #pragma mark - 删除
 /*删除单条消息*/
 - (BOOL)deleteMessageByMessageID:(NSString *)messageID;
@@ -59,7 +59,7 @@
 - (BOOL)deleteMessagesByUserID:(NSString *)userID;
 @end
 
-@interface TLDBConversationStore : TLDBBaseStore
+@interface WXDBConversationStore : WXDBBaseStore
 /*新的会话（未读）*/
 - (BOOL)addConversationByUid:(NSString *)uid fid:(NSString *)fid type:(NSInteger)type date:(NSDate *)date;
 /*更新会话状态（已读）*/
@@ -74,7 +74,7 @@
 - (BOOL)deleteConversationsByUid:(NSString *)uid;
 @end
 
-@interface TLDBExpressionStore : TLDBBaseStore
+@interface WXDBExpressionStore : WXDBBaseStore
 /*添加表情包*/
 - (BOOL)addExpressionGroup:(TLEmojiGroup *)group forUid:(NSString *)uid;
 /*查询所有表情包*/
@@ -85,18 +85,18 @@
 - (NSInteger)countOfUserWhoHasExpressionGroup:(NSString *)gid;
 @end
 
-@interface TLDBFriendStore : TLDBBaseStore
+@interface WXDBFriendStore : WXDBBaseStore
 - (BOOL)updateFriendsData:(NSArray *)friendData
                    forUid:(NSString *)uid;
-- (BOOL)addFriend:(TLUser *)user forUid:(NSString *)uid;
+- (BOOL)addFriend:(WXUser *)user forUid:(NSString *)uid;
 - (NSMutableArray *)friendsDataByUid:(NSString *)uid;
 - (BOOL)deleteFriendByFid:(NSString *)fid forUid:(NSString *)uid;
 @end
 
-@interface TLDBGroupStore : TLDBBaseStore
+@interface WXDBGroupStore : WXDBBaseStore
 - (BOOL)updateGroupsData:(NSArray *)groupData
                   forUid:(NSString *)uid;
-- (BOOL)addGroup:(TLGroup *)group forUid:(NSString *)uid;
+- (BOOL)addGroup:(WXGroup *)group forUid:(NSString *)uid;
 - (NSMutableArray *)groupsDataByUid:(NSString *)uid;
 - (BOOL)deleteGroupByGid:(NSString *)gid forUid:(NSString *)uid;
 @end

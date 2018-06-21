@@ -2,22 +2,22 @@
 //  Freedom
 //  Created by Super on 16/4/4.
 #import "WXExpressionChosenViewController.h"
-#import "TLExpressionSearchViewController.h"
-#import "WechatSearchController.h"
-#import "TLExpressionDetailViewController.h"
-#import "TLExpressionHelper.h"
-#import "WechatPictureCarouselView.h"
+#import "WXExpressionSearchViewController.h"
+#import "WXSearchController.h"
+#import "WXExpressionDetailViewController.h"
+#import "WXExpressionHelper.h"
+#import "WXPictureCarouselView.h"
 #define         EDGE_TOP        10.0f
 #define         EDGE_LEFT       15.0f
 #define         ROW_SPCAE       10.0f
-@interface TLExpressionCell ()
+@interface WXExpressionCell ()
 @property (nonatomic, strong) UIImageView *iconImageView;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *detailLabel;
 @property (nonatomic, strong) UIImageView *tagView;
 @property (nonatomic, strong) UIButton *downloadButton;
 @end
-@implementation TLExpressionCell
+@implementation WXExpressionCell
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self.contentView addSubview:self.iconImageView];
@@ -141,10 +141,10 @@
 }
 @end
 
-@interface TLExpressionBannerCell () <TLPictureCarouselDelegate>
-@property (nonatomic, strong) WechatPictureCarouselView *picCarouselView;
+@interface WXExpressionBannerCell () <WXPictureCarouselDelegate>
+@property (nonatomic, strong) WXPictureCarouselView *picCarouselView;
 @end
-@implementation TLExpressionBannerCell
+@implementation WXExpressionBannerCell
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self setBottomLineStyle:TLCellLineStyleNone];
@@ -160,7 +160,7 @@
     [self.picCarouselView setData:data];
 }
 #pragma mark - 
-- (void)pictureCarouselView:(WechatPictureCarouselView *)pictureCarouselView didSelectItem:(id<TLPictureCarouselProtocol>)model{
+- (void)pictureCarouselView:(WXPictureCarouselView *)pictureCarouselView didSelectItem:(id<WXPictureCarouselProtocol>)model{
     if (self.delegate && [self.delegate respondsToSelector:@selector(expressionBannerCellDidSelectBanner:)]) {
         [self.delegate expressionBannerCellDidSelectBanner:model];
     }
@@ -172,17 +172,17 @@
     }];
 }
 #pragma mark - 
-- (WechatPictureCarouselView *)picCarouselView{
+- (WXPictureCarouselView *)picCarouselView{
     if (_picCarouselView == nil) {
-        _picCarouselView = [[WechatPictureCarouselView alloc] init];
+        _picCarouselView = [[WXPictureCarouselView alloc] init];
         [_picCarouselView setDelegate:self];
     }
     return _picCarouselView;
 }
 @end
 @interface WXExpressionChosenViewController () <UISearchBarDelegate>
-@property (nonatomic, strong) WechatSearchController *searchController;
-@property (nonatomic, strong) TLExpressionSearchViewController *searchVC;
+@property (nonatomic, strong) WXSearchController *searchController;
+@property (nonatomic, strong) WXExpressionSearchViewController *searchVC;
 @end
 @implementation WXExpressionChosenViewController
 - (void)viewDidLoad{
@@ -205,24 +205,24 @@
     [SVProgressHUD dismiss];
 }
 #pragma mark - 
-- (TLExpressionHelper *)proxy{
+- (WXExpressionHelper *)proxy{
     if (_proxy == nil) {
-        _proxy = [TLExpressionHelper sharedHelper];
+        _proxy = [WXExpressionHelper sharedHelper];
     }
     return _proxy;
 }
-- (WechatSearchController *)searchController{
+- (WXSearchController *)searchController{
     if (_searchController == nil) {
-        _searchController = [[WechatSearchController alloc] initWithSearchResultsController:self.searchVC];
+        _searchController = [[WXSearchController alloc] initWithSearchResultsController:self.searchVC];
         [_searchController setSearchResultsUpdater:self.searchVC];
         [_searchController.searchBar setPlaceholder:@"搜索表情"];
         [_searchController.searchBar setDelegate:self.searchVC];
     }
     return _searchController;
 }
-- (TLExpressionSearchViewController *)searchVC{
+- (WXExpressionSearchViewController *)searchVC{
     if (_searchVC == nil) {
-        _searchVC = [[TLExpressionSearchViewController alloc] init];
+        _searchVC = [[WXExpressionSearchViewController alloc] init];
     }
     return _searchVC;
 }
@@ -237,7 +237,7 @@
         kPageIndex ++;
         weakSelf.data = [[NSMutableArray alloc] init];
         for (TLEmojiGroup *group in data) {     // 优先使用本地表情
-            TLEmojiGroup *localEmojiGroup = [[TLExpressionHelper sharedHelper] emojiGroupByID:group.groupID];
+            TLEmojiGroup *localEmojiGroup = [[WXExpressionHelper sharedHelper] emojiGroupByID:group.groupID];
             if (localEmojiGroup) {
                 [self.data addObject:localEmojiGroup];
             }else{
@@ -266,7 +266,7 @@
             [self.tableView.mj_footer endRefreshing];
             kPageIndex ++;
             for (TLEmojiGroup *group in data) {     // 优先使用本地表情
-                TLEmojiGroup *localEmojiGroup = [[TLExpressionHelper sharedHelper] emojiGroupByID:group.groupID];
+                TLEmojiGroup *localEmojiGroup = [[WXExpressionHelper sharedHelper] emojiGroupByID:group.groupID];
                 if (localEmojiGroup) {
                     [self.data addObject:localEmojiGroup];
                 }
@@ -282,8 +282,8 @@
     }];
 }
 - (void)registerCellsForTableView:(UITableView *)tableView{
-    [tableView registerClass:[TLExpressionBannerCell class] forCellReuseIdentifier:@"TLExpressionBannerCell"];
-    [tableView registerClass:[TLExpressionCell class] forCellReuseIdentifier:@"TLExpressionCell"];
+    [tableView registerClass:[WXExpressionBannerCell class] forCellReuseIdentifier:@"TLExpressionBannerCell"];
+    [tableView registerClass:[WXExpressionCell class] forCellReuseIdentifier:@"TLExpressionCell"];
 }
 #pragma mark - 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -299,12 +299,12 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0 && self.bannerData.count > 0) {
-        TLExpressionBannerCell *bannerCell = [tableView dequeueReusableCellWithIdentifier:@"TLExpressionBannerCell"];
+        WXExpressionBannerCell *bannerCell = [tableView dequeueReusableCellWithIdentifier:@"TLExpressionBannerCell"];
         [bannerCell setData:self.bannerData];
         [bannerCell setDelegate:self];
         return bannerCell;
     }
-    TLExpressionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TLExpressionCell"];
+    WXExpressionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TLExpressionCell"];
     TLEmojiGroup *group = self.data[indexPath.row];
     [cell setGroup:group];
     [cell setDelegate:self];
@@ -313,7 +313,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if ((indexPath.section == 0 && self.bannerData.count == 0) || indexPath.section == 1) {
         TLEmojiGroup *group = [self.data objectAtIndex:indexPath.row];
-        TLExpressionDetailViewController *detailVC = [[TLExpressionDetailViewController alloc] init];
+        WXExpressionDetailViewController *detailVC = [[WXExpressionDetailViewController alloc] init];
         [detailVC setGroup:group];
         [self.parentViewController setHidesBottomBarWhenPushed:YES];
         [self.parentViewController.navigationController pushViewController:detailVC animated:YES];
@@ -330,7 +330,7 @@
 }
 //MARK: TLExpressionBannerCellDelegate
 - (void)expressionBannerCellDidSelectBanner:(id)item{
-    TLExpressionDetailViewController *detailVC = [[TLExpressionDetailViewController alloc] init];
+    WXExpressionDetailViewController *detailVC = [[WXExpressionDetailViewController alloc] init];
     [detailVC setGroup:item];
     [self.parentViewController setHidesBottomBarWhenPushed:YES];
     [self.parentViewController.navigationController pushViewController:detailVC animated:YES];
@@ -340,7 +340,7 @@
     group.status = TLEmojiGroupStatusDownloading;
     [self.proxy requestExpressionGroupDetailByGroupID:group.groupID pageIndex:1 success:^(id data) {
         group.data = data;
-        [[TLExpressionHelper sharedHelper] downloadExpressionsWithGroupInfo:group progress:^(CGFloat progress) {
+        [[WXExpressionHelper sharedHelper] downloadExpressionsWithGroupInfo:group progress:^(CGFloat progress) {
             
         } success:^(TLEmojiGroup *group) {
             group.status = TLEmojiGroupStatusDownloaded;
@@ -348,7 +348,7 @@
             if (index < self.data.count) {
                 [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:1]] withRowAnimation:UITableViewRowAnimationNone];
             }
-            BOOL ok = [[TLExpressionHelper sharedHelper] addExpressionGroup:group];
+            BOOL ok = [[WXExpressionHelper sharedHelper] addExpressionGroup:group];
             if (!ok) {
                 [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"表情 %@ 存储失败！", group.groupName]];
             }

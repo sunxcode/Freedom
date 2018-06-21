@@ -1,6 +1,6 @@
 //  TLPrivacySettingViewController.h
 //  Freedom
 // Created by Super
-#import "WechatSettingViewController.h"
-@interface WXPrivacySettingViewController : WechatSettingViewController
+#import "WXSettingViewController.h"
+@interface WXPrivacySettingViewController : WXSettingViewController
 @end

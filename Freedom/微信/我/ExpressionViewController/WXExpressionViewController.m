@@ -3,13 +3,13 @@
 // Created by Super
 #import "WXExpressionViewController.h"
 #import "WXExpressionChosenViewController.h"
-#import "TLExpressionPublicViewController.h"
+#import "WXExpressionPublicViewController.h"
 #import "WXMyExpressionViewController.h"
 #define     WIDTH_EXPRESSION_SEGMENT    APPW * 0.55
 @interface WXExpressionViewController ()
 @property (nonatomic, strong) UISegmentedControl *segmentedControl;
 @property (nonatomic, strong) WXExpressionChosenViewController *expChosenVC;
-@property (nonatomic, strong) TLExpressionPublicViewController *expPublicVC;
+@property (nonatomic, strong) WXExpressionPublicViewController *expPublicVC;
 @end
 @implementation WXExpressionViewController
 - (void)viewDidLoad{
@@ -66,9 +66,9 @@
     }
     return _expChosenVC;
 }
-- (TLExpressionPublicViewController *)expPublicVC{
+- (WXExpressionPublicViewController *)expPublicVC{
     if (_expPublicVC == nil) {
-        _expPublicVC = [[TLExpressionPublicViewController alloc] init];
+        _expPublicVC = [[WXExpressionPublicViewController alloc] init];
     }
     return _expPublicVC;
 }

@@ -1,31 +1,25 @@
 //  TLMomentDetailViewController.h
 //  Freedom
 //  Created by Super on 16/4/23.
-#import "TLViewController.h"
-#import "WechartModes.h"
-//  TLMomentImageView.h
-//  Freedom
-//  Created by Super on 16/4/23.
-//  Copyright © 2016年 Super. All rights reserved.
-#import <UIKit/UIKit.h>
-#import "WechartModes.h"
-@protocol TLMomentMultiImageViewDelegate <NSObject>
+#import "WXBaseViewController.h"
+#import "WXModes.h"
+@protocol WXMomentMultiImageViewDelegate <NSObject>
 - (void)momentViewClickImage:(NSArray *)images atIndex:(NSInteger)index;
 @end
-@protocol TLMomentDetailViewDelegate <TLMomentMultiImageViewDelegate>
+@protocol WXMomentDetailViewDelegate <WXMomentMultiImageViewDelegate>
 @end
-@protocol TLMomentViewDelegate <TLMomentDetailViewDelegate>
+@protocol WXMomentViewDelegate <WXMomentDetailViewDelegate>
 @end
-@interface TLMomentBaseView : UIView
-@property (nonatomic, assign) id<TLMomentViewDelegate> delegate;
+@interface WXMomentBaseView : UIView
+@property (nonatomic, assign) id<WXMomentViewDelegate> delegate;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIView *detailContainerView;
 @property (nonatomic, strong) UIView *extensionContainerView;
-@property (nonatomic, strong) TLMoment *moment;
+@property (nonatomic, strong) WXMoment *moment;
 @end
-@interface WXMomentImageView : TLMomentBaseView
+@interface WXMomentImageView : WXMomentBaseView
 @end
 
-@interface WXMomentDetailViewController : TLViewController
-@property (nonatomic, strong) TLMoment *moment;
+@interface WXMomentDetailViewController : WXBaseViewController
+@property (nonatomic, strong) WXMoment *moment;
 @end

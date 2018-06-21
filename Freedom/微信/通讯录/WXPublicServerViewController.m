@@ -3,9 +3,9 @@
 // Created by Super
 #import "WXPublicServerViewController.h"
 #import "WXPublicServerSearchViewController.h"
-#import "WechatSearchController.h"
+#import "WXSearchController.h"
 @interface WXPublicServerViewController () <UISearchBarDelegate>
-@property (nonatomic, strong) WechatSearchController *searchController;
+@property (nonatomic, strong) WXSearchController *searchController;
 @property (nonatomic, strong) WXPublicServerSearchViewController *searchVC;
 @end
 @implementation WXPublicServerViewController
@@ -31,9 +31,9 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
 }
 #pragma mark - Getter -
-- (WechatSearchController *)searchController{
+- (WXSearchController *)searchController{
     if (_searchController == nil) {
-        _searchController = [[WechatSearchController alloc] initWithSearchResultsController:self.searchVC];
+        _searchController = [[WXSearchController alloc] initWithSearchResultsController:self.searchVC];
         [_searchController setSearchResultsUpdater:self.searchVC];
         [_searchController.searchBar setPlaceholder:@"搜索"];
         [_searchController.searchBar setDelegate:self];

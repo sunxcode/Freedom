@@ -1,7 +1,7 @@
 //  TLShakeSettingViewController.m
 //  Freedom
 //  Created by Super on 16/3/3.
-#import "WechartModes.h"
+#import "WXModes.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "WXShakeSettingViewController.h"
 #import <BlocksKit/BlocksKit+UIKit.h>
@@ -17,19 +17,19 @@
     return self;
 }
 - (void) p_initTestData{
-    TLSettingItem *item1 = TLCreateSettingItem(@"使用默认背景图片");
+    WXSettingItem *item1 = TLCreateSettingItem(@"使用默认背景图片");
     item1.showDisclosureIndicator = NO;
-    TLSettingItem *item2 = TLCreateSettingItem(@"换张背景图片");
-    TLSettingItem *item3 = TLCreateSettingItem(@"音效");
+    WXSettingItem *item2 = TLCreateSettingItem(@"换张背景图片");
+    WXSettingItem *item3 = TLCreateSettingItem(@"音效");
     item3.type = TLSettingItemTypeSwitch;
-    TLSettingGroup *group1 = TLCreateSettingGroup(nil, nil, (@[item1, item2, item3]));
+    WXSettingGroup *group1 = TLCreateSettingGroup(nil, nil, (@[item1, item2, item3]));
     
-    TLSettingItem *item5 = TLCreateSettingItem(@"打招呼的人");
-    TLSettingItem *item6 = TLCreateSettingItem(@"摇到的历史");
-    TLSettingGroup *group2 = TLCreateSettingGroup(nil, nil, (@[item5, item6]));
+    WXSettingItem *item5 = TLCreateSettingItem(@"打招呼的人");
+    WXSettingItem *item6 = TLCreateSettingItem(@"摇到的历史");
+    WXSettingGroup *group2 = TLCreateSettingGroup(nil, nil, (@[item5, item6]));
     
-    TLSettingItem *item7 = TLCreateSettingItem(@"摇一摇消息");
-    TLSettingGroup *group3 = TLCreateSettingGroup(nil, nil, (@[item7]));
+    WXSettingItem *item7 = TLCreateSettingItem(@"摇一摇消息");
+    WXSettingGroup *group3 = TLCreateSettingGroup(nil, nil, (@[item7]));
     
     [self.shakeSettingData addObjectsFromArray:@[group1, group2, group3]];
 }
@@ -76,7 +76,7 @@
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    TLSettingItem *item = [self.data[indexPath.section] objectAtIndex:indexPath.row];
+    WXSettingItem *item = [self.data[indexPath.section] objectAtIndex:indexPath.row];
     if ([item.title isEqualToString:@"使用默认背景图片"]) {
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Shake_Image_Path"];
         [UIAlertView bk_alertViewWithTitle:@"已恢复默认背景图"];

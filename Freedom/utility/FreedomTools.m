@@ -1,10 +1,10 @@
 //  FreedomTools.m
 //  Freedom
-//  Created by htf on 2018/4/26.
+//  Created by Super on 2018/4/26.
 //  Copyright © 2018年 Super. All rights reserved.
 //
 #import "FreedomTools.h"
-#import "TLUserHelper.h"
+#import "WXUserHelper.h"
 // 账号的存储路径
 #define XFAccountPath [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"account.data"]
 #import "SinaMode.h"
@@ -22,7 +22,7 @@ static UILabel *hLabel = nil;
     [hLabel setText:text];
     return [hLabel sizeThatFits:CGSizeMake(width, MAXFLOAT)].height;
 }
-+ (void)createGroupAvatar:(TLGroup *)group finished:(void (^)(NSString *groupID))finished{
++ (void)createGroupAvatar:(WXGroup *)group finished:(void (^)(NSString *groupID))finished{
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         NSInteger usersCount = group.users.count > 9 ? 9 : group.users.count;
         CGFloat viewWidth = 200;
@@ -37,7 +37,7 @@ static UILabel *hLabel = nil;
         [view setBackgroundColor:[UIColor colorWithWhite:0.8 alpha:0.6]];
         __block NSInteger count = 0;        // 下载完成图片计数器
         for (NSInteger i = usersCount - 1; i >= 0; i--) {
-            TLUser *user = [group.users objectAtIndex:i];
+            WXUser *user = [group.users objectAtIndex:i];
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(x, y, width, width)];
             [view addSubview:imageView];
             [imageView sd_setImageWithURL:TLURL(user.avatarURL) placeholderImage:[UIImage imageNamed:PuserLogo] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
@@ -210,9 +210,9 @@ static UILabel *hLabel = nil;
  *
  *  @return 账号模型（如果账号过期，返回nil）*/
 + (SinaAccount *)account{
-    
+    NSString *accountPath = XFAccountPath;
     // 加载模型
-    SinaAccount *account = [NSKeyedUnarchiver unarchiveObjectWithFile:XFAccountPath];
+    SinaAccount *account = [NSKeyedUnarchiver unarchiveObjectWithFile:accountPath];
     
     /* 验证账号是否过期 */
     

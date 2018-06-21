@@ -2,7 +2,7 @@
 //  XFComposeViewController.m
 //  Freedom
 //
-//  Created by Fay on 15/10/9.
+//  Created by Super on 15/10/9.
 #import "SinaComposeViewController.h"
 #import "SinaMode.h"
 #import "SinaEmotion.h"

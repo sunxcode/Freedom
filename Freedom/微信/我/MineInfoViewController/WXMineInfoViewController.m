@@ -2,18 +2,18 @@
 //  Freedom
 // Created by Super
 #import "WXMineInfoViewController.h"
-#import "TLMyQRCodeViewController.h"
-#import "TLUserHelper.h"
-#import "TLMineViewController.h"
-#import "WechartModes.h"
-@interface TLMineInfoAvatarCell : UITableViewCell
-@property (nonatomic, strong) TLSettingItem *item;
+#import "WXMyQRCodeViewController.h"
+#import "WXUserHelper.h"
+#import "WXMineViewController.h"
+#import "WXModes.h"
+@interface WXMineInfoAvatarCell : UITableViewCell
+@property (nonatomic, strong) WXSettingItem *item;
 @end
-@interface TLMineInfoAvatarCell ()
+@interface WXMineInfoAvatarCell ()
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIImageView *avatarImageView;
 @end
-@implementation TLMineInfoAvatarCell
+@implementation WXMineInfoAvatarCell
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
@@ -23,7 +23,7 @@
     }
     return self;
 }
-- (void)setItem:(TLSettingItem *)item{
+- (void)setItem:(WXSettingItem *)item{
     _item = item;
     [self.titleLabel setText:item.title];
     if (item.rightImagePath) {
@@ -66,24 +66,24 @@
 }
 @end
 @interface WXMineInfoViewController ()
-@property (nonatomic, strong) TLMineInfoHelper *helper;
+@property (nonatomic, strong) WXMineInfoHelper *helper;
 @end
 @implementation WXMineInfoViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationItem setTitle:@"个人信息"];
     
-    [self.tableView registerClass:[TLMineInfoAvatarCell class] forCellReuseIdentifier:@"TLMineInfoAvatarCell"];
+    [self.tableView registerClass:[WXMineInfoAvatarCell class] forCellReuseIdentifier:@"TLMineInfoAvatarCell"];
     
-    self.helper = [[TLMineInfoHelper alloc] init];
-    self.data = [self.helper mineInfoDataByUserInfo:[TLUserHelper sharedHelper].user];
+    self.helper = [[WXMineInfoHelper alloc] init];
+    self.data = [self.helper mineInfoDataByUserInfo:[WXUserHelper sharedHelper].user];
 }
 #pragma mark - Delegate -
 //MARK: UITableViewDataSource
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    TLSettingItem *item = [self.data[indexPath.section] objectAtIndex:indexPath.row];
+    WXSettingItem *item = [self.data[indexPath.section] objectAtIndex:indexPath.row];
     if ([item.title isEqualToString:@"头像"]) {
-        TLMineInfoAvatarCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TLMineInfoAvatarCell"];
+        WXMineInfoAvatarCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TLMineInfoAvatarCell"];
         [cell setItem:item];
         return cell;
     }
@@ -91,7 +91,7 @@
 }
 //MARK: UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    TLSettingItem *item = [self.data[indexPath.section] objectAtIndex:indexPath.row];
+    WXSettingItem *item = [self.data[indexPath.section] objectAtIndex:indexPath.row];
     if ([item.title isEqualToString:@"我的二维码"]) {
         WXMyQRCodeViewController *myQRCodeVC = [[WXMyQRCodeViewController alloc] init];
         [self setHidesBottomBarWhenPushed:YES];
@@ -100,7 +100,7 @@
     [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    TLSettingItem *item = [self.data[indexPath.section] objectAtIndex:indexPath.row];
+    WXSettingItem *item = [self.data[indexPath.section] objectAtIndex:indexPath.row];
     if ([item.title isEqualToString:@"头像"]) {
         return 85.0f;
     }

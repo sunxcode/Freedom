@@ -1,6 +1,6 @@
 //  XFTitleMenuViewController.m
 //  Freedom
-//  Created by Fay on 15/9/17.
+//  Created by Super on 15/9/17.
 #import "SinaTitleMenuViewController.h"
 @interface SinaTitleMenuViewController ()
 @end

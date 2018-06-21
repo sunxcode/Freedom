@@ -3,5 +3,6 @@
 //  Copyright © 2016年 Super. All rights reserved.
 //
 #import <UIKit/UIKit.h>
-@interface SinaMessageChartViewController : UIViewController
+#import "SinaBaseViewController.h"
+@interface SinaMessageChartViewController : SinaBaseViewController
 @end

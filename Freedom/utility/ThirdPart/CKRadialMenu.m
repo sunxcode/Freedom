@@ -1,6 +1,6 @@
 //  CKRadialView.m
 //  Freedom
-//  Created by Freedom on 12/7/14.
+//  Created by Super on 12/7/14.
 #import "CKRadialMenu.h"
 #import "UIView+expanded.h"
 @interface CKRadialMenu()

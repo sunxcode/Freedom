@@ -2,10 +2,10 @@
 //  Freedom
 // Created by Super
 #import "WXGroupViewController.h"
-#import "WechatSearchController.h"
-#import "TLUserHelper.h"
-#import "TLChatViewController.h"
-#import "WechatRootViewController.h"
+#import "WXSearchController.h"
+#import "WXUserHelper.h"
+#import "WXChatViewController.h"
+#import "WXRootViewController.h"
 #define     FRIENDS_SPACE_X         10.0f
 #define     FRIENDS_SPACE_Y         9.5f
 @interface WXGroupCell ()
@@ -24,7 +24,7 @@
     }
     return self;
 }
-- (void) setGroup:(TLGroup *)group{
+- (void) setGroup:(WXGroup *)group{
     _group = group;
     NSString *path = [NSFileManager pathUserAvatar:group.groupAvatarPath];
     UIImage *image = [UIImage imageNamed:path];
@@ -65,7 +65,7 @@
 }
 @end
 @interface WXGroupViewController () <UISearchBarDelegate>
-@property (nonatomic, strong) WechatSearchController *searchController;
+@property (nonatomic, strong) WXSearchController *searchController;
 @end
 @implementation WXGroupViewController
 - (void)viewDidLoad{
@@ -76,12 +76,12 @@
     
     [self registerCellClass];
     
-    self.data = [WechatFriendHelper sharedFriendHelper].groupsData;
+    self.data = [WXFriendHelper sharedFriendHelper].groupsData;
 }
 #pragma mark - Getter -
-- (WechatSearchController *)searchController{
+- (WXSearchController *)searchController{
     if (_searchController == nil) {
-        _searchController = [[WechatSearchController alloc] initWithSearchResultsController:self.searchVC];
+        _searchController = [[WXSearchController alloc] initWithSearchResultsController:self.searchVC];
         [_searchController setSearchResultsUpdater:self.searchVC];
         [_searchController.searchBar setPlaceholder:@"搜索"];
         [_searchController.searchBar setDelegate:self];
@@ -104,7 +104,7 @@
     return self.data.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    TLGroup *group = self.data[indexPath.row];
+    WXGroup *group = self.data[indexPath.row];
     WXGroupCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TLGroupCell"];
     [cell setGroup:group];
     [cell setBottomLineStyle:(indexPath.row == self.data.count - 1 ? TLCellLineStyleFill : TLCellLineStyleDefault)];
@@ -115,11 +115,11 @@
     return 60.0f;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    TLGroup *group = [self.data objectAtIndex:indexPath.row];
-    TLChatViewController *chatVC = [TLChatViewController sharedChatVC];
+    WXGroup *group = [self.data objectAtIndex:indexPath.row];
+    WXChatViewController *chatVC = [WXChatViewController sharedChatVC];
     [chatVC setPartner:group];
-    UIViewController *vc = [[WechatRootViewController sharedRootViewController] childViewControllerAtIndex:0];
-    [[WechatRootViewController sharedRootViewController] setSelectedIndex:0];
+    UIViewController *vc = [[WXRootViewController sharedRootViewController] childViewControllerAtIndex:0];
+    [[WXRootViewController sharedRootViewController] setSelectedIndex:0];
     [vc setHidesBottomBarWhenPushed:YES];
     [vc.navigationController pushViewController:chatVC animated:YES completion:^(BOOL finished) {
         [self.navigationController popViewControllerAnimated:NO];
@@ -161,7 +161,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     WXGroupCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TLGroupCell"];
     
-    TLGroup *group = [self.data objectAtIndex:indexPath.row];
+    WXGroup *group = [self.data objectAtIndex:indexPath.row];
     [cell setGroup:group];
     return cell;
 }
@@ -174,7 +174,7 @@
 - (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
     NSString *searchText = [searchController.searchBar.text lowercaseString];
     [self.data removeAllObjects];
-    for (TLGroup *group in self.groupData) {
+    for (WXGroup *group in self.groupData) {
         if ([group.groupName containsString:searchText] || [group.pinyin containsString:searchText] || [group.pinyinInitial containsString:searchText]) {
             [self.data addObject:group];
         }

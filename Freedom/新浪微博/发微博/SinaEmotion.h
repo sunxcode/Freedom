@@ -1,6 +1,6 @@
 //  XFEmotion.h
 //  
-//  Created by Fay on 15/10/18.
+//  Created by Super on 15/10/18.
 //
 #import <Foundation/Foundation.h>
 typedef enum {

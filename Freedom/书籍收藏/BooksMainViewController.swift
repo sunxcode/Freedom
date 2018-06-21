@@ -3,7 +3,7 @@
 //  Freedom
 //
 //  Created by Super on 6/14/18.
-//  Copyright © 2018 薛超. All rights reserved.
+//  Copyright © 2018 Super. All rights reserved.
 //
 
 import UIKit
@@ -24,7 +24,7 @@ class BooksMainViewController: BooksBaseViewController {
         super.viewDidLoad()
         let bookshelf = BooksViewController()
         let na = UINavigationController(rootViewController: bookshelf)
-        let leftVC = WXViewController()
+        let leftVC = BookFriendsViewController()
         let rightVC = E_ScrollViewController()
         leftViewController = leftVC
         centerViewController = na

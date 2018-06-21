@@ -3,7 +3,7 @@
 //  Freedom
 //
 //  Created by Super on 6/14/18.
-//  Copyright © 2018 薛超. All rights reserved.
+//  Copyright © 2018 Super. All rights reserved.
 import UIKit
 import XExtension
 class DetailView: UIView {

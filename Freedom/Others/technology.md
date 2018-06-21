@@ -1,6 +1,6 @@
 #
 # 前言
-本框架是由薛超为期一周时间设计的用于iOS_APP开发的框架，分类清晰，设计巧妙，封装性好。如果在使用中遇到什么问题可以及时修改优化本框架。
+本框架是由Super为期一周时间设计的用于iOS_APP开发的框架，分类清晰，设计巧妙，封装性好。如果在使用中遇到什么问题可以及时修改优化本框架。
 熟练使用本框架的人基本掌握了以下开发能力:
 * 1、掌握C/Objective-C /CocoaTouch编程，对Swift略有涉猎。
 * 2、熟悉各种UI控件，熟悉多视图开发，能够实现复杂的界面交互以及应用间通讯。
@@ -15,7 +15,7 @@
 * 11、高新技术：二维码、摇一摇、蓝牙技术、发短信打电话发邮件、应用间切换、本地通知。
 #
 #简介
-薛超APP框架是集合了以下功能系列：
+SuperAPP框架是集合了以下功能系列：
 1.是主流的APP框架，四个tabBar，分别为首页、服务、发现、我的。
 2.启动从storyboard和APPDelegate启动，首先会启动utility/BaseFile/HomeTabBarController，该类调用自定义的HomeTabBar和HomeNavigationController。
 3.初始设置绑定storyboard对应的TabBarcontroller和NavigationController并做相应的配置。
@@ -149,7 +149,7 @@ iOS语音通话（语音对讲）http://blog.csdn.net/u011619283/article/details
 7.在文档中心详细阅读支付宝API文档。https://doc.open.alipay.com/doc2/apiList?docType=4
 8.按需接入支付宝的相应功能。支付能力、理财能力、口碑开店能力、会员营销、支付宝卡券、会员能力、生活号、行业能力、信用能力、安全能力、云监控、社交能力、服务市场管理以及基础能力。
 报错：openssl/asn1.h file not found 在header searchPaths：$(PROJECT_DIR)/GuangFuBao/wechart&alipay/alipaySKD
-使用alipaySDK需要在buildsettings searchPath header  增加这一行："$(SRCROOT)/薛超APP框架/ThirdSDK/alipaySDK"
+使用alipaySDK需要在buildsettings searchPath header  增加这一行："$(SRCROOT)/SuperAPP框架/ThirdSDK/alipaySDK"
 支付宝样例http://www.jianshu.com/p/b3063678c462
 */
 #pragma mark 支付宝分享

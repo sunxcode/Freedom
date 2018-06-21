@@ -2,8 +2,8 @@
 //  SinaMode.h
 //  Freedom
 //
-//  Created by htf on 2018/4/27.
-//  Copyright © 2018年 薛超. All rights reserved.
+//  Created by Super on 2018/4/27.
+//  Copyright © 2018年 Super. All rights reserved.
 #import <Foundation/Foundation.h>
 @interface SinaAccount : NSObject <NSCoding>
 /**　string    用于调用access_token，接口获取授权后的access token。*/

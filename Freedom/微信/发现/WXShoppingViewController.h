@@ -1,6 +1,6 @@
 //  TLShoppingViewController.h
 //  Freedom
 // Created by Super
-#import "WechatWebViewController.h"
-@interface WXShoppingViewController : WechatWebViewController
+#import "WXWebViewController.h"
+@interface WXShoppingViewController : WXWebViewController
 @end

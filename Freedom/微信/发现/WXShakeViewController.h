@@ -1,6 +1,6 @@
 //  TLShakeViewController.h
 //  Freedom
 // Created by Super
-#import "TLViewController.h"
-@interface WXShakeViewController : TLViewController
+#import "WXBaseViewController.h"
+@interface WXShakeViewController : WXBaseViewController
 @end

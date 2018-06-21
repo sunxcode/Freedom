@@ -1,6 +1,6 @@
 //  XFEmotion.m
 //  
-//  Created by Fay on 15/10/18.
+//  Created by Super on 15/10/18.
 //
 #import "SinaEmotion.h"
 // 一页中最多3行

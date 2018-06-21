@@ -1,6 +1,6 @@
 //  TLHelpAndFeedbackViewController.h
 //  Freedom
 // Created by Super
-#import "WechatWebViewController.h"
-@interface WXHelpAndFeedbackViewController : WechatWebViewController
+#import "WXWebViewController.h"
+@interface WXHelpAndFeedbackViewController : WXWebViewController
 @end

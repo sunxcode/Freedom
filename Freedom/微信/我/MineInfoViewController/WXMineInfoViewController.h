@@ -1,6 +1,6 @@
 //  TLMineInfoViewController.h
 //  Freedom
 // Created by Super
-#import "WechatSettingViewController.h"
-@interface WXMineInfoViewController : WechatSettingViewController
+#import "WXSettingViewController.h"
+@interface WXMineInfoViewController : WXSettingViewController
 @end

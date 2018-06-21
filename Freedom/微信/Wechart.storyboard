@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="OQ1-tx-Ca6">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -8,13 +12,13 @@
         <!--Friends View Controller-->
         <scene sceneID="5Xf-Ld-Cuv">
             <objects>
-                <viewController storyboardIdentifier="TLFriendsViewController" id="dUX-L8-RfL" customClass="TLFriendsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WXFriendsViewController" id="dUX-L8-RfL" customClass="WXFriendsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jxZ-dv-nhh"/>
                         <viewControllerLayoutGuide type="bottom" id="0aj-Ge-Cfh"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="SDI-zi-WH5">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -27,13 +31,13 @@
         <!--Conversation View Controller-->
         <scene sceneID="RqD-rg-4AZ">
             <objects>
-                <viewController storyboardIdentifier="TLConversationViewController" id="eFC-93-lUB" customClass="TLConversationViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WXConversationViewController" id="eFC-93-lUB" customClass="WXConversationViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iSw-r6-Cf1"/>
                         <viewControllerLayoutGuide type="bottom" id="RPK-g4-qgi"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Xhg-0R-erQ">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -43,10 +47,10 @@
             </objects>
             <point key="canvasLocation" x="1044" y="301"/>
         </scene>
-        <!--Wechat Root View Controller-->
+        <!--Root View Controller-->
         <scene sceneID="A9E-vy-nRT">
             <objects>
-                <tabBarController storyboardIdentifier="WechartTabBarController" id="OQ1-tx-Ca6" customClass="WechatRootViewController" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="WXTabBarController" id="OQ1-tx-Ca6" customClass="WXRootViewController" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="hPz-Mm-16I">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -66,11 +70,11 @@
         <!--weixin-->
         <scene sceneID="cW3-J9-sBc">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Xm9-my-YpL" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Xm9-my-YpL" customClass="WXNavigationController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="weixin" id="g9I-l1-Kc8"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="y7b-Oz-b2A">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -85,13 +89,13 @@
         <!--Discover View Controller-->
         <scene sceneID="jbe-Ob-JGx">
             <objects>
-                <viewController storyboardIdentifier="TLDiscoverViewController" id="qyX-Jc-e7X" customClass="TLDiscoverViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WXDiscoverViewController" id="qyX-Jc-e7X" customClass="WXDiscoverViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="S7V-Ce-s9Z"/>
                         <viewControllerLayoutGuide type="bottom" id="t30-oO-1c2"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="4WK-rk-h26">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -104,11 +108,11 @@
         <!--Item 2-->
         <scene sceneID="kKb-fp-52y">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ji6-9o-8Il" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ji6-9o-8Il" customClass="WXNavigationController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item 2" id="32l-Gh-VTb"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Lw3-RP-G21">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -123,13 +127,13 @@
         <!--Mine View Controller-->
         <scene sceneID="iSC-41-aA9">
             <objects>
-                <viewController storyboardIdentifier="TLMineViewController" id="mni-HU-ufw" customClass="TLMineViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WXMineViewController" id="mni-HU-ufw" customClass="WXMineViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="PhN-Hn-oXi"/>
                         <viewControllerLayoutGuide type="bottom" id="f6d-a2-ikn"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="bid-X9-3rZ">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -142,11 +146,11 @@
         <!--Item-->
         <scene sceneID="30b-Js-3If">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WT7-38-19B" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WT7-38-19B" customClass="WXNavigationController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="HKC-8S-uns"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="DlY-f9-Kaz">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -161,11 +165,11 @@
         <!--Item-->
         <scene sceneID="coE-y8-d23">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fSb-B3-Eh5" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fSb-B3-Eh5" customClass="WXNavigationController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="1Hc-UR-fVh"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="obr-TG-0hr">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

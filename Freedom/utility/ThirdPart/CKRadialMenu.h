@@ -1,6 +1,6 @@
 //  CKRadialView.h
 //  Freedom
-//  Created by Freedom on 12/7/14.
+//  Created by Super on 12/7/14.
 #import <UIKit/UIKit.h>
 @class CKRadialMenu;
 @protocol CKRadialMenuDelegate <NSObject>

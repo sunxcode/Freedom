@@ -3,23 +3,24 @@
 //  Created by Super on 16/3/19.
 #import "WXBgSettingViewController.h"
     
-#import "WechatActionSheet.h"
+#import "WXActionSheet.h"
 #import <BlocksKit/BlocksKit+UIKit.h>
-#import "TLChatViewController.h"
-#import "WechartModes.h"
+#import "WXChatViewController.h"
+#import "WXModes.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import "TLCommonSettingViewController.h"
+#import "WXCommonSettingViewController.h"
+#import "WXBaseViewController.h"
 #define     SPACE_EDGE                      10
 #define     WIDTH_COLLECTIONVIEW_CELL       (APPW - SPACE_EDGE * 2) / 3 * 0.98
 #define     SPACE_COLLECTIONVIEW_CELL       (APPW - SPACE_EDGE * 2 - WIDTH_COLLECTIONVIEW_CELL * 3) / 2
-@interface TLChatBackgroundSelectViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+@interface WXChatBackgroundSelectViewController : WXBaseViewController<UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 - (void)registerCellForCollectionView:(UICollectionView *)collectionView;
 @property (nonatomic, strong) NSMutableArray *data;
 @property (nonatomic, strong) UICollectionView *collectionView;
 @end
-@interface TLChatBackgroundSelectViewController ()
+@interface WXChatBackgroundSelectViewController ()
 @end
-@implementation TLChatBackgroundSelectViewController
+@implementation WXChatBackgroundSelectViewController
 - (void)viewDidLoad{
     [super viewDidLoad];
     [self.navigationItem setTitle:@"选择背景图"];
@@ -65,14 +66,14 @@
     return cell;
 }
 @end
-@interface WXBgSettingViewController () <TLActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
+@interface WXBgSettingViewController () <WXActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 @end
 @implementation WXBgSettingViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationItem setTitle:@"聊天背景"];
     
-    self.data = [TLCommonSettingHelper chatBackgroundSettingData];
+    self.data = [WXCommonSettingHelper chatBackgroundSettingData];
 }
 #pragma mark - Delegate
 //MARK: UITableViewDataSource
@@ -99,9 +100,9 @@
 }
 //MARK: UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    TLSettingItem *item = [self.data[indexPath.section] objectAtIndex:indexPath.row];
+    WXSettingItem *item = [self.data[indexPath.section] objectAtIndex:indexPath.row];
     if ([item.title isEqualToString:@"选择背景图"]) {
-        TLChatBackgroundSelectViewController *bgSelectVC = [[TLChatBackgroundSelectViewController alloc] init];
+        WXChatBackgroundSelectViewController *bgSelectVC = [[WXChatBackgroundSelectViewController alloc] init];
         [self setHidesBottomBarWhenPushed:YES];
         [self.navigationController pushViewController:bgSelectVC animated:YES];
     }else if ([item.title isEqualToString:@"从手机相册中选择"]) {
@@ -119,20 +120,20 @@
             [self presentViewController:imagePickerController animated:YES completion:nil];
         }
     }else if ([item.title isEqualToString:@"将背景应用到所有聊天场景"]) {
-        WechatActionSheet *actionSheet = [[WechatActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"将背景应用到所有聊天场景" otherButtonTitles:nil];
+        WXActionSheet *actionSheet = [[WXActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"将背景应用到所有聊天场景" otherButtonTitles:nil];
         [actionSheet show];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 //MARK: TLActionSheetDelegate
-- (void)actionSheet:(WechatActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+- (void)actionSheet:(WXActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 0) {
         for (NSString *key in [NSUserDefaults standardUserDefaults].dictionaryRepresentation.allKeys) {
             if ([key hasPrefix:@"CHAT_BG_"] && ![key isEqualToString:@"CHAT_BG_ALL"]) {
                 [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
             }
         }
-        [[TLChatViewController sharedChatVC] resetChatVC];
+        [[WXChatViewController sharedChatVC] resetChatVC];
     }
 }
 #pragma mark - Private Methods -
@@ -150,6 +151,6 @@
         [[NSUserDefaults standardUserDefaults] setObject:imageName forKey:@"CHAT_BG_ALL"];
     }
     
-    [[TLChatViewController sharedChatVC] resetChatVC];
+    [[WXChatViewController sharedChatVC] resetChatVC];
 }
 @end

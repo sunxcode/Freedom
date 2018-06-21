@@ -1,6 +1,7 @@
 
 //  Freedom
-//  Created by Fay on 15/9/20.
+//  Created by Super on 15/9/20.
 #import <UIKit/UIKit.h>
-@interface SinaAuthController : UIViewController
+#import "SinaBaseViewController.h"
+@interface SinaAuthController : SinaBaseViewController
 @end

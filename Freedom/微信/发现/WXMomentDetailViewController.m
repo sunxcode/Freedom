@@ -3,9 +3,9 @@
 //  Created by Super on 16/4/23.
 #import "WXMomentDetailViewController.h"
 #import "MWPhotoBrowser.h"
-#import "WechatRootViewController.h"
+#import "WXRootViewController.h"
 #import "UIButton+WebCache.h"
-#import "WechatRootViewController.h"
+#import "WXRootViewController.h"
 #define     WIDTH_IMAGE_ONE     (APPW - 70) * 0.6
 #define     WIDTH_IMAGE         (APPW - 70) * 0.31
 #define     SPACE               4.0
@@ -15,20 +15,20 @@
 #define         WIDTH_AVATAR    40.0f
 #define         SPACE_ROW       8.0f
 #define     EDGE_HEADER     5.0f
-#import "TLTableViewCell.h"
+#import "WXTableViewCell.h"
 typedef NS_ENUM(NSInteger, TLMomentViewButtonType) {
     TLMomentViewButtonTypeAvatar,
     TLMomentViewButtonTypeUserName,
     TLMomentViewButtonTypeMore,
 };
-@interface TLMomentExtensionView : UIView<UITableViewDelegate, UITableViewDataSource>
+@interface WXMomentExtensionView : UIView<UITableViewDelegate, UITableViewDataSource>
 - (void)registerCellForTableView:(UITableView *)tableView;
-@property (nonatomic, strong) TLMomentExtension *extension;
+@property (nonatomic, strong) WXMomentExtension *extension;
 @end
-@interface TLMomentExtensionLikedCell : TLTableViewCell
+@interface WXMomentExtensionLikedCell : WXTableViewCell
 @property (nonatomic, strong) NSArray *likedFriends;
 @end
-@implementation TLMomentExtensionLikedCell
+@implementation WXMomentExtensionLikedCell
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self setBackgroundColor:[UIColor clearColor]];
@@ -38,10 +38,10 @@ typedef NS_ENUM(NSInteger, TLMomentViewButtonType) {
     return self;
 }
 @end
-@interface TLMomentExtensionCommentCell : TLTableViewCell
-@property (nonatomic, strong) TLMomentComment *comment;
+@interface WXMomentExtensionCommentCell : WXTableViewCell
+@property (nonatomic, strong) WXMomentComment *comment;
 @end
-@implementation TLMomentExtensionCommentCell
+@implementation WXMomentExtensionCommentCell
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self setBackgroundColor:[UIColor clearColor]];
@@ -50,10 +50,10 @@ typedef NS_ENUM(NSInteger, TLMomentViewButtonType) {
     return self;
 }
 @end
-@interface TLMomentExtensionView ()
+@interface WXMomentExtensionView ()
 @property (nonatomic, strong) UITableView *tableView;
 @end
-@implementation TLMomentExtensionView
+@implementation WXMomentExtensionView
 - (id)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         [self setBackgroundColor:[UIColor clearColor]];
@@ -68,7 +68,7 @@ typedef NS_ENUM(NSInteger, TLMomentViewButtonType) {
     }
     return self;
 }
-- (void)setExtension:(TLMomentExtension *)extension{
+- (void)setExtension:(WXMomentExtension *)extension{
     _extension = extension;
     [self.tableView reloadData];
 }
@@ -100,8 +100,8 @@ typedef NS_ENUM(NSInteger, TLMomentViewButtonType) {
     return _tableView;
 }
 - (void)registerCellForTableView:(UITableView *)tableView{
-    [tableView registerClass:[TLMomentExtensionCommentCell class] forCellReuseIdentifier:@"TLMomentExtensionCommentCell"];
-    [tableView registerClass:[TLMomentExtensionLikedCell class] forCellReuseIdentifier:@"TLMomentExtensionLikedCell"];
+    [tableView registerClass:[WXMomentExtensionCommentCell class] forCellReuseIdentifier:@"TLMomentExtensionCommentCell"];
+    [tableView registerClass:[WXMomentExtensionLikedCell class] forCellReuseIdentifier:@"TLMomentExtensionLikedCell"];
     [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"EmptyCell"];
 }
 #pragma mark -
@@ -120,12 +120,12 @@ typedef NS_ENUM(NSInteger, TLMomentViewButtonType) {
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0 && self.extension.likedFriends.count > 0) {  // 点赞
-        TLMomentExtensionLikedCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TLMomentExtensionLikedCell"];
+        WXMomentExtensionLikedCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TLMomentExtensionLikedCell"];
         [cell setLikedFriends:self.extension.likedFriends];
         return cell;
     }else{      // 评论
-        TLMomentComment *comment = [self.extension.comments objectAtIndex:indexPath.row];
-        TLMomentExtensionCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TLMomentExtensionCommentCell"];
+        WXMomentComment *comment = [self.extension.comments objectAtIndex:indexPath.row];
+        WXMomentExtensionCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TLMomentExtensionCommentCell"];
         [cell setComment:comment];
         return cell;
     }
@@ -135,7 +135,7 @@ typedef NS_ENUM(NSInteger, TLMomentViewButtonType) {
     if (indexPath.section == 0 && self.extension.likedFriends.count > 0) {
         return self.extension.extensionFrame.heightLiked;
     }else{
-        TLMomentComment *comment = [self.extension.comments objectAtIndex:indexPath.row];
+        WXMomentComment *comment = [self.extension.comments objectAtIndex:indexPath.row];
         return comment.commentFrame.height;
     }
     return 0.0f;
@@ -144,15 +144,15 @@ typedef NS_ENUM(NSInteger, TLMomentViewButtonType) {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 @end
-@interface TLMomentBaseView ()
+@interface WXMomentBaseView ()
 @property (nonatomic, strong) UIButton *avatarView;
 @property (nonatomic, strong) UIButton *usernameView;
 @property (nonatomic, strong) UILabel *dateLabel;
 @property (nonatomic, strong) UILabel *originLabel;
 @property (nonatomic, strong) UIButton *moreButton;
-@property (nonatomic, strong) TLMomentExtensionView *extensionView;
+@property (nonatomic, strong) WXMomentExtensionView *extensionView;
 @end
-@implementation TLMomentBaseView
+@implementation WXMomentBaseView
 - (id)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         [self addSubview:self.avatarView];
@@ -169,7 +169,7 @@ typedef NS_ENUM(NSInteger, TLMomentViewButtonType) {
     }
     return self;
 }
-- (void)setMoment:(TLMoment *)moment{
+- (void)setMoment:(WXMoment *)moment{
     _moment = moment;
     [self.avatarView sd_setImageWithURL:TLURL(moment.user.avatarURL) forState:UIControlStateNormal];
     [self.usernameView setTitle:moment.user.showName forState:UIControlStateNormal];
@@ -295,21 +295,21 @@ typedef NS_ENUM(NSInteger, TLMomentViewButtonType) {
     }
     return _moreButton;
 }
-- (TLMomentExtensionView *)extensionView{
+- (WXMomentExtensionView *)extensionView{
     if (_extensionView == nil) {
-        _extensionView = [[TLMomentExtensionView alloc] init];
+        _extensionView = [[WXMomentExtensionView alloc] init];
     }
     return _extensionView;
 }
 @end
-@interface TLMomentMultiImageView : UIView
-@property (nonatomic, assign) id<TLMomentMultiImageViewDelegate> delegate;
+@interface WXMomentMultiImageView : UIView
+@property (nonatomic, assign) id<WXMomentMultiImageViewDelegate> delegate;
 @property (nonatomic, strong) NSArray *images;
 @end
-@interface TLMomentMultiImageView ()
+@interface WXMomentMultiImageView ()
 @property (nonatomic, strong) NSMutableArray *imageViews;
 @end
-@implementation TLMomentMultiImageView
+@implementation WXMomentMultiImageView
 - (void)setImages:(NSArray *)images{
     _images = images;
     for(UIView *v in self.subviews){
@@ -361,16 +361,16 @@ typedef NS_ENUM(NSInteger, TLMomentViewButtonType) {
     }
 }
 @end
-@interface TLMomentDetailBaseView : UIView
-@property (nonatomic, assign) id<TLMomentDetailViewDelegate> delegate;
-@property (nonatomic, strong) TLMomentDetail *detail;
+@interface WXMomentDetailBaseView : UIView
+@property (nonatomic, assign) id<WXMomentDetailViewDelegate> delegate;
+@property (nonatomic, strong) WXMomentDetail *detail;
 @end
-@interface TLMomentDetailTextView : TLMomentDetailBaseView
+@interface WXMomentDetailTextView : WXMomentDetailBaseView
 @property (nonatomic, strong) UILabel *titleLabel;
 @end
-@implementation TLMomentDetailBaseView
+@implementation WXMomentDetailBaseView
 @end
-@implementation TLMomentDetailTextView
+@implementation WXMomentDetailTextView
 - (id)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         [self addSubview:self.titleLabel];
@@ -381,7 +381,7 @@ typedef NS_ENUM(NSInteger, TLMomentViewButtonType) {
     }
     return self;
 }
-- (void)setDetail:(TLMomentDetail *)detail{
+- (void)setDetail:(WXMomentDetail *)detail{
     [super setDetail:detail];
     [self.titleLabel setText:detail.text];
     [self.titleLabel mas_updateConstraints:^(MASConstraintMaker *make) {
@@ -398,10 +398,10 @@ typedef NS_ENUM(NSInteger, TLMomentViewButtonType) {
     return _titleLabel;
 }
 @end
-@interface WXMomentDetailImagesView : TLMomentDetailTextView
+@interface WXMomentDetailImagesView : WXMomentDetailTextView
 @end
 @interface WXMomentDetailImagesView ()
-@property (nonatomic, strong) TLMomentMultiImageView *multiImageView;
+@property (nonatomic, strong) WXMomentMultiImageView *multiImageView;
 @end
 @implementation WXMomentDetailImagesView
 - (id)initWithFrame:(CGRect)frame{
@@ -415,7 +415,7 @@ typedef NS_ENUM(NSInteger, TLMomentViewButtonType) {
     }
     return self;
 }
-- (void)setDetail:(TLMomentDetail *)detail{
+- (void)setDetail:(WXMomentDetail *)detail{
     [super setDetail:detail];
     [self.multiImageView setImages:detail.images];
     CGFloat offset = detail.images.count > 0 ? (detail.text.length > 0 ? 7.0 : 3.0) : 0.0;
@@ -423,14 +423,14 @@ typedef NS_ENUM(NSInteger, TLMomentViewButtonType) {
         make.top.mas_equalTo(self.titleLabel.mas_bottom).mas_offset(offset);
     }];
 }
-- (void)setDelegate:(id<TLMomentDetailViewDelegate>)delegate{
+- (void)setDelegate:(id<WXMomentDetailViewDelegate>)delegate{
     [super setDelegate:delegate];
     [self.multiImageView setDelegate:delegate];
 }
 #pragma mark -
-- (TLMomentMultiImageView *)multiImageView{
+- (WXMomentMultiImageView *)multiImageView{
     if (_multiImageView == nil) {
-        _multiImageView = [[TLMomentMultiImageView alloc] init];
+        _multiImageView = [[WXMomentMultiImageView alloc] init];
         [_multiImageView setDelegate:self.delegate];
     }
     return _multiImageView;
@@ -450,11 +450,11 @@ typedef NS_ENUM(NSInteger, TLMomentViewButtonType) {
     }
     return self;
 }
-- (void)setMoment:(TLMoment *)moment{
+- (void)setMoment:(WXMoment *)moment{
     [super setMoment:moment];
     [self.detailView setDetail:moment.detail];
 }
-- (void)setDelegate:(id<TLMomentViewDelegate>)delegate{
+- (void)setDelegate:(id<WXMomentViewDelegate>)delegate{
     [super setDelegate:delegate];
     [self.detailView setDelegate:delegate];
 }
@@ -467,7 +467,7 @@ typedef NS_ENUM(NSInteger, TLMomentViewButtonType) {
 }
 @end
 
-@interface WXMomentDetailViewController () <TLMomentViewDelegate>
+@interface WXMomentDetailViewController () <WXMomentViewDelegate>
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) WXMomentImageView *momentView;
 @end
@@ -483,7 +483,7 @@ typedef NS_ENUM(NSInteger, TLMomentViewButtonType) {
     }
     return self;
 }
-- (void)setMoment:(TLMoment *)moment{
+- (void)setMoment:(WXMoment *)moment{
     _moment = moment;
     [self.momentView setMoment:moment];
     [self.momentView mas_updateConstraints:^(MASConstraintMaker *make) {
@@ -501,7 +501,7 @@ typedef NS_ENUM(NSInteger, TLMomentViewButtonType) {
     MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithPhotos:data];
     [browser setDisplayNavArrows:YES];
     [browser setCurrentPhotoIndex:index];
-    TLNavigationController *broserNavC = [[TLNavigationController alloc] initWithRootViewController:browser];
+    WXNavigationController *broserNavC = [[WXNavigationController alloc] initWithRootViewController:browser];
     [self presentViewController:broserNavC animated:NO completion:nil];
 }
 #pragma mark - 

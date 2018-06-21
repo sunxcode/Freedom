@@ -1,16 +1,16 @@
 //  TLGroupViewController.h
 //  Freedom
 // Created by Super
-#import "WechatTableViewController.h"
-#import "TLUserHelper.h"
-#import "TLTableViewCell.h"
-@interface WXGroupSearchViewController : WechatTableViewController <UISearchResultsUpdating, UISearchBarDelegate>
+#import "WXTableViewController.h"
+#import "WXUserHelper.h"
+#import "WXTableViewCell.h"
+@interface WXGroupSearchViewController : WXTableViewController <UISearchResultsUpdating, UISearchBarDelegate>
 @property (nonatomic, strong) NSMutableArray *groupData;
 @end
-@interface WXGroupCell : TLTableViewCell
-@property (nonatomic, strong) TLGroup *group;
+@interface WXGroupCell : WXTableViewCell
+@property (nonatomic, strong) WXGroup *group;
 @end
-@interface WXGroupViewController : WechatTableViewController
+@interface WXGroupViewController : WXTableViewController
 @property (nonatomic, strong) NSMutableArray *data;
 @property (nonatomic, strong) WXGroupSearchViewController *searchVC;
 - (void)registerCellClass;

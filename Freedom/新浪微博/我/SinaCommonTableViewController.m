@@ -1,7 +1,7 @@
 
 //  CommonViewController.m
 //  Freedom
-//  Created by apple on 15-3-18.
+//  Created by Super on 15-3-18.
 #import "SinaCommonTableViewController.h"
 #import "SinaMode.h"
 @interface SinaCommonCell : UITableViewCell

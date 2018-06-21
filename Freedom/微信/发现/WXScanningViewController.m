@@ -3,12 +3,12 @@
 // Created by Super
 #import "WXScanningViewController.h"
 #import "WXScannerViewController.h"
-#import "WechatWebViewController.h"
+#import "WXWebViewController.h"
 #import "WXMyQRCodeViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <BlocksKit/BlocksKit+UIKit.h>
 #define     HEIGHT_BOTTOM_VIEW      82
-@interface TLScannerButton : UIButton
+@interface WXScannerButton : UIButton
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *iconPath;
 @property (nonatomic, strong) NSString *iconHLPath;
@@ -16,11 +16,11 @@
 @property (nonatomic, assign) NSUInteger msgNumber;
 - (id) initWithType:(TLScannerType)type title:(NSString *)title iconPath:(NSString *)iconPath iconHLPath:(NSString *)iconHLPath;
 @end
-@interface TLScannerButton ()
+@interface WXScannerButton ()
 @property (nonatomic, strong) UIImageView *iconImageView;
 @property (nonatomic, strong) UILabel *textLabel;
 @end
-@implementation TLScannerButton
+@implementation WXScannerButton
 - (id) initWithType:(TLScannerType)type title:(NSString *)title iconPath:(NSString *)iconPath iconHLPath:(NSString *)iconHLPath{
     if (self = [super init]) {
         [self addSubview:self.iconImageView];
@@ -79,16 +79,16 @@
     return _textLabel;
 }
 @end
-@interface WXScanningViewController () <TLScannerDelegate>
+@interface WXScanningViewController () <WXScannerDelegate>
 @property (nonatomic, assign) TLScannerType curType;
 @property (nonatomic, strong) WXScannerViewController *scanVC;
 @property (nonatomic, strong) UIBarButtonItem *albumBarButton;
 @property (nonatomic, strong) UIButton *myQRButton;
 @property (nonatomic, strong) UIView *bottomView;
-@property (nonatomic, strong) TLScannerButton *qrButton;
-@property (nonatomic, strong) TLScannerButton *coverButton;
-@property (nonatomic, strong) TLScannerButton *streetButton;
-@property (nonatomic, strong) TLScannerButton *translateButton;
+@property (nonatomic, strong) WXScannerButton *qrButton;
+@property (nonatomic, strong) WXScannerButton *coverButton;
+@property (nonatomic, strong) WXScannerButton *streetButton;
+@property (nonatomic, strong) WXScannerButton *translateButton;
 @end
 @implementation WXScanningViewController
 - (void)viewDidLoad{
@@ -124,7 +124,7 @@
     [self p_analysisQRAnswer:ansStr];
 }
 #pragma mark - Event Response -
-- (void)scannerButtonDown:(TLScannerButton *)sender{
+- (void)scannerButtonDown:(WXScannerButton *)sender{
     if (sender.isSelected) {
         if (![self.scanVC isRunning]) {
             [self.scanVC startCodeReading];
@@ -205,7 +205,7 @@
 #pragma mark - Private Methods -
 - (void)p_analysisQRAnswer:(NSString *)ansStr{
     if ([ansStr hasPrefix:@"http"]) {
-        WechatWebViewController *webVC = [[WechatWebViewController alloc] init];
+        WXWebViewController *webVC = [[WXWebViewController alloc] init];
         [webVC setUrl:ansStr];
         __block id vc = self.navigationController.rootViewController;
         [self.navigationController popViewControllerAnimated:NO completion:^(BOOL finished) {
@@ -277,30 +277,30 @@
     }
     return _bottomView;
 }
-- (TLScannerButton *)qrButton{
+- (WXScannerButton *)qrButton{
     if (_qrButton == nil) {
-        _qrButton = [[TLScannerButton alloc] initWithType:TLScannerTypeQR title:@"扫码" iconPath:@"u_scanQRCode" iconHLPath:@"u_scanQRCodeHL"];
+        _qrButton = [[WXScannerButton alloc] initWithType:TLScannerTypeQR title:@"扫码" iconPath:@"u_scanQRCode" iconHLPath:@"u_scanQRCodeHL"];
         [_qrButton addTarget:self action:@selector(scannerButtonDown:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _qrButton;
 }
-- (TLScannerButton *)coverButton{
+- (WXScannerButton *)coverButton{
     if (_coverButton == nil) {
-        _coverButton = [[TLScannerButton alloc] initWithType:TLScannerTypeCover title:@"封面" iconPath:@"scan_book" iconHLPath:@"scan_book_HL"];
+        _coverButton = [[WXScannerButton alloc] initWithType:TLScannerTypeCover title:@"封面" iconPath:@"scan_book" iconHLPath:@"scan_book_HL"];
         [_coverButton addTarget:self action:@selector(scannerButtonDown:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _coverButton;
 }
-- (TLScannerButton *)streetButton{
+- (WXScannerButton *)streetButton{
     if (_streetButton == nil) {
-        _streetButton = [[TLScannerButton alloc] initWithType:TLScannerTypeStreet title:@"街景" iconPath:@"scan_street" iconHLPath:@"scan_street_HL"];
+        _streetButton = [[WXScannerButton alloc] initWithType:TLScannerTypeStreet title:@"街景" iconPath:@"scan_street" iconHLPath:@"scan_street_HL"];
         [_streetButton addTarget:self action:@selector(scannerButtonDown:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _streetButton;
 }
-- (TLScannerButton *)translateButton{
+- (WXScannerButton *)translateButton{
     if (_translateButton == nil) {
-        _translateButton = [[TLScannerButton alloc] initWithType:TLScannerTypeTranslate title:@"翻译" iconPath:@"scan_word" iconHLPath:@"scan_word_HL"];
+        _translateButton = [[WXScannerButton alloc] initWithType:TLScannerTypeTranslate title:@"翻译" iconPath:@"scan_word" iconHLPath:@"scan_word_HL"];
         [_translateButton addTarget:self action:@selector(scannerButtonDown:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _translateButton;

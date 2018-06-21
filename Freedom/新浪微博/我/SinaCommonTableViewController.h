@@ -1,6 +1,6 @@
 //  SWCommonViewController.h
 //  Freedom
-//  Created by apple on 15-3-18.
+//  Created by Super on 15-3-18.
 //  Copyright (c) 2015年 xc. All rights reserved.
 //  抽取公共方法:只是模型数据改变
 //

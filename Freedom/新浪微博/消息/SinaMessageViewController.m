@@ -1,6 +1,6 @@
 //  XFMessageViewController.m
 //  Freedom
-//  Created by Fay on 15/9/13.
+//  Created by Super on 15/9/13.
 #import "SinaMessageViewController.h"
 #import "SinaMessageChartViewController.h"
 @interface SinaMessageViewController ()

@@ -2,7 +2,7 @@
 //  SelectButtons.h
 //  HTFProject
 //
-//  Created by htf on 2018/1/30.
+//  Created by Super on 2018/1/30.
 //  Copyright © 2018年 htf. All rights reserved.
 /*//使用范例
 SBItem *item = [[SBItem alloc]initWithName:@"接触方式" key:@"接触方式" isCollectionType:YES netCompletBlock:^(NetCompletBlock block) {

@@ -1,6 +1,6 @@
 //  XFNavigationController.m
 //  Freedom
-//  Created by Fay on 15/9/14.
+//  Created by Super on 15/9/14.
 #import "SinaNavigationController.h"
 @implementation SinaNavigationController
 +(void)initialize {

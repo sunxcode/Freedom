@@ -1,6 +1,6 @@
 //  TLBottleViewController.h
 //  Freedom
 // Created by Super
-#import "TLViewController.h"
-@interface WXBottleViewController : TLViewController
+#import "WXBaseViewController.h"
+@interface WXBottleViewController : WXBaseViewController
 @end
