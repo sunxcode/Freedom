@@ -13,7 +13,11 @@ import SVProgressHUD
 class XBaseViewController: BaseViewController,CKRadialMenuDelegate{
     var cellHeight:CGFloat = 0.0
     let radialView:CKRadialMenu = CKRadialMenu(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
-    var items:[[String:String]] = FreedomItems
+    lazy var items:[[String:String]] = {
+        let path = Bundle.main.path(forResource: "FreedomItems", ofType: "plist")!
+        let tempItems = NSMutableArray(contentsOfFile: path) as! [[String : String]]
+        return tempItems
+    }()
     override func viewDidLoad() {
         super.viewDidLoad()
         automaticallyAdjustsScrollViewInsets = false

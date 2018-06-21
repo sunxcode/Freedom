@@ -35,6 +35,3 @@
 @interface NSArray (NSArray_ILExtension)
 - (NSArray *)offsetRangesInArrayBy:(NSUInteger)offset;
 @end
-
-@interface UIViewController (add)<CKRadialMenuDelegate>
-@end

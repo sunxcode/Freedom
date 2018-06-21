@@ -1059,6 +1059,8 @@
 		77FD03D61E25F17C00E5099E /* taobaomini4.png in Resources */ = {isa = PBXBuildFile; fileRef = 77FD03D11E25F17C00E5099E /* taobaomini4.png */; };
 		77FD03D71E25F17C00E5099E /* taobaomini5.png in Resources */ = {isa = PBXBuildFile; fileRef = 77FD03D21E25F17C00E5099E /* taobaomini5.png */; };
 		BF0E8AD520DB4F8900150476 /* SinaBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF0E8AD420DB4F8900150476 /* SinaBaseViewController.m */; };
+		BF0E8AF920DB9AF300150476 /* app.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF0E8AF820DB9AF300150476 /* app.plist */; };
+		BF0E8AFB20DB9BE700150476 /* FreedomItems.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF0E8AFA20DB9BE700150476 /* FreedomItems.plist */; };
 		BF5B9B5E1F8E636E00BD885E /* EconomicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5B9B5D1F8E636E00BD885E /* EconomicsViewController.swift */; };
 		BF5B9B601F8E63CF00BD885E /* SearchDownloadBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5B9B5F1F8E63CF00BD885E /* SearchDownloadBookViewController.swift */; };
 		BF5B9B621F8E641000BD885E /* PhilosophyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5B9B611F8E641000BD885E /* PhilosophyViewController.swift */; };
@@ -2276,6 +2278,8 @@
 		B97D0F488B188B225A75FB33 /* Pods-Freedom.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Freedom.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Freedom/Pods-Freedom.debug.xcconfig"; sourceTree = "<group>"; };
 		BF0E8AD320DB4F8800150476 /* SinaBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SinaBaseViewController.h; sourceTree = "<group>"; };
 		BF0E8AD420DB4F8900150476 /* SinaBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SinaBaseViewController.m; sourceTree = "<group>"; };
+		BF0E8AF820DB9AF300150476 /* app.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = app.plist; sourceTree = "<group>"; };
+		BF0E8AFA20DB9BE700150476 /* FreedomItems.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FreedomItems.plist; sourceTree = "<group>"; };
 		BF5B9B011F8DE39B00BD885E /* area.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
 		BF5B9B021F8DE39B00BD885E /* city.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = city.plist; sourceTree = "<group>"; };
 		BF5B9B5D1F8E636E00BD885E /* EconomicsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EconomicsViewController.swift; sourceTree = "<group>"; };
@@ -4225,6 +4229,8 @@
 		7776570B1D2BE4B200B538F9 /* JSON */ = {
 			isa = PBXGroup;
 			children = (
+				BF0E8AFA20DB9BE700150476 /* FreedomItems.plist */,
+				BF0E8AF820DB9AF300150476 /* app.plist */,
 				BF5B9B011F8DE39B00BD885E /* area.plist */,
 				BF5B9B021F8DE39B00BD885E /* city.plist */,
 				777657151D2BE4CE00B538F9 /* my.json */,
@@ -5220,6 +5226,7 @@
 				7788AC091D79969F00376C95 /* Chapter2.txt in Resources */,
 				77645EE01D68259900ACCCAC /* bottleBkgSpotLight@2x.png in Resources */,
 				772E868D1D76BC15004EDF50 /* ktv_mymessage_rank.png in Resources */,
+				BF0E8AFB20DB9BE700150476 /* FreedomItems.plist in Resources */,
 				772E896B1D76BC15004EDF50 /* 来自天堂的魔鬼.mp3 in Resources */,
 				7741F11D1D6D50F900EED332 /* 10000033@2x.png in Resources */,
 				77993A2B1E2F7B9D00866968 /* [彩带]@2x.png in Resources */,
@@ -5503,6 +5510,7 @@
 				779939201E2F7B6500866968 /* lxh_biefanwo.gif in Resources */,
 				779939581E2F7B6600866968 /* lxh_xianghumobai.gif in Resources */,
 				772E84591D76BC15004EDF50 /* fx_liveroom_vod_mv@2x.png in Resources */,
+				BF0E8AF920DB9AF300150476 /* app.plist in Resources */,
 				772E860C1D76BC15004EDF50 /* ktv_listenwork_barragegifthead_1.png in Resources */,
 				77993A1B1E2F7B9C00866968 /* [坏笑]@2x.png in Resources */,
 				77993A7A1E2F7B9D00866968 /* [闹钟]@2x.png in Resources */,

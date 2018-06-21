@@ -284,7 +284,7 @@
 }
 -(NSArray *)items{
     if(!_items){
-        _items = [NSMutableArray arrayWithArray:FREEDOMItems];
+        _items = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"FreedomItems" ofType:@"plist"]];
     }
     return _items;
 }
