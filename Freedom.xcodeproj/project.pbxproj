@@ -1059,8 +1059,10 @@
 		77FD03D61E25F17C00E5099E /* taobaomini4.png in Resources */ = {isa = PBXBuildFile; fileRef = 77FD03D11E25F17C00E5099E /* taobaomini4.png */; };
 		77FD03D71E25F17C00E5099E /* taobaomini5.png in Resources */ = {isa = PBXBuildFile; fileRef = 77FD03D21E25F17C00E5099E /* taobaomini5.png */; };
 		BF0E8AD520DB4F8900150476 /* SinaBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF0E8AD420DB4F8900150476 /* SinaBaseViewController.m */; };
-		BF0E8AF920DB9AF300150476 /* app.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF0E8AF820DB9AF300150476 /* app.plist */; };
 		BF0E8AFB20DB9BE700150476 /* FreedomItems.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF0E8AFA20DB9BE700150476 /* FreedomItems.plist */; };
+		BF0E8B0420DCAB4200150476 /* app.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF0E8B0220DCAB3F00150476 /* app.plist */; };
+		BF0E8B0520DCAB4200150476 /* systemSetting.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF0E8B0320DCAB4100150476 /* systemSetting.plist */; };
+		BF0E8B0820DCB0B500150476 /* AppManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BF0E8B0720DCB0B500150476 /* AppManager.m */; };
 		BF5B9B5E1F8E636E00BD885E /* EconomicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5B9B5D1F8E636E00BD885E /* EconomicsViewController.swift */; };
 		BF5B9B601F8E63CF00BD885E /* SearchDownloadBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5B9B5F1F8E63CF00BD885E /* SearchDownloadBookViewController.swift */; };
 		BF5B9B621F8E641000BD885E /* PhilosophyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5B9B611F8E641000BD885E /* PhilosophyViewController.swift */; };
@@ -2278,8 +2280,11 @@
 		B97D0F488B188B225A75FB33 /* Pods-Freedom.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Freedom.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Freedom/Pods-Freedom.debug.xcconfig"; sourceTree = "<group>"; };
 		BF0E8AD320DB4F8800150476 /* SinaBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SinaBaseViewController.h; sourceTree = "<group>"; };
 		BF0E8AD420DB4F8900150476 /* SinaBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SinaBaseViewController.m; sourceTree = "<group>"; };
-		BF0E8AF820DB9AF300150476 /* app.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = app.plist; sourceTree = "<group>"; };
 		BF0E8AFA20DB9BE700150476 /* FreedomItems.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FreedomItems.plist; sourceTree = "<group>"; };
+		BF0E8B0220DCAB3F00150476 /* app.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = app.plist; sourceTree = "<group>"; };
+		BF0E8B0320DCAB4100150476 /* systemSetting.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = systemSetting.plist; sourceTree = "<group>"; };
+		BF0E8B0620DCB0B400150476 /* AppManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppManager.h; sourceTree = "<group>"; };
+		BF0E8B0720DCB0B500150476 /* AppManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppManager.m; sourceTree = "<group>"; };
 		BF5B9B011F8DE39B00BD885E /* area.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
 		BF5B9B021F8DE39B00BD885E /* city.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = city.plist; sourceTree = "<group>"; };
 		BF5B9B5D1F8E636E00BD885E /* EconomicsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EconomicsViewController.swift; sourceTree = "<group>"; };
@@ -4103,6 +4108,8 @@
 				71ECDFB22091EB4A00495467 /* JSPatch.framework */,
 				7772A7F21D64434200444973 /* CKRadialMenu.h */,
 				7772A7F31D64434200444973 /* CKRadialMenu.m */,
+				BF0E8B0620DCB0B400150476 /* AppManager.h */,
+				BF0E8B0720DCB0B500150476 /* AppManager.m */,
 			);
 			path = ThirdPart;
 			sourceTree = "<group>";
@@ -4230,7 +4237,8 @@
 			isa = PBXGroup;
 			children = (
 				BF0E8AFA20DB9BE700150476 /* FreedomItems.plist */,
-				BF0E8AF820DB9AF300150476 /* app.plist */,
+				BF0E8B0220DCAB3F00150476 /* app.plist */,
+				BF0E8B0320DCAB4100150476 /* systemSetting.plist */,
 				BF5B9B011F8DE39B00BD885E /* area.plist */,
 				BF5B9B021F8DE39B00BD885E /* city.plist */,
 				777657151D2BE4CE00B538F9 /* my.json */,
@@ -5141,6 +5149,7 @@
 				7799394D1E2F7B6600866968 /* lxh_qiubite.png in Resources */,
 				77993A881E2F7B9D00866968 /* [麻将]@2x.png in Resources */,
 				77993A671E2F7B9D00866968 /* [药]@2x.png in Resources */,
+				BF0E8B0520DCAB4200150476 /* systemSetting.plist in Resources */,
 				7741F1431D6D50F900EED332 /* adw_icon_travel_normal@2x.png in Resources */,
 				772E85A91D76BC15004EDF50 /* ktv_findpage_new_yuegeshake.png in Resources */,
 				772E868A1D76BC15004EDF50 /* ktv_mymessage_hello.png in Resources */,
@@ -5194,6 +5203,7 @@
 				772E86AA1D76BC15004EDF50 /* ktv_recharge@3x.png in Resources */,
 				772E87B61D76BC15004EDF50 /* launch_golden@2x.png in Resources */,
 				7799393B1E2F7B6500866968 /* lxh_koubishi.png in Resources */,
+				BF0E8B0420DCAB4200150476 /* app.plist in Resources */,
 				772E84151D76BC15004EDF50 /* fx_copper_box_normal@2x.png in Resources */,
 				779938CE1E2F7B6500866968 /* d_kelian.png in Resources */,
 				77645F621D68259900ACCCAC /* MoreMyBankCard@2x.png in Resources */,
@@ -5510,7 +5520,6 @@
 				779939201E2F7B6500866968 /* lxh_biefanwo.gif in Resources */,
 				779939581E2F7B6600866968 /* lxh_xianghumobai.gif in Resources */,
 				772E84591D76BC15004EDF50 /* fx_liveroom_vod_mv@2x.png in Resources */,
-				BF0E8AF920DB9AF300150476 /* app.plist in Resources */,
 				772E860C1D76BC15004EDF50 /* ktv_listenwork_barragegifthead_1.png in Resources */,
 				77993A1B1E2F7B9C00866968 /* [坏笑]@2x.png in Resources */,
 				77993A7A1E2F7B9D00866968 /* [闹钟]@2x.png in Resources */,
@@ -6069,6 +6078,7 @@
 				BF6E56A41FAAF524005F7DF8 /* WXTableViewCell.m in Sources */,
 				BF6E56A21FAAF510005F7DF8 /* WXInfoViewController.m in Sources */,
 				7121194C20AC03BC0087E05B /* JuheBaseViewController.swift in Sources */,
+				BF0E8B0820DCB0B500150476 /* AppManager.m in Sources */,
 				7121197220AC25000087E05B /* ToutiaoAttentionViewController.swift in Sources */,
 				713EE2CC20AD9B760085B65D /* TaobaoMiniDynamicViewController.swift in Sources */,
 				7115A5C620AAD35E000D0B96 /* PersonalFoodViewController.swift in Sources */,
