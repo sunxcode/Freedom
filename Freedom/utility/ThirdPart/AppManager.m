@@ -31,80 +31,47 @@
     PrivateApi_LSApplicationProxy* _applicationProxy;
     UIImage* _icon;
 }
-- (NSString*)name{
-    return _applicationProxy.localizedName ?: _applicationProxy.localizedShortName;
-}
-- (NSString*)bundleIdentifier{
-    return [_applicationProxy bundleIdentifier];
-}
-- (UIImage*)icon{
-    if(nil == _icon){
-        _icon = [UIImage _applicationIconImageForBundleIdentifier:self.bundleIdentifier format:10 scale:2.0];
-    }
-    return _icon;
-}
-- (NSString*)applicationDSID{
-    return _applicationProxy.applicationDSID;
-}
-- (NSString*)applicationIdentifier{
-    return _applicationProxy.applicationIdentifier;
-}
-- (NSString*)applicationType{
-    return _applicationProxy.applicationType;
-}
-- (NSArray*)groupIdentifiers{
-    return _applicationProxy.groupIdentifiers;
-}
-- (NSNumber*)itemID{
-    return _applicationProxy.itemID;
-}
-- (NSString*)itemName{
-    return _applicationProxy.itemName;
-}
-- (NSString*)minimumSystemVersion{
-    return _applicationProxy.minimumSystemVersion;
-}
-- (NSArray*)requiredDeviceCapabilities{
-    return _applicationProxy.requiredDeviceCapabilities;
-}
-- (NSString*)sdkVersion{
-    return _applicationProxy.sdkVersion;
-}
-- (NSString*)shortVersionString{
-    return _applicationProxy.shortVersionString;
-}
-- (NSNumber*)staticDiskUsage{
-    return _applicationProxy.staticDiskUsage;
-}
-- (NSString*)teamID{
-    return _applicationProxy.teamID;
-}
-- (NSString*)vendorName{
-    return _applicationProxy.vendorName;
-}
-- (BOOL)isHiddenApp{
-    return [[_applicationProxy appTags] indexOfObject:@"hidden"] != NSNotFound;
-}
-- (id)initWithPrivateProxy:(id)privateProxy{
-    self = [super init];
-    if(self != nil){
-        _applicationProxy = (PrivateApi_LSApplicationProxy*)privateProxy;
-        NSLog(@"\n%@\n\n\n%@,%@,%@",_applicationProxy,_applicationProxy.localizedName,_applicationProxy.bundleIdentifier,_applicationProxy.shortVersionString);
-    }
-    return self;
-}
 - (instancetype)initWithBundleIdentifier:(NSString*)bundleIdentifier{
+    PrivateApi_LSApplicationProxy *proxy = [NSClassFromString(@"LSApplicationProxy") applicationProxyForIdentifier:bundleIdentifier];
+    return [self initWithPrivateProxy:proxy];
+}
+- (instancetype)initWithPrivateProxy:(id)privateProxy{
     self = [super init];
-    if(self != nil){
-        _applicationProxy = [NSClassFromString(@"LSApplicationProxy") applicationProxyForIdentifier:bundleIdentifier];
+    if(self){
+        _applicationProxy = (PrivateApi_LSApplicationProxy*)privateProxy;
+        _trackName = _applicationProxy.localizedName ?: _applicationProxy.localizedShortName;
+        _bundleId = [_applicationProxy bundleIdentifier];
+        _icon = [UIImage _applicationIconImageForBundleIdentifier:_bundleId format:10 scale:2.0];
+        _trackId = [NSString stringWithFormat:@"%@",_applicationProxy.itemID];
+        _artistId = _applicationProxy.teamID.longLongValue;
+        _artistName = _applicationProxy.itemName;
+        _sellerName = _applicationProxy.vendorName;
+        _version = _applicationProxy.shortVersionString;
+        _kind = _applicationProxy.applicationType;
+        _features = _applicationProxy.groupIdentifiers;
+        _minimumOsVersion = _applicationProxy.minimumSystemVersion;
+        _supportedDevices = _applicationProxy.requiredDeviceCapabilities;
+        _isHiddenApp = [[_applicationProxy appTags] indexOfObject:@"hidden"] != NSNotFound;
+        _sdkVersion = _applicationProxy.sdkVersion;
+        _staticDiskUsage = _applicationProxy.staticDiskUsage;
+        _applicationDSID = _applicationProxy.applicationDSID;
+        _applicationIdentifier = _applicationProxy.applicationIdentifier;
+        _descrip = _applicationProxy.localizedShortName;
+        NSLog(@"%@",_applicationProxy);
     }
     return self;
 }
-+ (instancetype)appWithPrivateProxy:(id)privateProxy{
-    return [[self alloc] initWithPrivateProxy:privateProxy];
-}
-+ (instancetype)appWithBundleIdentifier:(NSString*)bundleIdentifier{
-    return [[self alloc] initWithBundleIdentifier:bundleIdentifier];
+- (instancetype)initWithiTunesDict:(NSDictionary*)iTune{
+    self = [super init];
+    if(self){
+        [self setValuesForKeysWithDictionary:iTune];
+        self.descrip = [iTune objectForJSONKey:@"description"];
+        NSString *iconStr = [self.artworkUrl60 stringByReplacingOccurrencesOfString:@"60x60bb.jpg" withString:@"128x128-75.png"];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.icon = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:iconStr]]];
+        });
+    }
+    return self;
 }
 @end
 @interface PrivateApi_LSApplicationWorkspace
@@ -116,6 +83,14 @@
 @implementation AppManager{
   PrivateApi_LSApplicationWorkspace* _workspace;
   NSArray* _installedApplications;
+}
++ (instancetype)sharedInstance{
+    static dispatch_once_t once;
+    static id sharedInstance;
+    dispatch_once(&once, ^{
+        sharedInstance = [[self alloc] init];
+    });
+    return sharedInstance;
 }
 - (instancetype)init{
 	self = [super init];
@@ -135,7 +110,7 @@
         NSArray* allInstalledApplications = [_workspace allInstalledApplications];
         NSMutableArray* applications = [NSMutableArray arrayWithCapacity:allInstalledApplications.count];
         for(id proxy in allInstalledApplications){
-            XAPP* app = [XAPP appWithPrivateProxy:proxy];
+            XAPP* app = [[XAPP alloc]initWithPrivateProxy:proxy];
             if(!app.isHiddenApp){
                 [applications addObject:app];
             }
@@ -147,12 +122,36 @@
 - (BOOL)openAppWithBundleIdentifier:(NSString *)bundleIdentifier{
 	return (BOOL)[_workspace openApplicationWithBundleID:bundleIdentifier];
 }
-+ (instancetype)sharedInstance{
-  static dispatch_once_t once;
-  static id sharedInstance;
-  dispatch_once(&once, ^{
-    sharedInstance = [[self alloc] init];
-  });
-  return sharedInstance;
+- (BOOL)openAppWithScheme:(NSString *)scheme{
+    UIApplication *application = [UIApplication sharedApplication];
+    NSURL *url = [NSURL URLWithString:scheme];
+    if([application canOpenURL:url]){
+        [application openURL:url options:@{} completionHandler:^(BOOL success) {
+
+        }];
+        return YES;
+    }else{
+        return NO;
+    }
+}
+-(void)gotiTunesInfoWithTrackIds:(NSArray<NSString*>*)tracks completion:(void(^)(NSArray<XAPP*> *apps))completion{
+    NSString *trackId = [tracks componentsJoinedByString:@","];
+    NSString *country = [[NSLocale currentLocale] objectForKey:NSLocaleCountryCode];
+    NSString *urlStr = [NSString stringWithFormat:@"https://itunes.apple.com/lookup?id=%@&country=%@",trackId,country];
+    NSURL *url = [NSURL URLWithString: urlStr];
+    [[[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if(!error){
+            NSDictionary *resultJSON = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+            NSArray *tempApps = [resultJSON objectForJSONKey:@"results"];
+            NSMutableArray *apps = [NSMutableArray array];
+            for(NSDictionary *dict in tempApps){
+                XAPP *app = [[XAPP alloc]initWithiTunesDict:dict];
+                [apps addObject:app];
+            }
+            completion(apps);
+        }else{
+            completion(nil);
+        }
+    }] resume];
 }
 @end
