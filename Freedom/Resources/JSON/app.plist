@@ -2,10 +2,59 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+
+<key>642101382</key>
+<string>rili365://</string>
+<key>481952814</key>
+<string>SuZhouTV://</string>
+<key>551581294</key>
+<string>netease-mkey://</string>
+<key>471855847</key>
+<string>wx1cb534bb13ba3dbd://</string>
+<key>1137511950</key>
+<string>alipayqr://platformapi/startapp?saId=20000056</string>
+<key>1187785943</key>
+<string>tencent382://</string>
+<key>689888397</key>
+<string>wb2217954495://</string>
+<key>534453594</key>
+<string>wb1308702128://</string>
+<key>728200220</key>
+<string>tencent100695850://</string>
+<key>586871187UC</key>
+<string>ucbrowser://</string>
+<key>1329879957</key>
+<string>///toggle</string>
+<key>954724812</key>
+<string>amihexinpro://</string>
+<key>936310061</key>
+<string>aisearch://command?q=""</string>
+<key>1110145109</key>
+<string>mobilenotes://</string>
+<key>924005506</key>
+<string>mobisystemsofficesuite://</string>
+<key>599852710</key>
+<string>KingsoftOfficeApp://</string>
+<key>568903335</key>
+<string>onepassword://</string>
+<key>535886823</key>
+<string>googlechrome://</string>
+<key>777310222</key>
+<string>com.goodreader.sendtogr://</string>
+<key>1076491094</key>
+<string>AVPlayer://</string>
+<key>493901993</key>
+<string>tencentrm://</string>
+<key>1152396902</key>
+<string>comIfeng3GifengNews://</string>
+<key>964398158</key>
+<string>buka://</string>
+<key>431582558</key>
+<string>com.56Video://</string>
 	<key>1280878334</key>
 	<string>sinaweibosso://</string>
 	<key>691828408</key>
-	<string>wx5dfbe0a95623607b://</string>
+	<string>weishiiosscheme://</string>
 	<key>495995067</key>
 	<string>sharkdash://</string>
 	<key>557872119</key>
@@ -899,7 +948,7 @@
 	<key>521634004</key>
 	<string>sportsrepublic://</string>
 	<key>425349261</key>
-	<string>lofter3d4e56092d18976683fe7945b6e1c380://</string>
+	<string>newsapp://</string>
 	<key>450554171</key>
 	<string>fb114571631946356englishportuguese://</string>
 	<key>389571743</key>
@@ -1233,7 +1282,7 @@
 	<key>395693637</key>
 	<string>fb119422491461790://</string>
 	<key>538248967</key>
-	<string>wb801241615://</string>
+	<string>com.baofeng.play://</string>
 	<key>412591849</key>
 	<string>db-sea9xpid40fll42://</string>
 	<key>415365180</key>
@@ -1659,7 +1708,7 @@
 	<key>436691732</key>
 	<string>fb244441932267957://</string>
 	<key>655426839</key>
-	<string>sinaweibosso.4194409603://</string>
+	<string>wondercamera://</string>
 	<key>376535806</key>
 	<string>otm://</string>
 	<key>397751402</key>
@@ -2067,7 +2116,7 @@
 	<key>339001566</key>
 	<string>fb367351360478://</string>
 	<key>419805549</key>
-	<string>wx5f3a0d4653cd3485://</string>
+	<string>youloft.419805549://</string>
 	<key>472353906</key>
 	<string>fb197232540315689://</string>
 	<key>502824252</key>
@@ -2737,7 +2786,7 @@
 	<key>486600841</key>
 	<string>magictree://</string>
 	<key>414245413</key>
-	<string>openApp.jdMobile://</string>
+	<string>openapp.jdmobile://</string>
 	<key>384134949</key>
 	<string>smtflashfree://</string>
 	<key>489985663</key>
@@ -2989,7 +3038,7 @@
 	<key>392306231</key>
 	<string>ImperialAcademy-plusplus://</string>
 	<key>529092160</key>
-	<string>QQ05FA4F2C://</string>
+	<string>snssdk141://</string>
 	<key>445769523</key>
 	<string>com.bigfishgames.mdlbipadfree://</string>
 	<key>442119269</key>
@@ -3733,7 +3782,7 @@
 	<key>358113654</key>
 	<string>ockotv://</string>
 	<key>481623196</key>
-	<string>sosomap001://</string>
+	<string>sosomap://</string>
 	<key>526656012</key>
 	<string>fb256051837747677://</string>
 	<key>399841706</key>
@@ -3763,7 +3812,7 @@
 	<key>325110644</key>
 	<string>dqqballblaster://</string>
 	<key>468944728</key>
-	<string>iaroundalipay://</string>
+	<string>iaround://</string>
 	<key>518611020</key>
 	<string>JuMeiWallet://</string>
 	<key>423533300</key>
@@ -4163,7 +4212,7 @@
 	<key>482111386</key>
 	<string>fb203000806442855://</string>
 	<key>414603431</key>
-	<string>tencent100497308.content://</string>
+	<string>qqmusic://</string>
 	<key>428753315</key>
 	<string>writeup://</string>
 	<key>449811104</key>
@@ -4454,6 +4503,7 @@
 	<string>fb271684782843115://</string>
 	<key>461703208</key>
 	<string>iosamap://</string>
+<!--    Autonavi-->
 	<key>509945427</key>
 	<string>fb220795384674121://</string>
 	<key>330984271</key>
@@ -4870,6 +4920,7 @@
 	<string>fb248045575249217://</string>
 	<key>392899425</key>
 	<string>mpbanklkl://</string>
+<!--    cmbmobilebank://-->
 	<key>512045820</key>
 	<string>x-adesk-ame://</string>
 	<key>376313183</key>
@@ -5843,7 +5894,7 @@
 	<key>674521086</key>
 	<string>boxie://</string>
 	<key>897003024</key>
-	<string>wb2526354894://</string>
+	<string>neteasemail://</string>
 	<key>480595117</key>
 	<string>freebell_event://</string>
 	<key>434217487</key>
@@ -7519,7 +7570,7 @@
 	<key>408090132</key>
 	<string>fb318457868232178://</string>
 	<key>448165862</key>
-	<string>momotencent://</string>
+	<string>momochat://</string>
 	<key>645859810</key>
 	<string>com.rovio.angrybirdsstarwarsii://</string>
 	<key>338059108</key>
@@ -7658,6 +7709,7 @@
 	<string>aurasma://</string>
 	<key>372353614</key>
 	<string>FDImportMycard://</string>
+<!--    FDMoney://-->
 	<key>293837001</key>
 	<string>icall://</string>
 	<key>364146012</key>
@@ -7877,7 +7929,7 @@
 	<key>404552480</key>
 	<string>gmarketipad://</string>
 	<key>452186370</key>
-	<string>wx9a08a4f59ce91bf6://</string>
+	<string>baidumap://</string>
 	<key>444067059</key>
 	<string>db-c4wnz0qprd7kg0u://</string>
 	<key>389581236</key>
@@ -8211,7 +8263,7 @@
 	<key>414022497</key>
 	<string>cuckoo://</string>
 	<key>916139408</key>
-	<string>wx20b0ee5c44530577://</string>
+	<string>BaiduIMShop://</string>
 	<key>402166944</key>
 	<string>fb197307983635686://</string>
 	<key>355262842</key>
@@ -8551,7 +8603,7 @@
 	<key>461992615</key>
 	<string>fb262408900471283://</string>
 	<key>427457043</key>
-	<string>tencent100234077://</string>
+	<string>wccbyihaodian://</string>
 	<key>359073496</key>
 	<string>com.riseuplabs.list3no8://</string>
 	<key>437992173</key>
@@ -8667,7 +8719,7 @@
 	<key>338441866</key>
 	<string>com.riseuplabs.TaptapantsPAID://</string>
 	<key>506685538</key>
-	<string>wx7726d8211afb6b05://</string>
+	<string>qtfmp://</string>
 	<key>598232355</key>
 	<string>hiwifi://</string>
 	<key>412103322</key>
@@ -9005,7 +9057,7 @@
 	<key>467421042</key>
 	<string>fb100151196729128lite://</string>
 	<key>422038334</key>
-	<string>sinavdisksso.2938478327://</string>
+	<string>sinavdisk://</string>
 	<key>440586344</key>
 	<string>fb206018206100203://</string>
 	<key>381698089</key>
@@ -9093,7 +9145,7 @@
 	<key>794859485</key>
 	<string>wx1cd5a3a17af3dd87://</string>
 	<key>458587755</key>
-	<string>qq100381072://</string>
+	<string>sohuvideo://</string>
 	<key>413312086</key>
 	<string>fb323094801072669://</string>
 	<key>361883988</key>
@@ -10165,7 +10217,7 @@
 	<key>436672425</key>
 	<string>fb126584544022094://</string>
 	<key>710380093</key>
-	<string>fb208463722612629://</string>
+	<string>mqqiapi://</string>
 	<key>477846014</key>
 	<string>bfspt2://</string>
 	<key>471405732</key>
@@ -10465,7 +10517,7 @@
 	<key>306066434</key>
 	<string>videosafe://</string>
 	<key>529696004</key>
-	<string>tencent100253980://</string>
+	<string>tianya://</string>
 	<key>681580740</key>
 	<string>tencent1101253936://</string>
 	<key>485809631</key>
@@ -10737,7 +10789,7 @@
 	<key>362001861</key>
 	<string>com.riseuplabs.SpeedTappingFREE://</string>
 	<key>554499054</key>
-	<string>sina.50764150527015693f000005://</string>
+	<string>diditaxi://</string>
 	<key>311852560</key>
 	<string>epss://</string>
 	<key>452552907</key>
@@ -11151,7 +11203,7 @@
 	<key>369562600</key>
 	<string>genericos-br://</string>
 	<key>417200582</key>
-	<string>VSSpecialSwitch://</string>
+	<string>vipshop://</string>
 	<key>427792386</key>
 	<string>pocketbugsfull://</string>
 	<key>324389392</key>
@@ -11679,9 +11731,19 @@
 	<key>343575374</key>
 	<string>gmxsms://</string>
 	<key>387682726</key>
-	<string>taobao://</string>
-	<key>444526639</key>
-	<string>launch-ttg-Grickle102://</string>
+    <string>taobao://</string>
+<!--淘宝宝贝搜索 taobao://http://s.taobao.com/?q=[prompt]-->
+<!--淘宝店铺搜索taobao://http://shopsearch.taobao.com/browse/shop_search.htm?q=[prompt]-->
+<key>894362875</key>
+<string>mdict://</string>
+<key>349447615</key>
+<string>camcard://</string>
+<key>1157434163</key>
+<string>weico://</string>
+<key>1346190318</key>
+<string>omnifocus:///add?name=""</string>
+<key>444526639</key>
+<string>launch-ttg-Grickle102://</string>
 	<key>368173864</key>
 	<string>highnoon://</string>
 	<key>306446764</key>
@@ -12973,7 +13035,7 @@
 	<key>367690249</key>
 	<string>fb183095028384678://</string>
 	<key>467067151</key>
-	<string>wxd2de02b9fa2bb9aa://</string>
+	<string>bainuo://</string>
 	<key>433086293</key>
 	<string>aqttc://</string>
 	<key>480618583</key>
@@ -13985,7 +14047,7 @@
 	<key>574152539</key>
 	<string>tencent100314375://</string>
 	<key>336141475</key>
-	<string>wb4203991030://</string>
+	<string>youku://</string>
 	<key>285887422</key>
 	<string>cityguide://</string>
 	<key>358067114</key>
@@ -14031,7 +14093,7 @@
 	<key>391297152</key>
 	<string>nshex://</string>
 	<key>353732572</key>
-	<string>doubanfm3://</string>
+	<string>doubanradio://</string>
 	<key>541893240</key>
 	<string>fb455209054509834://</string>
 	<key>315163423</key>
@@ -14371,7 +14433,7 @@
 	<key>487225497</key>
 	<string>fb263037313761385://</string>
 	<key>333206289</key>
-	<string>alipaysso://</string>
+	<string>alipay://</string>
 	<key>323822803</key>
 	<string>rightmove://</string>
 	<key>427719655</key>
@@ -14391,7 +14453,7 @@
 	<key>355585009</key>
 	<string>fb333298213383121://</string>
 	<key>432274380</key>
-	<string>en-shiguol-6412://</string>
+	<string>zhihu://</string>
 	<key>472735836</key>
 	<string>fb209213619111441://</string>
 	<key>481589275</key>
@@ -14855,7 +14917,7 @@
 	<key>705832448</key>
 	<string>guagua-test://</string>
 	<key>353115739</key>
-	<string>sinaweibosso.4228982144://</string>
+	<string>yddict://</string>
 	<key>514257257</key>
 	<string>tnr://</string>
 	<key>392585603</key>
@@ -15367,7 +15429,7 @@
 	<key>328415391</key>
 	<string>yfootball://</string>
 	<key>444934666</key>
-	<string>mqqtribe://</string>
+	<string>mqq://</string>
 	<key>480081437</key>
 	<string>fb217584931642752://</string>
 	<key>438193193</key>
@@ -16021,7 +16083,7 @@
 	<key>474243223</key>
 	<string>fb394396183905591://</string>
 	<key>414478124</key>
-	<string>QQ41C152CF://</string>
+	<string>weixin://</string>
 	<key>524731580</key>
 	<string>launch-ttg-WalkingDead101://</string>
 	<key>917629382</key>
@@ -16161,7 +16223,7 @@
 	<key>544582845</key>
 	<string>bluxcamerapro://</string>
 	<key>370130751</key>
-	<string>wxc1cce49fb6851ae5://</string>
+	<string>TencentWeibo://</string>
 	<key>320388936</key>
 	<string>Sentinel2Launch://</string>
 	<key>351782011</key>
@@ -16187,7 +16249,7 @@
 	<key>288286079</key>
 	<string>fb185026994846079://</string>
 	<key>423514795</key>
-	<string>wb19490884://</string>
+	<string>com.icbc.iphoneclient://</string>
 	<key>311468972</key>
 	<string>dg004://</string>
 	<key>393451834</key>
@@ -16846,6 +16908,7 @@
 	<string>igsappgameid411847327://</string>
 	<key>434209233</key>
 	<string>wb3402316491://</string>
+<!--    rm434209233MojiWeather://-->
 	<key>378786877</key>
 	<string>fcpp://</string>
 	<key>459463884</key>
@@ -16873,7 +16936,7 @@
 	<key>540702780</key>
 	<string>bbflickr://</string>
 	<key>547166701</key>
-	<string>baiduWallet20140625://</string>
+	<string>baiduyun://</string>
 	<key>467157100</key>
 	<string>db-128vwg7amnnhqse://</string>
 	<key>519867260</key>
@@ -16917,7 +16980,7 @@
 	<key>495880958</key>
 	<string>fb201161656601557://</string>
 	<key>316709252</key>
-	<string>tencent101097983://</string>
+	<string>renren://</string>
 	<key>356497572</key>
 	<string>com.riseuplabs.list2No12://</string>
 	<key>360129235</key>
@@ -17244,6 +17307,7 @@
 	<string>axag://</string>
 	<key>382201985</key>
 	<string>baiduboxapp://</string>
+<!--    BaiduSSO://-->
 	<key>494168017</key>
 	<string>authy://</string>
 	<key>363365645</key>
@@ -18389,7 +18453,7 @@
 	<key>421319316</key>
 	<string>hutospetnado://</string>
 	<key>588673713</key>
-	<string>tencent100243533://</string>
+	<string>com.kuwo.kwmusic.kwmusicForKwsing://</string>
 	<key>919359310</key>
 	<string>popkey://</string>
 	<key>355263473</key>
@@ -18665,7 +18729,7 @@
 	<key>486240738</key>
 	<string>flashlight://</string>
 	<key>472208016</key>
-	<string>wb3641427105://</string>
+	<string>kugouURL://</string>
 	<key>386283210</key>
 	<string>fb139176272773283://</string>
 	<key>739836557</key>
@@ -19477,7 +19541,7 @@
 	<key>360217177</key>
 	<string>fb264502933588141://</string>
 	<key>436957087</key>
-	<string>wx6c6138cb32ca916d://</string>
+	<string>sohunews://</string>
 	<key>456546735</key>
 	<string>woon://</string>
 	<key>443060777</key>
@@ -20199,7 +20263,7 @@
 	<key>296444843</key>
 	<string>wn.thai://</string>
 	<key>477927812</key>
-	<string>tiebasharesdk1.0://</string>
+	<string>com.baidu.tieba://</string>
 	<key>444449941</key>
 	<string>NinjaRescue://</string>
 	<key>427098890</key>
@@ -20609,7 +20673,7 @@
 	<key>384349738</key>
 	<string>Tapinvoice (Practicalproject)://</string>
 	<key>423084029</key>
-	<string>wxa552e31d6839de85://</string>
+	<string>imeituan://</string>
 	<key>445190119</key>
 	<string>sinawbMermaidLite://</string>
 	<key>306260006</key>
@@ -21467,7 +21531,7 @@
 	<key>373515261</key>
 	<string>fb200993333271547://</string>
 	<key>350962117</key>
-	<string>weibosdk2.2://</string>
+	<string>sinaweibo://</string>
 	<key>289530584</key>
 	<string>com.ooi.dinerdash://</string>
 	<key>316177673</key>
@@ -22142,6 +22206,7 @@
 	<string>w3iapp-713://</string>
 	<key>388089858</key>
 	<string>elong://</string>
+<!--    elongIPhone://-->
 	<key>419752338</key>
 	<string>zite://</string>
 	<key>489379944</key>
@@ -22241,7 +22306,7 @@
 	<key>326079517</key>
 	<string>translator://</string>
 	<key>468623917</key>
-	<string>QQ05FB6D8B://</string>
+	<string>baidumusic://</string>
 	<key>408248615</key>
 	<string>db-f7srk5n06ct9o5u://</string>
 	<key>459161879</key>

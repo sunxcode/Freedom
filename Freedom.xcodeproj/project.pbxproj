@@ -623,8 +623,6 @@
 		7772A81B1D64648B00444973 /* ZUAN.png in Resources */ = {isa = PBXBuildFile; fileRef = 7772A80B1D64648B00444973 /* ZUAN.png */; };
 		7772A81C1D64648B00444973 /* books.png in Resources */ = {isa = PBXBuildFile; fileRef = 7772A80C1D64648B00444973 /* books.png */; };
 		7772A81D1D64648B00444973 /* aiqiyiIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7772A80D1D64648B00444973 /* aiqiyiIcon.png */; };
-		777657171D2BE4CE00B538F9 /* my.json in Resources */ = {isa = PBXBuildFile; fileRef = 777657151D2BE4CE00B538F9 /* my.json */; };
-		777657181D2BE4CE00B538F9 /* picture.json in Resources */ = {isa = PBXBuildFile; fileRef = 777657161D2BE4CE00B538F9 /* picture.json */; };
 		7780D8DB1E23818A00807502 /* Taobaomessage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7780D8D91E23818A00807502 /* Taobaomessage@2x.png */; };
 		7780D8DC1E23818A00807502 /* TaobaoScanner@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7780D8DA1E23818A00807502 /* TaobaoScanner@2x.png */; };
 		7788AC081D79969F00376C95 /* Chapter1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7788ABEF1D79969F00376C95 /* Chapter1.txt */; };
@@ -1110,6 +1108,8 @@
 		BF6E57BD1FAC0714005F7DF8 /* WXExpressionDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6E57A21FAC055D005F7DF8 /* WXExpressionDetailViewController.m */; };
 		BF6E57BE1FAC071C005F7DF8 /* WXExpressionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6E57A81FAC055D005F7DF8 /* WXExpressionViewController.m */; };
 		BF6E57BF1FAC0723005F7DF8 /* WXExpressionSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6E57A61FAC055D005F7DF8 /* WXExpressionSearchViewController.m */; };
+		BF7309DC20E0D98100FC3555 /* usuallyAPP.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF7309DB20E0D98100FC3555 /* usuallyAPP.plist */; };
+		BF7309E420E1195500FC3555 /* my.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF7309E320E1195500FC3555 /* my.plist */; };
 		BFAC491920D23BD600E5CB8D /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAC491820D23BD600E5CB8D /* DetailView.swift */; };
 		BFAC491B20D2470F00E5CB8D /* BooksMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAC491A20D2470F00E5CB8D /* BooksMainViewController.swift */; };
 		BFAC49BF20D25EE700E5CB8D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAC49BE20D25EE700E5CB8D /* AppDelegate.swift */; };
@@ -1816,8 +1816,6 @@
 		7772A80B1D64648B00444973 /* ZUAN.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ZUAN.png; sourceTree = "<group>"; };
 		7772A80C1D64648B00444973 /* books.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = books.png; sourceTree = "<group>"; };
 		7772A80D1D64648B00444973 /* aiqiyiIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aiqiyiIcon.png; sourceTree = "<group>"; };
-		777657151D2BE4CE00B538F9 /* my.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = my.json; sourceTree = "<group>"; };
-		777657161D2BE4CE00B538F9 /* picture.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = picture.json; sourceTree = "<group>"; };
 		7780D8D91E23818A00807502 /* Taobaomessage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Taobaomessage@2x.png"; sourceTree = "<group>"; };
 		7780D8DA1E23818A00807502 /* TaobaoScanner@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TaobaoScanner@2x.png"; sourceTree = "<group>"; };
 		7788ABEF1D79969F00376C95 /* Chapter1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Chapter1.txt; sourceTree = "<group>"; };
@@ -2370,6 +2368,8 @@
 		BF6E57A91FAC055D005F7DF8 /* WXMyExpressionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXMyExpressionViewController.h; sourceTree = "<group>"; };
 		BF6E57AA1FAC055D005F7DF8 /* WXMyExpressionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXMyExpressionViewController.m; sourceTree = "<group>"; };
 		BF6E57AB1FAC055D005F7DF8 /* WXMineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXMineViewController.h; sourceTree = "<group>"; };
+		BF7309DB20E0D98100FC3555 /* usuallyAPP.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = usuallyAPP.plist; sourceTree = "<group>"; };
+		BF7309E320E1195500FC3555 /* my.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = my.plist; sourceTree = "<group>"; };
 		BFAC491820D23BD600E5CB8D /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		BFAC491A20D2470F00E5CB8D /* BooksMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksMainViewController.swift; sourceTree = "<group>"; };
 		BFAC49BE20D25EE700E5CB8D /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -4238,11 +4238,11 @@
 			children = (
 				BF0E8AFA20DB9BE700150476 /* FreedomItems.plist */,
 				BF0E8B0220DCAB3F00150476 /* app.plist */,
+				BF7309DB20E0D98100FC3555 /* usuallyAPP.plist */,
 				BF0E8B0320DCAB4100150476 /* systemSetting.plist */,
 				BF5B9B011F8DE39B00BD885E /* area.plist */,
 				BF5B9B021F8DE39B00BD885E /* city.plist */,
-				777657151D2BE4CE00B538F9 /* my.json */,
-				777657161D2BE4CE00B538F9 /* picture.json */,
+				BF7309E320E1195500FC3555 /* my.plist */,
 			);
 			path = JSON;
 			sourceTree = "<group>";
@@ -5282,6 +5282,7 @@
 				772E86311D76BC15004EDF50 /* ktv_listenwork_lbsrankhead1.png in Resources */,
 				7741F1361D6D50F900EED332 /* i20.png in Resources */,
 				779938CA1E2F7B6500866968 /* d_heng.png in Resources */,
+				BF7309DC20E0D98100FC3555 /* usuallyAPP.plist in Resources */,
 				7788AC0B1D79969F00376C95 /* Chapter4.txt in Resources */,
 				77993A731E2F7B9D00866968 /* [转圈]@2x.png in Resources */,
 				779939031E2F7B6500866968 /* h_ye.png in Resources */,
@@ -5307,6 +5308,7 @@
 				779939231E2F7B6500866968 /* lxh_buhaoyisi.png in Resources */,
 				7741F1181D6D50F900EED332 /* 10000003@2x.png in Resources */,
 				77993A051E2F7B9C00866968 /* [傲慢]@2x.png in Resources */,
+				BF7309E420E1195500FC3555 /* my.plist in Resources */,
 				77645F5D1D68259900ACCCAC /* MoreGame@3x.png in Resources */,
 				7741F1151D6D50F900EED332 /* 09999978Icon@2x.png in Resources */,
 				772E868E1D76BC15004EDF50 /* ktv_mymessage_rank_warning.png in Resources */,
@@ -5430,7 +5432,6 @@
 				772E86981D76BC15004EDF50 /* ktv_occupation_it@2x.png in Resources */,
 				772E845B1D76BC15004EDF50 /* fx_liveroom_xb_coin@2x.png in Resources */,
 				7799393F1E2F7B6600866968 /* lxh_leifeng.png in Resources */,
-				777657171D2BE4CE00B538F9 /* my.json in Resources */,
 				77993A6B1E2F7B9D00866968 /* [街舞]@2x.png in Resources */,
 				7741F1161D6D50F900EED332 /* i06.png in Resources */,
 				77993A211E2F7B9C00866968 /* [奶瓶]@2x.png in Resources */,
@@ -5834,7 +5835,6 @@
 				772E83AA1D76BC15004EDF50 /* box_redHeart@2x.png in Resources */,
 				7741F12D1D6D50F900EED332 /* 20000135@2x.png in Resources */,
 				772E86741D76BC15004EDF50 /* ktv_mine@3x.png in Resources */,
-				777657181D2BE4CE00B538F9 /* picture.json in Resources */,
 				7772A8191D64648B00444973 /* database.png in Resources */,
 				7772A80F1D64648B00444973 /* yingyongIcon.png in Resources */,
 				77BD149E1D6E817A00DE5DB9 /* 07.jpg in Resources */,

@@ -66,6 +66,9 @@
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>mqq</string>
+		<string>alipayauth</string>
+		<string>alipay</string>
+		<string>alipayshare</string>
 		<string>mqzone</string>
 		<string>mqqwpa</string>
 		<string>mqqapi</string>
@@ -75,7 +78,9 @@
 		<string>mqqOpensdkSSoLogin</string>
 		<string>mqzoneopensdkapiV2</string>
 		<string>mqzoneopensdkapi19</string>
+		<string>mqqapiwallet</string>
 		<string>mqzoneopensdkapi</string>
+		<string>mqqbrowser</string>
 		<string>mqqapi</string>
 		<string>mqzoneopensdk</string>
 		<string>mqq</string>
@@ -89,6 +94,7 @@
 		<string>tencentweiboSdkv2</string>
 		<string>weibosdk</string>
 		<string>weibosdk2.5</string>
+		<string>safepay</string>
 		<string>sinaweibohdsso</string>
 		<string>sinaweibosso</string>
 		<string>sinaweibohd</string>

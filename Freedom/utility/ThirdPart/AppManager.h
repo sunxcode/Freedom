@@ -47,6 +47,7 @@
 @property (nonatomic, readonly) NSArray<XAPP*>* installedApplications;
 - (BOOL)openAppWithBundleIdentifier:(NSString*)bundleIdentifier;
 - (BOOL)openAppWithScheme:(NSString*)scheme;
+- (BOOL)isInstalledAppWithIdentifier:(NSString*)bundleIdentifier;
 - (void)gotiTunesInfoWithTrackIds:(NSArray<NSString*>*)tracks completion:(void(^)(NSArray<XAPP*> *apps))completion;
 - (NSArray*)privateURLSchemes;
 - (NSArray*)publicURLSchemes;

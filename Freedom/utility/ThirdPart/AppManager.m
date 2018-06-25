@@ -1,5 +1,6 @@
 //
 #import "AppManager.h"
+#import <MJExtension/MJExtension.h>
 @interface UIImage ()
 + (id)_iconForResourceProxy:(id)arg1 variant:(int)arg2 variantsScale:(float)arg3;
 + (id)_applicationIconImageForBundleIdentifier:(id)arg1 format:(int)arg2 scale:(double)arg3;
@@ -64,7 +65,7 @@
 - (instancetype)initWithiTunesDict:(NSDictionary*)iTune{
     self = [super init];
     if(self){
-        [self setValuesForKeysWithDictionary:iTune];
+        [self mj_setKeyValues:iTune];
         self.descrip = [iTune objectForJSONKey:@"description"];
         NSString *iconStr = [self.artworkUrl60 stringByReplacingOccurrencesOfString:@"60x60bb.jpg" withString:@"128x128-75.png"];
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -76,6 +77,7 @@
 @end
 @interface PrivateApi_LSApplicationWorkspace
 - (NSArray*)allInstalledApplications;
+- (BOOL)applicationIsInstalled:(id)arg1;
 - (bool)openApplicationWithBundleID:(id)arg1;
 - (NSArray*)privateURLSchemes;
 - (NSArray*)publicURLSchemes;
@@ -121,6 +123,14 @@
 }
 - (BOOL)openAppWithBundleIdentifier:(NSString *)bundleIdentifier{
 	return (BOOL)[_workspace openApplicationWithBundleID:bundleIdentifier];
+}
+- (BOOL)isInstalledAppWithIdentifier:(NSString*)bundleIdentifier{
+    BOOL isInstall = [_workspace applicationIsInstalled:bundleIdentifier];
+    if(!isInstall){
+        PrivateApi_LSApplicationProxy *proxy = [NSClassFromString(@"LSApplicationProxy") applicationProxyForIdentifier:bundleIdentifier];
+        isInstall = [_workspace applicationIsInstalled:proxy];
+    }
+    return isInstall;
 }
 - (BOOL)openAppWithScheme:(NSString *)scheme{
     UIApplication *application = [UIApplication sharedApplication];
