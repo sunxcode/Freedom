@@ -189,6 +189,48 @@
     <key>scheme</key>
     <string>baiduyun://</string>
 </dict>
+<dict>
+    <key>trackName</key>
+    <string>高德地图</string>
+    <key>trackId</key>
+    <string>461703208</string>
+    <key>scheme</key>
+    <string>iosamap://</string>
+</dict>
+<dict>
+    <key>trackName</key>
+    <string>掌上阅读</string>
+    <key>trackId</key>
+    <string>463150061</string>
+    <key>scheme</key>
+    <string>iReader://</string>
+</dict>
+<dict>
+    <key>trackName</key>
+    <string>天猫</string>
+    <key>trackId</key>
+    <string>518966501</string>
+    <key>scheme</key>
+    <string>tmall://</string>
+</dict>
+
+<dict>
+    <key>trackName</key>
+    <string>whatsapp</string>
+    <key>trackId</key>
+    <string>310633997</string>
+    <key>scheme</key>
+    <string>whatsapp://</string>
+</dict>
+
+<dict>
+    <key>trackName</key>
+    <string>FaceBook</string>
+    <key>trackId</key>
+    <string>284882215</string>
+    <key>scheme</key>
+    <string>fbapi://</string>
+</dict>
 <!--weixin://dl/scan 扫一扫-->
 <!--weixin://dl/feedback 反馈-->
 <!--weixin://dl/moments 朋友圈-->

@@ -5,3 +5,4 @@
 #import "FreedomTools.h"
 #import "PlayAudioViewController.h"
 #import "CKRadialMenu.h"
+#import "AppManager.h"

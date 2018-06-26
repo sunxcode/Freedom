@@ -159,8 +159,6 @@ NSString *folder =@"/Users/xuechao/Desktop/image/";
 [[NSFileManager defaultManager] createFileAtPath:[NSString stringWithFormat:@"%@%@",folder,dict[@"imagename"]] contents:[NSData dataWithContentsOfURL:[NSURL URLWithString:dict[@"imagename"]]]attributes:nil];
 #
 抖音短视频/id1142110895?
-
-
 #
 以下为ipad版url schemes：
 ZAKER ：【zakeripad://】

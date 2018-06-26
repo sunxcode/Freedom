@@ -22,14 +22,11 @@
 -(void)initUI;
 -(void)setCollectionDataWithDic:(NSDictionary*)dict;
 @end
-@interface BaseOCViewController : UIViewController<CKRadialMenuDelegate,UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UISearchBarDelegate>
+@interface BaseOCViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UISearchBarDelegate>
 @property (nonatomic,strong) id  userInfo;
 @property (nonatomic,strong) id  otherInfo;
 @property (nonatomic,strong) NSMutableArray *dataArray;
 @property (nonatomic,strong) UITableView *tableView;
-- (void)showRadialMenu;
-@property (nonatomic,strong) NSArray *items;
-@property (nonatomic,strong)CKRadialMenu* radialView;
 - (BaseOCViewController*)pushController:(Class)controller withInfo:(id)info;
 - (BaseOCViewController*)pushController:(Class)controller withInfo:(id)info withTitle:(NSString*)title withOther:(id)other;
 - (BaseOCViewController*)pushController:(BaseOCViewController*)controller withInfo:(id)info withTitle:(NSString*)title withOther:(id)other tabBarHid:(BOOL)abool;

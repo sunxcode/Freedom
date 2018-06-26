@@ -76,7 +76,7 @@
 	</dict>
 	<dict>
 		<key>control</key>
-		<string>Wechart</string>
+		<string>WX</string>
 		<key>icon</key>
 		<string>weixinIcon</string>
 		<key>title</key>

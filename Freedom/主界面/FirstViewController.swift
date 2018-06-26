@@ -129,6 +129,7 @@ class XCollectionViewDialLayout: UICollectionViewLayout {
 class FirstViewController: XBaseViewController,UICollectionViewDataSource, UICollectionViewDelegate,UISearchBarDelegate {
     static let sharedVC = FirstViewController()
     @IBOutlet weak var homecollectionView: UICollectionView!
+    var items:[[String:String]] = (UIApplication.shared.delegate as! AppDelegate).items
     var transition: ElasticTransition = ElasticTransition()
     var LibraryGR: UIScreenEdgePanGestureRecognizer = UIScreenEdgePanGestureRecognizer()
     var SettingsGR: UIScreenEdgePanGestureRecognizer = UIScreenEdgePanGestureRecognizer()
@@ -281,24 +282,7 @@ class FirstViewController: XBaseViewController,UICollectionViewDataSource, UICol
         showingSettings = !showingSettings
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        radialMenu(radialView, didSelectPopoutWithIndentifier: "\(indexPath.row)")
-//        let controlName = items[indexPath.row]["control"]!
-//        UIApplication.shared.isStatusBarHidden = false
-//        if !(controlName == "Sina") {
-//            let StoryBoard = UIStoryboard(name: controlName, bundle: nil)
-//            show(StoryBoard.instantiateViewController(withIdentifier: "\(String(describing: controlName))TabBarController"), sender: self)
-//            return
-//        }
-//        let s = "\(controlName)TabBarController"
-//        print(s)
-//        let con: UIViewController = UIViewController()//NSClassFromString(s)
-//        let animation = CATransition()
-//        animation.duration = 1
-//        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-//        view.window?.layer.add(animation, forKey: nil)
-//        present(con, animated: false) {
-//        }
-//        SVProgressHUD.showSuccess(withStatus: items[indexPath.row]["title"])
+        AppDelegate.radialView.didSelectBlock!(AppDelegate.radialView,false,false,"\(indexPath.row)")
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return items.count
@@ -396,7 +380,7 @@ class FirstViewController: XBaseViewController,UICollectionViewDataSource, UICol
         UIView.beginAnimations("\(count)", context: nil)
         UIView.setAnimationDuration(TimeInterval(arc4random() % 10 + 2))
         UIView.setAnimationCurve(.easeIn)
-        let offset: UInt32 = arc4random() % 100 - 50
+        let offset: CGFloat = (CGFloat(arc4random())/0xFFFFFFFF) * 100 - 50
         snow.center = CGPoint(x: snow.center.x + CGFloat(offset), y: view.bounds.size.height - 10)
         UIView.setAnimationDelegate(self)
         UIView.setAnimationDidStop(#selector(self.snowDisappear(_:)))

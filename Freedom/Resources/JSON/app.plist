@@ -2,7 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-
+<key>310633997</key>
+<string>whatsapp://</string>
+<key>284882215</key>
+<string>fbapi://</string>
 <key>642101382</key>
 <string>rili365://</string>
 <key>481952814</key>

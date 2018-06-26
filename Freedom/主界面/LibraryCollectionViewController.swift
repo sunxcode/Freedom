@@ -24,6 +24,7 @@ class LibraryCollectionViewCell: BaseCollectionViewCell {
 }
 class LibraryCollectionViewController: XBaseViewController,ElasticMenuTransitionDelegate,UICollectionViewDelegate,UICollectionViewDataSource {
     var contentLength:CGFloat = APPW
+    var items:[[String:String]] = (UIApplication.shared.delegate as! AppDelegate).items
     var dismissByBackgroundTouch = true
     var dismissByBackgroundDrag = true
     var dismissByForegroundDrag = true
@@ -64,6 +65,6 @@ class LibraryCollectionViewController: XBaseViewController,ElasticMenuTransition
         return cell!
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        radialMenu(radialView, didSelectPopoutWithIndentifier: "\(indexPath.row)")
+        AppDelegate.radialView.didSelectBlock!(AppDelegate.radialView, false,false,"\(indexPath.row)")
     }
 }
