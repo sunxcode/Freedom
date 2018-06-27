@@ -2,20 +2,21 @@
 //  Freedom
 //  Created by Super on 15/9/13.
 #import "SinaMessageViewController.h"
-#import "SinaMessageChartViewController.h"
 @interface SinaMessageViewController ()
 @property(nonatomic,strong) UISearchBar *searchBar;
 @end
 @implementation SinaMessageViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
-}
-- (UISearchBar*)searchBar{
-   UISearchBar *searchBar = [[UISearchBar alloc]init];
-    searchBar.frameWidth = APPW;
-    searchBar.frameHeight = 40;
-    searchBar.placeholder = @"大家都在搜：男模遭趴光";
-    return searchBar;
+    _searchBar = [[UISearchBar alloc]init];
+    _searchBar.frameWidth = APPW;
+    _searchBar.frameHeight = 40;
+    _searchBar.placeholder = @"大家都在搜：男模遭趴光";
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, APPW, APPH - TopHeight) style:UITableViewStylePlain];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.view addSubview:self.tableView];
+
 }
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -28,7 +29,6 @@
     return 60;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     static NSString *ID = @"cell";
     if(indexPath.row==0){
         UITableViewCell *d = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
@@ -43,10 +43,5 @@
     cell.detailTextLabel.text = @"今晚我想去你那里，等着我。详情请点击查看！";
     cell.imageView.image = [UIImage imageNamed:@"movie"];
     return cell;
-    
-}
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    UIStoryboard *StoryBoard = [UIStoryboard storyboardWithName:@"Sina" bundle:nil];
-    [self presentViewController:[StoryBoard instantiateViewControllerWithIdentifier:@"SinaMessageChartViewController"] animated:YES completion:nil];
 }
 @end

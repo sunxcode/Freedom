@@ -2,6 +2,6 @@
 //  Freedom
 //  Created by Super on 15/9/13.
 #import <UIKit/UIKit.h>
-#import "SinaCommonTableViewController.h"
-@interface SinaDiscoverViewController :SinaCommonTableViewController
+#import "SinaBaseViewController.h"
+@interface SinaDiscoverViewController :SinaBaseViewController
 @end

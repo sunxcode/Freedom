@@ -95,7 +95,6 @@
 		7121197420AC250D0087E05B /* ToutiaoMeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7121197320AC250D0087E05B /* ToutiaoMeViewController.swift */; };
 		71250EC62091C0F20093B59B /* FreedomTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 71250EC52091C0F20093B59B /* FreedomTools.m */; };
 		71250EC92091C1DA0093B59B /* NSObject+Freedom.m in Sources */ = {isa = PBXBuildFile; fileRef = 71250EC82091C1DA0093B59B /* NSObject+Freedom.m */; };
-		71267A3F2092CD7F006E1B96 /* SinaMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 71267A3E2092CD7F006E1B96 /* SinaMode.m */; };
 		71267A462092CF9B006E1B96 /* SinaTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71267A412092CF99006E1B96 /* SinaTabBarController.m */; };
 		71267A472092CF9B006E1B96 /* SinaAuthController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71267A442092CF9A006E1B96 /* SinaAuthController.m */; };
 		71267A482092CF9B006E1B96 /* SinaNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71267A452092CF9B006E1B96 /* SinaNavigationController.m */; };
@@ -662,17 +661,11 @@
 		7788AC821D79977200376C95 /* personal_showBac@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7788AC7A1D79977200376C95 /* personal_showBac@2x.png */; };
 		7788AC831D79977200376C95 /* zan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7788AC7B1D79977200376C95 /* zan@2x.png */; };
 		778E8EFE1D696020004D899C /* SinaHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 778E8EE71D696020004D899C /* SinaHomeViewController.m */; };
-		778E8F081D696020004D899C /* SinaTitleMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 778E8EFB1D696020004D899C /* SinaTitleMenuViewController.m */; };
 		778E8F0C1D696059004D899C /* SinaMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 778E8F0B1D696059004D899C /* SinaMessageViewController.m */; };
 		778E8F0F1D69607E004D899C /* SinaDiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 778E8F0E1D69607E004D899C /* SinaDiscoverViewController.m */; };
-		778E8F121D696096004D899C /* SinaProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 778E8F111D696096004D899C /* SinaProfileViewController.m */; };
+		778E8F121D696096004D899C /* SinaMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 778E8F111D696096004D899C /* SinaMeViewController.m */; };
 		778E93681D699D8C004D899C /* SinaComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 778E93511D699D8C004D899C /* SinaComposeViewController.m */; };
 		778E93691D699D8C004D899C /* SinaEmotion.m in Sources */ = {isa = PBXBuildFile; fileRef = 778E93531D699D8C004D899C /* SinaEmotion.m */; };
-		778E939D1D69AA92004D899C /* SinaDiscoverDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 778E93961D69AA92004D899C /* SinaDiscoverDetailViewController.m */; };
-		778E93A61D69B1C2004D899C /* SinaCommonTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 778E93A51D69B1C2004D899C /* SinaCommonTableViewController.m */; };
-		778E93AC1D69B1FE004D899C /* SinaSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 778E93AA1D69B1FE004D899C /* SinaSettingViewController.m */; };
-		778E93AF1D69B229004D899C /* SinaGeneralSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 778E93AE1D69B229004D899C /* SinaGeneralSettingViewController.m */; };
-		778E93B21D69CB86004D899C /* SinaMessageChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 778E93B11D69CB86004D899C /* SinaMessageChartViewController.m */; };
 		779938B61E2F7B6400866968 /* d_aini.png in Resources */ = {isa = PBXBuildFile; fileRef = 779937FD1E2F7B6300866968 /* d_aini.png */; };
 		779938B71E2F7B6400866968 /* d_aoteman.png in Resources */ = {isa = PBXBuildFile; fileRef = 779937FE1E2F7B6300866968 /* d_aoteman.png */; };
 		779938B81E2F7B6400866968 /* d_baibai.png in Resources */ = {isa = PBXBuildFile; fileRef = 779937FF1E2F7B6300866968 /* d_baibai.png */; };
@@ -1078,7 +1071,6 @@
 		BF5B9B7F1F8E67B900BD885E /* WidomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5B9B7E1F8E67B900BD885E /* WidomViewController.swift */; };
 		BF5B9B811F8E67C000BD885E /* PowerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5B9B801F8E67C000BD885E /* PowerViewController.swift */; };
 		BF5B9B831F8E67CC00BD885E /* HappyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5B9B821F8E67CC00BD885E /* HappyViewController.swift */; };
-		BF6BB2AC1FAC5CB6003720C3 /* SinaHomeViewController+Views.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6BB2AB1FAC5CB6003720C3 /* SinaHomeViewController+Views.m */; };
 		BF6E56961FAAF341005F7DF8 /* WXPictureCarouselView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6E567F1FAAEE5F005F7DF8 /* WXPictureCarouselView.m */; };
 		BF6E56981FAAF3F7005F7DF8 /* WXWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6E56801FAAEE5F005F7DF8 /* WXWebViewController.m */; };
 		BF6E569A1FAAF45A005F7DF8 /* WXSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6E567E1FAAEE5E005F7DF8 /* WXSearchController.m */; };
@@ -1229,8 +1221,6 @@
 		71250EC52091C0F20093B59B /* FreedomTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FreedomTools.m; sourceTree = "<group>"; };
 		71250EC72091C1DA0093B59B /* NSObject+Freedom.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Freedom.h"; sourceTree = "<group>"; };
 		71250EC82091C1DA0093B59B /* NSObject+Freedom.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Freedom.m"; sourceTree = "<group>"; };
-		71267A3D2092CD7F006E1B96 /* SinaMode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SinaMode.h; sourceTree = "<group>"; };
-		71267A3E2092CD7F006E1B96 /* SinaMode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SinaMode.m; sourceTree = "<group>"; };
 		71267A402092CF99006E1B96 /* SinaAuthController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinaAuthController.h; sourceTree = "<group>"; };
 		71267A412092CF99006E1B96 /* SinaTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinaTabBarController.m; sourceTree = "<group>"; };
 		71267A422092CF9A006E1B96 /* SinaNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinaNavigationController.h; sourceTree = "<group>"; };
@@ -1864,28 +1854,16 @@
 		7789138D1D0FDDDB0096AB3B /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		778E8EE61D696020004D899C /* SinaHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinaHomeViewController.h; sourceTree = "<group>"; };
 		778E8EE71D696020004D899C /* SinaHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinaHomeViewController.m; sourceTree = "<group>"; };
-		778E8EFA1D696020004D899C /* SinaTitleMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinaTitleMenuViewController.h; sourceTree = "<group>"; };
-		778E8EFB1D696020004D899C /* SinaTitleMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinaTitleMenuViewController.m; sourceTree = "<group>"; };
 		778E8F0A1D696059004D899C /* SinaMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinaMessageViewController.h; sourceTree = "<group>"; };
 		778E8F0B1D696059004D899C /* SinaMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinaMessageViewController.m; sourceTree = "<group>"; };
 		778E8F0D1D69607E004D899C /* SinaDiscoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinaDiscoverViewController.h; sourceTree = "<group>"; };
 		778E8F0E1D69607E004D899C /* SinaDiscoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinaDiscoverViewController.m; sourceTree = "<group>"; };
-		778E8F101D696096004D899C /* SinaProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinaProfileViewController.h; sourceTree = "<group>"; };
-		778E8F111D696096004D899C /* SinaProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinaProfileViewController.m; sourceTree = "<group>"; };
+		778E8F101D696096004D899C /* SinaMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinaMeViewController.h; sourceTree = "<group>"; };
+		778E8F111D696096004D899C /* SinaMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinaMeViewController.m; sourceTree = "<group>"; };
 		778E93501D699D8C004D899C /* SinaComposeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinaComposeViewController.h; sourceTree = "<group>"; };
 		778E93511D699D8C004D899C /* SinaComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinaComposeViewController.m; sourceTree = "<group>"; };
 		778E93521D699D8C004D899C /* SinaEmotion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinaEmotion.h; sourceTree = "<group>"; };
 		778E93531D699D8C004D899C /* SinaEmotion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinaEmotion.m; sourceTree = "<group>"; };
-		778E93951D69AA92004D899C /* SinaDiscoverDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinaDiscoverDetailViewController.h; sourceTree = "<group>"; };
-		778E93961D69AA92004D899C /* SinaDiscoverDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinaDiscoverDetailViewController.m; sourceTree = "<group>"; };
-		778E93A41D69B1C2004D899C /* SinaCommonTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinaCommonTableViewController.h; sourceTree = "<group>"; };
-		778E93A51D69B1C2004D899C /* SinaCommonTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinaCommonTableViewController.m; sourceTree = "<group>"; };
-		778E93A91D69B1FE004D899C /* SinaSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinaSettingViewController.h; sourceTree = "<group>"; };
-		778E93AA1D69B1FE004D899C /* SinaSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinaSettingViewController.m; sourceTree = "<group>"; };
-		778E93AD1D69B229004D899C /* SinaGeneralSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinaGeneralSettingViewController.h; sourceTree = "<group>"; };
-		778E93AE1D69B229004D899C /* SinaGeneralSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinaGeneralSettingViewController.m; sourceTree = "<group>"; };
-		778E93B01D69CB86004D899C /* SinaMessageChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinaMessageChartViewController.h; sourceTree = "<group>"; };
-		778E93B11D69CB86004D899C /* SinaMessageChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinaMessageChartViewController.m; sourceTree = "<group>"; };
 		779937FD1E2F7B6300866968 /* d_aini.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = d_aini.png; sourceTree = "<group>"; };
 		779937FE1E2F7B6300866968 /* d_aoteman.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = d_aoteman.png; sourceTree = "<group>"; };
 		779937FF1E2F7B6300866968 /* d_baibai.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = d_baibai.png; sourceTree = "<group>"; };
@@ -2308,8 +2286,6 @@
 		BF5B9B871F8E693600BD885E /* d.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = d.png; sourceTree = "<group>"; };
 		BF5B9B881F8E693C00BD885E /* e.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = e.png; sourceTree = "<group>"; };
 		BF5B9B891F8E694000BD885E /* f.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = f.png; sourceTree = "<group>"; };
-		BF6BB2AA1FAC5CB6003720C3 /* SinaHomeViewController+Views.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SinaHomeViewController+Views.h"; sourceTree = "<group>"; };
-		BF6BB2AB1FAC5CB6003720C3 /* SinaHomeViewController+Views.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SinaHomeViewController+Views.m"; sourceTree = "<group>"; };
 		BF6E56741FAAEE5C005F7DF8 /* WXTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXTableViewController.h; sourceTree = "<group>"; };
 		BF6E56791FAAEE5D005F7DF8 /* WXPictureCarouselView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXPictureCarouselView.h; sourceTree = "<group>"; };
 		BF6E567A1FAAEE5E005F7DF8 /* WXWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXWebViewController.h; sourceTree = "<group>"; };
@@ -3049,8 +3025,6 @@
 			children = (
 				778E8F0D1D69607E004D899C /* SinaDiscoverViewController.h */,
 				778E8F0E1D69607E004D899C /* SinaDiscoverViewController.m */,
-				778E93951D69AA92004D899C /* SinaDiscoverDetailViewController.h */,
-				778E93961D69AA92004D899C /* SinaDiscoverDetailViewController.m */,
 			);
 			path = "发现";
 			sourceTree = "<group>";
@@ -3066,8 +3040,6 @@
 				BF0E8AD420DB4F8900150476 /* SinaBaseViewController.m */,
 				71267A402092CF99006E1B96 /* SinaAuthController.h */,
 				71267A442092CF9A006E1B96 /* SinaAuthController.m */,
-				71267A3D2092CD7F006E1B96 /* SinaMode.h */,
-				71267A3E2092CD7F006E1B96 /* SinaMode.m */,
 			);
 			path = "基本类库";
 			sourceTree = "<group>";
@@ -3077,10 +3049,6 @@
 			children = (
 				778E8EE61D696020004D899C /* SinaHomeViewController.h */,
 				778E8EE71D696020004D899C /* SinaHomeViewController.m */,
-				BF6BB2AA1FAC5CB6003720C3 /* SinaHomeViewController+Views.h */,
-				BF6BB2AB1FAC5CB6003720C3 /* SinaHomeViewController+Views.m */,
-				778E8EFA1D696020004D899C /* SinaTitleMenuViewController.h */,
-				778E8EFB1D696020004D899C /* SinaTitleMenuViewController.m */,
 			);
 			path = "首页";
 			sourceTree = "<group>";
@@ -3088,14 +3056,8 @@
 		7745C2031D67156D002212DE /* 我 */ = {
 			isa = PBXGroup;
 			children = (
-				778E93A41D69B1C2004D899C /* SinaCommonTableViewController.h */,
-				778E93A51D69B1C2004D899C /* SinaCommonTableViewController.m */,
-				778E8F101D696096004D899C /* SinaProfileViewController.h */,
-				778E8F111D696096004D899C /* SinaProfileViewController.m */,
-				778E93A91D69B1FE004D899C /* SinaSettingViewController.h */,
-				778E93AA1D69B1FE004D899C /* SinaSettingViewController.m */,
-				778E93AD1D69B229004D899C /* SinaGeneralSettingViewController.h */,
-				778E93AE1D69B229004D899C /* SinaGeneralSettingViewController.m */,
+				778E8F101D696096004D899C /* SinaMeViewController.h */,
+				778E8F111D696096004D899C /* SinaMeViewController.m */,
 			);
 			path = "我";
 			sourceTree = "<group>";
@@ -3105,8 +3067,6 @@
 			children = (
 				778E8F0A1D696059004D899C /* SinaMessageViewController.h */,
 				778E8F0B1D696059004D899C /* SinaMessageViewController.m */,
-				778E93B01D69CB86004D899C /* SinaMessageChartViewController.h */,
-				778E93B11D69CB86004D899C /* SinaMessageChartViewController.m */,
 			);
 			path = "消息";
 			sourceTree = "<group>";
@@ -6068,7 +6028,6 @@
 				7115A5D420AAD716000D0B96 /* ResumeTabBarController.swift in Sources */,
 				7121196220AC0C6E0087E05B /* JuheUserViewController.swift in Sources */,
 				713728CC20AE839900A3227A /* AlipayYuEBaoTableViewController.swift in Sources */,
-				BF6BB2AC1FAC5CB6003720C3 /* SinaHomeViewController+Views.m in Sources */,
 				7115A5D820AAD783000D0B96 /* ResumeBaseViewController.swift in Sources */,
 				BF6E56A61FAAF563005F7DF8 /* WXImageBrowserController.m in Sources */,
 				7115A5F220AAFC0F000D0B96 /* MyDatabaseBaseViewController.swift in Sources */,
@@ -6101,7 +6060,6 @@
 				BF5B9B731F8E676500BD885E /* CareerViewController.swift in Sources */,
 				713EE2C620AD9B2B0085B65D /* DZMeController.swift in Sources */,
 				7115A5F420AAFC34000D0B96 /* MyDatabaseViewController.swift in Sources */,
-				778E939D1D69AA92004D899C /* SinaDiscoverDetailViewController.m in Sources */,
 				713728CA20AE733F00A3227A /* AlipayModels.swift in Sources */,
 				713728CF20AE9FC600A3227A /* FoundationSwift.swift in Sources */,
 				713EE2D620AD9BAE0085B65D /* TaobaoCommunityViewController.swift in Sources */,
@@ -6112,7 +6070,6 @@
 				7121191E20ABC46F0087E05B /* EnergyNavigationController.swift in Sources */,
 				7165A3B120A57EFE001C60D6 /* XTableView.swift in Sources */,
 				7115A5DA20AAD9AA000D0B96 /* ResumeViewController.swift in Sources */,
-				778E93A61D69B1C2004D899C /* SinaCommonTableViewController.m in Sources */,
 				7115A5F020AAFBF6000D0B96 /* MyDatabaseNavigationController.swift in Sources */,
 				7121193620ABC55C0087E05B /* EnergyShopHomeViewController.swift in Sources */,
 				71ECE01F2092121F00495467 /* WXShakeViewController.m in Sources */,
@@ -6154,7 +6111,6 @@
 				713EE2FE20AD9FF30085B65D /* IqiyiTabBarController.swift in Sources */,
 				77CC4F221D90DCA400DD2EC8 /* BaseOCViewController.m in Sources */,
 				7121193820ABC5670087E05B /* EnergyShopFindViewController.swift in Sources */,
-				778E93B21D69CB86004D899C /* SinaMessageChartViewController.m in Sources */,
 				7121193420ABC5420087E05B /* EnergySuperMeViewController.swift in Sources */,
 				7115A5C420AAD351000D0B96 /* PersonalComputerViewController.swift in Sources */,
 				713EE30620ADA05F0085B65D /* IqiyiVideoDetailViewController.swift in Sources */,
@@ -6175,7 +6131,6 @@
 				BF5B9B6F1F8E674B00BD885E /* FreeViewController.swift in Sources */,
 				BF5B9B771F8E677F00BD885E /* RelativeViewController.swift in Sources */,
 				7115A5B620AAC314000D0B96 /* PersonalApplyNavigationController.swift in Sources */,
-				71267A3F2092CD7F006E1B96 /* SinaMode.m in Sources */,
 				7115A5AF20AABCB8000D0B96 /* XBaseTabBarController.swift in Sources */,
 				71ECE0252092121F00495467 /* WXScanningViewController.m in Sources */,
 				7115A5A520AA9EF1000D0B96 /* XBaseNavigationViewController.swift in Sources */,
@@ -6211,7 +6166,6 @@
 				7121192A20ABC4EE0087E05B /* EnergyNewsDetailViewController.swift in Sources */,
 				713EE2AE20AD8FAB0085B65D /* TaobaoNavigationViewController.swift in Sources */,
 				71ECE04C2092128E00495467 /* WXGroupQRCodeViewController.m in Sources */,
-				778E8F081D696020004D899C /* SinaTitleMenuViewController.m in Sources */,
 				7115A5EE20AAFBBA000D0B96 /* MyDatabaseTabBarController.swift in Sources */,
 				7115A5A920AAA191000D0B96 /* FreedomBooksViewController.swift in Sources */,
 				7121193E20ABC58A0087E05B /* EnergyContactUSViewController.swift in Sources */,
@@ -6245,11 +6199,10 @@
 				71267A5B2092E736006E1B96 /* BookSubViews.m in Sources */,
 				713EE31620ADA0BA0085B65D /* IqiyiWebViewController.swift in Sources */,
 				713EE2F420AD9CFD0085B65D /* KugouSettingViewController.swift in Sources */,
-				778E8F121D696096004D899C /* SinaProfileViewController.m in Sources */,
+				778E8F121D696096004D899C /* SinaMeViewController.m in Sources */,
 				713EE2B620AD901F0085B65D /* KugouBaseViewController.swift in Sources */,
 				774BFB1A1D767389005CA603 /* SHLrcsView.m in Sources */,
 				778E8F0C1D696059004D899C /* SinaMessageViewController.m in Sources */,
-				778E93AF1D69B229004D899C /* SinaGeneralSettingViewController.m in Sources */,
 				71ECE002209210BF00495467 /* WXPublicServerViewController.m in Sources */,
 				71ECDFC02091F9EF00495467 /* WXMessageManager.m in Sources */,
 				71ECE0452092128E00495467 /* WXImageExpressionDisplayView.m in Sources */,
@@ -6306,7 +6259,6 @@
 				71ECE003209210BF00495467 /* WXNewFriendViewController.m in Sources */,
 				778E93681D699D8C004D899C /* SinaComposeViewController.m in Sources */,
 				BFAC491920D23BD600E5CB8D /* DetailView.swift in Sources */,
-				778E93AC1D69B1FE004D899C /* SinaSettingViewController.m in Sources */,
 				713EE2E020AD9C120085B65D /* AlipayAddItemViewController.swift in Sources */,
 				7788AC631D7996E000376C95 /* E_ReaderViewController.m in Sources */,
 				71ECE01D2092121F00495467 /* WXMomentDetailViewController.m in Sources */,

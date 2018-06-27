@@ -16,32 +16,18 @@
     disableTextArr[NSForegroundColorAttributeName] = [UIColor lightGrayColor];
     disableTextArr[NSFontAttributeName] = [UIFont systemFontOfSize:15];
     [item setTitleTextAttributes:disableTextArr forState:UIControlStateDisabled];
-    
 }
 -(void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
-    
     [super pushViewController:viewController animated:animated];
-    
     if (self.viewControllers.count > 1) {
-        
-        
         viewController.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(back) image:@"u_cellLeftA" heighlightImage:@"u_cellLeftA_y"];
-        
-        
         viewController.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(more) image:@"u_navi3p_b" heighlightImage:@"u_navi3p_y"];
     }
-    
-    
-    
 }
 -(void)back {
-    
     [self popViewControllerAnimated:YES];
-    
 }
 -(void)more {
-    
     [self popToRootViewControllerAnimated:YES];
-    
 }
 @end
