@@ -17,6 +17,11 @@
 /** 用户昵称  */
 @property (nonatomic,copy)NSString *name;
 + (instancetype)accountWithDict:(NSDictionary *)dict;
+
+/*存储账号信息@param account 账号模型*/
++ (void)saveAccount:(SinaAccount *)account;
+/*返回账号信息 @return 账号模型（如果账号过期，返回nil）*/
++ (SinaAccount *)account;
 @end
 //  用一个HMCommonItem模型来描述每行的信息：图标、标题、子标题、右边的样式（箭头、文字、数字、开关、打钩）
 @interface SinaMode : NSObject

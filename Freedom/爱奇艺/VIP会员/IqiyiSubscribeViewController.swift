@@ -185,7 +185,7 @@ class IqiyiSubscribeViewController: IqiyiBaseViewController {
         title = "订阅推荐"
     }
     func initData() {
-        let urlStr = FreedomTools.sharedManager().urlWithSubscribeData()
+        let urlStr = urlWithSubscribeData
     }
     
     func initView() {

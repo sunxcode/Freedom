@@ -52,7 +52,7 @@ class TEMPBASEC:BaseTableViewCell{
     }
 }
 class IqiyiClassifyViewController: IqiyiBaseViewController {
-    let urlStr = FreedomTools.sharedManager().urlWithclassifyData()
+    let urlStr = urlWithclassifyData
     var dataSource = [AnyHashable]()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,7 +90,7 @@ class IqiyiClassifyViewController: IqiyiBaseViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let webVC = IqiyiWebViewController()
-        webVC.urlStr = FreedomTools.sharedManager().urlWithJianShuData()
+        webVC.urlStr = TestWebURL
         navigationController?.pushViewController(webVC, animated: true)
     }
 

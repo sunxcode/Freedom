@@ -2,7 +2,7 @@
 //  BookFriendsMode.m
 #import "BookFriendsMode.h"
 #import <CoreText/CoreText.h>
-#import "FreedomTools.h"
+#import <BlocksKit/BlocksKit.h>
 @implementation WFHudView
 - (id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
@@ -157,13 +157,46 @@ if (typesetter != NULL) {
     [self cookEmotionString];
 }
 #pragma mark -
+- (NSArray *)offsetRangesInArray:(NSArray*)array By:(NSUInteger)offset{
+    NSUInteger aOffset = 0;
+    NSUInteger prevLength = 0;
+    NSMutableArray *ranges = [[NSMutableArray alloc] initWithCapacity:[array count]];
+    for(NSInteger i = 0; i < [array count]; i++){
+        @autoreleasepool {
+            NSRange range = [[array objectAtIndex:i] rangeValue];
+            prevLength    = range.length;
+            range.location -= aOffset;
+            range.length    = offset;
+            [ranges addObject:NSStringFromRange(range)];
+            aOffset = aOffset + prevLength - offset;
+        }
+    }
+    return ranges;
+}
+- (NSMutableArray *)items:(NSString*)str ForPattern:(NSString *)pattern captureGroupIndex:(NSUInteger)index{
+    if ( !pattern ) return nil;
+    NSError *error = nil;
+    NSRegularExpression *regx = [[NSRegularExpression alloc] initWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:&error];
+    if (error){
+    }else{
+        NSMutableArray *results = [[NSMutableArray alloc] init];
+        NSRange searchRange = NSMakeRange(0, [str length]);
+        [regx enumerateMatchesInString:str options:0 range:searchRange usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
+            NSRange groupRange =  [result rangeAtIndex:index];
+            NSString *match = [str substringWithRange:groupRange];
+            [results addObject:match];
+        }];
+        return results;
+    }
+    return nil;
+}
 - (void)cookEmotionString{
 // 使用正则表达式查找特殊字符的位置
-    NSArray *itemIndexes = [FreedomTools itemIndexesWithPattern:@"\\[em:(\\d+):\\]" inString:_oldString];
+    NSArray *itemIndexes = [YMTextData itemIndexesWithPattern:@"\\[em:(\\d+):\\]" inString:_oldString];
 NSArray *names = nil;
 NSArray *newRanges = nil;
-names = [_oldString itemsForPattern:@"\\[em:(\\d+):\\]" captureGroupIndex:1];
-newRanges = [itemIndexes offsetRangesInArrayBy:[PlaceHolder length]];
+    names = [self items:_oldString ForPattern:@"\\[em:(\\d+):\\]" captureGroupIndex:1];
+newRanges = [self offsetRangesInArray:itemIndexes By:[PlaceHolder length]];
     _emotionNames = names;
     _attrEmotionString = [self createAttributedEmotionStringWithRanges:newRanges
                                             forString:_newString];
@@ -507,6 +540,36 @@ UIView *myselfSelected = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.fra
     NSInteger typeview;
     int tempInt;
 }
++ (NSArray *)itemIndexesWithPattern:(NSString *)pattern inString:(NSString *)findingString{
+    NSAssert(pattern != nil, @"%s: pattern 不可以为 nil", __PRETTY_FUNCTION__);
+    NSAssert(findingString != nil, @"%s: findingString 不可以为 nil", __PRETTY_FUNCTION__);
+    NSError *error = nil;
+    NSRegularExpression *regExp = [[NSRegularExpression alloc] initWithPattern:
+                                   pattern options:NSRegularExpressionCaseInsensitive error:&error];
+    // 查找匹配的字符串
+    NSArray *result = [regExp matchesInString:findingString options:
+                       NSMatchingReportCompletion range:
+                       NSMakeRange(0, [findingString length])];
+    if (error) {
+        //  DLog(@"ERROR: %@", result);
+        return nil;
+    }
+    NSUInteger count = [result count];
+    // 没有查找到结果，返回空数组
+    if (0 == count) {
+        return [NSArray array];
+    }
+    // 将返回数组中的 NSTextCheckingResult 的实例的 range 取出生成新的 range 数组
+    NSMutableArray *ranges = [[NSMutableArray alloc] initWithCapacity:count];
+    for(NSInteger i = 0; i < count; i++){
+        @autoreleasepool {
+            NSRange aRange = [[result objectAtIndex:i] range];
+            [ranges addObject:[NSValue valueWithRange:aRange]];
+        }
+    }
+    return ranges;
+}
+
 - (id)init{
     self = [super init];
     if (self) {
@@ -548,15 +611,32 @@ NSMutableArray *feedBackArray = [NSMutableArray arrayWithCapacity:0];
     return feedBackArray;
     
 }
+- (NSString *)replaceCharacters:(NSString*)str AtIndexes:(NSArray *)indexes withString:(NSString *)aString{
+    NSAssert(indexes != nil, @"%s: indexes 不可以为nil", __PRETTY_FUNCTION__);
+    NSAssert(aString != nil, @"%s: aString 不可以为nil", __PRETTY_FUNCTION__);
+    NSUInteger offset = 0;
+    NSMutableString *raw = [str mutableCopy];
+    NSInteger prevLength = 0;
+    for(NSInteger i = 0; i < [indexes count]; i++){
+        @autoreleasepool {
+            NSRange range = [[indexes objectAtIndex:i] rangeValue];
+            prevLength = range.length;
+            range.location -= offset;
+            [raw replaceCharactersInRange:range withString:aString];
+            offset = offset + prevLength - [aString length];
+        }
+    }
+    return raw;
+}
+
 - (float)calculateFavourHeightWithWidth:(float)sizeWidth{
 typeview = 1;
     float height = .0f;
 NSString *matchString = [_favourArray componentsJoinedByString:@","];
     _showFavour = matchString;
-    NSArray *itemIndexs = [FreedomTools itemIndexesWithPattern:@"\\[em:(\\d+):\\]" inString:matchString];
+    NSArray *itemIndexs = [YMTextData itemIndexesWithPattern:@"\\[em:(\\d+):\\]" inString:matchString];
 
-    NSString *newString = [matchString replaceCharactersAtIndexes:itemIndexs
-                                                       withString:PlaceHolder];
+    NSString *newString = [self replaceCharacters:matchString AtIndexes:itemIndexs withString:PlaceHolder];
     //存新的
     self.completionFavour = newString;
 [self matchString:newString fromView:typeview];
@@ -580,9 +660,9 @@ for (int i = 0; i < self.replyDataSource.count; i ++ ) {
             }else{
             matchString = [NSString stringWithFormat:@"%@回复%@:%@",body.replyUser,body.repliedUser,body.replyInfo];
             }
-        NSArray *itemIndexs = [FreedomTools itemIndexesWithPattern:@"\\[em:(\\d+):\\]" inString:matchString];
-        NSString *newString = [matchString replaceCharactersAtIndexes:itemIndexs
-                                                           withString:PlaceHolder];
+        NSArray *itemIndexs = [YMTextData itemIndexesWithPattern:@"\\[em:(\\d+):\\]" inString:matchString];
+
+    NSString *newString = [self replaceCharacters:matchString AtIndexes:itemIndexs withString:PlaceHolder];
         //存新的
         [self.completionReplySource addObject:newString];
         [self matchString:newString fromView:typeview];
@@ -605,17 +685,40 @@ if (self.showImageArray.count == 0) {
     }
     
 }
+- (NSMutableArray *)matchMobileLink:(NSString *)pattern{
+    NSMutableArray *linkArr = [NSMutableArray arrayWithCapacity:0];
+    NSRegularExpression*regular=[[NSRegularExpression alloc]initWithPattern:@"(\\(86\\))?(13[0-9]|15[0-35-9]|18[0125-9])\\d{8}" options:NSRegularExpressionDotMatchesLineSeparators|NSRegularExpressionCaseInsensitive error:nil];
+    NSArray* array=[regular matchesInString:pattern options:0 range:NSMakeRange(0, [pattern length])];
+    for( NSTextCheckingResult * result in array){
+        NSString * string=[pattern substringWithRange:result.range];
+        NSMutableDictionary * dic = [NSMutableDictionary dictionaryWithObjectsAndKeys:string,NSStringFromRange(result.range), nil];
+        [linkArr addObject:dic];
+    }
+    return linkArr;
+}
+- (NSMutableArray *)matchWebLink:(NSString *)pattern{
+    NSMutableArray *linkArr = [NSMutableArray arrayWithCapacity:0];
+    NSRegularExpression*regular=[[NSRegularExpression alloc]initWithPattern:@"((http[s]{0,1}|ftp)://[a-zA-Z0-9\\.\\-]+\\.([a-zA-Z]{2,4})(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%^&*+?:_/=<>]*)?)|(www.[a-zA-Z0-9\\.\\-]+\\.([a-zA-Z]{2,4})(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%^&*+?:_/=<>]*)?)" options:NSRegularExpressionDotMatchesLineSeparators|NSRegularExpressionCaseInsensitive error:nil];
+    NSArray* array=[regular matchesInString:pattern options:0 range:NSMakeRange(0, [pattern length])];
+    for( NSTextCheckingResult * result in array){
+        NSString * string=[pattern substringWithRange:result.range];
+        NSMutableDictionary * dic = [NSMutableDictionary dictionaryWithObjectsAndKeys:string,NSStringFromRange(result.range), nil];
+        [linkArr addObject:dic];
+    }
+    // DLog(@"linkArr == %@",linkArr);
+    return linkArr;
+}
 - (void)matchString:(NSString *)dataSourceString fromView:(NSInteger) isReplyV{
 if (isReplyV == 2) {
         NSMutableArray *totalArr = [NSMutableArray arrayWithCapacity:0];
         //**********号码******
-        NSMutableArray *mobileLink = [FreedomTools matchMobileLink:dataSourceString];
+        NSMutableArray *mobileLink = [self matchMobileLink:dataSourceString];
         for (int i = 0; i < mobileLink.count; i ++) {
                 [totalArr addObject:[mobileLink objectAtIndex:i]];
         }
         //*************************
         //***********匹配网址*********
-        NSMutableArray *webLink = [FreedomTools matchWebLink:dataSourceString];
+        NSMutableArray *webLink = [self matchWebLink:dataSourceString];
         for (int i = 0; i < webLink.count; i ++) {
                 [totalArr addObject:[webLink objectAtIndex:i]];
         }
@@ -633,13 +736,13 @@ if (isReplyV == 2) {
 if(isReplyV == 0){
         [self.attributedDataShuoshuo removeAllObjects];
         //**********号码******
-        NSMutableArray *mobileLink = [FreedomTools matchMobileLink:dataSourceString];
+        NSMutableArray *mobileLink = [self matchMobileLink:dataSourceString];
         for (int i = 0; i < mobileLink.count; i ++) {
                 [self.attributedDataShuoshuo addObject:[mobileLink objectAtIndex:i]];
         }
         //*************************
         //***********匹配网址*********
-        NSMutableArray *webLink = [FreedomTools matchWebLink:dataSourceString];
+        NSMutableArray *webLink = [self matchWebLink:dataSourceString];
         for (int i = 0; i < webLink.count; i ++) {
                 [self.attributedDataShuoshuo addObject:[webLink objectAtIndex:i]];
         }
@@ -661,10 +764,10 @@ typeview = 0;
 
 NSString *matchString =  _showShuoShuo;
 
-NSArray *itemIndexs = [FreedomTools itemIndexesWithPattern:@"\\[em:(\\d+):\\]" inString:matchString];
+NSArray *itemIndexs = [YMTextData itemIndexesWithPattern:@"\\[em:(\\d+):\\]" inString:matchString];
 
 //用PlaceHolder 替换掉[em:02:]这些
-    NSString *newString = [matchString replaceCharactersAtIndexes:itemIndexs withString:PlaceHolder];
+    NSString *newString = [self replaceCharacters:matchString AtIndexes:itemIndexs withString:PlaceHolder];
     //存新的
     self.completionShuoshuo = newString;
 

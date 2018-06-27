@@ -12,6 +12,22 @@
 #import "MWPhotoBrowser.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "WXUserHelper.h"
+#import <XCategory/NSFileManager+expanded.h>
+@interface UIImagePickerController (Fixed)
+@end
+@implementation UIImagePickerController (Fixed)
+- (void)viewDidLoad{
+    [super viewDidLoad];
+    [self.navigationBar setBarTintColor:RGBACOLOR(46.0, 49.0, 50.0, 1.0)];
+    [self.navigationBar setTintColor:[UIColor whiteColor]];
+    [self.view setBackgroundColor:colorGrayBG];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont boldSystemFontOfSize:17.5f]}];
+}
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+}
+@end
 @interface WXMoreKBHelper : NSObject
 @property (nonatomic, strong) NSMutableArray *chatMoreKeyboardData;
 @end

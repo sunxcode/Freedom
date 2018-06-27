@@ -11,6 +11,7 @@
 #import "WXChatTableViewController.h"
 #import "WXUserHelper.h"
 #import "WXBaseViewController.h"
+#import <XCategory/NSFileManager+expanded.h>
 #define     MIN_FONT_SIZE           15.0f
 #define     STANDARD_FONT_SZIE      16.0f
 #define     MAX_FONT_SZIE           20.0f

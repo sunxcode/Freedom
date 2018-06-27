@@ -608,7 +608,6 @@
 		77645FF11D68384600ACCCAC /* WX.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77645FF01D68384600ACCCAC /* WX.storyboard */; };
 		776460701D68437F00ACCCAC /* WXDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 776460691D68437F00ACCCAC /* WXDBManager.m */; };
 		776463C61D6867A400ACCCAC /* UserErweima.png in Resources */ = {isa = PBXBuildFile; fileRef = 776463C51D6867A400ACCCAC /* UserErweima.png */; };
-		7772A7F41D64434200444973 /* CKRadialMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 7772A7F31D64434200444973 /* CKRadialMenu.m */; };
 		7772A80E1D64648B00444973 /* zhifubaoIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7772A7FE1D64648B00444973 /* zhifubaoIcon.png */; };
 		7772A80F1D64648B00444973 /* yingyongIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7772A7FF1D64648B00444973 /* yingyongIcon.png */; };
 		7772A8101D64648B00444973 /* shengyibaoIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7772A8001D64648B00444973 /* shengyibaoIcon.png */; };
@@ -1116,6 +1115,7 @@
 		BFAC49C120D36A0F00E5CB8D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAC49C020D36A0F00E5CB8D /* SettingsViewController.swift */; };
 		BFAC49C320D36A2700E5CB8D /* LibraryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAC49C220D36A2700E5CB8D /* LibraryCollectionViewController.swift */; };
 		BFAC49C520D3857700E5CB8D /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAC49C420D3857700E5CB8D /* FirstViewController.swift */; };
+		BFC6D93320E322D200F17378 /* XRadiaMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC6D93220E322D100F17378 /* XRadiaMenu.swift */; };
 		CE7D3D02561A884A24654308 /* Pods_Freedom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60338462214883C1C05F8646 /* Pods_Freedom.framework */; };
 /* End PBXBuildFile section */
 
@@ -1800,8 +1800,6 @@
 		776460681D68437F00ACCCAC /* WXDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXDBManager.h; sourceTree = "<group>"; };
 		776460691D68437F00ACCCAC /* WXDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXDBManager.m; sourceTree = "<group>"; };
 		776463C51D6867A400ACCCAC /* UserErweima.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UserErweima.png; sourceTree = "<group>"; };
-		7772A7F21D64434200444973 /* CKRadialMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKRadialMenu.h; sourceTree = "<group>"; };
-		7772A7F31D64434200444973 /* CKRadialMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKRadialMenu.m; sourceTree = "<group>"; };
 		7772A7FE1D64648B00444973 /* zhifubaoIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zhifubaoIcon.png; sourceTree = "<group>"; };
 		7772A7FF1D64648B00444973 /* yingyongIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yingyongIcon.png; sourceTree = "<group>"; };
 		7772A8001D64648B00444973 /* shengyibaoIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shengyibaoIcon.png; sourceTree = "<group>"; };
@@ -2376,6 +2374,7 @@
 		BFAC49C020D36A0F00E5CB8D /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		BFAC49C220D36A2700E5CB8D /* LibraryCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryCollectionViewController.swift; sourceTree = "<group>"; };
 		BFAC49C420D3857700E5CB8D /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		BFC6D93220E322D100F17378 /* XRadiaMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XRadiaMenu.swift; sourceTree = "<group>"; };
 		CF6599DF222DA1221C0BD6DC /* Pods-Freedom.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Freedom.release.xcconfig"; path = "Pods/Target Support Files/Pods-Freedom/Pods-Freedom.release.xcconfig"; sourceTree = "<group>"; };
 		ECEF9FF4F388896C86BFA3B3 /* Pods-MyFirstAPP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyFirstAPP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyFirstAPP/Pods-MyFirstAPP.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -4106,8 +4105,7 @@
 			children = (
 				71517B1B2094803300B40538 /* JSONObject.swift */,
 				71ECDFB22091EB4A00495467 /* JSPatch.framework */,
-				7772A7F21D64434200444973 /* CKRadialMenu.h */,
-				7772A7F31D64434200444973 /* CKRadialMenu.m */,
+				BFC6D93220E322D100F17378 /* XRadiaMenu.swift */,
 				BF0E8B0620DCB0B400150476 /* AppManager.h */,
 				BF0E8B0720DCB0B500150476 /* AppManager.m */,
 			);
@@ -6168,7 +6166,6 @@
 				77BFCC001E1F413C00C95B5E /* notes.md in Sources */,
 				71ECE0242092121F00495467 /* WXDiscoverViewController.m in Sources */,
 				7115A5D020AAD398000D0B96 /* PersonalCarViewController.swift in Sources */,
-				7772A7F41D64434200444973 /* CKRadialMenu.m in Sources */,
 				7115A5C220AAD345000D0B96 /* PersonalHardwareViewController.swift in Sources */,
 				713EE2DA20AD9BC50085B65D /* TaobaoMeViewController.swift in Sources */,
 				71ECDFC22091F9EF00495467 /* WXExpressionHelper.m in Sources */,
@@ -6271,6 +6268,7 @@
 				713EE31020ADA0990085B65D /* IqiyiLoginViewController.swift in Sources */,
 				7121195220AC0C0C0087E05B /* JuheMessageViewController.swift in Sources */,
 				71ECE006209210BF00495467 /* WXFriendSearchViewController.m in Sources */,
+				BFC6D93320E322D200F17378 /* XRadiaMenu.swift in Sources */,
 				713EE2B420AD900F0085B65D /* TaobaoBaseViewController.swift in Sources */,
 				7788AC611D7996E000376C95 /* DetailViewController.m in Sources */,
 				713EE2F820AD9D3C0085B65D /* DetailTableViewController.swift in Sources */,

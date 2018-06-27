@@ -373,7 +373,7 @@ class IqiyiViewController: IqiyiBaseViewController ,IqiyiHomeBoxCellDelegate {
         boxesSource = [AnyHashable]()
         bannerSource = [AnyHashable]()
         headImageArray = [AnyHashable]()
-//        let urlStr = FreedomTools.shared().urlWithHomeData()
+//        let urlStr = urlWithHomeData
 //        [AFHTTPSessionManager manager].get(urlStr, parameters: nil, progress: nil, success: {(_ task: URLSessionDataTask, _ responseObject: Any?) -> Void in
 //            self.homeTableView.mj_header.endRefreshing()
 //            headImageArray.removeAll()

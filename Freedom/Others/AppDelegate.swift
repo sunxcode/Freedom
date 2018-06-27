@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let taskID :UIBackgroundTaskIdentifier = 0
     let launchView: UIImageView = UIImageView()
     var apps = [XAPP]()
-    static let radialView:CKRadialMenu = CKRadialMenu(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+    static let radialView:XRadiaMenu = XRadiaMenu(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
     lazy var items:[[String:String]] = {
         let path = Bundle.main.path(forResource: "FreedomItems", ofType: "plist")!
         let tempItems = NSMutableArray(contentsOfFile: path) as! [[String : String]]
@@ -43,22 +43,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         for i in 0..<items.count {
             let a = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
             a.image = UIImage(named: items[i]["icon"]!)
-            AppDelegate.radialView.addPopoutView(a, withIndentifier: "\(i)")
+            let mode = PopoutModel(a,items[i]["control"]!)
+            AppDelegate.radialView.addPopoutModel(mode)
         }
-        AppDelegate.radialView.didSelectBlock = {(menu : CKRadialMenu, didExpand:Bool, didRetract:Bool,identifier:String?) -> Void in
+        AppDelegate.radialView.didSelectBlock = {(menu : XRadiaMenu, didExpand:Bool, didRetract:Bool,mode:PopoutModel?) -> Void in
             if didExpand{
             }else if didRetract{
             }else{
-                print("代理通知发现点击了控制器\(identifier!)")
-                let a: Int = Int(identifier!)!
-                if a >= 100{
-                    let app = self.apps[a - 100];
-                    let appman = AppManager.sharedInstance()
-                    appman?.openApp(withBundleIdentifier: app.bundleId)
+                print("代理通知发现点击了控制器\(mode!.name)")
+                if let action = mode?.action{
+                    action()
                 }else{
                     menu.retract()
                     UIApplication.shared.isStatusBarHidden = false
-                    let controlName:String = self.items[a]["control"]!
+                    let controlName:String = (mode?.name)!
                     let StoryBoard = UIStoryboard(name: controlName, bundle: nil)
                     let con = StoryBoard.instantiateViewController(withIdentifier:"\(controlName)TabBarController")
                     let animation = CATransition()
@@ -68,6 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     self.window?.layer.add(animation, forKey: nil)
                     self.window?.rootViewController = con
                     self.window?.makeKeyAndVisible()
+                    menu.removeFromSuperview()
                 }
             }
         }
@@ -131,7 +130,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //                }
 //            }
             print(allAPPids)
-            allAPPids = ["472208016", "481294264", "512166629", "547166701", "444934666", "310633997", "461703208", "416789970", "398453262", "333206289", "577130046", "284882215", "525463029", "454638411", "364787363", "518966501", "1110145109", "414478124", "364709193", "414706506", "932723216", "466122094", "376101648", "861891048", "414245413"]
+            allAPPids = ["472208016", "481294264", "512166629", "547166701", "444934666", "310633997", "461703208", "398453262", "333206289", "577130046", "284882215", "525463029", "454638411", "364787363", "518966501", "1110145109", "414478124", "364709193", "414706506", "932723216", "466122094", "376101648", "861891048", "414245413"]
             let appMan = AppManager.sharedInstance()
             appMan?.gotiTunesInfo(withTrackIds: allAPPids, completion: { apps in
 //                let realm = RLMRealm.default()
@@ -139,14 +138,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //                realm.addOrUpdateObjects(apps! as NSFastEnumeration)
                 DispatchQueue.main.async {
                     self.apps = apps!
-                var popoutViews = [UIView]()
+                var popoutModels = [PopoutModel]()
                 for xapp in self.apps{
-                        let a = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-                        a.image = xapp.icon
-                        popoutViews.append(a)
+                    let a = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+                    a.image = xapp.icon
+                    let mode = PopoutModel(a,xapp.trackName)
+                    mode.action = {
+                        appMan?.openApp(withBundleIdentifier: xapp.bundleId)
+                    }
+                    popoutModels.append(mode)
                     print(xapp.trackName)
                 }
-                AppDelegate.radialView.addPopoutViews(popoutViews)
+                AppDelegate.radialView.addPopoutModels(popoutModels)
 
                 }
             })

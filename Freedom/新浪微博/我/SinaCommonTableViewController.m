@@ -4,6 +4,7 @@
 //  Created by Super on 15-3-18.
 #import "SinaCommonTableViewController.h"
 #import "SinaMode.h"
+#import <XCategory/UIImage+expanded.h>
 @interface SinaCommonCell : UITableViewCell
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 - (void)setIndexPath:(NSIndexPath *)indexPath rowsInSection:(int)rows;

@@ -170,7 +170,7 @@ class IqiyiDiscoverViewController: IqiyiBaseViewController {
         discoverTableView.mj_header = MJRefreshNormalHeader(refreshingBlock: {() -> Void in
             self.dataSource = [AnyHashable]()
             self.imageArray = [AnyHashable]()
-            let urlStr = FreedomTools.sharedManager().urlWithDiscoverData()
+            let urlStr = urlWithDiscoverData
         })
         discoverTableView.mj_header.beginRefreshing()
     }
@@ -210,7 +210,7 @@ class IqiyiDiscoverViewController: IqiyiBaseViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row != 0 {
             let webVC = IqiyiWebViewController()
-            webVC.urlStr = FreedomTools.sharedManager().urlWithJianShuData()
+            webVC.urlStr = TestWebURL
             navigationController?.pushViewController(webVC, animated: true)
         }
     }

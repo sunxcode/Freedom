@@ -65,6 +65,8 @@ class LibraryCollectionViewController: XBaseViewController,ElasticMenuTransition
         return cell!
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        AppDelegate.radialView.didSelectBlock!(AppDelegate.radialView, false,false,"\(indexPath.row)")
+        let mode = PopoutModel()
+        mode.name = items[indexPath.row]["title"]!
+        AppDelegate.radialView.didSelectBlock!(AppDelegate.radialView, false,false,mode)
     }
 }

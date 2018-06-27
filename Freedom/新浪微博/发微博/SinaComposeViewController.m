@@ -63,7 +63,7 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"发送" style:UIBarButtonItemStylePlain target:self action:@selector(send)];
     self.navigationItem.rightBarButtonItem.enabled = NO;
     
-    NSString *name = [FreedomTools account].name;
+    NSString *name = [SinaAccount account].name;
     NSString *prefix = @"发微博";
     if (name) {
     UILabel *titleView = [[UILabel alloc]init];
@@ -262,7 +262,7 @@
     // 1.请求管理者
     // 2.拼接请求参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"access_token"] = [FreedomTools account].access_token;
+    params[@"access_token"] = [SinaAccount account].access_token;
     params[@"status"] = self.textView.fullText;
     // 3.发送请求
     [[AFHTTPSessionManager manager] POST:@"https://upload.api.weibo.com/2/statuses/upload.json" parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
@@ -289,7 +289,7 @@
     // 1.请求管理者
     // 2.拼接请求参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"access_token"] = [FreedomTools account].access_token;
+    params[@"access_token"] = [SinaAccount account].access_token;
     params[@"status"] = self.textView.fullText;
     
     // 3.发送请求

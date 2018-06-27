@@ -66,7 +66,7 @@
     self = [super init];
     if(self){
         [self mj_setKeyValues:iTune];
-        self.descrip = [iTune objectForJSONKey:@"description"];
+        self.descrip = [iTune objectForKey:@"description"];
         NSString *iconStr = [self.artworkUrl60 stringByReplacingOccurrencesOfString:@"60x60bb.jpg" withString:@"128x128-75.png"];
         dispatch_async(dispatch_get_main_queue(), ^{
             self.icon = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:iconStr]]];
@@ -152,7 +152,7 @@
     [[[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if(!error){
             NSDictionary *resultJSON = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-            NSArray *tempApps = [resultJSON objectForJSONKey:@"results"];
+            NSArray *tempApps = [resultJSON objectForKey:@"results"];
             NSMutableArray *apps = [NSMutableArray array];
             for(NSDictionary *dict in tempApps){
                 XAPP *app = [[XAPP alloc]initWithiTunesDict:dict];

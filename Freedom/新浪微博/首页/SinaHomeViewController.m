@@ -3,6 +3,7 @@
 #import "SinaTitleMenuViewController.h"
 #import "SinaMode.h"
 #import "SinaHomeViewController+Views.h"
+#import <XCategory/UIBarButtonItem+expanded.h>
 @interface SinaHomeViewController ()<SinaDropdownViewDelegate,UITableViewDataSource,UITableViewDelegate>
 //微博数组（里面放的都是XFStatusFrame模型，一个XFStatusFrame对象就代表一条微博）
 @property (nonatomic,strong) NSMutableArray *statusFrames;
@@ -18,7 +19,7 @@
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(friendSearch) image:@"u_personAdd"  heighlightImage:@"u_personAddHL"];
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(pop) image:@"u_scan"  heighlightImage:@"u_scan_y"];
     // 设置图片和文字
-    NSString *name = [FreedomTools account].name;
+    NSString *name = [SinaAccount account].name;
     SinaTitleButton *homePageBtn = [[SinaTitleButton alloc]init];
     [homePageBtn setTitle:name?name:@"首页" forState:UIControlStateNormal];
     [homePageBtn addTarget:self action:@selector(titleClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -28,7 +29,7 @@
     // access_token	false	string	采用OAuth授权方式为必填参数，其他授权方式不需要此参数，OAuth授权后获得。
     // uid	false	int64	需要查询的用户ID。
     NSString *url = @"https://api.weibo.com/2/users/show.json";
-    SinaAccount *account = [FreedomTools account];
+    SinaAccount *account = [SinaAccount account];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"access_token"] = account.access_token;
     params[@"uid"] = account.uid;
@@ -40,7 +41,7 @@
         [titleButton setTitle:name forState:UIControlStateNormal];
         // 存储昵称到沙盒中
         account.name = name;
-        [FreedomTools saveAccount:account];
+        [SinaAccount saveAccount:account];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
 //        DLog(@"请求失败");
     }];
@@ -54,7 +55,7 @@
 //  获得未读数
 -(void)setupUnreadCount {
     // 1.请求管理者// 2.拼接请求参数
-    SinaAccount *account = [FreedomTools account];
+    SinaAccount *account = [SinaAccount account];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"access_token"] = account.access_token;
     params[@"uid"] = account.uid;
@@ -97,7 +98,7 @@
 /*UIRefreshControl进入刷新状态：加载最新的数据*/
 -(void)refreshStatus:(UIRefreshControl *)control {
     NSString *url = @"https://api.weibo.com/2/statuses/friends_timeline.json";
-     SinaAccount *account = [FreedomTools account];
+     SinaAccount *account = [SinaAccount account];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"access_token"] = account.access_token;
     // 取出最前面的微博（最新的微博，ID最大的微博）
@@ -164,7 +165,7 @@
 // 加载更多的微博数据
 -(void)loadMoreStatus {
     // 1.请求管理者// 2.拼接请求参数
-    SinaAccount *account = [FreedomTools account];
+    SinaAccount *account = [SinaAccount account];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"access_token"] = account.access_token;
     // 取出最后面的微博（最新的微博，ID最大的微博）

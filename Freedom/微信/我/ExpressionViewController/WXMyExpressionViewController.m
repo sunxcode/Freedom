@@ -4,7 +4,9 @@
 #import "WXMyExpressionViewController.h"
 #import "WXExpressionDetailViewController.h"
 #import "WXExpressionHelper.h"
+#import <XCategory/UIImage+expanded.h>
 #import "TLEmojiBaseCell.h"
+#import <XCategory/UIBarButtonItem+expanded.h>
 @protocol WXMyExpressionCellDelegate <NSObject>
 - (void)myExpressionCellDeleteButtonDown:(TLEmojiGroup *)group;
 @end

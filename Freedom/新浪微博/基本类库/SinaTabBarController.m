@@ -14,6 +14,7 @@
 #import <objc/runtime.h>
 #import <Availability.h>
 #import <QuartzCore/QuartzCore.h>
+#import <XCategory/UIImage+expanded.h>
 #import <Accelerate/Accelerate.h>
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wobjc-missing-property-synthesis"
@@ -655,7 +656,7 @@
     SinaTabBar *tab = [[SinaTabBar alloc]init];
     tab.delegate = self;
     [self setValue:tab forKey:@"tabBar"];
-    SinaAccount *account = [FreedomTools account];
+    SinaAccount *account = [SinaAccount account];
     //设置根控制器
     if (account) {//第三方登录状态
         // 切换窗口的根控制器
@@ -681,7 +682,7 @@
                                 @"uid":@"5645754790"};
         account = [SinaAccount accountWithDict:acont];
         //储存账号信息
-        [FreedomTools saveAccount:account];
+        [SinaAccount saveAccount:account];
         [self presentViewController:[[SinaAuthController alloc]init] animated:YES completion:^{
         }];
 //        [UIApplication sharedApplication].delegate.window.rootViewController = [[XFOAuthController alloc]init];

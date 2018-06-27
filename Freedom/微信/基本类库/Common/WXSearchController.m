@@ -2,7 +2,8 @@
 //  Freedom
 // Created by Super
 #import "WXSearchController.h"
-    
+
+#import <XCategory/UIImage+expanded.h>
 @implementation WXSearchController
 - (id)initWithSearchResultsController:(UIViewController *)searchResultsController{
     if (self = [super initWithSearchResultsController:searchResultsController]) {

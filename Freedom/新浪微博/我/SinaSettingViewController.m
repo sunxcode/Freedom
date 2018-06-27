@@ -3,6 +3,7 @@
 //  Created by Super on 15-3-15.
 #import "SinaSettingViewController.h"
 #import "SinaGeneralSettingViewController.h"
+#import <XCategory/UIImage+expanded.h>
 @interface SinaSettingViewController ()
 @end
 @implementation SinaSettingViewController

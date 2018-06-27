@@ -282,7 +282,9 @@ class FirstViewController: XBaseViewController,UICollectionViewDataSource, UICol
         showingSettings = !showingSettings
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        AppDelegate.radialView.didSelectBlock!(AppDelegate.radialView,false,false,"\(indexPath.row)")
+        let mode = PopoutModel()
+        mode.name = items[indexPath.row]["title"]!
+        AppDelegate.radialView.didSelectBlock!(AppDelegate.radialView, false,false,mode)
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return items.count

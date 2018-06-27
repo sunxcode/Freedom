@@ -83,14 +83,14 @@
 - (UILabel *) nikenameLabel{
     if (_nikenameLabel == nil) {
         _nikenameLabel = [[UILabel alloc] init];
-        [_nikenameLabel setFont:[UIFont fontMineNikename]];
+        [_nikenameLabel setFont:[UIFont systemFontOfSize:17.0f]];
     }
     return _nikenameLabel;
 }
 - (UILabel *) usernameLabel{
     if (_usernameLabel == nil) {
         _usernameLabel = [[UILabel alloc] init];
-        [_usernameLabel setFont:[UIFont fontMineUsername]];
+        [_usernameLabel setFont:[UIFont systemFontOfSize:14.0f]];
     }
     return _usernameLabel;
 }

@@ -5,6 +5,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "WXShakeSettingViewController.h"
 #import <BlocksKit/BlocksKit+UIKit.h>
+#import <XCategory/NSFileManager+expanded.h>
 @interface WXShakeHelper : NSObject
 @property (nonatomic, strong) NSMutableArray *shakeSettingData;
 @end

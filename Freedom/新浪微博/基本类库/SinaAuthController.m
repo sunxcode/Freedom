@@ -93,7 +93,7 @@
         // 将返回的账号字典数据 --> 模型，存进沙盒
         SinaAccount *account = [SinaAccount accountWithDict:responseObject];
         //储存账号信息
-        [FreedomTools saveAccount:account];
+        [SinaAccount saveAccount:account];
         
         // 切换窗口的根控制器
         //        UIWindow *window = [UIApplication sharedApplication].keyWindow;

@@ -8,6 +8,7 @@
 #import "WXUserHelper.h"
 #import "WXTableViewCell.h"
 #import "WXModes.h"
+#import <XCategory/NSFileManager+expanded.h>
 #import "UIButton+WebCache.h"
 #define     MINE_SPACE_X        14.0f
 #define     MINE_SPACE_Y        12.0f
@@ -144,14 +145,14 @@
 - (UILabel *)shownameLabel{
     if (_shownameLabel == nil) {
         _shownameLabel = [[UILabel alloc] init];
-        [_shownameLabel setFont:[UIFont fontMineNikename]];
+        [_shownameLabel setFont:[UIFont systemFontOfSize:17.0f]];
     }
     return _shownameLabel;
 }
 - (UILabel *)usernameLabel{
     if (_usernameLabel == nil) {
         _usernameLabel = [[UILabel alloc] init];
-        [_usernameLabel setFont:[UIFont fontMineUsername]];
+        [_usernameLabel setFont:[UIFont systemFontOfSize:14.0f]];
         [_usernameLabel setTextColor:[UIColor grayColor]];
     }
     return _usernameLabel;
@@ -160,7 +161,7 @@
     if (_nikenameLabel == nil) {
         _nikenameLabel = [[UILabel alloc] init];
         [_nikenameLabel setTextColor:[UIColor grayColor]];
-        [_nikenameLabel setFont:[UIFont fontMineUsername]];
+        [_nikenameLabel setFont:[UIFont systemFontOfSize:14.0f]];
     }
     return _nikenameLabel;
 }

@@ -9,7 +9,9 @@
 #import "WXModes.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "WXCommonSettingViewController.h"
+#import <XCategory/UIImage+expanded.h>
 #import "WXBaseViewController.h"
+#import <XCategory/NSFileManager+expanded.h>
 #define     SPACE_EDGE                      10
 #define     WIDTH_COLLECTIONVIEW_CELL       (APPW - SPACE_EDGE * 2) / 3 * 0.98
 #define     SPACE_COLLECTIONVIEW_CELL       (APPW - SPACE_EDGE * 2 - WIDTH_COLLECTIONVIEW_CELL * 3) / 2

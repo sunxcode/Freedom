@@ -83,7 +83,7 @@
 - (UILabel *)usernameLabel{
     if (_usernameLabel == nil) {
         _usernameLabel = [[UILabel alloc] init];
-        [_usernameLabel setFont:[UIFont fontFriendsUsername]];
+        [_usernameLabel setFont:[UIFont systemFontOfSize:17.0f]];
     }
     return _usernameLabel;
 }

@@ -6,6 +6,7 @@
 #define     PAGE_MESSAGE_COUNT      15
 #import "UIImage+GIF.h"
 #import <UMMobClick/MobClick.h>
+#import <XCategory/NSFileManager+expanded.h>
 #define     MSG_SPACE_TOP       2
 #define     MSG_SPACE_TOP       14
 #define     MSG_SPACE_BTM       20
@@ -240,7 +241,9 @@ static UILabel *textLabel;
 - (id)init{
     if (self = [super init]) {
         textLabel = [[UILabel alloc] init];
-        [textLabel setFont:[UIFont fontTextMessageText]];
+        CGFloat size = [[NSUserDefaults standardUserDefaults] doubleForKey:@"CHAT_FONT_SIZE"];
+        if (size == 0)size = 16.0f;
+        [textLabel setFont:[UIFont systemFontOfSize:size]];
         [textLabel setNumberOfLines:0];
     }
     return self;
@@ -337,7 +340,9 @@ static UILabel *textLabel;
 - (UILabel *)messageLabel{
     if (_messageLabel == nil) {
         _messageLabel = [[UILabel alloc] init];
-        [_messageLabel setFont:[UIFont fontTextMessageText]];
+        CGFloat size = [[NSUserDefaults standardUserDefaults] doubleForKey:@"CHAT_FONT_SIZE"];
+        if (size == 0)size = 16.0f;
+        [_messageLabel setFont:[UIFont systemFontOfSize:size]];
         [_messageLabel setNumberOfLines:0];
     }
     return _messageLabel;

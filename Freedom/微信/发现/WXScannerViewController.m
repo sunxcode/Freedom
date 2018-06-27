@@ -3,6 +3,7 @@
 //  Created by Super on 16/2/24.
 #import "WXScannerViewController.h"
 #import <AVFoundation/AVFoundation.h>
+#import <BlocksKit/BlocksKit.h>
 @interface WXScannerView : UIView
 /*隐藏扫描指示器，默认NO*/
 @property (nonatomic, assign) BOOL hiddenScannerIndicator;

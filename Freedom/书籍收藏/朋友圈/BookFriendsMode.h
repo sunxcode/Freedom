@@ -88,4 +88,5 @@
 /*点赞区域高度@return 高度*/
 - (float)calculateFavourHeightWithWidth:(float)sizeWidth;
 //- (id)initWithMessage:(WFMessageBody *)messageBody;
++ (NSArray *)itemIndexesWithPattern:(NSString *)pattern inString:(NSString *)findingString;
 @end

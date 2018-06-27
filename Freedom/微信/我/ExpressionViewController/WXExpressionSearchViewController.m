@@ -6,6 +6,7 @@
 #import "WXExpressionHelper.h"
 #import "WXRootViewController.h"
 #import "WXExpressionChosenViewController.h"
+#import <XCategory/UIBarButtonItem+expanded.h>
 #define         HEGIHT_EXPCELL      80
 @interface WXExpressionSearchViewController () <WXExpressionCellDelegate>
 @property (nonatomic, strong) WXExpressionHelper *proxy;

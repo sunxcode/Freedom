@@ -5,6 +5,7 @@
 #import "WXUserHelper.h"
 #import "WXMessageManager.h"
 #import <XCategory/NSDate+expanded.h>
+#import <XCategory/NSFileManager+expanded.h>
 @implementation WXDBMessageStore
 - (id)init{
     if (self = [super init]) {

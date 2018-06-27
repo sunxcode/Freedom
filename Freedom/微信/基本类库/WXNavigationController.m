@@ -333,6 +333,6 @@ typedef id (*_IMP)(id, SEL, id);
     [self.view setBackgroundColor:colorGrayBG];
 
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],
-                                                           NSFontAttributeName:[UIFont fontNavBarTitle]}];
+                                                           NSFontAttributeName:[UIFont boldSystemFontOfSize:17.5f]}];
 }
 @end

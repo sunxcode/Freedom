@@ -5,6 +5,7 @@
 #import "WXExpressionChosenViewController.h"
 #import "WXExpressionPublicViewController.h"
 #import "WXMyExpressionViewController.h"
+#import <XCategory/UIBarButtonItem+expanded.h>
 #define     WIDTH_EXPRESSION_SEGMENT    APPW * 0.55
 @interface WXExpressionViewController ()
 @property (nonatomic, strong) UISegmentedControl *segmentedControl;

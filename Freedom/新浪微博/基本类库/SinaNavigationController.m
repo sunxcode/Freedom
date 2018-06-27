@@ -2,6 +2,7 @@
 //  Freedom
 //  Created by Super on 15/9/14.
 #import "SinaNavigationController.h"
+#import <XCategory/UIBarButtonItem+expanded.h>
 @implementation SinaNavigationController
 +(void)initialize {
     UIBarButtonItem *item= [UIBarButtonItem appearance];

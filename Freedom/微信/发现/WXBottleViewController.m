@@ -2,6 +2,7 @@
 //  Freedom
 // Created by Super
 #import "WXBottleViewController.h"
+#import <BlocksKit/BlocksKit.h>
 typedef NS_ENUM(NSUInteger, TLBottleButtonType) {
     TLBottleButtonTypeThrow,
     TLBottleButtonTypePickUp,

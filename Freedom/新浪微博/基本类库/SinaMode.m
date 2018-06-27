@@ -7,6 +7,30 @@
 //
 #import "SinaMode.h"
 @implementation SinaAccount
+/*存储账号信息@param account 账号模型*/
++ (void)saveAccount:(SinaAccount *)account{
+    // 自定义对象的存储必须用NSKeyedArchiver
+    NSString *XFAccountPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"account.data"];
+    [NSKeyedArchiver archiveRootObject:account toFile:XFAccountPath];
+}
+/*返回账号信息@return 账号模型（如果账号过期，返回nil）*/
++ (SinaAccount *)account{
+    NSString *XFAccountPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"account.data"];
+    SinaAccount *account = [NSKeyedUnarchiver unarchiveObjectWithFile:XFAccountPath];
+    /* 验证账号是否过期 */
+    // 过期的秒数
+    long long expires_in = [account.expires_in longLongValue];
+    // 获得过期时间
+    NSDate *expiresTime = [account.created_time dateByAddingTimeInterval:expires_in];
+    // 获得当前时间
+    NSDate *now = [NSDate date];
+    // 如果expiresTime <= now，过期
+    NSComparisonResult result = [expiresTime compare:now];
+    if (result != NSOrderedDescending) { // 过期
+        return nil;
+    }
+    return account;
+}
 +(instancetype)accountWithDict:(NSDictionary *)dict {
     
     SinaAccount *account = [[self alloc]init];

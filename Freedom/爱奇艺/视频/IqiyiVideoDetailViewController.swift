@@ -156,11 +156,11 @@ class IqiyiVideoDetailViewController: IqiyiBaseViewController {
     func loadVideoDetailData() {
         self.videoDM = IqiyiVideoDetailModel()
         recommendArray = [AnyHashable]()
-//        let urlStr = FreedomTools.sharedManager().url(withVideoDetailData: iid)
+//        let urlStr = "http://api.3g.tudou.com/v4/play/detail?guid=7066707c5bdc38af1621eaf94a6fe779&idfa=ACAF9226-F987-417B-A708-C95D482A732D&iid=\(iid)&network=WIFI&operator=中国联通_46001&ouid=10099212c9e3829656d4ea61e3858d53253b2f07&pid=c0637223f8b69b02&show_playlist=1&vdid=9AFEE982-6F94-4F57-9B33-69523E044CF4&ver=4.9.1"
 //            [AFHTTPSessionManager manager].get(url, parameters: nil, progress: nil, success: {(_ task: URLSessionDataTask, _ responseObject: Any?) -> Void in
 //                let videoDM = JFVideoDetailModel.mj_object(withKeyValues: responseObject?["detail"])
 //                self.videoDM = videoDM
-//                let videoUrl = FreedomTools.shared().url(withVideo: self.iid)
+//                let videoUrl = "http://www.tudou.com/programs/view/html5embed.action?code=\(self.iid)"
 //                if let anUrl = URL(string: videoUrl) {
 //                    self.videoDetailWebView.loadRequest(URLRequest(url: anUrl))
 //                }
@@ -169,8 +169,8 @@ class IqiyiVideoDetailViewController: IqiyiBaseViewController {
 //            })
     }
     func loadRecommentData() {
-        let urlStr = FreedomTools.sharedManager().url(withRecommentdata: iid)
-        let url = (urlStr! as NSString)//.addingPercentEscapes(using: .utf8)
+        let urlStr = "http://rec.api.3g.tudou.com/v4/recommend/video?count=20&filterpay=0&guid=7066707c5bdc38af1621eaf94a6fe779&idfa=ACAF9226-F987-417B-A708-C95D482A732D&itemCode=\(iid)&network=WIFI&ouid=10099212c9e3829656d4ea61e3858d53253b2f07&pg=1&pid=c0637223f8b69b02&pz=30&vdid=9AFEE982-6F94-4F57-9B33-69523E044CF4&ver=4.9.1"
+//        let url = (urlStr as NSString)//.addingPercentEscapes(using: .utf8)
 //        [AFHTTPSessionManager manager].get(url, parameters: nil, progress: nil, success: {(_ task: URLSessionDataTask, _ responseObject: Any?) -> Void in
 //            //这个地方要先移除模型数组里面数据
 //            recommendArray.removeAll()

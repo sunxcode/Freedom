@@ -6,6 +6,7 @@
 #import "WXUserHelper.h"
 #import "WXChatViewController.h"
 #import "WXRootViewController.h"
+#import <XCategory/NSFileManager+expanded.h>
 #define     FRIENDS_SPACE_X         10.0f
 #define     FRIENDS_SPACE_Y         9.5f
 @interface WXGroupCell ()
@@ -59,7 +60,7 @@
 - (UILabel *) usernameLabel{
     if (_usernameLabel == nil) {
         _usernameLabel = [[UILabel alloc] init];
-        [_usernameLabel setFont:[UIFont fontFriendsUsername]];
+        [_usernameLabel setFont:[UIFont systemFontOfSize:17.0f]];
     }
     return _usernameLabel;
 }

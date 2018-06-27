@@ -3,6 +3,7 @@
 // Created by Super
 #import "WXQRCodeViewController.h"
 #import <BlocksKit/BlocksKit+UIKit.h>
+#import <XCategory/NSFileManager+expanded.h>
 #define         SPACE_EDGE                  20
 #define         WIDTH_AVATAR                68
 @interface WXQRCodeViewController ()
@@ -58,8 +59,27 @@
     [self p_addMasonry];
 }
 #pragma mark - Public Methods -
+- (void)captureScreenshotFromView:(UIView *)view rect:(CGRect)rect finished:(void (^)(NSString *avatarPath))finished{
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        UIGraphicsBeginImageContextWithOptions(rect.size, NO, 2.0);
+        [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+        UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        CGImageRef imageRef = image.CGImage;
+        CGImageRef imageRefRect =CGImageCreateWithImageInRect(imageRef, CGRectMake(rect.origin.x * 2, rect.origin.y * 2, rect.size.width * 2, rect.size.height * 2));
+        UIImage *ansImage = [[UIImage alloc] initWithCGImage:imageRefRect];
+        NSData *imageViewData = UIImagePNGRepresentation(ansImage);
+        NSString *imageName = [NSString stringWithFormat:@"%.0lf.png", [NSDate date].timeIntervalSince1970 * 10000];
+        NSString *savedImagePath = [NSFileManager pathScreenshotImage:imageName];
+        [imageViewData writeToFile:savedImagePath atomically:YES];
+        CGImageRelease(imageRefRect);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            finished(imageName);
+        });
+    });
+}
 - (void)saveQRCodeToSystemAlbum{
-    [FreedomTools captureScreenshotFromView:self.whiteBGView rect:self.whiteBGView.bounds finished:^(NSString *avatarPath) {
+    [self captureScreenshotFromView:self.whiteBGView rect:self.whiteBGView.bounds finished:^(NSString *avatarPath) {
         NSString *path = [NSFileManager pathScreenshotImage:avatarPath];
         UIImage *image = [UIImage imageNamed:path];
         UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);

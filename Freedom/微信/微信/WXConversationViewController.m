@@ -8,6 +8,7 @@
 #import "WXTableViewCell.h"
 #import "WXModes.h"
 #import "WXUserHelper.h"
+#import <XCategory/NSFileManager+expanded.h>
 #define     CONV_SPACE_X            10.0f
 #define     CONV_SPACE_Y            9.5f
 #define     REDPOINT_WIDTH          10.0f
@@ -330,14 +331,14 @@
 - (UILabel *)usernameLabel{
     if (_usernameLabel == nil) {
         _usernameLabel = [[UILabel alloc] init];
-        [_usernameLabel setFont:[UIFont fontConversationUsername]];
+        [_usernameLabel setFont:[UIFont systemFontOfSize:17.0f]];
     }
     return _usernameLabel;
 }
 - (UILabel *)detailLabel{
     if (_detailLabel == nil) {
         _detailLabel = [[UILabel alloc] init];
-        [_detailLabel setFont:[UIFont fontConversationDetail]];
+        [_detailLabel setFont:[UIFont systemFontOfSize:14.0f]];
         [_detailLabel setTextColor:[UIColor grayColor]];
     }
     return _detailLabel;
@@ -345,7 +346,7 @@
 - (UILabel *)timeLabel{
     if (_timeLabel == nil) {
         _timeLabel = [[UILabel alloc] init];
-        [_timeLabel setFont:[UIFont fontConversationTime]];
+        [_timeLabel setFont:[UIFont systemFontOfSize:12.5f]];
         [_timeLabel setTextColor:RGBACOLOR(160, 160, 160, 1.0)];
     }
     return _timeLabel;

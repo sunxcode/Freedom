@@ -107,7 +107,10 @@
     if (section == 0) {
         WXAboutHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"TLAboutHeaderView"];
         [headerView setImagePath:@"AppLogo"];
-        [headerView setTitle:[NSString stringWithFormat:@"微信 TLChat %@", [FreedomTools sharedManager].version]];
+        NSString *shortVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+        NSString *buildID = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+        NSString *version = [NSString stringWithFormat:@"%@ (%@)", shortVersion, buildID];
+        [headerView setTitle:[NSString stringWithFormat:@"微信 TLChat %@", version]];
         return headerView;
     }
     return nil;

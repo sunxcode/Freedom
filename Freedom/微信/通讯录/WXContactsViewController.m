@@ -9,6 +9,7 @@
 #define     FRIENDS_SPACE_Y         9.5f
 #import "WXTableViewCell.h"
 #import <UMMobClick/MobClick.h>
+#import <XCategory/NSFileManager+expanded.h>
 #import "WXFriendsViewController.h"
 /*通讯录 Cell*/
 @interface WechatContactCell : WXTableViewCell
@@ -100,7 +101,7 @@
 - (UILabel *)usernameLabel{
     if (_usernameLabel == nil) {
         _usernameLabel = [[UILabel alloc] init];
-        [_usernameLabel setFont:[UIFont fontFriendsUsername]];
+        [_usernameLabel setFont:[UIFont systemFontOfSize:17.0f]];
     }
     return _usernameLabel;
 }

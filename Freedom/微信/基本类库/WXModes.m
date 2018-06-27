@@ -218,6 +218,7 @@
 //  Freedom
 // Created by Super
 
+static UILabel *hLabel = nil;
 @implementation WXSettingGroup
 + (WXSettingGroup *) createGroupWithHeaderTitle:(NSString *)headerTitle
                                     footerTitle:(NSString *)footerTitle
@@ -241,11 +242,21 @@
 #pragma mark - Setter
 - (void) setHeaderTitle:(NSString *)headerTitle{
     _headerTitle = headerTitle;
-    _headerHeight = [FreedomTools getTextHeightOfText:headerTitle font:[UIFont fontSettingHeaderAndFooterTitle] width:APPW - 30];
+    _headerHeight = [self getTextHeightOfText:headerTitle font:[UIFont systemFontOfSize:14.0f] width:APPW - 30];
 }
 - (void) setFooterTitle:(NSString *)footerTitle{
     _footerTitle = footerTitle;
-    _footerHeight = [FreedomTools getTextHeightOfText:footerTitle font:[UIFont fontSettingHeaderAndFooterTitle] width:APPW - 30];
+    _footerHeight = [self getTextHeightOfText:footerTitle font:[UIFont systemFontOfSize:14.0f] width:APPW - 30];
+}
+- (CGFloat) getTextHeightOfText:(NSString *)text font:(UIFont *)font width:(CGFloat)width{
+    if (hLabel == nil) {
+        hLabel = [[UILabel alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        [hLabel setNumberOfLines:0];
+    }
+    hLabel.frameWidth = width;
+    [hLabel setFont:font];
+    [hLabel setText:text];
+    return [hLabel sizeThatFits:CGSizeMake(width, MAXFLOAT)].height;
 }
 #pragma mark - Getter
 - (NSUInteger) count{

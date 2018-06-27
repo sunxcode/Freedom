@@ -5,7 +5,8 @@
 #define     HEIGHT_TOP_SPACE            15
 #define     HEIGHT_COLLECTIONVIEW       (215.0f * 0.85 - HEIGHT_TOP_SPACE)
 #define     WIDTH_COLLECTION_CELL       60
-    
+
+#import <XCategory/UIImage+expanded.h>
 @implementation TLMoreKeyboardItem
 + (TLMoreKeyboardItem *)createByType:(TLMoreKeyboardItemType)type title:(NSString *)title imagePath:(NSString *)imagePath{
     TLMoreKeyboardItem *item = [[TLMoreKeyboardItem alloc] init];

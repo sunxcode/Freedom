@@ -3,7 +3,7 @@
 // Created by Super
 #import "WXInfoViewController.h"
 #import <BlocksKit/BlocksKit+UIKit.h>
-    
+#import <XCategory/UIImage+expanded.h>
 @interface WXInfoCell ()
 @property (nonatomic, strong) UILabel *subTitleLabel;
 @end

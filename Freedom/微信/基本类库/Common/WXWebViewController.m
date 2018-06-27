@@ -3,6 +3,7 @@
 // Created by Super
 #import "WXWebViewController.h"
 #import <UMMobClick/MobClick.h>
+#import <XCategory/UIBarButtonItem+expanded.h>
 #define     WEBVIEW_NAVBAR_ITEMS_FIXED_SPACE    9
 @interface WXWebViewController ()
 @property (nonatomic, strong) WKWebView *webView;

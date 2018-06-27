@@ -199,7 +199,7 @@
     if (_titleLabel == nil) {
         _titleLabel = [[UILabel alloc] init];
         [_titleLabel setTextColor:[UIColor grayColor]];
-        [_titleLabel setFont:[UIFont fontSettingHeaderAndFooterTitle]];
+        [_titleLabel setFont:[UIFont systemFontOfSize:14.0f]];
         [_titleLabel setNumberOfLines:0];
     }
     return _titleLabel;

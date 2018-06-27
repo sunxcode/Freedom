@@ -6,6 +6,8 @@
 #import "MWPhotoBrowser.h"
 #import "WXRootViewController.h"
 #import "WXMessageManager.h"
+#import <XCategory/UIBarButtonItem+expanded.h>
+#import <XCategory/NSFileManager+expanded.h>
 #define     HEIGHT_collectionView_HEADER    28
 #define     WIDTH_collectionView_CELL       APPW / 4 * 0.98
 #define     SPACE_collectionView_CELL       (APPW - WIDTH_collectionView_CELL * 4) / 3
