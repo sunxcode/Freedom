@@ -12,7 +12,7 @@
         <!--Sina Tab Bar Controller-->
         <scene sceneID="BZa-hR-hBI">
             <objects>
-                <tabBarController storyboardIdentifier="SinaTabBarController" id="aHO-sl-U6X" customClass="SinaTabBarController" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="SinaTabBarController" id="aHO-sl-U6X" customClass="SinaTabBarController" customModule="Freedom" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="v0l-2q-NwT">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -32,8 +32,8 @@
         <!--首页-->
         <scene sceneID="qjb-qW-KsX">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="l0S-Oy-Rb2" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="首页" id="bT9-Hm-TxU"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="l0S-Oy-Rb2" customClass="SinaNavigationController" customModule="Freedom" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="首页" image="tabbar_home" selectedImage="tabbar_home_selected" id="bT9-Hm-TxU"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Qop-xT-AGn">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -48,10 +48,10 @@
             </objects>
             <point key="canvasLocation" x="118" y="-1359"/>
         </scene>
-        <!--View Controller-->
+        <!--Sina Home View Controller-->
         <scene sceneID="O9r-3S-8ih">
             <objects>
-                <viewController id="I4q-Sg-lAt" sceneMemberID="viewController">
+                <viewController id="I4q-Sg-lAt" customClass="SinaHomeViewController" customModule="Freedom" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qGT-fJ-MaU"/>
                         <viewControllerLayoutGuide type="bottom" id="Wlh-As-z1r"/>
@@ -70,8 +70,8 @@
         <!--消息-->
         <scene sceneID="aeo-Jt-znd">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DiR-U0-loE" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="消息" id="4kl-FR-XOm"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DiR-U0-loE" customClass="SinaNavigationController" customModule="Freedom" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="消息" image="tabbar_message_center" selectedImage="tabbar_message_center_selected" id="4kl-FR-XOm"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="WR2-W3-yDh">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -86,10 +86,10 @@
             </objects>
             <point key="canvasLocation" x="118" y="-734"/>
         </scene>
-        <!--View Controller-->
+        <!--Sina Message View Controller-->
         <scene sceneID="ovH-OA-JY6">
             <objects>
-                <viewController id="hCj-g2-x8X" sceneMemberID="viewController">
+                <viewController id="hCj-g2-x8X" customClass="SinaMessageViewController" customModule="Freedom" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="AVC-Tq-XaN"/>
                         <viewControllerLayoutGuide type="bottom" id="ACh-uJ-XLw"/>
@@ -108,8 +108,8 @@
         <!--发现-->
         <scene sceneID="HCH-Gw-TYq">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="m2L-gK-Fi5" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="发现" id="1J9-fp-yHT"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="m2L-gK-Fi5" customClass="SinaNavigationController" customModule="Freedom" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="发现" image="tabbar_discoverS" selectedImage="tabbar_discover_selectedS" id="1J9-fp-yHT"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="SwZ-Wg-GpQ">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -124,10 +124,10 @@
             </objects>
             <point key="canvasLocation" x="118" y="-92"/>
         </scene>
-        <!--View Controller-->
+        <!--Sina Discover View Controller-->
         <scene sceneID="5k1-sE-IaT">
             <objects>
-                <viewController id="U4D-E2-GJE" sceneMemberID="viewController">
+                <viewController id="U4D-E2-GJE" customClass="SinaDiscoverViewController" customModule="Freedom" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="gQH-Ua-EvB"/>
                         <viewControllerLayoutGuide type="bottom" id="VM4-yF-f3c"/>
@@ -146,8 +146,8 @@
         <!--我-->
         <scene sceneID="NF2-6h-DpH">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="VGX-jh-Dea" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="我" id="320-6D-9Ee"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="VGX-jh-Dea" customClass="SinaNavigationController" customModule="Freedom" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="我" image="tabbar_profile" selectedImage="tabbar_profile_selected" id="320-6D-9Ee"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="7XR-Hn-M9u">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -162,10 +162,10 @@
             </objects>
             <point key="canvasLocation" x="118" y="549"/>
         </scene>
-        <!--View Controller-->
+        <!--Sina Me View Controller-->
         <scene sceneID="0le-Ii-Etg">
             <objects>
-                <viewController id="gaN-sG-w4q" sceneMemberID="viewController">
+                <viewController id="gaN-sG-w4q" customClass="SinaMeViewController" customModule="Freedom" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SUd-xv-vAM"/>
                         <viewControllerLayoutGuide type="bottom" id="LLC-za-7UQ"/>
@@ -182,4 +182,14 @@
             <point key="canvasLocation" x="721" y="548"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="tabbar_discoverS" width="30" height="30"/>
+        <image name="tabbar_discover_selectedS" width="30" height="30"/>
+        <image name="tabbar_home" width="30" height="30"/>
+        <image name="tabbar_home_selected" width="30" height="30"/>
+        <image name="tabbar_message_center" width="30" height="30"/>
+        <image name="tabbar_message_center_selected" width="30" height="30"/>
+        <image name="tabbar_profile" width="30" height="30"/>
+        <image name="tabbar_profile_selected" width="30" height="30"/>
+    </resources>
 </document>

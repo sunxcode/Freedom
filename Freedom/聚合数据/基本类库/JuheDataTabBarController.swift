@@ -3,7 +3,7 @@
 //  Freedom
 import UIKit
 import XExtension
-class BaseTabBar: UITabBar {
+class JuheTabBar: UITabBar {
     var centerButton = UIButton()
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -44,7 +44,7 @@ class JuheDataTabBarController: XBaseTabBarController{
             vc.tabBarItem.tag = i;
             i += 1
         }
-        let tabbar = BaseTabBar()
+        let tabbar = JuheTabBar()
         self.setValue(tabbar, forKeyPath: "tabBar")
         tabbar.centerButton.addTarget(self, action:#selector(centerClicked), for: .touchUpInside)
     }
