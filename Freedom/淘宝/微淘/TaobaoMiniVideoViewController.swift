@@ -35,7 +35,7 @@ class TaobaoMiniVideoViewCell:BaseTableViewCell{
         pinglun.titleLabel?.font = Font(12)
         line.frame = CGRect(x: 0, y: 280 - 1, width: APPW, height: 1)
         addSubviews([name!, times!, picV, cellContentView, sees!, zan, pinglun])
-        icon.image = UIImage(named: "xin@2x")
+        icon.image = UIImage(named: "xin")
         name?.text = "微淘发现"
         times?.text = "1-7"
         picV.image = UIImage(named: "image4.jpg")

@@ -76,7 +76,6 @@
     eMark.markChapter = [NSString stringWithFormat:@"%zi",currentChapter];
     eMark.markContent = [chapterContent substringWithRange:chapterRange];
     eMark.markTime    = locationString;
-    //  DLog(@"chapterRange == %@",NSStringFromRange(chapterRange));
     if (![self checkIfHasBookmark:chapterRange withChapter:currentChapter]) {//没加书签
         
         NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:epubBookName];

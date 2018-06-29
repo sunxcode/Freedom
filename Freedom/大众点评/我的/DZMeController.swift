@@ -34,7 +34,7 @@ class DZMeController: DZBaseViewController {
     func buildUI() {
         title = "我的"
         //设置右上角按钮
-        let send = UIBarButtonItem(image: UIImage(named: "personal_icon_send@2x")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(self.sendMessage))
+        let send = UIBarButtonItem(image: UIImage(named: "personal_icon_send")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(self.sendMessage))
         navigationItem.rightBarButtonItem = send
         //设置左上角按钮
         let service = UIBarButtonItem(title: "联系客服", style: .plain, target: self, action: #selector(self.serviceAction))

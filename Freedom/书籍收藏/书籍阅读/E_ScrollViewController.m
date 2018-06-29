@@ -36,7 +36,7 @@
 - (CDSideBarController*)initWithImages:(NSArray*)images{
     //    _menuButton = [UIButton buttonWithType:UIButtonTypeCustom];
     //    _menuButton.frame = CGRectMake(0, 0, 40, 40);
-    //    [_menuButton setImage:[UIImage imageNamed:@"menuIcon.png"] forState:UIControlStateNormal];
+    //    [_menuButton setImage:[UIImage imageNamed:@"menuIcon"] forState:UIControlStateNormal];
     //    [_menuButton addTarget:self action:@selector(showMenu) forControlEvents:UIControlEventTouchUpInside];
     _backgroundMenuView = [[UIView alloc] init];
     _menuColor = [UIColor whiteColor];
@@ -172,9 +172,9 @@
     [super viewDidLoad];
     [E_HUDView showMsg:@"长按选择文本" inView:nil];
     UIImage *sina = [UIImage imageNamed:@"u_icon_sina"];
-    UIImage *friend=[UIImage imageNamed:@"friend.png"];
+    UIImage *friend=[UIImage imageNamed:@"friend"];
     UIImage *weixin = [UIImage imageNamed:@"u_icon_wechart"];
-    UIImage *menu = [UIImage imageNamed:@"menuClose.png"];
+    UIImage *menu = [UIImage imageNamed:@"menuClose"];
     NSArray *imageList = [NSArray arrayWithObjects:sina,friend,weixin,menu,nil];
     sideBar = [[CDSideBarController alloc] initWithImages:imageList];
     sideBar.delegate = self;
@@ -188,7 +188,7 @@
     if (themeID == 1) {
         _themeImage = nil;
     }else{
-        _themeImage = [UIImage imageNamed:[NSString stringWithFormat:@"reader_bg%ld.png",(long)themeID]];
+        _themeImage = [UIImage imageNamed:[NSString stringWithFormat:@"reader_bg%ld",(long)themeID]];
     }
     E_EveryChapter *chapter = [[E_ReaderDataSource shareInstance] openChapter];
     [self parseChapter:chapter];
@@ -579,7 +579,7 @@
     if (theme == 1) {
         _themeImage = nil;
     }else{
-        _themeImage = [UIImage imageNamed:[NSString stringWithFormat:@"reader_bg%ld.png",(long)theme]];
+        _themeImage = [UIImage imageNamed:[NSString stringWithFormat:@"reader_bg%ld",(long)theme]];
     }
     [self showPage:self.readPage];
 }

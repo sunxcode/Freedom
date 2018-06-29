@@ -159,7 +159,7 @@
     [self addSubview:backBtn];
     UIButton *multifunctionBtn = [UIButton buttonWithType:0];
     multifunctionBtn.frame = CGRectMake(self.frame.size.width - 10 - 60, 20, 60, 44);
-    [multifunctionBtn setImage:[UIImage imageNamed:@"reader_more.png"] forState:0];
+    [multifunctionBtn setImage:[UIImage imageNamed:@"reader_more"] forState:0];
     [multifunctionBtn setTitleColor:[UIColor whiteColor] forState:0];
     [multifunctionBtn addTarget:self action:@selector(multifunction) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:multifunctionBtn];
@@ -205,23 +205,23 @@
 }
 - (void)configUI{
     UIButton *menuBtn = [UIButton buttonWithType:0];
-    [menuBtn setImage:[UIImage imageNamed:@"reader_cover.png"] forState:0];
+    [menuBtn setImage:[UIImage imageNamed:@"reader_cover"] forState:0];
     [menuBtn addTarget:self action:@selector(showDrawerView) forControlEvents:UIControlEventTouchUpInside];
     menuBtn.frame = CGRectMake(10, self.frame.size.height - 54, 60, 44);
     [self addSubview:menuBtn];
     UIButton *commentBtn = [UIButton buttonWithType:0];
-    [commentBtn setImage:[UIImage imageNamed:@"reader_comments.png"] forState:0];
+    [commentBtn setImage:[UIImage imageNamed:@"reader_comments"] forState:0];
     [commentBtn addTarget:self action:@selector(showCommentView) forControlEvents:UIControlEventTouchUpInside];
     commentBtn.frame = CGRectMake(self.frame.size.width - 70, self.frame.size.height - 54, 60, 44);
     [self addSubview:commentBtn];
     _bigFont = [UIButton buttonWithType:0];
     _bigFont.frame = CGRectMake(110 + (self.frame.size.width - 200)/2, self.frame.size.height - 54, (self.frame.size.width - 200)/2, 44);
-    [_bigFont setImage:[UIImage imageNamed:@"reader_font_increase.png"] forState:0];
+    [_bigFont setImage:[UIImage imageNamed:@"reader_font_increase"] forState:0];
     _bigFont.backgroundColor = [UIColor clearColor];
     [_bigFont addTarget:self action:@selector(changeBig) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_bigFont];
     _smallFont = [UIButton buttonWithType:0];
-    [_smallFont setImage:[UIImage imageNamed:@"reader_font_decrease.png"] forState:0];
+    [_smallFont setImage:[UIImage imageNamed:@"reader_font_decrease"] forState:0];
     [_smallFont addTarget:self action:@selector(changeSmall) forControlEvents:UIControlEventTouchUpInside];
     _smallFont.frame =  CGRectMake(90, self.frame.size.height - 54, (self.frame.size.width - 200)/2, 44);
     [self addSubview:_smallFont];
@@ -286,14 +286,14 @@
         if (i == 1) {
             [themeButton setBackgroundColor:[UIColor whiteColor]];
         }else{
-            [themeButton setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"reader_bg%d.png",i]] forState:UIControlStateNormal];
-            [themeButton setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"reader_bg%d.png",i]] forState:UIControlStateSelected];
+            [themeButton setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"reader_bg%d",i]] forState:UIControlStateNormal];
+            [themeButton setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"reader_bg%d",i]] forState:UIControlStateSelected];
         }
         if (i == themeID) {
             themeButton.selected = YES;
         }
-        [themeButton setImage:[UIImage imageNamed:[NSString stringWithFormat:@"reader_bg_s.png"]] forState:UIControlStateSelected];
-        [themeButton setImage:[UIImage imageNamed:[NSString stringWithFormat:@"reader_bg_s.png"]] forState:UIControlStateHighlighted];
+        [themeButton setImage:[UIImage imageNamed:[NSString stringWithFormat:@"reader_bg_s"]] forState:UIControlStateSelected];
+        [themeButton setImage:[UIImage imageNamed:[NSString stringWithFormat:@"reader_bg_s"]] forState:UIControlStateHighlighted];
         themeButton.tag = 7000+i;
         [themeButton addTarget:self action:@selector(themeButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         [themeScroll addSubview:themeButton];
@@ -400,7 +400,7 @@
         [_dragDot removeFromSuperview];
         _dragDot = nil;
     }
-    _dragDot = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"r_drag-dot.png"]];
+    _dragDot = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"r_drag-dot"]];
     if (_direction == CursorLeft) {
         self.frame = CGRectMake(setupPoint.x - kE_CursorWidth, setupPoint.y - _cursorHeight, kE_CursorWidth, _cursorHeight);
         _dragDot.frame = CGRectMake(-7, -8, 15, 17);

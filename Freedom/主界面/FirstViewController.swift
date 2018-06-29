@@ -372,7 +372,7 @@ class FirstViewController: XBaseViewController,UICollectionViewDataSource, UICol
     func snowAnimat(_ timer: Timer?) {
         count += 1
         //1.创建雪花
-        let snow = UIImageView(image: UIImage(named: "snow.png"))
+        let snow = UIImageView(image: UIImage(named: "snow"))
         snow.tag = count
         let width: CGFloat = view.frame.size.width
         let x: CGFloat = CGFloat(arc4random() % UInt32(width))

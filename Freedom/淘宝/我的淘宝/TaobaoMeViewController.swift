@@ -61,10 +61,10 @@ class TaobaoMeViewController: TaobaoBaseViewController,UICollectionViewDelegate,
         super.viewDidLoad()
         title = "我的淘宝"
         navigationController?.navigationBar.tintColor = redcolor
-        let image = UIImage(named: "Taobaomessage@2x")?.withRenderingMode(.alwaysOriginal)
+        let image = UIImage(named: "Taobaomessage")?.withRenderingMode(.alwaysOriginal)
         let `left` = UIBarButtonItem(title: "设置", style: .plain, actionBlick: {() -> Void in
         })
-        let right1 = UIBarButtonItem(image: UIImage(named: "TaobaoScanner@2x"), style: .done, actionBlick: {() -> Void in
+        let right1 = UIBarButtonItem(image: UIImage(named: "TaobaoScanner"), style: .done, actionBlick: {() -> Void in
         })
         let right2 = UIBarButtonItem(image: image, style: .done, actionBlick: {() -> Void in
         })

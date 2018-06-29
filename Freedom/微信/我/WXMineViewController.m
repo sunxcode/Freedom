@@ -118,8 +118,8 @@
     WXMenuItem *item1 = TLCreateMenuItem(@"u_album_b", @"相册");
     WXMenuItem *item2 = TLCreateMenuItem(@"u_favorites", @"收藏");
     WXMenuItem *item3 = TLCreateMenuItem(@"MoreMyBankCard", @"钱包");
-    WXMenuItem *item4 = TLCreateMenuItem(@"MyCardPackageIcon@2x", @"优惠券");
-    WXMenuItem *item5 = TLCreateMenuItem(@"MoreExpressionShops@3x", @"表情");
+    WXMenuItem *item4 = TLCreateMenuItem(@"MyCardPackageIcon", @"优惠券");
+    WXMenuItem *item5 = TLCreateMenuItem(@"MoreExpressionShops", @"表情");
     WXMenuItem *item6 = TLCreateMenuItem(@"setingHL", @"设置");
     [self.mineMenuData addObjectsFromArray:@[@[item0], @[item1, item2, item3, item4], @[item5], @[item6]]];
 }

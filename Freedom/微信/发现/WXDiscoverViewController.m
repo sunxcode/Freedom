@@ -28,7 +28,7 @@
     WXMenuItem *item3 = TLCreateMenuItem(@"u_shake", @"摇一摇");
     WXMenuItem *item4 = TLCreateMenuItem(@"ff_IconLocationService", @"附近的人");
     WXMenuItem *item5 = TLCreateMenuItem(@"ff_IconBottle", @"漂流瓶");
-    WXMenuItem *item6 = TLCreateMenuItem(@"CreditCard_ShoppingBag@2x", @"购物");
+    WXMenuItem *item6 = TLCreateMenuItem(@"CreditCard_ShoppingBag", @"购物");
     WXMenuItem *item7 = TLCreateMenuItem(@"MoreGame", @"游戏");
     item7.rightIconURL = @"http://qq1234.org/uploads/allimg/140404/3_140404151205_8.jpg";
     item7.subTitle = @"英雄联盟计算器版";

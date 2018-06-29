@@ -346,7 +346,7 @@ class IqiyiViewController: IqiyiBaseViewController ,IqiyiHomeBoxCellDelegate {
         homeTableView?.mj_header.beginRefreshing()
     }
     func initNav() {
-        let leftBarButtonItem = UIBarButtonItem(image: UIImage(named:"qylogo_p@3x"), style: .plain) {
+        let leftBarButtonItem = UIBarButtonItem(image: UIImage(named:"qylogo_p"), style: .plain) {
 
         }
         navigationItem.leftBarButtonItem = leftBarButtonItem

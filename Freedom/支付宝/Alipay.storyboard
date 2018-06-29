@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -14,7 +18,7 @@
                         <viewControllerLayoutGuide type="bottom" id="vKy-d6-BX0"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="uxE-Vg-uv0">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -22,7 +26,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JQS-0T-NSy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="983" y="-693"/>
+            <point key="canvasLocation" x="758" y="-694"/>
         </scene>
         <!--Alipay Tab Bar Controller-->
         <scene sceneID="VGM-W1-wUM">
@@ -42,13 +46,13 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="36x-Gn-Hhp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-526" y="308"/>
+            <point key="canvasLocation" x="-144" y="574"/>
         </scene>
         <!--我的-->
         <scene sceneID="iwH-tf-zjz">
             <objects>
                 <navigationController title="我的" automaticallyAdjustsScrollViewInsets="NO" id="Fwh-5d-1we" customClass="AlipayNavigationViewController" customModule="Freedom" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="我的" image="TabBar_Assets.png" selectedImage="TabBar_Assets_Sel.png" id="S2K-oC-kRh"/>
+                    <tabBarItem key="tabBarItem" title="我的" image="TabBar_Assets" selectedImage="TabBar_Assets_Sel" id="S2K-oC-kRh"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="fje-1M-AjE">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -72,7 +76,7 @@
                         <viewControllerLayoutGuide type="bottom" id="fmf-Ht-Ezi"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ztj-cw-hv7">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
@@ -80,13 +84,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KBO-6F-005" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1166" y="1209"/>
+            <point key="canvasLocation" x="758" y="1203"/>
         </scene>
         <!--口碑-->
         <scene sceneID="7gK-ec-fko">
             <objects>
                 <navigationController title="口碑" automaticallyAdjustsScrollViewInsets="NO" id="M8b-MR-2oM" customClass="AlipayNavigationViewController" customModule="Freedom" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="口碑" image="TabBar_PublicService.png" selectedImage="TabBar_PublicService_Sel.png" id="jtG-Ua-5lW"/>
+                    <tabBarItem key="tabBarItem" title="口碑" image="TabBar_PublicService" selectedImage="TabBar_PublicService_Sel" id="jtG-Ua-5lW"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="GX4-2X-k9A">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -110,7 +114,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Bsm-yy-Tvr"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="1y0-IR-I0a">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
@@ -118,13 +122,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rpv-Ox-fwc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1190" y="-35"/>
+            <point key="canvasLocation" x="758" y="-59"/>
         </scene>
         <!--朋友-->
         <scene sceneID="rhw-bp-PWV">
             <objects>
                 <navigationController id="c3T-wN-9hR" customClass="AlipayNavigationViewController" customModule="Freedom" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="朋友" image="TabBar_Discovery.png" selectedImage="TabBar_Discovery_Sel.png" id="HhV-EZ-SaT"/>
+                    <tabBarItem key="tabBarItem" title="朋友" image="TabBar_Discovery" selectedImage="TabBar_Discovery_Sel" id="HhV-EZ-SaT"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Nlf-m2-cp7">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -135,7 +139,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q9F-Hv-YOR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="345" y="583"/>
+            <point key="canvasLocation" x="381" y="636"/>
         </scene>
         <!--Alipay Service Table View Controller-->
         <scene sceneID="fdh-2C-NDc">
@@ -146,7 +150,7 @@
                         <viewControllerLayoutGuide type="bottom" id="zyQ-3W-6bx"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="IAW-h6-H75">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
@@ -154,13 +158,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p17-00-hra" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1028" y="636"/>
+            <point key="canvasLocation" x="758" y="636"/>
         </scene>
         <!--支付宝-->
         <scene sceneID="WE3-Bo-kKS">
             <objects>
                 <navigationController storyboardIdentifier="SDBasicNavigationController" title="支付宝" automaticallyAdjustsScrollViewInsets="NO" id="1dT-pU-ZIe" customClass="AlipayNavigationViewController" customModule="Freedom" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="支付宝" image="TabBar_HomeBar.png" selectedImage="TabBar_HomeBar_Sel.png" id="uI9-6g-trc"/>
+                    <tabBarItem key="tabBarItem" title="支付宝" image="TabBar_HomeBar" selectedImage="TabBar_HomeBar_Sel" id="uI9-6g-trc"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="JJO-eS-B1A">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -177,13 +181,13 @@
         </scene>
     </scenes>
     <resources>
-        <image name="TabBar_Assets.png" width="30" height="30"/>
-        <image name="TabBar_Assets_Sel.png" width="30" height="30"/>
-        <image name="TabBar_Discovery.png" width="30" height="30"/>
-        <image name="TabBar_Discovery_Sel.png" width="30" height="30"/>
-        <image name="TabBar_HomeBar.png" width="30" height="30"/>
-        <image name="TabBar_HomeBar_Sel.png" width="30" height="30"/>
-        <image name="TabBar_PublicService.png" width="30" height="30"/>
-        <image name="TabBar_PublicService_Sel.png" width="30" height="30"/>
+        <image name="TabBar_Assets" width="30" height="30"/>
+        <image name="TabBar_Assets_Sel" width="30" height="30"/>
+        <image name="TabBar_Discovery" width="30" height="30"/>
+        <image name="TabBar_Discovery_Sel" width="30" height="30"/>
+        <image name="TabBar_HomeBar" width="30" height="30"/>
+        <image name="TabBar_HomeBar_Sel" width="30" height="30"/>
+        <image name="TabBar_PublicService" width="30" height="30"/>
+        <image name="TabBar_PublicService_Sel" width="30" height="30"/>
     </resources>
 </document>

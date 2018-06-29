@@ -24,13 +24,13 @@ class AlipayAssetsTableViewController: AlipayBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "我的"
-        let model01 = AlipayAssetsTableViewControllerCellModel(title: "余额宝", iconImageName: "20000032Icon", destinationControllerClass: AlipayYuEBaoTableViewController.self)
-        let model02 = AlipayAssetsTableViewControllerCellModel(title: "招财宝", iconImageName: "20000059Icon", destinationControllerClass: BaseTableView.self)
-        let model03 = AlipayAssetsTableViewControllerCellModel(title: "娱乐宝", iconImageName: "20000077Icon", destinationControllerClass: BaseTableView.self)
-        let model11 = AlipayAssetsTableViewControllerCellModel(title: "芝麻信用分", iconImageName: "20000118Icon", destinationControllerClass: BaseTableView.self)
-        let model12 = AlipayAssetsTableViewControllerCellModel(title: "随身贷", iconImageName: "20000180Icon", destinationControllerClass: BaseTableView.self)
-        let model13 = AlipayAssetsTableViewControllerCellModel(title: "我的保障", iconImageName: "20000110Icon", destinationControllerClass: BaseTableView.self)
-        let model21 = AlipayAssetsTableViewControllerCellModel(title: "爱心捐赠", iconImageName: "09999978Icon", destinationControllerClass: BaseTableView.self)
+        let model01 = AlipayAssetsTableViewControllerCellModel(title: "余额宝", iconImageName: "alipayMeYuebao", destinationControllerClass: AlipayYuEBaoTableViewController.self)
+        let model02 = AlipayAssetsTableViewControllerCellModel(title: "招财宝", iconImageName: "alipayMeZhaocai", destinationControllerClass: BaseTableView.self)
+        let model03 = AlipayAssetsTableViewControllerCellModel(title: "娱乐宝", iconImageName: "alipayMeYulebao", destinationControllerClass: BaseTableView.self)
+        let model11 = AlipayAssetsTableViewControllerCellModel(title: "芝麻信用分", iconImageName: "alipayMeZhima", destinationControllerClass: BaseTableView.self)
+        let model12 = AlipayAssetsTableViewControllerCellModel(title: "随身贷", iconImageName: "alipayMeSuidai", destinationControllerClass: BaseTableView.self)
+        let model13 = AlipayAssetsTableViewControllerCellModel(title: "我的保障", iconImageName: "alipayMeBaozhang", destinationControllerClass: BaseTableView.self)
+        let model21 = AlipayAssetsTableViewControllerCellModel(title: "爱心捐赠", iconImageName: "alipayMeDonation", destinationControllerClass: BaseTableView.self)
         dataArray = [[model01, model02, model03], [model11, model12, model13], [model21]]
         tableView = BaseTableView(frame: CGRect(x: 0, y: 0, width: APPW, height: APPH - TopHeight))
         tableView.delegate = self

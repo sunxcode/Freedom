@@ -16,7 +16,7 @@ class TaobaoMiniTopicViewCell:BaseTableViewCell{
         line.frame = CGRect(x: 0, y: 90 - 1, width: APPW, height: 1)
         Dlog(H(self))
         addSubview(sees!)
-        icon.image = UIImage(named: "mini5")
+        icon.image = UIImage(named: "a")
         title.text = "韩国年度榜"
         script.text = "主持人：全球购买手小队长"
         sees?.text = "热度：79570  参与人：100"

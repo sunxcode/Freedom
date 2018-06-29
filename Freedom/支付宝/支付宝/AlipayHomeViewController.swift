@@ -22,9 +22,7 @@ class AlipayHomeGridViewListItemView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         initialization()
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -96,14 +94,10 @@ class AlipayHomeGridViewListItemView: UIView {
         button.titleEdgeInsets = UIEdgeInsetsMake(h * 0.6, -w * 0.4, 0, 0)
         iconView?.frame = CGRect(x: frame.size.width - (iconView?.frame.size.width)! - margin, y: margin, width: 20, height: 20)
     }
-
-
 }
 protocol SDHomeGridViewDeleate: NSObjectProtocol {
     func homeGrideView(_ gridView: AlipayHomeGridView?, selectItemAt index: Int)
-    
     func homeGrideViewmoreItemButtonClicked(_ gridView: AlipayHomeGridView?)
-    
     func homeGrideViewDidChangeItems(_ gridView: AlipayHomeGridView?)
 }
 class AlipayHomeGridView: UIScrollView, UIScrollViewDelegate {
@@ -122,7 +116,7 @@ class AlipayHomeGridView: UIScrollView, UIScrollViewDelegate {
     private var currentPresssViewFrame = CGRect.zero
     @objc func scanButtonClicked() {
         let desVc = AlipayScanViewController()
-    getCurrentViewController()?.navigationController?.pushViewController(desVc, animated: true)
+        getCurrentViewController()?.navigationController?.pushViewController(desVc, animated: true)
     }
     
     func getCurrentViewController() -> UIViewController? {
@@ -166,7 +160,6 @@ class AlipayHomeGridView: UIScrollView, UIScrollViewDelegate {
         let temp = ["http://ww3.sinaimg.cn/bmiddle/9d857daagw1er7lgd1bg1j20ci08cdg3.jpg", "http://ww4.sinaimg.cn/bmiddle/763cc1a7jw1esr747i13xj20dw09g0tj.jpg", "http://ww4.sinaimg.cn/bmiddle/67307b53jw1esr4z8pimxj20c809675d.jpg"]
         cycleScrollADView = BaseScrollView(banner: CGRect(x: 0, y: 0, width: APPW, height: 100), icons: temp)
         addSubview(cycleScrollADView!)
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -198,7 +191,7 @@ class AlipayHomeGridView: UIScrollView, UIScrollViewDelegate {
             self.addSubview(item)
         }
         let more = UIButton()
-        more.setImage(UIImage(named: "tf_home_more"), for: .normal)
+        more.setImage(UIImage(named: "u_navi_3p_b"), for: .normal)
         more.addTarget(self, action: #selector(self.moreItemButtonClicked), for: .touchUpInside)
         addSubview(more)
         itemsArray.append(more)
@@ -285,12 +278,10 @@ class AlipayHomeGridView: UIScrollView, UIScrollViewDelegate {
         saveItemsSettingCache()
     }
     func saveItemsSettingCache() {
-        var tempItemsContainer = [AlipayHomeGridViewListItemView]()
         for button in itemsArray{
             if (button is AlipayHomeGridViewListItemView) {
             }
         }
-        AlipayTools.saveItemsArray(tempItemsContainer)
         gridViewDelegate?.homeGrideViewDidChangeItems(self)
     }
 

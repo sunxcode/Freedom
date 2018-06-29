@@ -317,11 +317,11 @@ class SinaComposeToolbar: UIView {
         if let aNamed = UIImage(named: "compose_toolbar_background") {
             backgroundColor = UIColor(patternImage: aNamed)
         }
-        _ = setupBtn("compose_camerabutton_background", highImage: "compose_camerabutton_background_highlighted", type: 0)
+        _ = setupBtn("compose_camerabutton_background", highImage: "emoticonkeyboardbutton_sd", type: 0)
         _ = setupBtn("u_album_gray", highImage: "u_album_y", type: 1)
-        _ = setupBtn("compose_mentionbutton_background", highImage: "compose_mentionbutton_background_highlighted", type: 2)
-        _ = setupBtn("compose_trendbutton_background", highImage: "compose_trendbutton_background_highlighted", type: 3)
-        _ = emotionButton = setupBtn("compose_emoticonbutton_background", highImage: "compose_emoticonbutton_background_highlighted", type: 4)
+        _ = setupBtn("compose_mentionbutton_background", highImage: "emoticonkeyboardbutton_sd", type: 2)
+        _ = setupBtn("compose_trendbutton_background", highImage: "emoticonkeyboardbutton_sd", type: 3)
+        _ = emotionButton = setupBtn("emoticonkeyboardbutton", highImage: "emoticonkeyboardbutton_sd", type: 4)
     }
 
     required init?(coder aDecoder: NSCoder) {

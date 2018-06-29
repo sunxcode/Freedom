@@ -47,7 +47,7 @@ class TaobaoShopCarViewCell:BaseTableViewCell{
         num?.textAlignment = .right
         contentV.addSubviews([selectc, icon, title, script, newPrice!, oldPrice!, num!])
         addSubviews([headView, contentV, line])
-        icon.image = UIImage(named: "05.jpg")
+        icon.image = UIImage(named: "taobao05.jpg")
         title.text = "冬季外套女装学生韩版棉衣女中长款面包服女加厚棉服宽松冬装棉袄"
         script.text = "颜色分类:红色;尺码:M"
     }

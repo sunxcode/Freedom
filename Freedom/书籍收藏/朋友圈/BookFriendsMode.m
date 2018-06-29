@@ -235,7 +235,7 @@ return attrString;
 }
 // 通过表情名获得表情的图片
 - (UIImage *)getEmotionForKey:(NSString *)key{
-NSString *nameStr = [NSString stringWithFormat:@"%@.png",key];
+NSString *nameStr = [NSString stringWithFormat:@"%@",key];
     return [UIImage imageNamed:nameStr];
 }
 CTRunDelegateRef newEmotionRunDelegate(){

@@ -107,8 +107,8 @@ class IqiyiSubscribeCell:BaseTableViewCell{
         backview.addSubview(subedLabel)
         let dingyueBtn = UIButton(type: .custom)
         dingyueBtn.frame = CGRect(x: APPW - 10 - 70, y: 10, width: 70, height: 29)
-        dingyueBtn.setImage(UIImage(named: "search_channel_subscribe_noPlay"), for: .normal)
-        dingyueBtn.setImage(UIImage(named: "search_channel_subscribed"), for: .selected)
+        dingyueBtn.setImage(UIImage(named: "dingyue"), for: .normal)
+        dingyueBtn.setImage(UIImage(named: "dingyue_sd"), for: .selected)
         backview.addSubview(dingyueBtn)
         let scrollV = IqiyiSubImageScrollView(frame: CGRect(x: 0, y: 55, width: APPW, height: 155))
 //        scrollV.delegate = self

@@ -3,16 +3,21 @@
 //  Freedom
 import UIKit
 class AlipayTools: NSObject {
-    class func itemsArray() -> [Any]? {
-        var temp = UserDefaults.standard.object(forKey: "AlipayHomeIconsCacheKey") as? [Any]
+    class func itemsArray() -> [[String:String]] {
+        var temp = UserDefaults.standard.object(forKey: "AlipayHomeIconsCacheKey") as? [[String:String]]
         if temp == nil {
-            temp = [["淘宝": "i00"],["生活缴费": "i01"], ["教育缴费": "i02"], ["红包": "hongbao"], ["物流": "i04"], ["信用卡": "i05"], ["转账": "i06"], ["爱心捐款": "i07"], ["彩票": "i08"], ["当面付": "i09"], ["余额宝": "i10"], ["AA付款": "i11"], ["国际汇款": "i12"], ["淘点点": "i13"], ["淘宝电影": "i14"], ["亲密付": "i15"], ["股市行情": "i16"], ["汇率换算": "i17"]]
-            self.saveItemsArray(temp)
+            var ntemp = [[String:String]]()
+            let names = ["淘宝" ,"生活缴费","教育缴费","红包","物流","信用卡","转账","爱心捐款","彩票","当面付","余额宝","AA付款","国际汇款","淘点点","淘宝电影","亲密付","股市行情","汇率换算"]
+            for i in 0..<names.count{
+                ntemp.append([names[i]:"alipayHome\(i)"])
+            }
+            self.saveItemsArray(ntemp)
+            temp = ntemp
         }
-        return temp
+        return temp!
     }
     
-    class func saveItemsArray(_ array: [Any]?) {
+    class func saveItemsArray(_ array: [[String:String]]) {
         UserDefaults.standard.set(array, forKey: "AlipayHomeIconsCacheKey")
         UserDefaults.standard.synchronize()
     }

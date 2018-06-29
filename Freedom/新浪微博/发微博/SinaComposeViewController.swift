@@ -96,13 +96,13 @@ class SinaComposeViewController: SinaBaseViewController,UITextViewDelegate,UINav
     //切换键盘
     func switchkeyBoard() {
         var image = "compose_emoticonbutton_background"
-        var highImage = "compose_emoticonbutton_background_highlighted"
+        var highImage = "emoticonkeyboardbutton"
         if textView.inputView == nil {
             textView.inputView = emotionKeyboard
             // 显示键盘按钮
             toolbar.showKeyboardButton = true
             image = "compose_keyboardbutton_background"
-            highImage = "compose_keyboardbutton_background_highlighted"
+            highImage = "emoticonkeyboardbutton_sd"
         } else {
             textView.inputView = nil
             // 显示表情按钮

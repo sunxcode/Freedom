@@ -35,7 +35,7 @@ class TaobaoCommunityViewCell2:BaseCollectionViewCell {
         title.numberOfLines = 0
         addSubviews([icon, title])
         title.text = "做工很精细，大品牌，值得信赖！用了几天才评价，真实堪称完美！质量上乘，使用方便，是您居家旅行，过节送礼，朋友关系维护的绝佳产品，可以送老人，送孩子，送长辈，价格合理，你值得拥有！"
-        icon.image = UIImage(named: "mini4")
+        icon.image = UIImage(named: "a")
     }
 
 }
@@ -65,8 +65,8 @@ class TaobaoCommunityViewController: TaobaoBaseViewController,UICollectionViewDe
         searchBar.placeholder = "你想要的购物经验，这里都能找到"
         navigationItem.titleView = searchBar
         navigationController?.navigationBar.tintColor = UIColor.gray
-        let image = UIImage(named: "Taobaomessage@2x")?.withRenderingMode(.alwaysOriginal)
-        let leftI = UIBarButtonItem(image: UIImage(named: "TaobaoScanner@2x"), style: .done, actionBlick: {() -> Void in
+        let image = UIImage(named: "Taobaomessage")?.withRenderingMode(.alwaysOriginal)
+        let leftI = UIBarButtonItem(image: UIImage(named: "TaobaoScanner"), style: .done, actionBlick: {() -> Void in
         })
         let rightI = UIBarButtonItem(image: image, style: .done, actionBlick: {() -> Void in
         })

@@ -25,7 +25,7 @@
         _themeImage = nil;
         self.view.backgroundColor = [UIColor whiteColor];
     }else{
-        _themeImage = [UIImage imageNamed:[NSString stringWithFormat:@"reader_bg%ld.png",(long)themeID]];
+        _themeImage = [UIImage imageNamed:[NSString stringWithFormat:@"reader_bg%ld",(long)themeID]];
         self.view.backgroundColor = [UIColor colorWithPatternImage:_themeImage];
     }
     
@@ -60,7 +60,7 @@
     [self.view addSubview:textFieldBg];
     CGColorSpaceRelease(colorSpace);
     UIImageView *fangdajingBg = [[UIImageView alloc] initWithFrame:CGRectMake(10, 12, 13, 13)];
-    fangdajingBg.image = [UIImage imageNamed:@"magnifiter.png"];
+    fangdajingBg.image = [UIImage imageNamed:@"magnifiter"];
     [textFieldBg addSubview:fangdajingBg];
     
     

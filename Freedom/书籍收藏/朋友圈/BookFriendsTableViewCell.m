@@ -46,10 +46,10 @@
         replyImageView.backgroundColor = [UIColor colorWithRed:242/255.0 green:242/255.0 blue:242/255.0 alpha:1.0];
         [self.contentView addSubview:replyImageView];
         _replyBtn = [UIButton buttonWithType:0];
-        [_replyBtn setImage:[UIImage imageNamed:@"fw_r2_c2.png"] forState:0];
+        [_replyBtn setImage:[UIImage imageNamed:@"fw_r2_c2"] forState:0];
         [self.contentView addSubview:_replyBtn];
         _favourImage = [[UIImageView alloc] initWithFrame:CGRectZero];
-        _favourImage.image = [UIImage imageNamed:@"zan.png"];
+        _favourImage.image = [UIImage imageNamed:@"zan"];
         [self.contentView addSubview:_favourImage];
     }
     return self;
