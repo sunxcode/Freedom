@@ -5,6 +5,7 @@
 @property (nonatomic,copy) NSString *bundleId;//
 @property (nonatomic,copy) NSString *trackId;//
 @property (nonatomic,copy) NSString *trackName;//
+@property (nonatomic,copy) NSString *scheme;//不是自带的属性,是属性的扩展.
 @property (nonatomic,copy) NSString *version;//版本
 @property (nonatomic,copy) NSString *sdkVersion;//sdk版本
 @property (nonatomic,copy) UIImage  *icon;//图标

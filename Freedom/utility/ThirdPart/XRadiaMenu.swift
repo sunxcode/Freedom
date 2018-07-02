@@ -53,7 +53,13 @@ class XRadiaMenu: UIView {
         doubleTap.numberOfTouchesRequired = 1
         doubleTap.addTarget(self, action: #selector(self.didTapCenterView(_:)))
         newValue.addGestureRecognizer(doubleTap)
+        let thirdTap = UITapGestureRecognizer()
+        thirdTap.numberOfTapsRequired = 3
+        thirdTap.numberOfTouchesRequired = 1
+        thirdTap.addTarget(self, action: #selector(self.didTapCenterView(_:)))
+        newValue.addGestureRecognizer(thirdTap)
         singleTap.require(toFail: doubleTap)
+        doubleTap.require(toFail: thirdTap)
         let panner = UIPanGestureRecognizer()
         panner.addTarget(self, action: #selector(self.didPanCenterView(_:)))
         newValue.addGestureRecognizer(panner)
@@ -203,7 +209,11 @@ class XRadiaMenu: UIView {
             if menuIsExpanded {
                 retract()
             }
-            popoutViews = popViewArray[tapNumber]
+            if tapNumber < popViewArray.count{
+                popoutViews = popViewArray[tapNumber]
+            }else{
+                popoutViews = popViewArray.last!
+            }
         }
         if menuIsExpanded {
             retract()

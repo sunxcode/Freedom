@@ -33,6 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let taskID :UIBackgroundTaskIdentifier = 0
     let launchView: UIImageView = UIImageView()
     var apps = [XAPP]()
+    var myApps = [XAPP]()
     static let radialView:XRadiaMenu = XRadiaMenu(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
     lazy var items:[[String:String]] = {
         let path = Bundle.main.path(forResource: "FreedomItems", ofType: "plist")!
@@ -131,13 +132,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            }
             print(allAPPids)
             allAPPids = ["472208016", "481294264", "512166629", "547166701", "444934666", "310633997", "461703208", "398453262", "333206289", "577130046", "284882215", "525463029", "454638411", "364787363", "518966501", "1110145109", "414478124", "364709193", "414706506", "932723216", "466122094", "376101648", "861891048", "414245413"]
-            let appMan = AppManager.sharedInstance()
-            appMan?.gotiTunesInfo(withTrackIds: allAPPids, completion: { apps in
-//                let realm = RLMRealm.default()
-//                realm.beginWriteTransaction()
-//                realm.addOrUpdateObjects(apps! as NSFastEnumeration)
-                DispatchQueue.main.async {
-                    self.apps = apps!
+            self.addInstalledAPPS(allAPPids)
+//            let real = try! RLMRealm()
+//            real.addObjects([RLMObject()])
+        }
+    }
+    func addInstalledAPPS(_ allAPPids:[String]){
+        let appMan = AppManager.sharedInstance()
+        appMan?.gotiTunesInfo(withTrackIds: allAPPids, completion: { apps in
+            DispatchQueue.main.async {
+                self.apps = apps!
                 var popoutModels = [PopoutModel]()
                 for xapp in self.apps{
                     let a = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
@@ -150,12 +154,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     print(xapp.trackName)
                 }
                 AppDelegate.radialView.addPopoutModels(popoutModels)
-
+                self.addMyapps()
+            }
+        })
+    }
+    func addMyapps(){
+        let myAppsPath = Bundle.main.path(forResource: "MyAPP", ofType: "plist")
+        let myApps = NSArray(contentsOfFile: myAppsPath!)
+        let apps = XAPP.mj_objectArray(withKeyValuesArray: myApps) as! [XAPP]
+        self.myApps = apps;
+        let appMan = AppManager.sharedInstance()
+        var popoutModels = [PopoutModel]()
+        for xapp in self.myApps{
+            let a = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+            a.image = UIImage(named:xapp.scheme)
+            let mode = PopoutModel(a,xapp.trackName)
+            mode.action = {
+                if xapp.isHiddenApp{//已下架
+                    UIApplication.shared.open(URL(string: xapp.trackId)!, options:[:], completionHandler: { (suscess) in
+                    })
+                }else{
+                    appMan?.gotiTunesInfo(withTrackIds: [xapp.trackId], completion: { (app) in
+                        if let realApp = app{
+                            appMan?.openApp(withBundleIdentifier: realApp.first?.bundleId)
+                        }
+                    })
                 }
-            })
-//            let real = try! RLMRealm()
-//            real.addObjects([RLMObject()])
+            }
+            popoutModels.append(mode)
         }
+        AppDelegate.radialView.addPopoutModels(popoutModels)
     }
     func applicationWillResignActive(_ application: UIApplication) {
         // 设置音频会话类型

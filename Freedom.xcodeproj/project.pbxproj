@@ -959,6 +959,19 @@
 		BF0E8B0420DCAB4200150476 /* app.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF0E8B0220DCAB3F00150476 /* app.plist */; };
 		BF0E8B0520DCAB4200150476 /* systemSetting.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF0E8B0320DCAB4100150476 /* systemSetting.plist */; };
 		BF0E8B0820DCB0B500150476 /* AppManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BF0E8B0720DCB0B500150476 /* AppManager.m */; };
+		BF58B91C20EA1920002CB4EE /* MyAPP.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF58B91B20EA1920002CB4EE /* MyAPP.plist */; };
+		BF58B92620EA1CE2002CB4EE /* app-xjb.png in Resources */ = {isa = PBXBuildFile; fileRef = BF58B91E20EA1CE0002CB4EE /* app-xjb.png */; };
+		BF58B92720EA1CE2002CB4EE /* app-beeManager.png in Resources */ = {isa = PBXBuildFile; fileRef = BF58B91F20EA1CE1002CB4EE /* app-beeManager.png */; };
+		BF58B92820EA1CE2002CB4EE /* app-LongChat.png in Resources */ = {isa = PBXBuildFile; fileRef = BF58B92020EA1CE1002CB4EE /* app-LongChat.png */; };
+		BF58B92920EA1CE2002CB4EE /* app-xrz.png in Resources */ = {isa = PBXBuildFile; fileRef = BF58B92120EA1CE1002CB4EE /* app-xrz.png */; };
+		BF58B92A20EA1CE2002CB4EE /* app-iSolar.png in Resources */ = {isa = PBXBuildFile; fileRef = BF58B92220EA1CE1002CB4EE /* app-iSolar.png */; };
+		BF58B92B20EA1CE2002CB4EE /* app-qcrb.png in Resources */ = {isa = PBXBuildFile; fileRef = BF58B92320EA1CE2002CB4EE /* app-qcrb.png */; };
+		BF58B92C20EA1CE2002CB4EE /* app-Kmiles.png in Resources */ = {isa = PBXBuildFile; fileRef = BF58B92420EA1CE2002CB4EE /* app-Kmiles.png */; };
+		BF58B92D20EA1CE2002CB4EE /* app-beeERP.png in Resources */ = {isa = PBXBuildFile; fileRef = BF58B92520EA1CE2002CB4EE /* app-beeERP.png */; };
+		BF58B92F20EA1D73002CB4EE /* app-Freedom.png in Resources */ = {isa = PBXBuildFile; fileRef = BF58B92E20EA1D72002CB4EE /* app-Freedom.png */; };
+		BF58B93220EA1DC2002CB4EE /* app-htfData.png in Resources */ = {isa = PBXBuildFile; fileRef = BF58B93120EA1DC2002CB4EE /* app-htfData.png */; };
+		BF58B93420EA1EA5002CB4EE /* app-zyl.png in Resources */ = {isa = PBXBuildFile; fileRef = BF58B93320EA1EA5002CB4EE /* app-zyl.png */; };
+		BF58B93620EA1F51002CB4EE /* app-sales.png in Resources */ = {isa = PBXBuildFile; fileRef = BF58B93520EA1F51002CB4EE /* app-sales.png */; };
 		BF5B9B5E1F8E636E00BD885E /* EconomicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5B9B5D1F8E636E00BD885E /* EconomicsViewController.swift */; };
 		BF5B9B601F8E63CF00BD885E /* SearchDownloadBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5B9B5F1F8E63CF00BD885E /* SearchDownloadBookViewController.swift */; };
 		BF5B9B621F8E641000BD885E /* PhilosophyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5B9B611F8E641000BD885E /* PhilosophyViewController.swift */; };
@@ -2089,6 +2102,19 @@
 		BF0E8B0320DCAB4100150476 /* systemSetting.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = systemSetting.plist; sourceTree = "<group>"; };
 		BF0E8B0620DCB0B400150476 /* AppManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppManager.h; sourceTree = "<group>"; };
 		BF0E8B0720DCB0B500150476 /* AppManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppManager.m; sourceTree = "<group>"; };
+		BF58B91B20EA1920002CB4EE /* MyAPP.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MyAPP.plist; sourceTree = "<group>"; };
+		BF58B91E20EA1CE0002CB4EE /* app-xjb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-xjb.png"; sourceTree = "<group>"; };
+		BF58B91F20EA1CE1002CB4EE /* app-beeManager.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-beeManager.png"; sourceTree = "<group>"; };
+		BF58B92020EA1CE1002CB4EE /* app-LongChat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-LongChat.png"; sourceTree = "<group>"; };
+		BF58B92120EA1CE1002CB4EE /* app-xrz.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-xrz.png"; sourceTree = "<group>"; };
+		BF58B92220EA1CE1002CB4EE /* app-iSolar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-iSolar.png"; sourceTree = "<group>"; };
+		BF58B92320EA1CE2002CB4EE /* app-qcrb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-qcrb.png"; sourceTree = "<group>"; };
+		BF58B92420EA1CE2002CB4EE /* app-Kmiles.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-Kmiles.png"; sourceTree = "<group>"; };
+		BF58B92520EA1CE2002CB4EE /* app-beeERP.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-beeERP.png"; sourceTree = "<group>"; };
+		BF58B92E20EA1D72002CB4EE /* app-Freedom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-Freedom.png"; sourceTree = "<group>"; };
+		BF58B93120EA1DC2002CB4EE /* app-htfData.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-htfData.png"; sourceTree = "<group>"; };
+		BF58B93320EA1EA5002CB4EE /* app-zyl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-zyl.png"; sourceTree = "<group>"; };
+		BF58B93520EA1F51002CB4EE /* app-sales.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-sales.png"; sourceTree = "<group>"; };
 		BF5B9B011F8DE39B00BD885E /* area.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
 		BF5B9B021F8DE39B00BD885E /* city.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = city.plist; sourceTree = "<group>"; };
 		BF5B9B5D1F8E636E00BD885E /* EconomicsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EconomicsViewController.swift; sourceTree = "<group>"; };
@@ -3761,6 +3787,7 @@
 				778E8BF71D695AA7004D899C /* 新浪微博 */,
 				77645C681D68259700ACCCAC /* 微信 */,
 				7719171E1D655031002F2BCD /* UserData */,
+				BF58B91D20EA1CD2002CB4EE /* MyAPPicon */,
 				777657011D2BE4B200B538F9 /* HomePictures */,
 				7776570B1D2BE4B200B538F9 /* JSON */,
 			);
@@ -3808,6 +3835,7 @@
 				BF0E8AFA20DB9BE700150476 /* FreedomItems.plist */,
 				BF0E8B0220DCAB3F00150476 /* app.plist */,
 				BF7309DB20E0D98100FC3555 /* usuallyAPP.plist */,
+				BF58B91B20EA1920002CB4EE /* MyAPP.plist */,
 				BF0E8B0320DCAB4100150476 /* systemSetting.plist */,
 				BF5B9B011F8DE39B00BD885E /* area.plist */,
 				BF5B9B021F8DE39B00BD885E /* city.plist */,
@@ -4590,6 +4618,25 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		BF58B91D20EA1CD2002CB4EE /* MyAPPicon */ = {
+			isa = PBXGroup;
+			children = (
+				BF58B92420EA1CE2002CB4EE /* app-Kmiles.png */,
+				BF58B92020EA1CE1002CB4EE /* app-LongChat.png */,
+				BF58B92120EA1CE1002CB4EE /* app-xrz.png */,
+				BF58B92320EA1CE2002CB4EE /* app-qcrb.png */,
+				BF58B92220EA1CE1002CB4EE /* app-iSolar.png */,
+				BF58B91E20EA1CE0002CB4EE /* app-xjb.png */,
+				BF58B92520EA1CE2002CB4EE /* app-beeERP.png */,
+				BF58B91F20EA1CE1002CB4EE /* app-beeManager.png */,
+				BF58B92E20EA1D72002CB4EE /* app-Freedom.png */,
+				BF58B93120EA1DC2002CB4EE /* app-htfData.png */,
+				BF58B93320EA1EA5002CB4EE /* app-zyl.png */,
+				BF58B93520EA1F51002CB4EE /* app-sales.png */,
+			);
+			path = MyAPPicon;
+			sourceTree = "<group>";
+		};
 		BF5B9B591F8E632200BD885E /* 经济 */ = {
 			isa = PBXGroup;
 			children = (
@@ -4820,6 +4867,7 @@
 				7788AC1B1D79969F00376C95 /* reader_cover.png in Resources */,
 				779938BB1E2F7B6400866968 /* d_bizui.png in Resources */,
 				77993A0A1E2F7B9C00866968 /* [删除]@2x.png in Resources */,
+				BF58B92720EA1CE2002CB4EE /* app-beeManager.png in Resources */,
 				779938D01E2F7B6500866968 /* d_kun.png in Resources */,
 				772E846C1D76BC15004EDF50 /* fx_message_starcard.png in Resources */,
 				779939041E2F7B6500866968 /* l_shangxin.png in Resources */,
@@ -4843,6 +4891,7 @@
 				7788AC1C1D79969F00376C95 /* reader_font_decrease.png in Resources */,
 				772E842B1D76BC15004EDF50 /* fx_giftnum_8.png in Resources */,
 				BFC6D95820E5C41B00F17378 /* Chapter2.txt in Resources */,
+				BF58B92620EA1CE2002CB4EE /* app-xjb.png in Resources */,
 				77993A551E2F7B9D00866968 /* [玫瑰]@2x.png in Resources */,
 				77993A341E2F7B9D00866968 /* [惊讶]@2x.png in Resources */,
 				77645F6A1D68259900ACCCAC /* NewFriend_Contacts_icon.png in Resources */,
@@ -4906,6 +4955,7 @@
 				779938F21E2F7B6500866968 /* d_zuohengheng.png in Resources */,
 				772E86541D76BC15004EDF50 /* ktv_match.png in Resources */,
 				7788AC181D79969F00376C95 /* reader_bg5.png in Resources */,
+				BF58B92820EA1CE2002CB4EE /* app-LongChat.png in Resources */,
 				772E86AA1D76BC15004EDF50 /* ktv_recharge.png in Resources */,
 				772E87B61D76BC15004EDF50 /* launch_golden.png in Resources */,
 				7799393B1E2F7B6500866968 /* lxh_koubishi.png in Resources */,
@@ -4997,6 +5047,7 @@
 				772E87AC1D76BC15004EDF50 /* kuqun_gchat_like_selected.png in Resources */,
 				77645EC01D68259900ACCCAC /* Album_test_donotlook.png in Resources */,
 				77993A161E2F7B9C00866968 /* [咖啡]@2x.png in Resources */,
+				BF58B93420EA1EA5002CB4EE /* app-zyl.png in Resources */,
 				77993A091E2F7B9C00866968 /* [刀]@2x.png in Resources */,
 				772E86E81D76BC15004EDF50 /* ktv_wealth_type_day.png in Resources */,
 				772E87181D76BC15004EDF50 /* KTVInviKSong_Shake_WantDate_Sel.png in Resources */,
@@ -5024,6 +5075,7 @@
 				7799396B1E2F7B6600866968 /* lxh_zhuanfa.png in Resources */,
 				779938C21E2F7B6500866968 /* d_feizao.png in Resources */,
 				772E894C1D76BC15004EDF50 /* main_phone.png in Resources */,
+				BF58B93220EA1DC2002CB4EE /* app-htfData.png in Resources */,
 				77645F7A1D68259900ACCCAC /* ReceiverVoiceNodeDownloading.png in Resources */,
 				77645EF01D68259900ACCCAC /* contacts_add_bottle.png in Resources */,
 				77645EFB1D68259900ACCCAC /* contacts_add_nearby.png in Resources */,
@@ -5181,6 +5233,7 @@
 				772E894E1D76BC15004EDF50 /* main_search.png in Resources */,
 				77993A761E2F7B9D00866968 /* [钞票]@2x.png in Resources */,
 				779939141E2F7B6500866968 /* w_shachenbao.png in Resources */,
+				BF58B91C20EA1920002CB4EE /* MyAPP.plist in Resources */,
 				7788AC801D79977200376C95 /* fw_r2_c2.png in Resources */,
 				7799396A1E2F7B6600866968 /* lxh_zhuanfa.gif in Resources */,
 				7741F1421D6D50F900EED332 /* adw_icon_taxi_normal.png in Resources */,
@@ -5213,6 +5266,7 @@
 				772E85A81D76BC15004EDF50 /* ktv_findpage_new_toinvitesong.png in Resources */,
 				77645EE21D68259900ACCCAC /* bottleBoard.png in Resources */,
 				BFC6D96320E5C56700F17378 /* FriendList.json in Resources */,
+				BF58B92D20EA1CE2002CB4EE /* app-beeERP.png in Resources */,
 				77993A121E2F7B9C00866968 /* [右车头]@2x.png in Resources */,
 				77993A851E2F7B9D00866968 /* [香蕉]@2x.png in Resources */,
 				77993A0E1E2F7B9C00866968 /* [可怜]@2x.png in Resources */,
@@ -5233,6 +5287,7 @@
 				7772A80E1D64648B00444973 /* zhifubaoIcon.png in Resources */,
 				77993A0B1E2F7B9C00866968 /* [勾引]@2x.png in Resources */,
 				772E84FD1D76BC15004EDF50 /* fx_weekStar_detail_icon_giftBg.png in Resources */,
+				BF58B92B20EA1CE2002CB4EE /* app-qcrb.png in Resources */,
 				779938E51E2F7B6500866968 /* d_wabishi.png in Resources */,
 				7165A3DC20A58D77001C60D6 /* movie.png in Resources */,
 				772E84DB1D76BC15004EDF50 /* fx_store_starcard_badge.png in Resources */,
@@ -5259,6 +5314,7 @@
 				77645F3D1D68259900ACCCAC /* LaunchImage.png in Resources */,
 				779939191E2F7B6500866968 /* w_yueliang.png in Resources */,
 				7799390E1E2F7B6500866968 /* o_weibo.png in Resources */,
+				BF58B92F20EA1D73002CB4EE /* app-Freedom.png in Resources */,
 				772E870A1D76BC15004EDF50 /* KTVInviKSong_ResGift_Def.png in Resources */,
 				779938DD1E2F7B6500866968 /* d_shuai.png in Resources */,
 				7741F1171D6D50F900EED332 /* alipayHome5.png in Resources */,
@@ -5295,6 +5351,7 @@
 				779938B91E2F7B6400866968 /* d_beishang.png in Resources */,
 				779938D31E2F7B6500866968 /* d_madaochenggong.png in Resources */,
 				77993A291E2F7B9D00866968 /* [弱]@2x.png in Resources */,
+				BF58B92C20EA1CE2002CB4EE /* app-Kmiles.png in Resources */,
 				779939091E2F7B6500866968 /* o_ganbei.png in Resources */,
 				77993A651E2F7B9D00866968 /* [胜利]@2x.png in Resources */,
 				779939121E2F7B6500866968 /* o_zhong.png in Resources */,
@@ -5402,6 +5459,7 @@
 				77645FA91D68259900ACCCAC /* Shake_Logo_Up.png in Resources */,
 				779938ED1E2F7B6500866968 /* d_yun.png in Resources */,
 				772E83B21D76BC15004EDF50 /* CicleBeautyBase.png in Resources */,
+				BF58B93620EA1F51002CB4EE /* app-sales.png in Resources */,
 				779938C41E2F7B6500866968 /* d_guzhang.png in Resources */,
 				779939411E2F7B6600866968 /* lxh_leiliumanmian.png in Resources */,
 				779939FE1E2F7B9C00866968 /* [OK]@2x.png in Resources */,
@@ -5444,6 +5502,7 @@
 				772E83AB1D76BC15004EDF50 /* box_sign_round_selected_bg.png in Resources */,
 				772E86421D76BC15004EDF50 /* ktv_listenwork_yuege_icon.png in Resources */,
 				77645FA61D68259900ACCCAC /* Shake_Line_Down.png in Resources */,
+				BF58B92A20EA1CE2002CB4EE /* app-iSolar.png in Resources */,
 				779939111E2F7B6500866968 /* o_zhaoxiangji.png in Resources */,
 				77993A351E2F7B9D00866968 /* [憨笑]@2x.png in Resources */,
 				772E87941D76BC15004EDF50 /* kugroup_loading_headImg_msg.png in Resources */,
@@ -5479,6 +5538,7 @@
 				779938BE1E2F7B6500866968 /* d_chitangyuan.png in Resources */,
 				779939481E2F7B6600866968 /* lxh_pili.gif in Resources */,
 				77993A2C1E2F7B9D00866968 /* [彩球]@2x.png in Resources */,
+				BF58B92920EA1CE2002CB4EE /* app-xrz.png in Resources */,
 				772E87C81D76BC15004EDF50 /* listen_library.png in Resources */,
 				779938E71E2F7B6500866968 /* d_xiongmao.png in Resources */,
 				772E85D41D76BC15004EDF50 /* ktv_invite.png in Resources */,
