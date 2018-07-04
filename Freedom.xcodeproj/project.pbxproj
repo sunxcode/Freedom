@@ -972,6 +972,10 @@
 		BF58B93220EA1DC2002CB4EE /* app-htfData.png in Resources */ = {isa = PBXBuildFile; fileRef = BF58B93120EA1DC2002CB4EE /* app-htfData.png */; };
 		BF58B93420EA1EA5002CB4EE /* app-zyl.png in Resources */ = {isa = PBXBuildFile; fileRef = BF58B93320EA1EA5002CB4EE /* app-zyl.png */; };
 		BF58B93620EA1F51002CB4EE /* app-sales.png in Resources */ = {isa = PBXBuildFile; fileRef = BF58B93520EA1F51002CB4EE /* app-sales.png */; };
+		BF58B94A20EB22C9002CB4EE /* XTablesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF58B94920EB22C8002CB4EE /* XTablesViewController.swift */; };
+		BF58B95320ECCF7A002CB4EE /* libexidcardios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF58B95020ECCF79002CB4EE /* libexidcardios.a */; };
+		BF58B95420ECCF7A002CB4EE /* zocr0.lib in Resources */ = {isa = PBXBuildFile; fileRef = BF58B95120ECCF79002CB4EE /* zocr0.lib */; };
+		BF58B95720ECCF8B002CB4EE /* AVCaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58B95520ECCF8A002CB4EE /* AVCaptureViewController.m */; };
 		BF5B9B5E1F8E636E00BD885E /* EconomicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5B9B5D1F8E636E00BD885E /* EconomicsViewController.swift */; };
 		BF5B9B601F8E63CF00BD885E /* SearchDownloadBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5B9B5F1F8E63CF00BD885E /* SearchDownloadBookViewController.swift */; };
 		BF5B9B621F8E641000BD885E /* PhilosophyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5B9B611F8E641000BD885E /* PhilosophyViewController.swift */; };
@@ -2115,6 +2119,12 @@
 		BF58B93120EA1DC2002CB4EE /* app-htfData.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-htfData.png"; sourceTree = "<group>"; };
 		BF58B93320EA1EA5002CB4EE /* app-zyl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-zyl.png"; sourceTree = "<group>"; };
 		BF58B93520EA1F51002CB4EE /* app-sales.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-sales.png"; sourceTree = "<group>"; };
+		BF58B94920EB22C8002CB4EE /* XTablesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XTablesViewController.swift; sourceTree = "<group>"; };
+		BF58B95020ECCF79002CB4EE /* libexidcardios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libexidcardios.a; sourceTree = "<group>"; };
+		BF58B95120ECCF79002CB4EE /* zocr0.lib */ = {isa = PBXFileReference; lastKnownFileType = file; path = zocr0.lib; sourceTree = "<group>"; };
+		BF58B95220ECCF79002CB4EE /* excards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = excards.h; sourceTree = "<group>"; };
+		BF58B95520ECCF8A002CB4EE /* AVCaptureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCaptureViewController.m; sourceTree = "<group>"; };
+		BF58B95620ECCF8B002CB4EE /* AVCaptureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCaptureViewController.h; sourceTree = "<group>"; };
 		BF5B9B011F8DE39B00BD885E /* area.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
 		BF5B9B021F8DE39B00BD885E /* city.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = city.plist; sourceTree = "<group>"; };
 		BF5B9B5D1F8E636E00BD885E /* EconomicsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EconomicsViewController.swift; sourceTree = "<group>"; };
@@ -2265,6 +2275,7 @@
 				77BE535D1D2CAFFD0001AA09 /* Security.framework in Frameworks */,
 				77BE535B1D2CAFF40001AA09 /* libz.1.2.5.tbd in Frameworks */,
 				77BE53591D2CAFE80001AA09 /* libicucore.tbd in Frameworks */,
+				BF58B95320ECCF7A002CB4EE /* libexidcardios.a in Frameworks */,
 				77BE53571D2CAFDB0001AA09 /* CoreTelephony.framework in Frameworks */,
 				77BE53551D2CAFD20001AA09 /* QuartzCore.framework in Frameworks */,
 				77BE53531D2CAFC50001AA09 /* SystemConfiguration.framework in Frameworks */,
@@ -3689,6 +3700,8 @@
 		7772A7F11D64433500444973 /* ThirdPart */ = {
 			isa = PBXGroup;
 			children = (
+				BF58B94F20ECCF79002CB4EE /* idcardlib */,
+				BF58B94920EB22C8002CB4EE /* XTablesViewController.swift */,
 				71517B1B2094803300B40538 /* JSONObject.swift */,
 				71ECDFB22091EB4A00495467 /* JSPatch.framework */,
 				BFC6D93220E322D100F17378 /* XRadiaMenu.swift */,
@@ -4637,6 +4650,18 @@
 			path = MyAPPicon;
 			sourceTree = "<group>";
 		};
+		BF58B94F20ECCF79002CB4EE /* idcardlib */ = {
+			isa = PBXGroup;
+			children = (
+				BF58B95620ECCF8B002CB4EE /* AVCaptureViewController.h */,
+				BF58B95520ECCF8A002CB4EE /* AVCaptureViewController.m */,
+				BF58B95020ECCF79002CB4EE /* libexidcardios.a */,
+				BF58B95120ECCF79002CB4EE /* zocr0.lib */,
+				BF58B95220ECCF79002CB4EE /* excards.h */,
+			);
+			path = idcardlib;
+			sourceTree = "<group>";
+		};
 		BF5B9B591F8E632200BD885E /* 经济 */ = {
 			isa = PBXGroup;
 			children = (
@@ -5582,6 +5607,7 @@
 				772E84471D76BC15004EDF50 /* fx_liveRank_mode.png in Resources */,
 				7772A8141D64648B00444973 /* weiboIcon.png in Resources */,
 				772E892D1D76BC15004EDF50 /* watch_star_interview.png in Resources */,
+				BF58B95420ECCF7A002CB4EE /* zocr0.lib in Resources */,
 				772E857E1D76BC15004EDF50 /* KQInputView_takePhotos.png in Resources */,
 				772E84101D76BC15004EDF50 /* fx_continuous_send_star_first_light.png in Resources */,
 				77993A2F1E2F7B9D00866968 /* [心碎了]@2x.png in Resources */,
@@ -5912,6 +5938,7 @@
 				713EE2AC20AD8F8E0085B65D /* DZNavigationController.swift in Sources */,
 				713EE2C820AD9B600085B65D /* TaobaoHomeViewController.swift in Sources */,
 				71ECDFC12091F9EF00495467 /* WXUserHelper.m in Sources */,
+				BF58B94A20EB22C9002CB4EE /* XTablesViewController.swift in Sources */,
 				713EE2BA20AD906F0085B65D /* KugouNavigationViewController.swift in Sources */,
 				7115A5DC20AAD9C2000D0B96 /* ResumeListViewController.swift in Sources */,
 				713EE2D220AD9B970085B65D /* TaobaoMiniArticleViewController.swift in Sources */,
@@ -5982,6 +6009,7 @@
 				713EE2F820AD9D3C0085B65D /* DetailTableViewController.swift in Sources */,
 				713EE2BE20AD9AF90085B65D /* DZDealController.swift in Sources */,
 				71ECE004209210BF00495467 /* WXGroupViewController.m in Sources */,
+				BF58B95720ECCF8B002CB4EE /* AVCaptureViewController.m in Sources */,
 				71250EC62091C0F20093B59B /* FreedomTools.m in Sources */,
 				7115A5B820AAC348000D0B96 /* PersonalApplyBaseViewController.swift in Sources */,
 				713EE2A420AD8F160085B65D /* DZTabBarController.swift in Sources */,
@@ -6173,6 +6201,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 86HU38VCDS;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6183,6 +6212,10 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Freedom/Others/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Freedom/utility/ThirdPart/idcardlib",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.freedom.zyzy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -6204,6 +6237,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 86HU38VCDS;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6214,6 +6248,10 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Freedom/Others/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Freedom/utility/ThirdPart/idcardlib",
+				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.freedom.zyzy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
