@@ -1,6 +1,15 @@
+xcodeproj ‘Freedom’
+workspace ‘Freedom’
 platform:ios, '10.0'
+inhibit_all_warnings!  # ：屏蔽所有warnings
+#source 'https://github.com/Artsy/Specs.git'
 target 'Freedom' do
     use_frameworks!
+    #pod 'JSONKit', :podspec => 'https://example.com/JSONKit.podspec':指定导入库的podspec文件路径
+    #pod '库名', :git => '源码git地址'  :  指定导入库的源码git地址
+    #pod '库名', :tag => 'tag名'  :  指定导入库的Tag分支
+    #pod 'QueryKit/Attribute'也可以指定一个集合，像下面这样:
+    #pod 'QueryKit', :subspecs => ['Attribute', 'QuerySet']
     #Objective-C.frameworks
     pod 'SVProgressHUD'
     pod 'MJRefresh'
@@ -31,6 +40,7 @@ target 'Freedom' do
     pod 'XCategory'
     pod 'XCarryOn'
     pod 'ScottAlertController'
+    pod 'SSKeychain'  #https://github.com/Mingriweiji-github/sskeychain-master
 #Swift.frameworks
 pod 'XExtension'
 pod 'BaseFile'
@@ -48,6 +58,7 @@ pod 'RxCocoa'
 pod 'Moya'
 pod 'Moya/RxSwift'
 pod 'Moya/ReactiveSwift'
+
 #其它的
 #pod 'SwiftyJSONModel'#冲突了
 #pod 'RongCloudIM'

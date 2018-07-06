@@ -984,6 +984,9 @@
 		BF58BA2920EDC079002CB4EE /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BF58BA2820EDC079002CB4EE /* libxml2.tbd */; };
 		BF58BA2B20EDC367002CB4EE /* libexidcardios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF58BA2A20EDC367002CB4EE /* libexidcardios.a */; };
 		BF58BA2D20EDC5CC002CB4EE /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF58BA2C20EDC5CC002CB4EE /* Photos.framework */; };
+		BF58BA3020EDE837002CB4EE /* FreedomTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF58BA2F20EDE837002CB4EE /* FreedomTools.swift */; };
+		BF58BA3220EDF132002CB4EE /* SwiftNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF58BA3120EDF132002CB4EE /* SwiftNotice.swift */; };
+		BF58BA3420EDF163002CB4EE /* ASNetWorkHepler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF58BA3320EDF163002CB4EE /* ASNetWorkHepler.swift */; };
 		BF5B9B5E1F8E636E00BD885E /* EconomicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5B9B5D1F8E636E00BD885E /* EconomicsViewController.swift */; };
 		BF5B9B601F8E63CF00BD885E /* SearchDownloadBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5B9B5F1F8E63CF00BD885E /* SearchDownloadBookViewController.swift */; };
 		BF5B9B621F8E641000BD885E /* PhilosophyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5B9B611F8E641000BD885E /* PhilosophyViewController.swift */; };
@@ -2143,6 +2146,9 @@
 		BF58BA2820EDC079002CB4EE /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		BF58BA2A20EDC367002CB4EE /* libexidcardios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libexidcardios.a; sourceTree = "<group>"; };
 		BF58BA2C20EDC5CC002CB4EE /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
+		BF58BA2F20EDE837002CB4EE /* FreedomTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreedomTools.swift; sourceTree = "<group>"; };
+		BF58BA3120EDF132002CB4EE /* SwiftNotice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftNotice.swift; sourceTree = "<group>"; };
+		BF58BA3320EDF163002CB4EE /* ASNetWorkHepler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ASNetWorkHepler.swift; sourceTree = "<group>"; };
 		BF5B9B011F8DE39B00BD885E /* area.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
 		BF5B9B021F8DE39B00BD885E /* city.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = city.plist; sourceTree = "<group>"; };
 		BF5B9B5D1F8E636E00BD885E /* EconomicsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EconomicsViewController.swift; sourceTree = "<group>"; };
@@ -3399,6 +3405,7 @@
 				71250EC72091C1DA0093B59B /* NSObject+Freedom.h */,
 				71250EC82091C1DA0093B59B /* NSObject+Freedom.m */,
 				713728CE20AE9FC500A3227A /* FoundationSwift.swift */,
+				BF58BA2F20EDE837002CB4EE /* FreedomTools.swift */,
 				77CC4F3B1D90DF6200DD2EC8 /* Foundation.h */,
 				77CC4F361D90DCC700DD2EC8 /* Foundation_API.h */,
 				779E70041E31AA5200216928 /* Foundation_enum.h */,
@@ -3722,6 +3729,7 @@
 			children = (
 				BF58B94F20ECCF79002CB4EE /* idcardlib */,
 				BF58B94920EB22C8002CB4EE /* XTablesViewController.swift */,
+				BF58BA3120EDF132002CB4EE /* SwiftNotice.swift */,
 				71517B1B2094803300B40538 /* JSONObject.swift */,
 				71ECDFB22091EB4A00495467 /* JSPatch.framework */,
 				BFC6D93220E322D100F17378 /* XRadiaMenu.swift */,
@@ -3730,6 +3738,7 @@
 				BF58BA2220EDBFBC002CB4EE /* HTMLParser.h */,
 				BF58BA2120EDBFBC002CB4EE /* HTMLParser.m */,
 				BF58BA1F20EDBFBB002CB4EE /* PreViewController.swift */,
+				BF58BA3320EDF163002CB4EE /* ASNetWorkHepler.swift */,
 				BF0E8B0620DCB0B400150476 /* AppManager.h */,
 				BF0E8B0720DCB0B500150476 /* AppManager.m */,
 				BF58B95D20EDAB92002CB4EE /* TeamDesigner.h */,
@@ -5825,6 +5834,7 @@
 				BF6E572D1FABFCE0005F7DF8 /* WXNewMessageSettingViewController.m in Sources */,
 				7121194020ABC5940087E05B /* EnergyContactDetailViewController.swift in Sources */,
 				BF6E572C1FABFCDA005F7DF8 /* WXCommonSettingViewController.m in Sources */,
+				BF58BA3420EDF163002CB4EE /* ASNetWorkHepler.swift in Sources */,
 				7121196E20AC24EA0087E05B /* ToutiaoHomeDetailViewController.swift in Sources */,
 				713EE2E620AD9C3A0085B65D /* AlipayAssetsTableViewController.swift in Sources */,
 				713EE30A20ADA0790085B65D /* IqiyiDiscoverViewController.swift in Sources */,
@@ -5928,6 +5938,7 @@
 				7121193420ABC5420087E05B /* EnergySuperMeViewController.swift in Sources */,
 				7115A5C420AAD351000D0B96 /* PersonalComputerViewController.swift in Sources */,
 				713EE30620ADA05F0085B65D /* IqiyiVideoDetailViewController.swift in Sources */,
+				BF58BA3220EDF132002CB4EE /* SwiftNotice.swift in Sources */,
 				713EE30C20ADA0850085B65D /* IqiyiSearchHistoryViewController.swift in Sources */,
 				7121194420ABE1280087E05B /* EnergySuperMarketTabBarController.swift in Sources */,
 				7115A5DE20AAD9CE000D0B96 /* ResumeDetailViewController.swift in Sources */,
@@ -5966,6 +5977,7 @@
 				7741F0BC1D6D380800EED332 /* README.md in Sources */,
 				71ECE04E2092128E00495467 /* WXUserGroupCell.m in Sources */,
 				713EE2C020AD9B060085B65D /* DZDealListViewController.swift in Sources */,
+				BF58BA3020EDE837002CB4EE /* FreedomTools.swift in Sources */,
 				71ECE0222092121F00495467 /* WXShakeSettingViewController.m in Sources */,
 				7121193A20ABC5710087E05B /* EnergyShopCarViewController.swift in Sources */,
 				713EE2AC20AD8F8E0085B65D /* DZNavigationController.swift in Sources */,
