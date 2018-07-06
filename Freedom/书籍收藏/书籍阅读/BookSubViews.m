@@ -1503,12 +1503,12 @@
         _chapterLbl.textColor = [UIColor redColor];
         _chapterLbl.font = [UIFont systemFontOfSize:15];
         [self.contentView addSubview:_chapterLbl];
-        _timeLbl = [[UILabel alloc] initWithFrame:CGRectMake(kScreenW*3/4 - 125, 5, 110, 20)];
+        _timeLbl = [[UILabel alloc] initWithFrame:CGRectMake(APPW*3/4 - 125, 5, 110, 20)];
         _timeLbl.textColor = [UIColor redColor];
         _timeLbl.textAlignment = NSTextAlignmentRight;
         _timeLbl.font = [UIFont systemFontOfSize:14];
         [self.contentView addSubview:_timeLbl];
-        _contentLbl = [[UILabel alloc] initWithFrame:CGRectMake(25, 28, kScreenW*3/4 - 50, 60)];
+        _contentLbl = [[UILabel alloc] initWithFrame:CGRectMake(25, 28, APPW*3/4 - 50, 60)];
         _contentLbl.numberOfLines = 3;
         _contentLbl.font = [UIFont systemFontOfSize:16];
         _contentLbl.textColor = [UIColor blackColor];
@@ -1533,7 +1533,7 @@
         _chapterLbl.textColor = [UIColor grayColor];
         _chapterLbl.font = [UIFont systemFontOfSize:15];
         [self.contentView addSubview:_chapterLbl];
-        _contentLbl = [[UILabel alloc] initWithFrame:CGRectMake(20, 29, kScreenW - 40, 24)];
+        _contentLbl = [[UILabel alloc] initWithFrame:CGRectMake(20, 29, APPW - 40, 24)];
         _contentLbl.textColor = [UIColor blackColor];
         _contentLbl.lineBreakMode = NSLineBreakByTruncatingMiddle;
         _contentLbl.font = [UIFont systemFontOfSize:17];

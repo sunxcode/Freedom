@@ -18,8 +18,6 @@
 #define kBottomBarH 150
 #define FilePath [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
 #define epubBookName @"倚天屠龙记"
-#define kScreenW [UIScreen mainScreen].bounds.size.width
-
 #endif
 /*公共管理类*/
 @interface E_CommonManager : NSObject

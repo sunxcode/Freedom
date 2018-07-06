@@ -47,6 +47,15 @@ typedef id (*_IMP)(id, SEL, id);
     } else {
         return [super pointInside:point withEvent:event];
     }
+//    CGRect bounds = self.bounds;
+//    //若原热区小于44x44，则放大热区，否则保持原大小不变
+//    CGFloat widthDelta = MAX(44.0 - bounds.size.width, 0);
+//    CGFloat heightDelta = MAX(44.0 - bounds.size.height, 0);
+//    bounds = CGRectInset(bounds, -0.5 * widthDelta, -0.5 * heightDelta);
+//    if ([RCDMainTabBarViewController shareInstance].selectedTabBarIndex > 0) {
+//        bounds = CGRectZero;
+//    }
+//    return CGRectContainsPoint(bounds, point);
 }
 - (void)setSize:(CGSize)size {
     objc_setAssociatedObject(self, @selector(size), [NSValue valueWithCGSize:size], OBJC_ASSOCIATION_RETAIN_NONATOMIC);

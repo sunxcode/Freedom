@@ -41,6 +41,11 @@ target 'Freedom' do
     pod 'XCarryOn'
     pod 'ScottAlertController'
     pod 'SSKeychain'  #https://github.com/Mingriweiji-github/sskeychain-master
+    pod 'RongCloudIM/IMLib'
+    pod 'RongCloudIM/IMKit'
+    pod 'RongCloudIM/CallLib'
+    pod 'RongCloudIM/CallKit'
+    pod 'RongCloudIM/RedPacket'
 #Swift.frameworks
 pod 'XExtension'
 pod 'BaseFile'
@@ -61,7 +66,6 @@ pod 'Moya/ReactiveSwift'
 
 #其它的
 #pod 'SwiftyJSONModel'#冲突了
-#pod 'RongCloudIM'
 #pod 'OpenShare'
 #pod 'AMap3DMap'
 #pod 'AMapNavi'

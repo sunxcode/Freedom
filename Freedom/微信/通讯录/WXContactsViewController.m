@@ -192,10 +192,11 @@
     WechatContact *contact = [self.data[indexPath.section] objectAtIndex:indexPath.row];
     WechatContactCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TLContactCell"];
     [cell setContact:contact];
-    if (indexPath.section == self.data.count - 1 && indexPath.row == [self.data[indexPath.section] count] - 1) {
+    NSArray *temp = self.data[indexPath.section];
+    if (indexPath.section == self.data.count - 1 && indexPath.row == [temp count] - 1) {
         [cell setBottomLineStyle:TLCellLineStyleFill];
     }else{
-        [cell setBottomLineStyle:(indexPath.row == [self.data[indexPath.section] count] - 1 ? TLCellLineStyleNone : TLCellLineStyleDefault)];
+        [cell setBottomLineStyle:(indexPath.row == [temp count] - 1 ? TLCellLineStyleNone : TLCellLineStyleDefault)];
     }
     return cell;
 }

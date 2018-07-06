@@ -129,7 +129,8 @@
     return self.data.count;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [self.data[section] count];
+    NSArray *temp = self.data[section];
+    return [temp count];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSArray *group = self.data[indexPath.section];

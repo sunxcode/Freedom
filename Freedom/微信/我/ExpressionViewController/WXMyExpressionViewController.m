@@ -153,7 +153,8 @@
         
         NSInteger row = [self.data[0] indexOfObject:group];
         [self.data[0] removeObject:group];
-        if ([self.data[0] count] == 0) {
+        NSArray *temp = self.data[0];
+        if ([temp count] == 0) {
             [self.data removeObjectAtIndex:0];
             [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
         }else{

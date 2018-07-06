@@ -987,6 +987,91 @@
 		BF58BA3020EDE837002CB4EE /* FreedomTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF58BA2F20EDE837002CB4EE /* FreedomTools.swift */; };
 		BF58BA3220EDF132002CB4EE /* SwiftNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF58BA3120EDF132002CB4EE /* SwiftNotice.swift */; };
 		BF58BA3420EDF163002CB4EE /* ASNetWorkHepler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF58BA3320EDF163002CB4EE /* ASNetWorkHepler.swift */; };
+		BF58BB1420EF1944002CB4EE /* KxMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BA4E20EF1944002CB4EE /* KxMenu.m */; };
+		BF58BB1520EF1944002CB4EE /* RCloudModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BA4F20EF1944002CB4EE /* RCloudModel.m */; };
+		BF58BB2220EF1944002CB4EE /* RCWKRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BA6C20EF1944002CB4EE /* RCWKRequestHandler.m */; };
+		BF58BB2420EF1944002CB4EE /* RongCloudKit.strings in Resources */ = {isa = PBXBuildFile; fileRef = BF58BA7120EF1944002CB4EE /* RongCloudKit.strings */; };
+		BF58BB2520EF1944002CB4EE /* RCDChatRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BA7320EF1944002CB4EE /* RCDChatRoomViewController.m */; };
+		BF58BB2620EF1945002CB4EE /* RCDPrivateSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BA7620EF1944002CB4EE /* RCDPrivateSettingsTableViewController.m */; };
+		BF58BB2720EF1945002CB4EE /* RCDContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BA7B20EF1944002CB4EE /* RCDContactViewController.m */; };
+		BF58BB2820EF1945002CB4EE /* RCDContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BA7C20EF1944002CB4EE /* RCDContactTableViewCell.m */; };
+		BF58BB2920EF1945002CB4EE /* RCDAddressBookTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BA7D20EF1944002CB4EE /* RCDAddressBookTableViewCell.m */; };
+		BF58BB2A20EF1945002CB4EE /* RCDAddressBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BA7F20EF1944002CB4EE /* RCDAddressBookViewController.m */; };
+		BF58BB2B20EF1945002CB4EE /* RCDFrienfRemarksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BA8320EF1944002CB4EE /* RCDFrienfRemarksViewController.m */; };
+		BF58BB2C20EF1945002CB4EE /* RCDPersonDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BA8620EF1944002CB4EE /* RCDPersonDetailViewController.m */; };
+		BF58BB2D20EF1945002CB4EE /* RCDContactSelectedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BA8720EF1944002CB4EE /* RCDContactSelectedTableViewController.m */; };
+		BF58BB2E20EF1945002CB4EE /* RCDSearchFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BA8820EF1944002CB4EE /* RCDSearchFriendViewController.m */; };
+		BF58BB2F20EF1945002CB4EE /* RCDAddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BA8A20EF1944002CB4EE /* RCDAddFriendViewController.m */; };
+		BF58BB3020EF1945002CB4EE /* RCDMainTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BA8C20EF1944002CB4EE /* RCDMainTabBarViewController.m */; };
+		BF58BB3120EF1945002CB4EE /* RCDGroupAnnouncementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BA8F20EF1944002CB4EE /* RCDGroupAnnouncementViewController.m */; };
+		BF58BB3220EF1945002CB4EE /* RCDGroupMembersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BA9320EF1944002CB4EE /* RCDGroupMembersTableViewController.m */; };
+		BF58BB3320EF1945002CB4EE /* RCDEditGroupNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BA9420EF1944002CB4EE /* RCDEditGroupNameViewController.m */; };
+		BF58BB3420EF1945002CB4EE /* RCDGroupSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BA9620EF1944002CB4EE /* RCDGroupSettingsTableViewController.m */; };
+		BF58BB3520EF1945002CB4EE /* RCDGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BA9720EF1944002CB4EE /* RCDGroupViewController.m */; };
+		BF58BB3620EF1945002CB4EE /* RCDReceiptDetailsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BA9920EF1944002CB4EE /* RCDReceiptDetailsTableViewController.m */; };
+		BF58BB3720EF1945002CB4EE /* RCDCreateGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BA9B20EF1944002CB4EE /* RCDCreateGroupViewController.m */; };
+		BF58BB3820EF1945002CB4EE /* RCDNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BA9D20EF1944002CB4EE /* RCDNavigationViewController.m */; };
+		BF58BB3920EF1945002CB4EE /* RCDRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BAA320EF1944002CB4EE /* RCDRegisterViewController.m */; };
+		BF58BB3A20EF1945002CB4EE /* RCDBaseSettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BAA420EF1944002CB4EE /* RCDBaseSettingTableViewCell.m */; };
+		BF58BB3B20EF1945002CB4EE /* RCDSearchHistoryMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BAA620EF1944002CB4EE /* RCDSearchHistoryMessageController.m */; };
+		BF58BB3C20EF1945002CB4EE /* RCDSearchDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BAA720EF1944002CB4EE /* RCDSearchDataManager.m */; };
+		BF58BB3D20EF1945002CB4EE /* RCDSearchMoreController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BAA920EF1944002CB4EE /* RCDSearchMoreController.m */; };
+		BF58BB3F20EF1945002CB4EE /* RCDSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BAAC20EF1944002CB4EE /* RCDSearchViewController.m */; };
+		BF58BB4020EF1945002CB4EE /* RCDSearchResultViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BAB020EF1944002CB4EE /* RCDSearchResultViewCell.m */; };
+		BF58BB4120EF1945002CB4EE /* RCDLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BAB320EF1944002CB4EE /* RCDLabel.m */; };
+		BF58BB4220EF1945002CB4EE /* RCDConversationSettingTableViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BAB620EF1944002CB4EE /* RCDConversationSettingTableViewHeader.m */; };
+		BF58BB4320EF1945002CB4EE /* RCDPrivateSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BAB720EF1944002CB4EE /* RCDPrivateSettingViewController.m */; };
+		BF58BB4420EF1945002CB4EE /* RCDRoomSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BAB820EF1944002CB4EE /* RCDRoomSettingViewController.m */; };
+		BF58BB4520EF1945002CB4EE /* RCDConversationSettingTableViewHeaderItem.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BABA20EF1944002CB4EE /* RCDConversationSettingTableViewHeaderItem.m */; };
+		BF58BB4620EF1945002CB4EE /* RCDUpdateNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BABB20EF1944002CB4EE /* RCDUpdateNameViewController.m */; };
+		BF58BB4720EF1945002CB4EE /* RCDConversationSettingBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BABC20EF1944002CB4EE /* RCDConversationSettingBaseViewController.m */; };
+		BF58BB4820EF1945002CB4EE /* RCDSettingBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BAC120EF1944002CB4EE /* RCDSettingBaseViewController.m */; };
+		BF58BB4920EF1945002CB4EE /* RCDDiscussGroupSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BAC320EF1944002CB4EE /* RCDDiscussGroupSettingViewController.m */; };
+		BF58BB4A20EF1945002CB4EE /* RCDFindPswViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BAC620EF1944002CB4EE /* RCDFindPswViewController.m */; };
+		BF58BB4B20EF1945002CB4EE /* RCDMeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BAC820EF1944002CB4EE /* RCDMeTableViewController.m */; };
+		BF58BB4C20EF1945002CB4EE /* RCDPushSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BACC20EF1944002CB4EE /* RCDPushSettingViewController.m */; };
+		BF58BB4D20EF1945002CB4EE /* RCDMessageNoDisturbSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BACD20EF1944002CB4EE /* RCDMessageNoDisturbSettingController.m */; };
+		BF58BB4E20EF1945002CB4EE /* RCDMessageNotifySettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BACF20EF1944002CB4EE /* RCDMessageNotifySettingTableViewController.m */; };
+		BF58BB4F20EF1945002CB4EE /* RCDChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BAD120EF1944002CB4EE /* RCDChangePasswordViewController.m */; };
+		BF58BB5020EF1945002CB4EE /* RCDBlackListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BAD520EF1944002CB4EE /* RCDBlackListViewController.m */; };
+		BF58BB5120EF1945002CB4EE /* RCDSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BAD620EF1944002CB4EE /* RCDSettingsTableViewController.m */; };
+		BF58BB5220EF1945002CB4EE /* RCDPrivacyTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BAD820EF1944002CB4EE /* RCDPrivacyTableViewController.m */; };
+		BF58BB5320EF1945002CB4EE /* RCDMeInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BADC20EF1944002CB4EE /* RCDMeInfoTableViewController.m */; };
+		BF58BB5420EF1945002CB4EE /* RCDEditUserNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BADD20EF1944002CB4EE /* RCDEditUserNameViewController.m */; };
+		BF58BB5520EF1945002CB4EE /* RCDAboutRongCloudTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BADE20EF1944002CB4EE /* RCDAboutRongCloudTableViewController.m */; };
+		BF58BB5620EF1945002CB4EE /* RCDChatListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BAE020EF1944002CB4EE /* RCDChatListViewController.m */; };
+		BF58BB5720EF1945002CB4EE /* RCDChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BAE120EF1944002CB4EE /* RCDChatViewController.m */; };
+		BF58BB5820EF1945002CB4EE /* RCDSquareTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BAE220EF1944002CB4EE /* RCDSquareTableViewController.m */; };
+		BF58BB5920EF1945002CB4EE /* RCDServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BAE720EF1944002CB4EE /* RCDServiceViewController.m */; };
+		BF58BB5A20EF1945002CB4EE /* RCDPublicServiceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BAE820EF1944002CB4EE /* RCDPublicServiceListViewController.m */; };
+		BF58BB5B20EF1945002CB4EE /* RCDCustomerServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BAEA20EF1944002CB4EE /* RCDCustomerServiceViewController.m */; };
+		BF58BB5D20EF1945002CB4EE /* RCDLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BAF120EF1944002CB4EE /* RCDLoginViewController.m */; };
+		BF58BB5E20EF1945002CB4EE /* RCDSettingServerUrlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BAF220EF1944002CB4EE /* RCDSettingServerUrlViewController.m */; };
+		BF58BB6320EF1945002CB4EE /* RCAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BAFD20EF1944002CB4EE /* RCAnnotationView.m */; };
+		BF58BB6420EF1945002CB4EE /* RealTimeLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BAFF20EF1944002CB4EE /* RealTimeLocationViewController.m */; };
+		BF58BB6520EF1945002CB4EE /* RCDRCIMDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BB0020EF1944002CB4EE /* RCDRCIMDataSource.m */; };
+		BF58BB6620EF1945002CB4EE /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BB0720EF1944002CB4EE /* TFHpple.m */; };
+		BF58BB6720EF1945002CB4EE /* AFHttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BB0920EF1944002CB4EE /* AFHttpTool.m */; };
+		BF58BB6820EF1945002CB4EE /* RCDataBaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BB0A20EF1944002CB4EE /* RCDataBaseManager.m */; };
+		BF58BB6920EF1945002CB4EE /* RCDHttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BB0D20EF1944002CB4EE /* RCDHttpTool.m */; };
+		BF58BB6B20EF1945002CB4EE /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BB0F20EF1944002CB4EE /* TFHppleElement.m */; };
+		BF58BB6C20EF1945002CB4EE /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BB1120EF1944002CB4EE /* XPathQuery.m */; };
+		BF58BB6D20EF1945002CB4EE /* RCDShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BB1320EF1944002CB4EE /* RCDShareViewController.m */; };
+		BF58BB6F20EF1C3A002CB4EE /* Speech.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF58BB6E20EF1C3A002CB4EE /* Speech.framework */; };
+		BF58BB7320EF1C55002CB4EE /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF58BB7220EF1C54002CB4EE /* AddressBook.framework */; };
+		BF58BB7520EF1C62002CB4EE /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF58BB7420EF1C62002CB4EE /* SafariServices.framework */; };
+		BF58BB7720EF1C6E002CB4EE /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BF58BB7620EF1C6E002CB4EE /* libz.tbd */; };
+		BF58BB7920EF1C7A002CB4EE /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF58BB7820EF1C7A002CB4EE /* CoreMedia.framework */; };
+		BF58BB7B20EF1C86002CB4EE /* PushKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF58BB7A20EF1C85002CB4EE /* PushKit.framework */; };
+		BF58BB7D20EF1CED002CB4EE /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF58BB7C20EF1CED002CB4EE /* CoreVideo.framework */; };
+		BF58BB7F20EF1CF5002CB4EE /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF58BB7E20EF1CF4002CB4EE /* CoreAudio.framework */; };
+		BF58BB8820EF1D3F002CB4EE /* RongContactCard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF58BB8020EF1D3B002CB4EE /* RongContactCard.framework */; };
+		BF58BB8920EF1D3F002CB4EE /* RongiFlyKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF58BB8120EF1D3C002CB4EE /* RongiFlyKit.framework */; };
+		BF58BB8A20EF1D3F002CB4EE /* BQMMRongCloudExt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF58BB8320EF1D3D002CB4EE /* BQMMRongCloudExt.framework */; };
+		BF58BB8B20EF1D3F002CB4EE /* BQMM.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BF58BB8420EF1D3D002CB4EE /* BQMM.bundle */; };
+		BF58BB8C20EF1D3F002CB4EE /* iflyMSC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF58BB8620EF1D3F002CB4EE /* iflyMSC.framework */; };
+		BF58BB8D20EF1D3F002CB4EE /* RongCloudiFly.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BF58BB8720EF1D3F002CB4EE /* RongCloudiFly.bundle */; };
+		BF58BB9720EF81BA002CB4EE /* RCAnimatedImagesView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF58BB9620EF81BA002CB4EE /* RCAnimatedImagesView.m */; };
 		BF5B9B5E1F8E636E00BD885E /* EconomicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5B9B5D1F8E636E00BD885E /* EconomicsViewController.swift */; };
 		BF5B9B601F8E63CF00BD885E /* SearchDownloadBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5B9B5F1F8E63CF00BD885E /* SearchDownloadBookViewController.swift */; };
 		BF5B9B621F8E641000BD885E /* PhilosophyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5B9B611F8E641000BD885E /* PhilosophyViewController.swift */; };
@@ -2149,6 +2234,162 @@
 		BF58BA2F20EDE837002CB4EE /* FreedomTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreedomTools.swift; sourceTree = "<group>"; };
 		BF58BA3120EDF132002CB4EE /* SwiftNotice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftNotice.swift; sourceTree = "<group>"; };
 		BF58BA3320EDF163002CB4EE /* ASNetWorkHepler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ASNetWorkHepler.swift; sourceTree = "<group>"; };
+		BF58BA4E20EF1944002CB4EE /* KxMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KxMenu.m; sourceTree = "<group>"; };
+		BF58BA4F20EF1944002CB4EE /* RCloudModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCloudModel.m; sourceTree = "<group>"; };
+		BF58BA6C20EF1944002CB4EE /* RCWKRequestHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCWKRequestHandler.m; sourceTree = "<group>"; };
+		BF58BA6E20EF1944002CB4EE /* RCWKRequestHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCWKRequestHandler.h; sourceTree = "<group>"; };
+		BF58BA7120EF1944002CB4EE /* RongCloudKit.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = RongCloudKit.strings; sourceTree = "<group>"; };
+		BF58BA7320EF1944002CB4EE /* RCDChatRoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDChatRoomViewController.m; sourceTree = "<group>"; };
+		BF58BA7420EF1944002CB4EE /* RCDBaseSettingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDBaseSettingTableViewCell.h; sourceTree = "<group>"; };
+		BF58BA7620EF1944002CB4EE /* RCDPrivateSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDPrivateSettingsTableViewController.m; sourceTree = "<group>"; };
+		BF58BA7720EF1944002CB4EE /* RCDSearchFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDSearchFriendViewController.h; sourceTree = "<group>"; };
+		BF58BA7820EF1944002CB4EE /* RCDAddFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDAddFriendViewController.h; sourceTree = "<group>"; };
+		BF58BA7A20EF1944002CB4EE /* RCDFrienfRemarksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDFrienfRemarksViewController.h; sourceTree = "<group>"; };
+		BF58BA7B20EF1944002CB4EE /* RCDContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDContactViewController.m; sourceTree = "<group>"; };
+		BF58BA7C20EF1944002CB4EE /* RCDContactTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDContactTableViewCell.m; sourceTree = "<group>"; };
+		BF58BA7D20EF1944002CB4EE /* RCDAddressBookTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDAddressBookTableViewCell.m; sourceTree = "<group>"; };
+		BF58BA7E20EF1944002CB4EE /* RCDPersonDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDPersonDetailViewController.h; sourceTree = "<group>"; };
+		BF58BA7F20EF1944002CB4EE /* RCDAddressBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDAddressBookViewController.m; sourceTree = "<group>"; };
+		BF58BA8020EF1944002CB4EE /* RCDContactSelectedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDContactSelectedTableViewController.h; sourceTree = "<group>"; };
+		BF58BA8120EF1944002CB4EE /* RCDContactTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDContactTableViewCell.h; sourceTree = "<group>"; };
+		BF58BA8220EF1944002CB4EE /* RCDContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDContactViewController.h; sourceTree = "<group>"; };
+		BF58BA8320EF1944002CB4EE /* RCDFrienfRemarksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDFrienfRemarksViewController.m; sourceTree = "<group>"; };
+		BF58BA8420EF1944002CB4EE /* RCDAddressBookTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDAddressBookTableViewCell.h; sourceTree = "<group>"; };
+		BF58BA8520EF1944002CB4EE /* RCDAddressBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDAddressBookViewController.h; sourceTree = "<group>"; };
+		BF58BA8620EF1944002CB4EE /* RCDPersonDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDPersonDetailViewController.m; sourceTree = "<group>"; };
+		BF58BA8720EF1944002CB4EE /* RCDContactSelectedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDContactSelectedTableViewController.m; sourceTree = "<group>"; };
+		BF58BA8820EF1944002CB4EE /* RCDSearchFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDSearchFriendViewController.m; sourceTree = "<group>"; };
+		BF58BA8920EF1944002CB4EE /* RCDPrivateSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDPrivateSettingsTableViewController.h; sourceTree = "<group>"; };
+		BF58BA8A20EF1944002CB4EE /* RCDAddFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDAddFriendViewController.m; sourceTree = "<group>"; };
+		BF58BA8B20EF1944002CB4EE /* RCDChatListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDChatListViewController.h; sourceTree = "<group>"; };
+		BF58BA8C20EF1944002CB4EE /* RCDMainTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDMainTabBarViewController.m; sourceTree = "<group>"; };
+		BF58BA8D20EF1944002CB4EE /* RCDFindPswViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDFindPswViewController.h; sourceTree = "<group>"; };
+		BF58BA8F20EF1944002CB4EE /* RCDGroupAnnouncementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDGroupAnnouncementViewController.m; sourceTree = "<group>"; };
+		BF58BA9020EF1944002CB4EE /* RCDGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDGroupViewController.h; sourceTree = "<group>"; };
+		BF58BA9120EF1944002CB4EE /* RCDGroupSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDGroupSettingsTableViewController.h; sourceTree = "<group>"; };
+		BF58BA9220EF1944002CB4EE /* RCDReceiptDetailsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDReceiptDetailsTableViewController.h; sourceTree = "<group>"; };
+		BF58BA9320EF1944002CB4EE /* RCDGroupMembersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDGroupMembersTableViewController.m; sourceTree = "<group>"; };
+		BF58BA9420EF1944002CB4EE /* RCDEditGroupNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDEditGroupNameViewController.m; sourceTree = "<group>"; };
+		BF58BA9520EF1944002CB4EE /* RCDCreateGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDCreateGroupViewController.h; sourceTree = "<group>"; };
+		BF58BA9620EF1944002CB4EE /* RCDGroupSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDGroupSettingsTableViewController.m; sourceTree = "<group>"; };
+		BF58BA9720EF1944002CB4EE /* RCDGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDGroupViewController.m; sourceTree = "<group>"; };
+		BF58BA9820EF1944002CB4EE /* RCDGroupAnnouncementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDGroupAnnouncementViewController.h; sourceTree = "<group>"; };
+		BF58BA9920EF1944002CB4EE /* RCDReceiptDetailsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDReceiptDetailsTableViewController.m; sourceTree = "<group>"; };
+		BF58BA9A20EF1944002CB4EE /* RCDEditGroupNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDEditGroupNameViewController.h; sourceTree = "<group>"; };
+		BF58BA9B20EF1944002CB4EE /* RCDCreateGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDCreateGroupViewController.m; sourceTree = "<group>"; };
+		BF58BA9C20EF1944002CB4EE /* RCDGroupMembersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDGroupMembersTableViewController.h; sourceTree = "<group>"; };
+		BF58BA9D20EF1944002CB4EE /* RCDNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDNavigationViewController.m; sourceTree = "<group>"; };
+		BF58BA9E20EF1944002CB4EE /* RCDSquareTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDSquareTableViewController.h; sourceTree = "<group>"; };
+		BF58BA9F20EF1944002CB4EE /* RCDChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDChatViewController.h; sourceTree = "<group>"; };
+		BF58BAA020EF1944002CB4EE /* RCDRCIMDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDRCIMDataSource.h; sourceTree = "<group>"; };
+		BF58BAA220EF1944002CB4EE /* RCDRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDRegisterViewController.h; sourceTree = "<group>"; };
+		BF58BAA320EF1944002CB4EE /* RCDRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDRegisterViewController.m; sourceTree = "<group>"; };
+		BF58BAA420EF1944002CB4EE /* RCDBaseSettingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDBaseSettingTableViewCell.m; sourceTree = "<group>"; };
+		BF58BAA620EF1944002CB4EE /* RCDSearchHistoryMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDSearchHistoryMessageController.m; sourceTree = "<group>"; };
+		BF58BAA720EF1944002CB4EE /* RCDSearchDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDSearchDataManager.m; sourceTree = "<group>"; };
+		BF58BAA820EF1944002CB4EE /* RCDSearchResultViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDSearchResultViewCell.h; sourceTree = "<group>"; };
+		BF58BAA920EF1944002CB4EE /* RCDSearchMoreController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDSearchMoreController.m; sourceTree = "<group>"; };
+		BF58BAAA20EF1944002CB4EE /* RCDLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDLabel.h; sourceTree = "<group>"; };
+		BF58BAAC20EF1944002CB4EE /* RCDSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDSearchViewController.m; sourceTree = "<group>"; };
+		BF58BAAD20EF1944002CB4EE /* RCDSearchHistoryMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDSearchHistoryMessageController.h; sourceTree = "<group>"; };
+		BF58BAAE20EF1944002CB4EE /* RCDSearchDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDSearchDataManager.h; sourceTree = "<group>"; };
+		BF58BAAF20EF1944002CB4EE /* RCDSearchMoreController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDSearchMoreController.h; sourceTree = "<group>"; };
+		BF58BAB020EF1944002CB4EE /* RCDSearchResultViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDSearchResultViewCell.m; sourceTree = "<group>"; };
+		BF58BAB120EF1944002CB4EE /* RCDSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDSearchViewController.h; sourceTree = "<group>"; };
+		BF58BAB320EF1944002CB4EE /* RCDLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDLabel.m; sourceTree = "<group>"; };
+		BF58BAB420EF1944002CB4EE /* RCDChatRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDChatRoomViewController.h; sourceTree = "<group>"; };
+		BF58BAB620EF1944002CB4EE /* RCDConversationSettingTableViewHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDConversationSettingTableViewHeader.m; sourceTree = "<group>"; };
+		BF58BAB720EF1944002CB4EE /* RCDPrivateSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDPrivateSettingViewController.m; sourceTree = "<group>"; };
+		BF58BAB820EF1944002CB4EE /* RCDRoomSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDRoomSettingViewController.m; sourceTree = "<group>"; };
+		BF58BAB920EF1944002CB4EE /* RCDSettingBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDSettingBaseViewController.h; sourceTree = "<group>"; };
+		BF58BABA20EF1944002CB4EE /* RCDConversationSettingTableViewHeaderItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDConversationSettingTableViewHeaderItem.m; sourceTree = "<group>"; };
+		BF58BABB20EF1944002CB4EE /* RCDUpdateNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDUpdateNameViewController.m; sourceTree = "<group>"; };
+		BF58BABC20EF1944002CB4EE /* RCDConversationSettingBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDConversationSettingBaseViewController.m; sourceTree = "<group>"; };
+		BF58BABD20EF1944002CB4EE /* RCDDiscussGroupSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDDiscussGroupSettingViewController.h; sourceTree = "<group>"; };
+		BF58BABE20EF1944002CB4EE /* RCDPrivateSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDPrivateSettingViewController.h; sourceTree = "<group>"; };
+		BF58BABF20EF1944002CB4EE /* RCDConversationSettingTableViewHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDConversationSettingTableViewHeader.h; sourceTree = "<group>"; };
+		BF58BAC020EF1944002CB4EE /* RCDConversationSettingTableViewHeaderItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDConversationSettingTableViewHeaderItem.h; sourceTree = "<group>"; };
+		BF58BAC120EF1944002CB4EE /* RCDSettingBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDSettingBaseViewController.m; sourceTree = "<group>"; };
+		BF58BAC220EF1944002CB4EE /* RCDRoomSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDRoomSettingViewController.h; sourceTree = "<group>"; };
+		BF58BAC320EF1944002CB4EE /* RCDDiscussGroupSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDDiscussGroupSettingViewController.m; sourceTree = "<group>"; };
+		BF58BAC420EF1944002CB4EE /* RCDConversationSettingBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDConversationSettingBaseViewController.h; sourceTree = "<group>"; };
+		BF58BAC520EF1944002CB4EE /* RCDUpdateNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDUpdateNameViewController.h; sourceTree = "<group>"; };
+		BF58BAC620EF1944002CB4EE /* RCDFindPswViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDFindPswViewController.m; sourceTree = "<group>"; };
+		BF58BAC820EF1944002CB4EE /* RCDMeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDMeTableViewController.m; sourceTree = "<group>"; };
+		BF58BAC920EF1944002CB4EE /* RCDMeInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDMeInfoTableViewController.h; sourceTree = "<group>"; };
+		BF58BACA20EF1944002CB4EE /* RCDAboutRongCloudTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDAboutRongCloudTableViewController.h; sourceTree = "<group>"; };
+		BF58BACC20EF1944002CB4EE /* RCDPushSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDPushSettingViewController.m; sourceTree = "<group>"; };
+		BF58BACD20EF1944002CB4EE /* RCDMessageNoDisturbSettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDMessageNoDisturbSettingController.m; sourceTree = "<group>"; };
+		BF58BACE20EF1944002CB4EE /* RCDBlackListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDBlackListViewController.h; sourceTree = "<group>"; };
+		BF58BACF20EF1944002CB4EE /* RCDMessageNotifySettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDMessageNotifySettingTableViewController.m; sourceTree = "<group>"; };
+		BF58BAD020EF1944002CB4EE /* RCDSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDSettingsTableViewController.h; sourceTree = "<group>"; };
+		BF58BAD120EF1944002CB4EE /* RCDChangePasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDChangePasswordViewController.m; sourceTree = "<group>"; };
+		BF58BAD220EF1944002CB4EE /* RCDPrivacyTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDPrivacyTableViewController.h; sourceTree = "<group>"; };
+		BF58BAD320EF1944002CB4EE /* RCDMessageNoDisturbSettingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDMessageNoDisturbSettingController.h; sourceTree = "<group>"; };
+		BF58BAD420EF1944002CB4EE /* RCDPushSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDPushSettingViewController.h; sourceTree = "<group>"; };
+		BF58BAD520EF1944002CB4EE /* RCDBlackListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDBlackListViewController.m; sourceTree = "<group>"; };
+		BF58BAD620EF1944002CB4EE /* RCDSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDSettingsTableViewController.m; sourceTree = "<group>"; };
+		BF58BAD720EF1944002CB4EE /* RCDMessageNotifySettingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDMessageNotifySettingTableViewController.h; sourceTree = "<group>"; };
+		BF58BAD820EF1944002CB4EE /* RCDPrivacyTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDPrivacyTableViewController.m; sourceTree = "<group>"; };
+		BF58BAD920EF1944002CB4EE /* RCDChangePasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDChangePasswordViewController.h; sourceTree = "<group>"; };
+		BF58BADA20EF1944002CB4EE /* RCDEditUserNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDEditUserNameViewController.h; sourceTree = "<group>"; };
+		BF58BADB20EF1944002CB4EE /* RCDMeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDMeTableViewController.h; sourceTree = "<group>"; };
+		BF58BADC20EF1944002CB4EE /* RCDMeInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDMeInfoTableViewController.m; sourceTree = "<group>"; };
+		BF58BADD20EF1944002CB4EE /* RCDEditUserNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDEditUserNameViewController.m; sourceTree = "<group>"; };
+		BF58BADE20EF1944002CB4EE /* RCDAboutRongCloudTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDAboutRongCloudTableViewController.m; sourceTree = "<group>"; };
+		BF58BADF20EF1944002CB4EE /* RCDMainTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDMainTabBarViewController.h; sourceTree = "<group>"; };
+		BF58BAE020EF1944002CB4EE /* RCDChatListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDChatListViewController.m; sourceTree = "<group>"; };
+		BF58BAE120EF1944002CB4EE /* RCDChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDChatViewController.m; sourceTree = "<group>"; };
+		BF58BAE220EF1944002CB4EE /* RCDSquareTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDSquareTableViewController.m; sourceTree = "<group>"; };
+		BF58BAE320EF1944002CB4EE /* RCDNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDNavigationViewController.h; sourceTree = "<group>"; };
+		BF58BAE520EF1944002CB4EE /* RCDPublicServiceListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDPublicServiceListViewController.h; sourceTree = "<group>"; };
+		BF58BAE620EF1944002CB4EE /* RCDCustomerServiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDCustomerServiceViewController.h; sourceTree = "<group>"; };
+		BF58BAE720EF1944002CB4EE /* RCDServiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDServiceViewController.m; sourceTree = "<group>"; };
+		BF58BAE820EF1944002CB4EE /* RCDPublicServiceListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDPublicServiceListViewController.m; sourceTree = "<group>"; };
+		BF58BAE920EF1944002CB4EE /* RCDServiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDServiceViewController.h; sourceTree = "<group>"; };
+		BF58BAEA20EF1944002CB4EE /* RCDCustomerServiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDCustomerServiceViewController.m; sourceTree = "<group>"; };
+		BF58BAED20EF1944002CB4EE /* RCDSettingServerUrlViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDSettingServerUrlViewController.h; sourceTree = "<group>"; };
+		BF58BAEF20EF1944002CB4EE /* RCDLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDLoginViewController.h; sourceTree = "<group>"; };
+		BF58BAF120EF1944002CB4EE /* RCDLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDLoginViewController.m; sourceTree = "<group>"; };
+		BF58BAF220EF1944002CB4EE /* RCDSettingServerUrlViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDSettingServerUrlViewController.m; sourceTree = "<group>"; };
+		BF58BAF820EF1944002CB4EE /* RCAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCAnnotationView.h; sourceTree = "<group>"; };
+		BF58BAFD20EF1944002CB4EE /* RCAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCAnnotationView.m; sourceTree = "<group>"; };
+		BF58BAFE20EF1944002CB4EE /* RealTimeLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealTimeLocationViewController.h; sourceTree = "<group>"; };
+		BF58BAFF20EF1944002CB4EE /* RealTimeLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RealTimeLocationViewController.m; sourceTree = "<group>"; };
+		BF58BB0020EF1944002CB4EE /* RCDRCIMDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDRCIMDataSource.m; sourceTree = "<group>"; };
+		BF58BB0120EF1944002CB4EE /* KxMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KxMenu.h; sourceTree = "<group>"; };
+		BF58BB0220EF1944002CB4EE /* RCloudModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCloudModel.h; sourceTree = "<group>"; };
+		BF58BB0420EF1944002CB4EE /* TFHppleElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHppleElement.h; sourceTree = "<group>"; };
+		BF58BB0620EF1944002CB4EE /* RCDHttpTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDHttpTool.h; sourceTree = "<group>"; };
+		BF58BB0720EF1944002CB4EE /* TFHpple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHpple.m; sourceTree = "<group>"; };
+		BF58BB0820EF1944002CB4EE /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPathQuery.h; sourceTree = "<group>"; };
+		BF58BB0920EF1944002CB4EE /* AFHttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHttpTool.m; sourceTree = "<group>"; };
+		BF58BB0A20EF1944002CB4EE /* RCDataBaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDataBaseManager.m; sourceTree = "<group>"; };
+		BF58BB0B20EF1944002CB4EE /* RCDShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDShareViewController.h; sourceTree = "<group>"; };
+		BF58BB0C20EF1944002CB4EE /* TFHpple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHpple.h; sourceTree = "<group>"; };
+		BF58BB0D20EF1944002CB4EE /* RCDHttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDHttpTool.m; sourceTree = "<group>"; };
+		BF58BB0F20EF1944002CB4EE /* TFHppleElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHppleElement.m; sourceTree = "<group>"; };
+		BF58BB1020EF1944002CB4EE /* AFHttpTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHttpTool.h; sourceTree = "<group>"; };
+		BF58BB1120EF1944002CB4EE /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPathQuery.m; sourceTree = "<group>"; };
+		BF58BB1220EF1944002CB4EE /* RCDataBaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDataBaseManager.h; sourceTree = "<group>"; };
+		BF58BB1320EF1944002CB4EE /* RCDShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDShareViewController.m; sourceTree = "<group>"; };
+		BF58BB6E20EF1C3A002CB4EE /* Speech.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Speech.framework; path = System/Library/Frameworks/Speech.framework; sourceTree = SDKROOT; };
+		BF58BB7020EF1C47002CB4EE /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		BF58BB7220EF1C54002CB4EE /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		BF58BB7420EF1C62002CB4EE /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
+		BF58BB7620EF1C6E002CB4EE /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		BF58BB7820EF1C7A002CB4EE /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		BF58BB7A20EF1C85002CB4EE /* PushKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PushKit.framework; path = System/Library/Frameworks/PushKit.framework; sourceTree = SDKROOT; };
+		BF58BB7C20EF1CED002CB4EE /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		BF58BB7E20EF1CF4002CB4EE /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		BF58BB8020EF1D3B002CB4EE /* RongContactCard.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongContactCard.framework; sourceTree = "<group>"; };
+		BF58BB8120EF1D3C002CB4EE /* RongiFlyKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongiFlyKit.framework; sourceTree = "<group>"; };
+		BF58BB8320EF1D3D002CB4EE /* BQMMRongCloudExt.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BQMMRongCloudExt.framework; sourceTree = "<group>"; };
+		BF58BB8420EF1D3D002CB4EE /* BQMM.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = BQMM.bundle; sourceTree = "<group>"; };
+		BF58BB8620EF1D3F002CB4EE /* iflyMSC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iflyMSC.framework; sourceTree = "<group>"; };
+		BF58BB8720EF1D3F002CB4EE /* RongCloudiFly.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = RongCloudiFly.bundle; sourceTree = "<group>"; };
+		BF58BB9520EF81BA002CB4EE /* RCAnimatedImagesView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCAnimatedImagesView.h; sourceTree = "<group>"; };
+		BF58BB9620EF81BA002CB4EE /* RCAnimatedImagesView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCAnimatedImagesView.m; sourceTree = "<group>"; };
 		BF5B9B011F8DE39B00BD885E /* area.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
 		BF5B9B021F8DE39B00BD885E /* city.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = city.plist; sourceTree = "<group>"; };
 		BF5B9B5D1F8E636E00BD885E /* EconomicsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EconomicsViewController.swift; sourceTree = "<group>"; };
@@ -2278,13 +2519,24 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF58BB7F20EF1CF5002CB4EE /* CoreAudio.framework in Frameworks */,
+				BF58BB7D20EF1CED002CB4EE /* CoreVideo.framework in Frameworks */,
+				BF58BB7B20EF1C86002CB4EE /* PushKit.framework in Frameworks */,
+				BF58BB7920EF1C7A002CB4EE /* CoreMedia.framework in Frameworks */,
+				BF58BB7720EF1C6E002CB4EE /* libz.tbd in Frameworks */,
+				BF58BB7520EF1C62002CB4EE /* SafariServices.framework in Frameworks */,
+				BF58BB7320EF1C55002CB4EE /* AddressBook.framework in Frameworks */,
+				BF58BB6F20EF1C3A002CB4EE /* Speech.framework in Frameworks */,
 				774BFAEA1D7672F7005CA603 /* AVFoundation.framework in Frameworks */,
+				BF58BB8920EF1D3F002CB4EE /* RongiFlyKit.framework in Frameworks */,
 				BF58BA2D20EDC5CC002CB4EE /* Photos.framework in Frameworks */,
 				77BE53731D2CB0930001AA09 /* AssetsLibrary.framework in Frameworks */,
 				BF58BA2920EDC079002CB4EE /* libxml2.tbd in Frameworks */,
+				BF58BB8C20EF1D3F002CB4EE /* iflyMSC.framework in Frameworks */,
 				774BFAE81D7672E2005CA603 /* CoreGraphics.framework in Frameworks */,
 				774BFAE61D7672CA005CA603 /* Accelerate.framework in Frameworks */,
 				774BFAE41D7672A0005CA603 /* AudioToolbox.framework in Frameworks */,
+				BF58BB8A20EF1D3F002CB4EE /* BQMMRongCloudExt.framework in Frameworks */,
 				77645C631D680E7F00ACCCAC /* WebKit.framework in Frameworks */,
 				71ECDFB52091EB4B00495467 /* JSPatch.framework in Frameworks */,
 				77D460671D5C71DA0066B352 /* CoreData.framework in Frameworks */,
@@ -2292,6 +2544,7 @@
 				77BE536F1D2CB0720001AA09 /* CoreLocation.framework in Frameworks */,
 				77BE536D1D2CB06B0001AA09 /* CoreMotion.framework in Frameworks */,
 				77BE536B1D2CB05B0001AA09 /* MessageUI.framework in Frameworks */,
+				BF58BB8820EF1D3F002CB4EE /* RongContactCard.framework in Frameworks */,
 				77BE53691D2CB03B0001AA09 /* libsqlite3.tbd in Frameworks */,
 				77BE53671D2CB0320001AA09 /* AdSupport.framework in Frameworks */,
 				77BE53651D2CB0290001AA09 /* ImageIO.framework in Frameworks */,
@@ -3727,6 +3980,7 @@
 		7772A7F11D64433500444973 /* ThirdPart */ = {
 			isa = PBXGroup;
 			children = (
+				BF58BA4D20EF1944002CB4EE /* RCloudPackage */,
 				BF58B94F20ECCF79002CB4EE /* idcardlib */,
 				BF58B94920EB22C8002CB4EE /* XTablesViewController.swift */,
 				BF58BA3120EDF132002CB4EE /* SwiftNotice.swift */,
@@ -4699,6 +4953,272 @@
 			path = idcardlib;
 			sourceTree = "<group>";
 		};
+		BF58BA4D20EF1944002CB4EE /* RCloudPackage */ = {
+			isa = PBXGroup;
+			children = (
+				BF58BB8220EF1D3D002CB4EE /* BQMM */,
+				BF58BB8520EF1D3F002CB4EE /* ifly */,
+				BF58BB8020EF1D3B002CB4EE /* RongContactCard.framework */,
+				BF58BB8120EF1D3C002CB4EE /* RongiFlyKit.framework */,
+				BF58BA7120EF1944002CB4EE /* RongCloudKit.strings */,
+				BF58BB0120EF1944002CB4EE /* KxMenu.h */,
+				BF58BA4E20EF1944002CB4EE /* KxMenu.m */,
+				BF58BB0220EF1944002CB4EE /* RCloudModel.h */,
+				BF58BA4F20EF1944002CB4EE /* RCloudModel.m */,
+				BF58BA7220EF1944002CB4EE /* ViewControllers */,
+				BF58BB0320EF1944002CB4EE /* Store */,
+			);
+			path = RCloudPackage;
+			sourceTree = "<group>";
+		};
+		BF58BA7220EF1944002CB4EE /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				BF58BADF20EF1944002CB4EE /* RCDMainTabBarViewController.h */,
+				BF58BA8C20EF1944002CB4EE /* RCDMainTabBarViewController.m */,
+				BF58BAE320EF1944002CB4EE /* RCDNavigationViewController.h */,
+				BF58BA9D20EF1944002CB4EE /* RCDNavigationViewController.m */,
+				BF58BA8B20EF1944002CB4EE /* RCDChatListViewController.h */,
+				BF58BAE020EF1944002CB4EE /* RCDChatListViewController.m */,
+				BF58BAB420EF1944002CB4EE /* RCDChatRoomViewController.h */,
+				BF58BA7320EF1944002CB4EE /* RCDChatRoomViewController.m */,
+				BF58BA9F20EF1944002CB4EE /* RCDChatViewController.h */,
+				BF58BAE120EF1944002CB4EE /* RCDChatViewController.m */,
+				BF58BAA020EF1944002CB4EE /* RCDRCIMDataSource.h */,
+				BF58BB0020EF1944002CB4EE /* RCDRCIMDataSource.m */,
+				BF58BA9E20EF1944002CB4EE /* RCDSquareTableViewController.h */,
+				BF58BAE220EF1944002CB4EE /* RCDSquareTableViewController.m */,
+				BF58BA7420EF1944002CB4EE /* RCDBaseSettingTableViewCell.h */,
+				BF58BAA420EF1944002CB4EE /* RCDBaseSettingTableViewCell.m */,
+				BF58BA7520EF1944002CB4EE /* ChatList */,
+				BF58BA8E20EF1944002CB4EE /* Group */,
+				BF58BAA520EF1944002CB4EE /* SearchView */,
+				BF58BAB520EF1944002CB4EE /* SettingViewController */,
+				BF58BAC720EF1944002CB4EE /* Me */,
+				BF58BAE420EF1944002CB4EE /* Service */,
+				BF58BAEB20EF1944002CB4EE /* Login */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		BF58BA7520EF1944002CB4EE /* ChatList */ = {
+			isa = PBXGroup;
+			children = (
+				BF58BA7720EF1944002CB4EE /* RCDSearchFriendViewController.h */,
+				BF58BA8820EF1944002CB4EE /* RCDSearchFriendViewController.m */,
+				BF58BA7820EF1944002CB4EE /* RCDAddFriendViewController.h */,
+				BF58BA8A20EF1944002CB4EE /* RCDAddFriendViewController.m */,
+				BF58BA8920EF1944002CB4EE /* RCDPrivateSettingsTableViewController.h */,
+				BF58BA7620EF1944002CB4EE /* RCDPrivateSettingsTableViewController.m */,
+				BF58BA7920EF1944002CB4EE /* AddressBook */,
+			);
+			path = ChatList;
+			sourceTree = "<group>";
+		};
+		BF58BA7920EF1944002CB4EE /* AddressBook */ = {
+			isa = PBXGroup;
+			children = (
+				BF58BA8220EF1944002CB4EE /* RCDContactViewController.h */,
+				BF58BA7B20EF1944002CB4EE /* RCDContactViewController.m */,
+				BF58BA8120EF1944002CB4EE /* RCDContactTableViewCell.h */,
+				BF58BA7C20EF1944002CB4EE /* RCDContactTableViewCell.m */,
+				BF58BA8420EF1944002CB4EE /* RCDAddressBookTableViewCell.h */,
+				BF58BA7D20EF1944002CB4EE /* RCDAddressBookTableViewCell.m */,
+				BF58BA8520EF1944002CB4EE /* RCDAddressBookViewController.h */,
+				BF58BA7F20EF1944002CB4EE /* RCDAddressBookViewController.m */,
+				BF58BA7A20EF1944002CB4EE /* RCDFrienfRemarksViewController.h */,
+				BF58BA8320EF1944002CB4EE /* RCDFrienfRemarksViewController.m */,
+				BF58BA7E20EF1944002CB4EE /* RCDPersonDetailViewController.h */,
+				BF58BA8620EF1944002CB4EE /* RCDPersonDetailViewController.m */,
+				BF58BA8020EF1944002CB4EE /* RCDContactSelectedTableViewController.h */,
+				BF58BA8720EF1944002CB4EE /* RCDContactSelectedTableViewController.m */,
+			);
+			path = AddressBook;
+			sourceTree = "<group>";
+		};
+		BF58BA8E20EF1944002CB4EE /* Group */ = {
+			isa = PBXGroup;
+			children = (
+				BF58BA9020EF1944002CB4EE /* RCDGroupViewController.h */,
+				BF58BA9720EF1944002CB4EE /* RCDGroupViewController.m */,
+				BF58BA9220EF1944002CB4EE /* RCDReceiptDetailsTableViewController.h */,
+				BF58BA9920EF1944002CB4EE /* RCDReceiptDetailsTableViewController.m */,
+				BF58BA9C20EF1944002CB4EE /* RCDGroupMembersTableViewController.h */,
+				BF58BA9320EF1944002CB4EE /* RCDGroupMembersTableViewController.m */,
+				BF58BA9A20EF1944002CB4EE /* RCDEditGroupNameViewController.h */,
+				BF58BA9420EF1944002CB4EE /* RCDEditGroupNameViewController.m */,
+				BF58BA9120EF1944002CB4EE /* RCDGroupSettingsTableViewController.h */,
+				BF58BA9620EF1944002CB4EE /* RCDGroupSettingsTableViewController.m */,
+				BF58BA9820EF1944002CB4EE /* RCDGroupAnnouncementViewController.h */,
+				BF58BA8F20EF1944002CB4EE /* RCDGroupAnnouncementViewController.m */,
+				BF58BA9520EF1944002CB4EE /* RCDCreateGroupViewController.h */,
+				BF58BA9B20EF1944002CB4EE /* RCDCreateGroupViewController.m */,
+			);
+			path = Group;
+			sourceTree = "<group>";
+		};
+		BF58BAA520EF1944002CB4EE /* SearchView */ = {
+			isa = PBXGroup;
+			children = (
+				BF58BAAA20EF1944002CB4EE /* RCDLabel.h */,
+				BF58BAB320EF1944002CB4EE /* RCDLabel.m */,
+				BF58BAB120EF1944002CB4EE /* RCDSearchViewController.h */,
+				BF58BAAC20EF1944002CB4EE /* RCDSearchViewController.m */,
+				BF58BAAD20EF1944002CB4EE /* RCDSearchHistoryMessageController.h */,
+				BF58BAA620EF1944002CB4EE /* RCDSearchHistoryMessageController.m */,
+				BF58BAAE20EF1944002CB4EE /* RCDSearchDataManager.h */,
+				BF58BAA720EF1944002CB4EE /* RCDSearchDataManager.m */,
+				BF58BAAF20EF1944002CB4EE /* RCDSearchMoreController.h */,
+				BF58BAA920EF1944002CB4EE /* RCDSearchMoreController.m */,
+				BF58BAA820EF1944002CB4EE /* RCDSearchResultViewCell.h */,
+				BF58BAB020EF1944002CB4EE /* RCDSearchResultViewCell.m */,
+			);
+			path = SearchView;
+			sourceTree = "<group>";
+		};
+		BF58BAB520EF1944002CB4EE /* SettingViewController */ = {
+			isa = PBXGroup;
+			children = (
+				BF58BABF20EF1944002CB4EE /* RCDConversationSettingTableViewHeader.h */,
+				BF58BAB620EF1944002CB4EE /* RCDConversationSettingTableViewHeader.m */,
+				BF58BABE20EF1944002CB4EE /* RCDPrivateSettingViewController.h */,
+				BF58BAB720EF1944002CB4EE /* RCDPrivateSettingViewController.m */,
+				BF58BAC220EF1944002CB4EE /* RCDRoomSettingViewController.h */,
+				BF58BAB820EF1944002CB4EE /* RCDRoomSettingViewController.m */,
+				BF58BAB920EF1944002CB4EE /* RCDSettingBaseViewController.h */,
+				BF58BAC120EF1944002CB4EE /* RCDSettingBaseViewController.m */,
+				BF58BAC420EF1944002CB4EE /* RCDConversationSettingBaseViewController.h */,
+				BF58BABC20EF1944002CB4EE /* RCDConversationSettingBaseViewController.m */,
+				BF58BABD20EF1944002CB4EE /* RCDDiscussGroupSettingViewController.h */,
+				BF58BAC320EF1944002CB4EE /* RCDDiscussGroupSettingViewController.m */,
+				BF58BAC020EF1944002CB4EE /* RCDConversationSettingTableViewHeaderItem.h */,
+				BF58BABA20EF1944002CB4EE /* RCDConversationSettingTableViewHeaderItem.m */,
+				BF58BAC520EF1944002CB4EE /* RCDUpdateNameViewController.h */,
+				BF58BABB20EF1944002CB4EE /* RCDUpdateNameViewController.m */,
+			);
+			path = SettingViewController;
+			sourceTree = "<group>";
+		};
+		BF58BAC720EF1944002CB4EE /* Me */ = {
+			isa = PBXGroup;
+			children = (
+				BF58BADB20EF1944002CB4EE /* RCDMeTableViewController.h */,
+				BF58BAC820EF1944002CB4EE /* RCDMeTableViewController.m */,
+				BF58BAC920EF1944002CB4EE /* RCDMeInfoTableViewController.h */,
+				BF58BADC20EF1944002CB4EE /* RCDMeInfoTableViewController.m */,
+				BF58BACA20EF1944002CB4EE /* RCDAboutRongCloudTableViewController.h */,
+				BF58BADE20EF1944002CB4EE /* RCDAboutRongCloudTableViewController.m */,
+				BF58BACB20EF1944002CB4EE /* AccountSettings */,
+				BF58BADA20EF1944002CB4EE /* RCDEditUserNameViewController.h */,
+				BF58BADD20EF1944002CB4EE /* RCDEditUserNameViewController.m */,
+			);
+			path = Me;
+			sourceTree = "<group>";
+		};
+		BF58BACB20EF1944002CB4EE /* AccountSettings */ = {
+			isa = PBXGroup;
+			children = (
+				BF58BAD420EF1944002CB4EE /* RCDPushSettingViewController.h */,
+				BF58BACC20EF1944002CB4EE /* RCDPushSettingViewController.m */,
+				BF58BAD320EF1944002CB4EE /* RCDMessageNoDisturbSettingController.h */,
+				BF58BACD20EF1944002CB4EE /* RCDMessageNoDisturbSettingController.m */,
+				BF58BACE20EF1944002CB4EE /* RCDBlackListViewController.h */,
+				BF58BAD520EF1944002CB4EE /* RCDBlackListViewController.m */,
+				BF58BAD020EF1944002CB4EE /* RCDSettingsTableViewController.h */,
+				BF58BAD620EF1944002CB4EE /* RCDSettingsTableViewController.m */,
+				BF58BAD220EF1944002CB4EE /* RCDPrivacyTableViewController.h */,
+				BF58BAD820EF1944002CB4EE /* RCDPrivacyTableViewController.m */,
+				BF58BAD720EF1944002CB4EE /* RCDMessageNotifySettingTableViewController.h */,
+				BF58BACF20EF1944002CB4EE /* RCDMessageNotifySettingTableViewController.m */,
+				BF58BAD920EF1944002CB4EE /* RCDChangePasswordViewController.h */,
+				BF58BAD120EF1944002CB4EE /* RCDChangePasswordViewController.m */,
+			);
+			path = AccountSettings;
+			sourceTree = "<group>";
+		};
+		BF58BAE420EF1944002CB4EE /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				BF58BB9820EF8892002CB4EE /* NoUse */,
+				BF58BAF820EF1944002CB4EE /* RCAnnotationView.h */,
+				BF58BAFD20EF1944002CB4EE /* RCAnnotationView.m */,
+				BF58BAFE20EF1944002CB4EE /* RealTimeLocationViewController.h */,
+				BF58BAFF20EF1944002CB4EE /* RealTimeLocationViewController.m */,
+				BF58BAE520EF1944002CB4EE /* RCDPublicServiceListViewController.h */,
+				BF58BAE820EF1944002CB4EE /* RCDPublicServiceListViewController.m */,
+				BF58BAE620EF1944002CB4EE /* RCDCustomerServiceViewController.h */,
+				BF58BAEA20EF1944002CB4EE /* RCDCustomerServiceViewController.m */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		BF58BAEB20EF1944002CB4EE /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				BF58BB9520EF81BA002CB4EE /* RCAnimatedImagesView.h */,
+				BF58BB9620EF81BA002CB4EE /* RCAnimatedImagesView.m */,
+				BF58BA8D20EF1944002CB4EE /* RCDFindPswViewController.h */,
+				BF58BAC620EF1944002CB4EE /* RCDFindPswViewController.m */,
+				BF58BAEF20EF1944002CB4EE /* RCDLoginViewController.h */,
+				BF58BAF120EF1944002CB4EE /* RCDLoginViewController.m */,
+				BF58BAA220EF1944002CB4EE /* RCDRegisterViewController.h */,
+				BF58BAA320EF1944002CB4EE /* RCDRegisterViewController.m */,
+				BF58BAED20EF1944002CB4EE /* RCDSettingServerUrlViewController.h */,
+				BF58BAF220EF1944002CB4EE /* RCDSettingServerUrlViewController.m */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		BF58BB0320EF1944002CB4EE /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				BF58BB0420EF1944002CB4EE /* TFHppleElement.h */,
+				BF58BB0F20EF1944002CB4EE /* TFHppleElement.m */,
+				BF58BB0620EF1944002CB4EE /* RCDHttpTool.h */,
+				BF58BB0D20EF1944002CB4EE /* RCDHttpTool.m */,
+				BF58BB0C20EF1944002CB4EE /* TFHpple.h */,
+				BF58BB0720EF1944002CB4EE /* TFHpple.m */,
+				BF58BB1020EF1944002CB4EE /* AFHttpTool.h */,
+				BF58BB0920EF1944002CB4EE /* AFHttpTool.m */,
+				BF58BB0820EF1944002CB4EE /* XPathQuery.h */,
+				BF58BB1120EF1944002CB4EE /* XPathQuery.m */,
+				BF58BB1220EF1944002CB4EE /* RCDataBaseManager.h */,
+				BF58BB0A20EF1944002CB4EE /* RCDataBaseManager.m */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
+		BF58BB8220EF1D3D002CB4EE /* BQMM */ = {
+			isa = PBXGroup;
+			children = (
+				BF58BB8320EF1D3D002CB4EE /* BQMMRongCloudExt.framework */,
+				BF58BB8420EF1D3D002CB4EE /* BQMM.bundle */,
+			);
+			path = BQMM;
+			sourceTree = "<group>";
+		};
+		BF58BB8520EF1D3F002CB4EE /* ifly */ = {
+			isa = PBXGroup;
+			children = (
+				BF58BB8620EF1D3F002CB4EE /* iflyMSC.framework */,
+				BF58BB8720EF1D3F002CB4EE /* RongCloudiFly.bundle */,
+			);
+			path = ifly;
+			sourceTree = "<group>";
+		};
+		BF58BB9820EF8892002CB4EE /* NoUse */ = {
+			isa = PBXGroup;
+			children = (
+				BF58BA6E20EF1944002CB4EE /* RCWKRequestHandler.h */,
+				BF58BA6C20EF1944002CB4EE /* RCWKRequestHandler.m */,
+				BF58BAE920EF1944002CB4EE /* RCDServiceViewController.h */,
+				BF58BAE720EF1944002CB4EE /* RCDServiceViewController.m */,
+				BF58BB0B20EF1944002CB4EE /* RCDShareViewController.h */,
+				BF58BB1320EF1944002CB4EE /* RCDShareViewController.m */,
+			);
+			path = NoUse;
+			sourceTree = "<group>";
+		};
 		BF5B9B591F8E632200BD885E /* 经济 */ = {
 			isa = PBXGroup;
 			children = (
@@ -4769,6 +5289,15 @@
 		FCCABADD517AF7901A18F7B1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BF58BB7E20EF1CF4002CB4EE /* CoreAudio.framework */,
+				BF58BB7C20EF1CED002CB4EE /* CoreVideo.framework */,
+				BF58BB7A20EF1C85002CB4EE /* PushKit.framework */,
+				BF58BB7820EF1C7A002CB4EE /* CoreMedia.framework */,
+				BF58BB7620EF1C6E002CB4EE /* libz.tbd */,
+				BF58BB7420EF1C62002CB4EE /* SafariServices.framework */,
+				BF58BB7220EF1C54002CB4EE /* AddressBook.framework */,
+				BF58BB7020EF1C47002CB4EE /* XCTest.framework */,
+				BF58BB6E20EF1C3A002CB4EE /* Speech.framework */,
 				BF58BA2C20EDC5CC002CB4EE /* Photos.framework */,
 				BF58BA2820EDC079002CB4EE /* libxml2.tbd */,
 				774BFAE91D7672F7005CA603 /* AVFoundation.framework */,
@@ -4812,6 +5341,7 @@
 				7759B6881D0EA37F00AE3A59 /* Frameworks */,
 				7759B6891D0EA37F00AE3A59 /* Resources */,
 				594D8475FD8B79805F499D8A /* [CP] Embed Pods Frameworks */,
+				07EE27754371AA31E3111A8C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -5093,6 +5623,7 @@
 				772E87531D76BC15004EDF50 /* KTVPrivateChat_FailedState.png in Resources */,
 				7799394C1E2F7B6600866968 /* lxh_qiubite.gif in Resources */,
 				772E86311D76BC15004EDF50 /* ktv_listenwork_lbsrankhead1.png in Resources */,
+				BF58BB2420EF1944002CB4EE /* RongCloudKit.strings in Resources */,
 				7741F1361D6D50F900EED332 /* alipayHome20.png in Resources */,
 				779938CA1E2F7B6500866968 /* d_heng.png in Resources */,
 				BF7309DC20E0D98100FC3555 /* usuallyAPP.plist in Resources */,
@@ -5206,6 +5737,7 @@
 				BFC6D96520E5C56700F17378 /* Moments.json in Resources */,
 				77993A3C1E2F7B9D00866968 /* [抱拳]@2x.png in Resources */,
 				772E86B01D76BC15004EDF50 /* ktv_recommend_vacant.png in Resources */,
+				BF58BB8B20EF1D3F002CB4EE /* BQMM.bundle in Resources */,
 				7741F14B1D6D50F900EED332 /* home_pay.png in Resources */,
 				BFC6D96B20E5D3D400F17378 /* 走在冷风中.mp3 in Resources */,
 				771917431D659993002F2BCD /* JuheData.storyboard in Resources */,
@@ -5557,6 +6089,7 @@
 				779938EB1E2F7B6500866968 /* d_yiwen.png in Resources */,
 				77993A311E2F7B9D00866968 /* [怄火]@2x.png in Resources */,
 				779938C11E2F7B6500866968 /* d_duixiang.png in Resources */,
+				BF58BB8D20EF1D3F002CB4EE /* RongCloudiFly.bundle in Resources */,
 				7741F12A1D6D50F900EED332 /* alipayHome14.png in Resources */,
 				779939051E2F7B6500866968 /* l_xin.png in Resources */,
 				BFC6D95A20E5C41B00F17378 /* Chapter3.txt in Resources */,
@@ -5675,6 +6208,42 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		07EE27754371AA31E3111A8C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Freedom/Pods-Freedom-resources.sh",
+				"${PODS_ROOT}/RongCloudIM/RongCloudIM/RongCloud.bundle",
+				"${PODS_ROOT}/RongCloudIM/RongCloudIM/en.lproj",
+				"${PODS_ROOT}/RongCloudIM/RongCloudIM/zh-Hans.lproj",
+				"${PODS_ROOT}/RongCloudIM/RongCloudIM/Emoji.plist",
+				"${PODS_ROOT}/RongCloudIM/RongCloudIM/RCConfig.plist",
+				"${PODS_ROOT}/RongCloudIM/RongCloudIM/JrmfIMLib/JResource.bundle",
+				"${PODS_ROOT}/RongCloudIM/RongCloudIM/JrmfIMLib/en.lproj",
+				"${PODS_ROOT}/RongCloudIM/RongCloudIM/JrmfIMLib/zh-Hans.lproj",
+				"${PODS_ROOT}/RongCloudIM/RongCloudIM/JrmfIMLib/jrmf.cer",
+				"${PODS_ROOT}/RongCloudIM/RongCloudIM/AlipaySDK/AlipaySDK.bundle",
+				"${PODS_ROOT}/RongCloudIM/RongCloudIM/JrmfIMLib/WalletResource.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/RongCloud.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/en.lproj",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/zh-Hans.lproj",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Emoji.plist",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/RCConfig.plist",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/JResource.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/jrmf.cer",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AlipaySDK.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/WalletResource.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Freedom/Pods-Freedom-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		594D8475FD8B79805F499D8A /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -5717,6 +6286,7 @@
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SSKeychain/SSKeychain.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/ScottAlertController/ScottAlertController.framework",
 				"${BUILT_PRODUCTS_DIR}/SmartJSWebView/SmartJSWebView.framework",
@@ -5767,6 +6337,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SSKeychain.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ScottAlertController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SmartJSWebView.framework",
@@ -5817,34 +6388,46 @@
 				BFAC49BF20D25EE700E5CB8D /* AppDelegate.swift in Sources */,
 				BF6E57BE1FAC071C005F7DF8 /* WXExpressionViewController.m in Sources */,
 				7121196420AC24790087E05B /* ToutiaoTabBarController.swift in Sources */,
+				BF58BB6920EF1945002CB4EE /* RCDHttpTool.m in Sources */,
 				71ECE0492092128E00495467 /* TLEmojiKeyboard.m in Sources */,
 				713EE30E20ADA08F0085B65D /* IqiyiSubscribeViewController.swift in Sources */,
+				BF58BB5520EF1945002CB4EE /* RCDAboutRongCloudTableViewController.m in Sources */,
 				7115A5E420AAD9F0000D0B96 /* ResumeCallMeViewController.swift in Sources */,
+				BF58BB3F20EF1945002CB4EE /* RCDSearchViewController.m in Sources */,
+				BF58BB6320EF1945002CB4EE /* RCAnnotationView.m in Sources */,
 				BF6E57BD1FAC0714005F7DF8 /* WXExpressionDetailViewController.m in Sources */,
 				BF6E57BC1FAC070C005F7DF8 /* WXExpressionPublicViewController.m in Sources */,
 				BF6E57B81FAC06C6005F7DF8 /* WXMyQRCodeViewController.m in Sources */,
+				BF58BB5620EF1945002CB4EE /* RCDChatListViewController.m in Sources */,
 				713EE2AA20AD8F5C0085B65D /* KugouTabBarController.swift in Sources */,
 				BF6E57B71FAC06BB005F7DF8 /* WXMyExpressionViewController.m in Sources */,
 				BF6E57B31FAC0692005F7DF8 /* WXExpressionChosenViewController.m in Sources */,
+				BF58BB4C20EF1945002CB4EE /* RCDPushSettingViewController.m in Sources */,
 				BF6E57B01FAC0673005F7DF8 /* WXMineViewController.m in Sources */,
 				BF6E57AF1FAC066B005F7DF8 /* WXMineInfoViewController.m in Sources */,
 				7115A5D220AAD3A3000D0B96 /* PersonalLuxuryViewController.swift in Sources */,
 				BF6E572F1FABFCF2005F7DF8 /* WXPrivacySettingViewController.m in Sources */,
 				BF6E572E1FABFCEA005F7DF8 /* WXAccountAndSafetyViewController.m in Sources */,
 				BF6E572D1FABFCE0005F7DF8 /* WXNewMessageSettingViewController.m in Sources */,
+				BF58BB3B20EF1945002CB4EE /* RCDSearchHistoryMessageController.m in Sources */,
 				7121194020ABC5940087E05B /* EnergyContactDetailViewController.swift in Sources */,
 				BF6E572C1FABFCDA005F7DF8 /* WXCommonSettingViewController.m in Sources */,
+				BF58BB3520EF1945002CB4EE /* RCDGroupViewController.m in Sources */,
+				BF58BB4E20EF1945002CB4EE /* RCDMessageNotifySettingTableViewController.m in Sources */,
 				BF58BA3420EDF163002CB4EE /* ASNetWorkHepler.swift in Sources */,
 				7121196E20AC24EA0087E05B /* ToutiaoHomeDetailViewController.swift in Sources */,
+				BF58BB2F20EF1945002CB4EE /* RCDAddFriendViewController.m in Sources */,
 				713EE2E620AD9C3A0085B65D /* AlipayAssetsTableViewController.swift in Sources */,
 				713EE30A20ADA0790085B65D /* IqiyiDiscoverViewController.swift in Sources */,
 				713EE2D420AD9BA20085B65D /* TaobaoMiniTopicViewController.swift in Sources */,
+				BF58BB4820EF1945002CB4EE /* RCDSettingBaseViewController.m in Sources */,
 				713EE2E820AD9CB60085B65D /* KugouSingViewController.swift in Sources */,
 				BFC6D94520E4AC2200F17378 /* SinaMeViewController.swift in Sources */,
 				BF6E572B1FABFCD4005F7DF8 /* WXHelpAndFeedbackViewController.m in Sources */,
 				BF6E572A1FABFCCE005F7DF8 /* WXAboutViewController.m in Sources */,
 				BF6E57291FABFCB7005F7DF8 /* WXBgSettingViewController.m in Sources */,
 				BF6E57281FABFCB0005F7DF8 /* WXMineSettingViewController.m in Sources */,
+				BF58BB3C20EF1945002CB4EE /* RCDSearchDataManager.m in Sources */,
 				7115A5D420AAD716000D0B96 /* ResumeTabBarController.swift in Sources */,
 				7121196220AC0C6E0087E05B /* JuheUserViewController.swift in Sources */,
 				713728CC20AE839900A3227A /* AlipayYuEBaoTableViewController.swift in Sources */,
@@ -5868,8 +6451,11 @@
 				BF6E569E1FAAF4B8005F7DF8 /* WXTableViewController.m in Sources */,
 				713EE31220ADA0A40085B65D /* IqiyiMineViewController.swift in Sources */,
 				BF6E569D1FAAF48A005F7DF8 /* WXMenuViewController.m in Sources */,
+				BF58BB2620EF1945002CB4EE /* RCDPrivateSettingsTableViewController.m in Sources */,
 				7121196620AC24940087E05B /* ToutiaoNavigationViewController.swift in Sources */,
+				BF58BB4520EF1945002CB4EE /* RCDConversationSettingTableViewHeaderItem.m in Sources */,
 				713EE2F020AD9CE50085B65D /* KugouMainViewController.swift in Sources */,
+				BF58BB6420EF1945002CB4EE /* RealTimeLocationViewController.m in Sources */,
 				BF6E569B1FAAF475005F7DF8 /* WXQRCodeViewController.m in Sources */,
 				71ECDFFE209210BF00495467 /* WXPublicServerSearchViewController.m in Sources */,
 				BF6E569A1FAAF45A005F7DF8 /* WXSearchController.m in Sources */,
@@ -5879,8 +6465,10 @@
 				BFAC49C320D36A2700E5CB8D /* LibraryCollectionViewController.swift in Sources */,
 				7121195820AC0C2F0087E05B /* JuheAPIViewController.swift in Sources */,
 				BF6E56961FAAF341005F7DF8 /* WXPictureCarouselView.m in Sources */,
+				BF58BB3720EF1945002CB4EE /* RCDCreateGroupViewController.m in Sources */,
 				BF5B9B731F8E676500BD885E /* CareerViewController.swift in Sources */,
 				713EE2C620AD9B2B0085B65D /* DZMeController.swift in Sources */,
+				BF58BB3220EF1945002CB4EE /* RCDGroupMembersTableViewController.m in Sources */,
 				7115A5F420AAFC34000D0B96 /* MyDatabaseViewController.swift in Sources */,
 				713728CA20AE733F00A3227A /* AlipayModels.swift in Sources */,
 				713728CF20AE9FC600A3227A /* FoundationSwift.swift in Sources */,
@@ -5904,6 +6492,7 @@
 				7121192C20ABC4FB0087E05B /* EnergyHomeViewController.swift in Sources */,
 				7115A5E020AAD9D8000D0B96 /* ResumeBusinessCooperationVC.swift in Sources */,
 				713EE30220ADA0320085B65D /* IqiyiBaseViewController.swift in Sources */,
+				BF58BB5020EF1945002CB4EE /* RCDBlackListViewController.m in Sources */,
 				7115A5BA20AAC3E6000D0B96 /* PersonalApplyViewController.swift in Sources */,
 				713EE2FC20AD9D550085B65D /* SingleOneSectionTableViewController.swift in Sources */,
 				BF5B9B831F8E67CC00BD885E /* HappyViewController.swift in Sources */,
@@ -5914,26 +6503,37 @@
 				71ECE04F2092128E00495467 /* WXChatDetailViewController.m in Sources */,
 				BFC6D93B20E4AB6D00F17378 /* SinaAuthController.swift in Sources */,
 				71267A552092DC93006E1B96 /* BookFriendsTableViewCell.m in Sources */,
+				BF58BB2820EF1945002CB4EE /* RCDContactTableViewCell.m in Sources */,
 				774BFB171D767389005CA603 /* PlayAudioViewController.m in Sources */,
 				7121195620AC0C210087E05B /* JuheChartViewController.swift in Sources */,
 				BFC6D93520E4AADB00F17378 /* SinaTabBarController.swift in Sources */,
 				7788AC651D7996E000376C95 /* E_SearchViewController.m in Sources */,
 				7165A3EA20A5A291001C60D6 /* FreedomBaseViewController.swift in Sources */,
+				BF58BB3620EF1945002CB4EE /* RCDReceiptDetailsTableViewController.m in Sources */,
 				7121192220ABC4B80087E05B /* EnergySampleViewController.swift in Sources */,
+				BF58BB3D20EF1945002CB4EE /* RCDSearchMoreController.m in Sources */,
+				BF58BB6820EF1945002CB4EE /* RCDataBaseManager.m in Sources */,
 				7115A5C820AAD36B000D0B96 /* PersonalFastGoodsViewController.swift in Sources */,
 				7121197420AC250D0087E05B /* ToutiaoMeViewController.swift in Sources */,
+				BF58BB2920EF1945002CB4EE /* RCDAddressBookTableViewCell.m in Sources */,
 				BFC6D93920E4AB1400F17378 /* SinaBaseViewController.swift in Sources */,
 				7115A5EC20AAEE1E000D0B96 /* BooksViewController.swift in Sources */,
+				BF58BB3420EF1945002CB4EE /* RCDGroupSettingsTableViewController.m in Sources */,
 				713EE2DC20AD9BFC0085B65D /* AlipayHomeViewController.swift in Sources */,
+				BF58BB4620EF1945002CB4EE /* RCDUpdateNameViewController.m in Sources */,
 				713EE2F220AD9CF20085B65D /* KugouRightSettingViewController.swift in Sources */,
 				713EE2DE20AD9C070085B65D /* AlipayScanViewController.swift in Sources */,
 				713EE2D020AD9B8C0085B65D /* TaobaoMiniVideoViewController.swift in Sources */,
+				BF58BB4120EF1945002CB4EE /* RCDLabel.m in Sources */,
 				71ECE01E2092121F00495467 /* WXScannerViewController.m in Sources */,
 				BF5B9B811F8E67C000BD885E /* PowerViewController.swift in Sources */,
+				BF58BB5120EF1945002CB4EE /* RCDSettingsTableViewController.m in Sources */,
 				BF5B9B671F8E66D900BD885E /* EconomicDevelopmentViewController.swift in Sources */,
 				713EE2E420AD9C2F0085B65D /* AlipayServiceTableViewController.swift in Sources */,
+				BF58BB2720EF1945002CB4EE /* RCDContactViewController.m in Sources */,
 				713EE2FE20AD9FF30085B65D /* IqiyiTabBarController.swift in Sources */,
 				77CC4F221D90DCA400DD2EC8 /* BaseOCViewController.m in Sources */,
+				BF58BB4420EF1945002CB4EE /* RCDRoomSettingViewController.m in Sources */,
 				7121193820ABC5670087E05B /* EnergyShopFindViewController.swift in Sources */,
 				7121193420ABC5420087E05B /* EnergySuperMeViewController.swift in Sources */,
 				7115A5C420AAD351000D0B96 /* PersonalComputerViewController.swift in Sources */,
@@ -5942,6 +6542,7 @@
 				713EE30C20ADA0850085B65D /* IqiyiSearchHistoryViewController.swift in Sources */,
 				7121194420ABE1280087E05B /* EnergySuperMarketTabBarController.swift in Sources */,
 				7115A5DE20AAD9CE000D0B96 /* ResumeDetailViewController.swift in Sources */,
+				BF58BB3820EF1945002CB4EE /* RCDNavigationViewController.m in Sources */,
 				713EE2F620AD9D300085B65D /* DetailScrollViewController.swift in Sources */,
 				7788AC641D7996E000376C95 /* E_ScrollViewController.m in Sources */,
 				77BFCC001E1F413C00C95B5E /* notes.md in Sources */,
@@ -5949,6 +6550,7 @@
 				7115A5D020AAD398000D0B96 /* PersonalCarViewController.swift in Sources */,
 				7115A5C220AAD345000D0B96 /* PersonalHardwareViewController.swift in Sources */,
 				713EE2DA20AD9BC50085B65D /* TaobaoMeViewController.swift in Sources */,
+				BF58BB2220EF1944002CB4EE /* RCWKRequestHandler.m in Sources */,
 				71ECDFC22091F9EF00495467 /* WXExpressionHelper.m in Sources */,
 				71ECE0432092128E00495467 /* WXChatTableViewController.m in Sources */,
 				713EE2D820AD9BBA0085B65D /* TaobaoShopCarViewController.swift in Sources */,
@@ -5961,6 +6563,7 @@
 				7115A5A520AA9EF1000D0B96 /* XBaseNavigationViewController.swift in Sources */,
 				713EE2A820AD8F500085B65D /* AlipayTabBarController.swift in Sources */,
 				7115A5A720AA9FE3000D0B96 /* FreedomNavigationController.swift in Sources */,
+				BF58BB6720EF1945002CB4EE /* AFHttpTool.m in Sources */,
 				7121192820ABC4E10087E05B /* EnergyNewsViewController.swift in Sources */,
 				713EE2B220AD90010085B65D /* DZBaseViewController.swift in Sources */,
 				7121195A20AC0C390087E05B /* JuheAPIDetailViewController.swift in Sources */,
@@ -5973,6 +6576,7 @@
 				71ECE000209210BF00495467 /* WXFriendDetailViewController.m in Sources */,
 				BF5B9B6B1F8E673C00BD885E /* PursuitViewController.swift in Sources */,
 				7115A5B420AAC2E3000D0B96 /* PersonalApplyTabBarController.swift in Sources */,
+				BF58BB2D20EF1945002CB4EE /* RCDContactSelectedTableViewController.m in Sources */,
 				7121197020AC24F60087E05B /* ToutiaoVideoViewController.swift in Sources */,
 				7741F0BC1D6D380800EED332 /* README.md in Sources */,
 				71ECE04E2092128E00495467 /* WXUserGroupCell.m in Sources */,
@@ -5981,22 +6585,29 @@
 				71ECE0222092121F00495467 /* WXShakeSettingViewController.m in Sources */,
 				7121193A20ABC5710087E05B /* EnergyShopCarViewController.swift in Sources */,
 				713EE2AC20AD8F8E0085B65D /* DZNavigationController.swift in Sources */,
+				BF58BB3020EF1945002CB4EE /* RCDMainTabBarViewController.m in Sources */,
 				713EE2C820AD9B600085B65D /* TaobaoHomeViewController.swift in Sources */,
 				71ECDFC12091F9EF00495467 /* WXUserHelper.m in Sources */,
+				BF58BB5720EF1945002CB4EE /* RCDChatViewController.m in Sources */,
 				BF58B94A20EB22C9002CB4EE /* XTablesViewController.swift in Sources */,
 				713EE2BA20AD906F0085B65D /* KugouNavigationViewController.swift in Sources */,
 				7115A5DC20AAD9C2000D0B96 /* ResumeListViewController.swift in Sources */,
 				713EE2D220AD9B970085B65D /* TaobaoMiniArticleViewController.swift in Sources */,
 				7745C2451D67188C002212DE /* WXNavigationController.m in Sources */,
+				BF58BB6620EF1945002CB4EE /* TFHpple.m in Sources */,
+				BF58BB4320EF1945002CB4EE /* RCDPrivateSettingViewController.m in Sources */,
 				713EE2CA20AD9B6C0085B65D /* TaobaoMiniViewController.swift in Sources */,
 				7121192A20ABC4EE0087E05B /* EnergyNewsDetailViewController.swift in Sources */,
 				713EE2AE20AD8FAB0085B65D /* TaobaoNavigationViewController.swift in Sources */,
+				BF58BB5E20EF1945002CB4EE /* RCDSettingServerUrlViewController.m in Sources */,
 				71ECE04C2092128E00495467 /* WXGroupQRCodeViewController.m in Sources */,
+				BF58BB5A20EF1945002CB4EE /* RCDPublicServiceListViewController.m in Sources */,
 				7115A5EE20AAFBBA000D0B96 /* MyDatabaseTabBarController.swift in Sources */,
 				7115A5A920AAA191000D0B96 /* FreedomBooksViewController.swift in Sources */,
 				7121193E20ABC58A0087E05B /* EnergyContactUSViewController.swift in Sources */,
 				7121192420ABC4C30087E05B /* EnergyBusinessListViewController.swift in Sources */,
 				77BFCC011E1F413C00C95B5E /* technology.md in Sources */,
+				BF58BB6D20EF1945002CB4EE /* RCDShareViewController.m in Sources */,
 				713EE2CE20AD9B810085B65D /* TaobaoMiniNewViewController.swift in Sources */,
 				71ECE007209210BF00495467 /* WXAddFriendViewController.m in Sources */,
 				BF5B9B7D1F8E67A700BD885E /* HonorViewController.swift in Sources */,
@@ -6005,20 +6616,25 @@
 				7115A5BC20AAD31A000D0B96 /* PersonalInternetViewController.swift in Sources */,
 				7115A5F620AAFC40000D0B96 /* MyDatabaseEditViewController.swift in Sources */,
 				BFC6D94720E4AC3B00F17378 /* SinaEmotion.swift in Sources */,
+				BF58BB4220EF1945002CB4EE /* RCDConversationSettingTableViewHeader.m in Sources */,
 				776460701D68437F00ACCCAC /* WXDBManager.m in Sources */,
 				BF5B9B791F8E678900BD885E /* FriendViewController.swift in Sources */,
 				71ECE0212092121F00495467 /* WXGameViewController.m in Sources */,
 				7115A5B120AABCF6000D0B96 /* FreedomTabBarController.swift in Sources */,
+				BF58BB5320EF1945002CB4EE /* RCDMeInfoTableViewController.m in Sources */,
 				7115A5AB20AAA1C4000D0B96 /* FreedomBooksEditViewController.swift in Sources */,
 				BFC6D93F20E4ABFE00F17378 /* SinaMessageViewController.swift in Sources */,
 				713EE2EE20AD9CD90085B65D /* KugouLocalMusicViewController.swift in Sources */,
 				71517B1C2094803300B40538 /* JSONObject.swift in Sources */,
+				BF58BB4F20EF1945002CB4EE /* RCDChangePasswordViewController.m in Sources */,
 				7121195020AC0C000087E05B /* JuhePublicViewController.swift in Sources */,
+				BF58BB4920EF1945002CB4EE /* RCDDiscussGroupSettingViewController.m in Sources */,
 				7165A3E220A5903D001C60D6 /* WXBaseViewController.m in Sources */,
 				7115A5E620AAECED000D0B96 /* BooksTabBarController.swift in Sources */,
 				713EE2EC20AD9CCE0085B65D /* KugouLinsenViewController.swift in Sources */,
 				71267A512092DC7B006E1B96 /* BookFriendsViewController.m in Sources */,
 				7121193C20ABC57C0087E05B /* EnergyShopMeViewController.swift in Sources */,
+				BF58BB5820EF1945002CB4EE /* RCDSquareTableViewController.m in Sources */,
 				7121193220ABC5320087E05B /* EnergyShopViewController.swift in Sources */,
 				71ECDFFF209210BF00495467 /* WXContactsViewController.m in Sources */,
 				BF5B9B7F1F8E67B900BD885E /* WidomViewController.swift in Sources */,
@@ -6028,22 +6644,29 @@
 				71267A5B2092E736006E1B96 /* BookSubViews.m in Sources */,
 				713EE31620ADA0BA0085B65D /* IqiyiWebViewController.swift in Sources */,
 				713EE2F420AD9CFD0085B65D /* KugouSettingViewController.swift in Sources */,
+				BF58BB4B20EF1945002CB4EE /* RCDMeTableViewController.m in Sources */,
 				713EE2B620AD901F0085B65D /* KugouBaseViewController.swift in Sources */,
+				BF58BB6C20EF1945002CB4EE /* XPathQuery.m in Sources */,
 				774BFB1A1D767389005CA603 /* SHLrcsView.m in Sources */,
 				71ECE002209210BF00495467 /* WXPublicServerViewController.m in Sources */,
 				71ECDFC02091F9EF00495467 /* WXMessageManager.m in Sources */,
 				71ECE0452092128E00495467 /* WXImageExpressionDisplayView.m in Sources */,
+				BF58BB3120EF1945002CB4EE /* RCDGroupAnnouncementViewController.m in Sources */,
 				7121194A20AC03800087E05B /* JuheNavigationController.swift in Sources */,
 				7788AC661D7996E000376C95 /* E_WebViewControler.m in Sources */,
+				BF58BB4720EF1945002CB4EE /* RCDConversationSettingBaseViewController.m in Sources */,
 				713EE2E220AD9C240085B65D /* AlipayDiscoverTableViewController.swift in Sources */,
 				713EE30020ADA00E0085B65D /* IqiyiNavigationController.swift in Sources */,
 				BF6E56AF1FAAF7D6005F7DF8 /* WXSettingViewController.m in Sources */,
 				7121196020AC0C620087E05B /* JuheDynamicViewController.swift in Sources */,
 				7121192020ABC4990087E05B /* EnergyBaseViewController.swift in Sources */,
 				7121194620ABE3660087E05B /* MicroEnergyTabBarController.swift in Sources */,
+				BF58BB5220EF1945002CB4EE /* RCDPrivacyTableViewController.m in Sources */,
 				71267A582092E726006E1B96 /* BookReadMode.m in Sources */,
 				71ECE04A2092128E00495467 /* WXConversationViewController.m in Sources */,
+				BF58BB2C20EF1945002CB4EE /* RCDPersonDetailViewController.m in Sources */,
 				7115A5BE20AAD32E000D0B96 /* PersonalEducationViewController.swift in Sources */,
+				BF58BB4A20EF1945002CB4EE /* RCDFindPswViewController.m in Sources */,
 				713EE2C220AD9B110085B65D /* DZDealDetailViewController.swift in Sources */,
 				713EE31020ADA0990085B65D /* IqiyiLoginViewController.swift in Sources */,
 				7121195220AC0C0C0087E05B /* JuheMessageViewController.swift in Sources */,
@@ -6053,34 +6676,51 @@
 				7788AC611D7996E000376C95 /* DetailViewController.m in Sources */,
 				713EE2F820AD9D3C0085B65D /* DetailTableViewController.swift in Sources */,
 				713EE2BE20AD9AF90085B65D /* DZDealController.swift in Sources */,
+				BF58BB6520EF1945002CB4EE /* RCDRCIMDataSource.m in Sources */,
+				BF58BB9720EF81BA002CB4EE /* RCAnimatedImagesView.m in Sources */,
+				BF58BB3A20EF1945002CB4EE /* RCDBaseSettingTableViewCell.m in Sources */,
 				71ECE004209210BF00495467 /* WXGroupViewController.m in Sources */,
+				BF58BB4020EF1945002CB4EE /* RCDSearchResultViewCell.m in Sources */,
+				BF58BB5420EF1945002CB4EE /* RCDEditUserNameViewController.m in Sources */,
 				BF58B95720ECCF8B002CB4EE /* AVCaptureViewController.m in Sources */,
+				BF58BB5D20EF1945002CB4EE /* RCDLoginViewController.m in Sources */,
 				71250EC62091C0F20093B59B /* FreedomTools.m in Sources */,
 				7115A5B820AAC348000D0B96 /* PersonalApplyBaseViewController.swift in Sources */,
 				713EE2A420AD8F160085B65D /* DZTabBarController.swift in Sources */,
 				7121192620ABC4D10087E05B /* EnergyBusinessDetailViewController.swift in Sources */,
+				BF58BB2A20EF1945002CB4EE /* RCDAddressBookViewController.m in Sources */,
 				713EE2C420AD9B1D0085B65D /* DZDiscoverController.swift in Sources */,
+				BF58BB5B20EF1945002CB4EE /* RCDCustomerServiceViewController.m in Sources */,
+				BF58BB2E20EF1945002CB4EE /* RCDSearchFriendViewController.m in Sources */,
 				71ECE0442092128E00495467 /* WXChatBaseViewController.m in Sources */,
 				BFAC49C520D3857700E5CB8D /* FirstViewController.swift in Sources */,
 				7121193020ABC5270087E05B /* EnergySuperHomeViewController.swift in Sources */,
 				7121194E20AC0BF00087E05B /* JuheContectUSViewController.swift in Sources */,
+				BF58BB5920EF1945002CB4EE /* RCDServiceViewController.m in Sources */,
+				BF58BB2B20EF1945002CB4EE /* RCDFrienfRemarksViewController.m in Sources */,
 				7115A5C020AAD339000D0B96 /* PersonalSoftViewController.swift in Sources */,
 				7121195C20AC0C450087E05B /* JuheQuestionViewController.swift in Sources */,
 				BF5B9B621F8E641000BD885E /* PhilosophyViewController.swift in Sources */,
+				BF58BB1520EF1944002CB4EE /* RCloudModel.m in Sources */,
+				BF58BB2520EF1944002CB4EE /* RCDChatRoomViewController.m in Sources */,
 				71ECE001209210BF00495467 /* WXTagsViewController.m in Sources */,
 				713EE31420ADA0AF0085B65D /* IqiyiClassifyViewController.swift in Sources */,
 				71ECE0462092128E00495467 /* WXChatViewController.m in Sources */,
 				BF58BA2520EDBFBC002CB4EE /* HTMLParser.m in Sources */,
 				713EE2FA20AD9D490085B65D /* DetailWapViewController.swift in Sources */,
 				713EE2BC20AD9AEC0085B65D /* DZHomeController.swift in Sources */,
+				BF58BB6B20EF1945002CB4EE /* TFHppleElement.m in Sources */,
 				71ECE005209210BF00495467 /* WXFriendsViewController.m in Sources */,
 				7121196C20AC24DF0087E05B /* ToutiaoHomeSampleViewController.swift in Sources */,
 				7115A5D620AAD73F000D0B96 /* ResumeNavigationController.swift in Sources */,
 				BF58B95A20ECFC0B002CB4EE /* BaseSearchBar.swift in Sources */,
+				BF58BB3320EF1945002CB4EE /* RCDEditGroupNameViewController.m in Sources */,
 				BF58BA2320EDBFBC002CB4EE /* PreViewController.swift in Sources */,
+				BF58BB3920EF1945002CB4EE /* RCDRegisterViewController.m in Sources */,
 				7745C2461D67188C002212DE /* WXTabBarController.m in Sources */,
 				71267A522092DC7B006E1B96 /* BookFriendsMode.m in Sources */,
 				7788AC621D7996E000376C95 /* E_CommentViewController.m in Sources */,
+				BF58BB4D20EF1945002CB4EE /* RCDMessageNoDisturbSettingController.m in Sources */,
 				BF5B9B711F8E675100BD885E /* LoveViewController.swift in Sources */,
 				7121192E20ABC5060087E05B /* EnergyDetailViewController.swift in Sources */,
 				713EE2B020AD8FDB0085B65D /* AlipayNavigationViewController.swift in Sources */,
@@ -6093,6 +6733,7 @@
 				7121196820AC24A70087E05B /* ToutiaoBaseViewController.swift in Sources */,
 				7121195420AC0C170087E05B /* JuheAboutUSViewController.swift in Sources */,
 				BFC6D93720E4AAF800F17378 /* SinaNavigationController.swift in Sources */,
+				BF58BB1420EF1944002CB4EE /* KxMenu.m in Sources */,
 				7115A5EA20AAEDF1000D0B96 /* BooksBaseViewController.swift in Sources */,
 				71ECE0232092121F00495467 /* WXMomentsViewController.m in Sources */,
 				BF5B9B7B1F8E679300BD885E /* HealthViewController.swift in Sources */,
@@ -6255,6 +6896,9 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Freedom/淘宝",
 					"$(PROJECT_DIR)/Freedom/utility/ThirdPart",
+					"$(PROJECT_DIR)/Freedom/utility/ThirdPart/RCloudPackage",
+					"$(PROJECT_DIR)/Freedom/utility/ThirdPart/RCloudPackage/BQMM",
+					"$(PROJECT_DIR)/Freedom/utility/ThirdPart/RCloudPackage/ifly",
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/Others/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Freedom/Others/Info.plist";
@@ -6291,6 +6935,9 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Freedom/淘宝",
 					"$(PROJECT_DIR)/Freedom/utility/ThirdPart",
+					"$(PROJECT_DIR)/Freedom/utility/ThirdPart/RCloudPackage",
+					"$(PROJECT_DIR)/Freedom/utility/ThirdPart/RCloudPackage/BQMM",
+					"$(PROJECT_DIR)/Freedom/utility/ThirdPart/RCloudPackage/ifly",
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/Others/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Freedom/Others/Info.plist";

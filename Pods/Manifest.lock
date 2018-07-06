@@ -92,6 +92,16 @@ PODS:
     - Realm (= 3.7.4)
   - RESideMenu (4.0.7)
   - Result (3.2.4)
+  - RongCloudIM/CallKit (2.8.32):
+    - RongCloudIM/CallLib
+    - RongCloudIM/IMKit
+  - RongCloudIM/CallLib (2.8.32):
+    - RongCloudIM/IMLib
+  - RongCloudIM/IMKit (2.8.32):
+    - RongCloudIM/IMLib
+  - RongCloudIM/IMLib (2.8.32)
+  - RongCloudIM/RedPacket (2.8.32):
+    - RongCloudIM/IMKit
   - RxCocoa (4.2.0):
     - RxSwift (~> 4.0)
   - RxSwift (4.2.0)
@@ -101,6 +111,7 @@ PODS:
   - SDWebImage/Core (3.8.2)
   - SmartJSWebView (1.1.1)
   - SnapKit (4.0.0)
+  - SSKeychain (1.4.1)
   - SVProgressHUD (2.2.5)
   - SwiftWebViewBridge (0.3.0)
   - SwiftyJSON (4.1.0)
@@ -144,12 +155,18 @@ DEPENDENCIES:
   - ReactiveSwift
   - RealmSwift
   - RESideMenu
+  - RongCloudIM/CallKit
+  - RongCloudIM/CallLib
+  - RongCloudIM/IMKit
+  - RongCloudIM/IMLib
+  - RongCloudIM/RedPacket
   - RxCocoa
   - RxSwift
   - ScottAlertController
   - SDWebImage
   - SmartJSWebView
   - SnapKit
+  - SSKeychain
   - SVProgressHUD
   - SwiftWebViewBridge
   - SwiftyJSON
@@ -196,12 +213,14 @@ SPEC REPOS:
     - RealmSwift
     - RESideMenu
     - Result
+    - RongCloudIM
     - RxCocoa
     - RxSwift
     - ScottAlertController
     - SDWebImage
     - SmartJSWebView
     - SnapKit
+    - SSKeychain
     - SVProgressHUD
     - SwiftWebViewBridge
     - SwiftyJSON
@@ -247,12 +266,14 @@ SPEC CHECKSUMS:
   RealmSwift: a45861b21c180f5cf0f122144b9759fa8dde3e9e
   RESideMenu: f24c508404b49c667344c54aba7e590883533958
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
+  RongCloudIM: 48bfc2fcb8d7cae8ce1e19cb5fb26d6d90616375
   RxCocoa: 0b54909c902e1e581212a03e690bbd94032d8baa
   RxSwift: 99e10317ddfcc7fbe01356aafd118fde4a0be104
   ScottAlertController: 2edee4ca00ee521777740d8e02ad550f7354f61d
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SmartJSWebView: dfaf861a620cab1cf575407d6914dde7e4ea4934
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
+  SSKeychain: 55cc80f66f5c73da827e3077f02e43528897db41
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftWebViewBridge: 902b8e6945352c74aa5c0975c4dcd48f420f7d44
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
@@ -264,6 +285,6 @@ SPEC CHECKSUMS:
   XExtension: 274a8662c8f5d3d0e66c6175688274273ff07fab
   XMLDictionary: fa07b6ff422b3a91d47a5de9bc82e3fc04fbd167
 
-PODFILE CHECKSUM: 0bafb12eaf1cb6e1f7e98bcd25df6d4e0e28ad02
+PODFILE CHECKSUM: d9260e5eae81a0c96119783fc6d8980e871ab791
 
 COCOAPODS: 1.5.3

@@ -13,7 +13,10 @@
 #import <AFNetworking/AFNetworking.h>
 #import <Masonry/Masonry.h>
 #import "Foundation.h"
+#import "FreedomTools.h"
+#import "NSObject+Freedom.h"
 #import <XCategory/NSString+expanded.h>
+#import <XCategory/UIColor+expanded.h>
 #import <XCategory/UIView+expanded.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 #endif

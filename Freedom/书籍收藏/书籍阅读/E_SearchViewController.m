@@ -118,7 +118,7 @@
     if (_isSearch == NO) {
         return 0;
     }else{
-        return [[_dataSource objectAtIndex:0] count];
+        return [(NSArray*)[_dataSource objectAtIndex:0] count];
     }
     
 }

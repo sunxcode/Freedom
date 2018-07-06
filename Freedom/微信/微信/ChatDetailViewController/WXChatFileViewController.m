@@ -153,7 +153,8 @@
     return self.data.count;
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return [self.data[section] count];
+    NSArray *temp = self.data[section];
+    return [temp count];
 }
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
     WXMessage *message = [self.data[indexPath.section] objectAtIndex:indexPath.row];

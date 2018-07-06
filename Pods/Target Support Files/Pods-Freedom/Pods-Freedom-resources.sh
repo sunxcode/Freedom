@@ -91,6 +91,32 @@ EOM
       ;;
   esac
 }
+if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_resource "${PODS_ROOT}/RongCloudIM/RongCloudIM/RongCloud.bundle"
+  install_resource "${PODS_ROOT}/RongCloudIM/RongCloudIM/en.lproj"
+  install_resource "${PODS_ROOT}/RongCloudIM/RongCloudIM/zh-Hans.lproj"
+  install_resource "${PODS_ROOT}/RongCloudIM/RongCloudIM/Emoji.plist"
+  install_resource "${PODS_ROOT}/RongCloudIM/RongCloudIM/RCConfig.plist"
+  install_resource "${PODS_ROOT}/RongCloudIM/RongCloudIM/JrmfIMLib/JResource.bundle"
+  install_resource "${PODS_ROOT}/RongCloudIM/RongCloudIM/JrmfIMLib/en.lproj"
+  install_resource "${PODS_ROOT}/RongCloudIM/RongCloudIM/JrmfIMLib/zh-Hans.lproj"
+  install_resource "${PODS_ROOT}/RongCloudIM/RongCloudIM/JrmfIMLib/jrmf.cer"
+  install_resource "${PODS_ROOT}/RongCloudIM/RongCloudIM/AlipaySDK/AlipaySDK.bundle"
+  install_resource "${PODS_ROOT}/RongCloudIM/RongCloudIM/JrmfIMLib/WalletResource.bundle"
+fi
+if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_resource "${PODS_ROOT}/RongCloudIM/RongCloudIM/RongCloud.bundle"
+  install_resource "${PODS_ROOT}/RongCloudIM/RongCloudIM/en.lproj"
+  install_resource "${PODS_ROOT}/RongCloudIM/RongCloudIM/zh-Hans.lproj"
+  install_resource "${PODS_ROOT}/RongCloudIM/RongCloudIM/Emoji.plist"
+  install_resource "${PODS_ROOT}/RongCloudIM/RongCloudIM/RCConfig.plist"
+  install_resource "${PODS_ROOT}/RongCloudIM/RongCloudIM/JrmfIMLib/JResource.bundle"
+  install_resource "${PODS_ROOT}/RongCloudIM/RongCloudIM/JrmfIMLib/en.lproj"
+  install_resource "${PODS_ROOT}/RongCloudIM/RongCloudIM/JrmfIMLib/zh-Hans.lproj"
+  install_resource "${PODS_ROOT}/RongCloudIM/RongCloudIM/JrmfIMLib/jrmf.cer"
+  install_resource "${PODS_ROOT}/RongCloudIM/RongCloudIM/AlipaySDK/AlipaySDK.bundle"
+  install_resource "${PODS_ROOT}/RongCloudIM/RongCloudIM/JrmfIMLib/WalletResource.bundle"
+fi
 
 mkdir -p "${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
 rsync -avr --copy-links --no-relative --exclude '*/.svn/*' --files-from="$RESOURCES_TO_COPY" / "${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"

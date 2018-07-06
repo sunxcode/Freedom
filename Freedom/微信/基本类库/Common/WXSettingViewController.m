@@ -244,7 +244,7 @@
     return self.data.count;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [self.data[section] count];
+    return [(NSArray*)(self.data[section]) count];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     WXSettingItem *item = [self.data[indexPath.section] objectAtIndex:indexPath.row];
