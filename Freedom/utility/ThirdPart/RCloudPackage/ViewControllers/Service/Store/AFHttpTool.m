@@ -27,7 +27,6 @@
   });
   return instance;
 }
-
 + (void)requestWihtMethod:(RequestMethodType)methodType
                       url:(NSString *)url
                    params:(NSDictionary *)params
@@ -43,23 +42,20 @@
         baseURL = [NSURL URLWithString:DemoServer];
     }
   //获得请求管理者
-    
-//    AFHTTPSessionManager *mgr = [[AFHTTPSessionManager alloc]initWithBaseURL:baseURL sessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
-    mgr.requestSerializer = [AFHTTPRequestSerializer serializer];
-    mgr.responseSerializer = [AFJSONResponseSerializer serializer];
-//    mgr.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/html",@"text/json", @"text/javascript", nil];
+    NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+    //设置请求超时为10秒钟
+    config.timeoutIntervalForRequest = 10;
+    //在蜂窝网络情况下是否继续请求（上传或下载）
+    config.allowsCellularAccess = NO;
+    AFHTTPSessionManager *mgr = [[AFHTTPSessionManager alloc]initWithBaseURL:baseURL sessionConfiguration:config];
+    mgr.requestSerializer = [AFJSONRequestSerializer serializer];
+    mgr.responseSerializer = [AFHTTPResponseSerializer serializer];
     [mgr.requestSerializer setValue:@"text/json"  forHTTPHeaderField:@"Accept"];
-    [mgr.requestSerializer setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-    mgr.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain", @"application/xml", @"text/xml",@"text/html",@"text/javascript", @"application/x-plist",   @"image/tiff", @"image/jpeg", @"image/gif", @"image/png", @"image/ico",@"image/x-icon", @"image/bmp", @"image/x-bmp", @"image/x-xbitmap", @"image/x-win-bitmap", nil];
-
-
+    mgr.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain", @"application/xml", @"text/xml",@"text/html",@"text/javascript", @"application/x-plist",@"image/tiff", @"image/jpeg", @"image/gif", @"image/png", @"image/ico",@"image/x-icon", @"image/bmp", @"image/x-bmp", @"image/x-xbitmap", @"image/x-win-bitmap", nil];
   mgr.requestSerializer.HTTPShouldHandleCookies = YES;
   NSString *cookieString = [[NSUserDefaults standardUserDefaults] objectForKey:@"UserCookies"];
   if (cookieString)[mgr.requestSerializer setValue:cookieString forHTTPHeaderField:@"Cookie"];
-//    NSCharacterSet *set = [[NSCharacterSet characterSetWithCharactersInString:@"!*'();:@&=+$,/?%#[]"]invertedSet];
     NSCharacterSet *allowed = [NSCharacterSet URLQueryAllowedCharacterSet];
-    url = [baseURL.absoluteString stringByAppendingString:url];
   url = [url stringByAddingPercentEncodingWithAllowedCharacters:allowed];
   switch (methodType) {
   case RequestMethodTypeGet: {
