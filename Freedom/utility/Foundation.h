@@ -97,6 +97,7 @@
 /******************           微             信           *******************/
 // UMeng
 #define     UMENG_APPKEY        @"56b8ba33e0f55a15480020b0"
+//#define     UMENG_APPKEY        @"563755cbe0f55a5cb300139c"
 // JSPatch
 #define     JSPATCH_APPKEY      @"7eadab71a29a784e"
 // 七牛云存储
@@ -105,6 +106,11 @@
 // Mob SMS
 #define     MOB_SMS_APPKEY      @"1133dc881b63b"
 #define     MOB_SMS_SECRET      @"b4882225b9baee69761071c8cfa848f3"
+// 融云
+#define RONGCLOUD_IM_APPKEY @"k51hidwqked9b"
+//@"n19jmcy59f1q9" //online key
+//@"c9kqb3rdkbb8j" // pre key
+//@"e0x9wycfx7flq" // offline key
 /******************           微             博           *******************/
 /******************               shareSDK               *******************/
 /******************           百      度    SDK           *******************/

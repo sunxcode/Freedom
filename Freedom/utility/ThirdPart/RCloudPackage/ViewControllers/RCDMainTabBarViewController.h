@@ -7,11 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface RCDMainTabBarViewController : UITabBarController<UITabBarControllerDelegate>
-
+#import "RCWKRequestHandler.h"
+@interface RCDMainTabBarViewController : UITabBarController<RCWKAppInfoProvider>
 + (RCDMainTabBarViewController *)shareInstance;
-
-@property (nonatomic, assign) NSUInteger selectedTabBarIndex;
-
+- (void)saveConversationInfoForMessageShare;
+- (void)insertSharedMessageIfNeed;
+- (void)firstInitRongCloud;
 @end

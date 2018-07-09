@@ -34,7 +34,7 @@ target 'Freedom' do
     pod 'SmartJSWebView'
     pod 'JSONModel'
     pod 'ACMediaFrame'
-    pod 'HYBUnicodeReadable'
+#    pod 'HYBUnicodeReadable'
     pod 'TZImagePickerController'
     pod 'JSPatch'#https://github.com/bang590/JSPatch
     pod 'XCategory'

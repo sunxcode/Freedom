@@ -16,7 +16,6 @@
 #import "RCDRegisterViewController.h"
 #import "RCDataBaseManager.h"
 #import <RongIMKit/RongIMKit.h>
-#import "RCDNavigationViewController.h"
 #import "RCDMainTabBarViewController.h"
 #import "RCDSettingServerUrlViewController.h"
 #import "RCloudModel.h"
@@ -562,7 +561,8 @@ arrayByAddingObjectsFromArray:
       [(UITextField *)[self.view viewWithTag:UserTextFieldTag] text];
   NSString *userPwd =
       [(UITextField *)[self.view viewWithTag:PassWordFieldTag] text];
-    
+    userName = @"18721064516";
+    userPwd = @"123456";
     if(self.retryTime){
         [self invalidateRetryTime];
     }
@@ -631,8 +631,7 @@ arrayByAddingObjectsFromArray:
                        }];
   dispatch_async(dispatch_get_main_queue(), ^{
     RCDMainTabBarViewController *mainTabBarVC = [[RCDMainTabBarViewController alloc] init];
-    RCDNavigationViewController *rootNavi = [[RCDNavigationViewController alloc] initWithRootViewController:mainTabBarVC];
-    [UIApplication sharedApplication].delegate.window.rootViewController = rootNavi;
+    [UIApplication sharedApplication].delegate.window.rootViewController = mainTabBarVC;
   });
 }
 /**

@@ -1158,6 +1158,51 @@ char pinyinFirstLetter(unsigned short hanzi){
     });
     return shareUrl;
 }
+//重定向log到本地问题 在info.plist中打开Application supports iTunes file sharing
++(void)expireLogFiles{
+    NSString *deviceModel = [[UIDevice currentDevice] model];
+    if ([deviceModel isEqualToString:@"iPhone Simulator"]) {
+        return;
+    }else if([deviceModel isEqualToString:@"iPhone"]){
+        return;
+    }
+    NSLog(@"Log重定向到本地，如果您需要控制台Log，注释掉重定向逻辑即可。");
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+    NSString *logPath = [paths objectAtIndex:0];
+    //删除超过时间的log文件
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSArray *fileList = [[NSArray alloc] initWithArray:[fileManager contentsOfDirectoryAtPath:logPath error:nil]];
+    NSDate *currentDate = [NSDate date];
+    NSDate *expireDate = [NSDate dateWithTimeIntervalSinceNow: -7*24*60*60];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *fileComp = [[NSDateComponents alloc] init];
+    NSInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+    fileComp = [calendar components:unitFlags fromDate:currentDate];
+    for (NSString *fileName in fileList) {
+        if (fileName.length != 16 || ![[fileName substringWithRange:NSMakeRange(0, 2)] isEqualToString:@"rc"]) {
+            continue;
+        }
+        int month = [[fileName substringWithRange:NSMakeRange(2, 2)] intValue];
+        int date = [[fileName substringWithRange:NSMakeRange(4, 2)] intValue];
+        if (month <= 0 || date <=0) {
+            continue;
+        }else{
+            [fileComp setMonth:month];
+            [fileComp setDay:date];
+        }
+        NSDate *fileDate = [calendar dateFromComponents:fileComp];
+        if ([fileDate compare:currentDate] == NSOrderedDescending || [fileDate compare:expireDate] == NSOrderedAscending) {
+            [fileManager removeItemAtPath:[logPath stringByAppendingPathComponent:fileName] error:nil];
+        }
+    }
+    NSDateFormatter *dateformatter = [[NSDateFormatter alloc] init];
+    [dateformatter setDateFormat:@"MMddHHmmss"];
+    NSString *formattedDate = [dateformatter stringFromDate:currentDate];
+    NSString *fileName = [NSString stringWithFormat:@"rc%@.log", formattedDate];
+    NSString *logFilePath = [logPath stringByAppendingPathComponent:fileName];
+    freopen([logFilePath cStringUsingEncoding:NSASCIIStringEncoding], "a+",stdout);
+    freopen([logFilePath cStringUsingEncoding:NSASCIIStringEncoding], "a+",stderr);
+}
 //验证手机号码
 + (BOOL)validateMobile:(NSString *)mobile {
     if (mobile.length == 0) {

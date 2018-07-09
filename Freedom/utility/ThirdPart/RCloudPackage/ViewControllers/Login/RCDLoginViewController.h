@@ -9,6 +9,5 @@
 
 #import <UIKit/UIKit.h>
 @interface RCDLoginViewController: UIViewController
-//-(void) defaultLogin;
 - (void)login:(NSString *)userName password:(NSString *)password;
 @end

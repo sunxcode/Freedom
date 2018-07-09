@@ -8,55 +8,29 @@
 
 #import <UIKit/UIKit.h>
 @class RCDConversationSettingTableViewHeader;
-
-/**
- *  RCDBaseSettingTableViewCellDelegate
- */
 @protocol RCDBaseSettingTableViewCellDelegate <NSObject>
-
 @optional
-
-/*!
- 开闭switchButton的回调函数
- @param sender 点击的Switch开关
- */
+/*!开闭switchButton的回调函数@param sender 点击的Switch开关*/
 - (void)onClickSwitchButton:(id)sender;
-
 @end
-
 @interface RCDBaseSettingTableViewCell : UITableViewCell
-
 @property(nonatomic, strong) UIImageView *leftImageView;
-
 @property(nonatomic, assign) CGFloat leftImageCornerRadius;
-
 @property(nonatomic, strong) UILabel *leftLabel;
-
 @property(nonatomic, strong) UILabel *rightLabel;
-
 @property(nonatomic, strong) UISwitch *switchButton;
-
 @property(nonatomic, strong) UIImageView *rightImageView;
-
 @property(nonatomic, assign) CGFloat rightImageCornerRadius;
-
 @property(nonatomic, strong) UIImageView *rightArrow;
-
 @property(nonatomic, strong) UIView *bottomLine;
-
 @property(nonatomic, assign) BOOL switchButtonStatus;
-
 @property(nonatomic, strong) NSArray *leftLabelConstraints;
-
-@property(weak, nonatomic) id<RCDBaseSettingTableViewCellDelegate>
-baseSettingTableViewDelegate;
-
+@property(weak, nonatomic) id<RCDBaseSettingTableViewCellDelegate> baseSettingTableViewDelegate;
 //两边如果有图片，使用该方法初始化Cell。
 -(id)initWithLeftImageStr:(NSString *)leftImageStr
          leftImageSize:(CGSize)leftImageSize
              rightImaeStr:(NSString *)rightImageStr
         rightImageSize:(CGSize)rightImageSize;
-
 /*!
  设置imageView方法
  @param imageView   cell中左边或者右边的imageView
@@ -67,38 +41,19 @@ baseSettingTableViewDelegate;
                     1:表示设置右边的imageView。
  */
 - (void)setImageView:(UIImageView *)imageView ImageStr:(NSString *)imageStr imageSize:(CGSize)imageSize LeftOrRight:(NSInteger)LeftOrRight;
-
-  /*!
-   cell的style
-   */
+  /*!cell的style*/
 typedef NS_ENUM(NSUInteger, RCDBaseSettingCellStyle) {
-  /*!
-   Display：leftLabel,rightArrow
-   */
+  /*!Display：leftLabel,rightArrow*/
   DefaultStyle = 0,
-  
-  /*!
-   Display：leftLabel,rightLabel
-   */
+  /*!Display：leftLabel,rightLabel*/
   DefaultStyle_RightLabel_WithoutRightArrow = 1,
-  
-  /*!
-   Display：leftLabel,rightLabel,rightArrow
-   */
+  /*!Display：leftLabel,rightLabel,rightArrow*/
   DefaultStyle_RightLabel = 2,
-  
-  /*!
-   Display：leftLabel,switchButton
-   */
+  /*!Display：leftLabel,switchButton*/
   SwitchStyle = 3,
-  
-  /*!
-   Display：leftLabel
-   */
+  /*!Display：leftLabel*/
   OnlyDisplayLeftLabelStyle = 4
 };
-
 //设置cell的style
 - (void)setCellStyle:(RCDBaseSettingCellStyle)style;
-
 @end
