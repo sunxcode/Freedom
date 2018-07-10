@@ -4,8 +4,6 @@
 //
 //  Created by Jue on 16/8/30.
 //  Copyright © 2016年 RongCloud. All rights reserved.
-//
-
 #import <UIKit/UIKit.h>
 @class RCDConversationSettingTableViewHeader;
 @protocol RCDBaseSettingTableViewCellDelegate <NSObject>

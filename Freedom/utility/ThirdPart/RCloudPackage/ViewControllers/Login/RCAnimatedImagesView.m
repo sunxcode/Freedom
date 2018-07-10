@@ -29,8 +29,7 @@
         NSMutableArray *imageViews = [NSMutableArray array];
         for (int i = 0; i < 2; i++) {
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(-150 * 3,-150,self.bounds.size.width +  (150 * 2),self.bounds.size.height + (150 * 2))];
-            imageView.autoresizingMask =
-            UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+            imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
             imageView.contentMode = UIViewContentModeScaleAspectFill;
             imageView.clipsToBounds = NO;
             [self addSubview:imageView];
@@ -63,25 +62,15 @@
     currentlyDisplayingImageIndex = nextImageToShowIndex;
     imageViewToShow.image = [UIImage imageNamed:@"login_background.png"];
     static const CGFloat kMovementAndTransitionTimeOffset = 0.1;
-    [UIView animateWithDuration:self.timePerImage + 2 +
-     kMovementAndTransitionTimeOffset
-                          delay:0.0
-                        options:UIViewAnimationOptionBeginFromCurrentState |
-     UIViewAnimationCurveLinear
-                     animations:^{
-                         NSInteger randomTranslationValueX =
-                         150 * 3.5 -
-                         [[self class]randomIntBetweenNumber:0 andNumber:150];
-                         NSInteger randomTranslationValueY = 0;
-                         CGAffineTransform translationTransform =
-                         CGAffineTransformMakeTranslation(randomTranslationValueX,randomTranslationValueY);
-                         CGFloat randomScaleTransformValue = [[self class] randomIntBetweenNumber:115 andNumber:120] /100;
-                         CGAffineTransform scaleTransform = CGAffineTransformMakeScale(randomScaleTransformValue, randomScaleTransformValue);
-                         imageViewToShow.transform = CGAffineTransformConcat(scaleTransform, translationTransform);
-                     }
-                     completion:NULL];
-    [UIView animateWithDuration:2 delay:kMovementAndTransitionTimeOffset
-                        options:UIViewAnimationOptionBeginFromCurrentState |
+    [UIView animateWithDuration:self.timePerImage + 2 + kMovementAndTransitionTimeOffset delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationCurveLinear animations:^{
+         NSInteger randomTranslationValueX = 150 * 3.5 -[[self class]randomIntBetweenNumber:0 andNumber:150];
+         NSInteger randomTranslationValueY = 0;
+         CGAffineTransform translationTransform = CGAffineTransformMakeTranslation(randomTranslationValueX,randomTranslationValueY);
+         CGFloat randomScaleTransformValue = [[self class] randomIntBetweenNumber:115 andNumber:120] /100;
+         CGAffineTransform scaleTransform = CGAffineTransformMakeScale(randomScaleTransformValue, randomScaleTransformValue);
+         imageViewToShow.transform = CGAffineTransformConcat(scaleTransform, translationTransform);
+     }completion:NULL];
+    [UIView animateWithDuration:2 delay:kMovementAndTransitionTimeOffset options:UIViewAnimationOptionBeginFromCurrentState |
      UIViewAnimationCurveLinear animations:^{
          imageViewToShow.alpha = 1.0;
          imageViewToHide.alpha = 0.0;

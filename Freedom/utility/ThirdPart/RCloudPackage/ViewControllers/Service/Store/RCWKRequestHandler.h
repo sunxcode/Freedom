@@ -32,8 +32,6 @@
 - (BOOL)getLoginStatus;
 @end
 @interface RCWKRequestHandler : NSObject
-- (instancetype)initHelperWithUserInfo:(NSDictionary *)userInfo
-                              provider:(id<RCWKAppInfoProvider>)provider
-                                 reply:(void (^)(NSDictionary *))reply;
+- (instancetype)initHelperWithUserInfo:(NSDictionary *)userInfo provider:(id<RCWKAppInfoProvider>)provider reply:(void (^)(NSDictionary *))reply;
 - (BOOL)handleWatchKitRequest;
 @end

@@ -106,7 +106,6 @@
 @property(nonatomic, strong) NSString *updatedAt;
 @property(nonatomic, strong) NSString *displayName;
 @end
-@class RCDChatViewController;
 @interface RCDCustomerEmoticonTab : NSObject <RCEmoticonTabSource>
 /*! 表情tab的标识符 @return 表情tab的标识符，请勿重复 */
 @property(nonatomic, strong) NSString *identify;
@@ -116,7 +115,6 @@
 @property(nonatomic, assign) int pageCount;
 /*!表情tab的index页的表情View@return 表情tab的index页的表情View@discussion 返回的 view 大小必须等于 contentViewSize （宽度 = 屏幕宽度，高度 =186）*/
 - (UIView *)loadEmoticonView:(NSString *)identify index:(int)index;
-//@property(nonatomic, weak) RCDChatViewController *chartView;
 @end
 @interface RCloudModel : NSObject
 @end

@@ -6,7 +6,6 @@
 #import "RCDContactViewController.h"
 #import "RCDSquareTableViewController.h"
 #import "RCDMeTableViewController.h"
-
 #import "AFHttpTool.h"
 #import "RCDHttpTool.h"
 #import "RCDRCIMDataSource.h"
@@ -14,7 +13,6 @@
 #import "RCDLoginViewController.h"
 #import "RCDSettingServerUrlViewController.h"
 #import "RCDNavigationViewController.h"
-#import "RCDMainTabBarViewController.h"
 #import <AudioToolbox/AudioToolbox.h>
 #import <RongCallKit/RongCallKit.h>
 #import <RongIMKit/RongIMKit.h>
@@ -134,8 +132,7 @@
     NSString *userNickName = [defaults objectForKey:@"userNickName"];
     NSString *userPortraitUri = [defaults objectForKey:@"userPortraitUri"];
     if (token.length && userId.length && password.length) {
-        RCDMainTabBarViewController *mainTabBarVC = [[RCDMainTabBarViewController alloc] init];
-        keywindow.rootViewController = mainTabBarVC;
+        keywindow.rootViewController = [RCDMainTabBarViewController shareInstance];
         [self insertSharedMessageIfNeed];
         RCUserInfo *_currentUserInfo = [[RCUserInfo alloc] initWithUserId:userId name:userNickName portrait:userPortraitUri];
         rc.currentUserInfo = _currentUserInfo;
@@ -156,10 +153,6 @@
         }error:^(RCConnectErrorCode status) {
             [imDataSource syncGroups];
             NSLog(@"connect error %ld", (long)status);
-            dispatch_async(dispatch_get_main_queue(), ^{
-                RCDMainTabBarViewController *mainTabBarVC = [[RCDMainTabBarViewController alloc] init];
-                keywindow.rootViewController = mainTabBarVC;
-            });
         }tokenIncorrect:^{
             [AFHttpTool loginWithPhone:userName password:password region:@"86" success:^(id response) {
                 if ([response[@"code"] intValue] == 200) {
@@ -242,9 +235,7 @@
 ///FIXME: RCIMConnectionStatusDelegate//网络状态变化
 - (void)onRCIMConnectionStatusChanged:(RCConnectionStatus)status {
     if (status == ConnectionStatus_KICKED_OFFLINE_BY_OTHER_CLIENT) {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"您的帐号在别的设备上登录，"@"您被迫下线！" delegate:nil
-                                             cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
-        [alert show];
+        [SVProgressHUD showErrorWithStatus:@"您的帐号在别的设备上登录，"@"您被迫下线！"];
         [self gotoLogin];
     } else if (status == ConnectionStatus_TOKEN_INCORRECT) {
         [AFHttpTool getTokenSuccess:^(id response) {
@@ -291,14 +282,13 @@
                      }];
                 }];
             }
-            [RCDHTTPTOOL getGroupByID:message.targetId
-                    successCompletion:^(RCDGroupInfo *group) {
-                        [[RCDataBaseManager shareInstance] insertGroupToDB:group];
-                        [[RCIM sharedRCIM] refreshGroupInfoCache:group withGroupId:group.groupId];
-                        [[NSNotificationCenter defaultCenter]
-                         postNotificationName:@"UpdeteGroupInfo"
-                         object:message.targetId];
-                    }];
+            [RCDHTTPTOOL getGroupByID:message.targetId successCompletion:^(RCDGroupInfo *group) {
+                [[RCDataBaseManager shareInstance] insertGroupToDB:group];
+                [[RCIM sharedRCIM] refreshGroupInfoCache:group withGroupId:group.groupId];
+                [[NSNotificationCenter defaultCenter]
+                 postNotificationName:@"UpdeteGroupInfo"
+                 object:message.targetId];
+            }];
         }
     }
 }
@@ -340,14 +330,12 @@
     [[RCDRCIMDataSource shareInstance] syncGroups];
     [[RCDRCIMDataSource shareInstance] syncFriendList:userId complete:^(NSMutableArray *friends){}];
     dispatch_async(dispatch_get_main_queue(), ^{
-        RCDMainTabBarViewController *mainTabBarVC = [[RCDMainTabBarViewController alloc] init];
-        [UIApplication sharedApplication].delegate.window.rootViewController = mainTabBarVC;
+        [UIApplication sharedApplication].delegate.window.rootViewController = [RCDMainTabBarViewController shareInstance];
     });
 }
 -(void)gotoLoginViewAndDisplayReasonInfo:(NSString *)reason{
     dispatch_async(dispatch_get_main_queue(), ^{
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:reason delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        [alertView show];
+        [SVProgressHUD showErrorWithStatus:reason];
         [self gotoLogin];
     });
 }
@@ -402,8 +390,6 @@
             richMsg.url = [sharedInfo objectForKey:@"url"];
             richMsg.imageURL = [sharedInfo objectForKey:@"imageURL"];
             richMsg.extra = [sharedInfo objectForKey:@"extra"];
-            //      long long sendTime = [[sharedInfo objectForKey:@"sharedTime"] longLongValue];
-            //      RCMessage *message = [[RCIMClient sharedRCIMClient] insertOutgoingMessage:[[sharedInfo objectForKey:@"conversationType"] intValue] targetId:[sharedInfo objectForKey:@"targetId"] sentStatus:SentStatus_SENT content:richMsg sentTime:sendTime];
             RCMessage *message = [[RCIMClient sharedRCIMClient] insertOutgoingMessage:[[sharedInfo objectForKey:@"conversationType"] intValue] targetId:[sharedInfo objectForKey:@"targetId"] sentStatus:SentStatus_SENT content:richMsg];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"RCDSharedMessageInsertSuccess" object:message];
         }

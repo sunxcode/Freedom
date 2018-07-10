@@ -739,30 +739,13 @@
 
 /**
  *  检查输入内容
- *
  *  @return 是否合法输入
  */
 - (BOOL)checkContent {
-  //  NSString *userName =
-  //      [(UITextField *)[self.view viewWithTag:UserTextFieldTag] text];
   NSString *userPwd =
       [(UITextField *)[self.view viewWithTag:PassWordFieldTag] text];
   NSString *vCode =
       [(UITextField *)[self.view viewWithTag:VerificationCodeField] text];
-
-  //  if (![RCDTextFieldValidate validateEmail:userName]) {
-  //    _errorMsgLb.text = @"邮箱格式不正确!";
-  //    return NO;
-  //  }
-
-  //  if (userName.length == 0) {
-  //
-  //    _errorMsgLb.text = @"用户名不能为空!";
-  //    return NO;
-  //  }
-  //    if (userPwd.length < 6) {
-  //        _errorMsgLb.text = @"密码不能小于6位!";
-  //    }
   if (userPwd.length > 20) {
     _errorMsgLb.text = @"密码不能大于20位!";
   }
@@ -798,16 +781,4 @@
         @"60秒后发送";
   }
 }
-
-/*
- #pragma mark - Navigation
-
- // In a storyboard-based application, you will often want to do a little
- preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
-
 @end

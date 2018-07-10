@@ -4,21 +4,15 @@
 //
 //  Created by Liv on 14-10-22.
 //  Copyright (c) 2014年 RongCloud. All rights reserved.
-//
-
 #import "AFHTTPSessionManager.h"
 #import <Foundation/Foundation.h>
-
 typedef NS_ENUM(NSInteger, RequestMethodType) {
   RequestMethodTypePost = 1,
   RequestMethodTypeGet = 2
 };
-
 @interface AFHttpTool : NSObject
-
 /**
  *  发送一个请求
- *
  *  @param methodType   请求方法
  *  @param url          请求路径
  *  @param params       请求参数
