@@ -72,7 +72,9 @@
         }
     }else {
         //非debug模式初始化sdk
-        [rc initWithAppKey:RONGCLOUD_IM_APPKEY];
+        NSString *rongCloudAPPKey = RONGCLOUD_IM_APPKEY;
+        [RCDSettingUserDefaults setRCAppKey:rongCloudAPPKey];
+        [rc initWithAppKey:rongCloudAPPKey];
     }
     /* RedPacket_FTR  *///需要在info.plist加上您的红包的scheme，注意一定不能与其它应用重复//设置扩展Module的Url Scheme。
     [rc setScheme:@"rongCloudRedPacket" forExtensionModule:@"JrmfPacketManager"];

@@ -630,7 +630,7 @@ arrayByAddingObjectsFromArray:
                        complete:^(NSMutableArray *friends){
                        }];
   dispatch_async(dispatch_get_main_queue(), ^{
-    RCDMainTabBarViewController *mainTabBarVC = [[RCDMainTabBarViewController alloc] init];
+    RCDMainTabBarViewController *mainTabBarVC = [RCDMainTabBarViewController shareInstance];
     [UIApplication sharedApplication].delegate.window.rootViewController = mainTabBarVC;
   });
 }
@@ -662,10 +662,10 @@ arrayByAddingObjectsFromArray:
       error:^(RCConnectErrorCode status) {
         //关闭HUD
 
-//        [hud hide:YES];
-//        NSLog(@"RCConnectErrorCode is %ld", (long)status);
-//        _errorMsgLb.text = [NSString stringWithFormat:@"登陆失败！Status: %zd", status];
-//        [_pwdTextField shake];
+        [hud hide:YES];
+        NSLog(@"RCConnectErrorCode is %ld", (long)status);
+        _errorMsgLb.text = [NSString stringWithFormat:@"登陆失败！Status: %zd", status];
+        [_pwdTextField shake];
           dispatch_async(dispatch_get_main_queue(), ^{
               //关闭HUD
               [hud hide:YES];
@@ -676,8 +676,8 @@ arrayByAddingObjectsFromArray:
               //SDK会自动重连登录，这时候需要监听连接状态
               [[RCIM sharedRCIM] setConnectionStatusDelegate:self];
           });
-//        //SDK会自动重连登陆，这时候需要监听连接状态
-//        [[RCIM sharedRCIM] setConnectionStatusDelegate:self];
+        //SDK会自动重连登陆，这时候需要监听连接状态
+        [[RCIM sharedRCIM] setConnectionStatusDelegate:self];
       }
       tokenIncorrect:^{
         NSLog(@"IncorrectToken");

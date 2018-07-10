@@ -49,7 +49,7 @@
     config.allowsCellularAccess = NO;
     AFHTTPSessionManager *mgr = [[AFHTTPSessionManager alloc]initWithBaseURL:baseURL sessionConfiguration:config];
     mgr.requestSerializer = [AFJSONRequestSerializer serializer];
-    mgr.responseSerializer = [AFHTTPResponseSerializer serializer];
+    mgr.responseSerializer = [AFJSONResponseSerializer serializer];
     [mgr.requestSerializer setValue:@"text/json"  forHTTPHeaderField:@"Accept"];
     mgr.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain", @"application/xml", @"text/xml",@"text/html",@"text/javascript", @"application/x-plist",@"image/tiff", @"image/jpeg", @"image/gif", @"image/png", @"image/ico",@"image/x-icon", @"image/bmp", @"image/x-bmp", @"image/x-xbitmap", @"image/x-win-bitmap", nil];
   mgr.requestSerializer.HTTPShouldHandleCookies = YES;

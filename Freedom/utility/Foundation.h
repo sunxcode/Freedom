@@ -107,10 +107,11 @@
 #define     MOB_SMS_APPKEY      @"1133dc881b63b"
 #define     MOB_SMS_SECRET      @"b4882225b9baee69761071c8cfa848f3"
 // 融云
-#define RONGCLOUD_IM_APPKEY @"k51hidwqked9b"
+#define RONGCLOUD_IM_APPKEY @"n19jmcy59f1q9"
+//@"k51hidwqked9b" //自由主义
 //@"n19jmcy59f1q9" //online key
-//@"c9kqb3rdkbb8j" // pre key
-//@"e0x9wycfx7flq" // offline key
+//@"c9kqb3rdkbb8j" //pre key
+//@"e0x9wycfx7flq" //offline key
 /******************           微             博           *******************/
 /******************               shareSDK               *******************/
 /******************           百      度    SDK           *******************/

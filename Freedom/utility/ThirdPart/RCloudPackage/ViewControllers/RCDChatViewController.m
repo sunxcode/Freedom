@@ -958,7 +958,7 @@ NSMutableDictionary *userInputStatus;
     imageV.frame = frame;
     [buttonItem addSubview:imageV];
     [buttonItem addTarget:self action:@selector(rightBarButtonItemClicked:) forControlEvents:UIControlEventTouchUpInside];
-  self.navigationItem.rightBarButtonItem = buttonItem;
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:buttonItem];
 }
 
 - (void)updateTitleForGroup:(NSNotification *)notification {
