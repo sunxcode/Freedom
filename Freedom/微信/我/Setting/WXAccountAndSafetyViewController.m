@@ -40,7 +40,7 @@
     WXSettingItem *voiceLock = TLCreateSettingItem(@"声音锁");
     WXSettingItem *password = TLCreateSettingItem(@"微信密码");
     WXSettingItem *idProtect = TLCreateSettingItem(@"账号保护");
-    if (1) {
+    if (/* DISABLES CODE */ (1)) {
         idProtect.subTitle = @"已保护";
         idProtect.rightImagePath = @"u_protectHL";
     }else {

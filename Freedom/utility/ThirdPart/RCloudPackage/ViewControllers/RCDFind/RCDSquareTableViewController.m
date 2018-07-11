@@ -114,7 +114,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section {
-  NSInteger rows;
+  NSInteger rows = 0;
   if (chatRoomNames.count == 0) {
     rows = 0;
   } else {
@@ -178,7 +178,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView
     heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-  CGFloat height;
+  CGFloat height = 0;
   switch (indexPath.section) {
   case 0:
     height = 68.5;

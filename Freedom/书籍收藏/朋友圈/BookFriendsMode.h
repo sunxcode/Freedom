@@ -4,7 +4,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 /*弹出视图*/
-@interface WFHudView : UIView{
+@interface WFHudView : UIView<CAAnimationDelegate>{
     UIFont *msgFont;
 }
 @property (nonatomic, copy)   NSString *msg;

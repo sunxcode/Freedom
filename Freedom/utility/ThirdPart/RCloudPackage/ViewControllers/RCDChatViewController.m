@@ -26,11 +26,14 @@
 #import <RongIMKit/RongIMKit.h>
 #import <RongIMLib/RongIMLib.h>
 #import <UIKit/UIKit.h>
+#import <iflyMSC/IFlySpeechRecognizer.h>
+#import <Speech/Speech.h>
 @protocol RealTimeLocationStatusViewDelegate <NSObject>
 - (void)onJoin;
 - (void)onShowRealTimeLocationView;
 - (RCRealTimeLocationStatus)getStatus;
 @end
+///FIXME: 共享实时位置视图
 @interface RealTimeLocationStatusView : UIView
 @property(nonatomic, weak) id<RealTimeLocationStatusViewDelegate> delegate;
 - (void)updateText:(NSString *)statusText;
@@ -182,6 +185,7 @@
     return _joinButton;
 }
 @end
+///FIXME: 实时位置cell
 @interface RealTimeLocationStartCell : RCMessageCell
 @property(nonatomic, strong) UIImageView *bubbleBackgroundView;
 @property(nonatomic, strong) RCAttributedLabel *textLabel;
@@ -284,7 +288,7 @@
     return _locationView;
 }
 @end
-/**TipMessageCell */
+///FIXME: RealTimeLocationEndCell
 @interface RealTimeLocationEndCell : RCMessageBaseCell
 //tipMessage显示Label
 @property(strong, nonatomic) RCTipLabel *tipMessageLabel;
@@ -318,7 +322,7 @@
     self.tipMessageLabel.frame = CGRectMake((self.baseContentView.bounds.size.width - __labelSize.width) / 2.0f, 10,__labelSize.width, __labelSize.height);
 }
 @end
-/*!测试消息Cell*/
+///FIXME: 测试消息Cell
 @interface RCDTestMessageCell : RCMessageCell
 /*!文本内容的Label*/
 @property(strong, nonatomic) UILabel *textLabel;
@@ -450,12 +454,18 @@
     return [[self class] getBubbleSize:textLabelSize];
 }
 @end
-
-@interface RCDChatViewController () <UIActionSheetDelegate, RCRealTimeLocationObserver,RealTimeLocationStatusViewDelegate, UIAlertViewDelegate,RCMessageCellDelegate>
+///FIXME:聊天控制器
+@interface RCDChatViewController () <RCRealTimeLocationObserver,RealTimeLocationStatusViewDelegate,RCMessageCellDelegate>
 @property(nonatomic, weak) id<RCRealTimeLocationProxy> realTimeLocation;
 @property(nonatomic, strong)RealTimeLocationStatusView *realTimeLocationStatusView;
 @property(nonatomic, strong) RCDGroupInfo *groupInfo;
 @property(nonatomic, strong) RCUserInfo *cardInfo;
+#pragma mark by Super 用于语音输入
+@property(nonatomic,strong)NSString *targetLanguageCode;
+@property(nonatomic,strong)SFSpeechAudioBufferRecognitionRequest* recognitionRequest;//发起语音识别请求
+@property(nonatomic,strong)SFSpeechRecognitionTask *recognitionTask;//发起语音识别请求后的返回值
+@property(nonatomic,strong)AVAudioEngine *audioEngine;//这个对象引用了语音引擎
+@property(nonatomic,strong)SFSpeechRecognizer *sf;
 -(UIView *)loadEmoticonView:(NSString *)identify index:(int)index;
 @end
 NSMutableDictionary *userInputStatus;
@@ -485,8 +495,21 @@ NSMutableDictionary *userInputStatus;
     NSString *userInputStatusKey = [NSString stringWithFormat:@"%lu--%@",(unsigned long)self.conversationType,self.targetId];
     [userInputStatus setObject:[NSString stringWithFormat:@"%ld",(long)inputType]  forKey:userInputStatusKey];
 }
+- (void)configAudioInputEnable{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    self.targetLanguageCode = [defaults objectForKey:@"languageCode"];
+    [SFSpeechRecognizer requestAuthorization:^(SFSpeechRecognizerAuthorizationStatus status) {
+        switch (status) {
+            case SFSpeechRecognizerAuthorizationStatusAuthorized:NSLog(@"语音识别授权成功");break;
+            case SFSpeechRecognizerAuthorizationStatusDenied:NSLog(@"语音识别被用户拒绝");break;
+            case SFSpeechRecognizerAuthorizationStatusRestricted:NSLog(@"语音识别受限制");break;
+            case SFSpeechRecognizerAuthorizationStatusNotDetermined:NSLog(@"语音识别还没有授权");break;
+        }
+    }];
+}
 - (void)viewDidLoad {
   [super viewDidLoad];
+    [self configAudioInputEnable];
   self.enableSaveNewPhotoToLocalSystem = YES;
   [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
   if (self.conversationType != ConversationType_CHATROOM) {
@@ -528,61 +551,25 @@ NSMutableDictionary *userInputStatus;
     if (self.conversationType != ConversationType_APPSERVICE && self.conversationType != ConversationType_PUBLICSERVICE) {
         //加号区域增加发送文件功能，Kit中已经默认实现了该功能，但是为了SDK向后兼容性，目前SDK默认不开启该入口，可以参考以下代码在加号区域中增加发送文件功能。
         UIImage *imageFile = [RCKitUtility imageNamed:@"actionbar_file_icon" ofBundle:@"RongCloud.bundle"];
-        [self.pluginBoardView insertItemWithImage:imageFile title:NSLocalizedStringFromTable(@"File", @"RongCloudKit", nil) atIndex:3 tag:PLUGIN_BOARD_ITEM_FILE_TAG];
+        [self.chatSessionInputBarControl.pluginBoardView insertItemWithImage:imageFile title:NSLocalizedStringFromTable(@"File", @"RongCloudKit", nil) atIndex:3 tag:PLUGIN_BOARD_ITEM_FILE_TAG];
     }
-  //    self.chatSessionInputBarControl.hidden = YES;
-  //    CGRect intputTextRect = self.conversationMessageCollectionView.frame;
-  //    intputTextRect.size.height = intputTextRect.size.height+50;
-  //    [self.conversationMessageCollectionView setFrame:intputTextRect];
-  //    [self scrollToBottomAnimated:YES];
-  /***********如何自定义面板功能***********************
-   自定义面板功能首先要继承RCConversationViewController，如现在所在的这个文件。
-   然后在viewDidLoad函数的super函数之后去编辑按钮：
-   插入到指定位置的方法如下：
-   [self.pluginBoardView insertItemWithImage:imagePic
-                                       title:title
-                                     atIndex:0
-                                         tag:101];
-   或添加到最后的：
-   [self.pluginBoardView insertItemWithImage:imagePic
-                                       title:title
-                                         tag:101];
-   删除指定位置的方法：
-   [self.pluginBoardView removeItemAtIndex:0];
-   删除指定标签的方法：
-   [self.pluginBoardView removeItemWithTag:101];
-   删除所有：
-   [self.pluginBoardView removeAllItems];
-   更换现有扩展项的图标和标题:
-   [self.pluginBoardView updateItemAtIndex:0 image:newImage title:newTitle];
-   或者根据tag来更换
-   [self.pluginBoardView updateItemWithTag:101 image:newImage title:newTitle];
-   以上所有的接口都在RCPluginBoardView.h可以查到。
-
-   当编辑完扩展功能后，下一步就是要实现对扩展功能事件的处理，放开被注掉的函数
-   pluginBoardView:clickedItemWithTag:
-   在super之后加上自己的处理。
-
-   */
-
+    UIImage *image = [UIImage imageNamed:@"icon"];
+    [self.chatSessionInputBarControl.pluginBoardView insertItemWithImage:image title:@"语音输入" atIndex:6 tag:101];
+    //self.chatSessionInputBarControl.hidden = YES;
+    //CGRect intputTextRect = self.conversationMessageCollectionView.frame;
+    //intputTextRect.size.height = intputTextRect.size.height+50;
+    //[self.conversationMessageCollectionView setFrame:intputTextRect];
+    //[self scrollToBottomAnimated:YES];
   //默认输入类型为语音
   // self.defaultInputType = RCChatSessionInputBarInputExtention;
-
   /***********如何在会话页面插入提醒消息***********************
-
-      RCInformationNotificationMessage *warningMsg =
-     [RCInformationNotificationMessage
-     notificationWithMessage:@"请不要轻易给陌生人汇钱！" extra:nil];
+      RCInformationNotificationMessage *warningMsg = [RCInformationNotificationMessage notificationWithMessage:@"请不要轻易给陌生人汇钱！" extra:nil];
       BOOL saveToDB = NO;  //是否保存到数据库中
       RCMessage *savedMsg ;
       if (saveToDB) {
-          savedMsg = [[RCIMClient sharedRCIMClient]
-     insertOutgoingMessage:self.conversationType targetId:self.targetId
-     sentStatus:SentStatus_SENT content:warningMsg];
+          savedMsg = [[RCIMClient sharedRCIMClient] insertOutgoingMessage:self.conversationType targetId:self.targetId sentStatus:SentStatus_SENT content:warningMsg];
       } else {
-          savedMsg =[[RCMessage alloc] initWithType:self.conversationType
-     targetId:self.targetId direction:MessageDirection_SEND messageId:-1
-     content:warningMsg];//注意messageId要设置为－1
+          savedMsg =[[RCMessage alloc] initWithType:self.conversationType targetId:self.targetId direction:MessageDirection_SEND messageId:-1 content:warningMsg];//注意messageId要设置为－1
       }
       [self appendAndDisplayMessage:savedMsg];
   */
@@ -602,22 +589,18 @@ NSMutableDictionary *userInputStatus;
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateForSharedMessageInsertSuccess:) name:@"RCDSharedMessageInsertSuccess" object:nil];
 
 //  //表情面板添加自定义表情包
-//  UIImage *icon = [RCKitUtility imageNamed:@"emoji_btn_normal"
-//                                  ofBundle:@"RongCloud.bundle"];
+//  UIImage *icon = [RCKitUtility imageNamed:@"emoji_btn_normal" ofBundle:@"RongCloud.bundle"];
 //  RCDCustomerEmoticonTab *emoticonTab1 = [RCDCustomerEmoticonTab new];
 //  emoticonTab1.identify = @"1";
 //  emoticonTab1.image = icon;
 //  emoticonTab1.pageCount = 2;
 //  emoticonTab1.chartView = self;
-//
 //  [self.emojiBoardView addEmojiTab:emoticonTab1];
-//
 //  RCDCustomerEmoticonTab *emoticonTab2 = [RCDCustomerEmoticonTab new];
 //  emoticonTab2.identify = @"2";
 //  emoticonTab2.image = icon;
 //  emoticonTab2.pageCount = 4;
 //  emoticonTab2.chartView = self;
-//
 //  [self.emojiBoardView addEmojiTab:emoticonTab2];
 }
 /*  返回的 view 大小必须等于 contentViewSize （宽度 = 屏幕宽度，高度 = 186）
@@ -671,9 +654,15 @@ NSMutableDictionary *userInputStatus;
 - (void)leftBarButtonItemPressed:(id)sender {
   if ([self.realTimeLocation getStatus] == RC_REAL_TIME_LOCATION_STATUS_OUTGOING ||
       [self.realTimeLocation getStatus] == RC_REAL_TIME_LOCATION_STATUS_CONNECTED) {
-    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:nil message:@"离开聊天，位置共享也会结束，确认离开" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-    alertView.tag = 101;
-    [alertView show];
+      UIAlertController *alvc = [UIAlertController alertControllerWithTitle:@"" message:@"离开聊天，位置共享也会结束，确认离开" preferredStyle:UIAlertControllerStyleAlert];
+      UIAlertAction *a = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+          [self.realTimeLocation quitRealTimeLocation];
+          [self popupChatViewController];
+      }];
+      UIAlertAction *b = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {}];
+      [alvc addAction:a];
+      [alvc addAction:b];
+      [self presentViewController:alvc animated:YES completion:^{}];
   } else {
     [self popupChatViewController];
   }
@@ -709,7 +698,7 @@ NSMutableDictionary *userInputStatus;
         [[RCDDiscussGroupSettingViewController alloc] init];
     settingVC.conversationType = self.conversationType;
     settingVC.targetId = self.targetId;
-    settingVC.conversationTitle = self.userName;
+    settingVC.conversationTitle = self.csInfo.nickName;
     //设置讨论组标题时，改变当前会话页面的标题
     settingVC.setDiscussTitleCompletion = ^(NSString *discussTitle) {
       self.title = discussTitle;
@@ -802,9 +791,9 @@ NSMutableDictionary *userInputStatus;
     backImg.frame = CGRectMake(-6, 4, 10, 17);
     [backBtn addSubview:backImg];
     UILabel *backText = [[UILabel alloc] initWithFrame:CGRectMake(9, 4, 85, 17)];
-    backText.text = backString; // NSLocalizedStringFromTable(@"Back",
-                                // @"RongCloudKit", nil);
-    //   backText.font = [UIFont systemFontOfSize:17];
+    backText.text = backString;
+    // NSLocalizedStringFromTable(@"Back", @"RongCloudKit", nil);
+    // backText.font = [UIFont systemFontOfSize:17];
     [backText setBackgroundColor:[UIColor clearColor]];
     [backText setTextColor:[UIColor whiteColor]];
     [backBtn addSubview:backText];
@@ -829,13 +818,43 @@ NSMutableDictionary *userInputStatus;
   switch (tag) {
   case PLUGIN_BOARD_ITEM_LOCATION_TAG: {
     if (self.realTimeLocation) {
-      UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self
-               cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"发送位置", @"位置实时共享", nil];
-      [actionSheet showInView:self.view];
+        UIAlertController *alvc = [UIAlertController alertControllerWithTitle:@"" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertAction *a = [UIAlertAction actionWithTitle:@"发送位置" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [super pluginBoardView:self.chatSessionInputBarControl.pluginBoardView clickedItemWithTag:PLUGIN_BOARD_ITEM_LOCATION_TAG];
+        }];
+        UIAlertAction *b = [UIAlertAction actionWithTitle:@"位置实时共享" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self showRealTimeLocationViewController];
+        }];
+        UIAlertAction *c = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {}];
+        [alvc addAction:a];
+        [alvc addAction:b];
+        [alvc addAction:c];
+        [self presentViewController:alvc animated:YES completion:^{}];
     } else {
       [super pluginBoardView:pluginBoardView clickedItemWithTag:tag];
     }
   } break;
+      case 101:{
+          self.chatSessionInputBarControl.inputTextView.text = @" ";
+          [super pluginBoardView:pluginBoardView clickedItemWithTag:1105];
+          [[IFlySpeechRecognizer sharedInstance]stopListening];
+          pluginBoardView.extensionView.hidden = NO;
+          UIView *extensV = [pluginBoardView.extensionView.subviews firstObject];
+          for(UIView *v in extensV.subviews){
+              if([v isKindOfClass:[UIImageView class]]){
+                  [v removeFromSuperview];
+              }
+          }
+          UIButton *translateB = [[UIButton alloc]initWithFrame:CGRectMake(APPW/2-40, 40, 80, 80)];
+          translateB.layer.borderWidth = 5;
+          translateB.layer.borderColor = RGBCOLOR(240, 240, 242).CGColor;
+          translateB.layer.cornerRadius = 30;
+          translateB.clipsToBounds = YES;
+          [translateB setImage:[UIImage imageNamed:@"录音"] forState:UIControlStateSelected];
+          [translateB setImage:[UIImage imageNamed:@"translate"] forState:UIControlStateNormal];
+          [translateB addTarget:self action:@selector(startRecording:) forControlEvents:UIControlEventTouchUpInside];
+          [pluginBoardView.extensionView addSubview:translateB];
+      }break;
   default:[super pluginBoardView:pluginBoardView clickedItemWithTag:tag];break;
   }
 }
@@ -859,46 +878,73 @@ NSMutableDictionary *userInputStatus;
   [self showRealTimeLocationViewController];
 }
 - (RCMessageContent *)willSendMessage:(RCMessageContent *)messageContent {
-  //可以在这里修改将要发送的消息
-  if ([messageContent isMemberOfClass:[RCTextMessage class]]) {
-    // RCTextMessage *textMsg = (RCTextMessage *)messageContent;
-    // textMsg.extra = @"";
-  }
-  return messageContent;
+    //可以在这里修改将要发送的消息
+    if ([messageContent isMemberOfClass:[RCTextMessage class]]) {
+        RCTextMessage *textMsg = (RCTextMessage *)messageContent;
+        NSLog(@"\n%@",textMsg.content);
+        //      textMsg.content = @"这是测试截获要发送的消息";
+        textMsg.extra = @"";
+#pragma mark TODO MY
+    }
+    return messageContent;
 }
-#pragma mark override
 - (void)didTapMessageCell:(RCMessageModel *)model {
-  [super didTapMessageCell:model];
-  if ([model.content isKindOfClass:[RCRealTimeLocationStartMessage class]]) {
-    [self showRealTimeLocationViewController];
-  }
-  if ([model.content isKindOfClass:[RCContactCardMessage class]]) {
-    [self didTapCellPortrait:((RCContactCardMessage*)model.content).userId];
-  }
-  
+    [super didTapMessageCell:model];
+    if ([model.content isKindOfClass:[RCRealTimeLocationStartMessage class]]) {
+        [self showRealTimeLocationViewController];
+    }
+    if ([model.content isKindOfClass:[RCContactCardMessage class]]) {
+        [self didTapCellPortrait:((RCContactCardMessage*)model.content).userId];
+    }
 }
+#pragma mark by Super 截获消息进行翻译后展示
+- (void)willDisplayMessageCell:(RCMessageBaseCell *)cell atIndexPath:(NSIndexPath *)indexPath{
+    RCMessageModel *model = self.conversationDataRepository[indexPath.row];
+    //    if (model.conversationType == ConversationType_PRIVATE && [model.objectName isEqualToString:@"RC:TxtMsg"]){
+    if ([model.objectName isEqualToString:@"RC:TxtMsg"]){
+        RCTextMessage *textMsg = (RCTextMessage *)model.content;
+        NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:self.targetLanguageCode,@"target",textMsg.content,@"q",GoogleAppKey,@"key", nil];
+        NSString *url = @"https://www.googleapis.com/language/translate/v2";
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        [manager GET:url parameters:dict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            NSDictionary *result = [responseObject[@"data"][@"translations"]lastObject];
+            textMsg.content = result[@"translatedText"];
+            NSLog(@"%@",result);
+            model.content = textMsg;
+            [cell setDataModel:model];
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        }];
+    }
+}
+//- (RCMessageBaseCell *)rcConversationCollectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+//    RCMessageBaseCell *cell =nil;// [super rcConversationCollectionView:collectionView cellForItemAtIndexPath:indexPath];
+//    RCMessageModel *model = self.conversationDataRepository[indexPath.row];
+//    if (model.conversationType == ConversationType_PRIVATE){
+//        RCTextMessage *textMsg = (RCTextMessage *)model.content;
+//        textMsg.content = @"这是截获消息接受的内容";
+//        model.content = textMsg;
+//        cell.model = model;
+//    }
+//    return cell;
+//}
 
+#pragma mark by Super end
 - (NSArray<UIMenuItem *> *)getLongTouchMessageCellMenuList:
     (RCMessageModel *)model {
   NSMutableArray<UIMenuItem *> *menuList =
       [[super getLongTouchMessageCellMenuList:model] mutableCopy];
   /*
   在这里添加删除菜单。
-  [menuList enumerateObjectsUsingBlock:^(UIMenuItem * _Nonnull obj, NSUInteger
- idx, BOOL * _Nonnull stop) {
+  [menuList enumerateObjectsUsingBlock:^(UIMenuItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
     if ([obj.title isEqualToString:@"删除"] || [obj.title
  isEqualToString:@"delete"]) {
       [menuList removeObjectAtIndex:idx];
       *stop = YES;
     }
   }];
-
- UIMenuItem *forwardItem = [[UIMenuItem alloc] initWithTitle:@"转发"
- action:@selector(onForwardMessage:)];
+ UIMenuItem *forwardItem = [[UIMenuItem alloc] initWithTitle:@"转发" action:@selector(onForwardMessage:)];
  [menuList addObject:forwardItem];
-
-  如果您不需要修改，不用重写此方法，或者直接return［super
- getLongTouchMessageCellMenuList:model]。
+  如果您不需要修改，不用重写此方法，或者直接return［super getLongTouchMessageCellMenuList:model]。
   */
   return menuList;
 }
@@ -962,36 +1008,6 @@ NSMutableDictionary *userInputStatus;
     [super resendMessage:messageContent];
   }
 }
-#pragma mark - UIActionSheet Delegate
-- (void)actionSheet:(UIActionSheet *)actionSheet
-    clickedButtonAtIndex:(NSInteger)buttonIndex {
-  switch (buttonIndex) {
-  case 0: {
-    [super pluginBoardView:self.pluginBoardView clickedItemWithTag:PLUGIN_BOARD_ITEM_LOCATION_TAG];
-  } break;
-  case 1: {
-    [self showRealTimeLocationViewController];
-  } break;
-  }
-}
-
-- (void)willPresentActionSheet:(UIActionSheet *)actionSheet {
-  SEL selector = NSSelectorFromString(@"_alertController");
-  if ([actionSheet respondsToSelector:selector]) {
-    UIAlertController *alertController =[actionSheet valueForKey:@"_alertController"];
-    if ([alertController isKindOfClass:[UIAlertController class]]) {
-      alertController.view.tintColor = [UIColor blackColor];
-    }
-  } else {
-    for (UIView *subView in actionSheet.subviews) {
-      if ([subView isKindOfClass:[UIButton class]]) {
-        UIButton *btn = (UIButton *)subView;
-        [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-      }
-    }
-  }
-}
-
 #pragma mark - RCRealTimeLocationObserver
 - (void)onRealTimeLocationStatusChange:(RCRealTimeLocationStatus)status {
   __weak typeof(&*self) weakSelf = self;
@@ -999,14 +1015,12 @@ NSMutableDictionary *userInputStatus;
     [weakSelf updateRealTimeLocationStatus];
   });
 }
-
 - (void)onReceiveLocation:(CLLocation *)location fromUserId:(NSString *)userId {
   __weak typeof(&*self) weakSelf = self;
   dispatch_async(dispatch_get_main_queue(), ^{
     [weakSelf updateRealTimeLocationStatus];
   });
 }
-
 - (void)onParticipantsJoin:(NSString *)userId {
   __weak typeof(&*self) weakSelf = self;
   if ([userId isEqualToString:[RCIMClient sharedRCIMClient].currentUserInfo.userId]) {
@@ -1021,7 +1035,6 @@ NSMutableDictionary *userInputStatus;
    }];
   }
 }
-
 - (void)onParticipantsQuit:(NSString *)userId {
   __weak typeof(&*self) weakSelf = self;
   if ([userId isEqualToString:[RCIMClient sharedRCIMClient].currentUserInfo.userId]) {
@@ -1036,7 +1049,6 @@ NSMutableDictionary *userInputStatus;
        }];
   }
 }
-
 - (void)onRealTimeLocationStartFailed:(long)messageId {
   dispatch_async(dispatch_get_main_queue(), ^{
     for (int i = 0; i < self.conversationDataRepository.count; i++) {
@@ -1064,18 +1076,6 @@ NSMutableDictionary *userInputStatus;
   });
 }
 - (void)onFailUpdateLocation:(NSString *)description {
-}
-#pragma mark - UIAlertViewDelegate
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-  switch (alertView.tag) {
-    case 101: {
-      if (buttonIndex == 1) {
-        [self.realTimeLocation quitRealTimeLocation];
-        [self popupChatViewController];
-      }
-    }break;break;
-    default:break;
-  }
 }
 - (RCMessage *)willAppendAndDisplayMessage:(RCMessage *)message {
   return message;
@@ -1186,14 +1186,14 @@ NSMutableDictionary *userInputStatus;
 }
 
 - (void)refreshTitle{
-  if (self.userName == nil) {
+  if (self.csInfo.nickName == nil) {
     return;
   }
     int count = [[[RCDataBaseManager shareInstance] getGroupByGroupId:self.targetId].number intValue];
     if(self.conversationType == ConversationType_GROUP && count > 0){
-        self.title = [NSString stringWithFormat:@"%@(%d)",self.userName,count];
+        self.title = [NSString stringWithFormat:@"%@(%d)",self.csInfo.nickName,count];
     }else{
-        self.title = self.userName;
+        self.title = self.csInfo.nickName;
     }
 }
 - (void)didTapReceiptCountView:(RCMessageModel *)model {
@@ -1236,6 +1236,60 @@ NSMutableDictionary *userInputStatus;
   if (![self stayAfterJoinChatRoomFailed]) {
     [super alertErrorAndLeft:errorInfo];
   }
+}
+///FIXME: by Super 新加的语音输入功能
+//  模仿siri 进行语音搜索功能
+-(void)startRecording:(UIButton*)sender{
+    if((sender.selected = !sender.selected)){
+    }else{
+        [self.recognitionRequest endAudio];return;
+    }
+    if (self.recognitionTask!=nil) {
+        [self.recognitionTask cancel];
+        self.recognitionTask=nil;
+    }
+    NSLocale *local =[[NSLocale alloc] initWithLocaleIdentifier:self.targetLanguageCode];//1.创建本地化标识符
+    self.sf =[[SFSpeechRecognizer alloc] initWithLocale:local];//2.创建一个语音识别对象
+    AVAudioSession *autoSession=[AVAudioSession sharedInstance];
+    @try {
+        [autoSession setCategory:AVAudioSessionCategoryRecord error:nil];
+        [autoSession setMode:AVAudioSessionModeMeasurement error:nil];
+        [autoSession setActive:YES error:nil];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"语音配置处理出异常了，请坚持重新配置！");
+    }
+    self.recognitionRequest=[[SFSpeechAudioBufferRecognitionRequest alloc]init];
+    self.audioEngine=[[AVAudioEngine alloc]init];
+    if (self.audioEngine.inputNode==nil)NSLog(@"设备没有录制语音功能！");
+    self.recognitionRequest.shouldReportPartialResults=YES;
+    AVAudioFormat * recordingFormat=[self.audioEngine.inputNode outputFormatForBus:0];
+    [self.audioEngine.inputNode installTapOnBus:0 bufferSize:1024 format:recordingFormat block:^(AVAudioPCMBuffer * _Nonnull buffer, AVAudioTime * _Nonnull when) {
+        [self.recognitionRequest appendAudioPCMBuffer:buffer];
+    }];
+    @try {
+        [self.audioEngine prepare];
+        [self.audioEngine startAndReturnError:nil];
+    } @catch (NSException *exception) {
+        NSLog(@"麦克风启动出问题了，请检查硬件是否支持！");
+    }
+    //5.发送一个请求
+    self.recognitionTask = [self.sf recognitionTaskWithRequest:self.recognitionRequest resultHandler:^(SFSpeechRecognitionResult * _Nullable result, NSError * _Nullable error) {
+        if (error!=nil) {
+            NSLog(@"%@",error.userInfo);
+            [self.audioEngine stop];
+            [self.audioEngine.inputNode removeTapOnBus:0];
+            self.recognitionRequest=nil;
+            self.recognitionTask=nil;
+        }else{
+            NSString *result1 = result.bestTranscription.formattedString;
+            NSLog(@"%@",result1);
+            self.chatSessionInputBarControl.inputTextView.text = result1;
+            //            // 如果想在你说的话后面一直拼接就不需要endAudio
+            //            [self.recognitionRequest endAudio];
+            //            [self performSelectorOnMainThread:@selector(readFrom) withObject:nil waitUntilDone:YES];
+        }
+    }];
 }
 
 @end

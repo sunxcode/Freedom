@@ -72,7 +72,7 @@ class TaobaoCommunityViewController: TaobaoBaseViewController,UICollectionViewDe
         })
         navigationItem.leftBarButtonItem = leftI
         navigationItem.rightBarButtonItem = rightI
-        let param = [
+        _ = [
             "type" : "1"
         ]
         let layout = UICollectionViewFlowLayout()

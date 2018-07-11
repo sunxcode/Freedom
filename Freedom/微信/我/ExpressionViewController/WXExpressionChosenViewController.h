@@ -3,8 +3,6 @@
 //  Created by Super on 16/4/4.
 #import "WXTableViewController.h"
 #import "WXExpressionHelper.h"
-#define         HEIGHT_BANNERCELL       140.0f
-#define         HEGIHT_EXPCELL          80.0f
 #import "TLEmojiBaseCell.h"
 #import "WXTableViewCell.h"
 @protocol WXExpressionCellDelegate <NSObject>

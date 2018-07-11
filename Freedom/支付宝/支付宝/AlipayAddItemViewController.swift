@@ -34,19 +34,20 @@ class AlipayAddItemGridView: UIScrollView, UIScrollViewDelegate {
         super.layoutSubviews()
         let itemW: CGFloat = frame.size.width / 4
         let itemH: CGFloat = itemW * 1.1
+        print(itemH)
         hasAdjustedSeparators = true
     }
     
     func setGridModelsArray(_ gridModelsArray: [Any]?) {
         self.gridModelsArray = gridModelsArray!
         let rowCount: Int = self.rowCount(withItemsCount: (gridModelsArray?.count)!)
-        for i in 0..<(rowCount + 1) {
+        for _ in 0..<(rowCount + 1) {
             let rowSeparator = UIView()
             rowSeparator.backgroundColor = UIColor.lightGray
             addSubview(rowSeparator)
             rowSeparatorsArray.append(rowSeparator)
         }
-        for i in 0..<(4 + 1) {
+        for _ in 0..<(4 + 1) {
             let columnSeparator = UIView()
             columnSeparator.backgroundColor = UIColor.lightGray
             addSubview(columnSeparator)
@@ -80,6 +81,7 @@ class AlipayAddItemGridView: UIScrollView, UIScrollViewDelegate {
     func setupSubViewsFrame() {
         let itemW: CGFloat = frame.size.width / 4
         let itemH: CGFloat = itemW * 1.1
+        print(itemH)
     }
     func delete(_ view: AlipayHomeGridViewListItemView?) {
         if let aView = view {

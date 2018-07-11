@@ -434,17 +434,9 @@ UIActionSheetDelegate, UIAlertViewDelegate>{
   CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
   if (status == kCLAuthorizationStatusDenied) {
     [hud hide:YES];
-    UIAlertView *alertView =
-        [
-            [UIAlertView alloc] initWithTitle:@"无法访问"
-                                      message:@"没"
-                                              @"有权限访问位置信息，请从设置-"
-                                              @"隐私-定位服务 "
-                                              @"中打开位置访问权限"
-                                     delegate:nil
-                            cancelButtonTitle:@"确定"
-                            otherButtonTitles:nil];
-    [alertView show];
+      [self showAlerWithtitle:@"无法访问" message:@"没有权限访问位置信息，请从设置-隐私-定位服务中打开位置访问权限" style:UIAlertControllerStyleAlert ac1:^UIAlertAction *{
+          return [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
+      } ac2:nil ac3:nil completion:nil];
   }
 }
 - (void)viewWillDisappear:(BOOL)animated {

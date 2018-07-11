@@ -18,7 +18,7 @@ class IqiyiWebViewController: IqiyiBaseViewController,UIWebViewDelegate{
         let backBtn = UIButton(type: .custom)
         backBtn.frame = CGRect(x: 0, y: 0, width: 23, height: 23)
         backBtn.setImage(UIImage(named: "cellLeft"), for: .normal)
-        backBtn.addTarget(self, action: Selector("OnBackBtn:"), for: .touchUpInside)
+        backBtn.addTarget(self, action: Selector(("OnBackBtn:")), for: .touchUpInside)
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backBtn)
         webView.delegate = self
         webView.scalesPageToFit = true
@@ -26,7 +26,7 @@ class IqiyiWebViewController: IqiyiBaseViewController,UIWebViewDelegate{
         Dlog("webview URL:\( self.urlStr)")
         let urlStr = self.urlStr
         var request: URLRequest? = nil
-        if let aStr = URL(string: urlStr ?? "") {
+        if let aStr = URL(string: urlStr ) {
             request = URLRequest(url: aStr)
             webView.loadRequest(request!)
            activityView.activityIndicatorViewStyle = .gray

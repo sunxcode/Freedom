@@ -9,7 +9,7 @@
 #import "BookSubViews.h"
 #import <CoreText/CoreText.h>
 #import "BookReadMode.h"
-#import <AVFoundation/AVSpeechSynthesis.h>
+#import <AVFoundation/AVFoundation.h>
 #define kE_CursorWidth 2
 #import "BookReadMode.h"
 #define MAX_FONT_SIZE 27

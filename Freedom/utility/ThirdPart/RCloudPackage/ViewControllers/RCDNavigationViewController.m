@@ -19,8 +19,12 @@
   if ([self respondsToSelector:@selector(interactivePopGestureRecognizer)] && animated == YES) {
     self.interactivePopGestureRecognizer.enabled = NO;
   }
+    if(self.viewControllers.count >= 1){
+        viewController.hidesBottomBarWhenPushed = YES;
+    }
   [super pushViewController:viewController animated:animated];
 }
+
 - (NSArray *)popToRootViewControllerAnimated:(BOOL)animated {
   if ([self respondsToSelector:@selector(interactivePopGestureRecognizer)] &&
       animated == YES) {

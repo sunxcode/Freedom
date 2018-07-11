@@ -148,7 +148,7 @@
         NSRange rang = [updateAt rangeOfString:point];
         [str deleteCharactersInRange:NSMakeRange(rang.location,str.length - rang.location)];
     }
-      return str;
+    return str.copy;
 }
 @end
 

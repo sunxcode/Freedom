@@ -26,8 +26,8 @@ class TaobaoMiniTopicViewCell:BaseTableViewCell{
 class TaobaoMiniTopicViewController: TaobaoBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        let banner = BaseScrollView(banner: CGRect(x: 0, y: 0, width: APPW, height: 120), icons:["",""])
-        let param = [
+        _ = BaseScrollView(banner: CGRect(x: 0, y: 0, width: APPW, height: 120), icons:["",""])
+        _ = [
             "type" : "1"
         ]
         tableView = BaseTableView(frame: CGRect(x: 0, y: 0, width: APPW, height: view.frameHeight - 20), style: .plain)

@@ -459,13 +459,14 @@
     RCUserInfo *user = [[RCDataBaseManager shareInstance] getUserByUserId:self.selecteUserIdList[0]];
     RCDChatViewController *chat = [[RCDChatViewController alloc] init];
     chat.targetId = user.userId;
-    chat.userName = user.name;
+    chat.csInfo.nickName = user.name;
     chat.conversationType = ConversationType_PRIVATE;
     chat.title = user.name;
     chat.needPopToRootView = YES;
     chat.displayUserNameInCell = NO;
     //跳转到会话页面
     dispatch_async(dispatch_get_main_queue(), ^{
+        chat.hidesBottomBarWhenPushed = YES;
       [self.navigationController pushViewController:chat animated:YES];
     });
   } else {
@@ -562,7 +563,7 @@
                                                     RCDChatViewController *chat =
                                                     [[RCDChatViewController alloc] init];
                                                     chat.targetId = discussion.discussionId;
-                                                    chat.userName = discussion.discussionName;
+                                                    chat.csInfo.nickName = discussion.discussionName;
                                                     chat.conversationType = ConversationType_DISCUSSION;
                                                     chat.title = @"讨论组";
                                                     chat.needPopToRootView = YES;
@@ -586,7 +587,7 @@
       RCUserInfo *user = seletedUsers[0];
       RCDChatViewController *chat = [[RCDChatViewController alloc] init];
       chat.targetId = user.userId;
-      chat.userName = user.name;
+      chat.csInfo.nickName = user.name;
       chat.conversationType = ConversationType_PRIVATE;
       chat.title = user.name;
       chat.needPopToRootView = YES;
@@ -594,6 +595,7 @@
       
       //跳转到会话页面
       dispatch_async(dispatch_get_main_queue(), ^{
+          chat.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:chat animated:YES];
       });
       return;
@@ -612,7 +614,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
           RCDChatViewController *chat =[[RCDChatViewController alloc]init];
           chat.targetId                      = discussion.discussionId;
-          chat.userName                    = discussion.discussionName;
+          chat.csInfo.nickName                    = discussion.discussionName;
           chat.conversationType              = ConversationType_DISCUSSION;
           chat.title                         = @"讨论组";
           chat.needPopToRootView = YES;

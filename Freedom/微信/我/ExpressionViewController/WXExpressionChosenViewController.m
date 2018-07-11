@@ -322,9 +322,9 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
-        return self.bannerData.count > 0 ? HEIGHT_BANNERCELL : HEGIHT_EXPCELL;
+        return self.bannerData.count > 0 ? 140 : 80;
     }else if (indexPath.section == 1) {
-        return HEGIHT_EXPCELL;
+        return 80;
     }
     return 0;
 }

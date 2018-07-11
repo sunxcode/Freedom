@@ -29,7 +29,7 @@ import UserNotifications
 //易信SDK头文件
 //#import "YXApi.h"
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate ,UNUserNotificationCenterDelegate{
     var window: UIWindow?
     let taskID :UIBackgroundTaskIdentifier = 0
     let launchView: UIImageView = UIImageView()
@@ -228,19 +228,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //为了在启动页面不显示statusBar，所以在工程设置里面把statusBar隐藏了，在启动页面过后，显示statusBar。
         application.isStatusBarHidden = false
         /*** 推送处理1*/
-        if application.responds(to: #selector(application.registerUserNotificationSettings(_:))) {
-            //注册推送, 用于iOS8以及iOS8之后的系统
-            let settings = UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil)
-            application.registerUserNotificationSettings(settings)
-        } else {
-            //注册推送，用于iOS8之前的系统
-            let myTypes: UIRemoteNotificationType = [.badge, .alert, .sound]
-            application.registerForRemoteNotifications(matching: myTypes)
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]){ (granted, error) in
+            if granted {
+                UIApplication.shared.registerForRemoteNotifications()
+            }
         }
         //统计推送打开率1
         RCIMClient.shared().recordLaunchOptionsEvent(launchOptions)
         //获取融云推送服务扩展字段1
-        var pushServiceData = RCIMClient.shared().getPushExtra(fromLaunchOptions: launchOptions)
+        let pushServiceData = RCIMClient.shared().getPushExtra(fromLaunchOptions: launchOptions)
         if let pushDict = pushServiceData {
             print("该启动事件包含来自融云的推送服务")
             for (key,value) in pushDict {
@@ -258,15 +254,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tempStr2 = tempStr1.replacingOccurrences(of: ">", with: "")
         let token = tempStr2.replacingOccurrences(of: " ", with: "")
         RCIMClient.shared().setDeviceToken(token)
-    }
-    ///本地通知注册成功
-    func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings) {
-        application.registerForRemoteNotifications()
-    }
-    ///远程通知注册失败
-    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        // 请检查App的APNs的权限设置，更多内容可以参考文档http://www.rongcloud.cn/docs/ios_push.html。
-        print("(模拟器不支持远程推送)获取DeviceToken失败！！！ERROR：\(error)");
+        var token1 = ""
+        for i in 0..<deviceToken.count {
+            token1 = token1 + String(format: "%02.2hhx", arguments: [deviceToken[i]])
+        }
+        print(token1)
     }
     ///收到远程通知
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
@@ -283,15 +275,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("该远程推送不包含来自融云的推送服务")
         }
     }
-    ///收到本地通知
-    func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+    }
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         //统计推送打开率3
-        RCIMClient.shared().recordLocalNotificationEvent(notification)
+//        RCIMClient.shared().recordLocalNotificationEvent(response.notification)
         //震动
         AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
         AudioServicesPlaySystemSound(1007)
     }
     //FIXME:应用程序生命周期
+    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+    }
     //即将释放第一响应
     func applicationWillResignActive(_ application: UIApplication) {
         // 设置音频会话类型

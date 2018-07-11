@@ -4,6 +4,7 @@
 #import "BookFriendsViewController.h"
 #import "BookFriendsTableViewCell.h"
 #import "BookFriendsMode.h"
+#import <XCategory/NSString+expanded.h>
 typedef  void(^didRemoveImage)(void);
 @interface YMShowImageView : UIView<UIScrollViewDelegate>{
     UIImageView *showImage;
@@ -125,10 +126,8 @@ typedef  void(^didRemoveImage)(void);
     CGFloat topGap;
     CGFloat keyboardAnimationDuration;
     UIViewAnimationCurve keyboardAnimationCurve;
-    CGFloat keyboardHeight;
     int inputHeight;
     int inputHeightWithShadow;
-    BOOL autoResizeOnKeyboardVisibilityChanged;
     UIView *tapView;
 }
 @property (strong, nonatomic) UIButton* sendButton;
@@ -146,33 +145,6 @@ typedef  void(^didRemoveImage)(void);
 - (void)showCommentView;
 - (id) initWithFrame:(CGRect)frame andAboveView:(UIView *)bgView;
 - (void)disappear;
-@end
-@interface NSString (YMReplyInputView)
-@end
-@implementation NSString (HXReplyInputView)
-- (CGSize) sizeForFont:(UIFont *)font{
-    if ([self respondsToSelector:@selector(sizeWithAttributes:)]){
-        NSDictionary* attribs = @{NSFontAttributeName:font};
-        return ([self sizeWithAttributes:attribs]);
-    }
-    return ([self sizeWithFont:font]);
-    // return
-}
-- (CGSize) sizeForFont:(UIFont*)font
-     constrainedToSize:(CGSize)constraint
-         lineBreakMode:(NSLineBreakMode)lineBreakMode{
-    CGSize size;
-    if ([self respondsToSelector:@selector(sizeWithAttributes:)]){
-        NSDictionary *attributes = @{NSFontAttributeName:font};
-        CGSize boundingBox = [self boundingRectWithSize:constraint options: NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
-        size = CGSizeMake(ceil(boundingBox.width), ceil(boundingBox.height));
-    }else{
-        //        size = [self sizeWithFont:font constrainedToSize:constraint lineBreakMode:lineBreakMode];
-        NSDictionary *attributes = @{ NSFontAttributeName:font, NSParagraphStyleAttributeName:[[NSMutableParagraphStyle alloc]init]};
-        size = [self boundingRectWithSize:constraint options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attributes context:nil].size;
-    }
-    return size;
-}
 @end
 @implementation YMReplyInputView
 - (void) composeView{
@@ -249,8 +221,8 @@ typedef  void(^didRemoveImage)(void);
     }
 }
 - (void) adjustTextInputHeightForText:(NSString*)text animated:(BOOL)animated{
-    int h1 = [text sizeForFont:_textView.font].height;
-    int h2 = [text sizeForFont:_textView.font constrainedToSize:CGSizeMake(_textView.frame.size.width - 16, 170.0f) lineBreakMode:NSLineBreakByWordWrapping].height;
+    int h1 = [text sizeOfFont:_textView.font].height;
+    int h2 = [text sizeOfFont:_textView.font maxSize:CGSizeMake(_textView.frame.size.width - 16, 170.0f)].height;
     [UIView animateWithDuration:(animated ? .1f : 0) animations:^{
          int h = h2 == h1 ? inputHeightWithShadow : h2 + 24;
          if (h>78) {
@@ -538,8 +510,8 @@ typedef void(^DidSelectedOperationBlock)(NSInteger operationType);
 #pragma mark - 数据源
 - (void)configData{
     NSString *kAdmin = @"杨越光";
-    NSString * kContentText1 = @"思想不会流血，不会感到痛苦，思想不会死去";
-    NSString * kContentText2 = @"这张面具之下，不是肉体，而是一种思想但思想是不怕子弹的";
+    NSString *kContentText1 = @"思想不会流血，不会感到痛苦，思想不会死去";
+    NSString *kContentText2 = @"这张面具之下，不是肉体，而是一种思想但思想是不怕子弹的";
     NSString *kContentText3 = @"Most people are so ungrateful to be alive. But not you. Not anymore. ";
     NSString *kContentText4 = @"活着本来没有什么意义，但只要活着就会发现很多有趣的13688919929事，就像你发现了花，我又发现你一样[em:03:]。";
     NSString *kContentText5 = @"地狱的房间已满，于是，[em:02:][em:02:]死亡爬上了人间如果一个人觉得他自己死的很不值,就会把诅咒留在他生前接触过的地方[em:02:]只要有人经过这些地方[em:02:]就会被咒语套中如果一个人觉得他自己死的很不值,就会把诅咒留在他生前接触过的地方[em:02:]只要有人经过这些地方[em:02:]就会被咒语套中如果一个人觉得他自己死的很不值,就会把诅咒留在他生前接触过的地方[em:02:]只要有人经过这些地方[em:02:]就会被咒语套中如果一个人觉得他自己死的很不值,就会把诅咒留在他生前接触过的地方[em:02:]只要有人经过这些地方[em:02:]就会被咒语套中";
@@ -550,7 +522,7 @@ typedef void(^DidSelectedOperationBlock)(NSInteger operationType);
     NSString *kShuoshuoText4 = @"人有的时候很脆弱，会遇到很多不如意18618881888的事，日积月累就会形成心结，就算想告诉亲戚朋友，他们也未必懂得怎样[em:03:]开解";
     NSString *kShuoshuoText5 = @"如果是像金钱这种东西被抢走的话，再抢[em:03:]回来就好了！但如果是人性或温暖的心的话……那就只有遇上心中同样是空虚的人，才有www.baidu.com办法帮你填补起内心的空洞";
     NSString *kShuoshuoText6 = @"双目瞪人玛[em:03:]丽肖,傀儡为子常怀抱,汝辈小儿需切记,梦中遇她莫尖叫";
-
+    NSLog(@"%@%@",kShuoshuoText2,kShuoshuoText6);
     _tableDataSource = [[NSMutableArray alloc] init];
     _contentDataSource = [[NSMutableArray alloc] init];
     _replyIndex = -1;//代表是直接评论

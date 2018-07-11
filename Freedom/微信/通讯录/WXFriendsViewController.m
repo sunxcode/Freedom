@@ -128,7 +128,7 @@
 }
 @end
 
-@interface WXFriendsViewController ()
+@interface WXFriendsViewController ()<UISearchBarDelegate>
 @property (nonatomic, strong) UILabel *footerLabel;
 @property (nonatomic, strong) WXFriendHelper *friendHelper;
 @property (nonatomic, strong) WXSearchController *searchController;

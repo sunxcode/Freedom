@@ -7,7 +7,6 @@
 #import "WXRootViewController.h"
 #import "WXExpressionChosenViewController.h"
 #import <XCategory/UIBarButtonItem+expanded.h>
-#define         HEGIHT_EXPCELL      80
 @interface WXExpressionSearchViewController () <WXExpressionCellDelegate>
 @property (nonatomic, strong) WXExpressionHelper *proxy;
 @property (nonatomic, strong) NSArray *data;
@@ -20,13 +19,10 @@
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
-    
     [self.tableView setFrame:CGRectMake(0, HEIGHT_NAVBAR + NavY, APPW, APPH - NavY - HEIGHT_NAVBAR)];
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
 }
 #pragma mark -  Delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -46,17 +42,17 @@
     WXNavigationController *navC = [[WXNavigationController alloc] initWithRootViewController:detailVC];
     UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithTitle:@"关闭" style:UIBarButtonItemStylePlain actionBlick:^{
        [navC dismissViewControllerAnimated:YES completion:^{
-           [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:NO];
+
        }];
     }];
     [detailVC.navigationItem setLeftBarButtonItem:closeButton];
     [self presentViewController:navC animated:YES completion:^{
-        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
+
     }];
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return HEGIHT_EXPCELL;
+    return 80;
 }
 //MARK: UISearchBarDelegate
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{

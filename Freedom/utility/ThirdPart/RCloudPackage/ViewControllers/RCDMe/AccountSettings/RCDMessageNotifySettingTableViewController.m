@@ -173,13 +173,7 @@ heightForHeaderInSection:(NSInteger)section {
      error:^(RCErrorCode status) {
        
        dispatch_async(dispatch_get_main_queue(), ^{
-         UIAlertView *alert =
-         [[UIAlertView alloc] initWithTitle:@"提示"
-                                    message:@"取消失败"
-                                   delegate:nil
-                          cancelButtonTitle:@"取消"
-                          otherButtonTitles:nil, nil];
-         [alert show];
+           [SVProgressHUD showErrorWithStatus:@"取消失败"];
          dispatch_async(dispatch_get_main_queue(), ^{
            self.isReceiveNotification = NO;
            [self.tableView reloadData];

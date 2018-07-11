@@ -22,7 +22,11 @@ class TabBarView: UIView, AVAudioPlayerDelegate {
         av?.pan = 0// 音域  -1一边能听到  0两个耳机都能听到
         av?.enableRate = true// 允许设置速率
         av?.rate = 1// 设置速率
-        print("\(String(describing: av?.duration)),\(av?.currentTime),\(av?.numberOfLoops),\(av?.numberOfChannels)")
+        let a = av!.duration
+        let b = av!.currentTime
+        let c = av!.numberOfLoops
+        let d = av!.numberOfChannels
+        print(String(format: "%ld %lf %d %d",a,b,c,d))
         av?.delegate = self
         return av!
     }();

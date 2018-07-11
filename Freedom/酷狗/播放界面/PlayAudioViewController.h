@@ -36,7 +36,7 @@
     UIToolbar *_toolBar;
     KugouLyricsManage *_lrc;
     NSTimer *_timer;
-    int index;
+    int privateIndex;
 }
 @property (nonatomic,assign) BOOL isMoving;
 @property (nonatomic,retain) UILabel *labelSong;

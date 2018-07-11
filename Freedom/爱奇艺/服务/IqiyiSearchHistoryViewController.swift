@@ -64,7 +64,7 @@ class IqiyiSearchHistoryCell: UITableViewCell {
         })
     }
 }
-class IqiyisearchHeaderView: UIView {
+class IqiyisearchHeaderView: UITableViewHeaderFooterView {
     var titleLabel: UILabel!
     class func headView(with tableView: UITableView?) -> IqiyisearchHeaderView {
         let ID = "JFsearchHeaderView"

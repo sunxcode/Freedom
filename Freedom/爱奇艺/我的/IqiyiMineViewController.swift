@@ -31,22 +31,22 @@ class IqiyiMineViewController: IqiyiBaseViewController {
         msgBtn.setImage(UIImage(named: "wbell"), for: .normal)
         view.addSubview(msgBtn)
         //头像
-        var userImage = UIImageView(frame: CGRect(x: 10, y: 30, width: 50, height: 50))
+        let userImage = UIImageView(frame: CGRect(x: 10, y: 30, width: 50, height: 50))
         userImage.isUserInteractionEnabled = true
         userImage.layer.masksToBounds = true
         userImage.layer.cornerRadius = 25
         userImage.image = UIImage(named: "userLogo")
         view.addSubview(userImage)
-        var tapGR = UITapGestureRecognizer(target: self, action: #selector(self.tapGROnIconClick))
+        let tapGR = UITapGestureRecognizer(target: self, action: #selector(self.tapGROnIconClick))
         userImage.addGestureRecognizer(tapGR)
         //登陆
-        var loginLable = UILabel(frame: CGRect(x: userImage.frame.maxX + 10, y: 30, width: 100, height: 30))
+        let loginLable = UILabel(frame: CGRect(x: userImage.frame.maxX + 10, y: 30, width: 100, height: 30))
         loginLable.textColor = UIColor.white
         loginLable.font = UIFont.systemFont(ofSize: 14)
         loginLable.text = "马上登陆"
         view.addSubview(loginLable)
         //
-        var msgLabel = UILabel(frame: CGRect(x: userImage.frame.maxX + 10, y: 60, width: 100, height: 20))
+        let msgLabel = UILabel(frame: CGRect(x: userImage.frame.maxX + 10, y: 60, width: 100, height: 20))
         msgLabel.text = "登陆后更精彩"
         msgLabel.textColor = UIColor.white
         msgLabel.font = UIFont.systemFont(ofSize: 12)
@@ -66,7 +66,7 @@ class IqiyiMineViewController: IqiyiBaseViewController {
             segmentBtn.frame = CGRect(x: APPW / 4 * CGFloat(i), y: 107, width: APPW / 4, height: 40)
             segmentBtn.setImage(UIImage(named: picArray[i]), for: .normal)
             segmentBtn.setTitle(titleArrar[i], for: .normal)
-            segmentBtn.addTarget(self, action: Selector("segmentBtn:"), for: .touchUpInside)
+            segmentBtn.addTarget(self, action: #selector(IqiyiMineViewController.segmentBtn(_:)), for: .touchUpInside)
             view.addSubview(segmentBtn)
         }
     }

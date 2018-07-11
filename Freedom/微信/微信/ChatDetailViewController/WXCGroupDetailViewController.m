@@ -74,7 +74,7 @@
         if (buttonIndex == 0) {
             BOOL ok = [[WXMessageManager sharedInstance] deleteMessagesByPartnerID:self.group.groupID];
             if (!ok) {
-                [UIAlertView bk_alertViewWithTitle:@"错误" message:@"清空讨论组聊天记录失败"];
+                [SVProgressHUD showErrorWithStatus:@"清空讨论组聊天记录失败"];
             }else{
                 [[WXChatViewController sharedChatVC] resetChatVC];
             }

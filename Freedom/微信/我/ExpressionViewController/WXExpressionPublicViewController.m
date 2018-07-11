@@ -111,10 +111,10 @@
 #pragma mark - Delegate
 //MARK: UISearchBarDelegate
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+
 }
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+    
 }
 #pragma mark - Getter
 - (WXSearchController *)searchController{

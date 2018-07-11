@@ -630,7 +630,7 @@ heightForHeaderInSection:(NSInteger)section {
                 RCDChatViewController *chat =
                     [[RCDChatViewController alloc] init];
                 chat.targetId = discussion.discussionId;
-                chat.userName = discussion.discussionName;
+                chat.csInfo.nickName = discussion.discussionName;
                 chat.conversationType = ConversationType_DISCUSSION;
                 chat.title = discussionTitle; //[NSString
                                               //stringWithFormat:@"讨论组(%lu)",

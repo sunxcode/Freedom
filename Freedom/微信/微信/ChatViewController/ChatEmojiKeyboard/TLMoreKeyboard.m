@@ -2,8 +2,7 @@
 //  Freedom
 //  Created by Super on 16/2/17.
 #import "TLMoreKeyboard.h"
-#define     HEIGHT_TOP_SPACE            15
-#define     HEIGHT_COLLECTIONVIEW       (215.0f * 0.85 - HEIGHT_TOP_SPACE)
+#define     HEIGHT_COLLECTIONVIEW       (215.0f * 0.85 - 15)
 #define     WIDTH_COLLECTION_CELL       60
 
 #import <XCategory/UIImage+expanded.h>
@@ -183,7 +182,7 @@ static TLMoreKeyboard *moreKB;
 #pragma mark - Private Methods -
 - (void)p_addMasonry{
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self).mas_offset(HEIGHT_TOP_SPACE);
+        make.top.mas_equalTo(self).mas_offset(15);
         make.left.and.right.mas_equalTo(self);
         make.height.mas_equalTo(HEIGHT_COLLECTIONVIEW);
     }];

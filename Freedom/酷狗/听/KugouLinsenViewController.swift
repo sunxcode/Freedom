@@ -112,7 +112,7 @@ class KugouLinsenViewController: KugouBaseViewController {
     }
     
     func setupRightGesture() {
-        let leftSwipe = UISwipeGestureRecognizer(target: self, action: Selector("swipe:"))
+        let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(KugouLinsenViewController.swipe(_:)))
         leftSwipe.direction = .right
         leftSwipe.numberOfTouchesRequired = 1
         view.addGestureRecognizer(leftSwipe)
@@ -149,7 +149,7 @@ class KugouLinsenViewController: KugouBaseViewController {
             cell = UITableViewCell(style: .default, reuseIdentifier: mainCellID)
         }
         cell?.imageView?.image = UIImage(named: "music")
-        cell?.textLabel?.text = titlesArr[indexPath.row] as! String
+        cell?.textLabel?.text = titlesArr[indexPath.row] as? String
         if let aCell = cell {
             return aCell
         }

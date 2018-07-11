@@ -17,7 +17,7 @@ void setAttributeNamed(xmlNode * node, const char * nameStr, const char * value)
     memcpy (newVal, value, strlen(value)+1);
     for(xmlAttrPtr attr = node->properties; NULL != attr; attr = attr->next){
         if (strcmp((char*)attr->name, nameStr) == 0){
-            for(xmlNode * child = attr->children; NULL != child; child = child->next){
+            for(xmlNode * child = attr->children; NULL != child; ){//child = child->next
                 free(child->content);
                 child->content = (xmlChar*)newVal;
                 break;
@@ -29,7 +29,7 @@ void setAttributeNamed(xmlNode * node, const char * nameStr, const char * value)
 NSString * getAttributeNamed(xmlNode * node, const char * nameStr){
     for(xmlAttrPtr attr = node->properties; NULL != attr; attr = attr->next){
         if (strcmp((char*)attr->name, nameStr) == 0){
-            for(xmlNode * child = attr->children; NULL != child; child = child->next){
+            for(xmlNode * child = attr->children; NULL != child; ){//child = child->next
                 return [NSString stringWithCString:(void*)child->content encoding:NSUTF8StringEncoding];
             }break;
         }

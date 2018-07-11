@@ -79,7 +79,7 @@
     return _textLabel;
 }
 @end
-@interface WXScanningViewController () <WXScannerDelegate>
+@interface WXScanningViewController () <WXScannerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 @property (nonatomic, assign) TLScannerType curType;
 @property (nonatomic, strong) WXScannerViewController *scanVC;
 @property (nonatomic, strong) UIBarButtonItem *albumBarButton;
@@ -116,9 +116,13 @@
     [self scannerButtonDown:self.qrButton];    // 初始化
 }
 - (void)scannerViewController:(WXScannerViewController *)scannerVC initFailed:(NSString *)errorString{
-    [UIAlertView bk_showAlertViewWithTitle:@"错误" message:errorString cancelButtonTitle:@"确定" otherButtonTitles:nil handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
+    [SVProgressHUD showErrorWithStatus:errorString];
+    UIAlertController *alvc = [UIAlertController alertControllerWithTitle:@"错误" message:errorString preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *a = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [self.navigationController popViewControllerAnimated:YES];
     }];
+    [alvc addAction:a];
+    [self presentViewController:alvc animated:YES completion:nil];
 }
 - (void)scannerViewController:(WXScannerViewController *)scannerVC scanAnswer:(NSString *)ansStr{
     [self p_analysisQRAnswer:ansStr];
@@ -160,9 +164,12 @@
         [WXScannerViewController scannerQRCodeFromImage:image ans:^(NSString *ansStr) {
             [SVProgressHUD dismiss];
             if (ansStr == nil) {
-                [UIAlertView bk_showAlertViewWithTitle:@"扫描失败" message:@"请换张图片，或换个设备重试~" cancelButtonTitle:@"确定" otherButtonTitles:nil handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                UIAlertController *alvc = [UIAlertController alertControllerWithTitle:@"扫描失败" message:@"请换张图片，或换个设备重试~" preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *a = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                     [self.scanVC startCodeReading];
                 }];
+                [alvc addAction:a];
+                [self presentViewController:alvc animated:YES completion:nil];
             }
             else {
                 [self p_analysisQRAnswer:ansStr];
@@ -177,9 +184,12 @@
         [WXScannerViewController scannerQRCodeFromImage:image ans:^(NSString *ansStr) {
             [SVProgressHUD dismiss];
             if (ansStr == nil) {
-                [UIAlertView bk_showAlertViewWithTitle:@"扫描失败" message:@"请换张图片，或换个设备重试~" cancelButtonTitle:@"确定" otherButtonTitles:nil handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                UIAlertController *alvc = [UIAlertController alertControllerWithTitle:@"扫描失败" message:@"请换张图片，或换个设备重试~" preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *a = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                     [self.scanVC startCodeReading];
                 }];
+                [alvc addAction:a];
+                [self presentViewController:alvc animated:YES completion:nil];
             }
             else {
                 [self p_analysisQRAnswer:ansStr];
@@ -218,9 +228,12 @@
             }
         }];
     }else{
-        [UIAlertView bk_showAlertViewWithTitle:@"扫描结果" message:ansStr cancelButtonTitle:@"确定" otherButtonTitles:nil handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
+        UIAlertController *alvc = [UIAlertController alertControllerWithTitle:@"扫描结果" message:ansStr preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *a = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [self.scanVC startCodeReading];
         }];
+        [alvc addAction:a];
+        [self presentViewController:alvc animated:YES completion:nil];
     }
 }
 - (void)p_addMasonry{

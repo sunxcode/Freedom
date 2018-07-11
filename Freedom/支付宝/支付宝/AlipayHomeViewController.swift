@@ -333,7 +333,7 @@ class AlipayHomeViewController: AlipayBaseViewController,SDHomeGridViewDeleate {
         mainView.showsVerticalScrollIndicator = false
         let itemsArray = AlipayTools.itemsArray()
         var temp = [AnyHashable]()
-        for itemDict: [AnyHashable: Any] in itemsArray as? [[AnyHashable: Any]] ?? [[AnyHashable: Any]]() {
+        for _ in itemsArray {
             let model = AlipayHomeGridItemModel()
             model.destinationClass = AlipayHomeViewController.self
             temp.append(model)

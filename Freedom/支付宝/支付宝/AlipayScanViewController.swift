@@ -86,7 +86,7 @@ class AlipayScanViewController: AlipayBaseViewController {
         let output = AVCaptureMetadataOutput()
         output.rectOfInterest = CGRect(x: 0.1, y: 0, width: 0.9, height: 1)
         //设置代理 在主线程里刷新
-        output.setMetadataObjectsDelegate(self as! AVCaptureMetadataOutputObjectsDelegate, queue: DispatchQueue.main)
+        output.setMetadataObjectsDelegate(self as? AVCaptureMetadataOutputObjectsDelegate, queue: DispatchQueue.main)
         //初始化链接对象
         session = AVCaptureSession()
         //高质量采集率
@@ -103,11 +103,20 @@ class AlipayScanViewController: AlipayBaseViewController {
         session?.startRunning()
     }
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
-        if (metadataObjects.count ?? 0) > 0 {
+        if (metadataObjects.count ) > 0 {
             session?.stopRunning()
             let metadataObject = metadataObjects[0] as? AVMetadataMachineReadableCodeObject
-            let alert = UIAlertView(title: "扫描结果", message: (metadataObject?.stringValue)!, delegate: self as! UIAlertViewDelegate, cancelButtonTitle: "退出", otherButtonTitles: "再次扫描")
-            alert.show()
+            let alvc = UIAlertController(title: "扫描结果", message: (metadataObject?.stringValue)!, preferredStyle: .alert)
+            let ac = UIAlertAction(title: "退出", style: .cancel) { (action) in
+                self.disMiss()
+            }
+            let bc = UIAlertAction(title: "再次扫描", style: .default) { (action) in
+                self.session?.startRunning();
+            }
+            alvc.addAction(ac)
+            alvc.addAction(bc)
+            self.present(alvc, animated: true) {
+            }
         }
     }
     func disMiss() {
@@ -117,13 +126,6 @@ class AlipayScanViewController: AlipayBaseViewController {
     override func willMove(toParentViewController parent: UIViewController?) {
         if parent == nil {
             navigationController?.navigationBar.isHidden = false
-        }
-    }
-    func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int) {
-        if buttonIndex == 0 {
-            disMiss()
-        } else if buttonIndex == 1 {
-            session?.startRunning()
         }
     }
 

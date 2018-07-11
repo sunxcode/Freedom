@@ -397,16 +397,13 @@ if (isSelected == YES) {
     }else{
         if (gestureType == TapGesType) {
             if (_canClickAll == YES) {
-                        [self clickAllContext];
-                    }else{
-                    }
-            }else{
-            if (_canClickAll == YES) {
-                        [self longClickAllContext];
-                    }else{
-                    }
+                [self clickAllContext];
             }
-        return;
+        }else{
+            if (_canClickAll == YES) {
+                [self longClickAllContext];
+            }
+        }
     }
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [_selectionsViews makeObjectsPerformSelector:@selector(removeFromSuperview)];

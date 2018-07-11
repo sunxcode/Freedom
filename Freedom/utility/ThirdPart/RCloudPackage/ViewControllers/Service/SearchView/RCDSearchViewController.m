@@ -294,7 +294,7 @@
     [[RCDChatViewController alloc] init];
     _conversationVC.conversationType = model.conversationType;
     _conversationVC.targetId = model.targetId;
-    _conversationVC.userName = model.name;
+    _conversationVC.csInfo.nickName = model.name;
     int unreadCount = [[RCIMClient sharedRCIMClient] getUnreadCount:model.conversationType targetId:model.targetId];
     _conversationVC.unReadMessage = unreadCount;
     _conversationVC.enableNewComingMessageIcon = YES; //开启消息提醒

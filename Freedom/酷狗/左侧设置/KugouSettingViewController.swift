@@ -104,7 +104,7 @@ class KugouSettingViewController: KugouBaseViewController {
     }
     
     func setupLeftGesture() {
-        let panGesture = UIPanGestureRecognizer(target: self, action: Selector("clickPan:"))
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(KugouSettingViewController.clickPan(_:)))
         view.addGestureRecognizer(panGesture)
     }
     func clickPan(_ pan: UIPanGestureRecognizer?) {

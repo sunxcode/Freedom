@@ -13,6 +13,7 @@
 - (UIImage *)imageFromView ;
 @end
 @interface UIViewController (DismissKeyboard)
+-(void)showAlerWithtitle:(NSString*)t message:(NSString*)m style:(UIAlertControllerStyle)style ac1:(UIAlertAction* (^)(void))ac1 ac2:(UIAlertAction* (^)(void))ac2 ac3:(UIAlertAction* (^)(void))ac3 completion:(void(^)())completion;
 -(void)setupForDismissKeyboard;
 @end
 

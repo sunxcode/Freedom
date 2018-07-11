@@ -246,7 +246,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     RCDChatViewController *temp = [[RCDChatViewController alloc] init];
     temp.targetId = groupInfo.groupId;
     temp.conversationType = ConversationType_GROUP;
-    temp.userName = groupInfo.groupName;
+    temp.csInfo.nickName = groupInfo.groupName;
     temp.title = groupInfo.groupName;
     [self.navigationController pushViewController:temp animated:YES];
 }

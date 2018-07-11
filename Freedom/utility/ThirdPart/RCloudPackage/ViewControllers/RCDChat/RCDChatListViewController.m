@@ -697,9 +697,10 @@
           [[RCDChatViewController alloc] init];
       _conversationVC.conversationType = model.conversationType;
       _conversationVC.targetId = model.targetId;
-      _conversationVC.userName = model.conversationTitle;
+      _conversationVC.csInfo.nickName = model.conversationTitle;
       _conversationVC.title = model.conversationTitle;
       _conversationVC.conversation = model;
+        _conversationVC.hidesBottomBarWhenPushed = YES;
       [self.navigationController pushViewController:_conversationVC
                                            animated:YES];
     }
@@ -709,20 +710,20 @@
           [[RCDChatViewController alloc] init];
       _conversationVC.conversationType = model.conversationType;
       _conversationVC.targetId = model.targetId;
-      _conversationVC.userName = model.conversationTitle;
+      _conversationVC.csInfo.nickName = model.conversationTitle;
       _conversationVC.title = model.conversationTitle;
       _conversationVC.conversation = model;
       _conversationVC.unReadMessage = model.unreadMessageCount;
       _conversationVC.enableNewComingMessageIcon = YES; //开启消息提醒
       _conversationVC.enableUnreadMessageIcon = YES;
       if (model.conversationType == ConversationType_SYSTEM) {
-        _conversationVC.userName = @"系统消息";
+        _conversationVC.csInfo.nickName = @"系统消息";
         _conversationVC.title = @"系统消息";
       }
       if ([model.objectName isEqualToString:@"RC:ContactNtf"]) {
           RCDAddressBookViewController * addressBookVC= [RCDAddressBookViewController addressBookViewController];
         addressBookVC.needSyncFriendList = YES;
-        
+          addressBookVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:addressBookVC
                                              animated:YES];
         return;
@@ -1115,7 +1116,7 @@
         [[RCDChatViewController alloc] init];
     _conversationVC.conversationType = model.conversationType;
     _conversationVC.targetId = model.targetId;
-    _conversationVC.userName = model.conversationTitle;
+    _conversationVC.csInfo.nickName = model.conversationTitle;
     _conversationVC.title = model.conversationTitle;
     _conversationVC.conversation = model;
     _conversationVC.unReadMessage = model.unreadMessageCount;
@@ -1127,14 +1128,14 @@
         [[RCDChatViewController alloc] init];
     _conversationVC.conversationType = model.conversationType;
     _conversationVC.targetId = model.targetId;
-    _conversationVC.userName = model.conversationTitle;
+    _conversationVC.csInfo.nickName = model.conversationTitle;
     _conversationVC.title = model.conversationTitle;
     _conversationVC.conversation = model;
     _conversationVC.unReadMessage = model.unreadMessageCount;
     _conversationVC.enableNewComingMessageIcon = YES; //开启消息提醒
     _conversationVC.enableUnreadMessageIcon = YES;
     if (model.conversationType == ConversationType_SYSTEM) {
-      _conversationVC.userName = @"系统消息";
+      _conversationVC.csInfo.nickName = @"系统消息";
       _conversationVC.title = @"系统消息";
     }
     if ([model.objectName isEqualToString:@"RC:ContactNtf"]) {

@@ -175,22 +175,6 @@
 //             [[UIApplication sharedApplication] statusBarFrame].size.height;
 }
 
-- (void)didReceiveMemoryWarning {
-  [super didReceiveMemoryWarning];
-  // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little
-preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
   if (isiPhone5) {
     [self moveView:-40];
@@ -330,58 +314,44 @@ preparation before navigation
   chatVC.needPopToRootView = YES;
   chatVC.targetId = groupId;
   chatVC.conversationType = ConversationType_GROUP;
-  chatVC.userName = groupName;
+  chatVC.csInfo.nickName = groupName;
   dispatch_async(dispatch_get_main_queue(), ^{
     [self.navigationController pushViewController:chatVC animated:YES];
   });
 }
 
 - (void)Alert:(NSString *)alertContent {
-  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
-                                                  message:alertContent
-                                                 delegate:self
-                                        cancelButtonTitle:@"确定"
-                                        otherButtonTitles:nil];
-  [alert show];
+    [SVProgressHUD showInfoWithStatus:alertContent];
 }
 
 - (void)chosePortrait {
   [self moveView:deafultY];
   [_GroupName resignFirstResponder];
-  UIActionSheet *actionSheet =
-      [[UIActionSheet alloc] initWithTitle:nil
-                                  delegate:self
-                         cancelButtonTitle:@"取消"
-                    destructiveButtonTitle:@"拍照"
-                         otherButtonTitles:@"我的相册", nil];
-  [actionSheet showInView:self.view];
-}
+    [self showAlerWithtitle:nil message:nil style:UIAlertControllerStyleActionSheet ac1:^UIAlertAction *{
+        return [UIAlertAction actionWithTitle:@"我的相册" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+            picker.allowsEditing = YES;
+            picker.delegate = self;
+            picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            [self presentViewController:picker animated:YES completion:nil];
+        }];
+    } ac2:^UIAlertAction *{
+        return [UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+            UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+            picker.allowsEditing = YES;
+            picker.delegate = self;
+            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+                picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+            } else {
+                NSLog(@"模拟器无法连接相机");
+            }
+            [self presentViewController:picker animated:YES completion:nil];
+        }];
+    } ac3:^UIAlertAction *{
+        return [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
 
-- (void)actionSheet:(UIActionSheet *)actionSheet
-    didDismissWithButtonIndex:(NSInteger)buttonIndex {
-  UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-  picker.allowsEditing = YES;
-  picker.delegate = self;
-
-  switch (buttonIndex) {
-  case 0:
-    if ([UIImagePickerController
-            isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-      picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-    } else {
-      NSLog(@"模拟器无法连接相机");
-    }
-    [self presentViewController:picker animated:YES completion:nil];
-    break;
-
-  case 1:
-    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    [self presentViewController:picker animated:YES completion:nil];
-    break;
-
-  default:
-    break;
-  }
+        }];
+    } completion:nil];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker

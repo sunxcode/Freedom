@@ -245,11 +245,6 @@ static NSString *CellIdentifier = @"RCDBaseSettingTableViewCell";
     }
 }
 
-- (void)didReceiveMemoryWarning {
-  [super didReceiveMemoryWarning];
-  // Dispose of any resources that can be recreated.
-}
-
 #pragma mark - 本类的私有方法
 - (void)clickNotificationBtn:(id)sender {
   UISwitch *swch = sender;
@@ -703,13 +698,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
                             [self.navigationController
                                 popToRootViewControllerAnimated:YES];
                           } else {
-                            UIAlertView *alertView = [[UIAlertView alloc]
-                                    initWithTitle:nil
-                                          message:@"退出失败！"
-                                         delegate:nil
-                                cancelButtonTitle:@"确定"
-                                otherButtonTitles:nil, nil];
-                            [alertView show];
+                              [SVProgressHUD showErrorWithStatus:@"退出失败!"];
                           }
                         });
                       }];
@@ -779,6 +768,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     break;
       
   default:
+          rows = 0;
     break;
   }
   return rows;
@@ -1115,10 +1105,8 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
   }
 }
 
--(void)showAlert:(NSString *)alertContent
-{
-  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:alertContent delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-  [alert show];
+-(void)showAlert:(NSString *)alertContent{
+    [SVProgressHUD showInfoWithStatus:alertContent];
 }
 
 //将创建者挪到第一的位置

@@ -290,7 +290,7 @@ typedef NS_ENUM(NSInteger, TLMomentViewButtonType) {
         _moreButton = [[UIButton alloc] init];
         [_moreButton setTag:TLMomentViewButtonTypeMore];
         [_moreButton setImage:[UIImage imageNamed:@"moments_more"] forState:UIControlStateNormal];
-        [_moreButton setImage:[UIImage imageNamed:@"moments_moreHL"] forState:UIControlEventTouchUpInside];
+        [_moreButton setImage:[UIImage imageNamed:@"moments_moreHL"] forState:UIControlStateSelected];
         [_moreButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _moreButton;

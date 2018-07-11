@@ -171,6 +171,7 @@ class IqiyiDiscoverViewController: IqiyiBaseViewController {
             self.dataSource = [AnyHashable]()
             self.imageArray = [AnyHashable]()
             let urlStr = urlWithDiscoverData
+            print(urlStr)
         })
         discoverTableView.mj_header.beginRefreshing()
     }
@@ -217,7 +218,7 @@ class IqiyiDiscoverViewController: IqiyiBaseViewController {
     
     // MARK: - JFImageScrollViewDelegate
     func didSelectImage(at index: Int) {
-        let disM: IqiyiDiscoverModel? = dataSource[0] as! IqiyiDiscoverModel
+        let _: IqiyiDiscoverModel? = dataSource[0] as? IqiyiDiscoverModel
         let code = "dsk"// disM?.items[index]["video_id"] as? String
         let videoVC = IqiyiVideoDetailViewController()
         videoVC.iid = code

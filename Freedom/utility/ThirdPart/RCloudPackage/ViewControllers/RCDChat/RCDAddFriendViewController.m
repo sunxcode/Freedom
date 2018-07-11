@@ -206,34 +206,16 @@
       RCDUserInfo *friend = [[RCDataBaseManager shareInstance] getFriendInfo:_targetUserInfo.userId];
 
       if (friend && [friend.status isEqualToString:@"10"]) {
-          UIAlertView *alertView = [[UIAlertView alloc]
-                                    initWithTitle:nil
-                                    message:@"已发送好友邀请"
-                                    delegate:nil
-                                    cancelButtonTitle:@"确定"
-                                    otherButtonTitles:nil, nil];
-          [alertView show];
+          [SVProgressHUD showSuccessWithStatus:@"已发送好友邀请"];
       } else {
           [RCDHTTPTOOL requestFriend:_targetUserInfo.userId
                             complete:^(BOOL result) {
                                 if (result) {
-                                    UIAlertView *alertView = [[UIAlertView alloc]
-                                                              initWithTitle:nil
-                                                              message:@"请求已发送"
-                                                              delegate:nil
-                                                              cancelButtonTitle:@"确定"
-                                                              otherButtonTitles:nil, nil];
+                                    [SVProgressHUD showSuccessWithStatus:@"请求已发送"];
                                     [RCDHTTPTOOL getFriendscomplete:^(NSMutableArray *result) {
                                     }];
-                                    [alertView show];
                                 } else {
-                                    UIAlertView *alertView = [[UIAlertView alloc]
-                                                              initWithTitle:nil
-                                                              message:@"请求失败，请重试"
-                                                              delegate:nil
-                                                              cancelButtonTitle:@"确定"
-                                                              otherButtonTitles:nil, nil];
-                                    [alertView show];
+                                    [SVProgressHUD showErrorWithStatus:@"请求失败，请重试"];
                                 }
                             }];
       }
@@ -247,6 +229,7 @@
   conversationVC.targetId = self.targetUserInfo.userId;
   conversationVC.title = self.targetUserInfo.name;
   conversationVC.displayUserNameInCell = NO;
+    conversationVC.hidesBottomBarWhenPushed = YES;
   [self.navigationController pushViewController:conversationVC animated:YES];
 }
 

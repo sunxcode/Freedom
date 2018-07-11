@@ -642,21 +642,21 @@
     }
 }
 - (void)updateLyrics:(NSTimer *)timer{
-    if (index < _lrc.arr.count) {
-        float x = [[_lrc.arr[index] myTime] intValue]*60 + [[[_lrc.arr[index] myTime] substringFromIndex:3] floatValue];
+    if (privateIndex < _lrc.arr.count) {
+        float x = [[_lrc.arr[privateIndex] myTime] intValue]*60 + [[[_lrc.arr[privateIndex] myTime] substringFromIndex:3] floatValue];
         if (_audioPlayer.currentTime >= x) {
-            _lyricsLB.text = [_lrc.arr[index] lyric];
+            _lyricsLB.text = [_lrc.arr[privateIndex] lyric];
             _lyricsLB.textColor = [UIColor greenColor];
-            index++;
+            privateIndex++;
         }
     }
-    if (index == _lrc.arr.count) {
+    if (privateIndex == _lrc.arr.count) {
         _lyricsLB.textColor = [UIColor redColor];
     }
 }
 - (void)lyricsPlay{
     if (_timer == nil) {
-        index = 0;
+        privateIndex = 0;
         _timer = [NSTimer timerWithTimeInterval:0.1 target:self selector:@selector(updateLyrics:) userInfo:nil repeats:YES];
         NSRunLoop *runloop=[NSRunLoop currentRunLoop];
         [runloop addTimer:_timer forMode:NSRunLoopCommonModes];
@@ -797,9 +797,9 @@
             float x = [[_lrc.arr[i] myTime] intValue]*60 + [[[_lrc.arr[i] myTime] substringFromIndex:3] floatValue];
             float y = [[_lrc.arr[i+1] myTime] intValue]*60 + [[[_lrc.arr[i+1] myTime] substringFromIndex:3] floatValue];
             if (_audioPlayer.currentTime >= x && _audioPlayer.currentTime < y) {
-                index = i;
+                privateIndex = i;
             }else if (_audioPlayer.currentTime >= y) {
-                index = i + 1;
+                privateIndex = i + 1;
             }
         }
     }

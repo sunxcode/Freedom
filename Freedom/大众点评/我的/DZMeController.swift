@@ -29,6 +29,7 @@ class DZMeController: DZBaseViewController {
         //2.读取数据
         if let anUrl = url {
             let data = NSArray(contentsOf: anUrl)
+            print(data!)
         }
     }
     func buildUI() {

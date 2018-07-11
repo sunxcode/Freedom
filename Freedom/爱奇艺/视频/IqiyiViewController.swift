@@ -112,7 +112,7 @@ class IqiyiImageCardView: UIView {
         yaofengLabel?.textColor = UIColor.white
         //        self.yaofengLabel.text = video.yaofeng;
         addSubview(yaofengLabel!)
-        let tap = UITapGestureRecognizer(target: self, action: Selector("OnTapImageCard:"))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.onTapImageCard(_:)))
         addGestureRecognizer(tap)
         
     }
@@ -170,9 +170,9 @@ class IqiyiImageCardView: UIView {
             yaofengLabel?.text = video?.stripe_b_r
         }
     }
-    func onTapImageCard(_ sender: UITapGestureRecognizer?) {
+    @objc func onTapImageCard(_ sender: UITapGestureRecognizer?) {
         Dlog(video)
-        if (delegate?.responds(to: Selector("didSelectImageCard:video:")))! {
+        if (delegate?.responds(to: Selector(("didSelectImageCard:video:"))))! {
             delegate?.didSelectImageCard(self, video: video)
         }
     }
@@ -355,7 +355,7 @@ class IqiyiViewController: IqiyiBaseViewController ,IqiyiHomeBoxCellDelegate {
         }
         let rightHistoryBarButtonItem = UIBarButtonItem(image: UIImage(named:"whistory"), style: .plain, target: self, action: #selector(self.rightHistoryBarButtonItemClick))
         let rightSearchBarButtonItem = UIBarButtonItem(image: UIImage(named:"wsearch"), style: .plain, target: self, action: #selector(self.rightSearchBarButtonItemClick))
-        navigationItem.rightBarButtonItems = [rightSearchBarButtonItem, rightUploadBarButtonItem, rightHistoryBarButtonItem] as! [UIBarButtonItem]
+        navigationItem.rightBarButtonItems = [rightSearchBarButtonItem, rightUploadBarButtonItem, rightHistoryBarButtonItem] as? [UIBarButtonItem]
     }
     /*搜索*/
     
@@ -419,7 +419,6 @@ class IqiyiViewController: IqiyiBaseViewController ,IqiyiHomeBoxCellDelegate {
         } else {
             return height + 5
         }
-        return height
     }
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0 {
@@ -438,10 +437,10 @@ class IqiyiViewController: IqiyiBaseViewController ,IqiyiHomeBoxCellDelegate {
         }
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let box: IqiyiBoxesModel? = boxesSource[indexPath.row - 1] as! IqiyiBoxesModel
+        let box: IqiyiBoxesModel? = boxesSource[indexPath.row - 1] as? IqiyiBoxesModel
         if box?.display_type ?? 0 == 1 {
             let cell = IqiyiHomeBoxCell(style: .default, reuseIdentifier: "")
-            cell.boxes = boxesSource[indexPath.row - 1] as! IqiyiBoxesModel
+            cell.boxes = boxesSource[indexPath.row - 1] as? IqiyiBoxesModel
             cell.delegate = self
             return cell
         } else if box?.display_type ?? 0 == 2 {

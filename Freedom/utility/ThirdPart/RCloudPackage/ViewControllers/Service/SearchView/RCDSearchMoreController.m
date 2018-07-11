@@ -224,7 +224,7 @@
   [[RCDChatViewController alloc] init];
   _conversationVC.conversationType = model.conversationType;
   _conversationVC.targetId = model.targetId;
-  _conversationVC.userName = model.name;
+  _conversationVC.csInfo.nickName = model.name;
   int unreadCount = [[RCIMClient sharedRCIMClient] getUnreadCount:model.conversationType targetId:model.targetId];
   _conversationVC.unReadMessage = unreadCount;
   _conversationVC.enableNewComingMessageIcon = YES; //开启消息提醒
@@ -244,7 +244,7 @@
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
   self.resultArray = nil;
-  NSInteger type;
+  NSInteger type = RCDSearchFriend;
   if ([self.type isEqualToString:@"联系人"]) {
     type = RCDSearchFriend;
   }else if([self.type isEqualToString:@"群组"]){

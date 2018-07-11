@@ -80,7 +80,7 @@
     WXSettingItem *item = [self.data[indexPath.section] objectAtIndex:indexPath.row];
     if ([item.title isEqualToString:@"使用默认背景图片"]) {
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Shake_Image_Path"];
-        [UIAlertView bk_alertViewWithTitle:@"已恢复默认背景图"];
+        [SVProgressHUD showInfoWithStatus:@"已恢复默认背景图"];
     }else if ([item.title isEqualToString:@"换张背景图片"]) {
         UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
         [imagePickerController setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];

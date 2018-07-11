@@ -119,7 +119,7 @@ class AlipayYuEBaoTableViewCellContentView: UIView {
         if (resValue >= value) || (flag == 50) {
             label?.text = String(format: "%.2f", value)
             flag = 1
-            !((timer?.invalidate()) != nil)
+            print(timer!.invalidate())
             timer = nil
             return
         } else {

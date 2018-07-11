@@ -21,7 +21,7 @@
       [[RCDCustomerServiceViewController alloc] init];
     NSString *SERVICE_ID = @"KEFU145801184889727";
     SERVICE_ID = @"KEFU146001495753714";
-  chatService.userName = @"客服";
+  chatService.csInfo.nickName = @"客服";
   chatService.conversationType = ConversationType_CUSTOMERSERVICE;
   NSString *kefuId = self.kefuIdField.text;
   [[NSUserDefaults standardUserDefaults] setObject:kefuId forKey:@"KefuId"];
@@ -60,7 +60,7 @@
   csInfo.define = @"自定义信息";
 
   chatService.csInfo = csInfo;
-  chatService.title = chatService.userName;
+  chatService.title = chatService.csInfo.nickName;
 
   [self.navigationController pushViewController:chatService animated:YES];
 }

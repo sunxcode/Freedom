@@ -9,7 +9,6 @@
 +(id) getInstance;
 +(NSString*)getTableCellIdentifier;
 -(void)initUI;
--(void)setDataWithDict:(NSDictionary*)dict;
 @end
 @interface BaseCollectionViewOCCell : UICollectionViewCell
 @property(nonatomic,strong)UIImageView *icon;
@@ -19,7 +18,6 @@
 @property(nonatomic,strong)UILabel     *script;
 +(NSString*)getTableCellIdentifier;
 -(void)initUI;
--(void)setCollectionDataWithDic:(NSDictionary*)dict;
 @end
 @interface BaseOCViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UISearchBarDelegate>
 @property (nonatomic,strong) id  userInfo;

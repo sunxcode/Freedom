@@ -166,7 +166,7 @@
   RCDChatViewController *temp = [[RCDChatViewController alloc] init];
   temp.targetId = chatRoom.chatRoomId;
   temp.conversationType = ConversationType_CHATROOM;
-  temp.userName = chatRoom.chatRoomName;
+  temp.csInfo.nickName = chatRoom.chatRoomName;
   temp.title = chatRoom.chatRoomName;
   [self.navigationController pushViewController:temp animated:YES];
 }

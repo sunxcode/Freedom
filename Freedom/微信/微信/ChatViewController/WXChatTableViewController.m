@@ -7,8 +7,7 @@
 #import "UIImage+GIF.h"
 #import <UMMobClick/MobClick.h>
 #import <XCategory/NSFileManager+expanded.h>
-#define     MSG_SPACE_TOP       2
-#define     MSG_SPACE_TOP       14
+#define     MSG_SPACE_TOP       14//2
 #define     MSG_SPACE_BTM       20
 #define     MSG_SPACE_LEFT      19
 #define     MSG_SPACE_RIGHT     22

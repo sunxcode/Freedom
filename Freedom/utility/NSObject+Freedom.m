@@ -46,29 +46,30 @@
 }
 @end
 @implementation UIViewController (DismissKeyboard)
+-(void)showAlerWithtitle:(NSString*)t message:(NSString*)m style:(UIAlertControllerStyle)style ac1:(UIAlertAction* (^)(void))ac1 ac2:(UIAlertAction* (^)(void))ac2 ac3:(UIAlertAction* (^)(void))ac3 completion:(void(^)())completion{
+    UIAlertController *alvc = [UIAlertController alertControllerWithTitle:t message:m preferredStyle:style];
+    [alvc addAction:ac1()];
+    if(ac2){
+        [alvc addAction:ac2()];
+    }
+    if(ac3){
+        [alvc addAction:ac3()];
+    }
+    [self presentViewController:alvc animated:YES completion:completion];
+}
 - (void)setupForDismissKeyboard {
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     UITapGestureRecognizer *singleTapGR =
-    [[UITapGestureRecognizer alloc] initWithTarget:self
-                                            action:@selector(tapAnywhereToDismissKeyboard:)];
-
+    [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAnywhereToDismissKeyboard:)];
     __weak UIViewController *weakSelf = self;
-
     NSOperationQueue *mainQuene =[NSOperationQueue mainQueue];
-    [nc addObserverForName:UIKeyboardWillShowNotification
-                    object:nil
-                     queue:mainQuene
-                usingBlock:^(NSNotification *note){
-                    [weakSelf.view addGestureRecognizer:singleTapGR];
-                }];
-    [nc addObserverForName:UIKeyboardWillHideNotification
-                    object:nil
-                     queue:mainQuene
-                usingBlock:^(NSNotification *note){
-                    [weakSelf.view removeGestureRecognizer:singleTapGR];
-                }];
+    [nc addObserverForName:UIKeyboardWillShowNotification object:nil queue:mainQuene usingBlock:^(NSNotification *note){
+        [weakSelf.view addGestureRecognizer:singleTapGR];
+    }];
+    [nc addObserverForName:UIKeyboardWillHideNotification object:nil queue:mainQuene usingBlock:^(NSNotification *note){
+        [weakSelf.view removeGestureRecognizer:singleTapGR];
+    }];
 }
-
 - (void)tapAnywhereToDismissKeyboard:(UIGestureRecognizer *)gestureRecognizer {
     //此method会将self.view里所有的subview的first responder都resign掉
     [self.view endEditing:YES];

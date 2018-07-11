@@ -260,7 +260,7 @@ public extension JSONObject where PropertyType.RawValue == String {
     
     // MARK: - Value for keypath - flattened array
     public func flatMap<T: JSONInitializable>(for keyPath: PropertyType...) throws -> [T] {
-        return try value(for: ArraySlice(keyPath)) { try $0.arrayValue().lazy.flatMap({ try? T(json: $0) }) }
+        return try value(for: ArraySlice(keyPath)) { try $0.arrayValue().lazy.compactMap({ try? T(json: $0) }) }
     }
     
     // MARK: - Optional methods
