@@ -1,7 +1,6 @@
 //
 //  IqiyiNavigationController.swift
 //  Freedom
-
 import UIKit
 import XExtension
 class IqiyiNavigationController: XBaseNavigationViewController {
@@ -23,5 +22,4 @@ class IqiyiNavigationController: XBaseNavigationViewController {
             navigationBar.setBackgroundImage(UIImage(named: ""), for: .default)
         }
     }
-
 }

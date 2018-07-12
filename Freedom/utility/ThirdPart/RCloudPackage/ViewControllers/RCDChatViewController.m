@@ -333,7 +333,6 @@
 @return 显示的View尺寸*/
 + (CGSize)getBubbleBackgroundViewSize:(RCDTestMessage *)message;
 @end
-
 @implementation RCDTestMessageCell
 + (CGSize)sizeForMessageModel:(RCMessageModel *)model withCollectionViewWidth:(CGFloat)collectionViewWidth referenceExtraHeight:(CGFloat)extraHeight {
     RCDTestMessage *message = (RCDTestMessage *)model.content;
@@ -422,7 +421,6 @@
         [self.delegate didLongTouchMessageCell:self.model inView:self.bubbleBackgroundView];
     }
 }
-
 + (CGSize)getTextLabelSize:(RCDTestMessage *)message {
     if ([message.content length] > 0) {
         float maxWidth = [UIScreen mainScreen].bounds.size.width - (10 + [RCIM sharedRCIM].globalMessagePortraitSize.width + 10) * 2 - 5 - 35;
@@ -434,7 +432,6 @@
         return CGSizeZero;
     }
 }
-
 + (CGSize)getBubbleSize:(CGSize)textLabelSize {
     CGSize bubbleSize = CGSizeMake(textLabelSize.width, textLabelSize.height);
     if (bubbleSize.width + 12 + 20 > 50) {
@@ -485,7 +482,6 @@ NSMutableDictionary *userInputStatus;
   [self refreshTitle];
     [self.chatSessionInputBarControl updateStatus:self.chatSessionInputBarControl.currentBottomBarStatus animated:NO];
 }
-
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     KBottomBarStatus inputType = self.chatSessionInputBarControl.currentBottomBarStatus;
@@ -576,7 +572,6 @@ NSMutableDictionary *userInputStatus;
   //    self.enableContinuousReadUnreadVoice = YES;//开启语音连读功能
   if (self.conversationType == ConversationType_PRIVATE || self.conversationType == ConversationType_GROUP) {
   }
-
   //刷新个人或群组的信息
   [self refreshUserInfoOrGroupInfo];
   
@@ -587,7 +582,6 @@ NSMutableDictionary *userInputStatus;
   //清除历史消息
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clearHistoryMSG:) name:@"ClearHistoryMsg" object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateForSharedMessageInsertSuccess:) name:@"RCDSharedMessageInsertSuccess" object:nil];
-
 //  //表情面板添加自定义表情包
 //  UIImage *icon = [RCKitUtility imageNamed:@"emoji_btn_normal" ofBundle:@"RongCloud.bundle"];
 //  RCDCustomerEmoticonTab *emoticonTab1 = [RCDCustomerEmoticonTab new];
@@ -633,7 +627,6 @@ NSMutableDictionary *userInputStatus;
     [buttonItem addTarget:self action:@selector(rightBarButtonItemClicked:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:buttonItem];
 }
-
 - (void)updateTitleForGroup:(NSNotification *)notification {
   NSString *groupId = notification.object;
   if ([groupId isEqualToString:self.targetId]) {
@@ -650,7 +643,6 @@ NSMutableDictionary *userInputStatus;
     [self.conversationMessageCollectionView reloadData];
   });
 }
-
 - (void)leftBarButtonItemPressed:(id)sender {
   if ([self.realTimeLocation getStatus] == RC_REAL_TIME_LOCATION_STATUS_OUTGOING ||
       [self.realTimeLocation getStatus] == RC_REAL_TIME_LOCATION_STATUS_CONNECTED) {
@@ -676,7 +668,6 @@ NSMutableDictionary *userInputStatus;
     [self.navigationController popViewControllerAnimated:YES];
   }
 }
-
 /**
  *  此处使用自定义设置，开发者可以根据需求自己实现
  *  不添加rightBarButtonItemClicked事件，则使用默认实现。
@@ -809,11 +800,9 @@ NSMutableDictionary *userInputStatus;
 }
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
 }
-
 - (void)setRealTimeLocation:(id<RCRealTimeLocationProxy>)realTimeLocation {
   _realTimeLocation = realTimeLocation;
 }
-
 - (void)pluginBoardView:(RCPluginBoardView *)pluginBoardView clickedItemWithTag:(NSInteger)tag {
   switch (tag) {
   case PLUGIN_BOARD_ITEM_LOCATION_TAG: {
@@ -858,7 +847,6 @@ NSMutableDictionary *userInputStatus;
   default:[super pluginBoardView:pluginBoardView clickedItemWithTag:tag];break;
   }
 }
-
 - (RealTimeLocationStatusView *)realTimeLocationStatusView {
   if (!_realTimeLocationStatusView) {
     _realTimeLocationStatusView = [[RealTimeLocationStatusView alloc]initWithFrame:CGRectMake(0, 62, self.view.frame.size.width, 0)];
@@ -927,7 +915,6 @@ NSMutableDictionary *userInputStatus;
 //    }
 //    return cell;
 //}
-
 #pragma mark by Super end
 - (NSArray<UIMenuItem *> *)getLongTouchMessageCellMenuList:
     (RCMessageModel *)model {
@@ -948,7 +935,6 @@ NSMutableDictionary *userInputStatus;
   */
   return menuList;
 }
-
 - (void)didTapCellPortrait:(NSString *)userId {
   if (self.conversationType == ConversationType_GROUP ||
       self.conversationType == ConversationType_DISCUSSION) {
@@ -971,7 +957,6 @@ NSMutableDictionary *userInputStatus;
      }];
   }
 }
-
 - (void)gotoNextPage:(RCUserInfo *)user {
   NSArray *friendList = [[RCDataBaseManager shareInstance] getAllFriends];
   BOOL isGotoDetailView = NO;
@@ -1067,7 +1052,6 @@ NSMutableDictionary *userInputStatus;
     }
   });
 }
-
 - (void)notifyParticipantChange:(NSString *)text {
   __weak typeof(&*self) weakSelf = self;
   dispatch_async(dispatch_get_main_queue(), ^{
@@ -1080,7 +1064,6 @@ NSMutableDictionary *userInputStatus;
 - (RCMessage *)willAppendAndDisplayMessage:(RCMessage *)message {
   return message;
 }
-
 /*******************实时地理位置共享***************/
 - (void)showRealTimeLocationViewController {
   RealTimeLocationViewController *lsvc = [[RealTimeLocationViewController alloc] init];
@@ -1184,7 +1167,6 @@ NSMutableDictionary *userInputStatus;
     }
   });
 }
-
 - (void)refreshTitle{
   if (self.csInfo.nickName == nil) {
     return;
@@ -1291,5 +1273,4 @@ NSMutableDictionary *userInputStatus;
         }
     }];
 }
-
 @end

@@ -2,7 +2,6 @@
 //  Freedom
 // Created by Super
 #import "WXPictureCarouselView.h"
-
 #import <BlocksKit/BlocksKit.h>
 @interface WXPictureCarouselViewCell : UICollectionViewCell
 @property (nonatomic, strong) id<WXPictureCarouselProtocol> model;

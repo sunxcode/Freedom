@@ -23,5 +23,3 @@ class DZDealController: DZBaseViewController {
         }
     }
 }
-
-

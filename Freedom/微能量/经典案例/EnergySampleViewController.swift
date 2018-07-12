@@ -5,7 +5,6 @@
 //  Created by Super on 2018/5/16.
 //  Copyright © 2018年 Super. All rights reserved.
 //
-
 import UIKit
 import UIKit
 import BaseFile
@@ -22,9 +21,7 @@ class EnergySampleViewCell:BaseTableViewCell{
         self.icon.image = UIImage(named:"taobaomini2")
     }
 }
-
 class EnergySampleViewController: EnergyBaseViewController {
-
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "经典案例"

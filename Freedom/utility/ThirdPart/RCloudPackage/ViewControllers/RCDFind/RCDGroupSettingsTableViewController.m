@@ -5,9 +5,7 @@
 //  Created by Jue on 16/3/22.
 //  Copyright © 2016年 RongCloud. All rights reserved.
 //
-
 #import "RCDGroupSettingsTableViewController.h"
-
 #import "MBProgressHUD.h"
 #import "RCDAddFriendViewController.h"
 #import "RCDContactSelectedTableViewController.h"
@@ -25,17 +23,13 @@ static NSString *CellIdentifier = @"RCDBaseSettingTableViewCell";
 #import "RCloudModel.h"
 #import "RCDBaseSettingTableViewCell.h"
 @class RCDGroupInfo;
-
 #define RCDGroupSettingsTableViewCellGroupNameTag 999
 #define RCDGroupSettingsTableViewCellGroupPortraitTag 1000
 #define SwitchButtonTag  1111
-
 @interface RCDGroupSettingsTableViewCell : RCDBaseSettingTableViewCell
 - (instancetype)initWithIndexPath:(NSIndexPath *)indexPath andGroupInfo:(RCDGroupInfo *)groupInfo;
 @end
 @implementation RCDGroupSettingsTableViewCell
-
-
 - (instancetype)initWithIndexPath:(NSIndexPath *)indexPath andGroupInfo:(RCDGroupInfo *)groupInfo {
     //带右边图片的cell
     if(indexPath.section == 1 && indexPath.row == 0){
@@ -54,7 +48,6 @@ static NSString *CellIdentifier = @"RCDBaseSettingTableViewCell";
     [self initSubviewsWithIndexPath:indexPath andGroupInfo:groupInfo];
     return self;
 }
-
 - (void)initSubviewsWithIndexPath:(NSIndexPath *)indexPath andGroupInfo:(RCDGroupInfo *)groupInfo{
     if(indexPath.section == 0){
         [self setCellStyle:DefaultStyle];
@@ -107,15 +100,11 @@ static NSString *CellIdentifier = @"RCDBaseSettingTableViewCell";
 - (void)awakeFromNib {
     [super awakeFromNib];
 }
-
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
     // Configure the view for the selected state
 }
-
 @end
-
 @interface RCDGroupSettingsTableViewController ()
 //开始会话
 @property(strong, nonatomic) UIButton *btChat;
@@ -123,9 +112,7 @@ static NSString *CellIdentifier = @"RCDBaseSettingTableViewCell";
 @property(strong, nonatomic) UIButton *btJoinOrQuitGroup;
 //解散群组
 @property(strong, nonatomic) UIButton *btDismissGroup;
-
 @end
-
 @implementation RCDGroupSettingsTableViewController {
   NSInteger numberOfSections;
   RCConversation *currentConversation;
@@ -139,11 +126,9 @@ static NSString *CellIdentifier = @"RCDBaseSettingTableViewCell";
   NSData *data;
   MBProgressHUD *hud;
 }
-
 + (instancetype)groupSettingsTableViewController {
     return [[[self class] alloc]init];
 }
-
 - (instancetype)init
 {
     self = [super init];
@@ -154,11 +139,9 @@ static NSString *CellIdentifier = @"RCDBaseSettingTableViewCell";
     }
     return self;
 }
-
 - (void)initSubViews {
     
 }
-
 - (void)setGroup:(RCDGroupInfo *)Group {
     _Group = Group;
     if (_Group) {
@@ -172,24 +155,18 @@ static NSString *CellIdentifier = @"RCDBaseSettingTableViewCell";
         }
     }
 }
-
 - (void)viewDidLoad {
-
   [super viewDidLoad];
-
   self.tableView.tableFooterView = [UIView new];
   self.tableView.backgroundColor = [UIColor colorWithRGBHex:0xf0f0f6];
   self.tableView.separatorColor = [UIColor colorWithRGBHex:0xdfdfdf];
   self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-
   // Uncomment the following line to preserve selection between presentations.
   // self.clearsSelectionOnViewWillAppear = NO;
-
   // Uncomment the following line to display an Edit button in the navigation
   // bar for this view controller.
   // self.navigationItem.rightBarButtonItem = self.editButtonItem;
   numberOfSections = 0;
-
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     backBtn.frame = CGRectMake(0, 6, 87, 23);
     UIImageView *backImg = [[UIImageView alloc]
@@ -208,13 +185,11 @@ static NSString *CellIdentifier = @"RCDBaseSettingTableViewCell";
     UIBarButtonItem *leftButton =
     [[UIBarButtonItem alloc] initWithCustomView:backBtn];
     [self.navigationItem setLeftBarButtonItem:leftButton];
-
   [[NSNotificationCenter defaultCenter]
    addObserver:self
    selector:@selector(didReceiveMessageNotification:)
    name:RCKitDispatchMessageNotification
    object:nil];
-
   CGRect tempRect = CGRectMake(
       0, 0, APPW,
       headerView.collectionViewLayout.collectionViewContentSize.height);
@@ -232,7 +207,6 @@ static NSString *CellIdentifier = @"RCDBaseSettingTableViewCell";
   [headerView registerClass:[RCDConversationSettingTableViewHeaderItem class]
  forCellWithReuseIdentifier:@"RCDConversationSettingTableViewHeaderItemForSigns"];
 }
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
   if (collectionViewResource.count < 1) {
@@ -244,7 +218,6 @@ static NSString *CellIdentifier = @"RCDBaseSettingTableViewCell";
         self.title = @"群组信息";
     }
 }
-
 #pragma mark - 本类的私有方法
 - (void)clickNotificationBtn:(id)sender {
   UISwitch *swch = sender;
@@ -254,24 +227,20 @@ static NSString *CellIdentifier = @"RCDBaseSettingTableViewCell";
       isBlocked:swch.on
       success:^(RCConversationNotificationStatus nStatus) {
         NSLog(@"成功");
-
       }
       error:^(RCErrorCode status) {
         NSLog(@"失败");
       }];
 }
-
 - (void)clickIsTopBtn:(id)sender {
   UISwitch *swch = sender;
   [[RCIMClient sharedRCIMClient] setConversationToTop:ConversationType_GROUP
                                              targetId:groupId
                                                 isTop:swch.on];
 }
-
 - (void)backBarButtonItemClicked:(id)sender {
   [self.navigationController popViewControllerAnimated:YES];
 }
-
 - (void)startLoad {
   currentConversation =
       [[RCIMClient sharedRCIMClient] getConversation:ConversationType_GROUP
@@ -294,7 +263,6 @@ static NSString *CellIdentifier = @"RCDBaseSettingTableViewCell";
           });
         }
         error:^(RCErrorCode status){
-
         }];
   }
   NSMutableArray *groupMemberList = [[RCDataBaseManager shareInstance] getGroupMember:groupId];
@@ -312,7 +280,6 @@ static NSString *CellIdentifier = @"RCDBaseSettingTableViewCell";
            });
          }];
     }
-
   if ([groupMemberList count] > 0) {
     /******************添加headerview*******************/
     collectionViewResource =
@@ -351,12 +318,10 @@ static NSString *CellIdentifier = @"RCDBaseSettingTableViewCell";
          }
        }
      }];
-
   
   /******************添加footerview*******************/
   UIView *view = [[UIView alloc]
       initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 150)];
-
   //删除并退出按钮
   UIImage *quitImage = [UIImage imageNamed:@"group_quit"];
   UIImage *quitImageSelected = [UIImage imageNamed:@"group_quit_hover"];
@@ -375,7 +340,6 @@ static NSString *CellIdentifier = @"RCDBaseSettingTableViewCell";
   _btJoinOrQuitGroup.layer.borderWidth = 0.5f;
   _btJoinOrQuitGroup.layer.borderColor = [[UIColor colorWithRGBHex:0xcc4445] CGColor];
   [view addSubview:_btJoinOrQuitGroup];
-
   //解散群组按钮
   _btDismissGroup = [[UIButton alloc] init];
   [_btDismissGroup setBackgroundImage:quitImage
@@ -394,14 +358,11 @@ static NSString *CellIdentifier = @"RCDBaseSettingTableViewCell";
   _btDismissGroup.layer.borderWidth = 0.5f;
   _btDismissGroup.layer.borderColor = [[UIColor colorWithRGBHex:0xcc4445] CGColor];
   [view addSubview:_btDismissGroup];
-
   //自动布局
   [_btChat setTranslatesAutoresizingMaskIntoConstraints:NO];
   [_btJoinOrQuitGroup setTranslatesAutoresizingMaskIntoConstraints:NO];
   [_btDismissGroup setTranslatesAutoresizingMaskIntoConstraints:NO];
-
   NSDictionary *views = NSDictionaryOfVariableBindings(_btJoinOrQuitGroup, _btDismissGroup);
-
   if (isCreator == YES) {
     [_btDismissGroup setHidden:NO];
     [_btJoinOrQuitGroup setHidden:YES];
@@ -433,44 +394,64 @@ static NSString *CellIdentifier = @"RCDBaseSettingTableViewCell";
                                                  metrics:nil
                                                    views:views]];
   }
-
   self.tableView.tableFooterView = view;
 }
-
 - (void)buttonChatAction:(id)sender {
   [self.navigationController popViewControllerAnimated:YES];
 }
-
 - (void)btnJOQAction:(id)sender {
-  UIActionSheet *actionSheet =
-      [[UIActionSheet alloc] initWithTitle:@"确定退出群组？"
-                                  delegate:self
-                         cancelButtonTitle:@"取消"
-                    destructiveButtonTitle:@"确定"
-                         otherButtonTitles:nil];
-
-  [actionSheet showInView:self.view];
-  actionSheet.tag = 101;
+    [self showAlerWithtitle:@"确定退出群组？" message:nil style:UIAlertControllerStyleActionSheet ac1:^UIAlertAction *{
+        return [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            //判断如果当前群组已经解散，直接删除消息和会话，并跳转到会话列表页面。
+            if ([_Group.isDismiss isEqualToString:@"YES"]) {
+                [[RCIMClient sharedRCIMClient]clearMessages:ConversationType_GROUP targetId:groupId];
+                [[RCIMClient sharedRCIMClient] removeConversation:ConversationType_GROUP targetId:groupId];
+                [[RCDataBaseManager shareInstance]deleteGroupToDB:groupId];
+                [self.navigationController popToRootViewControllerAnimated:YES];
+                return;
+            }
+            [RCDHTTPTOOL quitGroupWithGroupId:groupId complete:^(BOOL isOk) {
+                 dispatch_async(dispatch_get_main_queue(), ^{
+                     if (isOk) {
+                         [[RCIMClient sharedRCIMClient]clearMessages:ConversationType_GROUP targetId:groupId];
+                        [[RCIMClient sharedRCIMClient] removeConversation:ConversationType_GROUP targetId:groupId];
+                         [[RCDataBaseManager shareInstance]deleteGroupToDB:groupId];
+                         [self.navigationController popToRootViewControllerAnimated:YES];
+                     } else {
+                         [SVProgressHUD showErrorWithStatus:@"退出失败!"];
+                     }
+                 });
+             }];
+        }];
+    } ac2:^UIAlertAction *{
+        return [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        }];
+    } ac3:nil completion:nil];
 }
-
 - (void)btnDismissAction:(id)sender {
-  UIActionSheet *actionSheet =
-      [[UIActionSheet alloc] initWithTitle:@"确定解散群组？"
-                                  delegate:self
-                         cancelButtonTitle:@"取消"
-                    destructiveButtonTitle:@"确定"
-                         otherButtonTitles:nil];
-
-  [actionSheet showInView:self.view];
-  actionSheet.tag = 102;
+    [self showAlerWithtitle:@"确定解散群组？" message:nil style:UIAlertControllerStyleActionSheet ac1:^UIAlertAction *{
+        return [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [RCDHTTPTOOL dismissGroupWithGroupId:groupId complete:^(BOOL isOk) {
+                 dispatch_async(dispatch_get_main_queue(), ^{
+                     if (isOk) {
+                         [[RCIMClient sharedRCIMClient]clearMessages:ConversationType_GROUP targetId:groupId];
+                         [[RCIMClient sharedRCIMClient]removeConversation:ConversationType_GROUP targetId:groupId];
+                         [[RCDataBaseManager shareInstance] deleteGroupToDB:groupId];
+                         [self.navigationController popToRootViewControllerAnimated:YES];
+                     } else {
+                         [SVProgressHUD showErrorWithStatus:@"解散群组失败！"];
+                     }
+                 });
+             }];
+        }];
+    } ac2:^UIAlertAction *{
+        return [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+    } ac3:nil completion:nil];
 }
-
 - (void)imagePickerController:(UIImagePickerController *)picker
 didFinishPickingMediaWithInfo:(NSDictionary *)info {
   [UIApplication sharedApplication].statusBarHidden = NO;
-
   NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
-
   if ([mediaType isEqual:@"public.image"]) {
     UIImage *originImage =
     [info objectForKey:UIImagePickerControllerOriginalImage];
@@ -480,10 +461,8 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     UIImage *scaleImage = [self scaleImage:captureImage toScale:0.8];
     data = UIImageJPEGRepresentation(scaleImage, 0.00001);
   }
-
   image = [UIImage imageWithData:data];
   [self dismissViewControllerAnimated:YES completion:nil];
-
   hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
   hud.color = [UIColor colorWithRGBHex:0x343637];
   hud.labelText = @"上传头像中...";
@@ -518,27 +497,14 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
                                   if (result == NO) {
                                     //关闭HUD
                                     [hud hide:YES];
-                                    UIAlertView *alert = [[UIAlertView alloc]
-                                            initWithTitle:nil
-                                                  message:@"上传头像失败"
-                                                 delegate:self
-                                        cancelButtonTitle:@"确定"
-                                        otherButtonTitles:nil];
-                                    [alert show];
+                                      [SVProgressHUD showErrorWithStatus:@"上传头像失败"];
                                   }
                                 }];
-
       }
       failure:^(NSError *err) {
         //关闭HUD
         [hud hide:YES];
-        UIAlertView *alert =
-            [[UIAlertView alloc] initWithTitle:nil
-                                       message:@"上传头像失败"
-                                      delegate:self
-                             cancelButtonTitle:@"确定"
-                             otherButtonTitles:nil];
-        [alert show];
+          [SVProgressHUD showErrorWithStatus:@"上传头像失败"];
       }];
   dispatch_async(dispatch_get_main_queue(), ^{
     RCDBaseSettingTableViewCell *cell =
@@ -547,7 +513,6 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
 //    cell.PortraitImg.image = image;
   });
 }
-
 -(UIImage*)getSubImage:(UIImage *)originImage Rect:(CGRect)rect imageOrientation:(UIImageOrientation)imageOrientation
 {
   CGImageRef subImageRef = CGImageCreateWithImageInRect(originImage.CGImage, rect);
@@ -560,7 +525,6 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
   UIGraphicsEndImageContext();
   return smallImage;
 }
-
 - (UIImage *)scaleImage:(UIImage *)Image toScale:(float)scaleSize {
   UIGraphicsBeginImageContext(
       CGSizeMake(Image.size.width * scaleSize, Image.size.height * scaleSize));
@@ -570,183 +534,40 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
   UIGraphicsEndImageContext();
   return scaledImage;
 }
-
 - (void)chosePortrait {
-  UIActionSheet *actionSheet =
-      [[UIActionSheet alloc] initWithTitle:nil
-                                  delegate:self
-                         cancelButtonTitle:@"取消"
-                    destructiveButtonTitle:@"拍照"
-                         otherButtonTitles:@"我的相册", nil];
-  actionSheet.tag = 200;
-  [actionSheet showInView:self.view];
-}
-
-- (void)actionSheet:(UIActionSheet *)actionSheet
-    didDismissWithButtonIndex:(NSInteger)buttonIndex {
-  if (actionSheet.tag == 200) {
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.allowsEditing = YES;
     picker.delegate = self;
-
-    switch (buttonIndex) {
-    case 0:
-      if ([UIImagePickerController
-              isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-      } else {
-        NSLog(@"模拟器无法连接相机");
-      }
-      [self presentViewController:picker animated:YES completion:nil];
-      break;
-
-    case 1:
-      picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-      [self presentViewController:picker animated:YES completion:nil];
-      break;
-
-    default:
-      break;
-    }
-  }
+    [self showAlerWithtitle:nil message:nil style:UIAlertControllerStyleActionSheet ac1:^UIAlertAction *{
+        return [UIAlertAction actionWithTitle:@"我的相册" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+            picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            [self presentViewController:picker animated:YES completion:nil];
+        }];
+    } ac2:^UIAlertAction *{
+        return [UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            if ([UIImagePickerController
+                 isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+                picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+            } else {
+                NSLog(@"模拟器无法连接相机");
+            }
+            [self presentViewController:picker animated:YES completion:nil];
+        }];
+    } ac3:^UIAlertAction *{
+        return [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        }];
+    } completion:nil];
 }
-
-
 - (void)clearCacheAlertMessage:(NSString *)msg {
-  UIAlertView *alertView =
-  [[UIAlertView alloc] initWithTitle:nil
-                             message:msg
-                            delegate:nil
-                   cancelButtonTitle:@"确定"
-                   otherButtonTitles:nil, nil];
-  [alertView show];
+    [SVProgressHUD showErrorWithStatus:msg];
 }
-
-
-#pragma mark -UIActionSheetDelegate
-- (void)actionSheet:(UIActionSheet *)actionSheet
-    clickedButtonAtIndex:(NSInteger)buttonIndex {
-  if (actionSheet.tag == 100) {
-    if (buttonIndex == 0) {
-      NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-      RCDBaseSettingTableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-      UIActivityIndicatorView *activityIndicatorView =
-            [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-      float cellWidth = cell.bounds.size.width;
-      UIView *loadingView = [[UIView alloc]initWithFrame:CGRectMake(cellWidth - 50, 10, 40, 40)];
-      [loadingView addSubview:activityIndicatorView];
-      dispatch_async(dispatch_get_main_queue(), ^{
-        [activityIndicatorView startAnimating];
-        [cell addSubview:loadingView];
-      });
-      
-      [[RCIMClient sharedRCIMClient]deleteMessages:ConversationType_GROUP targetId:groupId success:^{
-        [self performSelectorOnMainThread:@selector(clearCacheAlertMessage:)
-                               withObject:@"清除聊天记录成功！"
-                            waitUntilDone:YES];
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"ClearHistoryMsg" object:nil];
-         dispatch_async(dispatch_get_main_queue(), ^{
-           [loadingView removeFromSuperview];
-         });
-        
-      } error:^(RCErrorCode status) {
-        [self performSelectorOnMainThread:@selector(clearCacheAlertMessage:)
-                               withObject:@"清除聊天记录失败！"
-                            waitUntilDone:YES];
-        dispatch_async(dispatch_get_main_queue(), ^{
-          [loadingView removeFromSuperview];
-        });
-      }];
-      
-    }
-  }
-  if (actionSheet.tag == 101) {
-    if (buttonIndex == 0) {
-      //判断如果当前群组已经解散，直接删除消息和会话，并跳转到会话列表页面。
-      if ([_Group.isDismiss isEqualToString:@"YES"]) {
-        [[RCIMClient sharedRCIMClient]
-         clearMessages:ConversationType_GROUP
-         targetId:groupId];
-        
-        [[RCIMClient sharedRCIMClient]
-         removeConversation:ConversationType_GROUP
-         targetId:groupId];
-        
-        [[RCDataBaseManager shareInstance]
-         deleteGroupToDB:groupId];
-        [self.navigationController
-         popToRootViewControllerAnimated:YES];
-        return;
-      }
-
-      [RCDHTTPTOOL
-          quitGroupWithGroupId:groupId
-                      complete:^(BOOL isOk) {
-
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                          if (isOk) {
-                            [[RCIMClient sharedRCIMClient]
-                                clearMessages:ConversationType_GROUP
-                                     targetId:groupId];
-
-                            [[RCIMClient sharedRCIMClient]
-                                removeConversation:ConversationType_GROUP
-                                          targetId:groupId];
-
-                            [[RCDataBaseManager shareInstance]
-                                deleteGroupToDB:groupId];
-                            [self.navigationController
-                                popToRootViewControllerAnimated:YES];
-                          } else {
-                              [SVProgressHUD showErrorWithStatus:@"退出失败!"];
-                          }
-                        });
-                      }];
-    }
-  }
-
-  if (actionSheet.tag == 102) {
-    if (buttonIndex == 0) {
-      [RCDHTTPTOOL
-          dismissGroupWithGroupId:groupId
-                         complete:^(BOOL isOk) {
-
-                           dispatch_async(dispatch_get_main_queue(), ^{
-                             if (isOk) {
-                               [[RCIMClient sharedRCIMClient]
-                                   clearMessages:ConversationType_GROUP
-                                        targetId:groupId];
-
-                               [[RCIMClient sharedRCIMClient]
-                                   removeConversation:ConversationType_GROUP
-                                             targetId:groupId];
-                               [[RCDataBaseManager shareInstance] deleteGroupToDB:groupId];
-                               [self.navigationController
-                                   popToRootViewControllerAnimated:YES];
-                             } else {
-                               UIAlertView *alertView = [[UIAlertView alloc]
-                                       initWithTitle:nil
-                                             message:@"解散群组失败！"
-                                            delegate:nil
-                                   cancelButtonTitle:@"确定"
-                                   otherButtonTitles:nil, nil];
-                               [alertView show];
-                             }
-                           });
-                         }];
-    }
-  }
-}
-
 #pragma mark - Table view data source
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
   if (numberOfSections > 0) {
     return numberOfSections;
   }
   return 0;
 }
-
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section {
   NSInteger rows;
@@ -754,11 +575,9 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
   case 0:
     rows = 1;
     break;
-
   case 1:
     rows = 3;
     break;
-
   case 2:
     rows = 1;
     break;
@@ -773,7 +592,6 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
   }
   return rows;
 }
-
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     RCDGroupSettingsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -790,7 +608,6 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
-
 - (CGFloat)tableView:(UITableView *)tableView
     heightForHeaderInSection:(NSInteger)section {
   if (section == 0) {
@@ -798,12 +615,10 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
   }
   return 14.f;
 }
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
   return 44.f;
 }
-
 - (void)tableView:(UITableView *)tableView
     didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   switch (indexPath.section) {
@@ -877,17 +692,40 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
       case 3:
     {
       switch (indexPath.row) {
-        case 2:
-        {
-          UIActionSheet *actionSheet =
-          [[UIActionSheet alloc] initWithTitle:@"确定清除聊天记录？"
-                                      delegate:self
-                             cancelButtonTitle:@"取消"
-                        destructiveButtonTitle:@"确定"
-                             otherButtonTitles:nil];
-          
-          [actionSheet showInView:self.view];
-          actionSheet.tag = 100;
+        case 2:{
+            [self showAlerWithtitle:@"确定清除聊天记录？" message:nil style:UIAlertControllerStyleActionSheet ac1:^UIAlertAction *{
+                return [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+                    RCDBaseSettingTableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+                    UIActivityIndicatorView *activityIndicatorView =
+                    [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+                    float cellWidth = cell.bounds.size.width;
+                    UIView *loadingView = [[UIView alloc]initWithFrame:CGRectMake(cellWidth - 50, 10, 40, 40)];
+                    [loadingView addSubview:activityIndicatorView];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [activityIndicatorView startAnimating];
+                        [cell addSubview:loadingView];
+                    });
+                    [[RCIMClient sharedRCIMClient]deleteMessages:ConversationType_GROUP targetId:groupId success:^{
+                        [self performSelectorOnMainThread:@selector(clearCacheAlertMessage:)
+                                               withObject:@"清除聊天记录成功！"
+                                            waitUntilDone:YES];
+                        [[NSNotificationCenter defaultCenter]postNotificationName:@"ClearHistoryMsg" object:nil];
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [loadingView removeFromSuperview];
+                        });
+                    } error:^(RCErrorCode status) {
+                        [self performSelectorOnMainThread:@selector(clearCacheAlertMessage:)
+                                               withObject:@"清除聊天记录失败！"
+                                            waitUntilDone:YES];
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [loadingView removeFromSuperview];
+                        });
+                    }];
+                }];
+            } ac2:^UIAlertAction *{
+                return [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+            } ac3:nil completion:nil];
         }break;
           
         default:
@@ -899,22 +737,18 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
       break;
   }
 }
-
 #pragma mark - UICollectionViewDelegateFlowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView
                   layout:(UICollectionViewLayout *)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
   float width = 55;
   float height = width + 15 + 9;
-
   return CGSizeMake(width, height);
 }
-
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
   return 12;
 }
-
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView
                         layout:(UICollectionViewLayout *)collectionViewLayout
         insetForSectionAtIndex:(NSInteger)section {
@@ -924,13 +758,11 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
   flowLayout.minimumLineSpacing = 12;
   return UIEdgeInsetsMake(15, 10, 10, 10);
 }
-
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView
      numberOfItemsInSection:(NSInteger)section {
   return [collectionViewResource count];
 }
-
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
                   cellForItemAtIndexPath:(NSIndexPath *)indexPath {
   RCDConversationSettingTableViewHeaderItem *cell =
@@ -964,7 +796,6 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
   cell.ivAva.contentMode = UIViewContentModeScaleAspectFill;
   return cell;
 }
-
 - (void)collectionView:(UICollectionView *)collectionView
     didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     RCDContactSelectedTableViewController * contactSelectedVC= [[RCDContactSelectedTableViewController alloc]init];
@@ -1047,7 +878,6 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
                                            animated:YES];
   }
 }
-
 - (void)didReceiveMessageNotification:(NSNotification *)notification {
   RCMessage *message = notification.object;
   if ([message.content isMemberOfClass:[RCGroupNotificationMessage class]]) {
@@ -1072,12 +902,9 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
       dispatch_async(dispatch_get_main_queue(), ^{
         [self refreshTabelViewInfo];
       });
-
     }
   }
 }
-
-
 - (void)refreshTabelViewInfo {
   [RCDHTTPTOOL getGroupByID:groupId
           successCompletion:^(RCDGroupInfo *group) {
@@ -1087,14 +914,12 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
             });
           }];
 }
-
 - (void)refreshHeaderView {
   NSMutableArray *groupMemberList = [[RCDataBaseManager shareInstance] getGroupMember:groupId];
   collectionViewResource =
   [[NSMutableArray alloc] initWithArray:groupMemberList];
   [self setHeaderView];
 }
-
 - (void)limitDisplayMemberCount {
   if (isCreator == YES && [collectionViewResource count] > 18) {
     NSRange rang = NSMakeRange(18, [collectionViewResource count] - 18);
@@ -1104,11 +929,9 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     [collectionViewResource removeObjectsInRange:rang];
   }
 }
-
 -(void)showAlert:(NSString *)alertContent{
     [SVProgressHUD showInfoWithStatus:alertContent];
 }
-
 //将创建者挪到第一的位置
 -(NSMutableArray *) moveCreator:(NSMutableArray *)GroupMemberList
 {
@@ -1134,7 +957,6 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
   [temp removeObjectAtIndex:index+1];
   return temp;
 }
-
 - (void)setHeaderView
 {
   [self limitDisplayMemberCount];
@@ -1161,7 +983,6 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
       [self.tableView.tableHeaderView addSubview:separatorLine];
   });
 }
-
 #pragma mark - RCDBaseSettingTableViewCellDelegate
 - (void)onClickSwitchButton:(id)sender {
     UISwitch *switchBtn = (UISwitch *)sender;

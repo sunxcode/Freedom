@@ -87,7 +87,6 @@
 #define basePath     @"app"
 #define basePicPath  @"www.baidu.com/"
 #define BaseURL      @"http://www.isolar88.com/app/upload/xuechao"
-
 /******************           支      付     宝           *******************/
 #define PartnerID  @""//合作身份者id，以2088开头的16位纯数字
 #define SellerID   @"zfb@"//收款支付宝账号
@@ -106,7 +105,6 @@
 // Mob SMS
 #define     MOB_SMS_APPKEY      @"1133dc881b63b"
 #define     MOB_SMS_SECRET      @"b4882225b9baee69761071c8cfa848f3"
-
 #define GoogleAppKey @"AIzaSyCegO8LjPujwaTtxijzowN3kCUQTop8tRA"
 // 融云
 #define RONGCLOUD_IM_APPKEY @"n19jmcy59f1q9"

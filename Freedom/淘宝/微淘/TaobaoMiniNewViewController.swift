@@ -1,7 +1,6 @@
 //
 //  TaobaoMiniNewViewController.swift
 //  Freedom
-
 import UIKit
 import BaseFile
 import XExtension
@@ -55,6 +54,4 @@ class TaobaoMiniNewViewController: TaobaoBaseViewController {
         tableView.delegate = self
         view.addSubview(tableView)
     }
-
-
 }

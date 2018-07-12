@@ -19,7 +19,6 @@
 @end
 @interface WXMomentImageView : WXMomentBaseView
 @end
-
 @interface WXMomentDetailViewController : WXBaseViewController
 @property (nonatomic, strong) WXMoment *moment;
 @end

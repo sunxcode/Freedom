@@ -394,7 +394,6 @@ destination: destinationBlock,completionHandler: completionHandler)
         }
     }
 }
-
 @objcMembers
 public final class DownloadService : NSObject {
     public static let service = DownloadService()

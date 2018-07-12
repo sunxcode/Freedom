@@ -76,7 +76,6 @@ NSString * getAttributeNamed(xmlNode * node, const char * nameStr){
         [self findChildrenWithAttribute:attribute matchingName:className inXMLNode:cur_node->children inArray:array allowPartial:partial];
     }
 }
-
 -(void)findChildTags:(NSString*)tagName inXMLNode:(xmlNode *)node inArray:(NSMutableArray*)array{
     xmlNode *cur_node = NULL;
     const char * tagNameStr =  [tagName UTF8String];
@@ -108,7 +107,6 @@ NSString * getAttributeNamed(xmlNode * node, const char * nameStr){
     }
     return NULL;
 }
-
 -(HTMLNode*)findChildTag:(NSString*)tagName{
     return [self findChildTag:tagName inXMLNode:_node->children];
 }
@@ -121,7 +119,6 @@ NSString * getAttributeNamed(xmlNode * node, const char * nameStr){
     }
     return array;
 }
-
 /*
  -(NSString*)description{
  NSString * string = [NSString stringWithFormat:@"<%s>%@\n", _node->name, [self contents]];

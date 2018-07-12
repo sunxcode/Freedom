@@ -1,7 +1,6 @@
 //
 //  LinsenViewController.swift
 //  Freedom
-
 import UIKit
 import BaseFile
 import XExtension
@@ -21,7 +20,6 @@ class KugoumainHeaderView: UIView {
         //最上面
         setupTopButtoms()
     }
-
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -99,9 +97,7 @@ class KugoumainHeaderView: UIView {
     @objc func clickLable2() {
         localMusic!()
     }
-
 }
-
 class KugouLinsenViewController: KugouBaseViewController {
     var titlesArr = [Any]()
     override func viewDidLoad() {
@@ -119,7 +115,6 @@ class KugouLinsenViewController: KugouBaseViewController {
     }
     
     @objc func swipe(_ sender: UISwipeGestureRecognizer?) {
-
     }
     var headerView = KugoumainHeaderView(frame: CGRect(x: 0, y: 0, width: APPW, height: 100))
     func setupTableView() {
@@ -171,7 +166,6 @@ class KugouLinsenViewController: KugouBaseViewController {
         return 44
     }
         
-
     
     
 }

@@ -74,7 +74,6 @@
     NSLog(@"请子类重写这个方法");
 }
 @end
-
 @implementation BaseCollectionViewOCCell
 #pragma mark 初始化
 +(NSString*) getTableCellIdentifier {
@@ -141,7 +140,6 @@
 @implementation BaseOCViewController
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
 }
 - (void)viewDidLoad{
     [super viewDidLoad];

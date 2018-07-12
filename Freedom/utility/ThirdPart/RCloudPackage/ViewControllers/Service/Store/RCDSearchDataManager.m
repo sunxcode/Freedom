@@ -5,11 +5,9 @@
 //  Created by 张改红 on 16/9/28.
 //  Copyright © 2016年 RongCloud. All rights reserved.
 //
-
 #import "RCDSearchDataManager.h"
 #import "RCDataBaseManager.h"
 #import "RCloudModel.h"
-
 #import <RongIMKit/RongIMKit.h>
 @implementation RCDSearchDataManager
 +(instancetype)shareInstance{
@@ -20,7 +18,6 @@
   });
   return searchDataManager;
 }
-
 - (void)searchDataWithSearchText:(NSString *)searchText bySearchType:(NSInteger)searchType complete:(void (^)(NSDictionary *dic,NSArray *array))result{
   NSString *searchStr = [searchText stringByReplacingOccurrencesOfString:@" "  withString:@""];
   if (!searchText.length || searchStr.length == 0) {
@@ -51,7 +48,6 @@
   }
   result(dic.copy,array.copy);
 }
-
 - (NSArray *)searchFriendBysearchText:(NSString *)searchText{
   NSMutableArray *friendResults = [NSMutableArray array];
   NSArray *friendArray = [[RCDataBaseManager shareInstance] getAllFriends];
@@ -75,14 +71,12 @@
           model.otherInformation = user.displayName;
         }
         model.searchType = RCDSearchFriend;
-
         [friendResults addObject:model];
       }
     }
   }
   return friendResults;
 }
-
 - (NSArray *)searchGroupBysearchText:(NSString *)searchText{
   NSMutableArray *groupResults = [NSMutableArray array];
   NSArray *groupArray = [[RCDataBaseManager shareInstance] getAllGroup];
@@ -94,7 +88,6 @@
       model.name = group.groupName;
       model.portraitUri = group.portraitUri;
       model.searchType = RCDSearchGroup;
-
       [groupResults addObject:model];
       continue;
     }else{
@@ -128,14 +121,12 @@
   }
   return groupResults;
 }
-
 - (NSArray *)searchMessageBysearchText:(NSString *)searchText{
   if (!searchText.length) {
     return nil;
   }
   NSMutableArray *array = [NSMutableArray array];
   NSArray *messsageResult =[[RCIMClient sharedRCIMClient] searchConversations:@[@(ConversationType_GROUP),@(ConversationType_PRIVATE)] messageType:@[[RCTextMessage getObjectName],[RCRichContentMessage getObjectName],[RCFileMessage getObjectName]] keyword:searchText];
-
   for (RCSearchConversationResult *result in messsageResult) {
     RCDSearchResultModel *model = [[RCDSearchResultModel alloc] init];
     model.conversationType = result.conversation.conversationType;
@@ -171,14 +162,12 @@
   }
   return array;
 }
-
 -(NSString *)relaceEnterBySpace:(NSString *)originalString{
   NSString *string = [originalString stringByReplacingOccurrencesOfString:@"\r\n" withString:@" "];
   string = [string stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
   string = [string stringByReplacingOccurrencesOfString:@"\r" withString:@" "];
   return string;
 }
-
 - (NSString *)formatMessage:(RCMessageContent *)messageContent withMessageId:(long)messageId {
   if ([RCIM sharedRCIM].showUnkownMessage && messageId > 0 && !messageContent) {
     return NSLocalizedStringFromTable(@"unknown_message_cell_tip",@"RongCloudKit",nil);
@@ -186,7 +175,6 @@
     return [RCKitUtility formatMessage:messageContent];
   }
 }
-
 - (NSString*)changeString:(NSString *)str appendStr:(NSString *)appendStr{
   if (str.length>0) {
     str = [NSString stringWithFormat:@"%@,%@",str,appendStr];

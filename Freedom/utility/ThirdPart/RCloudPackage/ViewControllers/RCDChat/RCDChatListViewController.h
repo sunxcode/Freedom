@@ -8,6 +8,6 @@
 #import <UIKit/UIKit.h>
 @interface RCDChatListViewController : RCConversationListViewController
 //弹出菜单
-- (IBAction)showMenu:(UIButton *)sender;
+- (void)showMenu:(UIButton *)sender;
 - (void)updateBadgeValueForTabBarItem;
 @end

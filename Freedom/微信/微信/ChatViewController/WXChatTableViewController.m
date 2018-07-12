@@ -730,7 +730,7 @@ static UILabel *textLabel;
             [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
             [MobClick event:@"e_delete_message"];
         }else{
-            [UIAlertView bk_alertViewWithTitle:@"错误" message:@"从数据库中删除消息失败。"];
+            [SVProgressHUD showErrorWithStatus:@"从数据库中删除消息失败。"];
         }
     }
 }
@@ -901,7 +901,7 @@ static UILabel *textLabel;
             [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
             [MobClick event:@"e_delete_message"];
         }else{
-            [UIAlertView bk_alertViewWithTitle:@"错误" message:@"从数据库中删除消息失败。"];
+            [SVProgressHUD showErrorWithStatus:@"从数据库中删除消息失败。"];
         }
     }
 }

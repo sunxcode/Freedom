@@ -5,11 +5,9 @@
 //  Created by Sin on 16/9/21.
 //  Copyright © 2016年 RongCloud. All rights reserved.
 //
-
 #import "RCDSettingServerUrlViewController.h"
 #import "AFHttpTool.h"
 #import "MBProgressHUD.h"
-
 #import "RCDFindPswViewController.h"
 #import "RCDLoginViewController.h"
 #import <RongIMLib/RongIMLib.h>
@@ -32,7 +30,6 @@
 @property(nonatomic, strong) UILabel *errorMsgLb;
 //@property(strong, nonatomic) IBOutlet UILabel *countDownLable;
 @end
-
 @implementation RCDSettingServerUrlViewController
 #define demoServerTextFieldTag 1000
 #define fileServerTextFieldTag 1001
@@ -301,8 +298,6 @@
     [bottomBackground addSubview:footerLabel];
     
     [self.view addSubview:bottomBackground];
-
-
     [self.view addConstraint:[NSLayoutConstraint
                               constraintWithItem:pswMsgLb
                               attribute:NSLayoutAttributeBottom
@@ -347,7 +342,6 @@
                                       options:0
                                       metrics:nil
                                       views:views]
-
                                      arrayByAddingObjectsFromArray:
                                      [NSLayoutConstraint constraintsWithVisualFormat:
                                       @"V:|-70-[_rongLogo(100)]-10-[_errorMsgLb(=="
@@ -519,11 +513,9 @@ arrayByAddingObjectsFromArray:
         [textField setFont:[UIFont fontWithName:@"Heiti SC" size:20.0]];
     }
 }
-
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [self.view endEditing:YES];
 }
-
 - (void)keyboardWillShow:(NSNotification *)notif {
     
     [UIView animateWithDuration:0.25
@@ -541,7 +533,6 @@ arrayByAddingObjectsFromArray:
                      }
                      completion:nil];
 }
-
 - (void)keyboardWillHide:(NSNotification *)notif {
     [UIView animateWithDuration:0.25
                      animations:^{
@@ -562,19 +553,16 @@ arrayByAddingObjectsFromArray:
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
     [self.animatedImagesView startAnimating];
 }
-
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     
     [self.animatedImagesView stopAnimating];
 }
-
 /*阅读用户协议*/
 - (void)userProtocolEvent {
 }
@@ -593,7 +581,6 @@ arrayByAddingObjectsFromArray:
     RCDFindPswViewController *temp = [[RCDFindPswViewController alloc] init];
     [self.navigationController pushViewController:temp animated:YES];
 }
-
 - (IBAction)btnDoneClicked:(id)sender {
     if (![self checkContent])
         return;
@@ -624,7 +611,6 @@ arrayByAddingObjectsFromArray:
     [[RCIM sharedRCIM] disconnect];
     [[RCIMClient sharedRCIMClient] setServerInfo:naviServerString fileServer:fileServerString];
 }
-
 /**
  *  检查输入内容
  *
@@ -657,5 +643,4 @@ arrayByAddingObjectsFromArray:
     }
     return YES;
 }
-
 @end

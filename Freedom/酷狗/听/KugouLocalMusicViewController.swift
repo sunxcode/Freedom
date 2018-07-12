@@ -1,7 +1,6 @@
 //
 //  LocalMusicViewController.swift
 //  Freedom
-
 import UIKit
 import BaseFile
 import XExtension
@@ -24,9 +23,7 @@ class KugouLocalMusicCell: BaseTableViewCell {
         subLable = UILabel(frame: CGRect(x: 60, y: 40, width: 200, height: 20))
         timerLable = UILabel(frame: CGRect(x: APPW - 100, y: 20, width: 80, height: 20))
         addSubviews([iconView!, subLable,timerLable, mainLable])
-
     }
-
 }
 class KugouLocalMusicViewController: KugouBaseViewController {
     var musicController: MPMusicPlayerController = MPMusicPlayerController.systemMusicPlayer
@@ -78,11 +75,9 @@ class KugouLocalMusicViewController: KugouBaseViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return singerArr.count
     }
-
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell :KugouLocalMusicCell = KugouLocalMusicCell.getInstance() as! KugouLocalMusicCell
         cell.iconView.image = iconArr[indexPath.row]
@@ -115,6 +110,4 @@ class KugouLocalMusicViewController: KugouBaseViewController {
         tabbar?.coustomTabBar.songNameLable.text = songArr[indexPath.row]
         tabbar?.coustomTabBar.singerLable.text = singerArr[indexPath.row]
     }
-
-
 }

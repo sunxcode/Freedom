@@ -27,8 +27,6 @@
     return [objc_getAssociatedObject(self, _cmd) boolValue];
 }
 @end
-
-
 @interface WXBaseViewController ()
 @end
 @implementation WXBaseViewController

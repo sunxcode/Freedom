@@ -5,7 +5,6 @@
 //  Created by 张改红 on 16/9/18.
 //  Copyright © 2016年 RongCloud. All rights reserved.
 //
-
 #import "RCDSearchViewController.h"
 #import "RCDSearchResultViewCell.h"
 #import "RCDataBaseManager.h"
@@ -17,7 +16,6 @@
 @property (nonatomic,strong)UIImageView *searchImageView;
 @property (nonatomic,strong)UILabel *moreLabel;
 @end
-
 @implementation RCDSearchMoreViewCell
 - (instancetype)initWithStyle:(UITableViewCellStyle)style
               reuseIdentifier:(NSString *)reuseIdentifier {
@@ -26,15 +24,12 @@
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         [self loadView];
     }
-
     return self;
 }
-
 - (void)loadView{
     self.searchImageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, (45-13)/2, 13, 13)];
     self.searchImageView.image = [UIImage imageNamed:@"search_blue"];
     [self.contentView addSubview:self.searchImageView];
-
     self.moreLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.searchImageView.frame)+4,( 45-17)/2, self.contentView.frame.size.width-20-17, 17)];
     self.moreLabel.font = [UIFont systemFontOfSize:15.0];
     self.moreLabel.textColor = [UIColor colorWithRGBHex:0x7ca1c9];
@@ -44,15 +39,11 @@
     [super awakeFromNib];
     // Initialization code
 }
-
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
     // Configure the view for the selected state
 }
-
 @end
-
 @interface RCDSearchViewController ()<UISearchBarDelegate,UITableViewDelegate,UITableViewDataSource,UIGestureRecognizerDelegate>
 @property (nonatomic,strong)NSMutableDictionary *resultDictionary;
 @property (nonatomic,strong)NSMutableArray *groupTypeArray;
@@ -64,9 +55,7 @@
 @property (nonatomic, strong) UIView *searchBackgroundView;
 @property (nonatomic,strong) NSDate *searchDate;
 @end
-
 @implementation RCDSearchViewController
-
 - (UITableView *)resultTableView{
   if (!_resultTableView) {
     _resultTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) style:UITableViewStylePlain];
@@ -79,7 +68,6 @@
   }
   return _resultTableView;
 }
-
 - (UILabel *)emptyLabel{
   if (!_emptyLabel) {
     _emptyLabel = [[RCDLabel alloc] initWithFrame:CGRectMake(10,45, self.view.frame.size.width-20, 16)];
@@ -90,7 +78,6 @@
   }
   return _emptyLabel;
 }
-
 - (void)viewDidLoad {
   [super viewDidLoad];
   _groupTypeArray = [NSMutableArray array];
@@ -103,7 +90,6 @@
   tap.delegate = self;
   [self.view addGestureRecognizer:tap];
 }
-
 - (void)viewWillLayoutSubviews{
   [super viewWillLayoutSubviews];
   if ([self.resultTableView respondsToSelector:@selector(setSeparatorInset:)]) {
@@ -115,19 +101,14 @@
   }
   
 }
-
 - (void)viewWillAppear:(BOOL)animated{
   [super viewWillAppear:animated];
   self.navigationController.navigationBar.barTintColor = [UIColor colorWithRGBHex:0xf0f0f6];
-  [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
 }
-
 - (void)viewWillDisappear:(BOOL)animated{
   [super viewWillDisappear:animated];
   self.navigationController.navigationBar.barTintColor = [UIColor colorWithRGBHex:0x0099ff];
-  [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent];
 }
-
 - (void)loadSearchView{
   self.searchView = [[UIView alloc] initWithFrame:CGRectMake( 0, 0, APPW, 44)];
   
@@ -156,11 +137,9 @@
   [_cancelButton addTarget:self action:@selector(cancelButtonClicked) forControlEvents:UIControlEventTouchUpInside];
   [self.searchView addSubview:_cancelButton];
 }
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
   return self.groupTypeArray.count;
 }
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
   NSArray *array = self.resultDictionary[self.groupTypeArray[section]];
   if (array.count > 3) {
@@ -168,7 +147,6 @@
   }
   return array.count;
 }
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
   if(indexPath.row == 3){
     RCDSearchMoreViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"moreCell"];
@@ -189,18 +167,15 @@
     return cell;
   }
 }
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
   if (indexPath.row == 3) {
     return 45;
   }
   return 65;
 }
-
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
   return 40;
 }
-
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
   UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40)];
   view.backgroundColor = [UIColor whiteColor];
@@ -216,7 +191,6 @@
     [view addSubview:separatorLine];
   return view;
 }
-
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
   if(section == self.groupTypeArray.count-1){
      return nil;
@@ -225,14 +199,12 @@
   view.backgroundColor = [UIColor colorWithRGBHex:0xf0f0f6];
   return view;
 }
-
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
   if(section == self.groupTypeArray.count-1){
     return 0;
   }
   return 5;
 }
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
   [self.searchBars resignFirstResponder];
   if (indexPath.row == 3) {
@@ -307,7 +279,6 @@
                                          animated:YES];
   }
 }
-
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
   [self.resultDictionary removeAllObjects];
   [self.groupTypeArray removeAllObjects];
@@ -321,7 +292,6 @@
     }];
 //  });
 }
-
 - (void)refreshSearchView:(NSString *)searchText{
   [self.resultTableView reloadData];
   NSString *searchStr = [searchText stringByReplacingOccurrencesOfString:@" "  withString:@""];
@@ -340,11 +310,9 @@
     self.emptyLabel.hidden = YES;
   }
 }
-
 - (void) searchBarSearchButtonClicked:(UISearchBar *)searchBar{
   [self.searchBars resignFirstResponder];
 }
-
 - (CGFloat)labelAdaptive:(NSString *)string{
   float maxWidth = self.view.frame.size.width-20;
   CGRect textRect = [string
@@ -360,7 +328,6 @@
   textRect.size.height = ceilf(textRect.size.height);
   return textRect.size.height + 5;
 }
-
 - (NSString*)changeString:(NSString *)str appendStr:(NSString *)appendStr{
   if (str.length>0) {
     str = [NSString stringWithFormat:@"%@,%@",str,appendStr];
@@ -369,27 +336,22 @@
   }
   return str;
 }
-
 - (void)cancelButtonClicked{
   if([self.delegate respondsToSelector:@selector(onSearchCancelClick)]){
     [self.delegate onSearchCancelClick];
   }
   [self.searchBars resignFirstResponder];
 }
-
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
   [self.searchBars resignFirstResponder];
 }
-
 - (void)hideSerchBarWhenTapBackground:(id)sender {
   [self.searchBars resignFirstResponder];
 }
-
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
   if ([NSStringFromClass([touch.view class]) isEqualToString:@"UITableViewCellContentView"]) {
     return NO;
   }
   return YES;
 }
-
 @end

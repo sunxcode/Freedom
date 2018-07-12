@@ -5,7 +5,6 @@
 //  Created by Super on 7/5/18.
 //  Copyright © 2018 薛超. All rights reserved.
 //
-
 import Foundation
 import UIKit
 import Social
@@ -31,7 +30,6 @@ func checkTouchID(){
     }else{
         NSLog("抱歉，Touch ID不可以使用！\n\(String(describing: error))")
     }
-
 }
 ///苹果自带的社会化分享,type是静态字符串:SLServiceTypeTwitter,Facebook,SinaWeibo,TencentWeibo,LinkedIn
 func appleLocalShare(_ fromVC:UIViewController, _ title:String,image:UIImage? ,_ type:String = SLServiceTypeFacebook){
@@ -49,5 +47,3 @@ func appleLocalShare(_ fromVC:UIViewController, _ title:String,image:UIImage? ,_
     }
     fromVC.present(cvv!, animated: true)
 }
-
-

@@ -54,5 +54,4 @@ self.collectionView.register(EnergyHomeViewCell.self, forCellWithReuseIdentifier
         let value = self.collectionView.dataArray[indexPath.row]
         _ = self.push(EnergyDetailViewController(), withInfo: "", withTitle: value as! String, withOther: value)
     }
-
 }

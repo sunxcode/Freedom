@@ -1,7 +1,6 @@
 //
 //  SDHomeViewController.swift
 //  Freedom
-
 import UIKit
 import BaseFile
 import XExtension
@@ -284,7 +283,6 @@ class AlipayHomeGridView: UIScrollView, UIScrollViewDelegate {
         }
         gridViewDelegate?.homeGrideViewDidChangeItems(self)
     }
-
     func setupSubViewsFrame() {
         let itemW: CGFloat = frame.size.width / 4
         let itemH: CGFloat = itemW * 1.1
@@ -322,7 +320,6 @@ class AlipayHomeGridView: UIScrollView, UIScrollViewDelegate {
         currentPressedView?.hidenIcon = true
     }
 }
-
 class AlipayHomeViewController: AlipayBaseViewController,SDHomeGridViewDeleate {
     var dataArray :[Any]!
     let mainView = AlipayHomeGridView()

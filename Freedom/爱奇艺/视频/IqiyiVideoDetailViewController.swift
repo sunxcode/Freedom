@@ -59,7 +59,6 @@ class IqiyiRecommentModel: NSObject {
     var time = ""
 }
 class IqiyiRecommentVideoCell:BaseTableViewCell{
-
     let iconImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
     let titleLabel = UILabel(frame: CGRect(x: 100, y: 10, width: 200, height: 20))
     let timeLabel = UILabel(frame: CGRect(x: 100, y: 40, width: 200, height: 20))
@@ -67,7 +66,6 @@ class IqiyiRecommentVideoCell:BaseTableViewCell{
     override func initUI() {
         self.addSubviews([iconImageView, titleLabel, timeLabel,pvLabel])
     }
-
     func setRecommentModel(_ recommentModel: IqiyiRecommentModel?) {
         iconImageView.sd_setImage(with: URL(string: recommentModel?.img ?? ""), placeholderImage: UIImage(named: "rec_holder"))
         titleLabel.text = recommentModel?.title
@@ -78,7 +76,6 @@ class IqiyiRecommentVideoCell:BaseTableViewCell{
         timeLabel.text = "time"
         pvLabel.text = "pvlabel"
     }
-
 }
 class IqiyiVideoDetailCell: UITableViewCell {
     var iconImageView: UIImageView?
@@ -102,7 +99,6 @@ class IqiyiVideoDetailCell: UITableViewCell {
         titleLabel?.text = videoDetailModel?.title
         descLabel?.text = videoDetailModel?.desc
     }
-
 }
 class IqiyiVideoDetailViewController: IqiyiBaseViewController {
     
@@ -130,7 +126,7 @@ class IqiyiVideoDetailViewController: IqiyiBaseViewController {
         view.addSubview(backView)
         let backBtn = UIButton(type: .custom)
         backBtn.frame = CGRect(x: 15, y: 20, width: 30, height: 30)
-        backBtn.addTarget(self, action: Selector("OnBackBtn:"), for: .touchUpInside)
+        backBtn.addTarget(self, action:#selector(self.onBackBtn(_:)), for: .touchUpInside)
         backBtn.setImage(UIImage(named: "cellLeft"), for: .normal)
         view.addSubview(backBtn)
     }
@@ -170,6 +166,7 @@ class IqiyiVideoDetailViewController: IqiyiBaseViewController {
     }
     func loadRecommentData() {
         let urlStr = "http://rec.api.3g.tudou.com/v4/recommend/video?count=20&filterpay=0&guid=7066707c5bdc38af1621eaf94a6fe779&idfa=ACAF9226-F987-417B-A708-C95D482A732D&itemCode=\(iid)&network=WIFI&ouid=10099212c9e3829656d4ea61e3858d53253b2f07&pg=1&pid=c0637223f8b69b02&pz=30&vdid=9AFEE982-6F94-4F57-9B33-69523E044CF4&ver=4.9.1"
+        print(urlStr)
 //        let url = (urlStr as NSString)//.addingPercentEscapes(using: .utf8)
 //        [AFHTTPSessionManager manager].get(url, parameters: nil, progress: nil, success: {(_ task: URLSessionDataTask, _ responseObject: Any?) -> Void in
 //            //这个地方要先移除模型数组里面数据
@@ -248,7 +245,6 @@ class IqiyiVideoDetailViewController: IqiyiBaseViewController {
             return cell!
         }
     }
-
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row > 0 {
 //            let recommendM: JFRecommentModel? = recommendArray[indexPath.row - 1]
@@ -259,7 +255,6 @@ class IqiyiVideoDetailViewController: IqiyiBaseViewController {
             })
         }
     }
-
     
     
 }

@@ -1,7 +1,6 @@
 //
 //  JFSearchHistoryViewController.swift
 //  Freedom
-
 import UIKit
 import BaseFile
 import XExtension
@@ -24,7 +23,6 @@ class IqiyiSearchTextField: UITextField {
         self.leftView = leftView
         leftViewMode = .always
     }
-
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -42,7 +40,6 @@ class IqiyiSearchHotCell:BaseTableViewCell{
             addSubview(button)
         }
     }
-
 }
 class IqiyiSearchHistoryCell: UITableViewCell {
     var searchHistoryLabel: UILabel!
@@ -54,7 +51,6 @@ class IqiyiSearchHistoryCell: UITableViewCell {
     var hisDatas: [AnyHashable]?
     /** 记录tableView */
     weak var tableView: UITableView?
-
     func cancelSearchBtnClick(_ sender: Any) {
 //        hisDatas.remove(at: indexPath.row)
 //        hisDatas.write(toFile: "JFSearchHistoryPath", atomically: true)
@@ -138,7 +134,6 @@ class IqiyiSearchHistoryViewController: IqiyiBaseViewController,UITextFieldDeleg
         //判断是否有输入,有值的话将新的字符串添加到datas[0]中并且重新写入文件，发送网络请求
         /* 发送请求 */
         if (textField.text?.count ?? 0) != 0 {
-
             hisDatas.insert(textField.text ?? "", at: 0)
 //            hisDatas.write(toFile: JFSearchHistoryCell, atomically: true)
             tableView?.reloadData()
@@ -190,13 +185,11 @@ class IqiyiSearchHistoryViewController: IqiyiBaseViewController,UITextFieldDeleg
                 cell = IqiyiSearchHotCell(style: .default, reuseIdentifier: ID)
             }
             cell?.selectionStyle = .none
-
             return cell!
         }
     }
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = IqiyisearchHeaderView.headView(with: tableView)
-
             if section == 0 {
                 headerView.titleLabel.text = "历史"
             } else {
@@ -209,6 +202,5 @@ class IqiyiSearchHistoryViewController: IqiyiBaseViewController,UITextFieldDeleg
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 40
     }
-
     
 }

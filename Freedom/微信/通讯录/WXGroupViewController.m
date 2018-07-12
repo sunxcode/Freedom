@@ -130,10 +130,8 @@
 //MARK: UISearchBarDelegate
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
     [self.searchVC setGroupData:self.data];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
 }
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
 }
 @end
 @interface WXGroupSearchViewController ()

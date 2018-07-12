@@ -112,8 +112,7 @@ typedef NS_ENUM(NSUInteger, TLBottleButtonType) {
 }
 #pragma mark - Event Response
 - (void)boardButtonDown:(WXBottleButton *)sender{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:sender.title message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
-    [alert show];
+    [SVProgressHUD showInfoWithStatus:sender.title];
 }
 - (void) didTapView{
     [timer invalidate];
@@ -124,7 +123,7 @@ typedef NS_ENUM(NSUInteger, TLBottleButtonType) {
 #pragma mark - Private Methods
 - (void) p_setNavBarHidden:(BOOL)hidden{
     if (hidden) {
-        [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
+//        [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
         [UIView animateWithDuration:0.5 animations:^{
             [self.navigationController.navigationBar setFrameY: -HEIGHT_NAVBAR - NavY];
         } completion:^(BOOL finished) {
@@ -132,7 +131,7 @@ typedef NS_ENUM(NSUInteger, TLBottleButtonType) {
         }];
     }else{
         [self.navigationController.navigationBar setHidden:NO];
-        [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
+//        [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
         [UIView animateWithDuration:0.2 animations:^{
             [self.navigationController.navigationBar setFrameY:NavY];
         }];

@@ -3,6 +3,4 @@
 //  Freedom
 import UIKit
 class TaobaoTabBarController: XBaseTabBarController {
-
-
 }

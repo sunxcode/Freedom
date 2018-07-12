@@ -11,5 +11,4 @@ class DZTabBarController: XBaseTabBarController {
             vc.tabBarItem.selectedImage = vc.tabBarItem.selectedImage?.withRenderingMode(.alwaysOriginal)
         }
     }
-
 }

@@ -278,7 +278,6 @@
                      insertGroupMemberToDB:result
                      groupId:message.targetId
                      complete:^(BOOL results) {
-
                      }];
                 }];
             }
@@ -368,7 +367,6 @@
     [shareUserDefaults setValue:[[NSUserDefaults standardUserDefaults] objectForKey:@"UserCookies"] forKey:@"Cookie"];
     [shareUserDefaults synchronize];
 }
-
 - (void)didReceiveMessageNotification:(NSNotification *)notification {
     NSNumber *left = [notification.userInfo objectForKey:@"left"];
     if ([RCIMClient sharedRCIMClient].sdkRunningMode == RCSDKRunningMode_Background && 0 == left.integerValue) {
@@ -377,7 +375,6 @@
         unreadMsgCount;
     }
 }
-
 //插入分享消息
 - (void)insertSharedMessageIfNeed {
     NSUserDefaults *shareUserDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.cn.rongcloud.im.share"];

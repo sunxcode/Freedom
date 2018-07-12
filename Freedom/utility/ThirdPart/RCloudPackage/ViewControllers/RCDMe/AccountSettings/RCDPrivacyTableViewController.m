@@ -5,55 +5,32 @@
 //  Created by Jue on 16/6/28.
 //  Copyright © 2016年 RongCloud. All rights reserved.
 //
-
 #import "RCDPrivacyTableViewController.h"
 #import "RCDBaseSettingTableViewCell.h"
 #import "RCDBlackListViewController.h"
-
 @interface RCDPrivacyTableViewController ()
-
 @end
-
 @implementation RCDPrivacyTableViewController
-
 - (void)viewDidLoad {
   [super viewDidLoad];
-  
   self.navigationItem.title = @"隐私";
-  
   self.tableView.tableFooterView = [UIView new];
-  
   self.tableView.backgroundColor = [UIColor colorWithRGBHex:0xf0f0f6];
   self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
-
-- (void)didReceiveMemoryWarning {
-  [super didReceiveMemoryWarning];
-  // Dispose of any resources that can be recreated.
-}
-
 #pragma mark - Table view data source
-
-- (CGFloat)tableView:(UITableView *)tableView
-    heightForHeaderInSection:(NSInteger)section {
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 15.f;
 }
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
   return 1;
 }
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
   return 1;
 }
-
-- (UITableViewCell *)tableView:(UITableView *)tableView
-cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   static NSString *reusableCellWithIdentifier = @"RCDBaseSettingTableViewCell";
-  RCDBaseSettingTableViewCell *cell = [self.tableView
-                                   dequeueReusableCellWithIdentifier:reusableCellWithIdentifier];
+  RCDBaseSettingTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:reusableCellWithIdentifier];
   if (cell == nil) {
     cell = [[RCDBaseSettingTableViewCell alloc] init];
   }
@@ -63,22 +40,13 @@ cellForRowAtIndexPath:(NSIndexPath *)indexPath {
         case 0: {
           [cell setCellStyle:DefaultStyle];
           cell.leftLabel.text = @"黑名单";
-        }
-          break;
-          
-        default:
-          break;
+        }break;
+        default:break;
       }
-    }
-      break;
-      
-    default:
-      break;
-  }
-
-    return cell;
+    }break;
+    default:break;
+  }return cell;
 }
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   switch (indexPath.section) {
     case 0: {
@@ -87,18 +55,11 @@ cellForRowAtIndexPath:(NSIndexPath *)indexPath {
           RCDBlackListViewController *vc = [[RCDBlackListViewController alloc] init];
           [self.navigationController pushViewController:vc
                                                animated:YES];
-        }
-          break;
-          
-        default:
-          break;
+        }break;
+        default:break;
       }
-    }
-      break;
-      
-    default:
-      break;
+    }break;
+    default:break;
   }
 }
-
 @end

@@ -43,7 +43,6 @@ class SinaAccount: NSObject {
         self.created_time = Date()
     }
 }
-
 class SinaAuthController: SinaBaseViewController,UIWebViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()

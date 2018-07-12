@@ -5,17 +5,12 @@
 //  Created by 杜立召 on 15/7/27.
 //  Copyright (c) 2015年 RongCloud. All rights reserved.
 //
-
 #import "RCAnnotationView.h"
-
 #import "UIImageView+WebCache.h"
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
-
-
 @implementation RCAnnotation
-
 - (id)initWithThumbnail:(RCLocationView *)thumbnail {
     self = [super init];
     if (self) {
@@ -24,10 +19,8 @@
         _view.userId = thumbnail.userId;
         _view.imageUrl = thumbnail.imageurl;
     }
-
     return self;
 }
-
 - (MKAnnotationView *)annotationViewInMap:(MKMapView *)mapView {
     if (!_view) {
         _view = (RCAnnotationView *)[mapView
@@ -40,7 +33,6 @@
     [self updateThumbnail:_thumbnail animated:NO];
     return _view;
 }
-
 - (void)updateThumbnail:(RCLocationView *)thumbnail animated:(BOOL)animated {
     if (animated) {
         [UIView animateWithDuration:0.33f
@@ -50,7 +42,6 @@
     } else {
         _coordinate = thumbnail.coordinate;
     }
-
     if (_view) {
         _view.coordinate = self.coordinate;
         _view.userId = thumbnail.userId;
@@ -66,11 +57,7 @@
         //        }
     }
 }
-
 @end
-
-
-
 #define LAT_OFFSET_0(x, y)                                                     \
 -100.0 + 2.0 * x + 3.0 * y + 0.2 * y *y + 0.1 * x *y + 0.2 * sqrt(fabs(x))
 #define LAT_OFFSET_1                                                           \
@@ -79,7 +66,6 @@
 (20.0 * sin(y * M_PI) + 40.0 * sin(y / 3.0 * M_PI)) * 2.0 / 3.0
 #define LAT_OFFSET_3                                                           \
 (160.0 * sin(y / 12.0 * M_PI) + 320 * sin(y * M_PI / 30.0)) * 2.0 / 3.0
-
 #define LON_OFFSET_0(x, y)                                                     \
 300.0 + x + 2.0 * y + 0.1 * x *x + 0.1 * x *y + 0.1 * sqrt(fabs(x))
 #define LON_OFFSET_1                                                           \
@@ -88,16 +74,13 @@
 (20.0 * sin(x * M_PI) + 40.0 * sin(x / 3.0 * M_PI)) * 2.0 / 3.0
 #define LON_OFFSET_3                                                           \
 (150.0 * sin(x / 12.0 * M_PI) + 300.0 * sin(x / 30.0 * M_PI)) * 2.0 / 3.0
-
 #define RANGE_LON_MAX 137.8347
 #define RANGE_LON_MIN 72.004
 #define RANGE_LAT_MAX 55.8271
 #define RANGE_LAT_MIN 0.8293
 #define jzA 6378245.0
 #define jzEE 0.00669342162296594323
-
 @implementation RCLocationConvert
-
 + (double)transformLat:(double)x bdLon:(double)y {
     double ret = LAT_OFFSET_0(x, y);
     ret += LAT_OFFSET_1;
@@ -105,7 +88,6 @@
     ret += LAT_OFFSET_3;
     return ret;
 }
-
 + (double)transformLon:(double)x bdLon:(double)y {
     double ret = LON_OFFSET_0(x, y);
     ret += LON_OFFSET_1;
@@ -113,7 +95,6 @@
     ret += LON_OFFSET_3;
     return ret;
 }
-
 + (BOOL)outOfChina:(double)lat bdLon:(double)lon {
     if (lon < RANGE_LON_MIN || lon > RANGE_LON_MAX)
         return true;
@@ -121,7 +102,6 @@
         return true;
     return false;
 }
-
 + (CLLocationCoordinate2D)gcj02Encrypt:(double)ggLat bdLon:(double)ggLon {
     CLLocationCoordinate2D resPoint;
     double mgLat;
@@ -141,12 +121,10 @@
     dLon = (dLon * 180.0) / (jzA / sqrtMagic * cos(radLat) * M_PI);
     mgLat = ggLat + dLat;
     mgLon = ggLon + dLon;
-
     resPoint.latitude = mgLat;
     resPoint.longitude = mgLon;
     return resPoint;
 }
-
 + (CLLocationCoordinate2D)gcj02Decrypt:(double)gjLat gjLon:(double)gjLon {
     CLLocationCoordinate2D gPt = [self gcj02Encrypt:gjLat bdLon:gjLon];
     double dLon = gPt.longitude - gjLon;
@@ -156,7 +134,6 @@
     pt.longitude = gjLon - dLon;
     return pt;
 }
-
 + (CLLocationCoordinate2D)bd09Decrypt:(double)bdLat bdLon:(double)bdLon {
     CLLocationCoordinate2D gcjPt;
     double x = bdLon - 0.0065, y = bdLat - 0.006;
@@ -166,7 +143,6 @@
     gcjPt.latitude = z * sin(theta);
     return gcjPt;
 }
-
 + (CLLocationCoordinate2D)bd09Encrypt:(double)ggLat bdLon:(double)ggLon {
     CLLocationCoordinate2D bdPt;
     double x = ggLon, y = ggLat;
@@ -176,48 +152,35 @@
     bdPt.latitude = z * sin(theta) + 0.006;
     return bdPt;
 }
-
 + (CLLocationCoordinate2D)wgs84ToGcj02:(CLLocationCoordinate2D)location {
     return [self gcj02Encrypt:location.latitude bdLon:location.longitude];
 }
-
 + (CLLocationCoordinate2D)gcj02ToWgs84:(CLLocationCoordinate2D)location {
     return [self gcj02Decrypt:location.latitude gjLon:location.longitude];
 }
-
 + (CLLocationCoordinate2D)wgs84ToBd09:(CLLocationCoordinate2D)location {
     CLLocationCoordinate2D gcj02Pt =
     [self gcj02Encrypt:location.latitude bdLon:location.longitude];
     return [self bd09Encrypt:gcj02Pt.latitude bdLon:gcj02Pt.longitude];
 }
-
 + (CLLocationCoordinate2D)gcj02ToBd09:(CLLocationCoordinate2D)location {
     return [self bd09Encrypt:location.latitude bdLon:location.longitude];
 }
-
 + (CLLocationCoordinate2D)bd09ToGcj02:(CLLocationCoordinate2D)location {
     return [self bd09Decrypt:location.latitude bdLon:location.longitude];
 }
-
 + (CLLocationCoordinate2D)bd09ToWgs84:(CLLocationCoordinate2D)location {
     CLLocationCoordinate2D gcj02 = [self bd09ToGcj02:location];
     return [self gcj02Decrypt:gcj02.latitude gjLon:gcj02.longitude];
 }
-
 @end
-
-
-
 @implementation RCLocationView
-
 @end
-
 @implementation RCAnnotationView
 float fromValue = 0.0f;
 - (id)initWithAnnotation:(id<MKAnnotation>)annotation {
   self =
       [super initWithAnnotation:annotation reuseIdentifier:@"RCAnnotationView"];
-
   if (self) {
     self.canShowCallout = NO;
     self.frame = CGRectMake(0, 0, 40, 40);
@@ -244,7 +207,6 @@ float fromValue = 0.0f;
     [self addSubview:_locationImageView];
     [self addSubview:arrow];
     [self addSubview:_imageView];
-
     //        CABasicAnimation* rotationAnimation = [CABasicAnimation
     //        animationWithKeyPath:@"transform.rotation.z"];
     //        rotationAnimation.delegate = self;
@@ -261,7 +223,6 @@ float fromValue = 0.0f;
     //        [_locationImageView.layer addAnimation:rotationAnimation
     //        forKey:@"revItUpAnimation"];
   }
-
   return self;
 }
 //- (void)refreshHead:(NSString *)imageUrl
@@ -295,12 +256,9 @@ float fromValue = 0.0f;
   if (_tapBlock)
     _tapBlock();
 }
-
 - (void)didSelectAnnotationViewInMap:(MKMapView *)mapView {
   [mapView setCenterCoordinate:_coordinate animated:YES];
 }
-
 - (void)didDeselectAnnotationViewInMap:(MKMapView *)mapView {
 }
-
 @end

@@ -5,15 +5,12 @@
 //  Created by Liv on 15/4/15.
 //  Copyright (c) 2015年 RongCloud. All rights reserved.
 //
-
 #import "RCDHttpTool.h"
 #import "AFHttpTool.h"
 #import "RCloudModel.h"
 #import "RCDRCIMDataSource.h"
 #import "RCloudModel.h"
-
 #import "RCDataBaseManager.h"
-
 @implementation RCDUserInfoManager
 + (RCDUserInfoManager *)shareInstance {
     static RCDUserInfoManager *instance = nil;
@@ -23,7 +20,6 @@
     });
     return instance;
 }
-
 //通过自己的userId获取自己的用户信息
 -(void)getUserInfo:(NSString *)userId completion:(void (^)(RCUserInfo *))completion {
     [RCDHTTPTOOL getUserInfoByUserID:userId completion:^(RCUserInfo *user) {
@@ -85,7 +81,6 @@
     NSArray *result = [[NSArray alloc] initWithArray:resultList];
     return result;
 }
-
 //设置默认的用户信息
 - (RCUserInfo *)generateDefaultUserInfo:(NSString *)userId{
     RCUserInfo *defaultUserInfo = [RCUserInfo new];
@@ -113,7 +108,6 @@
 @end
 @interface SortForTime : NSObject
 - (NSMutableArray *)sortForUpdateAt:(NSMutableArray *)updatedAtList order:(NSComparisonResult)order;
-
 @end
 @implementation SortForTime
 - (NSMutableArray *)sortForUpdateAt:(NSMutableArray *)UserInfoList order:(NSComparisonResult)order{
@@ -137,7 +131,6 @@
     }];
     return UserInfoList;
 }
-
 -(NSString *)formatTime:(NSString *)updateAt{
     NSString *str1 = [updateAt stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
     NSString *str2 = [str1 stringByReplacingOccurrencesOfString:@"T" withString:@"/"];
@@ -151,9 +144,7 @@
     return str.copy;
 }
 @end
-
 @implementation RCDHttpTool
-
 + (RCDHttpTool *)shareInstance {
   static RCDHttpTool *instance = nil;
   static dispatch_once_t predicate;
@@ -164,7 +155,6 @@
   });
   return instance;
 }
-
 //创建群组
 - (void)createGroupWithGroupName:(NSString *)groupName
                  GroupMemberList:(NSArray *)groupMemberList
@@ -183,7 +173,6 @@
         userId(nil);
       }];
 }
-
 //设置群组头像
 - (void)setGroupPortraitUri:(NSString *)portraitUri
                     groupId:(NSString *)groupId
@@ -201,7 +190,6 @@
         result(NO);
       }];
 }
-
 //根据id获取单个群组
 - (void)getGroupByID:(NSString *)groupID
    successCompletion:(void (^)(RCDGroupInfo *group))completion {
@@ -252,7 +240,6 @@
         completion(group);
       }];
 }
-
 //根据userId获取单个用户信息
 - (void)getUserInfoByUserID:(NSString *)userID
                  completion:(void (^)(RCUserInfo *user))completion {
@@ -284,7 +271,6 @@
               user.userId = userID;
               user.name = [NSString stringWithFormat:@"name%@", userID];
               user.portraitUri = [FreedomTools defaultUserPortrait:user];
-
               if (completion) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                   completion(user);
@@ -296,7 +282,6 @@
             user.userId = userID;
             user.name = [NSString stringWithFormat:@"name%@", userID];
             user.portraitUri = [FreedomTools defaultUserPortrait:user];
-
             if (completion) {
               dispatch_async(dispatch_get_main_queue(), ^{
                 completion(user);
@@ -312,7 +297,6 @@
               user.userId = userID;
               user.name = [NSString stringWithFormat:@"name%@", userID];
               user.portraitUri = [FreedomTools defaultUserPortrait:user];
-
               completion(user);
             });
           }
@@ -328,7 +312,6 @@
     }
   }
 }
-
 //设置用户头像上传到demo server
 - (void)setUserPortraitUri:(NSString *)portraitUri
                   complete:(void (^)(BOOL))result {
@@ -344,7 +327,6 @@
         result(NO);
       }];
 }
-
 //获取当前用户所在的所有群组信息
 - (void)getMyGroupsWithBlock:(void (^)(NSMutableArray *result))block {
   [AFHttpTool getMyGroupsSuccess:^(id response) {
@@ -404,7 +386,6 @@
         block(tempArr);
       }];
 }
-
 //根据groupId获取群组成员信息
 - (void)getGroupMembersWithGroupId:(NSString *)groupId
                              Block:(void (^)(NSMutableArray *result))block {
@@ -442,7 +423,6 @@
         block(nil);
       }];
 }
-
 //加入群组(暂时没有用到这个接口)
 - (void)joinGroupWithGroupId:(NSString *)groupID
                     complete:(void (^)(BOOL))result {
@@ -458,7 +438,6 @@
         result(NO);
       }];
 }
-
 //添加群组成员
 - (void)addUsersIntoGroup:(NSString *)groupID
                   usersId:(NSMutableArray *)usersId
@@ -476,7 +455,6 @@
         result(NO);
       }];
 }
-
 //将用户踢出群组
 - (void)kickUsersOutOfGroup:(NSString *)groupID
                     usersId:(NSMutableArray *)usersId
@@ -494,7 +472,6 @@
         result(NO);
       }];
 }
-
 //退出群组
 - (void)quitGroupWithGroupId:(NSString *)groupID
                     complete:(void (^)(BOOL))result {
@@ -510,7 +487,6 @@
         result(NO);
       }];
 }
-
 //解散群组
 - (void)dismissGroupWithGroupId:(NSString *)groupID
                        complete:(void (^)(BOOL))result {
@@ -526,7 +502,6 @@
         result(NO);
       }];
 }
-
 //修改群组名称
 - (void)renameGroupWithGoupId:(NSString *)groupID
                     groupName:(NSString *)groupName
@@ -544,7 +519,6 @@
         result(NO);
       }];
 }
-
 - (void)getSquareInfoCompletion:(void (^)(NSMutableArray *result))completion {
   [AFHttpTool getSquareInfoSuccess:^(id response) {
     if ([response[@"code"] integerValue] == 200) {
@@ -557,10 +531,8 @@
         completion(nil);
       }];
 }
-
 - (void)getFriendscomplete:(void (^)(NSMutableArray *))friendList {
   NSMutableArray *list = [NSMutableArray new];
-
   [AFHttpTool getFriendListFromServerSuccess:^(id response) {
     if (((NSArray*)response[@"result"]).count == 0) {
       friendList(nil);
@@ -594,7 +566,6 @@
                     stringWithFormat:@"%@", [dic objectForKey:@"updatedAt"]];
                 [list addObject:userInfo];
                 [_allFriends addObject:userInfo];
-
                 RCUserInfo *user = [RCUserInfo new];
                 user.userId = userDic[@"id"];
                 user.name = userDic[@"nickname"];
@@ -635,7 +606,6 @@
         }
       }];
 }
-
 - (void)searchUserByPhone:(NSString *)phone
                  complete:(void (^)(NSMutableArray *))userList {
   NSMutableArray *list = [NSMutableArray new];
@@ -667,7 +637,6 @@
         userList(nil);
       }];
 }
-
 - (void)requestFriend:(NSString *)userId complete:(void (^)(BOOL))result {
   [AFHttpTool inviteUser:userId
       success:^(id response) {
@@ -685,7 +654,6 @@
         }
       }];
 }
-
 - (void)processInviteFriendRequest:(NSString *)userId
                           complete:(void (^)(BOOL))result {
   [AFHttpTool processInviteFriendRequest:userId
@@ -704,7 +672,6 @@
         }
       }];
 }
-
 - (void)AddToBlacklist:(NSString *)userId
               complete:(void (^)(BOOL result))result {
   [AFHttpTool addToBlacklist:userId
@@ -722,7 +689,6 @@
         }
       }];
 }
-
 - (void)RemoveToBlacklist:(NSString *)userId
                  complete:(void (^)(BOOL result))result {
   [AFHttpTool removeToBlacklist:userId
@@ -740,7 +706,6 @@
         }
       }];
 }
-
 - (void)getBlacklistcomplete:(void (^)(NSMutableArray *))blacklist {
   [AFHttpTool getBlacklistsuccess:^(id response) {
     NSString *code = [NSString stringWithFormat:@"%@", response[@"code"]];
@@ -757,7 +722,6 @@
         }
       }];
 }
-
 - (void)updateName:(NSString *)userName
            success:(void (^)(id response))success
            failure:(void (^)(NSError *err))failure {
@@ -769,7 +733,6 @@
         failure(err);
       }];
 }
-
 - (void)updateUserInfo:(NSString *)userID
                success:(void (^)(RCDUserInfo *user))success
                failure:(void (^)(NSError *err))failure {
@@ -832,7 +795,6 @@
 //        failure(err);
 //      }];
 }
-
 - (void)uploadImageToQiNiu:(NSString *)userId
                  ImageData:(NSData *)image
                    success:(void (^)(NSString *url))success
@@ -853,7 +815,6 @@
         failure(err);
       }];
 }
-
 - (void)getVersioncomplete:(void (^)(NSDictionary *))versionInfo {
   [AFHttpTool getVersionsuccess:^(id response) {
     if (response) {
@@ -887,7 +848,6 @@
   NSDate *date = [dateFormatter dateFromString:build];
   return date;
 }
-
 //设置好友备注
 - (void)setFriendDisplayName:(NSString *)friendId
                  displayName:(NSString *)displayName
@@ -904,7 +864,6 @@
                              result(NO);
                            }];
 }
-
 //获取用户详细资料
 - (void)getFriendDetailsWithFriendId:(NSString *)friendId
                              success:(void (^)(RCDUserInfo *user))success
@@ -942,5 +901,4 @@
                               failure(err);
                            }];
 }
-
 @end

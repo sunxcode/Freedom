@@ -1,7 +1,6 @@
 //
 //  SingViewController.swift
 //  Freedom
-
 import UIKit
 class KugouSingViewController: KugouBaseViewController {
     override func viewWillAppear(_ animated: Bool) {
@@ -10,7 +9,6 @@ class KugouSingViewController: KugouBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
-
         let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(KugouSingViewController.swipe(_:)))
         leftSwipe.direction = .left
         leftSwipe.numberOfTouchesRequired = 1
@@ -57,7 +55,6 @@ class KugouSingViewController: KugouBaseViewController {
         view.addSubview(cell)
         view.backgroundColor = UIColor.gray
     }
-
     @objc func swipe(_ sender: UISwipeGestureRecognizer?) {
         //        sideMenuViewController.presentRightMenuViewController()
     }
@@ -78,5 +75,4 @@ class KugouSingViewController: KugouBaseViewController {
     
     func cell() {
     }
-
 }

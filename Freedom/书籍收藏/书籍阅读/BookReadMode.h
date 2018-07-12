@@ -5,7 +5,6 @@
 //  Created by Super on 2018/4/27.
 //  Copyright © 2018年 Super. All rights reserved.
 //
-
 #import <Foundation/Foundation.h>
 #ifndef WFReader_E_ContantFile_h
 #define WFReader_E_ContantFile_h
@@ -69,20 +68,17 @@
  *  @return 书签数组*/
 + (NSMutableArray *)Manager_getMark;
 @end
-
 /*每章的内容与标题*/
 @interface E_EveryChapter : NSObject
 @property (nonatomic,strong)  NSString *chapterContent;
 @property (nonatomic,strong)  NSString *chapterTitle;
 @end
-
 @interface E_Mark : NSObject
 @property (nonatomic,strong) NSString  *markChapter;
 @property (nonatomic,strong) NSString  *markRange;
 @property (nonatomic,strong) NSString  *markContent;
 @property (nonatomic,strong) NSString  *markTime;
 @end
-
 /*书籍内容来源部分   退出的时候页码存储未写，根据实际情况去存*/
 @interface E_ReaderDataSource : NSObject
 //当前章节数
@@ -132,7 +128,5 @@
  *  @return 位置*/
 - (NSInteger)getChapterBeginIndex:(NSInteger)page;
 @end
-
 @interface BookReadMode : NSObject
-
 @end

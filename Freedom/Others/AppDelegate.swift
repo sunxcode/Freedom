@@ -358,7 +358,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,UNUserNotificationCenterD
     }
     ///结束
     deinit {
-
     }
 }
 //    常见变换类型（type）

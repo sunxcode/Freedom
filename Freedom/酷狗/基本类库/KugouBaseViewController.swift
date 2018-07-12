@@ -1,7 +1,6 @@
 //
 //  KugouBaseViewController.swift
 //  Freedom
-
 import UIKit
 import XExtension
 class KugouBaseViewController: XBaseViewController {
@@ -13,7 +12,6 @@ class KugouBaseViewController: XBaseViewController {
     var rightButton: UIButton = UIButton()
     private(set) var titleLabel: UILabel!
     private(set) var titleLine: UILabel!
-
     let ItemImagewidth = 20.0
     let ItemButtonwidth = 50.0
     override  func viewDidLoad() {
@@ -22,7 +20,6 @@ class KugouBaseViewController: XBaseViewController {
         navigationController?.navigationBar.isHidden = true
         navigationController?.navigationBar.isTranslucent = false
         view.backgroundColor = UIColor.white
-
         backItem.image = UIImage(named: "backButton")
         backItem.contentMode = .scaleAspectFit
         backItem.isUserInteractionEnabled = true
@@ -55,8 +52,6 @@ class KugouBaseViewController: XBaseViewController {
         titleLabel.font = BoldFont(17)
         titleLabel.frame = CGRect(x: 0, y: 20, width: APPW, height: 64 - 20)
         titleLabel?.text = title
-
-
         navBar.addSubview(backItem)
         navBar.addSubview(leftItem)
         navBar.addSubview(rightItem)
@@ -67,16 +62,12 @@ class KugouBaseViewController: XBaseViewController {
         navBar.backgroundColor = RGBAColor(51, 124, 200 ,1)
         view.addSubview(navBar)
     }
-
-
     func backItemTouched(_ sender: Any?) {
         goBack()
     }
-
     func leftItemTouched(_ sender: Any?) {
         print("用到图片的时候重写leftItemTouched方法")
     }
-
     func rightItemTouched(_ sender: Any?) {
         print("用到图片的时候重写rightItemTouched方法")
     }
@@ -86,7 +77,6 @@ class KugouBaseViewController: XBaseViewController {
     func rightButtonClick(_ sender: Any?) {
         print("用到按钮的时候重写rightButtonClick方法")
     }
-
     func goBack() {
         let vcarr = navigationController?.viewControllers
         if (vcarr?.count ?? 0) > 1 {
@@ -95,5 +85,4 @@ class KugouBaseViewController: XBaseViewController {
             dismiss(animated: true)
         }
     }
-
 }

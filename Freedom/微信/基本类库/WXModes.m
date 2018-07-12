@@ -217,7 +217,6 @@
 //  TLSettingGroup.m
 //  Freedom
 // Created by Super
-
 static UILabel *hLabel = nil;
 @implementation WXSettingGroup
 + (WXSettingGroup *) createGroupWithHeaderTitle:(NSString *)headerTitle
@@ -303,5 +302,4 @@ static UILabel *hLabel = nil;
 }
 @end
 @implementation WXModes
-
 @end

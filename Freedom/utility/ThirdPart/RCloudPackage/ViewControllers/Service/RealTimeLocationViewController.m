@@ -6,7 +6,6 @@
 //  Created by YangZigang on 14/10/31.
 //  Copyright (c) 2014年 RongCloud. All rights reserved.
 //
-
 #import "RealTimeLocationViewController.h"
 #import "MBProgressHUD.h"
 #import "RCAnnotationView.h"
@@ -21,9 +20,7 @@
 - (BOOL)quitButtonPressed;
 - (BOOL)backButtonPressed;
 @end
-
 @interface HeadCollectionView : UIView
-
 @property(nonatomic, strong) UIButton *quitButton;
 @property(nonatomic, strong) UIButton *backButton;
 @property(nonatomic, assign) RCUserAvatarStyle avatarStyle;
@@ -31,21 +28,16 @@
 - (instancetype)initWithFrame:(CGRect)frame
                  participants:(NSArray *)userIds
                 touchDelegate:touchDelegate;
-
 - (instancetype)initWithFrame:(CGRect)frame
                  participants:(NSArray *)userIds
                 touchDelegate:touchDelegate
               userAvatarStyle:(RCUserAvatarStyle)avatarStyle;
-
 #pragma mark user source processing
 - (BOOL)participantJoin:(NSString *)userId;
 - (BOOL)participantQuit:(NSString *)userId;
 - (NSArray *)getParticipantsUserInfo;
-
 @end
-
 @interface HeadCollectionView ()
-
 @property(nonatomic) CGRect headViewRect;
 @property(nonatomic) CGFloat headViewSize;
 @property(nonatomic) CGFloat headViewSpace;
@@ -53,11 +45,8 @@
 @property(nonatomic, strong) UIScrollView *scrollView;
 @property(nonatomic, strong) NSMutableArray *headsView;
 @property(nonatomic, strong) NSMutableArray *rcUserInfos;
-
 @end
-
 @implementation HeadCollectionView
-
 #pragma mark init
 - (instancetype)initWithFrame:(CGRect)frame
                  participants:(NSArray *)userIds
@@ -68,15 +57,12 @@
                                      userAvatarStyle:RC_USER_AVATAR_CYCLE];
     return self;
 }
-
 - (instancetype)initWithFrame:(CGRect)frame
                  participants:(NSArray *)userIds
                 touchDelegate:touchDelegate
               userAvatarStyle:(RCUserAvatarStyle)avatarStyle {
     self = [super initWithFrame:frame];
-
     if (self) {
-
         self.headsView = [[NSMutableArray alloc] init];
         self.rcUserInfos = [[NSMutableArray alloc] init];
         self.touchDelegate = touchDelegate;
@@ -90,7 +76,6 @@
         self.headViewRect =
         CGRectMake(8 + 26 + 8, 20 + 8, frame.size.width - (8 + 26 + 8) * 2,
                    self.headViewSize);
-
         UIButton *quitButton =
         [[UIButton alloc] initWithFrame:CGRectMake(8, 41.5, 26, 26)];
         [quitButton setImage:[UIImage imageNamed:@"quit_location_share"]
@@ -99,11 +84,9 @@
                        action:@selector(onQuitButtonPressed:)
              forControlEvents:UIControlEventTouchDown];
         [self addSubview:quitButton];
-
         self.scrollView = [[UIScrollView alloc] initWithFrame:self.headViewRect];
         self.scrollView.showsHorizontalScrollIndicator = NO;
         [self addSubview:self.scrollView];
-
         UIButton *backButton = [[UIButton alloc]
                                 initWithFrame:CGRectMake(self.bounds.size.width - 8 - 26, 41.5, 26,
                                                          26)];
@@ -113,7 +96,6 @@
                        action:@selector(onBackButtonPressed:)
              forControlEvents:UIControlEventTouchDown];
         [self addSubview:backButton];
-
         self.tipLabel = [[UILabel alloc]
                          initWithFrame:CGRectMake(self.headViewRect.origin.x,
                                                   20 + self.headViewSize + 12,
@@ -122,24 +104,19 @@
         self.tipLabel.font = [UIFont boldSystemFontOfSize:13];
         [self showUserShareInfo];
         [self addSubview:self.tipLabel];
-
         for (NSString *userId in userIds) {
             [self addUser:userId showChange:NO];
         }
     }
-
     return self;
 }
-
 #pragma mark user source processing
 - (BOOL)participantJoin:(NSString *)userId {
     return [self addUser:userId showChange:YES];
 }
-
 - (BOOL)participantQuit:(NSString *)userId {
     return [self removeUser:userId showChange:YES];
 }
-
 - (BOOL)addUser:(NSString *)userId showChange:(BOOL)show {
     if (userId && [self getUserIndex:userId] < 0) {
         if ([RCIM sharedRCIM].userInfoDataSource &&
@@ -190,7 +167,6 @@
         return NO;
     }
 }
-
 - (BOOL)removeUser:(NSString *)userId showChange:(BOOL)show {
     if (userId) {
         NSInteger index = [self getUserIndex:userId];
@@ -214,7 +190,6 @@
         return NO;
     }
 }
-
 - (void)showUserChangeInfo:(NSString *)changInfo {
     self.tipLabel.text = changInfo;
     self.tipLabel.textColor = [UIColor greenColor];
@@ -224,18 +199,15 @@
                                    userInfo:nil
                                     repeats:NO];
 }
-
 - (void)showUserShareInfo {
     self.tipLabel.textColor = [UIColor whiteColor];
     self.tipLabel.text =
     [NSString stringWithFormat:@"%lu人在共享位置",
      (unsigned long)self.rcUserInfos.count];
 }
-
 - (NSArray *)getParticipantsUserInfo {
     return [self.rcUserInfos copy];
 }
-
 - (void)addHeadViewUser:(RCUserInfo *)user {
     {
         CGFloat scrollViewWidth = [self getScrollViewWidth];
@@ -246,20 +218,17 @@
                                           ofBundle:@"RongCloud.bundle"]];
         [userHead setFrame:CGRectMake(scrollViewWidth - self.headViewSize, 0,
                                       self.headViewSize, self.headViewSize)];
-
         if (self.avatarStyle == RC_USER_AVATAR_CYCLE) {
             userHead.layer.cornerRadius = self.headViewSize / 2;
             userHead.layer.masksToBounds = YES;
         }
         userHead.layer.borderWidth = 1.0f;
         userHead.layer.borderColor = [UIColor whiteColor].CGColor;
-
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                        initWithTarget:self
                                        action:@selector(onUserSelected:)];
         [userHead addGestureRecognizer:tap];
         userHead.userInteractionEnabled = YES;
-
         [self.headsView addObject:userHead];
         [self.scrollView addSubview:userHead];
         if (scrollViewWidth < self.headViewRect.size.width) {
@@ -275,18 +244,15 @@
                                    self.scrollView.frame.size.height)];
     }
 }
-
 - (void)removeHeadViewUser:(NSUInteger)index {
     CGFloat scrollViewWidth = [self getScrollViewWidth];
     UIImageView *removeUserHead = [self.headsView objectAtIndex:index];
-
     for (NSUInteger i = index + 1; i < [self.headsView count]; i++) {
         UIImageView *userHead = self.headsView[i];
         [userHead setFrame:CGRectMake(userHead.frame.origin.x - self.headViewSize -
                                       self.headViewSpace,
                                       0, self.headViewSize, self.headViewSize)];
     }
-
     [self.headsView removeObject:removeUserHead];
     [removeUserHead removeFromSuperview];
     if (scrollViewWidth < self.headViewRect.size.width) {
@@ -301,17 +267,14 @@
      setContentSize:CGSizeMake(scrollViewWidth,
                                self.scrollView.frame.size.height)];
 }
-
 - (void)onUserSelected:(UITapGestureRecognizer *)tap {
     UIImageView *selectUserHead = (UIImageView *)tap.view;
     NSUInteger index = [self.headsView indexOfObject:selectUserHead];
     RCUserInfo *user = self.rcUserInfos[index];
-
     if (self.touchDelegate) {
         [self.touchDelegate onUserSelected:user atIndex:index];
     }
 }
-
 - (NSInteger)getUserIndex:(NSString *)userId {
     for (NSUInteger index = 0; index < self.rcUserInfos.count; index++) {
         RCUserInfo *user = self.rcUserInfos[index];
@@ -319,10 +282,8 @@
             return index;
         }
     }
-
     return -1;
 }
-
 - (CGFloat)getScrollViewWidth {
     if (self.rcUserInfos && self.rcUserInfos.count > 0) {
         return self.rcUserInfos.count * self.headViewSize +
@@ -331,7 +292,6 @@
         return 0.0f;
     }
 }
-
 - (void)onQuitButtonPressed:(id)sender {
     if (self.touchDelegate) {
         [self.touchDelegate quitButtonPressed];
@@ -349,20 +309,13 @@
     NSString *bundlePath =
     [resourcePath stringByAppendingPathComponent:bundleName];
     NSString *image_path = [bundlePath stringByAppendingPathComponent:image_name];
-
     image = [[UIImage alloc] initWithContentsOfFile:image_path];
-
     return image;
 }
-
 @end
-
-@interface RealTimeLocationViewController () <
-    RCRealTimeLocationObserver, MKMapViewDelegate, HeadCollectionTouchDelegate,
-UIActionSheetDelegate, UIAlertViewDelegate>{
+@interface RealTimeLocationViewController () <RCRealTimeLocationObserver, MKMapViewDelegate, HeadCollectionTouchDelegate,UIActionSheetDelegate>{
     MBProgressHUD *hud;
 }
-
 @property(nonatomic, strong) MKMapView *mapView;
 @property(nonatomic, strong) UIView *headBackgroundView;
 @property(nonatomic, strong) NSMutableDictionary *userAnnotationDic;
@@ -371,18 +324,14 @@ UIActionSheetDelegate, UIAlertViewDelegate>{
 @property(nonatomic, assign) BOOL isFristTimeToLoad;
 @property(nonatomic, strong) HeadCollectionView *headCollectionView;
 @end
-
 @implementation RealTimeLocationViewController
-
 - (instancetype)init {
   if (self = [super init]) {
   }
   return self;
 }
-
 - (void)viewDidLoad {
   [super viewDidLoad];
-
   _isFristTimeToLoad = YES;
   self.userAnnotationDic = [[NSMutableDictionary alloc] init];
   self.mapView = [[MKMapView alloc]
@@ -409,25 +358,20 @@ UIActionSheetDelegate, UIAlertViewDelegate>{
   UITapGestureRecognizer *gpsImgTap = [[UITapGestureRecognizer alloc]
       initWithTarget:self
               action:@selector(tapGpsImgEvent:)];
-
   [gpsImg addGestureRecognizer:gpsImgTap];
   CLLocation *currentLocation = [self.realTimeLocationProxy
       getLocation:[RCIMClient sharedRCIMClient].currentUserInfo.userId];
   if (currentLocation) {
     __weak RealTimeLocationViewController *weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
-      [weakSelf onReceiveLocation:currentLocation
-                       fromUserId:[RCIMClient sharedRCIMClient]
-                                      .currentUserInfo.userId];
+        [weakSelf onReceiveLocation:currentLocation type:RCRealTimeLocationTypeWGS84 fromUserId:[RCIMClient sharedRCIMClient].currentUserInfo.userId];
     });
   }
-
   hud = [MBProgressHUD showHUDAddedTo:self.mapView animated:YES];
   hud.color = [UIColor colorWithRGBHex:0x343637];
   hud.labelText = @"定位中...";
   [hud show:YES];
 }
-
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
   [self.realTimeLocationProxy addRealTimeLocationObserver:self];
@@ -443,7 +387,6 @@ UIActionSheetDelegate, UIAlertViewDelegate>{
   [super viewWillDisappear:animated];
   [self.realTimeLocationProxy removeRealTimeLocationObserver:self];
 }
-
 - (void)tapGpsImgEvent:(UIGestureRecognizer *)gestureRecognizer {
   [self
       onSelectUserLocationWithUserId:[RCIM sharedRCIM].currentUserInfo.userId];
@@ -451,31 +394,28 @@ UIActionSheetDelegate, UIAlertViewDelegate>{
 - (void)onUserSelected:(RCUserInfo *)user atIndex:(NSUInteger)index {
   [self onSelectUserLocationWithUserId:user.userId];
 }
-
 - (BOOL)quitButtonPressed {
-  UIActionSheet *actionSheet =
-      [[UIActionSheet alloc] initWithTitle:@"是否结束位置共享？"
-                                  delegate:self
-                         cancelButtonTitle:@"取消"
-                    destructiveButtonTitle:@"结束"
-                         otherButtonTitles:nil];
-  [actionSheet showInView:self.view];
+    [self showAlerWithtitle:@"是否结束位置共享？" message:nil style:UIAlertControllerStyleActionSheet ac1:^UIAlertAction *{
+        return [UIAlertAction actionWithTitle:@"结束" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            __weak typeof(&*self) __weakself = self;
+            [self dismissViewControllerAnimated:YES completion:^{
+                 [__weakself.realTimeLocationProxy quitRealTimeLocation];
+             }];
+        }];
+    } ac2:^UIAlertAction *{
+        return [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+    } ac3:nil completion:nil];
   return YES;
 }
-
 - (BOOL)backButtonPressed {
-  [self dismissViewControllerAnimated:YES
-                           completion:^{
-                           }];
+  [self dismissViewControllerAnimated:YES completion:^{ }];
   return YES;
 }
-
 - (void)setRealTimeLocationProxy:
     (id<RCRealTimeLocationProxy>)realTimeLocationProxy {
   _realTimeLocationProxy = realTimeLocationProxy;
   [_realTimeLocationProxy addRealTimeLocationObserver:self];
 }
-
 #pragma mark - RCRealTimeLocationObserver
 - (void)onRealTimeLocationStatusChange:(RCRealTimeLocationStatus)status {
   if ([self.realTimeLocationProxy getStatus] ==
@@ -523,7 +463,6 @@ UIActionSheetDelegate, UIAlertViewDelegate>{
     RCAnnotation *ann = [[RCAnnotation alloc] initWithThumbnail:annotatonView];
     [self.mapView addAnnotation:ann];
     [self.userAnnotationDic setObject:ann forKey:userId];
-
     if ([RCIM sharedRCIM].userInfoDataSource &&
         [[RCIM sharedRCIM]
                 .userInfoDataSource
@@ -540,7 +479,6 @@ UIActionSheetDelegate, UIAlertViewDelegate>{
                                                                  userId]
                                    portrait:nil];
                        }
-
                        dispatch_async(dispatch_get_main_queue(), ^{
                          RCAnnotation *annotaton = [__weakself.userAnnotationDic
                              objectForKey:userInfo.userId];
@@ -556,7 +494,6 @@ UIActionSheetDelegate, UIAlertViewDelegate>{
                        });
                      }];
     }
-
   } else {
     //            if ([RCIM sharedRCIM].userInfoDataSource && [[RCIM
     //            sharedRCIM].userInfoDataSource
@@ -588,7 +525,6 @@ UIActionSheetDelegate, UIAlertViewDelegate>{
     //            }
   }
 }
-
 - (void)onParticipantsJoin:(NSString *)userId {
   RCAnnotation *annotaton = [self.userAnnotationDic objectForKey:userId];
   __weak typeof(&*self) __weakself = self;
@@ -602,7 +538,6 @@ UIActionSheetDelegate, UIAlertViewDelegate>{
     }
     [self.mapView addAnnotation:ann];
     [self.userAnnotationDic setObject:ann forKey:userId];
-
     if ([RCIM sharedRCIM].userInfoDataSource &&
         [[RCIM sharedRCIM]
                 .userInfoDataSource
@@ -625,19 +560,16 @@ UIActionSheetDelegate, UIAlertViewDelegate>{
                          annotaton.thumbnail.imageurl = userInfo.portraitUri;
                          [annotaton updateThumbnail:annotaton.thumbnail
                                            animated:YES];
-
                        });
                      }];
     }
   }
-
   if (self.headCollectionView) {
     dispatch_async(dispatch_get_main_queue(), ^{
       [__weakself.headCollectionView participantJoin:userId];
     });
   }
 }
-
 - (void)onParticipantsQuit:(NSString *)userId {
   __weak typeof(&*self) __weakself = self;
   if (self.headCollectionView) {
@@ -645,7 +577,6 @@ UIActionSheetDelegate, UIAlertViewDelegate>{
       [__weakself.headCollectionView participantQuit:userId];
     });
   }
-
   RCAnnotation *annotaton = [self.userAnnotationDic objectForKey:userId];
   if (annotaton) {
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -653,7 +584,6 @@ UIActionSheetDelegate, UIAlertViewDelegate>{
       [__weakself.mapView removeAnnotation:annotaton];
     });
   }
-
   if ([self.realTimeLocationProxy getStatus] ==
           RC_REAL_TIME_LOCATION_STATUS_INCOMING ||
       [self.realTimeLocationProxy getStatus] ==
@@ -665,13 +595,11 @@ UIActionSheetDelegate, UIAlertViewDelegate>{
     });
   }
 }
-
 - (void)onFailUpdateLocation:(NSString *)description {
   dispatch_async(dispatch_get_main_queue(), ^{
     [hud hide:YES];
   });
 }
-
 //选择用户时以用户坐标为中心
 - (void)onSelectUserLocationWithUserId:(NSString *)userId {
   __weak typeof(&*self) __weakself = self;
@@ -683,13 +611,10 @@ UIActionSheetDelegate, UIAlertViewDelegate>{
       [__weakself.mapView setCenterCoordinate:annotaton.coordinate
                                      animated:YES];
       [__weakself.mapView selectAnnotation:annotaton animated:YES];
-
     });
   }
 }
-
 #pragma mark - MKMapViewDelegate
-
 - (void)mapView:(MKMapView *)mapView
     didSelectAnnotationView:(MKAnnotationView *)view {
   if ([view conformsToProtocol:@protocol(RCAnnotationViewProtocol)]) {
@@ -697,7 +622,6 @@ UIActionSheetDelegate, UIAlertViewDelegate>{
         didSelectAnnotationViewInMap:mapView];
   }
 }
-
 - (void)mapView:(MKMapView *)mapView
     didDeselectAnnotationView:(MKAnnotationView *)view {
   if ([view conformsToProtocol:@protocol(RCAnnotationViewProtocol)]) {
@@ -705,7 +629,6 @@ UIActionSheetDelegate, UIAlertViewDelegate>{
         didDeselectAnnotationViewInMap:mapView];
   }
 }
-
 - (MKAnnotationView *)mapView:(MKMapView *)mapView
             viewForAnnotation:(id<MKAnnotation>)annotation {
   if ([annotation conformsToProtocol:@protocol(RCAnnotationProtocol)]) {
@@ -715,51 +638,11 @@ UIActionSheetDelegate, UIAlertViewDelegate>{
   }
   return nil;
 }
-
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
   self.theRegion = mapView.region;
 }
-- (void)actionSheet:(UIActionSheet *)actionSheet
-    clickedButtonAtIndex:(NSInteger)buttonIndex {
-  switch (buttonIndex) {
-  case 0: {
-    __weak typeof(&*self) __weakself = self;
-    [self dismissViewControllerAnimated:YES
-                             completion:^{
-                               [__weakself.realTimeLocationProxy
-                                       quitRealTimeLocation];
-                             }];
-
-  } break;
-  }
-}
-
-- (void)willPresentActionSheet:(UIActionSheet *)actionSheet {
-  SEL selector = NSSelectorFromString(@"_alertController");
-
-  if ([actionSheet respondsToSelector:selector]) {
-    UIAlertController *alertController =
-        [actionSheet valueForKey:@"_alertController"];
-    if ([alertController isKindOfClass:[UIAlertController class]]) {
-      alertController.view.tintColor = [UIColor colorWithWhite:0 alpha:0.6];
-    }
-  } else {
-    for (UIView *subView in actionSheet.subviews) {
-      if ([subView isKindOfClass:[UIButton class]]) {
-        UIButton *btn = (UIButton *)subView;
-          if ([btn.titleLabel.text isEqualToString:@"结束"]) {
-              [btn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-          } else {
-              [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-          }
-      }
-    }
-  }
-}
-
 - (void)dealloc {
   //  [self.realTimeLocationProxy removeRealTimeLocationObserver:self];
   NSLog(@"dealloc");
 }
-
 @end

@@ -1,7 +1,6 @@
 //
 //  JFClassifyViewController.swift
 //  Freedom
-
 import UIKit
 import BaseFile
 import XExtension
@@ -41,7 +40,6 @@ class IqiyiClassifyCell: UITableViewCell {
         textLabel?.text = classifyModel?.image_at_top
     }
 }
-
 class TEMPBASEC:BaseTableViewCell{
     override func initUI() {
         self.icon = UIImageView(frame: CGRect(x:0, y:0, width:0, height:120))
@@ -63,15 +61,12 @@ class IqiyiClassifyViewController: IqiyiBaseViewController {
         tableView.separatorInset = UIEdgeInsets.zero
         view.addSubview(tableView)
         tableView.mj_header = MJRefreshNormalHeader(refreshingBlock: {() -> Void in
-
         })
         tableView.mj_header.beginRefreshing()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
             return dataSource.count
-
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -93,6 +88,4 @@ class IqiyiClassifyViewController: IqiyiBaseViewController {
         webVC.urlStr = TestWebURL
         navigationController?.pushViewController(webVC, animated: true)
     }
-
-
 }

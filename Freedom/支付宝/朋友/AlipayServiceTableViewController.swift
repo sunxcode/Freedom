@@ -1,7 +1,6 @@
 //
 //  SDServiceTableViewController.swift
 //  Freedom
-
 import UIKit
 import BaseFile
 import XExtension
@@ -56,7 +55,6 @@ class AlipayServiceTableViewHeader : UIView,UITextFieldDelegate{
         textField.addSubview(textFieldPlaceholderLabel)
         
     }
-
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

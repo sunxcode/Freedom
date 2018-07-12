@@ -1,7 +1,6 @@
 //
 //  JFSubscribeViewController.swift
 //  Freedom
-
 import UIKit
 import BaseFile
 import XExtension
@@ -26,7 +25,6 @@ class IqiyiSubItemModel: NSObject {
     var type = ""
     var uid: NSNumber?
 }
-
 class IqiyiSubscribeModel: NSObject {
     var video_count: NSNumber?
     var des = ""
@@ -42,13 +40,11 @@ class IqiyiSubscribeModel: NSObject {
 protocol IqiyiSubScribeCardViewDelegate: NSObjectProtocol {
     func didSelectSubImageCard(_ subImageCard: IqiyiSubScribeCardView?, subItem: IqiyiSubItemModel?)
 }
-
 class IqiyiSubImageScrollView: UIView {
     weak var delegate: IqiyiSubScribeCardViewDelegate?
     var scrollView: UIScrollView?
     var dataArray = [Any]()
 }
-
 class IqiyiSubScribeCardView: UIView {
     var imageView: UIImageView?
     var titleLabel: UILabel?
@@ -73,7 +69,8 @@ class IqiyiSubScribeCardView: UIView {
         if let aLabel = titleLabel {
             addSubview(aLabel)
         }
-        let tap = UITapGestureRecognizer(target: self, action: Selector("TapImageCard:"))
+        let tap = UITapGestureRecognizer(target: self, action:#selector(self.tapImageCard(_:)))
+        print(tap);
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -84,10 +81,9 @@ class IqiyiSubScribeCardView: UIView {
         imageView?.sd_setImage(with: URL(string: subItem?.picurl ?? ""), placeholderImage: UIImage(named: "rec_holder"))
         titleLabel?.text = subItem?.title
     }
-    func tapImageCard(_ sender: UITapGestureRecognizer?) {
+    @objc func tapImageCard(_ sender: UITapGestureRecognizer?) {
     }
 }
-
 class IqiyiSubscribeCell:BaseTableViewCell{
     override func initUI() {
         let backview = UIView(frame: CGRect(x: 0, y: 0, width: APPW, height: 210))
@@ -128,7 +124,6 @@ class IqiyiSubscribeCell:BaseTableViewCell{
 //        }
 //        scrollV.dataArray = items
     }
-
 }
 class IqiyiSubscribeScrollView: UIScrollView {
     var dataArray: [Any]?
@@ -149,7 +144,6 @@ class IqiyiSubscribeScrollView: UIScrollView {
 //            card.delegate = self
         }
     }
-
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -164,9 +158,7 @@ class IqiyiSubscribeScrollView: UIScrollView {
     
     func didSelectSubImageCard(_ subImageCard: IqiyiSubScribeCardView?, subItem: IqiyiSubItemModel?) {
     }
-
 }
-
 class IqiyiSubscribeViewController: IqiyiBaseViewController {
     var subscribeTableView : UITableView!
     var dataSource = [AnyHashable]()
@@ -213,18 +205,13 @@ class IqiyiSubscribeViewController: IqiyiBaseViewController {
         }
 //        cell?.delegate = self
         let subM = dataSource[indexPath.row] as? IqiyiSubscribeModel
-        if let aCell = cell {
-            return aCell
-        }
-        return UITableViewCell()
+        print(String(describing:subM!))
+        return cell!
     }
-
     func didSelect(_ subCell: IqiyiSubscribeCell?, subItem: IqiyiSubItemModel?) {
         let videoDetailVC = IqiyiVideoDetailViewController()
         videoDetailVC.iid = (subItem?.code)!
         navigationController?.pushViewController(videoDetailVC, animated: true)
     }
-
     
-
 }

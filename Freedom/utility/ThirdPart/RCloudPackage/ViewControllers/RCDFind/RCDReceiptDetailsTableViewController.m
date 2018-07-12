@@ -5,78 +5,44 @@
 //  Created by Jue on 16/9/22.
 //  Copyright © 2016年 RongCloud. All rights reserved.
 //
-
 #import "RCDReceiptDetailsTableViewController.h"
 #import <RongIMKit/RongIMKit.h>
 #import "RCDataBaseManager.h"
-
 #import "RCDPersonDetailViewController.h"
 #import "RCDAddFriendViewController.h"
 #import "RCDConversationSettingBaseViewController.h"
 #import "RCDataBaseManager.h"
 #import <RongIMKit/RongIMKit.h>
-
 #import "RCDHttpTool.h"
-/*!
- 用户信息提供者
-
- @discussion SDK需要通过您实现的用户信息提供者，获取用户信息并显示。
- */
+/*!用户信息提供者@discussion SDK需要通过您实现的用户信息提供者，获取用户信息并显示。*/
 @protocol RCDReceiptDetailsCellDelegate <NSObject>
-
 @optional
-
 - (void)clickHasReadButton;
-
 - (void)clickUnreadButton;
-
 - (void)clickPortrait:(NSString *)userId;
-
 @end
-
 @interface RCDReceiptDetailsTableViewCell : UITableViewCell
-
 @property(nonatomic, strong)NSArray *userList;
-
 @property(nonatomic, strong)NSArray *groupMemberList;
-
 @property(nonatomic, weak) id<RCDReceiptDetailsCellDelegate> delegate;
-
 @property(nonatomic, assign)BOOL displayHasreadUsers;
-
 @property(nonatomic, assign)NSUInteger hasReadUsersCount;
-
 @property(nonatomic, assign)NSUInteger unreadUsersCount;
-
 @property(nonatomic, assign)CGFloat cellHeight;
-
 @end
-
 @interface RCDReceiptDetailsTableViewCell()<UICollectionViewDataSource,
 UICollectionViewDelegate>
-
 @property(nonatomic, strong) NSDictionary *CellSubviews;
-
 @property(nonatomic, strong) UIView *verticalLine;
-
 @property(nonatomic, strong) UIButton *hasReadButton;
-
 @property(nonatomic, strong) UIButton *unReadButton;
-
 @property(nonatomic, strong) UIView *line;
-
 @property(nonatomic, strong) UIView *leftSelectLine;
-
 @property(nonatomic, strong) UIView *rightSelectLine;
-
 @property(nonatomic, strong) UICollectionView *userListView;
-
 @property(nonatomic, strong) NSMutableArray *collectionViewResource;
-
 @end
-
 @implementation RCDReceiptDetailsTableViewCell
-
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
@@ -84,47 +50,33 @@ UICollectionViewDelegate>
     }
     return self;
 }
-
 - (void)initialize{
     self.collectionViewResource = [NSMutableArray new];
-
     self.verticalLine = [self createLine:[UIColor colorWithRGBHex:0xdfdfdf]];
     [self.contentView addSubview:self.verticalLine];
-
     self.hasReadButton = [self createButton:[NSString stringWithFormat:@"%lu人已读",(unsigned long)self.userList.count]];
-    [self.hasReadButton addTarget:self
-                           action:@selector(clickHasReadButton:)
-                 forControlEvents:UIControlEventTouchUpInside];
+    [self.hasReadButton addTarget:self action:@selector(clickHasReadButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:self.hasReadButton];
     self.hasReadButton.selected = YES;
-
     self.leftSelectLine = [self createLine:[UIColor colorWithRGBHex:0x0099ff]];
     [self.hasReadButton addSubview:self.leftSelectLine];
-
     self.unReadButton = [self createButton:@"0人未读"];
-    [self.unReadButton addTarget:self
-                          action:@selector(clickUnreadButton:)
-                forControlEvents:UIControlEventTouchUpInside];
+    [self.unReadButton addTarget:self action:@selector(clickUnreadButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:self.unReadButton];
-
     self.rightSelectLine = [self createLine:[UIColor colorWithRGBHex:0x0099ff]];
     [self.unReadButton addSubview:self.rightSelectLine];
     self.rightSelectLine.hidden = YES;
-
     self.line = [self createLine:[UIColor colorWithRGBHex:0xdfdfdf]];
     [self.contentView addSubview:self.line];
-
-    self.CellSubviews = NSDictionaryOfVariableBindings(_verticalLine, _hasReadButton, _unReadButton, _line);
+    self.CellSubviews = NSDictionaryOfVariableBindings(_verticalLine, _hasReadButton,_unReadButton, _line);
     [self setAutoLayout];
 }
-
 - (UIView *)createLine:(UIColor *)lineColor {
     UIView *line = [[UIView alloc] initWithFrame:CGRectZero];
     line.backgroundColor = lineColor;
     line.translatesAutoresizingMaskIntoConstraints = NO;
     return line;
 }
-
 - (UIButton *)createButton:(NSString *)buttonTitle {
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectZero];
     UIColor *normalColor = [UIColor colorWithRGBHex:0x000000];
@@ -136,7 +88,6 @@ UICollectionViewDelegate>
     button.translatesAutoresizingMaskIntoConstraints = NO;
     return button;
 }
-
 - (void)setAutoLayout {
     [self.contentView
      addConstraints:[NSLayoutConstraint
@@ -152,7 +103,6 @@ UICollectionViewDelegate>
                      options:0
                      metrics:nil
                      views:self.CellSubviews]];
-
     [self.contentView
      addConstraint:[NSLayoutConstraint constraintWithItem:_verticalLine
                                                 attribute:NSLayoutAttributeCenterY
@@ -187,7 +137,6 @@ UICollectionViewDelegate>
                      options:0
                      metrics:nil
                      views:self.CellSubviews]];
-
     [self.hasReadButton
      addConstraints:[NSLayoutConstraint
                      constraintsWithVisualFormat:@"H:|[_leftSelectLine]|"
@@ -213,18 +162,6 @@ UICollectionViewDelegate>
                      metrics:nil
                      views:NSDictionaryOfVariableBindings(_leftSelectLine, _rightSelectLine)]];
 }
-
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
-
 - (void)clickHasReadButton:(UIButton *)button {
     if (button.selected == YES) {
         return;
@@ -232,7 +169,6 @@ UICollectionViewDelegate>
     button.selected = !button.selected;
     [self.delegate clickHasReadButton];
 }
-
 - (void)clickUnreadButton:(UIButton *)button {
     if (button.selected == YES) {
         return;
@@ -240,7 +176,6 @@ UICollectionViewDelegate>
     button.selected = !button.selected;
     [self.delegate clickUnreadButton];
 }
-
 - (void)setUserList:(NSArray *)userList {
     _userList = userList;
     for (NSString *userId in userList) {
@@ -252,25 +187,20 @@ UICollectionViewDelegate>
     }
     if (self.collectionViewResource.count == userList.count) {
         //cell的高度 - button的高度 - 蓝色线的高度 = collectionView的高度
-        CGRect tempRect = CGRectMake(
-                                     0, 44.5, APPW,self.cellHeight - 44 - 1);
+        CGRect tempRect = CGRectMake(0, 44.5, APPW,self.cellHeight - 44 - 1);
         UICollectionViewFlowLayout *flowLayout =
         [[UICollectionViewFlowLayout alloc] init];
         flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
-        self.userListView = [[UICollectionView alloc] initWithFrame:tempRect
-                                               collectionViewLayout:flowLayout];
+        self.userListView = [[UICollectionView alloc] initWithFrame:tempRect collectionViewLayout:flowLayout];
         self.userListView.delegate = self;
         self.userListView.dataSource = self;
         self.userListView.scrollEnabled = YES;
         self.userListView.backgroundColor = [UIColor whiteColor];
         [self.contentView addSubview:self.userListView];
-        [self.userListView registerClass:[RCDConversationSettingTableViewHeaderItem class]
-              forCellWithReuseIdentifier:@"RCDConversationSettingTableViewHeaderItem"];
+        [self.userListView registerClass:[RCDConversationSettingTableViewHeaderItem class] forCellWithReuseIdentifier:@"RCDConversationSettingTableViewHeaderItem"];
         [self.userListView reloadData];
-
     }
 }
-
 - (void)setDisplayHasreadUsers:(BOOL)displayHasreadUsers {
     if (displayHasreadUsers == YES) {
         self.leftSelectLine.hidden = NO;
@@ -284,56 +214,39 @@ UICollectionViewDelegate>
         self.unReadButton.selected = YES;
     }
 }
-
 - (void)setHasReadUsersCount:(NSUInteger)hasReadUsersCount {
     [self.hasReadButton setTitle:[NSString stringWithFormat:@"%lu人已读",(unsigned long)hasReadUsersCount] forState:UIControlStateNormal];
 }
-
 - (void)setUnreadUsersCount:(NSUInteger)unreadUsersCount {
     [self.unReadButton setTitle:[NSString stringWithFormat:@"%lu人未读",(unsigned long)unreadUsersCount] forState:UIControlStateNormal];
 }
 #pragma mark - UICollectionViewDelegateFlowLayout
-- (CGSize)collectionView:(UICollectionView *)collectionView
-                  layout:(UICollectionViewLayout *)collectionViewLayout
-  sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     float width = 55;
     float height = width + 15 + 9;
-
     return CGSizeMake(width, height);
 }
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
-{
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
     return 12;
 }
-
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView
-                        layout:(UICollectionViewLayout *)collectionViewLayout
-        insetForSectionAtIndex:(NSInteger)section {
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     UICollectionViewFlowLayout *flowLayout =
     (UICollectionViewFlowLayout *)collectionViewLayout;
     flowLayout.minimumInteritemSpacing = 20;
     flowLayout.minimumLineSpacing = 12;
     return UIEdgeInsetsMake(15, 10, 10, 10);
 }
-
 #pragma mark - UICollectionViewDataSource
-- (NSInteger)collectionView:(UICollectionView *)collectionView
-     numberOfItemsInSection:(NSInteger)section {
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return [self.collectionViewResource count];
-
 }
-
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     RCDConversationSettingTableViewHeaderItem *cell =
     [collectionView dequeueReusableCellWithReuseIdentifier:
-     @"RCDConversationSettingTableViewHeaderItem"
-                                              forIndexPath:indexPath];
-
+     @"RCDConversationSettingTableViewHeaderItem" forIndexPath:indexPath];
     if (self.collectionViewResource.count > 0) {
         RCUserInfo *user = self.collectionViewResource[indexPath.row];
-        if ([user.userId isEqualToString:[RCIMClient sharedRCIMClient]
-             .currentUserInfo.userId]) {
+        if ([user.userId isEqualToString:[RCIMClient sharedRCIMClient].currentUserInfo.userId]) {
             [cell.btnImg setHidden:YES];
         }
         [cell setUserModel:user];
@@ -341,95 +254,54 @@ UICollectionViewDelegate>
     cell.ivAva.contentMode = UIViewContentModeScaleAspectFill;
     return cell;
 }
-
-- (void)collectionView:(UICollectionView *)collectionView
-didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [self.delegate clickPortrait:[_userList objectAtIndex:indexPath.row]];
 }
-
 @end
-
 @interface RCDReceiptDetailsTableViewController ()<RCDReceiptDetailsCellDelegate>
-
 @property (nonatomic, strong) UIView *headerView;
-
 @property (nonatomic, strong) UILabel *nameLabel;
-
 @property (nonatomic, strong) UILabel *timeLabel;
-
 @property (nonatomic, strong) UILabel *messageContentLabel;
-
 @property (nonatomic, strong) UIButton *openAndCloseButton;
-
 @property (nonatomic, strong) NSDictionary *headerSubViews;
-
 @property(nonatomic, strong) NSArray *MessageContentLabelConstraints;
-
 @property(nonatomic, assign) CGFloat labelHeight;
-
 @property(nonatomic, strong) NSArray *displayUserList;
-
 @property(nonatomic, strong) NSArray *UnreadUserList;
-
 @property(nonatomic, strong) NSArray *groupMemberList;
-
 @property(nonatomic, assign) BOOL displayHasreadUsers;
-
 @property(nonatomic, assign) CGFloat headerViewHeight;
-
 @property(nonatomic, assign) CGFloat cellHeight;
-
 //避免重复点击同一个按钮导致的重复刷新
 @property(nonatomic, assign) NSInteger selectedButton;
-
-
 @end
-
 @implementation RCDReceiptDetailsTableViewController
-
 - (void)viewDidLoad {
   [super viewDidLoad];
-  
   self.navigationItem.title = @"回执详情";
-
     UIButton *buttonItem = [[UIButton alloc]initWithFrame:CGRectMake(0, 6, 87, 23)];
     [buttonItem setImage:[UIImage imageNamed:@"navigator_btn_back"] forState:UIControlStateNormal];
     [buttonItem setTitle:@"返回" forState:UIControlStateNormal];
     [buttonItem setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [buttonItem addTarget:self action:@selector(clickBackBtn) forControlEvents:UIControlEventTouchUpInside];
-
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:buttonItem];
-  
   [self setHeaderView];
-  
   self.displayUserList = self.hasReadUserList;
   self.UnreadUserList = [self getUnreadUserList];
   [self.tableView reloadData];
-  
   self.displayHasreadUsers = YES;
-  
   self.tableView.tableFooterView = [UIView new];
   self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-  
   //默认选中左边的按钮
   self.selectedButton = 0;
-
   self.cellHeight = 0;
-  
   self.tableView.scrollEnabled = NO;
 }
-
-- (void)didReceiveMemoryWarning {
-  [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 #pragma mark - Table view data source
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
   return 1;
 }
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
   if (self.cellHeight == 0 && self.headerViewHeight > 0) {
     //屏幕的高度 - sectionHeader的高度 - 导航栏的高度 = cell的高度
@@ -440,12 +312,9 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
   return 15;
 }
-
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   static NSString *reusableCellWithIdentifier = @"RCDReceiptDetailsTableViewCell";
-  RCDReceiptDetailsTableViewCell *cell = [self.tableView
-                                   dequeueReusableCellWithIdentifier:reusableCellWithIdentifier];
+  RCDReceiptDetailsTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:reusableCellWithIdentifier];
   if (cell == nil) {
     cell = [[RCDReceiptDetailsTableViewCell alloc] init];
   }
@@ -459,50 +328,37 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   cell.unreadUsersCount = self.UnreadUserList.count;
   return cell;
 }
-
 #pragma mark setHeaderView
 - (void)setHeaderView {
   self.headerView = [[UIView alloc] initWithFrame:CGRectZero];
-  
   self.nameLabel = [[UILabel alloc] initWithFrame:CGRectZero];
   self.nameLabel.font = [UIFont systemFontOfSize:16.f];
   self.nameLabel.textColor =[UIColor colorWithRGBHex:0x000000];
-
   self.nameLabel.text = [RCIM sharedRCIM].currentUserInfo.name;
   self.nameLabel.translatesAutoresizingMaskIntoConstraints = NO;
   [self.headerView addSubview:self.nameLabel];
-  
   self.timeLabel = [[UILabel alloc] initWithFrame:CGRectZero];
   self.timeLabel.font = [UIFont systemFontOfSize:14.f];
   self.timeLabel.textColor =[UIColor colorWithRGBHex:0x999999];
-
   self.timeLabel.text = self.messageSendTime;
   self.timeLabel.translatesAutoresizingMaskIntoConstraints = NO;
   [self.headerView addSubview:self.timeLabel];
-  
   self.messageContentLabel = [[UILabel alloc] initWithFrame:CGRectZero];
   self.messageContentLabel.font = [UIFont systemFontOfSize:16.f];
   self.messageContentLabel.textColor =[UIColor colorWithRGBHex:0x000000];
-
   self.messageContentLabel.text = self.messageContent;
   self.messageContentLabel.numberOfLines = 4;
   self.messageContentLabel.translatesAutoresizingMaskIntoConstraints = NO;
   [self.headerView addSubview:self.messageContentLabel];
-  
   self.openAndCloseButton = [[UIButton alloc] initWithFrame:CGRectZero];
   [self.openAndCloseButton setImage:[UIImage imageNamed:@"open"] forState:UIControlStateNormal];
   [self.openAndCloseButton setImage:[UIImage imageNamed:@"close"] forState:UIControlStateSelected];
-  [self.openAndCloseButton addTarget:self
-                              action:@selector(openAndCloseMessageContentLabel:)
-                    forControlEvents:UIControlEventTouchUpInside];
+  [self.openAndCloseButton addTarget:self action:@selector(openAndCloseMessageContentLabel:) forControlEvents:UIControlEventTouchUpInside];
   self.openAndCloseButton.translatesAutoresizingMaskIntoConstraints = NO;
   [self.headerView addSubview:self.openAndCloseButton];
-
   self.headerSubViews = NSDictionaryOfVariableBindings(_nameLabel, _timeLabel, _messageContentLabel, _openAndCloseButton);
-  
   [self setHeaderViewAutolayout];
 }
-
 -(void)setHeaderViewAutolayout {
   self.headerView.frame = CGRectMake(0, 0, self.tableView.frame.size.width, self.headerViewHeight);
   [self.headerView
@@ -529,7 +385,6 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   NSUInteger lines = [self numberOfRowsInLabel:self.messageContentLabel];
   if (lines <= 4) {
     self.openAndCloseButton.hidden = YES;
-
     self.MessageContentLabelConstraints = [NSLayoutConstraint
                                       constraintsWithVisualFormat:@"V:|-7.5-[_nameLabel(21)]-7-[_messageContentLabel]"
                                       options:0
@@ -537,7 +392,6 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
                                       views:self.headerSubViews];
     
     [self commitSetAutoLayout];
-    
     self.headerViewHeight = 47 + [self.messageContentLabel sizeThatFits:CGSizeMake(self.messageContentLabel.frame.size.width, MAXFLOAT)].height;
     self.headerView.frame = CGRectMake(0, 0, self.tableView.frame.size.width, self.headerViewHeight);
     self.tableView.tableHeaderView = self.headerView;
@@ -569,7 +423,6 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
                                              multiplier:1
                                                constant:0]];
 }
-
 - (void)openAndCloseMessageContentLabel:(id)sender {
   UIButton *button = (UIButton *)sender;
   [button setSelected: !button.selected];
@@ -586,7 +439,6 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     self.tableView.scrollEnabled = NO;
   }
 }
-
 - (NSInteger)numberOfRowsInLabel:(UILabel *)label {
   CGFloat labelWidth = self.tableView.frame.size.width - 20;
   NSDictionary *attrs = @{NSFontAttributeName : label.font};
@@ -597,18 +449,15 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   NSInteger lineCount = textH / lineHeight;
   return lineCount;
 }
-
 - (void)commitSetAutoLayout {
   [self.headerView addConstraints:self.MessageContentLabelConstraints];
   [self.headerView setNeedsUpdateConstraints];
   [self.headerView updateConstraintsIfNeeded];
   [self.headerView layoutIfNeeded];
 }
-
 - (void)clickBackBtn {
   [self.navigationController popViewControllerAnimated:YES];
 }
-
 - (void)clickHasReadButton {
   if (self.selectedButton != 0) {
     self.selectedButton = 0;
@@ -617,7 +466,6 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [self refreshCell];
   }
 }
-
 - (void)clickUnreadButton {
   if (self.selectedButton != 1) {
     self.selectedButton = 1;
@@ -626,7 +474,6 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [self refreshCell];
   }
 }
-
 - (void)clickPortrait:(NSString *)userId {
   RCDUserInfo *user = [[RCDataBaseManager shareInstance] getFriendInfo:userId];
   if (user != nil) {
@@ -643,12 +490,10 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     }
   }
 }
-
 - (void)refreshCell {
   NSIndexPath *indexPath=[NSIndexPath indexPathForRow:0 inSection:0];
   [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
 }
-
 - (NSArray *)getUnreadUserList {
   NSArray *UserList;
   NSArray *allUsers = [[RCDataBaseManager shareInstance] getGroupMember:self.targetId];
@@ -664,5 +509,4 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   UserList = [UserList filteredArrayUsingPredicate:filterPredicate];
   return UserList;
 }
-
 @end

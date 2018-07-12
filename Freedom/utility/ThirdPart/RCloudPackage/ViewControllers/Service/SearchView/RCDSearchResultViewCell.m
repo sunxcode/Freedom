@@ -5,7 +5,6 @@
 //  Created by 张改红 on 16/9/8.
 //  Copyright © 2016年 RongCloud. All rights reserved.
 //
-
 #import "RCDSearchResultViewCell.h"
 #import "UIImageView+WebCache.h"
 #import "RCloudModel.h"
@@ -18,13 +17,10 @@
     if (![string isEqualToString:textString]) {
         range = [self getRange:highlightedText inText:string];
     }
-
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:string];
-
     [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRGBHex:0x0099ff] range:range];
     self.attributedText = attributedString.copy;
 }
-
 - (NSRange)getRange:(NSString *)searchText inText:(NSString *)text{
     NSRange range = NSMakeRange(0, 0);
     NSString *twoStr = [[searchText stringByReplacingOccurrencesOfString:@" "  withString:@""] lowercaseString];
@@ -38,7 +34,6 @@
     }
     return range;
 }
-
 - (NSString *)isBeyond:(NSString *)text range:(NSRange)range{
     NSString *string = nil;
     if (range.location + range.length < 16) {
@@ -57,21 +52,17 @@
     }
     return string;
 }
-
 -(NSString *)relaceEnterBySpace:(NSString *)originalString{
     NSString *string = [originalString stringByReplacingOccurrencesOfString:@"\r\n" withString:@" "];
     string = [string stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
     string = [string stringByReplacingOccurrencesOfString:@"\r" withString:@" "];
     return string;
 }
-
 @end
-
 @interface RCDSearchResultViewCell()
 @property (nonatomic,strong)UILabel *otherLabel;
 @property (nonatomic,strong)UILabel *timeLabel;
 @end
-
 @implementation RCDSearchResultViewCell
 - (instancetype)initWithStyle:(UITableViewCellStyle)style
               reuseIdentifier:(NSString *)reuseIdentifier {
@@ -83,7 +74,6 @@
   
   return self;
 }
-
 - (void)setDataModel:(RCDSearchResultModel *)model{
   float namelLabelWidth = APPW-20-48-9.5;
   if (model.time) {
@@ -159,14 +149,12 @@
       firstCharacterLabel.textAlignment = NSTextAlignmentCenter;
       firstCharacterLabel.font = [UIFont systemFontOfSize:50];
       [defaultPortrait addSubview:firstCharacterLabel];
-
     UIImage *portrait = [defaultPortrait imageFromView];
     self.headerView.image = portrait;
   } else {
     [self.headerView sd_setImageWithURL:[NSURL URLWithString:model.portraitUri] placeholderImage:[FreedomTools imageNamed:@"default_portrait_msg" ofBundle:@"RongCloud.bundle"]];
   }
 }
-
 - (void)loadView{
   self.headerView = [[UIImageView alloc] initWithFrame:CGRectMake(10, (65-48)/2, 48, 48)];
   self.headerView.layer.cornerRadius = 4;
@@ -187,7 +175,6 @@
   self.otherLabel = [[UILabel alloc] initWithFrame:CGRectZero];
   self.otherLabel.textColor = [UIColor colorWithRGBHex:0x999999];
   self.otherLabel.font = [UIFont systemFontOfSize:14.f];
-
   self.additionalLabel = [[RCDLabel alloc] initWithFrame:CGRectZero];
   self.additionalLabel.font = [UIFont systemFontOfSize:14.f];
   self.additionalLabel.textColor = [UIColor colorWithRGBHex:0x999999];

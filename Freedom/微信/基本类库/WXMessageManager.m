@@ -67,7 +67,6 @@
     return [self.content mj_JSONString];
 }
 @end
-
 @implementation WXConversation
 - (void)setConvType:(TLConversationType)convType{
     _convType = convType;
@@ -97,7 +96,6 @@
     self.avatarPath = group.groupAvatarPath;
 }
 @end
-
 @implementation WXMessageFrame
 @end
 @implementation WXMessage
@@ -136,7 +134,6 @@
     return _content;
 }
 @end
-
 static WXMessageManager *messageManager;
 @implementation WXMessageManager
 + (WXMessageManager *)sharedInstance{
@@ -237,7 +234,6 @@ static WXMessageManager *messageManager;
 }
 - (void)requestClientInitInfoSuccess:(void (^)(id)) clientInitInfo
                              failure:(void (^)(NSString *))error{
-
     NSString *HOST_URL = @"http://127.0.0.1:8000/";            // 本地测试服务器
 //    HOST_URL = @"http://121.42.29.15:8000/";        // 远程线上服务器
     NSString *urlString = [HOST_URL stringByAppendingString:@"client/getClientInitInfo/"];

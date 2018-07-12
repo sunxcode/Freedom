@@ -13,7 +13,6 @@
 @property (nonatomic, strong) NSString *emojiURL;
 @property (nonatomic, assign) CGFloat size;
 @end
-
 typedef NS_ENUM(NSInteger, TLEmojiGroupStatus) {
     TLEmojiGroupStatusUnDownload,
     TLEmojiGroupStatusDownloaded,
@@ -53,7 +52,6 @@ typedef NS_ENUM(NSInteger, TLEmojiGroupStatus) {
 @property (nonatomic, assign) NSUInteger colNumber;
 - (id)objectAtIndex:(NSUInteger)index;
 @end
-
 ///FIXME: CELL
 @interface TLEmojiBaseCell : UICollectionViewCell
 @property (nonatomic, strong) TLEmoji *emojiItem;
@@ -90,4 +88,3 @@ typedef NS_ENUM(NSInteger, TLGroupControlSendButtonStatus) {
 @property (nonatomic, strong) NSMutableArray *emojiGroupData;
 @property (nonatomic, assign) id<TLEmojiGroupControlDelegate>delegate;
 @end
-

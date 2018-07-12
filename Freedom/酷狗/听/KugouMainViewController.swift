@@ -1,7 +1,6 @@
 //
 //  MainViewController.swift
 //  Freedom
-
 import UIKit
 import XExtension
 import MediaPlayer
@@ -59,7 +58,6 @@ class KugouTitleScrollView: UIScrollView {
         }
         block!(butt.tag)
     }
-
     //点击控制滚动视图的偏移量
     func buttonOffset(_ butt: UIButton, animated: Bool) {
         if animated {
@@ -100,33 +98,28 @@ class KugouTitleScrollView: UIScrollView {
             contentOffset = CGPoint(x: contentSize.width - frame.size.width, y: 0)
         }
     }
-
 }
 class KugouMainViewController: KugouBaseViewController {
     let contentView: UIScrollView = UIScrollView()
     var titleSView: KugouTitleScrollView!
     var coustomTabBar: TabBarView!
-
     override func viewDidLoad() {
         super.viewDidLoad()
         titleSView = KugouTitleScrollView(frame: CGRect(x: 100, y: 34, width: APPW - 200, height: 30), titleArray: ["听", "看", "唱"], selectedIndex: 0, scrollEnable: false, lineEqualWidth: false, color: UIColor.white, select: UIColor.orange, selectBlock: { index in
             self.titleClick(index)
         })
-
         navBar.addSubview(titleSView)
         leftItem.image = UIImage(named: "placeHoder-128")
         leftItem.frame = CGRect(x: 15, y: 34, width: 25, height: 25)
         rightItem.image = UIImage(named: "main_search")
         rightItem.frame = CGRect(x: APPW - 40, y: 34, width: 20, height: 20)
         navBar.backgroundColor = UIColor(white: 1, alpha: 0)
-
         let linsenVc = KugouLinsenViewController()
         let lookVc = KugouLookViewController()
         let singVc = KugouSingViewController()
         addChildViewController(linsenVc)
         addChildViewController(lookVc)
         addChildViewController(singVc)
-
         // 不要自动调整inset
         automaticallyAdjustsScrollViewInsets = false
         contentView.frame = view.bounds
@@ -144,11 +137,9 @@ class KugouMainViewController: KugouBaseViewController {
         tabBarController?.tabBar.isHidden = true
         edgesForExtendedLayout = [.left, .right, .bottom]
     }
-
     func getMessage() {
         contentView.isUserInteractionEnabled = true
     }
-
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
@@ -174,5 +165,4 @@ class KugouMainViewController: KugouBaseViewController {
         // 如果是已经跳转了，点击后没有反应
         sideMenuViewController.presentLeftMenuViewController()
     }
-
 }

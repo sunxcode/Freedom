@@ -488,11 +488,6 @@ typedef void(^DidSelectedOperationBlock)(NSInteger operationType);
     }];
 }
 @end
-@interface WFActionSheet : UIActionSheet
-@property (nonatomic, assign)NSInteger actionIndex;
-@end
-@implementation WFActionSheet
-@end
 @interface BookFriendsViewController ()<UITableViewDataSource,UITableViewDelegate,cellDelegate,InputDelegate,UIActionSheetDelegate>{
     NSMutableArray *_imageDataSource;
     NSMutableArray *_contentDataSource;//模拟接口给的数据
@@ -771,9 +766,24 @@ typedef void(^DidSelectedOperationBlock)(NSInteger operationType);
     YMTextData *ymData = (YMTextData *)[_tableDataSource objectAtIndex:index];
     WFReplyBody *b = [ymData.messageBody.posterReplies objectAtIndex:replyIndex];
     if ([b.replyUser isEqualToString:@"杨越光"]) {
-        WFActionSheet *actionSheet = [[WFActionSheet alloc] initWithTitle:@"删除评论？" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        actionSheet.actionIndex = index;
-        [actionSheet showInView:self.view];
+        [self showAlerWithtitle:@"删除评论？" message:nil style:UIAlertControllerStyleActionSheet ac1:^UIAlertAction *{
+            return [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                //delete
+                YMTextData *ymData = (YMTextData *)[_tableDataSource objectAtIndex:index];
+                WFMessageBody *m = ymData.messageBody;
+                [m.posterReplies removeObjectAtIndex:_replyIndex];
+                ymData.messageBody = m;
+                [ymData.completionReplySource removeAllObjects];
+                [ymData.attributedDataReply removeAllObjects];
+                ymData.replyHeight = [ymData calculateReplyHeightWithWidth:self.view.frame.size.width];
+                [_tableDataSource replaceObjectAtIndex:index withObject:ymData];
+                [mainTable reloadData];
+            }];
+        } ac2:^UIAlertAction *{
+            return [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+        } ac3:nil completion:^{
+            _replyIndex = -1;
+        }];
     }else{
        //回复
         if (replyView) {
@@ -818,22 +828,6 @@ typedef void(^DidSelectedOperationBlock)(NSInteger operationType);
 - (void)destorySelf{
     [replyView removeFromSuperview];
     replyView = nil;
-    _replyIndex = -1;
-}
-- (void)actionSheet:(WFActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex == 0) {
-        //delete
-        YMTextData *ymData = (YMTextData *)[_tableDataSource objectAtIndex:actionSheet.actionIndex];
-        WFMessageBody *m = ymData.messageBody;
-        [m.posterReplies removeObjectAtIndex:_replyIndex];
-        ymData.messageBody = m;
-        [ymData.completionReplySource removeAllObjects];
-        [ymData.attributedDataReply removeAllObjects];
-        ymData.replyHeight = [ymData calculateReplyHeightWithWidth:self.view.frame.size.width];
-        [_tableDataSource replaceObjectAtIndex:actionSheet.actionIndex withObject:ymData];
-        [mainTable reloadData];
-    }else{
-    }
     _replyIndex = -1;
 }
 - (void)dealloc{

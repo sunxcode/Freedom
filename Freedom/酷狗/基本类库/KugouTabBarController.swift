@@ -1,7 +1,6 @@
 //
 //  KugouTabBarController.swift
 //  Freedom
-
 import UIKit
 import XExtension
 import RESideMenu
@@ -78,7 +77,6 @@ class TabBarView: UIView, AVAudioPlayerDelegate {
             songNameLable.text = "暂无播放歌曲"
         }
     }
-
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -171,7 +169,6 @@ class TabBarView: UIView, AVAudioPlayerDelegate {
         }
     }
 }
-
 class KugouTabBarController: XBaseTabBarController {
     let coustomTabBar = TabBarView(frame: CGRect(x: 0, y: 49 - TabBarH, width: APPW, height: TabBarH))
     override func viewDidLoad() {

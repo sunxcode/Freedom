@@ -32,7 +32,6 @@
 - (int)getTextLines;
 - (float)getTextHeight;
 @end
-
 @interface WFMessageBody : NSObject
 /*用户头像url 此处直接用图片名代替*/
 @property (nonatomic,copy) NSString *posterImgstr;//

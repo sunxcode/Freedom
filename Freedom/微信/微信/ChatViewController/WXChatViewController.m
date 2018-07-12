@@ -25,7 +25,6 @@
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 }
 @end
 @interface WXMoreKBHelper : NSObject
@@ -147,7 +146,7 @@ static WXChatViewController *chatVC;
             if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
                 [imagePickerController setSourceType:UIImagePickerControllerSourceTypeCamera];
             }else{
-                [UIAlertView bk_alertViewWithTitle:@"错误" message:@"相机初始化失败"];
+                [SVProgressHUD showErrorWithStatus:@"相机初始化失败"];
                 return;
             }
         }else{
@@ -156,8 +155,7 @@ static WXChatViewController *chatVC;
         imagePickerController.delegate = self;
         [self presentViewController:imagePickerController animated:YES completion:nil];
     }else{
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:[NSString stringWithFormat:@"选中”%@“ 按钮", funcItem.title] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
-        [alert show];
+        [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"选中”%@“ 按钮", funcItem.title]];
     }
 }
 //MARK: TLEmojiKeyboardDelegate

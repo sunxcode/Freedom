@@ -5,7 +5,6 @@
 //  Created by 张改红 on 16/8/4.
 //  Copyright © 2016年 RongCloud. All rights reserved.
 //
-
 #import "RCDShareViewController.h"
 #import "TFHpple.h"
 #import <Social/Social.h>
@@ -14,21 +13,16 @@
 @property (nonatomic,copy)NSString *contentString;
 @property (nonatomic,copy)NSString *imageString;
 @property (nonatomic,copy)NSString *url;
-
 - (void)enableSendMessage:(BOOL)sender;
 @end
-
 @interface RCDShareChatListCell : UITableViewCell
 @property (nonatomic,strong)UIImageView *headerImageView;
 @property (nonatomic,strong)UILabel *nameLabel;
-
 - (void)setDataDic:(NSDictionary *)dataDic;
 @end
-
 @interface RCDShareChatListCell()
 @property (nonatomic,strong)UIImageView *selectImageView;
 @end
-
 @implementation RCDShareChatListCell
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self =[super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -37,22 +31,18 @@
     }
     return self;
 }
-
 - (void)setupView{
     self.headerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10,self.contentView.frame.size.height/2-30/2,30,30)];
     self.headerImageView.layer.cornerRadius = 4;
     self.headerImageView.layer.masksToBounds = YES;
     [self.contentView addSubview:self.headerImageView];
-
     self.nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.headerImageView.frame)+5,self.contentView.frame.size.height/2-20/2, 120, 20)];
     self.nameLabel.font = [UIFont systemFontOfSize:12];
     [self.contentView addSubview:self.nameLabel];
-
     self.selectImageView = [[UIImageView alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width-52, (self.contentView.frame.size.height-10)/2, 13, 10)];
     self.selectImageView.image = [UIImage imageNamed:@"check"];
     [self.contentView addSubview:self.selectImageView];
 }
-
 - (void)setDataDic:(NSDictionary *)dataDic{
     if (dataDic) {
         //    NSURL *url = [NSURL URLWithString:dataDic[@"portraitUri"]];
@@ -68,7 +58,6 @@
             firstCharacterLabel.textAlignment = NSTextAlignmentCenter;
             firstCharacterLabel.font = [UIFont systemFontOfSize:50];
             [defaultPortrait addSubview:firstCharacterLabel];
-
             image = [defaultPortrait imageFromView];
         }
         self.headerImageView.image = image;
@@ -79,7 +68,6 @@
         self.nameLabel.text =str;
     }
 }
-
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
     if (selected) {
@@ -88,26 +76,19 @@
         self.selectImageView.hidden = YES;
     }
 }
-
 @end
-
 @interface RCDShareChatListController ()
 @property(nonatomic, strong) NSArray *dataArray;
 @property(nonatomic, strong) NSIndexPath *selectIndexPath;
 @property(nonatomic, strong) UIBarButtonItem *rightBarButton;
 @end
-
 #define ReuseIdentifier @"cellReuseIdentifier"
-
 #define DemoServer @"http://api.sealtalk.im/" //线上正式环境
 //#define DemoServer @"http://api.hitalk.im/" //测试环境
-
 @implementation RCDShareChatListController
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"选择";
-
     self.rightBarButton =
     [[UIBarButtonItem alloc] initWithTitle:@"发送"
                                      style:UIBarButtonItemStylePlain
@@ -129,7 +110,6 @@
     [self.tableView registerClass:[RCDShareChatListCell class]
            forCellReuseIdentifier:ReuseIdentifier];
 }
-
 - (void)enableSendMessage:(BOOL)sender{
     if (sender && self.selectIndexPath) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -137,28 +117,21 @@
         });
     }
 }
-
 - (void)sendMessageTofriend:(id)sender {
     NSDictionary *dic = self.dataArray[self.selectIndexPath.row];
     // 1.创建URL
     NSString *urlStr =
     [NSString stringWithFormat:@"%@misc/send_message", DemoServer];
     NSURL *url = [NSURL URLWithString:urlStr];
-
     // 2.准备请求对象
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-
     [request setHTTPMethod:@"POST"];
-
     NSUserDefaults *userDefaults =
     [[NSUserDefaults alloc] initWithSuiteName:@"group.cn.rongcloud.im.share"];
     NSString *cookie = [userDefaults valueForKey:@"Cookie"];
-
     [request setValue:cookie forHTTPHeaderField:@"Cookie"];
-
     request.HTTPShouldHandleCookies = YES;
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-
     // 3.准备参数
     NSString *objectName = @"RC:ImgTextMsg";
     NSDictionary *messageContentDict = @{
@@ -179,7 +152,6 @@
                                       @"objectName" : objectName,
                                       @"content" : messageContentDict
                                       };
-
     NSString *time = [NSString stringWithFormat:@"%f",[[NSDate date] timeIntervalSince1970]*1000];
     NSDictionary *insertMessageDict = @{
                                         @"conversationType" :dic[@"conversationType"],
@@ -191,14 +163,12 @@
                                         @"objectName" : @"RC:ImgTextMsg",
                                         @"sharedTime" :time
                                         };
-
     [request setHTTPBody:[NSJSONSerialization dataWithJSONObject:sendMessageDict
                                                          options:0
                                                            error:nil]];
     [request setTimeoutInterval:10.0];
     self.rightBarButton.title = @"发送中";
     self.rightBarButton.enabled = NO;
-
     // 4.建立连接
     [NSURLConnection
      sendAsynchronousRequest:request
@@ -224,19 +194,16 @@
          });
      }];
 }
-
 - (void)creatAlert:(NSTimer *)timer{
     UIAlertController *alert = [timer userInfo];
     [alert dismissViewControllerAnimated:YES completion:nil];
     [self.extensionContext completeRequestReturningItems:@[] completionHandler:nil];
 }
-
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section {
     return self.dataArray.count;
 }
-
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     RCDShareChatListCell *cell =
@@ -252,7 +219,6 @@
     [cell setDataDic:dic];
     return cell;
 }
-
 - (void)tableView:(UITableView *)tableView
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     RCDShareChatListCell *cell = [tableView cellForRowAtIndexPath:indexPath];
@@ -262,27 +228,22 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
         self.rightBarButton.enabled = YES;
     }
 }
-
 - (CGFloat)tableView:(UITableView *)tableView
 heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 45;
 }
-
 @end
-
 @interface RCDShareViewController ()
 @property (nonatomic,copy)NSString *titleString;
 @property (nonatomic,copy)NSString *contentString;
 @property (nonatomic,copy)NSString *imageString;
 @property (nonatomic,copy)NSString *url;
 @end
-
 @implementation RCDShareViewController
 - (void)viewDidLoad{
   [super viewDidLoad];
   self.title = @"SealTalk";
 }
-
 - (BOOL)isContentValid {
 //  NSExtensionItem *imageItem = [self.extensionContext.inputItems firstObject];
 //  if(!imageItem) {
@@ -299,11 +260,9 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 //  }
   return NO;
 }
-
 - (void)didSelectPost {
     [self.extensionContext completeRequestReturningItems:@[] completionHandler:nil];
 }
-
 - (NSArray *)configurationItems {
   SLComposeSheetConfigurationItem *item = [[SLComposeSheetConfigurationItem alloc] init];
   item.title = @"分享给朋友";
@@ -380,9 +339,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
       }
     }
     [weakSelf pushConfigurationViewController:tableView];
-
   };
   return @[ item ];
 }
-
 @end

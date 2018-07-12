@@ -17,7 +17,6 @@
     CGContextStrokePath(context);
 }
 @end
-
 @implementation UIView (Freedom)
 - (void)shake{
     CAKeyframeAnimation *keyAn = [CAKeyframeAnimation animationWithKeyPath:@"position"];

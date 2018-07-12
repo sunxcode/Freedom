@@ -18,7 +18,6 @@
 @property (nonatomic) NSTimeInterval fadeOutDelay; // default 0.1
 - (void)setProgress:(float)progress animated:(BOOL)animated;
 @end
-
 extern const float NJKInitialProgressValue;
 extern const float NJKInteractiveProgressValue;
 extern const float NJKFinalProgressValue;
@@ -34,7 +33,6 @@ typedef void (^NJKWebViewProgressBlock)(float progress);
 @protocol NJKWebViewProgressDelegate <NSObject>
 - (void)webViewProgress:(NJKWebViewProgress *)webViewProgress updateProgress:(float)progress;
 @end
-
 /*浏览器视图控制器*/
 @interface E_WebViewControler : UIViewController<UIWebViewDelegate, NJKWebViewProgressDelegate>{
     UIWebView *_webView;

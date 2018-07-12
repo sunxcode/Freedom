@@ -43,7 +43,6 @@
 - (instancetype)initWithPrivateProxy:(id)privateProxy;
 - (instancetype)initWithiTunesDict:(NSDictionary*)iTune;
 @end
-
 @interface AppManager : NSObject
 @property (nonatomic, readonly) NSArray<XAPP*>* installedApplications;
 - (BOOL)openAppWithBundleIdentifier:(NSString*)bundleIdentifier;

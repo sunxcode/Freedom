@@ -5,7 +5,6 @@
 //  Created by Super on 2018/5/15.
 //  Copyright © 2018年 Super. All rights reserved.
 //
-
 import UIKit
 import XExtension
 class ResumeDetailViewController: ResumeBaseViewController,UIWebViewDelegate {
@@ -19,6 +18,4 @@ class ResumeDetailViewController: ResumeBaseViewController,UIWebViewDelegate {
         view.addSubview(webView)
     
     }
-
-
 }

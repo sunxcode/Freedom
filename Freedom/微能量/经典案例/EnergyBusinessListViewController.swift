@@ -37,5 +37,4 @@ self.tableView = BaseTableView(frame: CGRect(x: 0, y: 0, width: APPW, height: AP
         let value = self.tableView.dataArray[indexPath.row]
         _ = self.push(EnergyBusinessDetailViewController(), withInfo: "", withTitle: value as! String, withOther: value)
     }
-
 }

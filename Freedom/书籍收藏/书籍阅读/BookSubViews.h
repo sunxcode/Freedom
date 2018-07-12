@@ -35,7 +35,6 @@ typedef enum {
 - (void)sliderChangeBlock:(TouchStateChanged)didChangeBlock;
 - (void)sliderTouchEndBlock:(TouchStateEnd)touchEndBlock;
 @end
-
 //  E_SettingBar.h
 //  Freedom
 //  Created by Super on 15/2/13.
@@ -76,8 +75,6 @@ typedef enum {
 - (void)showToolBar;
 - (void)hideToolBar;
 @end
-
-
 @interface E_CursorView : UIView{
     UIImageView *_dragDot;
 }
@@ -87,13 +84,11 @@ typedef enum {
 @property (nonatomic,assign) CGPoint setupPoint;
 - (id)initWithType:(CursorType)type andHeight:(float)cursorHeight byDrawColor:(UIColor *)drawColor;
 @end
-
 @protocol E_DrawerViewDelegate <NSObject>
 - (void)openTapGes;
 - (void)turnToClickChapter:(NSInteger)chapterIndex;
 - (void)turnToClickMark:(E_Mark *)eMark;
 @end
-
 @protocol E_ListViewDelegate <NSObject>
 - (void)clickMark:(E_Mark *)eMark;
 - (void)clickChapter:(NSInteger)chaperIndex;
@@ -120,7 +115,6 @@ typedef enum {
 @property(nonatomic, assign) id<E_DrawerViewDelegate>delegate;
 - (id)initWithFrame:(CGRect)frame parentView:(UIView *)p;
 @end
-
 @interface E_HUDView : UIView<CAAnimationDelegate>{
     UIFont *msgFont;
 }
@@ -133,14 +127,11 @@ typedef enum {
 @property (nonatomic, assign) float totalDuration;
 + (void)showMsg:(NSString *)msg inView:(UIView*)theView;
 @end
-
-
 /*放大镜类*/
 @interface E_MagnifiterView : UIView
 @property (weak, nonatomic) UIView *viewToMagnify;
 @property (nonatomic) CGPoint touchPoint;
 @end
-
 /*显示文本类*/
 @protocol E_ReaderViewDelegate <NSObject>
 - (void)shutOffGesture:(BOOL)yesOrNo;
@@ -171,12 +162,9 @@ typedef enum {
 @property (nonatomic,strong) UILabel *timeLbl;
 @property (nonatomic,strong) UILabel *contentLbl;
 @end
-
 @interface E_SearchTableViewCell : UITableViewCell
 @property (nonatomic,strong) UILabel *chapterLbl;
 @property (nonatomic,strong) UILabel *contentLbl;
 @end
-
 @interface BookSubViews : UIView
-
 @end

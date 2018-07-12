@@ -58,7 +58,6 @@
 //得到最大行的字体个数
 +(int)getMaxLineNumWithArray:(NSMutableArray *)lineNumArray;
 @end
-
 @implementation LyricsUtil
 //拿到krc歌词，返回每句歌词的当个字time组成的数据，只针对krc
 +(NSMutableArray *)timeArrayWithLineLyric:(NSString *)lineLyric{
@@ -622,7 +621,9 @@
     // 专辑
     info[MPMediaItemPropertyAlbumTitle] = _labelSinger.text;
     // 图片
-    info[MPMediaItemPropertyArtwork] = [[MPMediaItemArtwork alloc] initWithImage:[UIImage imageNamed:@"CollectDetailPage_NoBackground.jpg"]];
+    info[MPMediaItemPropertyArtwork] = [[MPMediaItemArtwork alloc] initWithBoundsSize:CGSizeMake(100, 100) requestHandler:^UIImage * _Nonnull(CGSize size) {
+        return [UIImage imageNamed:@"CollectDetailPage_NoBackground.jpg"];
+    }];
     [MPNowPlayingInfoCenter defaultCenter].nowPlayingInfo = info;
 }
 - (void)loadLyrics{

@@ -23,7 +23,6 @@ typedef NS_ENUM(NSInteger, TLContactStatus) {
 @property (nonatomic, strong) NSString *pinyin;
 @property (nonatomic, strong) NSString *pinyinInitial;
 @end
-
 @protocol WXChatUserProtocol <NSObject>
 @property (nonatomic, strong, readonly) NSString *chat_userID;
 @property (nonatomic, strong, readonly) NSString *chat_username;
@@ -84,7 +83,6 @@ typedef NS_ENUM(NSInteger, TLContactStatus) {
 @property (nonatomic, strong) NSString *pinyin;
 @property (nonatomic, strong) NSString *pinyinInitial;
 @end
-
 @interface WXGroup : NSObject <WXChatUserProtocol>
 /*讨论组名称*/
 @property (nonatomic, strong) NSString *groupName;
@@ -105,7 +103,6 @@ typedef NS_ENUM(NSInteger, TLContactStatus) {
 - (id)objectAtIndex:(NSUInteger)index;
 - (WXUser *)memberByUserID:(NSString *)uid;
 @end
-
 @interface WXUserGroup : NSObject
 @property (nonatomic, strong) NSString *groupName;
 @property (nonatomic, strong) NSMutableArray *users;
@@ -145,8 +142,6 @@ typedef NS_ENUM(NSInteger, TLContactStatus) {
 - (NSMutableArray *)friendDetailArrayByUserInfo:(WXUser *)userInfo;
 - (NSMutableArray *)friendDetailSettingArrayByUserInfo:(WXUser *)userInfo;
 @end
-
-
 @interface WXUserHelper : NSObject
 @property (nonatomic, strong) WXUser *user;
 + (WXUserHelper *) sharedHelper;

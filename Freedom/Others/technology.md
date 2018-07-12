@@ -110,7 +110,6 @@ iOS语音通话（语音对讲）http://blog.csdn.net/u011619283/article/details
 8.参照开发文档，按需接入微信登录、发消息、分享、收藏、支付、图像识别、语音识别、语音合成、语义理解
 9.在数据中心可查看微信用户的分析数据以及分享、收藏、登录、智能等用户行为统计数据信息。https://open.weixin.qq.com/cgi-bin/frame?t=statistics/analysis_tmpl&lang=zh_CN&token=8699abf1cc006cd477c0fa38add3e628394455d6
 10.微信样例//@简书地址:   http://www.jianshu.com/p/af8cbc9d51b0  @Github地址: https://github.com/lyoniOS/WxPayDemo
-
 ##https://github.com/SwiftyJSON/SwiftyJSON
 #pod 'ACMediaFrame'
 ##https://github.com/honeycao/ACMediaFrame 媒体库选择和展示的框架。
@@ -137,7 +136,6 @@ iOS语音通话（语音对讲）http://blog.csdn.net/u011619283/article/details
 #https://github.com/vsouza/awesome-ios
 #https://github.com/xswm1123/TYSlidePageScrollView
 #https://github.com/codeWorm2015/videoPlayer
-
 */
 #pragma mark 支付宝接入https://open.alipay.com
 /*1.接入支付宝必须注册一个支付宝账户：https://open.alipay.com/platform/home.htm

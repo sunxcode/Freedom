@@ -127,7 +127,6 @@ class SinaEmotionListView: UIView, UIScrollViewDelegate {
         pageControl.currentPage = Int(pageNum + 0.5)
     }
 }
-
 class SinaEmotionTextView: UITextView {
     var placeholder = ""
     var placeholderColor: UIColor = .red
@@ -192,7 +191,6 @@ class SinaEmotionTextView: UITextView {
         return fullText
     }
 }
-
 class SinaEmotionTabBar: UIView {
     var didSelectBlock: ((_ buttonType: Int) -> Void)?
     var selectedBtn: UIButton?
@@ -203,7 +201,6 @@ class SinaEmotionTabBar: UIView {
         _ = setupBtn("Emoji", buttonType: 2)
         _ = setupBtn("浪小花", buttonType: 3)
     }
-
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -261,7 +258,6 @@ class SinaEmotionPageView: UIView {
         deleteButton.addTarget(self, action: #selector(self.deleteClick), for: .touchUpInside)
         addSubview(deleteButton)
     }
-
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -323,7 +319,6 @@ class SinaComposeToolbar: UIView {
         _ = setupBtn("compose_trendbutton_background", highImage: "emoticonkeyboardbutton_sd", type: 3)
         _ = emotionButton = setupBtn("emoticonkeyboardbutton", highImage: "emoticonkeyboardbutton_sd", type: 4)
     }
-
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -391,7 +386,6 @@ class SinaEmotionKeyboard: UIView {
         // 表情选中的通知
         NotificationCenter.default.addObserver(self, selector: #selector(self.emotionDidSelect), name: NSNotification.Name("EmotionDidSelectNotification"), object: nil)
     }
-
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -407,4 +401,3 @@ class SinaEmotionKeyboard: UIView {
         showingListView.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: tabBar.frameY)
     }
 }
-

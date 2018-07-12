@@ -1,7 +1,6 @@
 //
 //  DetailScrollViewController.swift
 //  Freedom
-
 import UIKit
 import BaseFile
 import XExtension
@@ -38,5 +37,4 @@ class DetailScrollViewController: TaobaoBaseViewController {
         detailView?.reloadData()
         scrollView?.contentSize = CGSize(width: view.bounds.size.width, height: (view.bounds.size.height - 64) * 2)
     }
-
 }

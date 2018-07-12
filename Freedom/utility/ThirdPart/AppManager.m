@@ -137,7 +137,6 @@
     NSURL *url = [NSURL URLWithString:scheme];
     if([application canOpenURL:url]){
         [application openURL:url options:@{} completionHandler:^(BOOL success) {
-
         }];
         return YES;
     }else{

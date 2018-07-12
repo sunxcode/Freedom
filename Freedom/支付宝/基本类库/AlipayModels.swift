@@ -22,7 +22,6 @@ class AlipayTools: NSObject {
         UserDefaults.standard.synchronize()
     }
 }
-
 class AlipayAssetsTableViewControllerCellModel: NSObject {
     var title = ""
     var iconImageName = ""
@@ -36,5 +35,4 @@ class AlipayAssetsTableViewControllerCellModel: NSObject {
     }
 }
 class AlipayModels: NSObject {
-
 }

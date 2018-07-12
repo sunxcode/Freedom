@@ -1,13 +1,10 @@
 //
 //  JFLoginViewController.swift
 //  Freedom
-
 import UIKit
 import BaseFile
 import XExtension
 class IqiyiLoginBtnCell:BaseTableViewCell{
-
-
 }
 class IqiyiLoginViewController: IqiyiBaseViewController {
     override func viewDidLoad() {
@@ -45,6 +42,5 @@ class IqiyiLoginViewController: IqiyiBaseViewController {
             }
             cell?.selectionStyle = .none
         return cell!
-
     }
 }

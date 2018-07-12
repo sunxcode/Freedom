@@ -1,7 +1,6 @@
 //
 //  JFMineViewController.swift
 //  Freedom
-
 import UIKit
 import XExtension
 class IqiyiMineViewController: IqiyiBaseViewController {
@@ -81,6 +80,5 @@ class IqiyiMineViewController: IqiyiBaseViewController {
         let loginVC = IqiyiLoginViewController()
         navigationController?.pushViewController(loginVC, animated: true)
     }
-
         
 }

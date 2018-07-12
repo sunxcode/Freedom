@@ -120,7 +120,6 @@
   }
   [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:constraints options:0 metrics:nil views:self.cellSubViews]];
 }
-
 - (void)onClickSwitch:(id)sender {
   if ([baseSettingTableViewDelegate respondsToSelector:@selector(onClickSwitchButton:)]) {
     [baseSettingTableViewDelegate onClickSwitchButton:sender];

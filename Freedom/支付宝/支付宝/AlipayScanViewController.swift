@@ -1,7 +1,6 @@
 //
 //  SDScanViewController.swift
 //  Freedom
-
 import UIKit
 import BaseFile
 import XExtension
@@ -128,5 +127,4 @@ class AlipayScanViewController: AlipayBaseViewController {
             navigationController?.navigationBar.isHidden = false
         }
     }
-
 }

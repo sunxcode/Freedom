@@ -1,7 +1,6 @@
 //
 //  TaobaoShopCarViewController.swift
 //  Freedom
-
 import UIKit
 import BaseFile
 import XExtension
@@ -51,7 +50,6 @@ class TaobaoShopCarViewCell:BaseTableViewCell{
         title.text = "冬季外套女装学生韩版棉衣女中长款面包服女加厚棉服宽松冬装棉袄"
         script.text = "颜色分类:红色;尺码:M"
     }
-
 }
 class TaobaoShopCarViewController: TaobaoBaseViewController {
     func buildUI() {
@@ -79,6 +77,4 @@ class TaobaoShopCarViewController: TaobaoBaseViewController {
         totalView.addSubviews([totalb, heji, pay])
         view.addSubview(totalView)
     }
-
-
 }

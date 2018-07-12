@@ -512,14 +512,14 @@
     if (conversation.convType == TLConversationTypePersonal) {
         WXUser *user = [[WXFriendHelper sharedFriendHelper] getFriendInfoByUserID:conversation.partnerID];
         if (user == nil) {
-            [UIAlertView bk_alertViewWithTitle:@"错误" message:@"您不存在此好友"];
+            [SVProgressHUD showErrorWithStatus:@"您不存在此好友"];
             return;
         }
         [chatVC setPartner:user];
     }else if (conversation.convType == TLConversationTypeGroup){
         WXGroup *group = [[WXFriendHelper sharedFriendHelper] getGroupInfoByGroupID:conversation.partnerID];
         if (group == nil) {
-            [UIAlertView bk_alertViewWithTitle:@"错误" message:@"您不存在该讨论组"];
+            [SVProgressHUD showErrorWithStatus:@"您不存在该讨论组"];
             return;
         }
         [chatVC setPartner:group];
@@ -541,7 +541,7 @@
                                            [weakSelf.data removeObjectAtIndex:indexPath.row];
                                            BOOL ok = [[WXMessageManager sharedInstance] deleteConversationByPartnerID:conversation.partnerID];
                                            if (!ok) {
-                                               [UIAlertView bk_alertViewWithTitle:@"错误" message:@"从数据库中删除会话信息失败"];
+                                               [SVProgressHUD showErrorWithStatus:@"从数据库中删除会话信息失败"];
                                            }
                                            [weakSelf.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
                                            if (self.data.count > 0 && indexPath.row == self.data.count) {
@@ -564,18 +564,15 @@
 //MARK: UISearchBarDelegate
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
     [self.searchVC setFriendsData:[WXFriendHelper sharedFriendHelper].friendsData];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
 }
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
     [self.tabBarController.tabBar setHidden:YES];
 }
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
     [self.tabBarController.tabBar setHidden:NO];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
 }
 - (void)searchBarBookmarkButtonClicked:(UISearchBar *)searchBar{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"语音搜索按钮" message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
-    [alert show];
+    [SVProgressHUD showInfoWithStatus:@"语音搜索按钮"];
 }
 //MARK: TLAddMenuViewDelegate
 // 选中了addMenu的某个菜单项
@@ -586,7 +583,7 @@
         [self.navigationController pushViewController:vc animated:YES];
         [self setHidesBottomBarWhenPushed:NO];
     }else{
-        [UIAlertView bk_alertViewWithTitle:item.title message:@"功能暂未实现"];
+        [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"%@ 功能暂未实现",item.title]];
     }
 }
 @end

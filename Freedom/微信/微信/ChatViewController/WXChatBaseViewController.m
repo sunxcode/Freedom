@@ -2,7 +2,6 @@
 //  Freedom
 // Created by Super
 #import "WXChatBaseViewController.h"
-
 #import <XCategory/UIImage+expanded.h>
 #import "WXMessageManager.h"
 #import "WXUserHelper.h"
@@ -38,7 +37,7 @@
     [UIView animateWithDuration:0.1 animations:^{
         [self setAlpha:1.0];
     } completion:^(BOOL finished) {
-        [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
+//        [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
     }];
 }
 - (void)setAttrString:(NSAttributedString *)attrString{
@@ -53,7 +52,7 @@
     }];
 }
 - (void)dismiss{
-    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
+//    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
     [UIView animateWithDuration:0.2 animations:^{
         self.alpha = 0;
     } completion:^(BOOL finished) {

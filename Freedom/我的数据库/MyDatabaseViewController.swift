@@ -57,5 +57,4 @@ class MyDatabaseViewController: MyDatabaseBaseViewController,UICollectionViewDel
         noticeInfo(log, autoClear: true, autoClearTime: 3)
         _ = self.push(MyDatabaseEditViewController(), withInfo: "", withTitle: "数据库编辑详情")
     }
-
 }

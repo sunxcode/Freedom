@@ -21,7 +21,6 @@
     return _emojiPath;
 }
 @end
-
 @implementation TLEmojiGroup
 + (NSDictionary *)replacedKeyFromPropertyName{
     return @{
@@ -88,8 +87,6 @@
     return self.bannerURL;
 }
 @end
-
-
 @interface TLEmojiFaceItemCell ()
 @property (nonatomic, strong) UIImageView *imageView;
 @end
@@ -228,8 +225,6 @@
     return _label;
 }
 @end
-
-
 @implementation TLEmojiBaseCell
 - (id)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {

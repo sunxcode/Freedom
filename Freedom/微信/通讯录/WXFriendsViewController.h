@@ -14,7 +14,6 @@
 @interface WXFriendHeaderView : UITableViewHeaderFooterView
 @property (nonatomic, strong) NSString *title;
 @end
-
 @interface WXFriendsViewController : WXTableViewController
 @property (nonatomic, weak) NSMutableArray *data;
 @property (nonatomic, weak) NSMutableArray *sectionHeaders;

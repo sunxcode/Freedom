@@ -30,11 +30,9 @@ class SettingsViewController: XBaseViewController ,ElasticMenuTransitionDelegate
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 20
     }
-
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell: UITableViewCell? = tableView.dequeueReusableCell(withIdentifier: "cell")
         if cell == nil {
@@ -47,13 +45,10 @@ class SettingsViewController: XBaseViewController ,ElasticMenuTransitionDelegate
         }
         return UITableViewCell()
     }
-
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
-
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
     }
-
 }

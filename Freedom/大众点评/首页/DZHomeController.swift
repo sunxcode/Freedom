@@ -20,7 +20,6 @@ class DZHomeViewCell1:BaseCollectionViewCell{
         line.backgroundColor = .white
         addSubviews([view!, view2!, icon, view3!])
     }
-
     func getViewWithFrame(_ rect: CGRect) -> UIView {
         let view = UIView(frame: rect)
         let a = UILabel(frame: CGRect(x: 10, y: 0, width: APPW / 2 - 20, height: 18), font: fontnomal, color: redcolor, text: "外卖贺新春")
@@ -32,11 +31,9 @@ class DZHomeViewCell1:BaseCollectionViewCell{
         view.addSubviews([a!, b!, c!])
         return view
     }
-
     func setCollectionDataWithDic(_ dict: [AnyHashable: Any]?) {
         icon.image = UIImage(named: "image4.jpg")
     }
-
 }
 class DZHomeViewCell2:BaseCollectionViewCell{
     override func initUI() {//100
@@ -48,7 +45,6 @@ class DZHomeViewCell2:BaseCollectionViewCell{
         script.textColor = gradtextcolor
         addSubviews([icon, title, script])
     }
-
     func setCollectionDataWithDic(_ dict: [AnyHashable: Any]?) {
         title.text = "全球贺新年"
         script.text = "春节专享"
@@ -105,7 +101,6 @@ class DZHomeViewCell4:BaseCollectionViewCell{
         script.text = "[陆家嘴]4.2分|门票、套餐、线路游 等优惠，欢迎上门体验"
         icon.image = UIImage(named:"userLogo")
     }
-
 }
 class DZHomeHeadView1: UICollectionReusableView {
     var DZtoutiaoV: BaseScrollView?
@@ -135,7 +130,6 @@ class DZHomeHeadView1: UICollectionReusableView {
         }, vertically: true, setFire: true)
         addSubview(DZtoutiaoV!)
     }
-
 }
 class DZHomeHeadView2: UICollectionReusableView {
     var titleLabel: UILabel?
@@ -180,7 +174,6 @@ class DZHomeController: DZBaseViewController,UICollectionViewDataSource,UICollec
         layout.minimumInteritemSpacing = 10
         layout.minimumLineSpacing = 10
         collectionView = BaseCollectionView(frame: CGRect(x: 0, y: 0, width: APPW, height: APPH - 110), collectionViewLayout: layout)
-
         collectionView?.register(DZHomeViewCell1.self, forCellWithReuseIdentifier: "DZHomeViewCell1")
         collectionView?.register(DZHomeViewCell2.self, forCellWithReuseIdentifier: "DZHomeViewCell2")
         collectionView?.register(DZHomeViewCell3.self, forCellWithReuseIdentifier: "DZHomeViewCell3")
@@ -272,5 +265,4 @@ class DZHomeController: DZBaseViewController,UICollectionViewDataSource,UICollec
                 let log = "你选择的是\(indexPath.section)，\(indexPath.row)"
                 Dlog(log)
             }
-
 }

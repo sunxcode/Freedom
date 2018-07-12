@@ -14,7 +14,7 @@ typedef void(^rcdClearHistory)(BOOL isSuccess);
  *  清除历史消息后，会话页面调用roload data
  */
 @property(nonatomic, copy) rcdClearHistory clearHistoryCompletion;
-@property(nonatomic, readonly, strong)UIActionSheet *clearMsgHistoryActionSheet;
+//@property(nonatomic, readonly, strong)UIActionSheet *clearMsgHistoryActionSheet;
 - (void)clearHistoryMessage;
 /**
  *  override 如果显示headerView时，最后一个+号点击事件

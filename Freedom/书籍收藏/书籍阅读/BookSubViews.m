@@ -5,7 +5,6 @@
 //  Created by Super on 2018/4/27.
 //  Copyright © 2018年 Super. All rights reserved.
 //
-
 #import "BookSubViews.h"
 #import <CoreText/CoreText.h>
 #import "BookReadMode.h"
@@ -16,7 +15,6 @@
 #define MIN_FONT_SIZE 17
 #define MIN_TIPS @"字体已到最小"
 #define MAX_TIPS @"字体已到最大"
-
 @import Accelerate;
 @interface ILSlider ()
 @property (nonatomic, strong) UIColor *lineColor;//整条线的颜色
@@ -188,7 +186,6 @@
     }];
 }
 @end
-
 @implementation E_SettingBottomBar{
     ILSlider *ilSlider;
     UILabel  *showLbl;
@@ -382,7 +379,6 @@
     }];
 }
 @end
-
 @implementation E_CursorView
 - (id)initWithType:(CursorType)type andHeight:(float)cursorHeight byDrawColor:(UIColor *)drawColor{
     self = [super init];
@@ -414,7 +410,6 @@
 - (void)dealloc{
 }
 @end
-
 #define ListViewW (3* self.frame.size.width/4)
 @implementation E_DrawerView
 - (id)initWithFrame:(CGRect)frame parentView:(UIView *)p{
@@ -535,7 +530,6 @@
         effectInBuffer.width    = CGBitmapContextGetWidth(effectInContext);
         effectInBuffer.height   = CGBitmapContextGetHeight(effectInContext);
         effectInBuffer.rowBytes = CGBitmapContextGetBytesPerRow(effectInContext);
-
         UIGraphicsBeginImageContextWithOptions(image.size, NO, [[UIScreen mainScreen] scale]);
         CGContextRef effectOutContext = UIGraphicsGetCurrentContext();
         vImage_Buffer effectOutBuffer;
@@ -611,7 +605,6 @@
     return outputImage;
 }
 @end
-
 @implementation E_HUDView
 @synthesize msg;
 @synthesize leftMargin;
@@ -747,7 +740,6 @@
     return tempSize;
 }
 @end
-
 @implementation E_ListView
 - (id)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
@@ -1524,7 +1516,6 @@
     // Configure the view for the selected state
 }
 @end
-
 @implementation E_SearchTableViewCell
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -1546,5 +1537,4 @@
 }
 @end
 @implementation BookSubViews
-
 @end

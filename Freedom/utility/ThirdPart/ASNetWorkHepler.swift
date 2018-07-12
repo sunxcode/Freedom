@@ -5,7 +5,6 @@
 //  Created by ashen on 16/3/30.
 //  Copyright © 2016年 Ashen<http://www.devashen.com>. All rights reserved.
 //
-
 import UIKit
 import SwiftyJSON
 import Alamofire

@@ -78,7 +78,6 @@ class AlipayYuEBaoTableViewCellContentView: UIView {
         shouyiView.addSubviews([a, av, b, bv, c, cv, d, dv])
         addSubviews([yestodayView, IncomeView, shouyiView])
     }
-
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -98,7 +97,7 @@ class AlipayYuEBaoTableViewCellContentView: UIView {
         if delta > 0 {
             let ratio: CGFloat = value / 60.0
             let userInfo = ["label": "label", "value": value, "ratio": ratio] as [String : Any]
-            let timer = Timer.scheduledTimer(timeInterval: 0.02, target: self, selector: Selector("setupLabel:"), userInfo: userInfo, repeats: true)
+            let timer = Timer.scheduledTimer(timeInterval: 0.02, target: self, selector: #selector(self.setupLabel(_:)), userInfo: userInfo, repeats: true)
             if label == yesterdayIncomeLabel {
                 yesterdayIncomeLabelAnimationTimer = timer
             } else {
@@ -106,7 +105,7 @@ class AlipayYuEBaoTableViewCellContentView: UIView {
             }
         }
     }
-    func setupLabel(_ timer: Timer?) {
+    @objc func setupLabel(_ timer: Timer?) {
         var timer = timer
         let userInfo = timer?.userInfo as? [AnyHashable: Any]
         let label = userInfo!["label"] as? UILabel
@@ -138,7 +137,6 @@ class AlipayYuEBaoTableViewCell:UITableViewCell {
         selectionStyle = .none
         
     }
-
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -149,7 +147,6 @@ class AlipayYuEBaoTableViewCell:UITableViewCell {
 //        cellContentView.yesterdayIncome = (cellModel?.yesterdayIncome)!
 //    }
 }
-
 class AlipayYuEBaoTableViewController: AlipayBaseViewController {
     let cellClass = AlipayYuEBaoTableViewCell.self
     var dataArray = [AlipayYuEBaoTableViewCellModel]()
@@ -171,5 +168,4 @@ class AlipayYuEBaoTableViewController: AlipayBaseViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 550
     }
-
 }

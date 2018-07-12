@@ -127,7 +127,6 @@
     return _titleLabel;
 }
 @end
-
 @interface WXFriendsViewController ()<UISearchBarDelegate>
 @property (nonatomic, strong) UILabel *footerLabel;
 @property (nonatomic, strong) WXFriendHelper *friendHelper;
@@ -297,17 +296,16 @@
 //MARK: UISearchBarDelegate
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
     [self.searchVC setFriendsData:[WXFriendHelper sharedFriendHelper].friendsData];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
 }
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
     [self.tabBarController.tabBar setHidden:YES];
 }
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
     [self.tabBarController.tabBar setHidden:NO];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
 }
 - (void)searchBarBookmarkButtonClicked:(UISearchBar *)searchBar{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"语音搜索按钮" message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
-    [alert show];
+    [SVProgressHUD showInfoWithStatus:@"语音搜索按钮"];
 }
 @end

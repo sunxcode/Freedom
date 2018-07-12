@@ -9,11 +9,9 @@ class IqiyiWebViewController: IqiyiBaseViewController,UIWebViewDelegate{
     var urlStr  = ""
     var isFirstIn = false
     var activityView = UIActivityIndicatorView(frame: CGRect(x: APPW / 2 - 15, y: APPH / 2 - 15, width: 30, height: 30))
-
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
-
         //返回
         let backBtn = UIButton(type: .custom)
         backBtn.frame = CGRect(x: 0, y: 0, width: 23, height: 23)
@@ -60,7 +58,6 @@ class IqiyiWebViewController: IqiyiBaseViewController,UIWebViewDelegate{
         func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
             Dlog("加载webview失败")
         }
-
         func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
             activityView.startAnimating()
             return true

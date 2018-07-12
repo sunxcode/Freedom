@@ -27,7 +27,6 @@
 - (void)insertMenuButtonOnView:(UIView*)view atPosition:(CGPoint)position;
 - (void)showMenu;
 @end
-
 @implementation CDSideBarController
 @synthesize menuColor = _menuColor;
 @synthesize isOpen = _isOpen;
@@ -129,7 +128,6 @@
     }
 }
 @end
-
 @interface E_ScrollViewController ()<UIPageViewControllerDataSource,UIPageViewControllerDelegate,E_ReaderViewControllerDelegate,E_SettingTopBarDelegate,E_SettingBottomBarDelegate,E_DrawerViewDelegate,CDSideBarControllerDelegate,E_SearchViewControllerDelegate>{
     UIPageViewController * _pageViewController;
     E_Paging             * _paginater;
@@ -240,16 +238,13 @@
         _settingToolBar.delegate = self;
         [_settingToolBar showToolBar];
         [self shutOffPageViewControllerGesture:YES];
-       
-        [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
-        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+//        [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     }else{
         [self hideMultifunctionButton];
         [_settingToolBar hideToolBar];
         _settingToolBar = nil;
         [self shutOffPageViewControllerGesture:NO];
-        [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
-        
+//        [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
     }
     if (_settingBottomBar == nil) {
         _settingBottomBar = [[E_SettingBottomBar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, kBottomBarH)];
@@ -357,8 +352,7 @@
         [_settingToolBar hideToolBar];
         _settingToolBar = nil;
         [self shutOffPageViewControllerGesture:NO];
-        [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
-        
+//        [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
     }
     if (_settingBottomBar == nil) {
      }else{
@@ -425,7 +419,6 @@
                  [_searchBtn removeFromSuperview];
                                             _searchBtn = nil;
           });
-
             });
         });
         return;
@@ -469,12 +462,9 @@
             [self.view addSubview:_markBtn];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.09 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [self.view addSubview:_shareBtn];
-
             });
-
             });
     });
-
     
 }
 #pragma mark - 多功能按钮群中的搜索按钮触发事件
@@ -494,18 +484,14 @@
         ges.enabled = NO;
     }
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.15 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.15 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [_shareBtn removeFromSuperview];_shareBtn = nil;
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.12 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [_markBtn removeFromSuperview];_markBtn = nil;
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.09 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                      [_searchBtn removeFromSuperview];_searchBtn = nil;[self hideTheSettingBar]; [sideBar showMenu];
-
                 });
-
             });
-
         });
     });
 }

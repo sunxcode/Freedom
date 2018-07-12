@@ -150,7 +150,7 @@
         [MobClick event:@"e_get_contacts"];
     } failed:^{
         [SVProgressHUD dismiss];
-        [UIAlertView bk_alertViewWithTitle:@"错误" message:@"未成功获取到通讯录信息"];
+        [SVProgressHUD showErrorWithStatus:@"未成功获取到通讯录信息"];
     }];
 }
 - (void)viewWillDisappear:(BOOL)animated{
@@ -222,10 +222,8 @@
 //MARK: UISearchBarDelegate
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
     [self.searchVC setContactsData:self.contactsData];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
 }
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
 }
 @end
 @interface WXContactsSearchViewController ()

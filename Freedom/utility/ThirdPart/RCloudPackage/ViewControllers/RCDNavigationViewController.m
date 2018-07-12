@@ -24,7 +24,6 @@
     }
   [super pushViewController:viewController animated:animated];
 }
-
 - (NSArray *)popToRootViewControllerAnimated:(BOOL)animated {
   if ([self respondsToSelector:@selector(interactivePopGestureRecognizer)] &&
       animated == YES) {

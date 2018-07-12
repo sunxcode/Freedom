@@ -6,7 +6,6 @@
 //  Copyright © 2018年 Super. All rights reserved.
 #import <Foundation/Foundation.h>
 #import "WXMessageManager.h"
-
 #define     TLCreateMenuItem(IconPath, Title) [WXMenuItem createMenuWithIconPath:IconPath title:Title]
 #define     TLCreateSettingGroup(Header, Footer, Items)  [WXSettingGroup createGroupWithHeaderTitle:Header footerTitle:Footer items:[NSMutableArray arrayWithArray:Items]]
 #define     TLCreateInfo(t, st) [WXInfo createInfoWithTitle:t subTitle:st]
@@ -93,7 +92,6 @@ typedef NS_ENUM(NSUInteger, TLInfoType) {
 @property (nonatomic, assign) BOOL showRightRedPoint;
 + (WXMenuItem *) createMenuWithIconPath:(NSString *)iconPath title:(NSString *)title;
 @end
-
 @interface WXSettingGroup : NSObject
 /*section头部标题*/
 @property (nonatomic, strong) NSString *headerTitle;

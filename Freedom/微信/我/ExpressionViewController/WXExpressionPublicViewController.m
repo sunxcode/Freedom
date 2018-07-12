@@ -10,7 +10,6 @@
 #define         WIDTH_CELL          ((APPW - EDGE * 2 - SPACE_CELL * 2.0) / 3.0)
 #define         HEIGHT_CELL         (WIDTH_CELL + 20)
 #import "WXExpressionHelper.h"
-
 #import <XCategory/UIImage+expanded.h>
 #import <UIKit/UIKit.h>
 #import "TLEmojiBaseCell.h"
@@ -76,7 +75,6 @@
 @interface WXExpressionPublicViewController () <UISearchBarDelegate>
 @property (nonatomic, strong) WXSearchController *searchController;
 @property (nonatomic, strong) WXExpressionSearchViewController *searchVC;
-
 @property (nonatomic,strong) UICollectionView *collectionView;
 @end
 @implementation WXExpressionPublicViewController
@@ -111,7 +109,6 @@
 #pragma mark - Delegate
 //MARK: UISearchBarDelegate
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
-
 }
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
     

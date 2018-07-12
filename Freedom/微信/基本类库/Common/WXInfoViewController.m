@@ -183,6 +183,8 @@
 }
 //MARK: TLInfoButtonCellDelegate
 - (void)infoButtonCellClicked:(WXInfo *)info{
-    [UIAlertView bk_alertViewWithTitle:@"子类未处理按钮点击事件" message:[NSString stringWithFormat:@"Title: %@", info.title]];
+    [self showAlerWithtitle:@"子类未处理按钮点击事件" message:[NSString stringWithFormat:@"Title: %@", info.title] style:UIAlertControllerStyleAlert ac1:^UIAlertAction *{
+        return [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {}];
+    } ac2:nil ac3:nil completion:nil];
 }
 @end

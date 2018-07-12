@@ -42,12 +42,10 @@
     WXNavigationController *navC = [[WXNavigationController alloc] initWithRootViewController:detailVC];
     UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithTitle:@"关闭" style:UIBarButtonItemStylePlain actionBlick:^{
        [navC dismissViewControllerAnimated:YES completion:^{
-
        }];
     }];
     [detailVC.navigationItem setLeftBarButtonItem:closeButton];
     [self presentViewController:navC animated:YES completion:^{
-
     }];
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }

@@ -26,7 +26,6 @@ class TitlesImageViewFull: UIView {
         addSubview(iconview)
         addSubview(imageview)
     }
-
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -65,7 +64,6 @@ class DaRenTaoCell: UICollectionViewCell {
         icon.image = UIImage(named: "a")
         addSubviews([daren, more, mainView, subscrib, icon])
     }
-
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -85,7 +83,6 @@ class Cell1: UICollectionViewCell {
         image3.image = UIImage(named: "taobao03.jpg")
         image4.image = UIImage(named: "taobao04.jpg")
     }
-
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -111,7 +108,6 @@ class GridCell: UICollectionViewCell {
         flagLab.text = "热销"
         priceLabel.text = "￥19800.0"
     }
-
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -132,7 +128,6 @@ class GridCell2: UICollectionViewCell {
         label1.text = "【生活家--爱的杂货店"
         label2.text = "115.5万人正在逛店"
     }
-
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -150,7 +145,6 @@ class GridCell3: UICollectionViewCell {
         addSubviews([iv, name])
         iv.image = UIImage(named: "a")
     }
-
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -210,7 +204,6 @@ class HotShiChangCell: UICollectionViewCell {
             mainView.addSubview(view!)
         }
     }
-
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -231,7 +224,6 @@ class Headview1: UICollectionReusableView {
         scroll.addSubview(image2)
         addSubview(scroll)
     }
-
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -248,7 +240,6 @@ class Headview2: UICollectionReusableView {
         title.text = "猜你喜欢的"
         subscrib.text = "今日11：00更新"
     }
-
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -265,7 +256,6 @@ class Headview3: UICollectionReusableView {
         contentMode = .center
         addSubviews([line, lable])
     }
-
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -293,7 +283,6 @@ class Footview0: UICollectionReusableView {
         scroll.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
         addSubviews([icon, mainview])
     }
-
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -308,7 +297,6 @@ class Footview1: UICollectionReusableView {
         image.image = UIImage(named: "image2.jpg")
         addSubviews([name, image])
     }
-
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -398,7 +386,6 @@ class TaobaoHomeViewController: TaobaoBaseViewController,UICollectionViewDelegat
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DaRenTaoCell", for: indexPath) as? DaRenTaoCell
                 gridcell = cell
             } else {
-
             }
         } else if indexPath.section == 2 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GridCell2", for: indexPath) as? GridCell2
@@ -432,7 +419,6 @@ class TaobaoHomeViewController: TaobaoBaseViewController,UICollectionViewDelegat
         } else if indexPath.section == 3 {
             if kind == UICollectionElementKindSectionHeader {
                 let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "headview3", for: indexPath) as? Headview3
-
                 reusableview = headerView
             }
             if kind == UICollectionElementKindSectionFooter {

@@ -40,7 +40,6 @@ opacityAnimation.timingFunctions = [NSArray arrayWithObjects:
 [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn],
 [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear],
 [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut], nil];
-
     CAKeyframeAnimation* scaleAnimation =[CAKeyframeAnimation animationWithKeyPath:@"transform.scale"];
     scaleAnimation.duration = _totalDuration;
     scaleAnimation.cumulative = YES;
@@ -55,7 +54,6 @@ scaleAnimation.timingFunctions = [NSArray arrayWithObjects:
                                       [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn],
                                       [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear],
                                       [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut], nil];
-
 CAAnimationGroup *group = [CAAnimationGroup animation];
     group.duration = _totalDuration;
     group.delegate = self;
@@ -566,7 +564,6 @@ UIView *myselfSelected = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.fra
     }
     return ranges;
 }
-
 - (id)init{
     self = [super init];
     if (self) {
@@ -625,14 +622,12 @@ NSMutableArray *feedBackArray = [NSMutableArray arrayWithCapacity:0];
     }
     return raw;
 }
-
 - (float)calculateFavourHeightWithWidth:(float)sizeWidth{
 typeview = 1;
     float height = .0f;
 NSString *matchString = [_favourArray componentsJoinedByString:@","];
     _showFavour = matchString;
     NSArray *itemIndexs = [YMTextData itemIndexesWithPattern:@"\\[em:(\\d+):\\]" inString:matchString];
-
     NSString *newString = [self replaceCharacters:matchString AtIndexes:itemIndexs withString:PlaceHolder];
     //存新的
     self.completionFavour = newString;
@@ -658,7 +653,6 @@ for (int i = 0; i < self.replyDataSource.count; i ++ ) {
             matchString = [NSString stringWithFormat:@"%@回复%@:%@",body.replyUser,body.repliedUser,body.replyInfo];
             }
         NSArray *itemIndexs = [YMTextData itemIndexesWithPattern:@"\\[em:(\\d+):\\]" inString:matchString];
-
     NSString *newString = [self replaceCharacters:matchString AtIndexes:itemIndexs withString:PlaceHolder];
         //存新的
         [self.completionReplySource addObject:newString];
@@ -758,16 +752,12 @@ if (isReplyV == 1) {
 //说说高度
 - (float) calculateShuoshuoHeightWithWidth:(float)sizeWidth withUnFoldState:(BOOL)isUnfold{
 typeview = 0;
-
 NSString *matchString =  _showShuoShuo;
-
 NSArray *itemIndexs = [YMTextData itemIndexesWithPattern:@"\\[em:(\\d+):\\]" inString:matchString];
-
 //用PlaceHolder 替换掉[em:02:]这些
     NSString *newString = [self replaceCharacters:matchString AtIndexes:itemIndexs withString:PlaceHolder];
     //存新的
     self.completionShuoshuo = newString;
-
 [self matchString:newString fromView:typeview];
 WFTextView *_wfcoreText = [[WFTextView alloc] initWithFrame:CGRectMake(20,10, sizeWidth - 2*20, 0)];
 _wfcoreText.isDraw = NO;

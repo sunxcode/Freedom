@@ -5,33 +5,24 @@
 //  Created by Liv on 14/11/11.
 //  Copyright (c) 2014年 RongCloud. All rights reserved.
 //
-
 #import "AFHttpTool.h"
-
 #import "RCloudModel.h"
 #import "RCDHttpTool.h"
 #import "RCDRCIMDataSource.h"
 #import "RCloudModel.h"
 #import "RCDataBaseManager.h"
 #import <RongIMLib/RongIMLib.h>
-
-
 @interface RCDRCIMDataSource ()
-
 @end
-
 @implementation RCDRCIMDataSource
-
 + (RCDRCIMDataSource *)shareInstance {
   static RCDRCIMDataSource *instance = nil;
   static dispatch_once_t predicate;
   dispatch_once(&predicate, ^{
     instance = [[[self class] alloc] init];
-
   });
   return instance;
 }
-
 - (void)syncGroups {
   //开发者调用自己的服务器接口获取所属群组信息
   [RCDHTTPTOOL getMyGroupsWithBlock:^(NSMutableArray *result) {
@@ -47,20 +38,17 @@
     }
   }];
 }
-
 - (void)syncFriendList:(NSString *)userId
               complete:(void (^)(NSMutableArray *friends))completion {
   [RCDHTTPTOOL getFriendscomplete:^(NSMutableArray *result) {
                    completion(result);
                  }];
 }
-
 #pragma mark - GroupInfoFetcherDelegate
 - (void)getGroupInfoWithGroupId:(NSString *)groupId
                      completion:(void (^)(RCGroup *))completion {
   if ([groupId length] == 0)
     return;
-
   //开发者调自己的服务器接口根据userID异步请求数据
   [RCDHTTPTOOL getGroupByID:groupId
           successCompletion:^(RCDGroupInfo *group) {
@@ -97,7 +85,6 @@
   }
   return;
 }
-
 #pragma mark - RCIMGroupUserInfoDataSource
 /**
  *  获取群组内的用户信息。
@@ -119,7 +106,6 @@
         nil); //融云demo中暂时没有实现，以后会添加上该功能。app也可以自己实现该功能。
   }
 }
-
 - (void)getAllMembersOfGroup:(NSString *)groupId
                       result:(void (^)(NSArray *userIdList))resultBlock {
   [[RCDHttpTool shareInstance]
@@ -133,19 +119,15 @@
                              resultBlock(ret);
                            }];
 }
-
 - (NSArray *)getAllUserInfo:(void (^)())completion {
   return [[RCDataBaseManager shareInstance] getAllUserInfo];
 }
-
 - (NSArray *)getAllGroupInfo:(void (^)())completion {
   return [[RCDataBaseManager shareInstance] getAllGroup];
 }
-
 - (NSArray *)getAllFriends:(void (^)())completion {
   return [[RCDataBaseManager shareInstance] getAllFriends];
 }
-
 #pragma mark - 名片消息
 - (void)getAllContacts:(void (^)(NSArray<RCCCUserInfo *> *contactsInfoList))resultBlock{
   NSMutableArray *contacts = [NSMutableArray new];
@@ -164,8 +146,6 @@
   }
   resultBlock(contacts);
 }
-
-
 - (void)getGroupInfoByGroupId:(NSString *)groupId
                        result:(void (^)(RCCCGroupInfo *groupInfo))resultBlock {
   RCDGroupInfo *group = [[RCDataBaseManager shareInstance] getGroupByGroupId:groupId];
@@ -176,5 +156,4 @@
   groupInfo.number = group.number;
   resultBlock(groupInfo);
 }
-
 @end

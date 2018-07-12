@@ -8,7 +8,6 @@
 #import "AFHttpTool.h"
 #import "RCloudModel.h"
 #import "MBProgressHUD.h"
-
 #import "RCDFindPswViewController.h"
 #import "RCDHttpTool.h"
 #import "RCDLoginViewController.h"
@@ -20,52 +19,39 @@
 #import "RCDSettingServerUrlViewController.h"
 #import "RCloudModel.h"
 #import "RCAnimatedImagesView.h"
-@interface RCDLoginViewController () <UITextFieldDelegate, RCIMConnectionStatusDelegate,UIAlertViewDelegate>{
-
+@interface RCDLoginViewController () <UITextFieldDelegate, RCIMConnectionStatusDelegate>{
     MBProgressHUD *hud;
 }
-
 @property(retain, nonatomic) IBOutlet RCAnimatedImagesView *animatedImagesView;
-
 @property(weak, nonatomic) IBOutlet UITextField *emailTextField;
-
 @property(weak, nonatomic) IBOutlet UITextField *pwdTextField;
-
 @property(nonatomic, strong) NSTimer *retryTime;
-
 @property(nonatomic, strong) UIView *headBackground;
 @property(nonatomic, strong) UIImageView *rongLogo;
 @property(nonatomic, strong) UIView *inputBackground;
 @property(nonatomic, strong) UIView *statusBarView;
 @property(nonatomic, strong) UILabel *errorMsgLb;
 @property(nonatomic, strong) UITextField *passwordTextField;
-
 @property(nonatomic, strong) UIButton *settingButton ;
 @property(nonatomic) int loginFailureTimes;
 @property(nonatomic) BOOL rcDebug;
-
 @property(nonatomic, strong) NSString *loginUserName;
 @property(nonatomic, strong) NSString *loginUserId;
 @property(nonatomic, strong) NSString *loginToken;
 @property(nonatomic, strong) NSString *loginPassword;
-
 @end
-
 @implementation RCDLoginViewController
 #define UserTextFieldTag 1000
 #define PassWordFieldTag 1001
 @synthesize animatedImagesView = _animatedImagesView;
 @synthesize inputBackground = _inputBackground;
-
 - (void)viewDidLoad {
   [super viewDidLoad];
   self.rcDebug = NO;
 //  self.rcDebug = YES;
   
   _loginFailureTimes = 0;
-
   [self.navigationController setNavigationBarHidden:YES animated:YES];
-
   //    self.view.translatesAutoresizingMaskIntoConstraints = YES;
   //添加动态图
   self.animatedImagesView = [[RCAnimatedImagesView alloc]
@@ -79,7 +65,6 @@
   _headBackground.backgroundColor =
       [[UIColor alloc] initWithRed:0 green:0 blue:0 alpha:0.2];
   [self.view addSubview:_headBackground];
-
   UIButton *registerHeadButton =
       [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 80, 50)];
   [registerHeadButton setTitle:@"找回密码" forState:UIControlStateNormal];
@@ -94,22 +79,18 @@
   [registerHeadButton addTarget:self
                          action:@selector(forgetPswEvent)
                forControlEvents:UIControlEventTouchUpInside];
-
   [_headBackground addSubview:registerHeadButton];
-
   //添加图标
   UIImage *rongLogoSmallImage = [UIImage imageNamed:@"title_logo_small"];
   UIImageView *rongLogoSmallImageView = [[UIImageView alloc]
       initWithFrame:CGRectMake(self.view.bounds.size.width / 2 - 60, 5, 100,
                                40)];
   [rongLogoSmallImageView setImage:rongLogoSmallImage];
-
   [rongLogoSmallImageView setContentScaleFactor:[[UIScreen mainScreen] scale]];
   rongLogoSmallImageView.contentMode = UIViewContentModeScaleAspectFit;
   rongLogoSmallImageView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
   rongLogoSmallImageView.clipsToBounds = YES;
   [_headBackground addSubview:rongLogoSmallImageView];
-
   //顶部按钮
   UIButton *forgetPswHeadButton = [[UIButton alloc]
       initWithFrame:CGRectMake(self.view.bounds.size.width - 80, 0, 70, 50)];
@@ -125,13 +106,11 @@
                           action:@selector(registerEvent)
                 forControlEvents:UIControlEventTouchUpInside];
   [_headBackground addSubview:forgetPswHeadButton];
-
   UIImage *rongLogoImage = [UIImage imageNamed:@"login_logo"];
   _rongLogo = [[UIImageView alloc] initWithImage:rongLogoImage];
   _rongLogo.contentMode = UIViewContentModeScaleAspectFit;
   _rongLogo.translatesAutoresizingMaskIntoConstraints = NO;
   [self.view addSubview:_rongLogo];
-
   //中部内容输入区
   _inputBackground = [[UIView alloc] initWithFrame:CGRectZero];
   _inputBackground.translatesAutoresizingMaskIntoConstraints = NO;
@@ -146,7 +125,6 @@
                                            blue:51.0f / 255.0f
                                           alpha:1];
   [self.view addSubview:_errorMsgLb];
-
   //用户名
   RCUnderlineTextField *userNameTextField =
       [[RCUnderlineTextField alloc] initWithFrame:CGRectZero];
@@ -163,9 +141,7 @@
   userNameTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
   userNameTextField.adjustsFontSizeToFitWidth = YES;
   userNameTextField.keyboardType = UIKeyboardTypeNumberPad;
-
   [_inputBackground addSubview:userNameTextField];
-
   //密码
   RCUnderlineTextField *passwordTextField =
       [[RCUnderlineTextField alloc] initWithFrame:CGRectZero];
@@ -176,7 +152,6 @@
   passwordTextField.delegate = self;
   // passwordTextField.delegate = self;
   passwordTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
-
   passwordTextField.attributedPlaceholder = [[NSAttributedString alloc]
       initWithString:@"密码"
           attributes:@{NSForegroundColorAttributeName : color}];
@@ -184,7 +159,6 @@
   [_inputBackground addSubview:passwordTextField];
   passwordTextField.text = [self getDefaultUserPwd];
   self.passwordTextField = passwordTextField;
-
   // UIEdgeInsets buttonEdgeInsets = UIEdgeInsetsMake(0, 7.f, 0, 7.f);
   UIButton *loginButton = [UIButton buttonWithType:UIButtonTypeCustom];
   [loginButton addTarget:self
@@ -215,15 +189,12 @@
                                                             blue:153
                                                            alpha:0.5]
                            forState:UIControlStateNormal];
-
   [userProtocolButton.titleLabel
       setFont:[UIFont fontWithName:@"Heiti SC" size:14.0]];
   [userProtocolButton addTarget:self
                          action:@selector(userProtocolEvent)
                forControlEvents:UIControlEventTouchUpInside];
-
   [self.view addSubview:userProtocolButton];
-
   //底部按钮区
   UIView *bottomBackground = [[UIView alloc] initWithFrame:CGRectZero];
   UIButton *registerButton =
@@ -239,9 +210,7 @@
   [registerButton addTarget:self
                      action:@selector(forgetPswEvent)
            forControlEvents:UIControlEventTouchUpInside];
-
   [bottomBackground addSubview:registerButton];
-
   UIButton *forgetPswButton = [[UIButton alloc]
       initWithFrame:CGRectMake(self.view.bounds.size.width - 100, -16, 80, 50)];
   [forgetPswButton setTitle:@"新用户" forState:UIControlStateNormal];
@@ -267,14 +236,11 @@
   [footerLabel setFont:[UIFont systemFontOfSize:12.f]];
   [footerLabel setTextColor:[UIColor colorWithRGBHex:0x484848]];
   [bottomBackground addSubview:footerLabel];
-
   [self.view addSubview:bottomBackground];
-
   bottomBackground.translatesAutoresizingMaskIntoConstraints = NO;
   userProtocolButton.translatesAutoresizingMaskIntoConstraints = NO;
   passwordTextField.translatesAutoresizingMaskIntoConstraints = NO;
   userNameTextField.translatesAutoresizingMaskIntoConstraints = NO;
-
   //添加约束
   [self.view addConstraint:[NSLayoutConstraint
                                constraintWithItem:bottomBackground
@@ -284,7 +250,6 @@
                                         attribute:NSLayoutAttributeBottom
                                        multiplier:1.0
                                          constant:20]];
-
   [self.view addConstraint:[NSLayoutConstraint
                                constraintWithItem:_rongLogo
                                         attribute:NSLayoutAttributeCenterX
@@ -293,11 +258,9 @@
                                         attribute:NSLayoutAttributeCenterX
                                        multiplier:1.0
                                          constant:0]];
-
   NSDictionary *views =
       NSDictionaryOfVariableBindings(_errorMsgLb, _rongLogo, _inputBackground,
                                      userProtocolButton, bottomBackground);
-
   NSArray *viewConstraints = [[[[[[NSLayoutConstraint
       constraintsWithVisualFormat:@"H:|-41-[_inputBackground]-41-|"
                           options:0
@@ -335,9 +298,7 @@
                                                   options:0
                                                   metrics:nil
                                                     views:views]];
-
   [self.view addConstraints:viewConstraints];
-
   NSLayoutConstraint *userProtocolLabelConstraint =
       [NSLayoutConstraint constraintWithItem:userProtocolButton
                                    attribute:NSLayoutAttributeCenterX
@@ -349,7 +310,6 @@
   [self.view addConstraint:userProtocolLabelConstraint];
   NSDictionary *inputViews = NSDictionaryOfVariableBindings(
       userNameTextField, passwordTextField, loginButton,settingButton);
-
   NSArray *inputViewConstraints = [[[[
       [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[userNameTextField]|"
                                               options:0
@@ -376,19 +336,16 @@ arrayByAddingObjectsFromArray:
                                             options:0
                                             metrics:nil
                                               views:inputViews]];
-
   [_inputBackground addConstraints:inputViewConstraints];
     
     
 //    CGPoint footerLabelCenter = footerLabel.center;
 //    settingButton.center = CGPointMake(footerLabelCenter.x, footerLabelCenter.y-12);
-
   [[NSNotificationCenter defaultCenter]
       addObserver:self
          selector:@selector(keyboardWillShow:)
              name:UIKeyboardWillShowNotification
            object:self.view.window];
-
   [[NSNotificationCenter defaultCenter]
       addObserver:self
          selector:@selector(keyboardWillHide:)
@@ -399,14 +356,10 @@ arrayByAddingObjectsFromArray:
   _statusBarView.backgroundColor =
       [[UIColor alloc] initWithRed:0 green:0 blue:0 alpha:0.2];
   [self.view addSubview:_statusBarView];
-  [[UIApplication sharedApplication]
-      setStatusBarStyle:UIStatusBarStyleLightContent
-               animated:NO];
   [self.view setNeedsLayout];
   [self.view setNeedsUpdateConstraints];
     
 }
-
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
   [self.view endEditing:YES];
 }
@@ -429,20 +382,15 @@ arrayByAddingObjectsFromArray:
   }
   return YES;
 }
-
 //键盘升起时动画
 - (void)keyboardWillShow:(NSNotification *)notif {
-
   CATransition *animation = [CATransition animation];
   animation.type = kCATransitionFade;
   animation.duration = 0.25;
   [_rongLogo.layer addAnimation:animation forKey:nil];
-
   _rongLogo.hidden = YES;
-
   [UIView animateWithDuration:0.25
                    animations:^{
-
                      self.view.frame =
                          CGRectMake(0.f, -50, self.view.frame.size.width,
                                     self.view.frame.size.height);
@@ -453,14 +401,12 @@ arrayByAddingObjectsFromArray:
                    }
                    completion:nil];
 }
-
 //键盘关闭时动画
 - (void)keyboardWillHide:(NSNotification *)notif {
   CATransition *animation = [CATransition animation];
   animation.type = kCATransitionFade;
   animation.duration = 0.25;
   [_rongLogo.layer addAnimation:animation forKey:nil];
-
   _rongLogo.hidden = NO;
   [UIView animateWithDuration:0.25
                    animations:^{
@@ -479,7 +425,6 @@ arrayByAddingObjectsFromArray:
   [super didReceiveMemoryWarning];
   // Dispose of any resources that can be recreated.
 }
-
 - (void)viewWillAppear:(BOOL)animated {
   NSString *userName =
       [(UITextField *)[self.view viewWithTag:UserTextFieldTag] text];
@@ -503,28 +448,23 @@ arrayByAddingObjectsFromArray:
     [self.navigationController setNavigationBarHidden:YES animated:YES];
   }
 }
-
 - (void)viewDidDisappear:(BOOL)animated {
   [super viewDidDisappear:animated];
   [self invalidateRetryTime];
   [self.animatedImagesView stopAnimating];
 }
-
 /*阅读用户协议*/
 - (void)userProtocolEvent {
 }
-
 - (void)settingEvent {
     RCDSettingServerUrlViewController *temp = [[RCDSettingServerUrlViewController alloc]init];
     [self.navigationController pushViewController:temp animated:YES];
 }
-
 /*注册*/
 - (void)registerEvent {
   RCDRegisterViewController *temp = [[RCDRegisterViewController alloc] init];
   [self.navigationController pushViewController:temp animated:YES];
 }
-
 /*找回密码*/
 - (void)forgetPswEvent {
   RCDFindPswViewController *temp = [[RCDFindPswViewController alloc] init];
@@ -548,14 +488,12 @@ arrayByAddingObjectsFromArray:
       [[NSUserDefaults standardUserDefaults] objectForKey:@"userName"];
   return defaultUser;
 }
-
 /*获取用户密码*/
 - (NSString *)getDefaultUserPwd {
   NSString *defaultUserPwd =
       [[NSUserDefaults standardUserDefaults] objectForKey:@"userPwd"];
   return defaultUserPwd;
 }
-
 - (IBAction)actionLogin:(id)sender {
   NSString *userName =
       [(UITextField *)[self.view viewWithTag:UserTextFieldTag] text];
@@ -566,23 +504,19 @@ arrayByAddingObjectsFromArray:
     if(self.retryTime){
         [self invalidateRetryTime];
     }
-
     self.retryTime = [NSTimer scheduledTimerWithTimeInterval:60 target:self selector:@selector(retryConnectionFailed) userInfo:nil repeats:NO];
     
   [self login:userName password:userPwd];
 }
-
 - (void)retryConnectionFailed {
     [[RCIM sharedRCIM] disconnect];
     [self invalidateRetryTime];
     [hud hide:YES];
 }
-
 - (void)invalidateRetryTime {
     [self.retryTime invalidate];
     self.retryTime = nil;
 }
-
 - (void)loginSuccess:(NSString *)userName
               userId:(NSString *)userId
                token:(NSString *)token
@@ -600,7 +534,6 @@ arrayByAddingObjectsFromArray:
     [defaults setObject:result forKey:@"SquareInfoList"];
     [defaults synchronize];
   }];
-
   [AFHttpTool getUserInfo:userId
       success:^(id response) {
         if ([response[@"code"] intValue] == 200) {
@@ -622,7 +555,6 @@ arrayByAddingObjectsFromArray:
         }
       }
       failure:^(NSError *err){
-
       }];
   //同步群组
   [RCDDataSource syncGroups];
@@ -661,7 +593,6 @@ arrayByAddingObjectsFromArray:
       }
       error:^(RCConnectErrorCode status) {
         //关闭HUD
-
         [hud hide:YES];
         NSLog(@"RCConnectErrorCode is %ld", (long)status);
         _errorMsgLb.text = [NSString stringWithFormat:@"登陆失败！Status: %zd", status];
@@ -681,7 +612,6 @@ arrayByAddingObjectsFromArray:
       }
       tokenIncorrect:^{
         NSLog(@"IncorrectToken");
-
         if (_loginFailureTimes < 1) {
           _loginFailureTimes++;
           [AFHttpTool getTokenSuccess:^(id response) {
@@ -702,7 +632,6 @@ arrayByAddingObjectsFromArray:
         }
       }];
 }
-
 /**
  *  登录
  */
@@ -710,16 +639,13 @@ arrayByAddingObjectsFromArray:
   
   RCNetworkStatus status =
       [[RCIMClient sharedRCIMClient] getCurrentNetworkStatus];
-
   if (RC_NotReachable == status) {
     _errorMsgLb.text = @"当前网络不可用，请检查！";
     return;
   } else {
     _errorMsgLb.text = @"";
   }
-
   if ([self validateUserName:userName userPwd:password]) {
-
     hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.color = [UIColor colorWithRGBHex:0x343637];
     hud.labelText = @"登录中...";
@@ -753,7 +679,6 @@ arrayByAddingObjectsFromArray:
     _errorMsgLb.text = @"请检查手机号和密码";
   }
 }
-
 //验证用户信息格式
 - (BOOL)validateUserName:(NSString *)userName userPwd:(NSString *)userPwd {
   NSString *alertMessage = nil;
@@ -764,7 +689,6 @@ arrayByAddingObjectsFromArray:
     alertMessage = @"密码不能为空!";
     return NO;
   }
-
   if (alertMessage) {
     _errorMsgLb.text = alertMessage;
     [_pwdTextField shake];
@@ -778,7 +702,6 @@ arrayByAddingObjectsFromArray:
   }
   return YES;
 }
-
 - (void)onRCIMConnectionStatusChanged:(RCConnectionStatus)status {
   dispatch_async(dispatch_get_main_queue(), ^{
     if (status == ConnectionStatus_Connected) {
@@ -818,13 +741,10 @@ arrayByAddingObjectsFromArray:
     (UIInterfaceOrientation)toInterfaceOrientation {
   return (toInterfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
-
 - (void)viewDidUnload {
   [self setAnimatedImagesView:nil];
-
   [super viewDidUnload];
 }
-
 - (void)dealloc {
   [[NSNotificationCenter defaultCenter]
       removeObserver:self
@@ -835,5 +755,4 @@ arrayByAddingObjectsFromArray:
                 name:UIKeyboardWillShowNotification
               object:nil];
 }
-
 @end

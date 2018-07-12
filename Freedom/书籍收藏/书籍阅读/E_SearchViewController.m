@@ -32,9 +32,7 @@
     
     _dataSource = [[NSMutableArray alloc] initWithCapacity:0];
     
-    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    
+//    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     UIView *navView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 72)];
     navView.backgroundColor = [UIColor colorWithRed:59/255.0 green:59/255.0 blue:59/255.0 alpha:1.0];
     [self.view addSubview:navView];
@@ -165,13 +163,12 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
-    
+//    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
     [_delegate turnToClickSearchResult:[[_dataSource objectAtIndex:1] objectAtIndex:indexPath.row] withRange:NSRangeFromString([[_dataSource objectAtIndex:2] objectAtIndex:indexPath.row]) andKeyWord:_keyWord];
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 - (void)backToFront{
-    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
+//    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
     [_searchTextField resignFirstResponder];
     [self dismissViewControllerAnimated:YES completion:NULL];
     

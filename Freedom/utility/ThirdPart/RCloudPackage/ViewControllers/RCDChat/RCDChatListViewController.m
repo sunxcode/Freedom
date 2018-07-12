@@ -4,8 +4,6 @@
 //
 //  Created by Liv on 14/10/31.
 //  Copyright (c) 2014年 RongCloud. All rights reserved.
-//
-
 #import "RCDChatListViewController.h"
 #import "AFHttpTool.h"
 #import "KxMenu.h"
@@ -37,7 +35,6 @@
 /** 绘制不规则图形 */
 @property (nonatomic, strong) CAShapeLayer *shapeLayer;
 @end
-
 @interface RCDTabBarBtn()
 @property (nonatomic, strong)NSString *tabBarIndex;
 @end
@@ -174,24 +171,20 @@
     });
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
 }
-
 #pragma mark - 不规则路径
 - (UIBezierPath *)pathWithBigCirCleView:(UIView *)bigCirCleView  smallCirCleView:(UIView *)smallCirCleView{
     CGPoint bigCenter = bigCirCleView.center;
     CGFloat x2 = bigCenter.x;
     CGFloat y2 = bigCenter.y;
     CGFloat r2 = bigCirCleView.bounds.size.height / 2;
-
     CGPoint smallCenter = smallCirCleView.center;
     CGFloat x1 = smallCenter.x;
     CGFloat y1 = smallCenter.y;
     CGFloat r1 = smallCirCleView.bounds.size.width / 2;
-
     // 获取圆心距离
     CGFloat d = [self pointToPoitnDistanceWithPoint:self.samllCircleView.center potintB:self.center];
     CGFloat sinθ = (x2 - x1) / d;
     CGFloat cosθ = (y2 - y1) / d;
-
     // 坐标系基于父控件
     CGPoint pointA = CGPointMake(x1 - r1 * cosθ , y1 + r1 * sinθ);
     CGPoint pointB = CGPointMake(x1 + r1 * cosθ , y1 - r1 * sinθ);
@@ -199,7 +192,6 @@
     CGPoint pointD = CGPointMake(x2 - r2 * cosθ , y2 + r2 * sinθ);
     CGPoint pointO = CGPointMake(pointA.x + d / 2 * sinθ , pointA.y + d / 2 * cosθ);
     CGPoint pointP = CGPointMake(pointB.x + d / 2 * sinθ , pointB.y + d / 2 * cosθ);
-
     UIBezierPath *path = [UIBezierPath bezierPath];
     [path moveToPoint:pointA];
     [path addLineToPoint:pointB];
@@ -255,18 +247,15 @@
 - (void)hideBadgeOnItemIndex:(int)index; //隐藏小红点
 @end
 @implementation UITabBar (badge)
-
 - (void)showBadgeOnItemIndex:(int)index{
     //移除之前的小红点
     [self removeBadgeOnItemIndex:index];
-
     //新建小红点
     UIView *badgeView = [[UIView alloc]init];
     badgeView.tag = 888+index;
     badgeView.layer.cornerRadius = 5.f;//圆形
     badgeView.backgroundColor = [UIColor colorWithRGBHex:0xf43530];//颜色：红色
     CGRect tabFrame = self.frame;
-
     //确定小红点的位置
     float percentX = (index +0.5) / TabbarItemNums;
     CGFloat x = ceilf(percentX * tabFrame.size.width);
@@ -274,11 +263,9 @@
     badgeView.frame = CGRectMake(x, y, 10, 10);//圆形大小为10
     [self addSubview:badgeView];
 }
-
 - (void)showBadgeOnItemIndex:(int)index badgeValue:(int)badgeValue{
     //移除之前的小红点
     [self removeBadgeOnItemIndex:index];
-
     //新建小红点
     CGRect tabFrame = self.frame;
     //确定小红点的位置
@@ -299,13 +286,11 @@
         // btn.layer.cornerRadius = 9;//圆形
     }
 }
-
 //隐藏小红点
 - (void)hideBadgeOnItemIndex:(int)index{
     //移除小红点
     [self removeBadgeOnItemIndex:index];
 }
-
 //移除小红点
 - (void)removeBadgeOnItemIndex:(int)index{
     //按照tag值进行移除
@@ -325,23 +310,18 @@
 }
 @end
 @interface RCDChatListCell : RCConversationBaseCell
-
 @property(nonatomic, strong) UIImageView *ivAva;
 @property(nonatomic, strong) UILabel *lblName;
 @property(nonatomic, strong) UILabel *lblDetail;
 @property(nonatomic, copy) NSString *userName;
 @property(nonatomic, strong) UILabel *labelTime;
-
 @end
-
 @implementation RCDChatListCell
 - (instancetype)initWithStyle:(UITableViewCellStyle)style
               reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-
         [self setSelectionStyle:UITableViewCellSelectionStyleNone];
-
         _ivAva = [UIImageView new];
         _ivAva.clipsToBounds = YES;
         _ivAva.layer.cornerRadius = 5.0f;
@@ -350,26 +330,21 @@
             _ivAva.layer.cornerRadius =
             [[RCIM sharedRCIM] globalConversationPortraitSize].height / 2;
         }
-
         [_ivAva setBackgroundColor:[UIColor blackColor]];
-
         _lblDetail = [UILabel new];
         [_lblDetail setFont:[UIFont systemFontOfSize:14.f]];
         [_lblDetail setTextColor:[UIColor colorWithRGBHex:0x8c8c8c]];
         _lblDetail.text =
         [NSString stringWithFormat:@"来自%@的好友请求", _userName];
-
         _lblName = [UILabel new];
         [_lblName setFont:[UIFont boldSystemFontOfSize:16.f]];
         [_lblName setTextColor:[UIColor colorWithRGBHex:0x252525]];
         _lblName.text = @"好友消息";
-
         _labelTime = [[UILabel alloc] init];
         _labelTime.backgroundColor = [UIColor clearColor];
         _labelTime.font = [UIFont systemFontOfSize:14];
         _labelTime.textColor = [UIColor lightGrayColor];
         _labelTime.textAlignment = NSTextAlignmentRight;
-
         [self.contentView addSubview:_ivAva];
         [self.contentView addSubview:_lblDetail];
         [self.contentView addSubview:_lblName];
@@ -378,10 +353,8 @@
         _lblName.translatesAutoresizingMaskIntoConstraints = NO;
         _lblDetail.translatesAutoresizingMaskIntoConstraints = NO;
         _labelTime.translatesAutoresizingMaskIntoConstraints = NO;
-
         NSDictionary *_bindingViews = NSDictionaryOfVariableBindings(
                                                                      _ivAva, _lblName, _lblDetail, _labelTime);
-
         [self addConstraints:
          [NSLayoutConstraint
           constraintsWithVisualFormat:@"V:|-11-[_labelTime(20)]"
@@ -389,7 +362,6 @@
           metrics:nil
           views:NSDictionaryOfVariableBindings(
                                                _labelTime)]];
-
         [self addConstraints:
          [NSLayoutConstraint
           constraintsWithVisualFormat:@"H:[_labelTime(200)]-11-|"
@@ -397,7 +369,6 @@
           metrics:nil
           views:NSDictionaryOfVariableBindings(
                                                _labelTime)]];
-
         [self addConstraints:
          [NSLayoutConstraint
           constraintsWithVisualFormat:@"H:|-13-[_ivAva(width)]"
@@ -410,7 +381,6 @@
                     }
           views:NSDictionaryOfVariableBindings(
                                                _ivAva)]];
-
         [self addConstraints:
          [NSLayoutConstraint
           constraintsWithVisualFormat:@"V:|-10-[_ivAva(height)]"
@@ -423,14 +393,12 @@
                     }
           views:NSDictionaryOfVariableBindings(
                                                _ivAva)]];
-
         [self addConstraints:[NSLayoutConstraint
                               constraintsWithVisualFormat:
                               @"V:[_lblName(18)]-[_lblDetail(18)]"
                               options:kNilOptions
                               metrics:kNilOptions
                               views:_bindingViews]];
-
         [self addConstraint:[NSLayoutConstraint
                              constraintWithItem:_lblName
                              attribute:NSLayoutAttributeTop
@@ -439,7 +407,6 @@
                              attribute:NSLayoutAttributeTop
                              multiplier:1.0
                              constant:2.f]];
-
         [self addConstraint:[NSLayoutConstraint
                              constraintWithItem:_lblName
                              attribute:NSLayoutAttributeLeft
@@ -448,7 +415,6 @@
                              attribute:NSLayoutAttributeRight
                              multiplier:1.0
                              constant:8]];
-
         [self addConstraint:[NSLayoutConstraint
                              constraintWithItem:_lblDetail
                              attribute:NSLayoutAttributeLeft
@@ -457,7 +423,6 @@
                              attribute:NSLayoutAttributeLeft
                              multiplier:1.0
                              constant:1]];
-
         [self addConstraint:[NSLayoutConstraint
                              constraintWithItem:_lblDetail
                              attribute:NSLayoutAttributeRight
@@ -469,23 +434,17 @@
     }
     return self;
 }
-
 @end
-
 @interface RCDChatListViewController ()<UISearchBarDelegate,RCDSearchViewDelegate>
 @property (nonatomic,strong)UINavigationController *searchNavigationController;
 @property (nonatomic,strong)UIView *headerView;
 @property (nonatomic,strong)UISearchBar *searchBar;
 //@property (nonatomic,strong) NSMutableArray *myDataSource;
 @property(nonatomic, strong) RCConversationModel *tempModel;
-
 @property(nonatomic, assign) NSUInteger index;
-
 @property(nonatomic, assign) BOOL isClick;
 - (void)updateBadgeValueForTabBarItem;
-
 @end
-
 @implementation RCDChatListViewController
 -(UISearchBar *)searchBar{
   if (!_searchBar) {
@@ -503,14 +462,12 @@
   }
   return _searchBar;
 }
-
 - (UIView *)headerView{
   if (!_headerView) {
     _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.conversationListTableView.frame.size.width, 44)];
   }
   return _headerView;
 }
-
 /**
  *  此处使用storyboard初始化，代码初始化当前类时*****必须要设置会话类型和聚合类型*****
  *
@@ -530,14 +487,11 @@
       @(ConversationType_GROUP),
       @(ConversationType_SYSTEM)
     ]];
-
     //聚合会话类型
     [self setCollectionConversationType:@[ @(ConversationType_SYSTEM) ]];
-
   }
   return self;
 }
-
 - (id)init {
   self = [super init];
   if (self) {
@@ -557,7 +511,6 @@
   }
   return self;
 }
-
 - (void)viewDidLoad {
   [super viewDidLoad];
   
@@ -566,31 +519,26 @@
   self.searchBar.delegate = self;
   [self.headerView addSubview:self.searchBar];
   self.conversationListTableView.tableHeaderView = self.headerView;
-
   //设置tableView样式
   self.conversationListTableView.separatorColor =
       [UIColor colorWithRGBHex:0xdfdfdf];
   self.conversationListTableView.tableFooterView = [UIView new];
-
   // 设置在NavigatorBar中显示连接中的提示
   self.showConnectingStatusOnNavigatorBar = YES;
-
   //修改tabbar的背景色
   UIView *tabBarBG = [UIView new];
   tabBarBG.backgroundColor = [UIColor colorWithRGBHex:0xf9f9f9];
   tabBarBG.frame = self.tabBarController.tabBar.bounds;
   [[UITabBar appearance] insertSubview:tabBarBG atIndex:0];
-
   [[UITabBarItem appearance]
       setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                [UIColor colorWithRGBHex:0x999999],
-                                               UITextAttributeTextColor, nil]
+                                               NSForegroundColorAttributeName, nil]
                     forState:UIControlStateNormal];
-
   [[UITabBarItem appearance]
       setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                [UIColor colorWithRGBHex:0x0099ff],
-                                               UITextAttributeTextColor, nil]
+                                               NSForegroundColorAttributeName, nil]
                     forState:UIControlStateSelected];
   
   //定位未读数会话
@@ -612,12 +560,10 @@
                                            selector:@selector(refreshCell:)
                                                name:@"RefreshConversationList"
                                              object:nil];
-
   
   [self checkVersion];
     [self updateBadgeValueForTabBarItem];
 }
-
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
     //判断如果有未读数存在，发出定位到未读数会话的通知
@@ -633,11 +579,9 @@
     UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     negativeSpacer.width = -6;
     barButtonItems = [NSArray arrayWithObjects:negativeSpacer, rightBtn, nil];
-
   self.tabBarController.navigationItem.rightBarButtonItems = barButtonItems;
   
   self.tabBarController.navigationItem.title = @"会话";
-
 //  [self notifyUpdateUnreadMessageCount];
   [[NSNotificationCenter defaultCenter]
       addObserver:self
@@ -649,7 +593,6 @@
                                                       portrait:nil];
   [[RCIM sharedRCIM] refreshUserInfoCache:groupNotify withUserId:@"__system__"];
 }
-
 //由于demo使用了tabbarcontroller，当切换到其它tab时，不能更改tabbarcontroller的标题。
 - (void)viewWillDisappear:(BOOL)animated {
   [super viewWillDisappear:animated];
@@ -657,9 +600,7 @@
       removeObserver:self
                 name:@"kRCNeedReloadDiscussionListNotification"
               object:nil];
-
 }
-
 - (void)updateBadgeValueForTabBarItem {
   __weak typeof(self) __weakSelf = self;
   dispatch_async(dispatch_get_main_queue(), ^{
@@ -674,10 +615,8 @@
 //      __weakSelf.tabBarItem.badgeValue = nil;
       [__weakSelf.tabBarController.tabBar hideBadgeOnItemIndex:0];
     }
-
   });
 }
-
 /**
  *  点击进入会话页面
  *
@@ -688,7 +627,6 @@
 - (void)onSelectedTableRow:(RCConversationModelType)conversationModelType
          conversationModel:(RCConversationModel *)model
                atIndexPath:(NSIndexPath *)indexPath {
-
   if (_isClick) {
     _isClick = NO;
     if (model.conversationModelType ==
@@ -704,7 +642,6 @@
       [self.navigationController pushViewController:_conversationVC
                                            animated:YES];
     }
-
     if (conversationModelType == RC_CONVERSATION_MODEL_TYPE_NORMAL) {
       RCDChatViewController *_conversationVC =
           [[RCDChatViewController alloc] init];
@@ -735,10 +672,8 @@
       [self.navigationController pushViewController:_conversationVC
                                            animated:YES];
     }
-
     //聚合会话类型，此处自定设置。
     if (conversationModelType == RC_CONVERSATION_MODEL_TYPE_COLLECTION) {
-
       RCDChatListViewController *temp =
           [[RCDChatListViewController alloc] init];
       NSArray *array = [NSArray
@@ -748,12 +683,10 @@
       temp.isEnteredToCollectionViewController = YES;
       [self.navigationController pushViewController:temp animated:YES];
     }
-
     //自定义会话类型
     if (conversationModelType == RC_CONVERSATION_MODEL_TYPE_CUSTOMIZATION) {
       RCConversationModel *model =
           self.conversationListDataSource[indexPath.row];
-
       if ([model.objectName isEqualToString:@"RC:ContactNtf"]) {
           RCDAddressBookViewController * addressBookVC= [RCDAddressBookViewController addressBookViewController];
         [self.navigationController pushViewController:addressBookVC
@@ -767,7 +700,6 @@
         [self refreshConversationTableViewIfNeeded];
       });
 }
-
 /**
  *  弹出层
  *
@@ -775,17 +707,14 @@
  */
 - (void)showMenu:(UIButton *)sender {
   NSArray *menuItems = @[
-
     [KxMenuItem menuItem:@"发起聊天"
                    image:[UIImage imageNamed:@"startchat_icon"]
                   target:self
                   action:@selector(pushChat:)],
-
     [KxMenuItem menuItem:@"创建群组"
                    image:[UIImage imageNamed:@"creategroup_icon"]
                   target:self
                   action:@selector(pushContactSelected:)],
-
     [KxMenuItem menuItem:@"添加好友"
                    image:[UIImage imageNamed:@"addfriend_icon"]
                   target:self
@@ -795,7 +724,6 @@
                   target:self
                   action:@selector(pushToCreateDiscussion:)],
   ];
-
   UIBarButtonItem *rightBarButton = self.tabBarController.navigationItem.rightBarButtonItems[1];
   CGRect targetFrame = rightBarButton.customView.frame;
   targetFrame.origin.y = targetFrame.origin.y + 15;
@@ -806,7 +734,6 @@
                 fromRect:targetFrame
                menuItems:menuItems];
 }
-
 /**
  *  发起聊天
  *
@@ -819,7 +746,6 @@
   contactSelectedVC.titleStr = @"发起聊天";
   [self.navigationController pushViewController:contactSelectedVC animated:YES];
 }
-
 /**
  *  创建群组
  *
@@ -832,7 +758,6 @@
   contactSelectedVC.titleStr = @"选择联系人";
   [self.navigationController pushViewController:contactSelectedVC animated:YES];
 }
-
 /**
  *  公众号会话
  *
@@ -843,7 +768,6 @@
       [[RCDPublicServiceListViewController alloc] init];
   [self.navigationController pushViewController:publicServiceVC animated:YES];
 }
-
 /**
  *  添加好友
  *
@@ -854,7 +778,6 @@
       [RCDSearchFriendViewController searchFriendViewController];
   [self.navigationController pushViewController:searchFirendVC animated:YES];
 }
-
 /**
  *  通讯录
  *
@@ -864,7 +787,6 @@
     RCDAddressBookViewController *addressBookVC = [RCDAddressBookViewController addressBookViewController];
   [self.navigationController pushViewController:addressBookVC animated:YES];
 }
-
 /**
  *  添加公众号
  *
@@ -875,12 +797,9 @@
       [[RCPublicServiceSearchViewController alloc] init];
   [self.navigationController pushViewController:searchFirendVC animated:YES];
 }
-
 //*********************插入自定义Cell*********************//
-
 //插入自定义会话model
 - (NSMutableArray *)willReloadTableData:(NSMutableArray *)dataSource {
-
   for (int i = 0; i < dataSource.count; i++) {
     RCConversationModel *model = dataSource[i];
     //筛选请求添加好友的系统消息，用于生成自定义会话类型的cell
@@ -917,10 +836,8 @@
       }
     }
   }
-
   return dataSource;
 }
-
 //左滑删除
 - (void)rcConversationListTableView:(UITableView *)tableView
                  commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
@@ -932,23 +849,19 @@
   [self.conversationListDataSource removeObjectAtIndex:indexPath.row];
   [self.conversationListTableView reloadData];
 }
-
 //高度
 - (CGFloat)rcConversationListTableView:(UITableView *)tableView
                heightForRowAtIndexPath:(NSIndexPath *)indexPath {
   return 67.0f;
 }
-
 //自定义cell
 - (RCConversationBaseCell *)rcConversationListTableView:(UITableView *)tableView
                                   cellForRowAtIndexPath:
                                       (NSIndexPath *)indexPath {
   RCConversationModel *model = self.conversationListDataSource[indexPath.row];
-
   __block NSString *userName = nil;
   __block NSString *portraitUri = nil;
   RCContactNotificationMessage *_contactNotificationMsg = nil;
-
   __weak RCDChatListViewController *weakSelf = self;
   //此处需要添加根据userid来获取用户信息的逻辑，extend字段不存在于DB中，当数据来自db时没有extend字段内容，只有userid
   if (nil == model.extend) {
@@ -988,9 +901,7 @@
                        rcduserinfo_.name = user.name;
                        rcduserinfo_.userId = user.userId;
                        rcduserinfo_.portraitUri = user.portraitUri;
-
                        model.extend = rcduserinfo_;
-
                        // local cache for userInfo
                        NSDictionary *userinfoDic = @{
                          @"username" : rcduserinfo_.name,
@@ -1000,7 +911,6 @@
                            setObject:userinfoDic
                               forKey:_contactNotificationMsg.sourceUserId];
                        [[NSUserDefaults standardUserDefaults] synchronize];
-
                        [weakSelf.conversationListTableView
                            reloadRowsAtIndexPaths:@[ indexPath ]
                                  withRowAnimation:
@@ -1008,13 +918,11 @@
                      }];
       }
     }
-
   } else {
     RCDUserInfo *user = (RCDUserInfo *)model.extend;
     userName = user.name;
     portraitUri = user.portraitUri;
   }
-
   RCDChatListCell *cell =
       [[RCDChatListCell alloc] initWithStyle:UITableViewCellStyleDefault
                              reuseIdentifier:@""];
@@ -1032,16 +940,13 @@
   cell.model = model;
   return cell;
 }
-
 //*********************插入自定义Cell*********************//
-
 #pragma mark - 收到消息监听
 - (void)didReceiveMessageNotification:(NSNotification *)notification {
   __weak typeof(&*self) blockSelf_ = self;
   //处理好友请求
   RCMessage *message = notification.object;
   if ([message.content isMemberOfClass:[RCContactNotificationMessage class]]) {
-
     if (message.conversationType != ConversationType_SYSTEM) {
       NSLog(@"好友消息要发系统消息！！！");
 #if DEBUG
@@ -1065,7 +970,6 @@
                    rcduserinfo_.name = user.name;
                    rcduserinfo_.userId = user.userId;
                    rcduserinfo_.portraitUri = user.portraitUri;
-
                    RCConversationModel *customModel = [RCConversationModel new];
                    customModel.conversationModelType =
                        RC_CONVERSATION_MODEL_TYPE_CUSTOMIZATION;
@@ -1077,7 +981,6 @@
                    customModel.senderUserId = message.senderUserId;
                    customModel.lastestMessage = _contactNotificationMsg;
                    //[_myDataSource insertObject:customModel atIndex:0];
-
                    // local cache for userInfo
                    NSDictionary *userinfoDic = @{
                      @"username" : rcduserinfo_.name,
@@ -1087,14 +990,12 @@
                        setObject:userinfoDic
                           forKey:_contactNotificationMsg.sourceUserId];
                    [[NSUserDefaults standardUserDefaults] synchronize];
-
                    dispatch_async(dispatch_get_main_queue(), ^{
                      //调用父类刷新未读消息数
                      [blockSelf_
                          refreshConversationTableViewWithConversationModel:
                              customModel];
                      [self notifyUpdateUnreadMessageCount];
-
                      //当消息为RCContactNotificationMessage时，没有调用super，如果是最后一条消息，可能需要刷新一下整个列表。
                      //原因请查看super didReceiveMessageNotification的注释。
                      NSNumber *left =
@@ -1122,7 +1023,6 @@
     _conversationVC.unReadMessage = model.unreadMessageCount;
     [self.navigationController pushViewController:_conversationVC animated:YES];
   }
-
   if (model.conversationModelType == RC_CONVERSATION_MODEL_TYPE_NORMAL) {
     RCDChatViewController *_conversationVC =
         [[RCDChatViewController alloc] init];
@@ -1150,10 +1050,8 @@
     }
     [self.navigationController pushViewController:_conversationVC animated:YES];
   }
-
   //聚合会话类型，此处自定设置。
   if (model.conversationModelType == RC_CONVERSATION_MODEL_TYPE_COLLECTION) {
-
     RCDChatListViewController *temp = [[RCDChatListViewController alloc] init];
     NSArray *array = [NSArray
         arrayWithObject:[NSNumber numberWithInt:model.conversationType]];
@@ -1162,12 +1060,10 @@
     temp.isEnteredToCollectionViewController = YES;
     [self.navigationController pushViewController:temp animated:YES];
   }
-
   //自定义会话类型
   if (model.conversationModelType == RC_CONVERSATION_MODEL_TYPE_CUSTOMIZATION) {
     //        RCConversationModel *model =
     //        self.conversationListDataSource[indexPath.row];
-
     if ([model.objectName isEqualToString:@"RC:ContactNtf"]) {
         RCDAddressBookViewController *addressBookVC = [RCDAddressBookViewController addressBookViewController];
       [self.navigationController pushViewController:addressBookVC animated:YES];
@@ -1189,7 +1085,6 @@ atIndexPath:(NSIndexPath *)indexPath
 - (void)notifyUpdateUnreadMessageCount {
   [self updateBadgeValueForTabBarItem];
 }
-
 - (void)receiveNeedRefreshNotification:(NSNotification *)status {
   __weak typeof(&*self) __blockSelf = self;
   dispatch_async(dispatch_get_main_queue(), ^{
@@ -1198,10 +1093,8 @@ atIndexPath:(NSIndexPath *)indexPath
             ConversationType_DISCUSSION) {
       [__blockSelf refreshConversationTableViewIfNeeded];
     }
-
   });
 }
-
 -(void)checkVersion
 {
   [RCDHTTPTOOL getVersioncomplete:^(NSDictionary *versionInfo) {
@@ -1226,7 +1119,6 @@ atIndexPath:(NSIndexPath *)indexPath
     }
   }];
 }
-
 - (void)pushToCreateDiscussion:(id)sender {
   RCDContactSelectedTableViewController * contactSelectedVC= [[RCDContactSelectedTableViewController alloc]init];
   contactSelectedVC.forCreatingDiscussionGroup = YES;
@@ -1234,19 +1126,16 @@ atIndexPath:(NSIndexPath *)indexPath
   contactSelectedVC.titleStr = @"选择联系人";
   [self.navigationController pushViewController:contactSelectedVC animated:YES];
 }
-
 - (void)scrollViewDidScroll:(UIScrollView*)scrollView
 {
   NSIndexPath *indexPath = [self.conversationListTableView indexPathForRowAtPoint:scrollView.contentOffset];
   self.index = indexPath.row;
 }
-
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
   //恢复conversationListTableView的自动回滚功能。
   self.conversationListTableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
 }
-
 -(void) GotoNextCoversation
 {
   NSUInteger i;
@@ -1277,11 +1166,9 @@ atIndexPath:(NSIndexPath *)indexPath
     }
   }
 }
-
 - (void)updateForSharedMessageInsertSuccess{
   [self refreshConversationTableViewIfNeeded];
 }
-
 #pragma mark - UISearchBarDelegate
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
   [self.navigationController setNavigationBarHidden:YES animated:YES];
@@ -1290,14 +1177,12 @@ atIndexPath:(NSIndexPath *)indexPath
   searchViewController.delegate = self;
   [self.navigationController.view addSubview:self.searchNavigationController.view];
 }
-
 - (void)onSearchCancelClick{
     [self.searchNavigationController.view removeFromSuperview];
     [self.searchNavigationController removeFromParentViewController];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self refreshConversationTableViewIfNeeded];
 }
-
 -(void)refreshCell:(NSNotification *)notify
 {
   /*
@@ -1311,5 +1196,4 @@ atIndexPath:(NSIndexPath *)indexPath
    */
   [self refreshConversationTableViewIfNeeded];
 }
-
 @end

@@ -140,7 +140,6 @@
     return _downloadButton;
 }
 @end
-
 @interface WXExpressionBannerCell () <WXPictureCarouselDelegate>
 @property (nonatomic, strong) WXPictureCarouselView *picCarouselView;
 @end

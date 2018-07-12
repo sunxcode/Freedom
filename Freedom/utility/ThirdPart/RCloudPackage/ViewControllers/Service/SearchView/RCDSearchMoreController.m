@@ -5,7 +5,6 @@
 //  Created by 张改红 on 16/9/26.
 //  Copyright © 2016年 RongCloud. All rights reserved.
 //
-
 #import "RCDSearchMoreController.h"
 #import "RCDSearchResultViewCell.h"
 #import "RCloudModel.h"
@@ -18,7 +17,6 @@
 @property (nonatomic,strong)UIView *headerView;
 @property (nonatomic,strong)RCDLabel *emptyLabel;
 @end
-
 @implementation RCDSearchMoreController
 - (instancetype)initWithStyle:(UITableViewStyle)style{
   self = [super initWithStyle:UITableViewStylePlain];
@@ -27,8 +25,6 @@
   }
   return self;
 }
-
-
 - (UILabel *)emptyLabel{
   if (!_emptyLabel) {
     self.emptyLabel = [[RCDLabel alloc] initWithFrame:CGRectMake(10,45, self.view.frame.size.width-20, 16)];
@@ -40,7 +36,6 @@
   }
   return _emptyLabel;
 }
-
 - (UIView *)headerView{
   if (!_headerView) {
     _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40)];
@@ -56,7 +51,6 @@
   }
   return _headerView;
 }
-
 - (void)viewDidLoad {
     [super viewDidLoad];
   self.view.backgroundColor = [UIColor whiteColor];
@@ -87,11 +81,9 @@
   self.tableView.tableFooterView = [UIView new];
   self.tableView.separatorColor = [UIColor colorWithRGBHex:0xdfdfdf];
 }
-
 - (void)leftBarButtonBackAction{
   [self.navigationController popViewControllerAnimated:YES];
 }
-
 - (void)loadSearchView{
   self.searchView = [[UIView alloc] initWithFrame:CGRectMake( 0, 0, APPW-25, 44)];
   
@@ -119,28 +111,21 @@
   [_cancelButton addTarget:self action:@selector(cancelButtonClicked) forControlEvents:UIControlEventTouchUpInside];
   [self.searchView addSubview:_cancelButton];
 }
-
 - (void)cancelButtonClicked{
   self.cancelBlock();
   [self.navigationController popViewControllerAnimated:YES];
 }
-
-
 - (void)viewWillAppear:(BOOL)animated{
   [super viewWillAppear:animated];
   self.tableView.tableHeaderView = self.headerView;
   if (self.isShowSeachBar) {
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRGBHex:0xf0f0f6];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
   }
 }
-
 - (void)viewWillDisappear:(BOOL)animated{
   [super viewWillDisappear:animated];
   self.navigationController.navigationBar.barTintColor = [UIColor colorWithRGBHex:0x0099ff];
-  [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent];
 }
-
 - (void)viewWillLayoutSubviews{
   [super viewWillLayoutSubviews];
   if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
@@ -152,13 +137,10 @@
   }
   
 }
-
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.resultArray.count;
 }
-
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   RCDSearchResultViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
   if (!cell) {
@@ -171,13 +153,10 @@
   }
   [cell setDataModel:self.resultArray[indexPath.row]];
   return cell;
-
 }
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
   return 65;
 }
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
   [self.searchBars resignFirstResponder];
   RCDSearchResultModel *model = self.resultArray[indexPath.row];
@@ -236,12 +215,10 @@
   [self.navigationController pushViewController:_conversationVC
                                        animated:YES];
 }
-
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
   searchBar.text = nil;
   searchBar.placeholder = self.type;
 }
-
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
   self.resultArray = nil;
   NSInteger type = RCDSearchFriend;
@@ -260,11 +237,9 @@
     });
   }];
 }
-
 - (void) searchBarSearchButtonClicked:(UISearchBar *)searchBar{
   [self.searchBars resignFirstResponder];
 }
-
 - (void)refreshSearchView:(NSString *)searchText{
   [self.tableView reloadData];
   NSString *searchStr = [searchText stringByReplacingOccurrencesOfString:@" "  withString:@""];
@@ -289,7 +264,6 @@
     }
   }
 }
-
 - (CGFloat)labelAdaptive:(NSString *)string{
   float maxWidth = self.view.frame.size.width-20;
   CGRect textRect = [string

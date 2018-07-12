@@ -1,7 +1,6 @@
 //
 //  TaobaoMiniTopicViewController.swift
 //  Freedom
-
 import UIKit
 import BaseFile
 import XExtension
@@ -21,7 +20,6 @@ class TaobaoMiniTopicViewCell:BaseTableViewCell{
         script.text = "主持人：全球购买手小队长"
         sees?.text = "热度：79570  参与人：100"
     }
-
 }
 class TaobaoMiniTopicViewController: TaobaoBaseViewController {
     override func viewDidLoad() {

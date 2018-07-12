@@ -5,7 +5,6 @@
 //  Created by Super on 6/28/18.
 //  Copyright © 2018 薛超. All rights reserved.
 //
-
 import UIKit
 class SinaMeViewController: SinaBaseViewController {
     override func viewDidLoad() {

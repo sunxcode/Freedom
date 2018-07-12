@@ -38,5 +38,4 @@ class EnergyNewsViewController: EnergyBaseViewController {
         let value = self.tableView.dataArray[indexPath.row]
         _ = self.push(EnergyNewsDetailViewController(), withInfo: "", withTitle: value as! String, withOther: value)
     }
-
 }

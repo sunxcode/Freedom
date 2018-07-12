@@ -1,7 +1,6 @@
 //
 //  SettingViewController.swift
 //  Freedom
-
 import UIKit
 import BaseFile
 import XExtension
@@ -148,7 +147,6 @@ class KugouSettingViewController: KugouBaseViewController {
 //            }
 //        }
     }
-
     func setupMainVCTapGesture() {
 //        presentingViewController.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.clickMainVC)))
     }
@@ -158,6 +156,4 @@ class KugouSettingViewController: KugouBaseViewController {
             NotificationCenter.default.post(name: NSNotification.Name("ChangeMainVCContentEnable"), object: nil)
         })
     }
-
-
 }

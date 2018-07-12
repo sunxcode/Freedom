@@ -27,7 +27,6 @@ typedef NS_ENUM(NSInteger, TLMessageReadState) {
     TLMessageUnRead,            // 消息未读
     TLMessageReaded,            // 消息已读
 };
-
 @interface WXConversation : NSObject
 /*会话类型（个人，讨论组，企业号）*/
 @property (nonatomic, assign) TLConversationType convType;
@@ -57,7 +56,6 @@ typedef NS_ENUM(NSInteger, TLMessageReadState) {
 - (NSString *)messageCopy;
 - (NSString *)conversationContent;
 @end
-
 @interface WXMessageFrame : NSObject
 @property (nonatomic, assign) CGFloat height;
 @property (nonatomic, assign) CGSize contentSize;
@@ -87,7 +85,6 @@ typedef NS_ENUM(NSInteger, TLMessageReadState) {
 @property (nonatomic, strong) NSString *imageURL;                   // 网络图片URL
 @property (nonatomic, assign) CGSize imageSize;
 @end
-
 @protocol WXMessageManagerConvVCDelegate <NSObject>
 - (void)updateConversationData;
 @end
@@ -125,8 +122,6 @@ typedef NS_ENUM(NSInteger, TLMessageReadState) {
 - (BOOL)addConversationByMessage:(WXMessage *)message;
 - (void)conversationRecord:(void (^)(NSArray *))complete;
 - (BOOL)deleteConversationByPartnerID:(NSString *)partnerID;
-
-
 - (void)requestClientInitInfoSuccess:(void (^)(id))clientInitInfo
                              failure:(void (^)(NSString *))error;
 - (void)userLoginWithUsername:(NSString *)username

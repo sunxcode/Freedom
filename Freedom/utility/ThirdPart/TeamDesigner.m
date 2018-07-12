@@ -98,7 +98,6 @@
      }];
     [self.delegate adjustOtherCards];
 }
-
 -(void)leftAction:(CGPoint)velocity {
     CGFloat distanceX = -333;// - self.originalPoint.x;
     CGFloat distanceY = distanceX*self.pointFromCenter.y/self.pointFromCenter.x;
@@ -119,12 +118,7 @@
     model.artPhoto = @"group1/M00/01/5D/CjNYDVi1dkyEcWFGAAAAAM3Rr8Q661.jpg";
     [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://images.mfchao.com/%@", model.artPhoto]]];
 }
-
 @end
-
-
-
-
 @interface TeamDesigner ()<JLDragCardDelegate>
 @property (assign, nonatomic) CGPoint lastCardCenter;
 @property (assign, nonatomic) CGAffineTransform lastCardTransform;
@@ -135,7 +129,6 @@
 -(instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if(self){
-
     }
     return self;
 }

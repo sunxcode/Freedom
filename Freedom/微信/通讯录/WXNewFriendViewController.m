@@ -261,12 +261,11 @@ static const NSString *TLThirdPartFriendTypeGoogle = @"3";
 }
 //MARK: UISearchBarDelegate
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+    
 }
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
 }
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
 }
 //MARK: TLAddThirdPartFriendCellDelegate
 - (void)addThirdPartFriendCellDidSelectedType:(NSString *)thirdPartFriendType{

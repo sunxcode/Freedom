@@ -15,7 +15,6 @@
 + (WXDBManager *)sharedInstance;
 @end
 @class WXMessage;
-
 @interface WXDBBaseStore : NSObject
 /// 数据库操作队列(从TLDBManager中获取，默认使用commonQueue)
 @property (nonatomic, weak) FMDatabaseQueue *dbQueue;
@@ -58,7 +57,6 @@
 /*删除用户的所有聊天记录*/
 - (BOOL)deleteMessagesByUserID:(NSString *)userID;
 @end
-
 @interface WXDBConversationStore : WXDBBaseStore
 /*新的会话（未读）*/
 - (BOOL)addConversationByUid:(NSString *)uid fid:(NSString *)fid type:(NSInteger)type date:(NSDate *)date;
@@ -73,7 +71,6 @@
 /*删除用户的所有会话*/
 - (BOOL)deleteConversationsByUid:(NSString *)uid;
 @end
-
 @interface WXDBExpressionStore : WXDBBaseStore
 /*添加表情包*/
 - (BOOL)addExpressionGroup:(TLEmojiGroup *)group forUid:(NSString *)uid;
@@ -84,7 +81,6 @@
 /*拥有某表情包的用户数*/
 - (NSInteger)countOfUserWhoHasExpressionGroup:(NSString *)gid;
 @end
-
 @interface WXDBFriendStore : WXDBBaseStore
 - (BOOL)updateFriendsData:(NSArray *)friendData
                    forUid:(NSString *)uid;
@@ -92,7 +88,6 @@
 - (NSMutableArray *)friendsDataByUid:(NSString *)uid;
 - (BOOL)deleteFriendByFid:(NSString *)fid forUid:(NSString *)uid;
 @end
-
 @interface WXDBGroupStore : WXDBBaseStore
 - (BOOL)updateGroupsData:(NSArray *)groupData
                   forUid:(NSString *)uid;
@@ -100,4 +95,3 @@
 - (NSMutableArray *)groupsDataByUid:(NSString *)uid;
 - (BOOL)deleteGroupByGid:(NSString *)gid forUid:(NSString *)uid;
 @end
-

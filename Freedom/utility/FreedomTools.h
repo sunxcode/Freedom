@@ -17,10 +17,8 @@
 char pinyinFirstLetter(unsigned short hanzi);
 + (NSString *) pinyinFromChiniseString:(NSString *)string;
 + (NSString *) firstPinyinFromChinise:(NSString *)string;
-
 + (char) sortSectionTitle:(NSString *)string;
 @end
-
 @interface FreedomTools : NSObject
 +(FreedomTools *)sharedManager;
 //重定向log到本地问题 在info.plist中打开Application supports iTunes file sharing

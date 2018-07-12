@@ -166,7 +166,6 @@
     return message;
 }
 @end
-
 @interface WXDBConversationStore ()
 @property (nonatomic, strong) WXDBMessageStore *messageStore;
 @end
@@ -261,7 +260,6 @@
     return _messageStore;
 }
 @end
-
 @implementation WXDBExpressionStore
 - (id)init{
     if (self = [super init]) {
@@ -382,7 +380,6 @@
     return data;
 }
 @end
-
 @implementation WXDBFriendStore
 - (id)init{
     if (self = [super init]) {
@@ -463,7 +460,6 @@
     return ok;
 }
 @end
-
 @implementation WXDBGroupStore
 - (id)init{
     if (self = [super init]) {
@@ -617,7 +613,6 @@
     return ok;
 }
 @end
-
 @implementation WXDBBaseStore
 - (id)init{
     if (self = [super init]) {
@@ -677,7 +672,6 @@
     }
 }
 @end
-
 static WXDBManager *manager;
 @implementation WXDBManager
 + (WXDBManager *)sharedInstance{

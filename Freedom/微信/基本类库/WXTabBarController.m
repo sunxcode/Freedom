@@ -30,15 +30,16 @@ static WXTabBarController *rootVC = nil;
     [vc.tabBarItem setTitleTextAttributes:attM forState:UIControlStateNormal];
     [vc.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor redColor]} forState:UIControlStateSelected];
 }
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
-
     [self.tabBar setBackgroundColor:colorGrayBG];
     [self.tabBar setTintColor:colorGreenDefault];
     for(UIViewController *s in self.childViewControllers){
         [self setupChildController:s image:s.tabBarItem.image SHImage:s.tabBarItem.selectedImage title:s.title];
     }
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [self p_initThirdPartSDK];      // 初始化第三方SDK
     [self p_initAppData];           // 初始化应用信息
     [self p_initUserData];          // 初始化用户信息
@@ -98,11 +99,14 @@ static WXTabBarController *rootVC = nil;
 //    DLog(@"沙盒路径:\n%@", [NSFileManager documentsPath]);
     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"IsFirstRunApp"] == nil) {
         [[NSUserDefaults standardUserDefaults] setObject:@"NO" forKey:@"IsFirstRunApp"];
-        [UIAlertView bk_showAlertViewWithTitle:@"提示" message:@"首次启动App，是否随机下载两组个性表情包，稍候也可在“我的”-“表情”中选择下载。" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
-            if (buttonIndex == 1) {
+        [self showAlerWithtitle:@"提示" message:@"首次启动App，是否随机下载两组个性表情包，稍候也可在“我的”-“表情”中选择下载。" style:UIAlertControllerStyleAlert ac1:^UIAlertAction *{
+            return [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 [self p_downloadDefaultExpression];
-            }
-        }];
+            }];
+        } ac2:^UIAlertAction *{
+            return [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            }];
+        } ac3:nil completion:nil];
     }
     [WXUserHelper sharedHelper];
     [WXFriendHelper sharedFriendHelper];

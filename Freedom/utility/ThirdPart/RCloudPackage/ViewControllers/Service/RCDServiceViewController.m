@@ -5,7 +5,6 @@
 //  Created by Liv on 14/12/1.
 //  Copyright (c) 2014年 RongCloud. All rights reserved.
 //
-
 #import "RCDServiceViewController.h"
 #import <RongIMKit/RongIMKit.h>
 #import "RCDChatViewController.h"
@@ -13,9 +12,7 @@
 @interface RCDServiceViewController () <UITextFieldDelegate>
 @property(nonatomic, strong) UITextField *kefuIdField;
 @end
-
 @implementation RCDServiceViewController
-
 - (IBAction)acService:(UIButton *)sender {
   RCDCustomerServiceViewController *chatService =
       [[RCDCustomerServiceViewController alloc] init];
@@ -27,7 +24,6 @@
   [[NSUserDefaults standardUserDefaults] setObject:kefuId forKey:@"KefuId"];
   chatService.targetId = kefuId;
 //  chatService.targetId = SERVICE_ID;
-
   //上传用户信息，nickname是必须要填写的
   RCCustomerServiceInfo *csInfo = [[RCCustomerServiceInfo alloc] init];
   csInfo.userId = [RCIMClient sharedRCIMClient].currentUserInfo.userId;
@@ -44,27 +40,22 @@
   csInfo.province = @"beijing";
   csInfo.city = @"beijing";
   csInfo.memo = @"这是一个好顾客!";
-
   csInfo.mobileNo = @"13800000000";
   csInfo.email = @"test@example.com";
   csInfo.address = @"北京市北苑路北泰岳大厦";
   csInfo.QQ = @"88888888";
   csInfo.weibo = @"my weibo account";
   csInfo.weixin = @"myweixin";
-
   csInfo.page = @"卖化妆品的页面来的";
   csInfo.referrer = @"客户端";
   csInfo.enterUrl = @"testurl";
   csInfo.skillId = @"技能组";
   csInfo.listUrl = @[ @"用户浏览的第一个商品Url", @"用户浏览的第二个商品Url" ];
   csInfo.define = @"自定义信息";
-
   chatService.csInfo = csInfo;
   chatService.title = chatService.csInfo.nickName;
-
   [self.navigationController pushViewController:chatService animated:YES];
 }
-
 - (id)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if (self) {
@@ -81,7 +72,6 @@
   }
   return self;
 }
-
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
   //    UILabel *titleView = [[UILabel alloc]initWithFrame:CGRectMake(0, 0,
@@ -98,10 +88,8 @@
 // live800 KEFU146227005669524
 // zhichi KEFU146001495753714
 //
-
 - (void)viewDidLoad {
   [super viewDidLoad];
-
   if (!self.kefuIdField) {
     self.kefuIdField =
         [[UITextField alloc] initWithFrame:CGRectMake(10, 50, 200, 30)];
@@ -117,12 +105,10 @@
     self.kefuIdField.returnKeyType = UIReturnKeyDone;
   }
 }
-
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
   [textField resignFirstResponder];
   return YES;
 }
-
 - (void)viewDidDisappear:(BOOL)animated {
   [super viewDidDisappear:animated];
   self.tabBarItem.badgeValue = nil;
@@ -140,7 +126,6 @@
     });
   }
 }
-
 - (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
   // Dispose of any resources that can be recreated.
@@ -151,19 +136,13 @@
                 name:RCKitDispatchMessageNotification
               object:nil];
 }
-
 @end
-
 @interface RCDPublicServiceListViewController ()
-
 @end
-
 @implementation RCDPublicServiceListViewController
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-
     //自定义rightBarButtonItem
     UIButton *rightBtn =
     [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 17, 17)];
@@ -176,12 +155,10 @@
     [rightBtn setTintColor:[UIColor whiteColor]];
     self.navigationItem.rightBarButtonItem = rightButton;
 }
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 - (void)tableView:(UITableView *)tableView
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *key = [self.allKeys objectAtIndex:indexPath.section];
@@ -195,7 +172,6 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     _conversationVC.title = PublicServiceProfile.name;
     [self.navigationController pushViewController:_conversationVC animated:YES];
 }
-
 /**
  *  添加公众号
  *
@@ -206,10 +182,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [[RCPublicServiceSearchViewController alloc] init];
     [self.navigationController pushViewController:searchFirendVC animated:YES];
 }
-
 /*
  #pragma mark - Navigation
-
  // In a storyboard-based application, you will often want to do a little
  preparation before navigation
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -217,18 +191,14 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
  // Pass the selected object to the new view controller.
  }
  */
-
 @end
-
 @interface RCDCustomerServiceViewController ()
 //＊＊＊＊＊＊＊＊＊应用自定义评价界面开始1＊＊＊＊＊＊＊＊＊＊＊＊＊
 //@property (nonatomic, strong)NSString *commentId;
 //@property (nonatomic)RCCustomerServiceStatus serviceStatus;
 //@property (nonatomic)BOOL quitAfterComment;
 //＊＊＊＊＊＊＊＊＊应用自定义评价界面结束1＊＊＊＊＊＊＊＊＊＊＊＊＊
-
 @end
-
 @implementation RCDCustomerServiceViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -249,7 +219,6 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
      */
     self.navigationItem.rightBarButtonItem = nil;
 }
-
 /*
  - (void)rightBarButtonItemClicked:(id)sender {
  RCDSettingBaseViewController *settingVC =
@@ -269,12 +238,10 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
  [self.navigationController pushViewController:settingVC animated:YES];
  }
  */
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 //客服VC左按键注册的selector是customerServiceLeftCurrentViewController，
 //这个函数是基类的函数，他会根据当前服务时间来决定是否弹出评价，根据服务的类型来决定弹出评价类型。
 //弹出评价的函数是commentCustomerServiceAndQuit，应用可以根据这个函数内的注释来自定义评价界面。
@@ -282,10 +249,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 - (void)leftBarButtonItemPressed:(id)sender {
     //需要调用super的实现
     [super leftBarButtonItemPressed:sender];
-
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
-
 //评价客服，并离开当前会话
 //如果您需要自定义客服评价界面，请把本函数注释掉，并打开“应用自定义评价界面开始1/2”到“应用自定义评价界面结束”部分的代码，然后根据您的需求进行修改。
 //如果您需要去掉客服评价界面，请把本函数注释掉，并打开下面“应用去掉评价界面开始”到“应用去掉评价界面结束”部分的代码，然后根据您的需求进行修改。
@@ -296,7 +261,6 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
                                   commentId:commentId
                            quitAfterComment:isQuit];
 }
-
 //＊＊＊＊＊＊＊＊＊应用去掉评价界面开始＊＊＊＊＊＊＊＊＊＊＊＊＊
 //-
 //(void)commentCustomerServiceWithStatus:(RCCustomerServiceStatus)serviceStatus
@@ -306,7 +270,6 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 //    }
 //}
 //＊＊＊＊＊＊＊＊＊应用去掉评价界面结束＊＊＊＊＊＊＊＊＊＊＊＊＊
-
 //＊＊＊＊＊＊＊＊＊应用自定义评价界面开始2＊＊＊＊＊＊＊＊＊＊＊＊＊
 //-
 //(void)commentCustomerServiceWithStatus:(RCCustomerServiceStatus)serviceStatus
@@ -361,7 +324,6 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 //    }
 //}
 //＊＊＊＊＊＊＊＊＊应用自定义评价界面结束2＊＊＊＊＊＊＊＊＊＊＊＊＊
-
 - (void)notifyUpdateUnreadMessageCount {
     __weak typeof(&*self) __weakself = self;
     int count = [[RCIMClient sharedRCIMClient] getUnreadCount:@[
@@ -402,5 +364,4 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
         [__weakself.navigationItem setLeftBarButtonItem:leftButton];
     });
 }
-
 @end

@@ -290,8 +290,7 @@
 }
 //MARK: TLSettingSwitchCellDelegate
 - (void)settingSwitchCellForItem:(WXSettingItem *)settingItem didChangeStatus:(BOOL)on{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Switch事件未被子类处理" message:[NSString stringWithFormat:@"Title: %@\nStatus: %@", settingItem.title, (on ? @"on" : @"off")] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-    [alert show];
+    [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"Switch事件未被子类处理Title: %@\nStatus: %@", settingItem.title, (on ? @"on" : @"off")]];
 }
 #pragma mark - Getter -
 - (NSString *)analyzeTitle{

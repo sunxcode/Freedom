@@ -14,6 +14,7 @@
     NSArray *section1 = [NSArray arrayWithObjects:@"http://rongcloud.cn/", @"http://rongcloud.cn/", nil];
     NSArray *urls = [NSArray arrayWithObjects:section0, section1, nil];
     NSString *urlString = urls[indexPath.section][indexPath.row];
-  [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString] options:@{} completionHandler:^(BOOL success) {
+    }];
 }
 @end

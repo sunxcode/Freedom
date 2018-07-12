@@ -1,7 +1,6 @@
 //
 //  TaobaoMeViewController.swift
 //  Freedom
-
 import UIKit
 import BaseFile
 import XExtension
@@ -16,7 +15,6 @@ class TaobaoMeViewCell1:BaseCollectionViewCell{
         title.text = "待收货"
         icon.image = UIImage(named: "taobaomini2")
     }
-
 }
 class TaobaoMeViewCell2:BaseCollectionViewCell{
     override func initUI() {
@@ -28,7 +26,6 @@ class TaobaoMeViewCell2:BaseCollectionViewCell{
         title.text = "蚂蚁花呗"
         icon.image = UIImage(named: "taobaomini1")
     }
-
 }
 class TaobaoMeHeadView: UICollectionReusableView {
     var titleLabel: UILabel?
@@ -123,7 +120,6 @@ class TaobaoMeViewController: TaobaoBaseViewController,UICollectionViewDelegate,
         }
         return cell!
     }
-
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if indexPath.section == 0 {
             return CGSize(width: APPW / 5 - 12, height: 60)
@@ -149,6 +145,5 @@ class TaobaoMeViewController: TaobaoBaseViewController,UICollectionViewDelegate,
             return UIEdgeInsetsMake(10, 10, 0, 10)
         }
     }
-
     
 }

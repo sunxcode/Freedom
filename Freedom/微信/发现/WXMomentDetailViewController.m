@@ -466,7 +466,6 @@ typedef NS_ENUM(NSInteger, TLMomentViewButtonType) {
     return _detailView;
 }
 @end
-
 @interface WXMomentDetailViewController () <WXMomentViewDelegate>
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) WXMomentImageView *momentView;

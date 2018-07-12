@@ -1,7 +1,6 @@
 //
 //  LookViewController.swift
 //  Freedom
-
 import UIKit
 import BaseFile
 import XExtension
@@ -69,7 +68,7 @@ class KugouLookViewController: KugouBaseViewController {
             cell = UITableViewCell(style: .default, reuseIdentifier: mainCellID)
         }
         cell?.imageView?.image = UIImage(named: "music")
-        cell?.textLabel?.text = titlesArr[indexPath.row] as! String
+        cell?.textLabel?.text = titlesArr[indexPath.row] as? String
         if let aCell = cell {
             return aCell
         }
@@ -81,6 +80,4 @@ class KugouLookViewController: KugouBaseViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 44
     }
-
-
 }

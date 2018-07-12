@@ -3576,7 +3576,6 @@
 		7759B68D1D0EA37F00AE3A59 /* Freedom */ = {
 			isa = PBXGroup;
 			children = (
-				BF5C6ACF20F37731000DF336 /* Freedom.entitlements */,
 				776C65891D22540A00D77E0D /* 微信 */,
 				776C658C1D22540A00D77E0D /* 支付宝 */,
 				776C65861D22540A00D77E0D /* 酷狗 */,
@@ -4133,6 +4132,7 @@
 		7789136C1D0FDDDB0096AB3B /* Others */ = {
 			isa = PBXGroup;
 			children = (
+				BF5C6ACF20F37731000DF336 /* Freedom.entitlements */,
 				BFAC49BE20D25EE700E5CB8D /* AppDelegate.swift */,
 				7789138D1D0FDDDB0096AB3B /* PrefixHeader.pch */,
 				BF5B9B631F8E645100BD885E /* OC-Swift.h */,
@@ -6853,7 +6853,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
-				CODE_SIGN_ENTITLEMENTS = Freedom/Freedom.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Freedom/Others/Freedom.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 86HU38VCDS;
@@ -6893,7 +6893,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
-				CODE_SIGN_ENTITLEMENTS = Freedom/Freedom.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Freedom/Others/Freedom.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 86HU38VCDS;

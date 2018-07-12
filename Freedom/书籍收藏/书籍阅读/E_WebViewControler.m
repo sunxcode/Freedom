@@ -213,7 +213,7 @@ const float NJKFinalProgressValue = 0.9f;
         NSString *completeString = [selectString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         completeString = [completeString stringByReplacingOccurrencesOfString:@"\r" withString:@""];
         completeString = [completeString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-        _selectString = [completeString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        _selectString = [completeString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
         self.view.backgroundColor = [UIColor whiteColor];
     }
     return self;

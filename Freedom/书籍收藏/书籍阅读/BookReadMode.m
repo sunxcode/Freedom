@@ -5,7 +5,6 @@
 //  Created by Super on 2018/4/27.
 //  Copyright © 2018年 Super. All rights reserved.
 //
-
 #import "BookReadMode.h"
 #import "BookSubViews.h"
 #define kMarkChapter    @"kMarkChapter"
@@ -142,10 +141,8 @@
     }
 }
 @end
-
 @implementation E_EveryChapter
 @end
-
 @implementation E_Mark
 @synthesize markChapter;
 @synthesize markRange;
@@ -169,7 +166,6 @@
     return self;
 }
 @end
-
 @implementation E_ReaderDataSource
 + (E_ReaderDataSource *)shareInstance{
     static E_ReaderDataSource *dataSource;
@@ -332,7 +328,5 @@ static NSString *readTextData(NSUInteger index){
     return content;
 }
 @end
-
 @implementation BookReadMode
-
 @end

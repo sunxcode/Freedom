@@ -5,9 +5,7 @@
 //  Created by Jue on 16/5/18.
 //  Copyright © 2016年 RongCloud. All rights reserved.
 //
-
 #import "RCDPrivateSettingsTableViewController.h"
-
 #import "RCDHttpTool.h"
 #import "RCloudModel.h"
 #import "UIImageView+WebCache.h"
@@ -16,18 +14,12 @@
 #import "RCDSearchHistoryMessageController.h"
 #import "RCDSettingBaseViewController.h"
 @interface RCDPrivateSettingsUserInfoCell : UITableViewCell
-
 @property(strong, nonatomic) UIImageView *PortraitImageView;
-
 @property(strong, nonatomic) UILabel *NickNameLabel;
-
 @property (strong, nonatomic) UILabel *displayNameLabel;
-
 - (id)initWithIsHaveDisplayName:(BOOL)isHaveDisplayName;
 @end
-
 @implementation RCDPrivateSettingsUserInfoCell
-
 - (instancetype)init
 {
     self = [super init];
@@ -36,21 +28,17 @@
     }
     return self;
 }
-
 - (void)initSubviews {
     self.PortraitImageView = [[UIImageView alloc]init];
     self.PortraitImageView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.contentView addSubview:self.PortraitImageView];
-
     self.NickNameLabel = [[UILabel alloc]init];
     self.NickNameLabel.font = [UIFont boldSystemFontOfSize:16];
     self.NickNameLabel.textColor = [UIColor colorWithRGBHex:0x000000];
     [self.contentView addSubview:self.NickNameLabel];
     self.NickNameLabel.translatesAutoresizingMaskIntoConstraints = NO;
-
     NSDictionary *views =
     NSDictionaryOfVariableBindings(_PortraitImageView, _NickNameLabel);
-
     [self.contentView
      addConstraint:[NSLayoutConstraint
                     constraintWithItem:self.PortraitImageView
@@ -60,7 +48,6 @@
                     attribute:NSLayoutAttributeCenterY
                     multiplier:1.0f
                     constant:0]];
-
     [self.contentView
      addConstraint:[NSLayoutConstraint
                     constraintWithItem:self.NickNameLabel
@@ -70,14 +57,12 @@
                     attribute:NSLayoutAttributeCenterY
                     multiplier:1.0f
                     constant:0]];
-
     [self.contentView
      addConstraints:[NSLayoutConstraint
                      constraintsWithVisualFormat:@"V:[_PortraitImageView(65)]"
                      options:0
                      metrics:nil
                      views:views]];
-
     [self.contentView
      addConstraints: [NSLayoutConstraint
                       constraintsWithVisualFormat:@"H:|-10-[_PortraitImageView(65)]-[_NickNameLabel]-40-|"
@@ -85,22 +70,18 @@
                       metrics:nil
                       views:views]];
 }
-
 - (id)initWithIsHaveDisplayName:(BOOL)isHaveDisplayName{
     self = [super init];
     if (self) {
         self.PortraitImageView = [[UIImageView alloc] init];
         self.PortraitImageView.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:self.PortraitImageView];
-
         self.NickNameLabel = [[UILabel alloc] init];
         self.NickNameLabel.translatesAutoresizingMaskIntoConstraints = NO;
         self.NickNameLabel.font = [UIFont systemFontOfSize:16.f];
         self.NickNameLabel.textColor = [UIColor colorWithRGBHex:0x000000];
         [self addSubview:self.NickNameLabel];
-
         NSDictionary *subViews = NSDictionaryOfVariableBindings(_PortraitImageView,_NickNameLabel);
-
         [self
          addConstraint:[NSLayoutConstraint
                         constraintWithItem:self.PortraitImageView
@@ -110,12 +91,10 @@
                         attribute:NSLayoutAttributeCenterY
                         multiplier:1
                         constant:0]];
-
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_PortraitImageView(65)]"
                                                                      options:0
                                                                      metrics:nil
                                                                        views:subViews]];
-
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[_PortraitImageView(65)]-10-[_NickNameLabel]-10-|"
                                                                      options:0
                                                                      metrics:nil
@@ -135,7 +114,6 @@
                             attribute:NSLayoutAttributeTop
                             multiplier:1
                             constant:13.5]];
-
             [self
              addConstraint:[NSLayoutConstraint
                             constraintWithItem:self.displayNameLabel
@@ -145,7 +123,6 @@
                             attribute:NSLayoutAttributeBottom
                             multiplier:1
                             constant:-13.5]];
-
             [self
              addConstraint:[NSLayoutConstraint
                             constraintWithItem:self.displayNameLabel
@@ -169,39 +146,26 @@
     }
     return self;
 }
-
 @end
-
 @interface RCDPrivateSettingsCell : UITableViewCell
-
 @property(weak, nonatomic) IBOutlet UILabel *TitleLabel;
-
 @property(weak, nonatomic) IBOutlet UISwitch *SwitchButton;
-
 @end
-
 @implementation RCDPrivateSettingsCell
-
 @end
 static NSString *CellIdentifier = @"RCDBaseSettingTableViewCell";
-
 @interface RCDPrivateSettingsTableViewController ()
-
 @property(strong, nonatomic) RCDUserInfo *userInfo;
-
 @end
-
 @implementation RCDPrivateSettingsTableViewController {
   NSString *portraitUrl;
   NSString *nickname;
   BOOL enableNotification;
   RCConversation *currentConversation;
 }
-
 + (instancetype)privateSettingsTableViewController {
     return [[[self class] alloc]init];
 }
-
 - (instancetype)init
 {
     self = [super init];
@@ -212,13 +176,11 @@ static NSString *CellIdentifier = @"RCDBaseSettingTableViewCell";
     }
     return self;
 }
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
     [self startLoadView];
     
 }
-
 - (void)viewDidLoad {
     [super viewDidLoad];
   
@@ -249,22 +211,17 @@ static NSString *CellIdentifier = @"RCDBaseSettingTableViewCell";
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
 }
-
 - (void)leftBarButtonItemPressed:(id)sender{
     [self.navigationController popViewControllerAnimated:YES];
 }
-
 - (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
   // Dispose of any resources that can be recreated.
 }
-
 #pragma mark - Table view data source
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
   return 3;
 }
-
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section {
   NSInteger rows;
@@ -272,7 +229,6 @@ static NSString *CellIdentifier = @"RCDBaseSettingTableViewCell";
   case 0:
     rows = 1;
     break;
-
   case 1:
     rows = 1;
     break;
@@ -285,7 +241,6 @@ static NSString *CellIdentifier = @"RCDBaseSettingTableViewCell";
   }
   return rows;
 }
-
 - (CGFloat)tableView:(UITableView *)tableView
     heightForHeaderInSection:(NSInteger)section {
   if (section == 1 || section == 2) {
@@ -293,7 +248,6 @@ static NSString *CellIdentifier = @"RCDBaseSettingTableViewCell";
   }
   return 0;
 }
-
 - (CGFloat)tableView:(UITableView *)tableView
     heightForRowAtIndexPath:(NSIndexPath *)indexPath {
   CGFloat heigh = 0;
@@ -301,7 +255,6 @@ static NSString *CellIdentifier = @"RCDBaseSettingTableViewCell";
   case 0:
     heigh = 86.f;
     break;
-
   case 1:
     heigh = 43.f;
     break;
@@ -313,7 +266,6 @@ static NSString *CellIdentifier = @"RCDBaseSettingTableViewCell";
   }
   return heigh;
 }
-
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 //<<<<<<< HEAD
@@ -424,9 +376,7 @@ static NSString *CellIdentifier = @"RCDBaseSettingTableViewCell";
   }
   return nil;
 }
-
-- (void)tableView:(UITableView *)tableView
-    didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   if (indexPath.section == 1) {
     RCDSearchHistoryMessageController *searchViewController = [[RCDSearchHistoryMessageController alloc] init];
     searchViewController.conversationType = ConversationType_PRIVATE;
@@ -435,24 +385,18 @@ static NSString *CellIdentifier = @"RCDBaseSettingTableViewCell";
   }
   if (indexPath.section == 2) {
     if (indexPath.row == 2) {
-      UIActionSheet *actionSheet =
-          [[UIActionSheet alloc] initWithTitle:@"确定清除聊天记录？"
-                                      delegate:self
-                             cancelButtonTitle:@"取消"
-                        destructiveButtonTitle:@"确定"
-                             otherButtonTitles:nil];
-
-      [actionSheet showInView:self.view];
-      actionSheet.tag = 100;
+        [self showAlerWithtitle:@"确定清除聊天记录？" message:nil style:UIAlertControllerStyleActionSheet ac1:^UIAlertAction *{
+            return [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                [self clearChatHistory];
+            }];
+        } ac2:^UIAlertAction *{
+            return [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            }];
+        } ac3:nil completion:nil];
     }
   }
 }
-
-#pragma mark -UIActionSheetDelegate
-- (void)actionSheet:(UIActionSheet *)actionSheet
-    clickedButtonAtIndex:(NSInteger)buttonIndex {
-  if (actionSheet.tag == 100) {
-    if (buttonIndex == 0) {
+- (void)clearChatHistory{
       NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
       RCDPrivateSettingsCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
       UIActivityIndicatorView *activityIndicatorView =
@@ -464,45 +408,23 @@ static NSString *CellIdentifier = @"RCDBaseSettingTableViewCell";
         [activityIndicatorView startAnimating];
         [cell addSubview:loadingView];
       });
-
-      
-      
       [[RCIMClient sharedRCIMClient]deleteMessages:ConversationType_PRIVATE targetId:_userId success:^{
-        [self performSelectorOnMainThread:@selector(clearCacheAlertMessage:)
-                               withObject:@"清除聊天记录成功！"
-                            waitUntilDone:YES];
+        [self performSelectorOnMainThread:@selector(clearCacheAlertMessage:) withObject:@"清除聊天记录成功！" waitUntilDone:YES];
         [[NSNotificationCenter defaultCenter]postNotificationName:@"ClearHistoryMsg" object:nil];
         dispatch_async(dispatch_get_main_queue(), ^{
           [loadingView removeFromSuperview];
         });
-        
       } error:^(RCErrorCode status) {
-        [self performSelectorOnMainThread:@selector(clearCacheAlertMessage:)
-                               withObject:@"清除聊天记录失败！"
-                            waitUntilDone:YES];
+        [self performSelectorOnMainThread:@selector(clearCacheAlertMessage:) withObject:@"清除聊天记录失败！" waitUntilDone:YES];
         dispatch_async(dispatch_get_main_queue(), ^{
           [loadingView removeFromSuperview];
         });
       }];
-      
-
-      [[NSNotificationCenter defaultCenter]
-          postNotificationName:@"ClearHistoryMsg"
-                        object:nil];
-    }
-  }
+      [[NSNotificationCenter defaultCenter] postNotificationName:@"ClearHistoryMsg" object:nil];
 }
-
 - (void)clearCacheAlertMessage:(NSString *)msg {
-  UIAlertView *alertView =
-  [[UIAlertView alloc] initWithTitle:nil
-                             message:msg
-                            delegate:nil
-                   cancelButtonTitle:@"确定"
-                   otherButtonTitles:nil, nil];
-  [alertView show];
+    [SVProgressHUD showInfoWithStatus:msg];
 }
-
 #pragma mark - 本类的私有方法
 - (void)startLoadView {
   currentConversation =
@@ -519,18 +441,14 @@ static NSString *CellIdentifier = @"RCDBaseSettingTableViewCell";
         [self.tableView reloadData];
       }
       error:^(RCErrorCode status){
-
       }];
-
   [self loadUserInfo:self.userId];
 }
-
 - (void)loadUserInfo:(NSString *)userId {
   if (![userId isEqualToString:[RCIM sharedRCIM].currentUserInfo.userId]) {
     self.userInfo = [[RCDataBaseManager shareInstance] getFriendInfo:userId];
   }
 }
-
 - (void)clickNotificationBtn:(id)sender {
   UISwitch *swch = sender;
   [[RCIMClient sharedRCIMClient]
@@ -538,19 +456,14 @@ static NSString *CellIdentifier = @"RCDBaseSettingTableViewCell";
       targetId:self.userId
       isBlocked:swch.on
       success:^(RCConversationNotificationStatus nStatus) {
-
       }
       error:^(RCErrorCode status){
-
       }];
 }
-
 - (void)clickIsTopBtn:(id)sender {
   UISwitch *swch = sender;
   [[RCIMClient sharedRCIMClient] setConversationToTop:ConversationType_PRIVATE
                                              targetId:self.userId
                                                 isTop:swch.on];
 }
-
-
 @end

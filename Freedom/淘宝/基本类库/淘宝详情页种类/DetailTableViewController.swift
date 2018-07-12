@@ -1,7 +1,6 @@
 //
 //  DetailTableViewController.swift
 //  Freedom
-
 import UIKit
 import BaseFile
 import XExtension
@@ -56,6 +55,4 @@ class DetailTableViewController: TaobaoBaseViewController {
         _ = data[indexPath.row]["class"]
 navigationController?.pushViewController(UIViewController(), animated: true)
     }
-
-
 }

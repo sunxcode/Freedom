@@ -72,12 +72,9 @@ class IqiyiVideosModel: NSObject {
 protocol IqiyiHomeBoxCellDelegate: NSObjectProtocol {
     func didSelectHomeBox(_ video: IqiyiVideosModel?)
 }
-
 protocol IqiyiImageCardViewDelegate: NSObjectProtocol {
     func didSelectImageCard(_ imageCard: IqiyiImageCardView?, video: IqiyiVideosModel?)
 }
-
-
 class IqiyiImageCardView: UIView {
     var imageView: UIImageView?
     var titleLabel: UILabel?
@@ -145,7 +142,6 @@ class IqiyiImageCardView: UIView {
         addSubview(yaofengLabel!)
         
     }
-
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -176,8 +172,6 @@ class IqiyiImageCardView: UIView {
             delegate?.didSelectImageCard(self, video: video)
         }
     }
-
-
 }
 class IqiyiHomeBoxCell: UITableViewCell,IqiyiImageCardViewDelegate {
     private var titleLabel: UILabel?
@@ -188,7 +182,6 @@ class IqiyiHomeBoxCell: UITableViewCell,IqiyiImageCardViewDelegate {
     private var cardView4: IqiyiImageCardView!
     var boxes: IqiyiBoxesModel?
     weak var delegate: IqiyiHomeBoxCellDelegate?
-
     func ainit(tableView: UITableView?) {
         let menuID = "JFHomeBoxCell"
         var cell = tableView?.dequeueReusableCell(withIdentifier: menuID) as? IqiyiHomeBoxCell
@@ -252,7 +245,6 @@ class IqiyiHomeBoxCell: UITableViewCell,IqiyiImageCardViewDelegate {
             delegate?.didSelectHomeBox(video)
         }
     }
-
         
 }
 class IqiyiHomeVideoBoxCell: UITableViewCell {
@@ -266,7 +258,6 @@ class IqiyiHomeVideoBoxCell: UITableViewCell {
     private var cardView4: IqiyiImageCardView!
     private var cardView5: IqiyiImageCardView!
     private var cardView6: IqiyiImageCardView!
-
     func initViews() {
         //背景
         let backView = UIView(frame: CGRect(x: 0, y: 5, width: APPW, height: 40 + 230 + 230))
@@ -316,10 +307,7 @@ class IqiyiHomeVideoBoxCell: UITableViewCell {
         cardView5.video = video5
         cardView6.video = video6
     }
-
-
 }
-
 class IqiyiViewController: IqiyiBaseViewController ,IqiyiHomeBoxCellDelegate {
         var homeTableView: UITableView?
         
@@ -347,11 +335,9 @@ class IqiyiViewController: IqiyiBaseViewController ,IqiyiHomeBoxCellDelegate {
     }
     func initNav() {
         let leftBarButtonItem = UIBarButtonItem(image: UIImage(named:"qylogo_p"), style: .plain) {
-
         }
         navigationItem.leftBarButtonItem = leftBarButtonItem
         let rightUploadBarButtonItem = UIBarButtonItem(image: UIImage(named:"wcamera"), style: .plain) {
-
         }
         let rightHistoryBarButtonItem = UIBarButtonItem(image: UIImage(named:"whistory"), style: .plain, target: self, action: #selector(self.rightHistoryBarButtonItemClick))
         let rightSearchBarButtonItem = UIBarButtonItem(image: UIImage(named:"wsearch"), style: .plain, target: self, action: #selector(self.rightSearchBarButtonItemClick))
@@ -396,7 +382,6 @@ class IqiyiViewController: IqiyiBaseViewController ,IqiyiHomeBoxCellDelegate {
 //            homeTableView.reloadData()
 //        }
     }
-
     func initView() {
         let tableView = UITableView(frame: CGRect(x: 0, y: 0, width: APPW, height: APPH - 64), style: .plain)
         tableView.delegate = self
@@ -406,7 +391,6 @@ class IqiyiViewController: IqiyiBaseViewController ,IqiyiHomeBoxCellDelegate {
         homeTableView = tableView
         view.addSubview(homeTableView!)
     }
-
     func getHeight(_ boxes: IqiyiBoxesModel?) -> Float {
         var height: Float = 0
         height = height + 40
@@ -428,7 +412,6 @@ class IqiyiViewController: IqiyiBaseViewController ,IqiyiHomeBoxCellDelegate {
             return height ?? 0.0
         }
     }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if bannerSource.count > 0 {
             return boxesSource.count + 1
@@ -457,6 +440,5 @@ class IqiyiViewController: IqiyiBaseViewController ,IqiyiHomeBoxCellDelegate {
         videoDetailVC.iid = (video?.iid)!
         navigationController?.pushViewController(videoDetailVC, animated: true)
     }
-
     
 }

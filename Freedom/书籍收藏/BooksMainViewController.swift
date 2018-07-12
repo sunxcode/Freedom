@@ -5,7 +5,6 @@
 //  Created by Super on 6/14/18.
 //  Copyright © 2018 Super. All rights reserved.
 //
-
 import UIKit
 import XExtension
 class BooksMainViewController: BooksBaseViewController {
@@ -55,7 +54,6 @@ class BooksMainViewController: BooksBaseViewController {
         tabBarController?.tabBar.isHidden = true
         edgesForExtendedLayout = [.left, .right, .bottom]
     }
-
     //显示左侧视图
     func showSide(withAnimation animation: Bool) {
         UIView.animate(withDuration: animation ? 0.5 : 0, animations: {
@@ -69,7 +67,6 @@ class BooksMainViewController: BooksBaseViewController {
         }
     }
     //关闭左侧视图
-
     func dismissSide(withAnimation animation: Bool) {
         UIView.animate(withDuration: animation ? 0.5 : 0, animations: {
             self.leftViewController.view.frame = CGRect(x: -APPW * 0.3, y: 0, width: APPW, height: APPH)
@@ -80,7 +77,6 @@ class BooksMainViewController: BooksBaseViewController {
         }
     }
     //显示右侧视图
-
     func showRightView(withAnimation animation: Bool) {
         UIView.animate(withDuration: animation ? 0.5 : 0, animations: {
             self.rightViewController.view.frame = CGRect(x: APPW - APPW, y: 0, width: APPW, height: APPH)
@@ -93,7 +89,6 @@ class BooksMainViewController: BooksBaseViewController {
         }
     }
     //关闭右侧视图
-
     func dismissRigthView(withAnimation animation: Bool) {
         UIView.animate(withDuration: animation ? 0.5 : 0, animations: {
             self.rightViewController.view.frame = CGRect(x: 0.8 * APPW, y: 0, width: APPW, height: APPH)
@@ -104,7 +99,6 @@ class BooksMainViewController: BooksBaseViewController {
         }
     }
     //中间视图手势事件
-
     func panGesture(_ pan: UIPanGestureRecognizer?) {
         let transion: CGPoint? = pan?.translation(in: centerViewController.view)
         let offSetX: CGFloat? = transion?.x
@@ -152,7 +146,6 @@ class BooksMainViewController: BooksBaseViewController {
         }
     }
     //右侧视图的手势事件 右拉显示中间视图
-
     func rightPanGesture(_ pan: UIPanGestureRecognizer?) {
         let point: CGPoint? = pan?.translation(in: rightViewController.view)
         let offsetX: CGFloat? = point?.x
@@ -175,7 +168,6 @@ class BooksMainViewController: BooksBaseViewController {
         }
     }
     //左侧视图的手势事件 左拉显示中间视图
-
     func leftPaneGesture(_ pan: UIPanGestureRecognizer?) {
         let point: CGPoint? = pan?.translation(in: leftViewController.view)
         let offsetX: CGFloat? = point?.x
@@ -198,7 +190,6 @@ class BooksMainViewController: BooksBaseViewController {
         }
     }
     //根据当前偏移量和总偏移量动态改变蒙版的alpha值
-
     func alpha(withOffsetX offsetX: CGFloat, totalOffsetX: CGFloat) -> CGFloat {
         let m = CGFloat(fabs(Float(offsetX))) / totalOffsetX
         var alpha: CGFloat = 1 - m
@@ -207,7 +198,6 @@ class BooksMainViewController: BooksBaseViewController {
         }
         return alpha
     }
-
     //根据偏移量动态改变视图的frame
     func centerViewFrame(withOffsetX offsetX: CGFloat) -> CGRect {
         var perframe: CGRect = centerViewController.view.frame
@@ -222,11 +212,9 @@ class BooksMainViewController: BooksBaseViewController {
         }
         return perframe
     }
-
     func rightViewFrame(withOffsetX offsetX: CGFloat) -> CGRect {
         var perframe: CGRect = rightViewController.view.frame
         perframe.origin.x += offsetX
         return perframe
     }
-
 }

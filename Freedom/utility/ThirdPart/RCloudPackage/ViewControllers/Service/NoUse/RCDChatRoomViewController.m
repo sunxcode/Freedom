@@ -5,7 +5,6 @@
 //  Created by Liv on 14/10/31.
 //  Copyright (c) 2014年 RongCloud. All rights reserved.
 //
-
 #import "RCDChatRoomViewController.h"
 #import "RCloudModel.h"
 #import "RCDChatViewController.h"
@@ -15,11 +14,8 @@
 @property(weak, nonatomic) IBOutlet UIImageView *ivChatRoomPortrait;
 @property(weak, nonatomic) IBOutlet UILabel *lbNumber;
 @property(weak, nonatomic) IBOutlet UILabel *lbDescription;
-
 @end
-
 @implementation RCDChatRoomTableViewCell
-
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
@@ -28,25 +24,18 @@
     }
     return self;
 }
-
 - (void)awakeFromNib {
     [super awakeFromNib];
 }
-
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
     // Configure the view for the selected state
 }
-
 @end
-
 @interface RCDChatRoomViewController ()
 @property(nonatomic, strong) NSMutableArray *chatRoomList;
 @end
-
 @implementation RCDChatRoomViewController
-
 - (id)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if (self) {
@@ -58,11 +47,9 @@
   }
   return self;
 }
-
 - (void)viewDidLoad {
   [super viewDidLoad];
   // Do any additional setup after loading the view.
-
   //设置tableView样式
   self.tableView.separatorColor =
       [UIColor colorWithRGBHex:0xdfdfdf];
@@ -70,7 +57,6 @@
   // self.tableView.tableHeaderView = [[UIView alloc]
   // initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width,
   // 12)];
-
   _chatRoomList = [[NSMutableArray alloc] init];
   RCDChatRoomInfo *chatRoom1 = [[RCDChatRoomInfo alloc] init];
   chatRoom1.chatRoomId = @"chatroom001";
@@ -80,7 +66,6 @@
   chatRoom1.maxNumber = @"500";
   chatRoom1.portrait = @"icon_1";
   [_chatRoomList addObject:chatRoom1];
-
   RCDChatRoomInfo *chatRoom2 = [[RCDChatRoomInfo alloc] init];
   chatRoom2.chatRoomId = @"chatroom002";
   chatRoom2.introduce = @"单聊群聊多种使用场景";
@@ -89,7 +74,6 @@
   chatRoom2.maxNumber = @"500";
   chatRoom2.portrait = @"icon_2";
   [_chatRoomList addObject:chatRoom2];
-
   RCDChatRoomInfo *chatRoom3 = [[RCDChatRoomInfo alloc] init];
   chatRoom3.chatRoomId = @"chatroom003";
   chatRoom3.introduce = @"提供文字表情防语音片段等...";
@@ -98,7 +82,6 @@
   chatRoom3.maxNumber = @"500";
   chatRoom3.portrait = @"icon_3";
   [_chatRoomList addObject:chatRoom3];
-
   //    RCDChatRoomInfo *chatRoom4=[[RCDChatRoomInfo alloc]init];
   //    chatRoom4.chatRoomId=@"chatroom004";
   //    chatRoom4.introduce=@"各类时尚资讯";
@@ -117,7 +100,6 @@
   //    chatRoom5.portrait=@"icon_3";
   //    [_chatRoomList addObject:chatRoom5];
 }
-
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
   UILabel *titleView = [[UILabel alloc]
@@ -131,24 +113,20 @@
   // self.tabBarController.navigationItem.title = @"聊天室";
   self.tabBarController.navigationItem.rightBarButtonItem = nil;
 }
-
 - (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
   // Dispose of any resources that can be recreated.
 }
-
 #pragma mark--UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section {
   return _chatRoomList.count;
 }
-
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   static NSString *CellIdentifier = @"RCDChatRoomTableViewCell";
   RCDChatRoomTableViewCell *cell = (RCDChatRoomTableViewCell *)[tableView
       dequeueReusableCellWithIdentifier:CellIdentifier];
-
   RCDChatRoomInfo *chatRoom = _chatRoomList[indexPath.row];
   cell.lbChatroom.text = chatRoom.chatRoomName;
   cell.lbNumber.text = chatRoom.category;
@@ -159,7 +137,6 @@
   cell.ivChatRoomPortrait.layer.masksToBounds = YES;
   return cell;
 }
-
 - (void)tableView:(UITableView *)tableView
     didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   RCDChatRoomInfo *chatRoom = _chatRoomList[indexPath.row];
@@ -170,5 +147,4 @@
   temp.title = chatRoom.chatRoomName;
   [self.navigationController pushViewController:temp animated:YES];
 }
-
 @end

@@ -50,9 +50,6 @@
 #define RC_LOAD_IMAGE_DONE_EVENT @"RC_LOAD_IMAGE_DONE_EVENT"
 #define RC_CONNECTION_STATUS_CHANGED_EVENT @"RC_CONNECTION_STATUS_CHANGED_EVENT"
 #import <RongIMLib/RongIMLib.h>
-
-
-
 @implementation RCWKNotifier
 + (instancetype)sharedWKNotifier {
     static RCWKNotifier *pDefaultNotifier;
@@ -64,7 +61,6 @@
     });
     return pDefaultNotifier;
 }
-
 - (void)notifyWatchKitEvent:(NSString *)appEvent {
     if (self.isWatchAttached) {
         CFNotificationCenterPostNotification(
@@ -72,7 +68,6 @@
                                              (__bridge CFStringRef)appEvent, NULL, NULL, true);
     }
 }
-
 - (void)notifyWatchKitMessageChanged {
     [self notifyWatchKitEvent:RC_MESSAGE_CHANGED_EVENT];
 }
@@ -91,7 +86,6 @@
 - (void)notifyWatchKitConnectionStatusChanged {
     [self notifyWatchKitEvent:RC_CONNECTION_STATUS_CHANGED_EVENT];
 }
-
 #pragma mark - RCWatchKitStatusDelegate
 - (void)notifyWatchKitReceivedMessage:(RCMessage *)receivedMsg {
     [self notifyWatchKitMessageChanged];
@@ -135,11 +129,9 @@
     [self notifyWatchKitConnectionStatusChanged];
 }
 @end
-
 @interface RCWKSharedUserDefault : NSObject
 + (void)setSharedDefaultObject:(id)object forKey:(NSString *)key;
 @end
-
 @implementation RCWKSharedUserDefault
 + (void)setSharedDefaultObject:(id)object forKey:(NSString *)key {
     id<RCWKAppInfoProvider> appInfoProvider =
@@ -154,26 +146,21 @@
 @property(strong, nonatomic) void (^reply)(NSDictionary *);
 @property(weak, nonatomic) id<RCWKAppInfoProvider> provider;
 @end
-
 @implementation RCWKRequestHandler
 - (instancetype)initHelperWithUserInfo:(NSDictionary *)userInfo
                               provider:(id<RCWKAppInfoProvider>)provider
                                  reply:(void (^)(NSDictionary *))reply {
   self = [super init];
-
   if (self) {
     self.userInfo = userInfo;
     self.reply = reply;
     self.provider = provider;
   }
-
   return self;
 }
-
 - (BOOL)handleWatchKitRequest {
   NSString *query = [self getQuery];
   NSLog(@"get the query of %@", query);
-
   if ([query isEqualToString:WK_APP_COMMUNICATE_QUERY_UNREAD_COUNT]) {
     int count = [[RCIMClient sharedRCIMClient] getUnreadCount:@[
       @(ConversationType_PRIVATE),
@@ -189,7 +176,6 @@
         [self getQueryParameter:WK_APP_COMMUNICATE_PARAMETER_CONVERSATION_TYPE];
     NSArray *conversationList =
         [[RCIMClient sharedRCIMClient] getConversationList:conversationTypes];
-
     for (RCConversation *conversation in conversationList) {
       NSLog(@"object is %@", conversation.objectName);
     }
@@ -254,12 +240,10 @@
           }
           [[RCWKNotifier sharedWKNotifier] notifyWatchKitLoadImageDone:nil];
         });
-
     NSNumber *result = [NSNumber numberWithBool:YES];
     [self replyWKApp:result];
   } else if ([query
                  isEqualToString:WK_APP_COMMUNICATE_REQUEST_CACHE_HEAD_ICON]) {
-
     NSString *targetId =
         [self getQueryParameter:WK_APP_COMMUNICATE_PARAMETER_TARGET_ID];
     NSNumber *conversationType =
@@ -295,7 +279,6 @@
           }
           [[RCWKNotifier sharedWKNotifier] notifyWatchKitLoadImageDone:nil];
         });
-
     NSNumber *result = [NSNumber numberWithBool:YES];
     [self replyWKApp:result];
   } else if ([query isEqualToString:WK_APP_COMMUNICATE_REQUEST_SEND_MSG]) {
@@ -316,20 +299,13 @@
      error:(void (^)(RCErrorCode nErrorCode,
      long messageId))errorBlock;
      */
-    id response =
-        [[RCIMClient sharedRCIMClient] sendMessage:[conversationType intValue]
-            targetId:targetID
-            content:content
-            pushContent:nil
-            success:^(long messageId) {
-              NSLog(@"success");
-              [self replyWKApp:[NSNumber numberWithBool:YES]];
-            }
-            error:^(RCErrorCode nErrorCode, long messageId) {
-              NSLog(@"error %d", (int)nErrorCode);
-              [self replyWKApp:[NSNumber numberWithBool:NO]];
-            }];
-
+      id response = [[RCIMClient sharedRCIMClient] sendMessage:[conversationType intValue] targetId:targetID content:content pushContent:nil pushData:nil success:^(long messageId) {
+          NSLog(@"success");
+          [self replyWKApp:[NSNumber numberWithBool:YES]];
+      } error:^(RCErrorCode nErrorCode, long messageId) {
+          NSLog(@"error %d", (int)nErrorCode);
+          [self replyWKApp:[NSNumber numberWithBool:NO]];
+      }];
     if (!response) {
       [self replyWKApp:[NSNumber numberWithBool:NO]];
     }
@@ -363,7 +339,6 @@
     [self replyWKApp:nil];
   } else if ([query
                  isEqualToString:WK_APP_COMMUNICATE_QUERY_CONNECTION_STATUS]) {
-
     [self replyWKApp:[NSNumber numberWithBool:[self.provider getLoginStatus]]];
   } else if ([query isEqualToString:
                         WK_APP_COMMUNICATE_REQUEST_CLEAR_UNREAD_COUNT]) {
@@ -395,7 +370,6 @@
         [self getQueryParameter:WK_APP_COMMUNICATE_PARAMETER_CONVERSATION_TYPE];
     NSString *imageUrl =
         [self getQueryParameter:WK_APP_COMMUNICATE_PARAMETER_IMAGE_URL];
-
     if ([self isLocalPath:imageUrl]) {
       dispatch_async(
           dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -424,7 +398,6 @@
                 @"[RongIMKit]:downloadMediaFile.mediaPath > %@, isMainThread > "
                 @"%d",
                 mediaPath, [NSThread isMainThread]);
-
             NSString *toPath = @"loadedImage.tmp";
             if ([self copyForShare:mediaPath to:toPath maxWidth:140]) {
               [self replyWKApp:toPath];
@@ -436,16 +409,13 @@
             NSLog(@"[RongIMKit]: downloadMediaFile.errorCode > %d",
                   (int)errorCode);
             [self replyWKApp:nil];
-
           }];
     }
-
   } else {
     return NO;
   }
   return YES;
 }
-
 - (void)replyWKApp:(id)replyObject {
   if (replyObject) {
     NSDictionary *replyInfo = @{WK_APP_COMMUNICATE_REPLY : replyObject};
@@ -457,11 +427,9 @@
 - (NSString *)getQuery {
   return self.userInfo[WK_APP_COMMUNICATE_QUERY];
 }
-
 - (id)getQueryParameter:(NSString *)parameterType {
   return self.userInfo[parameterType];
 }
-
 - (UIImage *)scaleImage:(UIImage *)image
                maxWidth:(NSUInteger)maxWidth
                   round:(BOOL)round {
@@ -485,7 +453,6 @@
   }
   return image;
 }
-
 - (BOOL)copyImage:(UIImage *)image
                to:(NSString *)to
          maxWidth:(int)maxWidth
@@ -495,16 +462,13 @@
       containerURLForSecurityApplicationGroupIdentifier:[self.provider
                                                                 getAppGroups]];
   containerUrl = [containerUrl URLByAppendingPathComponent:to];
-
   image = [self scaleImage:image maxWidth:maxWidth round:round];
   NSData *data = UIImagePNGRepresentation(image);
-
   return [data writeToURL:containerUrl atomically:YES];
 }
 - (BOOL)copyForShare:(NSString *)fromPath
                   to:(NSString *)to
             maxWidth:(int)maxWidth {
-
   UIImage *image = [UIImage imageWithContentsOfFile:fromPath];
   return [self copyImage:image to:to maxWidth:maxWidth round:NO];
 }

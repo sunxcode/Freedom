@@ -1,7 +1,6 @@
 //
 //  DZDiscoverController.swift
 //  Freedom
-
 import UIKit
 import BaseFile
 import XExtension
@@ -23,5 +22,4 @@ class DZDiscoverController: DZBaseViewController {
             Dlog("点击了\(String(describing: dict))")
         }
     }
-
 }

@@ -89,6 +89,6 @@
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 - (void)userGroupCellAddUserButtonDown{
-    [UIAlertView bk_alertViewWithTitle:@"提示" message:@"添加讨论组成员"];
+    [SVProgressHUD showInfoWithStatus:@"添加讨论组成员"];
 }
 @end

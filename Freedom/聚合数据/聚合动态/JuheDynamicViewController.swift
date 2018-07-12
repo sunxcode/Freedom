@@ -21,9 +21,7 @@ class JuheDynamicCollectionViewCell:BaseCollectionViewCell{
         self.icon.image = UIImage(named:"taobaomini2")
     }
 }
-
 class JuheDynamicViewController: JuheBaseViewController,UICollectionViewDelegate,UICollectionViewDataSource {
-
     override func viewDidLoad() {
         super.viewDidLoad()
     self.title = "聚合动态";

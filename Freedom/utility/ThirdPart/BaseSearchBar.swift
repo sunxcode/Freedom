@@ -5,7 +5,6 @@
 //  Created by Super on 7/4/18.
 //  Copyright © 2018 薛超. All rights reserved.
 //
-
 import UIKit
 class BaseSearchBar: UISearchBar {
     override init(frame: CGRect) {
@@ -35,9 +34,7 @@ class BaseSearchBar: UISearchBar {
         backgroundImage = nil
         searchFieldBackgroundPositionAdjustment = UIOffsetMake(0, -5)
     }
-
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
 }

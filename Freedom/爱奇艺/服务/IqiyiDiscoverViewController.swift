@@ -1,7 +1,6 @@
 //
 //  JFDiscoverViewController.swift
 //  Freedom
-
 import UIKit
 import BaseFile
 import XExtension
@@ -33,11 +32,9 @@ class IqiyiImageScrollView: UIView, UIScrollViewDelegate {
         addSubview(pageControl)
         addTimer()
     }
-
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
     func setImageArray(_ imageArray: [String]) {
         pageNumber = Int(imageArray.count)
         scrollView.contentSize = CGSize(width: CGFloat(CGFloat(imageArray.count) * APPW), height: frame.size.height)
@@ -53,12 +50,10 @@ class IqiyiImageScrollView: UIView, UIScrollViewDelegate {
         timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(self.netxPage), userInfo: nil, repeats: true)
         RunLoop.current.add(timer!, forMode: .commonModes)
     }
-
     func removeTimer() {
         timer?.invalidate()
         timer = nil
     }
-
     @objc func netxPage() {
         var page = pageControl.currentPage
         if page == pageNumber - 1 {
@@ -86,7 +81,6 @@ class IqiyiImageScrollView: UIView, UIScrollViewDelegate {
         removeTimer()
     }
 }
-
 class IqiyiImageScrollCell: UITableViewCell {
     var imageScrollView = IqiyiImageScrollView(frame: CGRect(x: 0, y: 0, width: APPW, height: 100))
     var imageArr :[String] {
@@ -106,8 +100,6 @@ class IqiyiImageScrollCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 }
-
-
 class IqiyiDiscoverModel: NSObject {
     var group_number: NSNumber?
     var title = ""
@@ -132,7 +124,6 @@ class IqiyiDiscoverCell:BaseTableViewCell{
         textLabel?.text = discoverModel?.title
         imageView?.sd_setImage(with: URL(string: discoverModel?.module_icon ?? ""), placeholderImage: UIImage(named: "customService_y"))
     }
-
 }
 class IqiyiDiscoverViewController: IqiyiBaseViewController {
     var discoverTableView:UITableView!
@@ -157,7 +148,6 @@ class IqiyiDiscoverViewController: IqiyiBaseViewController {
         searchButton.setTitleColor(UIColor.gray, for: .normal)
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: searchButton)
         let rightItem = UIBarButtonItem(image: UIImage(named:"wnavi"), style: .plain) {
-
         }
         navigationItem.rightBarButtonItem = rightItem
         let tableView = UITableView(frame: CGRect(x: 0, y: 0, width: APPW, height: APPH - 64), style: .plain)
@@ -224,6 +214,5 @@ class IqiyiDiscoverViewController: IqiyiBaseViewController {
         videoVC.iid = code
         navigationController?.pushViewController(videoVC, animated: true)
     }
-
         
 }

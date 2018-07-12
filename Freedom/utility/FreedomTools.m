@@ -765,7 +765,6 @@ NSString* FindLetter(int nCode){
 }
 #define HANZI_START 19968
 #define HANZI_COUNT 20902
-
 static char firstLetterArray[HANZI_COUNT] =
 "ydkqsxnwzssxjbymgcczqpssqbycdscdqldylybssjgyqzjjfgcclzznwdwzjljpfyynnjjtmynzwzhflzppqhgccyynmjqyxxgd"
 "nnsnsjnjnsnnmlnrxyfsngnnnnqzggllyjlnyzssecykyyhqwjssggyxyqyjtwktjhychmnxjtlhjyqbyxdldwrrjnwysrldzjpc"
@@ -977,7 +976,6 @@ static char firstLetterArray[HANZI_COUNT] =
 "cydyxyqmyqylddcyaytazdcymdydlzfffmmycqcwzzmabtbyctdmndzggdftypcgqyttssffwbdttqssystwnjhjytsxxylbyyhh"
 "whxgzxwznnqzjzjjqjccchykxbzszcnjtllcqxynjnckycynccqnxyewyczdcjycchyjlbtzyycqwlpgpyllgktltlgkgqbgychj"
 "xy";
-
 char pinyinFirstLetter(unsigned short hanzi){
     int index = hanzi - HANZI_START;
     if (index >= 0 && index <= HANZI_COUNT){
@@ -1097,7 +1095,6 @@ char pinyinFirstLetter(unsigned short hanzi){
     if( !string || ![string length] ) return nil;
     NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding( kCFStringEncodingGB_18030_2000);
     NSData * gb2312_data = [string dataUsingEncoding:enc];
-
     unsigned char ucHigh, ucLow;
     int  nCode;
     NSString * strValue = @"";
@@ -1117,7 +1114,6 @@ char pinyinFirstLetter(unsigned short hanzi){
         //不分大小写排序 同意大写
         NSString * strRes = [FindLetter( nCode ) uppercaseString];
         strValue = [strValue stringByAppendingString:strRes];
-
         i++;
     }
     return [[NSString alloc] initWithString:strValue];
@@ -1148,7 +1144,6 @@ char pinyinFirstLetter(unsigned short hanzi){
     return cLetter;
 }
 @end
-
 @implementation FreedomTools
 +(FreedomTools *)sharedManager{
     static FreedomTools *shareUrl = nil;
@@ -1174,9 +1169,9 @@ char pinyinFirstLetter(unsigned short hanzi){
     NSArray *fileList = [[NSArray alloc] initWithArray:[fileManager contentsOfDirectoryAtPath:logPath error:nil]];
     NSDate *currentDate = [NSDate date];
     NSDate *expireDate = [NSDate dateWithTimeIntervalSinceNow: -7*24*60*60];
-    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     NSDateComponents *fileComp = [[NSDateComponents alloc] init];
-    NSInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+    NSInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
     fileComp = [calendar components:unitFlags fromDate:currentDate];
     for (NSString *fileName in fileList) {
         if (fileName.length != 16 || ![[fileName substringWithRange:NSMakeRange(0, 2)] isEqualToString:@"rc"]) {
@@ -1207,9 +1202,7 @@ char pinyinFirstLetter(unsigned short hanzi){
 + (BOOL)validateMobile:(NSString *)mobile {
     if (mobile.length == 0) {
         NSString *message = @"手机号码不能为空！";
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:message delegate:nil
-                                                  cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        [alertView show];
+        [SVProgressHUD showErrorWithStatus:message];
         return NO;
     }
     //手机号以13， 15，18开头，八个 \d 数字字符
@@ -1218,14 +1211,11 @@ char pinyinFirstLetter(unsigned short hanzi){
     [NSPredicate predicateWithFormat:@"SELF MATCHES %@", phoneRegex];
     if (![phoneTest evaluateWithObject:mobile]) {
         NSString *message = @"手机号码格式不正确！";
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:message delegate:nil
-                                                  cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        [alertView show];
+        [SVProgressHUD showErrorWithStatus:message];
         return NO;
     }
     return YES;
 }
-
 //验证电子邮箱
 + (BOOL)validateEmail:(NSString *)email {
     if (email.length == 0) {
@@ -1292,7 +1282,6 @@ char pinyinFirstLetter(unsigned short hanzi){
         }
     }
 }
-
 + (NSString *)defaultUserPortrait:(RCUserInfo *)userInfo {
     NSString *filePath = [[self class]getIconCachePath:[NSString stringWithFormat:@"user%@.png", userInfo.userId]];
     if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
@@ -1319,7 +1308,6 @@ char pinyinFirstLetter(unsigned short hanzi){
         }
     }
 }
-
 + (NSString *)getIconCachePath:(NSString *)fileName {
     NSString *cachPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *filePath =
@@ -1469,6 +1457,4 @@ char pinyinFirstLetter(unsigned short hanzi){
         [_msgLab removeFromSuperview];
     });
 }
-
-
 @end

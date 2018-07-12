@@ -3,7 +3,6 @@
 //  Copyright © 2016年 Super. All rights reserved.
 //
 #import <UIKit/UIKit.h>
-
 @interface UINavigationController (JZExtension)
 @property (nonatomic, assign) BOOL fullScreenInteractivePopGestureRecognizer NS_AVAILABLE_IOS(7_0); // If YES, then you can have a fullscreen
 /// gesture recognizer responsible for popping the top view controller off the navigation stack, and the property is still
@@ -39,7 +38,6 @@
 /*@brief  pop n层
  *  @return pop之后的viewcontrolers*/
 - (NSArray *)popToViewControllerWithLevel:(NSInteger)level animated:(BOOL)animated;
-
 @property (nonatomic, assign) CGFloat _navigationBarBackgroundReverseAlpha;
 @end
 @interface WXNavigationController : UINavigationController

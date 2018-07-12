@@ -1,7 +1,6 @@
 //
 //  TaobaoCommunityViewController.swift
 //  Freedom
-
 import UIKit
 import BaseFile
 import XExtension
@@ -37,7 +36,6 @@ class TaobaoCommunityViewCell2:BaseCollectionViewCell {
         title.text = "做工很精细，大品牌，值得信赖！用了几天才评价，真实堪称完美！质量上乘，使用方便，是您居家旅行，过节送礼，朋友关系维护的绝佳产品，可以送老人，送孩子，送长辈，价格合理，你值得拥有！"
         icon.image = UIImage(named: "a")
     }
-
 }
 class TaobaoCommunityHeadView: UICollectionReusableView {
     override init(frame: CGRect) {
@@ -144,6 +142,5 @@ class TaobaoCommunityViewController: TaobaoBaseViewController,UICollectionViewDe
         let log = "你选择的是\(indexPath.section)，\(indexPath.row)"
         Dlog(log)
     }
-
     
 }

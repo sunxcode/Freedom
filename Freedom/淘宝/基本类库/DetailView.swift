@@ -147,12 +147,10 @@ class DetailView: UIView {
             }
         }
     }
-
     deinit {
         topScrollView.removeObserver(self, forKeyPath: "contentOffset")
         topScrollView.removeObserver(self, forKeyPath: "contentSize")
     }
-
     @objc func sectionButtonAction(_ sender: UIButton?) {
         if let button = sender{
         weak var blockSelf = self
@@ -167,5 +165,4 @@ class DetailView: UIView {
         currentIndex = index
         }
     }
-
 }

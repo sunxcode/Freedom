@@ -138,7 +138,6 @@ class SinaTabBarController: XBaseTabBarController {
         let nav = SinaNavigationController(rootViewController: vc!)
         present(nav, animated: true)
     }
-
     //打开按钮
     @objc private func centerClicked(){
         func btnOpenAnimate(withFrame rect: CGRect,delay: CGFloat, btnView: UIImageView){

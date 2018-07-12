@@ -24,5 +24,4 @@ EnergySuperMarketTabBarController.sharedRootViewController.isRemoveTab = true
     controller.tabBarItem.setTitleTextAttributes([NSAttributedStringKey.foregroundColor : UIColor.red], for: .selected)
         addChildViewController(controller)
     }
-
 }

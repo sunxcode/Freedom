@@ -5,7 +5,6 @@
 //  Created by 张改红 on 16/10/13.
 //  Copyright © 2016年 RongCloud. All rights reserved.
 //
-
 #import "RCDSearchHistoryMessageController.h"
 #import "RCDSearchDataManager.h"
 #import "RCloudModel.h"
@@ -20,7 +19,6 @@
 @property (nonatomic,strong)RCDLabel *emptyLabel;
 @property (nonatomic,assign)BOOL isLoading;
 @end
-
 @implementation RCDSearchHistoryMessageController
 - (UILabel *)emptyLabel{
   if (!_emptyLabel) {
@@ -33,7 +31,6 @@
   }
   return _emptyLabel;
 }
-
 - (void)viewDidLoad {
   [super viewDidLoad];
   self.isLoading = NO;
@@ -44,7 +41,6 @@
   self.tableView.tableFooterView = [UIView new];
   self.navigationItem.hidesBackButton = YES;
 }
-
 - (void)viewWillLayoutSubviews{
   [super viewWillLayoutSubviews];
   if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
@@ -56,18 +52,14 @@
   }
   
 }
-
 - (void)viewWillAppear:(BOOL)animated{
   [super viewWillAppear:animated];
   self.navigationController.navigationBar.barTintColor = [UIColor colorWithRGBHex:0xf0f0f6];
 }
-
 - (void)viewWillDisappear:(BOOL)animated{
   [super viewWillDisappear:animated];
   self.navigationController.navigationBar.barTintColor = [UIColor colorWithRGBHex:0x0099ff];
 }
-
-
 - (void)loadSearchView{
   self.searchView = [[UIView alloc] initWithFrame:CGRectMake( 0, 0, APPW, 44)];
   _searchBars = [[UISearchBar alloc] initWithFrame:CGRectZero];
@@ -94,19 +86,14 @@
   [_cancelButton addTarget:self action:@selector(cancelButtonClicked) forControlEvents:UIControlEventTouchUpInside];
   [self.searchView addSubview:_cancelButton];
 }
-
 - (void)cancelButtonClicked{
   [self.searchBars resignFirstResponder];
   [self.navigationController popViewControllerAnimated:YES];
 }
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.resultArray.count;
 }
-
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-
   RCDSearchResultViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
   if (!cell) {
     cell = [[RCDSearchResultViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
@@ -115,11 +102,9 @@
   [cell setDataModel:_resultArray[indexPath.row]];
   return cell;
 }
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
   return 65;
 }
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
   RCDSearchResultModel *model = self.resultArray[indexPath.row];
   RCDChatViewController *_conversationVC =
@@ -143,7 +128,6 @@
   [self.navigationController pushViewController:_conversationVC
                                        animated:YES];
 }
-
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
   self.resultArray = nil;
   NSArray *array = [[RCIMClient sharedRCIMClient] searchMessages:self.conversationType targetId:self.targetId keyword:searchText count:50 startTime:0];
@@ -175,12 +159,9 @@
     self.isLoading = YES;
   }
 }
-
 - (void) searchBarSearchButtonClicked:(UISearchBar *)searchBar{
   [self.searchBars resignFirstResponder];
 }
-
-
 - (void)refreshSearchView:(NSString *)searchText{
   [self.tableView reloadData];
   NSString *searchStr = [searchText stringByReplacingOccurrencesOfString:@" "  withString:@""];
@@ -199,13 +180,11 @@
     self.emptyLabel.hidden = YES;
   }
 }
-
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
   if (scrollView.contentOffset.y < self.tableView.contentSize.height && self.isLoading) {
     [self searchMoreMessage];
   }
 }
-
 - (void)searchMoreMessage{
   RCDSearchResultModel *model = self.resultArray[self.resultArray.count-1];
   NSArray *array = [[RCIMClient sharedRCIMClient] searchMessages:self.conversationType targetId:self.targetId keyword:self.searchBars.text count:50 startTime:model.time];
@@ -237,7 +216,6 @@
   self.resultArray = resultArray;
   [self refreshSearchView:nil];
 }
-
 - (CGFloat)labelAdaptive:(NSString *)string{
   float maxWidth = self.view.frame.size.width-20;
   CGRect textRect = [string
@@ -253,5 +231,4 @@
   textRect.size.height = ceilf(textRect.size.height);
   return textRect.size.height + 5;
 }
-
 @end

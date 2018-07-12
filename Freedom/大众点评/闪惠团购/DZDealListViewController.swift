@@ -1,7 +1,6 @@
 //
 //  DZDealListViewController.swift
 //  Freedom
-
 import UIKit
 import BaseFile
 import XExtension
@@ -20,7 +19,6 @@ class DZDealListViewTransverseCell:BaseTableViewCell{
         title.text = "与爱齐名，为有初心不变，小编为大家收集了超多好文好店，从手工匠人到原型设计，他们并没有忘记"
         script.text = "地道风味 精选外卖优惠"
     }
-
 }
 class DZDealListViewVerticalCell:BaseTableViewCell{
     override func initUI() {
@@ -48,7 +46,6 @@ class DZDealListViewVerticalCell:BaseTableViewCell{
     }
 }
 class DZDealListViewController: DZBaseViewController {
-
     override func viewDidLoad() {
         super.viewDidLoad()
             tableView = BaseTableView(frame: CGRect(x: 0, y: 0, width: APPW, height: view.frameHeight - 20), style: .plain)
@@ -80,6 +77,4 @@ class DZDealListViewController: DZBaseViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         _ = push(DZDealDetailViewController(), withInfo: "", withTitle: "详情")
     }
-
-
 }

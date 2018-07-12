@@ -1,7 +1,6 @@
 //
 //  SDAddItemViewController.swift
 //  Freedom
-
 import UIKit
 import BaseFile
 import XExtension

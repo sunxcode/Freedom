@@ -25,5 +25,4 @@ class TaobaoMiniViewController: TaobaoBaseViewController {
         }
         TaobaoMiniScrollV.selectThePage(3)
     }
-
 }

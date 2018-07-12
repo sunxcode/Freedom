@@ -106,7 +106,6 @@ class XCollectionViewDialLayout: UICollectionViewLayout {
         var translationT: CGAffineTransform?
         let rotationT = CGAffineTransform(rotationAngle: angularSpacing * CGFloat(newIndex) * .pi / 180)
         if indexPath.item == 3 {
-
         }
         if wheelType == 0 {
             scaleFactor = CGFloat(fmax(0.6, 1 - fabs(Float(newIndex * 0.25))))

@@ -32,9 +32,7 @@
 #pragma mark - 列表用
 /*列表数据 — 我的表情*/
 - (NSMutableArray *)myExpressionListData;
-
 ///FIXME:以下是网络
-
 /*精选表情*/
 - (void)requestExpressionChosenListByPageIndex:(NSInteger)page
                                        success:(void (^)(id data))success

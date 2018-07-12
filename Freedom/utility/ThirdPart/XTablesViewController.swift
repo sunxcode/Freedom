@@ -177,9 +177,7 @@ class XTablesViewController: UIViewController, UIScrollViewDelegate {
             }
         } else {
             if scrollView.contentOffset.y > headV.bounds.size.height {
-
             } else if scrollView.contentOffset.y > 0 {
-
             } else {
                 scrollView.contentOffset = CGPoint(x: 0, y: -headV.bounds.size.height - headV.frame.origin.y)
             }
@@ -208,6 +206,4 @@ class XTablesViewController: UIViewController, UIScrollViewDelegate {
             print("=========")
         }
     }
-
-
 }

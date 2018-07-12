@@ -1,7 +1,6 @@
 //
 //  DetailWapViewController.swift
 //  Freedom
-
 import UIKit
 import BaseFile
 import XExtension
@@ -27,5 +26,4 @@ class DetailWapViewController: TaobaoBaseViewController {
         }
         detailView.reloadData()
     }
-
 }

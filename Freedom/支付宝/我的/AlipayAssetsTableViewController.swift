@@ -1,7 +1,6 @@
 //
 //  SDAssetsTableViewController.swift
 //  Freedom
-
 import UIKit
 import BaseFile
 import XExtension
@@ -17,7 +16,6 @@ class AlipayAssetsTableViewControllerCell:BaseTableViewCell{
         imageView?.image = UIImage(named: cellModel?.iconImageName ?? "")
         accessoryType = .disclosureIndicator
     }
-
 }
 class AlipayAssetsTableViewController: AlipayBaseViewController {
     var dataArray = [[AlipayAssetsTableViewControllerCellModel]]()

@@ -45,5 +45,4 @@ EnergySuperMarketTabBarController.sharedRootViewController.isRemoveTab = false
        
     self.navigationController?.pushViewController(myTabBar, animated: true)
     }
-
 }

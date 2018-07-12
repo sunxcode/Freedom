@@ -68,7 +68,7 @@
         if (buttonIndex == 0) {
             BOOL ok = [[WXMessageManager sharedInstance] deleteMessagesByPartnerID:self.user.userID];
             if (!ok) {
-                [UIAlertView bk_alertViewWithTitle:@"错误" message:@"清空聊天记录失败"];
+                [SVProgressHUD showErrorWithStatus:@"清空聊天记录失败"];
             }else{
                 [[WXChatViewController sharedChatVC] resetChatVC];
             }
@@ -83,6 +83,6 @@
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 - (void)userGroupCellAddUserButtonDown{
-    [UIAlertView bk_alertViewWithTitle:@"提示" message:@"添加讨论组成员"];
+    [SVProgressHUD showInfoWithStatus:@"添加讨论组成员"];
 }
 @end

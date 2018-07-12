@@ -6,5 +6,4 @@ class DZDealDetailViewController: DZBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
 }

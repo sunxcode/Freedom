@@ -8,6 +8,8 @@
 #import "WXModes.h"
 #import <XCategory/NSFileManager+expanded.h>
 #import <AddressBookUI/AddressBookUI.h>
+#import <Contacts/Contacts.h>
+#import <ContactsUI/ContactsUI.h>
 @implementation WXUserChatSetting
 @end
 @implementation WXUserDetail
@@ -81,7 +83,6 @@
     return TLChatUserTypeUser;
 }
 @end
-
 @implementation WXUserGroup
 - (id) initWithGroupName:(NSString *)groupName users:(NSMutableArray *)users{
     if (self = [super init]) {
@@ -239,7 +240,6 @@
     return _pinyinInitial;
 }
 @end
-
 static WXFriendHelper *friendHelper = nil;
 @interface WXFriendHelper ()
 @property (nonatomic, strong) WXDBFriendStore *friendStore;
@@ -567,210 +567,154 @@ static WXFriendHelper *friendHelper = nil;
         remark.subTitle = userInfo.remarkName;
     }
     WXSettingGroup *group1 = TLCreateSettingGroup(nil, nil, @[remark]);
-    
     WXSettingItem *recommand = TLCreateSettingItem(@"把他推荐给朋友");
     WXSettingGroup *group2 = TLCreateSettingGroup(nil, nil, @[recommand]);
-    
     WXSettingItem *starFriend = TLCreateSettingItem(@"设为星标朋友");
     starFriend.type = TLSettingItemTypeSwitch;
     WXSettingGroup *group3 = TLCreateSettingGroup(nil, nil, @[starFriend]);
-    
     WXSettingItem *prohibit = TLCreateSettingItem(@"不让他看我的朋友圈");
     prohibit.type = TLSettingItemTypeSwitch;
     WXSettingItem *dismiss = TLCreateSettingItem(@"不看他的朋友圈");
     dismiss.type = TLSettingItemTypeSwitch;
     WXSettingGroup *group4 = TLCreateSettingGroup(nil, nil, (@[prohibit, dismiss]));
-    
     WXSettingItem *blackList = TLCreateSettingItem(@"加入黑名单");
     blackList.type = TLSettingItemTypeSwitch;
     WXSettingItem *report = TLCreateSettingItem(@"举报");
     WXSettingGroup *group5 = TLCreateSettingGroup(nil, nil, (@[blackList, report]));
-    
     return [NSMutableArray arrayWithObjects:group1, group2, group3, group4, group5, nil];
 }
-+ (void)tryToGetAllContactsSuccess:(void (^)(NSArray *data, NSArray *formatData, NSArray *headers))success
-                            failed:(void (^)())failed{
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        // 1、获取通讯录信息
-        ABAddressBookRef addressBooks = nil;
-        if ([[UIDevice currentDevice].systemVersion floatValue] >= 6.0) {
-            addressBooks =  ABAddressBookCreateWithOptions(NULL, NULL);
-            dispatch_semaphore_t sema = dispatch_semaphore_create(0);
-            ABAddressBookRequestAccessWithCompletion(addressBooks, ^(bool granted, CFErrorRef error){
-                dispatch_semaphore_signal(sema);
-            });
-            dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
-        }else{
-            addressBooks = ABAddressBookCreate();
-        }
-        
-        CFArrayRef allPeople = ABAddressBookCopyArrayOfAllPeople(addressBooks);
-        CFIndex nPeople = ABAddressBookGetPersonCount(addressBooks);
-        
-        // 2、加载缓存
-        if (allPeople != nil &&  CFArrayGetCount(allPeople) > 0) {
-            NSString *path = [NSFileManager pathContactsData];
-            NSDictionary *dic = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
-            if (dic) {
-                NSArray *data = dic[@"data"];
-                NSArray *formatData = dic[@"formatData"];
-                NSArray *headers = dic[@"headers"];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    success(data, formatData, headers);
-                });
-            }
-        }else{
-            dispatch_async(dispatch_get_main_queue(), ^{
-                failed();
-            });
-            return;
-        }
-        
-        // 3、格式转换
-        NSMutableArray *data = [[NSMutableArray alloc] init];
-        for (NSInteger i = 0; i < nPeople; i++) {
-            WechatContact  *contact = [[WechatContact  alloc] init];
-            ABRecordRef person = CFArrayGetValueAtIndex(allPeople, i);
-            CFTypeRef abName = ABRecordCopyValue(person, kABPersonFirstNameProperty);
-            CFTypeRef abLastName = ABRecordCopyValue(person, kABPersonLastNameProperty);
-            CFStringRef abFullName = ABRecordCopyCompositeName(person);
-            NSString *nameString = (__bridge NSString *)abName;
-            NSString *lastNameString = (__bridge NSString *)abLastName;
-            
-            if ((__bridge id)abFullName != nil) {
-                nameString = (__bridge NSString *)abFullName;
-            }else{
-                if ((__bridge id)abLastName != nil) {
-                    nameString = [NSString stringWithFormat:@"%@ %@", nameString, lastNameString];
-                }
-            }
-            contact.name = nameString;
-            contact.recordID = (int)ABRecordGetRecordID(person);;
-            
-            if(ABPersonHasImageData(person)) {
-                NSData *imageData = (__bridge NSData *)ABPersonCopyImageDataWithFormat(person, kABPersonImageFormatThumbnail);
-                NSString *imageName = [NSString stringWithFormat:@"%.0lf.jpg", [NSDate date].timeIntervalSince1970 * 10000];
-                NSString *imagePath = [NSFileManager pathContactsAvatar:imageName];
-                [imageData writeToFile:imagePath atomically:YES];
-                contact.avatarPath = imageName;
-            }
-            
-            ABPropertyID multiProperties[] = {
-                kABPersonPhoneProperty,
-                kABPersonEmailProperty
-            };
-            NSInteger multiPropertiesTotal = sizeof(multiProperties) / sizeof(ABPropertyID);
-            for (NSInteger j = 0; j < multiPropertiesTotal; j++) {
-                ABPropertyID property = multiProperties[j];
-                ABMultiValueRef valuesRef = ABRecordCopyValue(person, property);
-                NSInteger valuesCount = 0;
-                if (valuesRef != nil) valuesCount = ABMultiValueGetCount(valuesRef);
-                if (valuesCount == 0) {
-                    CFRelease(valuesRef);
-                    continue;
-                }
-                for (NSInteger k = 0; k < valuesCount; k++) {
-                    CFTypeRef value = ABMultiValueCopyValueAtIndex(valuesRef, k);
-                    switch (j) {
-                        case 0: {// Phone number
-                            contact.tel = (__bridge NSString*)value;
-                            break;
-                        }
-                        case 1: {// Email
-                            contact.email = (__bridge NSString*)value;
-                            break;
-                        }
-                    }
-                    CFRelease(value);
-                }
-                CFRelease(valuesRef);
-            }
-            [data addObject:contact];
-            
-            if (abName) CFRelease(abName);
-            if (abLastName) CFRelease(abLastName);
-            if (abFullName) CFRelease(abFullName);
-        }
-        
-        // 4、排序
-        NSArray *serializeArray = [data sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-            int i;
-            NSString *strA = ((WechatContact *)obj1).pinyin;
-            NSString *strB = ((WechatContact *)obj2).pinyin;
-            for (i = 0; i < strA.length && i < strB.length; i ++) {
-                char a = toupper([strA characterAtIndex:i]);
-                char b = toupper([strB characterAtIndex:i]);
-                if (a > b) {
-                    return (NSComparisonResult)NSOrderedDescending;
-                }else if (a < b) {
-                    return (NSComparisonResult)NSOrderedAscending;
-                }
-            }
-            if (strA.length > strB.length) {
++ (void)gotNextEventWithWechatContacts:(NSMutableArray*)data success:(void (^)(NSArray *data, NSArray *formatData, NSArray *headers))success{
+    // 4、排序
+    NSArray *serializeArray = [data sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        int i;
+        NSString *strA = ((WechatContact *)obj1).pinyin;
+        NSString *strB = ((WechatContact *)obj2).pinyin;
+        for (i = 0; i < strA.length && i < strB.length; i ++) {
+            char a = toupper([strA characterAtIndex:i]);
+            char b = toupper([strB characterAtIndex:i]);
+            if (a > b) {
                 return (NSComparisonResult)NSOrderedDescending;
-            }else if (strA.length < strB.length){
+            }else if (a < b) {
                 return (NSComparisonResult)NSOrderedAscending;
             }
-            return (NSComparisonResult)NSOrderedSame;
-        }];
-        
-        // 5、分组
-        data = [[NSMutableArray alloc] init];
-        NSMutableArray *headers = [[NSMutableArray alloc] initWithObjects:UITableViewIndexSearch, nil];
-        char lastC = '1';
-        WXUserGroup *curGroup;
-        WXUserGroup *othGroup = [[WXUserGroup alloc] init];
-        [othGroup setGroupName:@"#"];
-        for (WechatContact *contact in serializeArray) {
-            // 获取拼音失败
-            if (contact.pinyin == nil || contact.pinyin.length == 0) {
-                [othGroup addObject:contact];
-                continue;
+        }
+        if (strA.length > strB.length) {
+            return (NSComparisonResult)NSOrderedDescending;
+        }else if (strA.length < strB.length){
+            return (NSComparisonResult)NSOrderedAscending;
+        }
+        return (NSComparisonResult)NSOrderedSame;
+    }];
+    // 5、分组
+    data = [[NSMutableArray alloc] init];
+    NSMutableArray *headers = [[NSMutableArray alloc] initWithObjects:UITableViewIndexSearch, nil];
+    char lastC = '1';
+    WXUserGroup *curGroup;
+    WXUserGroup *othGroup = [[WXUserGroup alloc] init];
+    [othGroup setGroupName:@"#"];
+    for (WechatContact *contact in serializeArray) {
+        // 获取拼音失败
+        if (contact.pinyin == nil || contact.pinyin.length == 0) {
+            [othGroup addObject:contact];
+            continue;
+        }
+        char c = toupper([contact.pinyin characterAtIndex:0]);
+        if (!isalpha(c)) {      // #组
+            [othGroup addObject:contact];
+        }else if (c != lastC){
+            if (curGroup && curGroup.count > 0) {
+                [data addObject:curGroup];
+                [headers addObject:curGroup.groupName];
             }
-            
-            char c = toupper([contact.pinyin characterAtIndex:0]);
-            if (!isalpha(c)) {      // #组
-                [othGroup addObject:contact];
-            }else if (c != lastC){
-                if (curGroup && curGroup.count > 0) {
-                    [data addObject:curGroup];
-                    [headers addObject:curGroup.groupName];
-                }
-                lastC = c;
-                curGroup = [[WXUserGroup alloc] init];
-                [curGroup setGroupName:[NSString stringWithFormat:@"%c", c]];
-                [curGroup addObject:contact];
-            }else{
-                [curGroup addObject:contact];
-            }
+            lastC = c;
+            curGroup = [[WXUserGroup alloc] init];
+            [curGroup setGroupName:[NSString stringWithFormat:@"%c", c]];
+            [curGroup addObject:contact];
+        }else{
+            [curGroup addObject:contact];
         }
-        if (curGroup && curGroup.count > 0) {
-            [data addObject:curGroup];
-            [headers addObject:curGroup.groupName];
-        }
-        if (othGroup.count > 0) {
-            [data addObject:othGroup];
-            [headers addObject:othGroup.groupName];
-        }
-        
-        // 6、数据返回
-        dispatch_async(dispatch_get_main_queue(), ^{
-            success(serializeArray, data, headers);
-        });
-        
-        // 7、存入本地缓存
-        NSDictionary *dic = @{@"data": serializeArray,
-                              @"formatData": data,
-                              @"headers": headers};
+    }
+    if (curGroup && curGroup.count > 0) {
+        [data addObject:curGroup];
+        [headers addObject:curGroup.groupName];
+    }
+    if (othGroup.count > 0) {
+        [data addObject:othGroup];
+        [headers addObject:othGroup.groupName];
+    }
+    // 6、数据返回
+    dispatch_async(dispatch_get_main_queue(), ^{
+        success(serializeArray, data, headers);
+    });
+    // 7、存入本地缓存
+    NSDictionary *dic = @{@"data": serializeArray,
+                          @"formatData": data,
+                          @"headers": headers};
+    NSString *path = [NSFileManager pathContactsData];
+    if(![NSKeyedArchiver archiveRootObject:dic toFile:path]){
+        DLog(@"缓存联系人数据失败");
+    }
+}
++ (void)tryToGetAllContactsSuccess:(void (^)(NSArray *data, NSArray *formatData, NSArray *headers))success failed:(void (^)())failed{
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        // 3、加载缓存
         NSString *path = [NSFileManager pathContactsData];
-        if(![NSKeyedArchiver archiveRootObject:dic toFile:path]){
-            DLog(@"缓存联系人数据失败");
+        NSDictionary *dic = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+        if (dic) {
+            NSArray *data = dic[@"data"];
+            NSArray *formatData = dic[@"formatData"];
+            NSArray *headers = dic[@"headers"];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                success(data, formatData, headers);
+            });
         }
+        // 1.获取授权状态
+        CNAuthorizationStatus status = [CNContactStore authorizationStatusForEntityType:CNEntityTypeContacts];
+        // 2.判断授权状态,如果不是已经授权,则直接返回
+        if (status != CNAuthorizationStatusAuthorized) return;
+        // 3.创建通信录对象
+        CNContactStore *contactStore = [[CNContactStore alloc] init];
+        // 4.创建获取通信录的请求对象
+        // 4.1.拿到所有打算获取的属性对应的key
+        NSArray *keys = @[CNContactGivenNameKey, CNContactFamilyNameKey, CNContactPhoneNumbersKey];
+        // 4.2.创建CNContactFetchRequest对象
+        CNContactFetchRequest *request = [[CNContactFetchRequest alloc] initWithKeysToFetch:keys];
+        // 5.遍历所有的联系人
+        // 3、格式转换
+        NSMutableArray<WechatContact*> *data = [[NSMutableArray alloc] init];
+        [contactStore enumerateContactsWithFetchRequest:request error:nil usingBlock:^(CNContact * _Nonnull contact, BOOL * _Nonnull stop) {
+            WechatContact *con = [[WechatContact  alloc] init];
+            // 1.获取联系人的姓名
+            NSString *lastname = contact.familyName;
+            NSString *firstname = contact.givenName;
+            // 2.获取联系人的电话号码
+            NSArray *phoneNums = contact.phoneNumbers;
+            for (CNLabeledValue *labeledValue in phoneNums) {
+                NSString *phoneLabel = labeledValue.label;
+                CNPhoneNumber *phoneNumer = labeledValue.value;
+                NSString *phoneValue = phoneNumer.stringValue;
+                NSLog(@"%@ %@", phoneLabel, phoneValue);
+                con.tel = phoneValue;
+            }
+            NSArray<CNLabeledValue<NSString*>*> *emails = contact.emailAddresses;
+            for(CNLabeledValue *labeldValue in emails){
+                NSString *email = labeldValue.label;
+                con.email = [NSString stringWithFormat:@"%@%@",email,labeldValue.value];
+            }
+            con.name = [NSString stringWithFormat:@"%@ %@",lastname,firstname];
+            con.recordID = contact.identifier.intValue;
+            NSData *imageData = contact.imageData;
+            NSString *imageName = [NSString stringWithFormat:@"%.0lf.jpg", [NSDate date].timeIntervalSince1970 * 10000];
+            NSString *imagePath = [NSFileManager pathContactsAvatar:imageName];
+            [imageData writeToFile:imagePath atomically:YES];
+            con.avatarPath = imageName;
+            if(stop){
+                [self gotNextEventWithWechatContacts:data success:success];
+            }
+        }];
     });
 }
 @end
-
-
 static WXUserHelper *helper;
 @interface WXUserHelper()
 @property (nonatomic, strong) NSMutableArray *systemEmojiGroups;
@@ -800,8 +744,6 @@ static WXUserHelper *helper;
     }
     return self;
 }
-
-
 - (void)updateEmojiGroupData{
     if (self.user.userID && self.complete) {
         [self emojiGroupDataComplete:self.complete];

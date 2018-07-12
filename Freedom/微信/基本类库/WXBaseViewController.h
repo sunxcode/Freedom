@@ -5,7 +5,6 @@
 //  Created by Super on 2018/5/11.
 //  Copyright © 2018年 Super. All rights reserved.
 //
-
 #import "BaseOCViewController.h"
 #import "WXNavigationController.h"
 @interface UIViewController (JZExtension)
@@ -13,8 +12,6 @@
 @property (nonatomic, assign, getter=isNavigationBarBackgroundHidden) BOOL navigationBarBackgroundHidden;
 - (void)setNavigationBarBackgroundHidden:(BOOL)navigationBarBackgroundHidden animated:(BOOL)animated NS_AVAILABLE_IOS(8_0); // Hide or show the navigation bar background. If animated, it will transition vertically using UINavigationControllerHideShowBarDuration.
 @end
-
 @interface WXBaseViewController : BaseOCViewController
-
 @property (nonatomic, strong) NSString *analyzeTitle;
 @end
