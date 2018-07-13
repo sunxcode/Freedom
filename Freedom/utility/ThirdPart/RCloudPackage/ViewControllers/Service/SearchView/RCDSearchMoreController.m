@@ -32,7 +32,6 @@
     self.emptyLabel.textAlignment = NSTextAlignmentCenter;
     self.emptyLabel.numberOfLines = 0;
     [self.tableView addSubview:self.emptyLabel];
-    
   }
   return _emptyLabel;
 }
@@ -67,17 +66,13 @@
   }
   UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
   backBtn.frame = CGRectMake(0, 6,30, 23);
-  UIImageView *backImg = [[UIImageView alloc]
-                          initWithImage:[UIImage imageNamed:imageStr]];
+  UIImageView *backImg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageStr]];
   backImg.frame = CGRectMake(-6, 4, 10, 17);
   [backBtn addSubview:backImg];
-  [backBtn addTarget:self
-              action:@selector(leftBarButtonBackAction)
+  [backBtn addTarget:self action:@selector(leftBarButtonBackAction)
     forControlEvents:UIControlEventTouchUpInside];
-  UIBarButtonItem *leftButton =
-  [[UIBarButtonItem alloc] initWithCustomView:backBtn];
+  UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
   [self.navigationItem setLeftBarButtonItem:leftButton];
-  
   self.tableView.tableFooterView = [UIView new];
   self.tableView.separatorColor = [UIColor colorWithRGBHex:0xdfdfdf];
 }
@@ -86,7 +81,6 @@
 }
 - (void)loadSearchView{
   self.searchView = [[UIView alloc] initWithFrame:CGRectMake( 0, 0, APPW-25, 44)];
-  
   _searchBars = [[UISearchBar alloc] initWithFrame:CGRectZero];
     _searchBars.placeholder = @"搜索";
     _searchBars.keyboardType = UIKeyboardTypeDefault;
@@ -103,7 +97,6 @@
   _searchBars.tintColor=[UIColor blueColor];
   _searchBars.frame = CGRectMake(-20, 0,self.searchView.frame.size.width-55, 44);
   [self.searchView addSubview:self.searchBars];
-  
   _cancelButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_searchBars.frame)-3, CGRectGetMinY(self.searchBars.frame),55, 44)];
   [_cancelButton setTitle:@"取消" forState:UIControlStateNormal];
   [_cancelButton setTitleColor:[UIColor colorWithRGBHex:0x0099ff] forState:UIControlStateNormal];
@@ -135,7 +128,6 @@
   if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)])  {
     [self.tableView setLayoutMargins:UIEdgeInsetsMake(0, 10, 0, 0)];
   }
-  
 }
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -212,8 +204,7 @@
   if (model.conversationType == ConversationType_PRIVATE) {
     _conversationVC.displayUserNameInCell = NO;
   }
-  [self.navigationController pushViewController:_conversationVC
-                                       animated:YES];
+  [self.navigationController pushViewController:_conversationVC animated:YES];
 }
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
   searchBar.text = nil;
@@ -271,10 +262,7 @@
                      options:(NSStringDrawingTruncatesLastVisibleLine |
                               NSStringDrawingUsesLineFragmentOrigin |
                               NSStringDrawingUsesFontLeading)
-                     attributes:@{
-                                  NSFontAttributeName :
-                                    [UIFont systemFontOfSize:14.0]
-                                  }
+                     attributes:@{NSFontAttributeName :[UIFont systemFontOfSize:14.0]}
                      context:nil];
   textRect.size.height = ceilf(textRect.size.height);
   return textRect.size.height + 5;

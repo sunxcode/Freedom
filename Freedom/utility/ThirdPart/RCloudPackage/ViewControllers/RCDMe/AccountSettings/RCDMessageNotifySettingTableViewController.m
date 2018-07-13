@@ -98,10 +98,7 @@
   hud.labelText = @"设置中...";
   UISwitch *switchBtn = (UISwitch *)sender;
   if (!switchBtn.on) {
-    [[RCIMClient sharedRCIMClient]
-     setNotificationQuietHours:@"00:00:00"
-     spanMins:1439
-     success:^{
+    [[RCIMClient sharedRCIMClient]setNotificationQuietHours:@"00:00:00" spanMins:1439 success:^{
        NSLog(@"setNotificationQuietHours succeed");
        dispatch_async(dispatch_get_main_queue(), ^{
          [hud hide:YES];

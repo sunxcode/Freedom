@@ -923,9 +923,7 @@
     userName = user.name;
     portraitUri = user.portraitUri;
   }
-  RCDChatListCell *cell =
-      [[RCDChatListCell alloc] initWithStyle:UITableViewCellStyleDefault
-                             reuseIdentifier:@""];
+  RCDChatListCell *cell =[[RCDChatListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@""];
   NSString *operation = _contactNotificationMsg.operation;
   NSString *operationContent;
   if ([operation isEqualToString:@"Request"]) {
@@ -1095,8 +1093,7 @@ atIndexPath:(NSIndexPath *)indexPath
     }
   });
 }
--(void)checkVersion
-{
+-(void)checkVersion{
   [RCDHTTPTOOL getVersioncomplete:^(NSDictionary *versionInfo) {
     if (versionInfo) {
       NSString *isNeedUpdate = [versionInfo objectForKey:@"isNeedUpdate"];
@@ -1126,18 +1123,15 @@ atIndexPath:(NSIndexPath *)indexPath
   contactSelectedVC.titleStr = @"选择联系人";
   [self.navigationController pushViewController:contactSelectedVC animated:YES];
 }
-- (void)scrollViewDidScroll:(UIScrollView*)scrollView
-{
+- (void)scrollViewDidScroll:(UIScrollView*)scrollView{
   NSIndexPath *indexPath = [self.conversationListTableView indexPathForRowAtPoint:scrollView.contentOffset];
   self.index = indexPath.row;
 }
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
-{
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
   //恢复conversationListTableView的自动回滚功能。
   self.conversationListTableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
 }
--(void) GotoNextCoversation
-{
+-(void) GotoNextCoversation{
   NSUInteger i;
   //设置contentInset是为了滚动到底部的时候，避免conversationListTableView自动回滚。
   self.conversationListTableView.contentInset = UIEdgeInsetsMake(0, 0, self.conversationListTableView.frame.size.height, 0);
@@ -1183,8 +1177,7 @@ atIndexPath:(NSIndexPath *)indexPath
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self refreshConversationTableViewIfNeeded];
 }
--(void)refreshCell:(NSNotification *)notify
-{
+-(void)refreshCell:(NSNotification *)notify{
   /*
   NSString *row = [notify object];
   RCConversationModel *model = [self.conversationListDataSource objectAtIndex:[row intValue]];

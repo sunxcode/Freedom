@@ -71,7 +71,6 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     [self loadView];
   }
-  
   return self;
 }
 - (void)setDataModel:(RCDSearchResultModel *)model{
@@ -137,10 +136,8 @@
       }
     }
   }
-  
   if (!(model.portraitUri.length>0)) {
-    UIView *defaultPortrait = [[UIView alloc]
-                                            initWithFrame:CGRectMake(0, 0, 100, 100)];
+    UIView *defaultPortrait = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
       defaultPortrait.backgroundColor = [UIColor randomColor];
       NSString *firstLetter = [ChineseToPinyin firstPinyinFromChinise:self.nameLabel.text];
       UILabel *firstCharacterLabel = [[UILabel alloc] initWithFrame:CGRectMake(defaultPortrait.frame.size.width / 2 - 30, defaultPortrait.frame.size.height / 2 - 30, 60, 60)];
@@ -160,18 +157,15 @@
   self.headerView.layer.cornerRadius = 4;
   self.headerView.layer.masksToBounds = YES;
   [self.contentView addSubview:self.headerView];
-  
   self.nameLabel = [[RCDLabel alloc] initWithFrame:CGRectZero];
   self.nameLabel.font = [UIFont systemFontOfSize:15.f];
   self.nameLabel.textColor = [UIColor colorWithRGBHex:0x000000];
   [self.contentView addSubview:self.nameLabel];
-  
   self.timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(APPW-100-10, (65-48)/2, 100,17)];
   self.timeLabel.textColor = [UIColor colorWithRGBHex:0x999999];
   self.timeLabel.font = [UIFont systemFontOfSize:15.f];
   self.timeLabel.textAlignment = NSTextAlignmentRight;
   [self.contentView addSubview:self.timeLabel];
-  
   self.otherLabel = [[UILabel alloc] initWithFrame:CGRectZero];
   self.otherLabel.textColor = [UIColor colorWithRGBHex:0x999999];
   self.otherLabel.font = [UIFont systemFontOfSize:14.f];

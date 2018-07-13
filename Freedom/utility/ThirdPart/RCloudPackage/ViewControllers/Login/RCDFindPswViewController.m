@@ -426,19 +426,18 @@
 }
 - (void)keyboardWillShow:(NSNotification *)notif {
   [UIView animateWithDuration:0.25 animations:^{
-                     self.view.frame = CGRectMake(0.f, -50, self.view.frame.size.width,self.view.frame.size.height);
-                     _headBackground.frame = CGRectMake(0, 70, self.view.bounds.size.width, 50);
-                     _rongLogo.hidden = YES;
-                     _licenseLb.hidden = YES;
-                     _statusBarView.frame = CGRectMake(0.f, 50, self.view.frame.size.width, 20);
-                   }completion:nil];
+     self.view.frame = CGRectMake(0.f, -50, self.view.frame.size.width,self.view.frame.size.height);
+     _headBackground.frame = CGRectMake(0, 70, self.view.bounds.size.width, 50);
+     _rongLogo.hidden = YES;
+     _licenseLb.hidden = YES;
+     _statusBarView.frame = CGRectMake(0.f, 50, self.view.frame.size.width, 20);
+   }completion:nil];
 }
 - (void)keyboardWillHide:(NSNotification *)notif {
   [UIView animateWithDuration:0.25 animations:^{
      self.view.frame = CGRectMake(0.f, 0.f, self.view.frame.size.width,self.view.frame.size.height);
      CGRectMake(0, -100, self.view.bounds.size.width, 50);
-     _headBackground.frame =
-         CGRectMake(0, -100, self.view.bounds.size.width, 50);
+     _headBackground.frame = CGRectMake(0, -100, self.view.bounds.size.width, 50);
      _rongLogo.hidden = NO;
      _licenseLb.hidden = NO;
      _statusBarView.frame = CGRectMake(0.f, 0, self.view.frame.size.width, 20);

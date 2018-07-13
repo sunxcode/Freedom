@@ -20,8 +20,7 @@
 - (id)initWithIsHaveDisplayName:(BOOL)isHaveDisplayName;
 @end
 @implementation RCDPrivateSettingsUserInfoCell
-- (instancetype)init
-{
+- (instancetype)init{
     self = [super init];
     if (self) {
         [self initSubviews];
@@ -37,8 +36,7 @@
     self.NickNameLabel.textColor = [UIColor colorWithRGBHex:0x000000];
     [self.contentView addSubview:self.NickNameLabel];
     self.NickNameLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    NSDictionary *views =
-    NSDictionaryOfVariableBindings(_PortraitImageView, _NickNameLabel);
+    NSDictionary *views = NSDictionaryOfVariableBindings(_PortraitImageView, _NickNameLabel);
     [self.contentView
      addConstraint:[NSLayoutConstraint
                     constraintWithItem:self.PortraitImageView
@@ -166,57 +164,42 @@ static NSString *CellIdentifier = @"RCDBaseSettingTableViewCell";
 + (instancetype)privateSettingsTableViewController {
     return [[[self class] alloc]init];
 }
-- (instancetype)init
-{
+- (instancetype)init{
     self = [super init];
     if (self) {
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
-        
     }
     return self;
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
     [self startLoadView];
-    
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-  
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     backBtn.frame = CGRectMake(0, 6, 87, 23);
-    UIImageView *backImg = [[UIImageView alloc]
-                            initWithImage:[UIImage imageNamed:@"navigator_btn_back"]];
+    UIImageView *backImg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"navigator_btn_back"]];
     backImg.frame = CGRectMake(-6, 4, 10, 17);
     [backBtn addSubview:backImg];
-    UILabel *backText =
-    [[UILabel alloc] initWithFrame:CGRectMake(9,4, 85, 17)];
+    UILabel *backText = [[UILabel alloc] initWithFrame:CGRectMake(9,4, 85, 17)];
     backText.text = @"返回"; // NSLocalizedStringFromTable(@"Back",
     // @"RongCloudKit", nil);
     //   backText.font = [UIFont systemFontOfSize:17];
     [backText setBackgroundColor:[UIColor clearColor]];
     [backText setTextColor:[UIColor whiteColor]];
     [backBtn addSubview:backText];
-    [backBtn addTarget:self
-                action:@selector(leftBarButtonItemPressed:)
-      forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *leftButton =
-    [[UIBarButtonItem alloc] initWithCustomView:backBtn];
+    [backBtn addTarget:self action:@selector(leftBarButtonItemPressed:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
     [self.navigationItem setLeftBarButtonItem:leftButton];
     self.title = @"聊天详情";
-    
     self.tableView.tableFooterView = [UIView new];
     self.tableView.backgroundColor = [UIColor colorWithRGBHex:0xf0f0f6];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
 }
 - (void)leftBarButtonItemPressed:(id)sender{
     [self.navigationController popViewControllerAnimated:YES];
-}
-- (void)didReceiveMemoryWarning {
-  [super didReceiveMemoryWarning];
-  // Dispose of any resources that can be recreated.
 }
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -226,53 +209,33 @@ static NSString *CellIdentifier = @"RCDBaseSettingTableViewCell";
  numberOfRowsInSection:(NSInteger)section {
   NSInteger rows;
   switch (section) {
-  case 0:
-    rows = 1;
-    break;
-  case 1:
-    rows = 1;
-    break;
-      
-  case 2:
-    rows = 3;
-    break;
-      default:rows = 0;
-    break;
+  case 0:rows = 1;break;
+  case 1:rows = 1;break;
+  case 2:rows = 3;break;
+    default:rows = 0;break;
   }
   return rows;
 }
-- (CGFloat)tableView:(UITableView *)tableView
-    heightForHeaderInSection:(NSInteger)section {
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
   if (section == 1 || section == 2) {
     return 20.f;
   }
   return 0;
 }
-- (CGFloat)tableView:(UITableView *)tableView
-    heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
   CGFloat heigh = 0;
   switch (indexPath.section) {
-  case 0:
-    heigh = 86.f;
-    break;
-  case 1:
-    heigh = 43.f;
-    break;
-  case 2:
-    heigh = 43.f;
-    break;
-  default:
-    break;
+  case 0:heigh = 86.f;break;
+  case 1:heigh = 43.f;break;
+  case 2:heigh = 43.f;break;
+  default:break;
   }
   return heigh;
 }
-- (UITableViewCell *)tableView:(UITableView *)tableView
-         cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 //<<<<<<< HEAD
     static NSString *InfoCellIdentifier = @"RCDPrivateSettingsUserInfoCell";
-    RCDPrivateSettingsUserInfoCell *infoCell =
-    (RCDPrivateSettingsUserInfoCell *)[tableView
-                                       dequeueReusableCellWithIdentifier:InfoCellIdentifier];
+    RCDPrivateSettingsUserInfoCell *infoCell = (RCDPrivateSettingsUserInfoCell *)[tableView dequeueReusableCellWithIdentifier:InfoCellIdentifier];
     if(!infoCell) {
         infoCell = [[RCDPrivateSettingsUserInfoCell alloc]init];
     }
@@ -280,10 +243,8 @@ static NSString *CellIdentifier = @"RCDBaseSettingTableViewCell";
     if(!cell) {
         cell = [[RCDBaseSettingTableViewCell alloc]init];
     }
-    
     infoCell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
     if (indexPath.section == 0) {
       RCDPrivateSettingsUserInfoCell *infoCell;
       if (self.userInfo != nil) {
@@ -302,8 +263,7 @@ static NSString *CellIdentifier = @"RCDBaseSettingTableViewCell";
         portraitUrl = [RCIM sharedRCIM].currentUserInfo.portraitUri;
       }
       if ([portraitUrl isEqualToString:@""]) {
-        UIView *defaultPortrait = [[UIView alloc]
-                                                initWithFrame:CGRectMake(0, 0, 100, 100)];
+        UIView *defaultPortrait = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 100, 100)];
           defaultPortrait.backgroundColor = [UIColor randomColor];
           NSString *firstLetter = [ChineseToPinyin firstPinyinFromChinise:nickname];
           UILabel *firstCharacterLabel = [[UILabel alloc] initWithFrame:CGRectMake(defaultPortrait.frame.size.width / 2 - 30, defaultPortrait.frame.size.height / 2 - 30, 60, 60)];
@@ -315,9 +275,7 @@ static NSString *CellIdentifier = @"RCDBaseSettingTableViewCell";
         UIImage *portrait = [defaultPortrait imageFromView];
         infoCell.PortraitImageView.image = portrait;
       } else {
-        [infoCell.PortraitImageView
-         sd_setImageWithURL:[NSURL URLWithString:portraitUrl]
-         placeholderImage:[UIImage imageNamed:@"icon_person"]];
+        [infoCell.PortraitImageView sd_setImageWithURL:[NSURL URLWithString:portraitUrl] placeholderImage:[UIImage imageNamed:@"icon_person"]];
       }
       infoCell.PortraitImageView.layer.masksToBounds = YES;
       infoCell.PortraitImageView.layer.cornerRadius = 5.f;
@@ -342,36 +300,23 @@ static NSString *CellIdentifier = @"RCDBaseSettingTableViewCell";
         cell.leftLabel.text = @"消息免打扰";
         cell.switchButton.hidden = NO;
         cell.switchButton.on = !enableNotification;
-        [cell.switchButton removeTarget:self
-                                 action:@selector(clickIsTopBtn:)
-                       forControlEvents:UIControlEventValueChanged];
-        
-        [cell.switchButton addTarget:self
-                              action:@selector(clickNotificationBtn:)
-                    forControlEvents:UIControlEventValueChanged];
-        
+        [cell.switchButton removeTarget:self action:@selector(clickIsTopBtn:) forControlEvents:UIControlEventValueChanged];
+        [cell.switchButton addTarget:self action:@selector(clickNotificationBtn:) forControlEvents:UIControlEventValueChanged];
       } break;
-        
       case 1: {
         [cell setCellStyle:SwitchStyle];
         cell.leftLabel.text = @"会话置顶";
         cell.switchButton.hidden = NO;
         cell.switchButton.on = currentConversation.isTop;
-        [cell.switchButton addTarget:self
-                              action:@selector(clickIsTopBtn:)
-                    forControlEvents:UIControlEventValueChanged];
+        [cell.switchButton addTarget:self action:@selector(clickIsTopBtn:) forControlEvents:UIControlEventValueChanged];
       } break;
-        
       case 2: {
         [cell setCellStyle:SwitchStyle];
         cell.leftLabel.text = @"清除聊天记录";
         cell.switchButton.hidden = YES;
       } break;
-        
-      default:
-        break;
+      default:break;
     }
-    
     return cell;
   }
   return nil;
@@ -427,20 +372,14 @@ static NSString *CellIdentifier = @"RCDBaseSettingTableViewCell";
 }
 #pragma mark - 本类的私有方法
 - (void)startLoadView {
-  currentConversation =
-      [[RCIMClient sharedRCIMClient] getConversation:ConversationType_PRIVATE
-                                            targetId:self.userId];
-  [[RCIMClient sharedRCIMClient]
-      getConversationNotificationStatus:ConversationType_PRIVATE
-      targetId:self.userId
-      success:^(RCConversationNotificationStatus nStatus) {
+  currentConversation = [[RCIMClient sharedRCIMClient] getConversation:ConversationType_PRIVATE targetId:self.userId];
+  [[RCIMClient sharedRCIMClient]getConversationNotificationStatus:ConversationType_PRIVATE targetId:self.userId success:^(RCConversationNotificationStatus nStatus) {
         enableNotification = NO;
         if (nStatus == NOTIFY) {
           enableNotification = YES;
         }
         [self.tableView reloadData];
-      }
-      error:^(RCErrorCode status){
+      }error:^(RCErrorCode status){
       }];
   [self loadUserInfo:self.userId];
 }
@@ -451,19 +390,12 @@ static NSString *CellIdentifier = @"RCDBaseSettingTableViewCell";
 }
 - (void)clickNotificationBtn:(id)sender {
   UISwitch *swch = sender;
-  [[RCIMClient sharedRCIMClient]
-      setConversationNotificationStatus:ConversationType_PRIVATE
-      targetId:self.userId
-      isBlocked:swch.on
-      success:^(RCConversationNotificationStatus nStatus) {
-      }
-      error:^(RCErrorCode status){
+  [[RCIMClient sharedRCIMClient]setConversationNotificationStatus:ConversationType_PRIVATE targetId:self.userId isBlocked:swch.on success:^(RCConversationNotificationStatus nStatus) {
+      }error:^(RCErrorCode status){
       }];
 }
 - (void)clickIsTopBtn:(id)sender {
   UISwitch *swch = sender;
-  [[RCIMClient sharedRCIMClient] setConversationToTop:ConversationType_PRIVATE
-                                             targetId:self.userId
-                                                isTop:swch.on];
+  [[RCIMClient sharedRCIMClient] setConversationToTop:ConversationType_PRIVATE targetId:self.userId isTop:swch.on];
 }
 @end

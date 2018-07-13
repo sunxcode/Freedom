@@ -48,58 +48,33 @@
 @end
 @implementation HeadCollectionView
 #pragma mark init
-- (instancetype)initWithFrame:(CGRect)frame
-                 participants:(NSArray *)userIds
-                touchDelegate:touchDelegate {
-    self = [[HeadCollectionView alloc] initWithFrame:frame
-                                        participants:userIds
-                                       touchDelegate:touchDelegate
-                                     userAvatarStyle:RC_USER_AVATAR_CYCLE];
+- (instancetype)initWithFrame:(CGRect)frame participants:(NSArray *)userIds touchDelegate:touchDelegate {
+    self = [[HeadCollectionView alloc] initWithFrame:frame participants:userIds touchDelegate:touchDelegate userAvatarStyle:RC_USER_AVATAR_CYCLE];
     return self;
 }
-- (instancetype)initWithFrame:(CGRect)frame
-                 participants:(NSArray *)userIds
-                touchDelegate:touchDelegate
-              userAvatarStyle:(RCUserAvatarStyle)avatarStyle {
+- (instancetype)initWithFrame:(CGRect)frame participants:(NSArray *)userIds touchDelegate:touchDelegate userAvatarStyle:(RCUserAvatarStyle)avatarStyle {
     self = [super initWithFrame:frame];
     if (self) {
         self.headsView = [[NSMutableArray alloc] init];
         self.rcUserInfos = [[NSMutableArray alloc] init];
         self.touchDelegate = touchDelegate;
         self.avatarStyle = avatarStyle;
-        [self setBackgroundColor:[UIColor colorWithRed:0.5
-                                                 green:0.5
-                                                  blue:0.5
-                                                 alpha:0.5]];
+        [self setBackgroundColor:[UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.5]];
         self.headViewSize = 42;
         self.headViewSpace = 8;
-        self.headViewRect =
-        CGRectMake(8 + 26 + 8, 20 + 8, frame.size.width - (8 + 26 + 8) * 2,
-                   self.headViewSize);
-        UIButton *quitButton =
-        [[UIButton alloc] initWithFrame:CGRectMake(8, 41.5, 26, 26)];
-        [quitButton setImage:[UIImage imageNamed:@"quit_location_share"]
-                    forState:UIControlStateNormal];
-        [quitButton addTarget:self
-                       action:@selector(onQuitButtonPressed:)
-             forControlEvents:UIControlEventTouchDown];
+        self.headViewRect = CGRectMake(8 + 26 + 8, 20 + 8, frame.size.width - (8 + 26 + 8) * 2,self.headViewSize);
+        UIButton *quitButton = [[UIButton alloc] initWithFrame:CGRectMake(8, 41.5, 26, 26)];
+        [quitButton setImage:[UIImage imageNamed:@"quit_location_share"] forState:UIControlStateNormal];
+        [quitButton addTarget:self action:@selector(onQuitButtonPressed:) forControlEvents:UIControlEventTouchDown];
         [self addSubview:quitButton];
         self.scrollView = [[UIScrollView alloc] initWithFrame:self.headViewRect];
         self.scrollView.showsHorizontalScrollIndicator = NO;
         [self addSubview:self.scrollView];
-        UIButton *backButton = [[UIButton alloc]
-                                initWithFrame:CGRectMake(self.bounds.size.width - 8 - 26, 41.5, 26,
-                                                         26)];
-        [backButton setImage:[UIImage imageNamed:@"back_to_conversation"]
-                    forState:UIControlStateNormal];
-        [backButton addTarget:self
-                       action:@selector(onBackButtonPressed:)
-             forControlEvents:UIControlEventTouchDown];
+        UIButton *backButton = [[UIButton alloc]initWithFrame:CGRectMake(self.bounds.size.width - 8 - 26, 41.5, 26,26)];
+        [backButton setImage:[UIImage imageNamed:@"back_to_conversation"] forState:UIControlStateNormal];
+        [backButton addTarget:self action:@selector(onBackButtonPressed:) forControlEvents:UIControlEventTouchDown];
         [self addSubview:backButton];
-        self.tipLabel = [[UILabel alloc]
-                         initWithFrame:CGRectMake(self.headViewRect.origin.x,
-                                                  20 + self.headViewSize + 12,
-                                                  self.headViewRect.size.width, 13)];
+        self.tipLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.headViewRect.origin.x,20 + self.headViewSize + 12,self.headViewRect.size.width, 13)];
         self.tipLabel.textAlignment = NSTextAlignmentCenter;
         self.tipLabel.font = [UIFont boldSystemFontOfSize:13];
         [self showUserShareInfo];
@@ -119,49 +94,30 @@
 }
 - (BOOL)addUser:(NSString *)userId showChange:(BOOL)show {
     if (userId && [self getUserIndex:userId] < 0) {
-        if ([RCIM sharedRCIM].userInfoDataSource &&
-            [[RCIM sharedRCIM]
-             .userInfoDataSource
+        if ([RCIM sharedRCIM].userInfoDataSource && [[RCIM sharedRCIM].userInfoDataSource
              respondsToSelector:@selector(getUserInfoWithUserId:completion:)]) {
-                [[RCIM sharedRCIM]
-                 .userInfoDataSource
-                 getUserInfoWithUserId:userId
-                 completion:^(RCUserInfo *userInfo) {
-                     if (!userInfo) {
-                         userInfo = [[RCUserInfo alloc]
-                                     initWithUserId:userId
-                                     name:[NSString
-                                           stringWithFormat:@"user<%@>",
-                                           userId]
-                                     portrait:nil];
-                     }
-                     [self.rcUserInfos addObject:userInfo];
-                     [self addHeadViewUser:userInfo];
-                     if (show) {
-                         [self showUserChangeInfo:
-                          [NSString stringWithFormat:@"%@加入...",
-                           userInfo.name]];
-                     } else {
-                         self.tipLabel.text = [NSString
-                                               stringWithFormat:@"%lu人在共享位置",
-                                               (unsigned long)
-                                               self.rcUserInfos.count];
-                     }
-                 }];
+            [[RCIM sharedRCIM].userInfoDataSource getUserInfoWithUserId:userId completion:^(RCUserInfo *userInfo) {
+                 if (!userInfo) {
+                     userInfo = [[RCUserInfo alloc]initWithUserId:userId name:[NSString stringWithFormat:@"user<%@>",userId] portrait:nil];
+                 }
+                 [self.rcUserInfos addObject:userInfo];
+                 [self addHeadViewUser:userInfo];
+                 if (show) {
+                     [self showUserChangeInfo:[NSString stringWithFormat:@"%@加入...",userInfo.name]];
+                 } else {
+                     self.tipLabel.text = [NSString stringWithFormat:@"%lu人在共享位置",(unsigned long)self.rcUserInfos.count];
+                 }
+             }];
+        } else {
+            RCUserInfo *userInfo = [[RCUserInfo alloc] initWithUserId:userId name:userId portrait:nil];
+            [self.rcUserInfos addObject:userInfo];
+            [self addHeadViewUser:userInfo];
+            if (show) {
+                [self showUserChangeInfo:[NSString stringWithFormat:@"%@加入...",userInfo.name]];
             } else {
-                RCUserInfo *userInfo =
-                [[RCUserInfo alloc] initWithUserId:userId name:userId portrait:nil];
-                [self.rcUserInfos addObject:userInfo];
-                [self addHeadViewUser:userInfo];
-                if (show) {
-                    [self showUserChangeInfo:[NSString stringWithFormat:@"%@加入...",
-                                              userInfo.name]];
-                } else {
-                    self.tipLabel.text =
-                    [NSString stringWithFormat:@"%lu人在共享位置",
-                     (unsigned long)self.rcUserInfos.count];
-                }
+                self.tipLabel.text = [NSString stringWithFormat:@"%lu人在共享位置",(unsigned long)self.rcUserInfos.count];
             }
+        }
         return YES;
     } else {
         return NO;
@@ -175,12 +131,9 @@
             [self.rcUserInfos removeObjectAtIndex:index];
             [self removeHeadViewUser:index];
             if (show) {
-                [self showUserChangeInfo:[NSString stringWithFormat:@"%@退出...",
-                                          userInfo.name]];
+                [self showUserChangeInfo:[NSString stringWithFormat:@"%@退出...",userInfo.name]];
             } else {
-                self.tipLabel.text =
-                [NSString stringWithFormat:@"%lu人在共享位置",
-                 (unsigned long)self.rcUserInfos.count];
+                self.tipLabel.text = [NSString stringWithFormat:@"%lu人在共享位置",(unsigned long)self.rcUserInfos.count];
             }
             return YES;
         } else {
@@ -193,55 +146,38 @@
 - (void)showUserChangeInfo:(NSString *)changInfo {
     self.tipLabel.text = changInfo;
     self.tipLabel.textColor = [UIColor greenColor];
-    [NSTimer scheduledTimerWithTimeInterval:3.0f
-                                     target:self
-                                   selector:@selector(showUserShareInfo)
-                                   userInfo:nil
-                                    repeats:NO];
+    [NSTimer scheduledTimerWithTimeInterval:3.0f target:self selector:@selector(showUserShareInfo) userInfo:nil repeats:NO];
 }
 - (void)showUserShareInfo {
     self.tipLabel.textColor = [UIColor whiteColor];
-    self.tipLabel.text =
-    [NSString stringWithFormat:@"%lu人在共享位置",
-     (unsigned long)self.rcUserInfos.count];
+    self.tipLabel.text = [NSString stringWithFormat:@"%lu人在共享位置",(unsigned long)self.rcUserInfos.count];
 }
 - (NSArray *)getParticipantsUserInfo {
     return [self.rcUserInfos copy];
 }
-- (void)addHeadViewUser:(RCUserInfo *)user {
-    {
+- (void)addHeadViewUser:(RCUserInfo *)user{
+{
         CGFloat scrollViewWidth = [self getScrollViewWidth];
         UIImageView *userHead = [[UIImageView alloc] init];
-        [userHead
-         sd_setImageWithURL:[NSURL URLWithString:user.portraitUri]
-         placeholderImage:[FreedomTools imageNamed:@"default_portrait_msg"
-                                          ofBundle:@"RongCloud.bundle"]];
-        [userHead setFrame:CGRectMake(scrollViewWidth - self.headViewSize, 0,
-                                      self.headViewSize, self.headViewSize)];
+        [userHead sd_setImageWithURL:[NSURL URLWithString:user.portraitUri] placeholderImage:[FreedomTools imageNamed:@"default_portrait_msg" ofBundle:@"RongCloud.bundle"]];
+        [userHead setFrame:CGRectMake(scrollViewWidth - self.headViewSize, 0,self.headViewSize, self.headViewSize)];
         if (self.avatarStyle == RC_USER_AVATAR_CYCLE) {
             userHead.layer.cornerRadius = self.headViewSize / 2;
             userHead.layer.masksToBounds = YES;
         }
         userHead.layer.borderWidth = 1.0f;
         userHead.layer.borderColor = [UIColor whiteColor].CGColor;
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
-                                       initWithTarget:self
-                                       action:@selector(onUserSelected:)];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(onUserSelected:)];
         [userHead addGestureRecognizer:tap];
         userHead.userInteractionEnabled = YES;
         [self.headsView addObject:userHead];
         [self.scrollView addSubview:userHead];
         if (scrollViewWidth < self.headViewRect.size.width) {
-            [self.scrollView
-             setFrame:CGRectMake((self.frame.size.width - scrollViewWidth) / 2,
-                                 self.headViewRect.origin.y, scrollViewWidth,
-                                 self.headViewRect.size.height)];
+            [self.scrollView setFrame:CGRectMake((self.frame.size.width - scrollViewWidth) / 2,self.headViewRect.origin.y, scrollViewWidth,self.headViewRect.size.height)];
         } else {
             [self.scrollView setFrame:self.headViewRect];
         }
-        [self.scrollView
-         setContentSize:CGSizeMake(scrollViewWidth,
-                                   self.scrollView.frame.size.height)];
+        [self.scrollView setContentSize:CGSizeMake(scrollViewWidth, self.scrollView.frame.size.height)];
     }
 }
 - (void)removeHeadViewUser:(NSUInteger)index {
@@ -249,23 +185,16 @@
     UIImageView *removeUserHead = [self.headsView objectAtIndex:index];
     for (NSUInteger i = index + 1; i < [self.headsView count]; i++) {
         UIImageView *userHead = self.headsView[i];
-        [userHead setFrame:CGRectMake(userHead.frame.origin.x - self.headViewSize -
-                                      self.headViewSpace,
-                                      0, self.headViewSize, self.headViewSize)];
+        [userHead setFrame:CGRectMake(userHead.frame.origin.x - self.headViewSize - self.headViewSpace,0, self.headViewSize, self.headViewSize)];
     }
     [self.headsView removeObject:removeUserHead];
     [removeUserHead removeFromSuperview];
     if (scrollViewWidth < self.headViewRect.size.width) {
-        [self.scrollView
-         setFrame:CGRectMake((self.frame.size.width - scrollViewWidth) / 2,
-                             self.headViewRect.origin.y, scrollViewWidth,
-                             self.headViewRect.size.height)];
+        [self.scrollView setFrame:CGRectMake((self.frame.size.width - scrollViewWidth) / 2,self.headViewRect.origin.y, scrollViewWidth,self.headViewRect.size.height)];
     } else {
         [self.scrollView setFrame:self.headViewRect];
     }
-    [self.scrollView
-     setContentSize:CGSizeMake(scrollViewWidth,
-                               self.scrollView.frame.size.height)];
+    [self.scrollView setContentSize:CGSizeMake(scrollViewWidth,self.scrollView.frame.size.height)];
 }
 - (void)onUserSelected:(UITapGestureRecognizer *)tap {
     UIImageView *selectUserHead = (UIImageView *)tap.view;
@@ -306,8 +235,7 @@
     UIImage *image = nil;
     NSString *image_name = [NSString stringWithFormat:@"%@.png", name];
     NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
-    NSString *bundlePath =
-    [resourcePath stringByAppendingPathComponent:bundleName];
+    NSString *bundlePath = [resourcePath stringByAppendingPathComponent:bundleName];
     NSString *image_path = [bundlePath stringByAppendingPathComponent:image_name];
     image = [[UIImage alloc] initWithContentsOfFile:image_path];
     return image;
@@ -334,33 +262,22 @@
   [super viewDidLoad];
   _isFristTimeToLoad = YES;
   self.userAnnotationDic = [[NSMutableDictionary alloc] init];
-  self.mapView = [[MKMapView alloc]
-      initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width,
-                               [UIScreen mainScreen].bounds.size.height)];
+  self.mapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width,[UIScreen mainScreen].bounds.size.height)];
   [self.mapView setMapType:MKMapTypeStandard];
   self.mapView.showsUserLocation = YES;
   self.mapView.delegate = self;
   self.mapView.showsUserLocation = NO;
   [self.view addSubview:self.mapView];
-  self.headCollectionView = [[HeadCollectionView alloc]
-      initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 95)
-       participants:[self.realTimeLocationProxy getParticipants]
-      touchDelegate:self];
+  self.headCollectionView = [[HeadCollectionView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 95) participants:[self.realTimeLocationProxy getParticipants] touchDelegate:self];
   [self.view addSubview:self.headCollectionView];
   self.headCollectionView.touchDelegate = self;
-  UIImageView *gpsImg = [[UIImageView alloc]
-      initWithFrame:CGRectMake(18,
-                               [UIScreen mainScreen].bounds.size.height - 80,
-                               50, 50)];
+  UIImageView *gpsImg = [[UIImageView alloc]initWithFrame:CGRectMake(18,[UIScreen mainScreen].bounds.size.height - 80,50, 50)];
   gpsImg.image = [UIImage imageNamed:@"gps.png"];
   [self.view addSubview:gpsImg];
   gpsImg.userInteractionEnabled = YES;
-  UITapGestureRecognizer *gpsImgTap = [[UITapGestureRecognizer alloc]
-      initWithTarget:self
-              action:@selector(tapGpsImgEvent:)];
+  UITapGestureRecognizer *gpsImgTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGpsImgEvent:)];
   [gpsImg addGestureRecognizer:gpsImgTap];
-  CLLocation *currentLocation = [self.realTimeLocationProxy
-      getLocation:[RCIMClient sharedRCIMClient].currentUserInfo.userId];
+  CLLocation *currentLocation = [self.realTimeLocationProxy getLocation:[RCIMClient sharedRCIMClient].currentUserInfo.userId];
   if (currentLocation) {
     __weak RealTimeLocationViewController *weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -388,8 +305,7 @@
   [self.realTimeLocationProxy removeRealTimeLocationObserver:self];
 }
 - (void)tapGpsImgEvent:(UIGestureRecognizer *)gestureRecognizer {
-  [self
-      onSelectUserLocationWithUserId:[RCIM sharedRCIM].currentUserInfo.userId];
+  [self onSelectUserLocationWithUserId:[RCIM sharedRCIM].currentUserInfo.userId];
 }
 - (void)onUserSelected:(RCUserInfo *)user atIndex:(NSUInteger)index {
   [self onSelectUserLocationWithUserId:user.userId];
@@ -411,29 +327,22 @@
   [self dismissViewControllerAnimated:YES completion:^{ }];
   return YES;
 }
-- (void)setRealTimeLocationProxy:
-    (id<RCRealTimeLocationProxy>)realTimeLocationProxy {
+- (void)setRealTimeLocationProxy:(id<RCRealTimeLocationProxy>)realTimeLocationProxy {
   _realTimeLocationProxy = realTimeLocationProxy;
   [_realTimeLocationProxy addRealTimeLocationObserver:self];
 }
 #pragma mark - RCRealTimeLocationObserver
 - (void)onRealTimeLocationStatusChange:(RCRealTimeLocationStatus)status {
-  if ([self.realTimeLocationProxy getStatus] ==
-          RC_REAL_TIME_LOCATION_STATUS_INCOMING ||
-      [self.realTimeLocationProxy getStatus] ==
-          RC_REAL_TIME_LOCATION_STATUS_IDLE) {
-    [self dismissViewControllerAnimated:YES
-                             completion:^{
-                             }];
+  if ([self.realTimeLocationProxy getStatus] == RC_REAL_TIME_LOCATION_STATUS_INCOMING ||
+      [self.realTimeLocationProxy getStatus] == RC_REAL_TIME_LOCATION_STATUS_IDLE) {
+    [self dismissViewControllerAnimated:YES completion:^{}];
   }
 }
 - (void)onReceiveLocation:(CLLocation *)location fromUserId:(NSString *)userId {
   __weak typeof(&*self) __weakself = self;
   if (self.isFristTimeToLoad) {
-    if (-90.0f <= location.coordinate.latitude &&
-        location.coordinate.latitude <= 90.0f &&
-        -180.0f <= location.coordinate.longitude &&
-        location.coordinate.longitude <= 180.0f) {
+    if (-90.0f <= location.coordinate.latitude && location.coordinate.latitude <= 90.0f &&
+        -180.0f <= location.coordinate.longitude && location.coordinate.longitude <= 180.0f) {
       CLLocationCoordinate2D center;
       center.latitude = location.coordinate.latitude;
       center.longitude = location.coordinate.longitude;
@@ -464,35 +373,21 @@
     [self.mapView addAnnotation:ann];
     [self.userAnnotationDic setObject:ann forKey:userId];
     if ([RCIM sharedRCIM].userInfoDataSource &&
-        [[RCIM sharedRCIM]
-                .userInfoDataSource
-            respondsToSelector:@selector(getUserInfoWithUserId:completion:)]) {
-      [[RCIM sharedRCIM]
-              .userInfoDataSource
-          getUserInfoWithUserId:userId
-                     completion:^(RCUserInfo *userInfo) {
-                       if (!userInfo) {
-                         userInfo = [[RCUserInfo alloc]
-                             initWithUserId:userId
-                                       name:[NSString
-                                                stringWithFormat:@"user<%@>",
-                                                                 userId]
-                                   portrait:nil];
-                       }
-                       dispatch_async(dispatch_get_main_queue(), ^{
-                         RCAnnotation *annotaton = [__weakself.userAnnotationDic
-                             objectForKey:userInfo.userId];
-                         annotatonView.isMyLocation = NO;
-                         if ([userId
-                                 isEqualToString:[RCIM sharedRCIM]
-                                                     .currentUserInfo.userId]) {
-                           annotatonView.isMyLocation = YES;
-                         }
-                         annotaton.thumbnail.imageurl = userInfo.portraitUri;
-                         [annotaton updateThumbnail:annotaton.thumbnail
-                                           animated:YES];
-                       });
-                     }];
+        [[RCIM sharedRCIM].userInfoDataSource respondsToSelector:@selector(getUserInfoWithUserId:completion:)]) {
+      [[RCIM sharedRCIM].userInfoDataSource getUserInfoWithUserId:userId completion:^(RCUserInfo *userInfo) {
+           if (!userInfo) {
+             userInfo = [[RCUserInfo alloc]initWithUserId:userId name:[NSString stringWithFormat:@"user<%@>",userId] portrait:nil];
+           }
+           dispatch_async(dispatch_get_main_queue(), ^{
+             RCAnnotation *annotaton = [__weakself.userAnnotationDic objectForKey:userInfo.userId];
+             annotatonView.isMyLocation = NO;
+             if ([userId isEqualToString:[RCIM sharedRCIM].currentUserInfo.userId]) {
+               annotatonView.isMyLocation = YES;
+             }
+             annotaton.thumbnail.imageurl = userInfo.portraitUri;
+             [annotaton updateThumbnail:annotaton.thumbnail animated:YES];
+           });
+         }];
     }
   } else {
     //            if ([RCIM sharedRCIM].userInfoDataSource && [[RCIM
@@ -510,8 +405,7 @@
     //                    }
     dispatch_async(dispatch_get_main_queue(), ^{
       annotaton.coordinate = [RCLocationConvert wgs84ToGcj02:cll.coordinate];
-      annotaton.thumbnail.coordinate =
-          [RCLocationConvert wgs84ToGcj02:cll.coordinate];
+      annotaton.thumbnail.coordinate = [RCLocationConvert wgs84ToGcj02:cll.coordinate];
       annotaton.thumbnail.isMyLocation = NO;
       if ([userId isEqualToString:[RCIM sharedRCIM].currentUserInfo.userId]) {
         annotaton.thumbnail.isMyLocation = YES;
@@ -539,29 +433,17 @@
     [self.mapView addAnnotation:ann];
     [self.userAnnotationDic setObject:ann forKey:userId];
     if ([RCIM sharedRCIM].userInfoDataSource &&
-        [[RCIM sharedRCIM]
-                .userInfoDataSource
-            respondsToSelector:@selector(getUserInfoWithUserId:completion:)]) {
-      [[RCIM sharedRCIM]
-              .userInfoDataSource
-          getUserInfoWithUserId:userId
-                     completion:^(RCUserInfo *userInfo) {
-                       if (!userInfo) {
-                         userInfo = [[RCUserInfo alloc]
-                             initWithUserId:userId
-                                       name:[NSString
-                                                stringWithFormat:@"user<%@>",
-                                                                 userId]
-                                   portrait:nil];
-                       }
-                       dispatch_async(dispatch_get_main_queue(), ^{
-                         RCAnnotation *annotaton = [__weakself.userAnnotationDic
-                             objectForKey:userInfo.userId];
-                         annotaton.thumbnail.imageurl = userInfo.portraitUri;
-                         [annotaton updateThumbnail:annotaton.thumbnail
-                                           animated:YES];
-                       });
-                     }];
+        [[RCIM sharedRCIM].userInfoDataSource respondsToSelector:@selector(getUserInfoWithUserId:completion:)]) {
+      [[RCIM sharedRCIM].userInfoDataSource getUserInfoWithUserId:userId completion:^(RCUserInfo *userInfo) {
+           if (!userInfo) {
+             userInfo = [[RCUserInfo alloc]initWithUserId:userId name:[NSString stringWithFormat:@"user<%@>",userId] portrait:nil];
+           }
+           dispatch_async(dispatch_get_main_queue(), ^{
+             RCAnnotation *annotaton = [__weakself.userAnnotationDic objectForKey:userInfo.userId];
+             annotaton.thumbnail.imageurl = userInfo.portraitUri;
+             [annotaton updateThumbnail:annotaton.thumbnail animated:YES];
+           });
+         }];
     }
   }
   if (self.headCollectionView) {
@@ -584,14 +466,10 @@
       [__weakself.mapView removeAnnotation:annotaton];
     });
   }
-  if ([self.realTimeLocationProxy getStatus] ==
-          RC_REAL_TIME_LOCATION_STATUS_INCOMING ||
-      [self.realTimeLocationProxy getStatus] ==
-          RC_REAL_TIME_LOCATION_STATUS_IDLE) {
+  if ([self.realTimeLocationProxy getStatus] == RC_REAL_TIME_LOCATION_STATUS_INCOMING ||
+      [self.realTimeLocationProxy getStatus] == RC_REAL_TIME_LOCATION_STATUS_IDLE) {
     dispatch_async(dispatch_get_main_queue(), ^{
-      [__weakself dismissViewControllerAnimated:YES
-                                     completion:^{
-                                     }];
+      [__weakself dismissViewControllerAnimated:YES completion:^{}];
     });
   }
 }
@@ -608,32 +486,25 @@
     dispatch_async(dispatch_get_main_queue(), ^{
       [__weakself.mapView removeAnnotation:annotaton];
       [__weakself.mapView addAnnotation:annotaton];
-      [__weakself.mapView setCenterCoordinate:annotaton.coordinate
-                                     animated:YES];
+      [__weakself.mapView setCenterCoordinate:annotaton.coordinate animated:YES];
       [__weakself.mapView selectAnnotation:annotaton animated:YES];
     });
   }
 }
 #pragma mark - MKMapViewDelegate
-- (void)mapView:(MKMapView *)mapView
-    didSelectAnnotationView:(MKAnnotationView *)view {
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
   if ([view conformsToProtocol:@protocol(RCAnnotationViewProtocol)]) {
-    [((NSObject<RCAnnotationViewProtocol> *)view)
-        didSelectAnnotationViewInMap:mapView];
+    [((NSObject<RCAnnotationViewProtocol> *)view) didSelectAnnotationViewInMap:mapView];
   }
 }
-- (void)mapView:(MKMapView *)mapView
-    didDeselectAnnotationView:(MKAnnotationView *)view {
+- (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
   if ([view conformsToProtocol:@protocol(RCAnnotationViewProtocol)]) {
-    [((NSObject<RCAnnotationViewProtocol> *)view)
-        didDeselectAnnotationViewInMap:mapView];
+    [((NSObject<RCAnnotationViewProtocol> *)view) didDeselectAnnotationViewInMap:mapView];
   }
 }
-- (MKAnnotationView *)mapView:(MKMapView *)mapView
-            viewForAnnotation:(id<MKAnnotation>)annotation {
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
   if ([annotation conformsToProtocol:@protocol(RCAnnotationProtocol)]) {
-    MKAnnotationView *view = [((NSObject<RCAnnotationProtocol> *)annotation)
-        annotationViewInMap:mapView];
+    MKAnnotationView *view = [((NSObject<RCAnnotationProtocol> *)annotation) annotationViewInMap:mapView];
     return view;
   }
   return nil;

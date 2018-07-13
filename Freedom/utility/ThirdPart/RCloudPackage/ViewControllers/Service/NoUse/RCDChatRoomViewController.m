@@ -24,13 +24,6 @@
     }
     return self;
 }
-- (void)awakeFromNib {
-    [super awakeFromNib];
-}
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-    // Configure the view for the selected state
-}
 @end
 @interface RCDChatRoomViewController ()
 @property(nonatomic, strong) NSMutableArray *chatRoomList;
@@ -40,23 +33,17 @@
   self = [super initWithCoder:aDecoder];
   if (self) {
     //设置为不用默认渲染方式
-    self.tabBarItem.image = [[UIImage imageNamed:@"icon_room"]
-        imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    self.tabBarItem.selectedImage = [[UIImage imageNamed:@"icon_room_hover"]
-        imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    self.tabBarItem.image = [[UIImage imageNamed:@"icon_room"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    self.tabBarItem.selectedImage = [[UIImage imageNamed:@"icon_room_hover"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
   }
   return self;
 }
 - (void)viewDidLoad {
   [super viewDidLoad];
-  // Do any additional setup after loading the view.
-  //设置tableView样式
-  self.tableView.separatorColor =
-      [UIColor colorWithRGBHex:0xdfdfdf];
+//设置tableView样式
+  self.tableView.separatorColor = [UIColor colorWithRGBHex:0xdfdfdf];
   self.tableView.tableFooterView = [UIView new];
-  // self.tableView.tableHeaderView = [[UIView alloc]
-  // initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width,
-  // 12)];
+  // self.tableView.tableHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width,12)];
   _chatRoomList = [[NSMutableArray alloc] init];
   RCDChatRoomInfo *chatRoom1 = [[RCDChatRoomInfo alloc] init];
   chatRoom1.chatRoomId = @"chatroom001";
@@ -113,20 +100,13 @@
   // self.tabBarController.navigationItem.title = @"聊天室";
   self.tabBarController.navigationItem.rightBarButtonItem = nil;
 }
-- (void)didReceiveMemoryWarning {
-  [super didReceiveMemoryWarning];
-  // Dispose of any resources that can be recreated.
-}
 #pragma mark--UITableViewDataSource
-- (NSInteger)tableView:(UITableView *)tableView
- numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
   return _chatRoomList.count;
 }
-- (UITableViewCell *)tableView:(UITableView *)tableView
-         cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   static NSString *CellIdentifier = @"RCDChatRoomTableViewCell";
-  RCDChatRoomTableViewCell *cell = (RCDChatRoomTableViewCell *)[tableView
-      dequeueReusableCellWithIdentifier:CellIdentifier];
+  RCDChatRoomTableViewCell *cell = (RCDChatRoomTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
   RCDChatRoomInfo *chatRoom = _chatRoomList[indexPath.row];
   cell.lbChatroom.text = chatRoom.chatRoomName;
   cell.lbNumber.text = chatRoom.category;
@@ -137,8 +117,7 @@
   cell.ivChatRoomPortrait.layer.masksToBounds = YES;
   return cell;
 }
-- (void)tableView:(UITableView *)tableView
-    didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   RCDChatRoomInfo *chatRoom = _chatRoomList[indexPath.row];
   RCDChatViewController *temp = [[RCDChatViewController alloc] init];
   temp.targetId = chatRoom.chatRoomId;

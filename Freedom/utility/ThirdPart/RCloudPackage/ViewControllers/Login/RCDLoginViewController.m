@@ -49,42 +49,27 @@
   [super viewDidLoad];
   self.rcDebug = NO;
 //  self.rcDebug = YES;
-  
   _loginFailureTimes = 0;
   [self.navigationController setNavigationBarHidden:YES animated:YES];
   //    self.view.translatesAutoresizingMaskIntoConstraints = YES;
   //添加动态图
-  self.animatedImagesView = [[RCAnimatedImagesView alloc]
-      initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width,
-                               self.view.bounds.size.height)];
+  self.animatedImagesView = [[RCAnimatedImagesView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width,self.view.bounds.size.height)];
   [self.view addSubview:self.animatedImagesView];
   //添加头部内容
-  _headBackground = [[UIView alloc]
-      initWithFrame:CGRectMake(0, -100, self.view.bounds.size.width, 50)];
+  _headBackground = [[UIView alloc]initWithFrame:CGRectMake(0, -100, self.view.bounds.size.width, 50)];
   _headBackground.userInteractionEnabled = YES;
-  _headBackground.backgroundColor =
-      [[UIColor alloc] initWithRed:0 green:0 blue:0 alpha:0.2];
+  _headBackground.backgroundColor =[[UIColor alloc] initWithRed:0 green:0 blue:0 alpha:0.2];
   [self.view addSubview:_headBackground];
-  UIButton *registerHeadButton =
-      [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 80, 50)];
+  UIButton *registerHeadButton =[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 80, 50)];
   [registerHeadButton setTitle:@"找回密码" forState:UIControlStateNormal];
-  [registerHeadButton setTitleColor:[[UIColor alloc] initWithRed:153
-                                                           green:153
-                                                            blue:153
-                                                           alpha:0.5]
-                           forState:UIControlStateNormal];
+  [registerHeadButton setTitleColor:[[UIColor alloc] initWithRed:153 green:153 blue:153 alpha:0.5] forState:UIControlStateNormal];
   registerHeadButton.titleLabel.font = [UIFont systemFontOfSize:16];
-  [registerHeadButton.titleLabel
-      setFont:[UIFont fontWithName:@"Heiti SC" size:14.0]];
-  [registerHeadButton addTarget:self
-                         action:@selector(forgetPswEvent)
-               forControlEvents:UIControlEventTouchUpInside];
+  [registerHeadButton.titleLabel setFont:[UIFont fontWithName:@"Heiti SC" size:14.0]];
+  [registerHeadButton addTarget:self action:@selector(forgetPswEvent)              forControlEvents:UIControlEventTouchUpInside];
   [_headBackground addSubview:registerHeadButton];
   //添加图标
   UIImage *rongLogoSmallImage = [UIImage imageNamed:@"title_logo_small"];
-  UIImageView *rongLogoSmallImageView = [[UIImageView alloc]
-      initWithFrame:CGRectMake(self.view.bounds.size.width / 2 - 60, 5, 100,
-                               40)];
+  UIImageView *rongLogoSmallImageView = [[UIImageView alloc]initWithFrame:CGRectMake(self.view.bounds.size.width / 2 - 60, 5, 100,40)];
   [rongLogoSmallImageView setImage:rongLogoSmallImage];
   [rongLogoSmallImageView setContentScaleFactor:[[UIScreen mainScreen] scale]];
   rongLogoSmallImageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -92,19 +77,11 @@
   rongLogoSmallImageView.clipsToBounds = YES;
   [_headBackground addSubview:rongLogoSmallImageView];
   //顶部按钮
-  UIButton *forgetPswHeadButton = [[UIButton alloc]
-      initWithFrame:CGRectMake(self.view.bounds.size.width - 80, 0, 70, 50)];
+  UIButton *forgetPswHeadButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 80, 0, 70, 50)];
   [forgetPswHeadButton setTitle:@"新用户" forState:UIControlStateNormal];
-  [forgetPswHeadButton setTitleColor:[[UIColor alloc] initWithRed:153
-                                                            green:153
-                                                             blue:153
-                                                            alpha:0.5]
-                            forState:UIControlStateNormal];
-  [forgetPswHeadButton.titleLabel
-      setFont:[UIFont fontWithName:@"Heiti SC" size:14.0]];
-  [forgetPswHeadButton addTarget:self
-                          action:@selector(registerEvent)
-                forControlEvents:UIControlEventTouchUpInside];
+  [forgetPswHeadButton setTitleColor:[[UIColor alloc] initWithRed:153 green:153 blue:153 alpha:0.5] forState:UIControlStateNormal];
+  [forgetPswHeadButton.titleLabel setFont:[UIFont fontWithName:@"Heiti SC" size:14.0]];
+  [forgetPswHeadButton addTarget:self action:@selector(registerEvent) forControlEvents:UIControlEventTouchUpInside];
   [_headBackground addSubview:forgetPswHeadButton];
   UIImage *rongLogoImage = [UIImage imageNamed:@"login_logo"];
   _rongLogo = [[UIImageView alloc] initWithImage:rongLogoImage];
@@ -120,22 +97,16 @@
   _errorMsgLb.text = @"";
   _errorMsgLb.font = [UIFont fontWithName:@"Heiti SC" size:12.0];
   _errorMsgLb.translatesAutoresizingMaskIntoConstraints = NO;
-  _errorMsgLb.textColor = [UIColor colorWithRed:204.0f / 255.0f
-                                          green:51.0f / 255.0f
-                                           blue:51.0f / 255.0f
-                                          alpha:1];
+  _errorMsgLb.textColor = [UIColor colorWithRed:204.0f / 255.0f green:51.0f / 255.0f blue:51.0f / 255.0f alpha:1];
   [self.view addSubview:_errorMsgLb];
   //用户名
-  RCUnderlineTextField *userNameTextField =
-      [[RCUnderlineTextField alloc] initWithFrame:CGRectZero];
+  RCUnderlineTextField *userNameTextField = [[RCUnderlineTextField alloc] initWithFrame:CGRectZero];
   userNameTextField.backgroundColor = [UIColor clearColor];
   userNameTextField.tag = UserTextFieldTag;
   userNameTextField.delegate = self;
   //_account.placeholder=[NSString stringWithFormat:@"Email"];
   UIColor *color = [UIColor whiteColor];
-  userNameTextField.attributedPlaceholder = [[NSAttributedString alloc]
-      initWithString:@"手机号"
-          attributes:@{NSForegroundColorAttributeName : color}];
+  userNameTextField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"手机号" attributes:@{NSForegroundColorAttributeName : color}];
   userNameTextField.textColor = [UIColor whiteColor];
   userNameTextField.text = [self getDefaultUserName];
   userNameTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -143,8 +114,7 @@
   userNameTextField.keyboardType = UIKeyboardTypeNumberPad;
   [_inputBackground addSubview:userNameTextField];
   //密码
-  RCUnderlineTextField *passwordTextField =
-      [[RCUnderlineTextField alloc] initWithFrame:CGRectZero];
+  RCUnderlineTextField *passwordTextField = [[RCUnderlineTextField alloc] initWithFrame:CGRectZero];
   passwordTextField.tag = PassWordFieldTag;
   passwordTextField.textColor = [UIColor whiteColor];
   passwordTextField.returnKeyType = UIReturnKeyDone;
@@ -152,24 +122,18 @@
   passwordTextField.delegate = self;
   // passwordTextField.delegate = self;
   passwordTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
-  passwordTextField.attributedPlaceholder = [[NSAttributedString alloc]
-      initWithString:@"密码"
-          attributes:@{NSForegroundColorAttributeName : color}];
+  passwordTextField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"密码" attributes:@{NSForegroundColorAttributeName : color}];
   // passwordTextField.text = [self getDefaultUserPwd];
   [_inputBackground addSubview:passwordTextField];
   passwordTextField.text = [self getDefaultUserPwd];
   self.passwordTextField = passwordTextField;
   // UIEdgeInsets buttonEdgeInsets = UIEdgeInsetsMake(0, 7.f, 0, 7.f);
   UIButton *loginButton = [UIButton buttonWithType:UIButtonTypeCustom];
-  [loginButton addTarget:self
-                  action:@selector(actionLogin:)
-        forControlEvents:UIControlEventTouchUpInside];
-  [loginButton setBackgroundImage:[UIImage imageNamed:@"login_button"]
-                         forState:UIControlStateNormal];
+  [loginButton addTarget:self action:@selector(actionLogin:) forControlEvents:UIControlEventTouchUpInside];
+  [loginButton setBackgroundImage:[UIImage imageNamed:@"login_button"] forState:UIControlStateNormal];
   loginButton.imageView.contentMode = UIViewContentModeCenter;
   loginButton.translatesAutoresizingMaskIntoConstraints = NO;
   [_inputBackground addSubview:loginButton];
-    
     //设置按钮
     UIButton *settingButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [settingButton setTitle:@"私有云设置" forState:UIControlStateNormal];
@@ -180,54 +144,27 @@
     [_inputBackground addSubview:settingButton];
     self.settingButton = settingButton;
     settingButton.hidden = !self.rcDebug;
-  
   UIButton *userProtocolButton = [[UIButton alloc] initWithFrame:CGRectZero];
   //    [userProtocolButton setTitle:@"阅读用户协议"
   //    forState:UIControlStateNormal];
-  [userProtocolButton setTitleColor:[[UIColor alloc] initWithRed:153
-                                                           green:153
-                                                            blue:153
-                                                           alpha:0.5]
-                           forState:UIControlStateNormal];
-  [userProtocolButton.titleLabel
-      setFont:[UIFont fontWithName:@"Heiti SC" size:14.0]];
-  [userProtocolButton addTarget:self
-                         action:@selector(userProtocolEvent)
-               forControlEvents:UIControlEventTouchUpInside];
+  [userProtocolButton setTitleColor:[[UIColor alloc] initWithRed:153 green:153 blue:153 alpha:0.5] forState:UIControlStateNormal];
+  [userProtocolButton.titleLabel setFont:[UIFont fontWithName:@"Heiti SC" size:14.0]];
+  [userProtocolButton addTarget:self action:@selector(userProtocolEvent) forControlEvents:UIControlEventTouchUpInside];
   [self.view addSubview:userProtocolButton];
   //底部按钮区
   UIView *bottomBackground = [[UIView alloc] initWithFrame:CGRectZero];
-  UIButton *registerButton =
-      [[UIButton alloc] initWithFrame:CGRectMake(0, -16, 80, 50)];
+  UIButton *registerButton = [[UIButton alloc] initWithFrame:CGRectMake(0, -16, 80, 50)];
   [registerButton setTitle:@"找回密码" forState:UIControlStateNormal];
-  [registerButton setTitleColor:[[UIColor alloc] initWithRed:153
-                                                       green:153
-                                                        blue:153
-                                                       alpha:0.5]
-                       forState:UIControlStateNormal];
-  [registerButton.titleLabel
-      setFont:[UIFont fontWithName:@"Heiti SC" size:14.0]];
-  [registerButton addTarget:self
-                     action:@selector(forgetPswEvent)
-           forControlEvents:UIControlEventTouchUpInside];
+  [registerButton setTitleColor:[[UIColor alloc] initWithRed:153 green:153 blue:153 alpha:0.5] forState:UIControlStateNormal];
+  [registerButton.titleLabel setFont:[UIFont fontWithName:@"Heiti SC" size:14.0]];
+  [registerButton addTarget:self action:@selector(forgetPswEvent) forControlEvents:UIControlEventTouchUpInside];
   [bottomBackground addSubview:registerButton];
-  UIButton *forgetPswButton = [[UIButton alloc]
-      initWithFrame:CGRectMake(self.view.bounds.size.width - 100, -16, 80, 50)];
+  UIButton *forgetPswButton = [[UIButton alloc]initWithFrame:CGRectMake(self.view.bounds.size.width - 100, -16, 80, 50)];
   [forgetPswButton setTitle:@"新用户" forState:UIControlStateNormal];
-  [forgetPswButton setTitleColor:[[UIColor alloc] initWithRed:153
-                                                        green:153
-                                                         blue:153
-                                                        alpha:0.5]
-                        forState:UIControlStateNormal];
-  [forgetPswButton.titleLabel
-      setFont:[UIFont fontWithName:@"Heiti SC" size:14.0]];
-  [forgetPswButton addTarget:self
-                      action:@selector(registerEvent)
-            forControlEvents:UIControlEventTouchUpInside];
+  [forgetPswButton setTitleColor:[[UIColor alloc] initWithRed:153 green:153 blue:153 alpha:0.5] forState:UIControlStateNormal];
+  [forgetPswButton.titleLabel setFont:[UIFont fontWithName:@"Heiti SC" size:14.0]];
+  [forgetPswButton addTarget:self action:@selector(registerEvent) forControlEvents:UIControlEventTouchUpInside];
   [bottomBackground addSubview:forgetPswButton];
-    
-    
-  
   CGRect screenBounds = self.view.frame;
   UILabel *footerLabel = [[UILabel alloc] init];
   footerLabel.textAlignment = NSTextAlignmentCenter;
@@ -258,9 +195,7 @@
                                         attribute:NSLayoutAttributeCenterX
                                        multiplier:1.0
                                          constant:0]];
-  NSDictionary *views =
-      NSDictionaryOfVariableBindings(_errorMsgLb, _rongLogo, _inputBackground,
-                                     userProtocolButton, bottomBackground);
+  NSDictionary *views = NSDictionaryOfVariableBindings(_errorMsgLb, _rongLogo, _inputBackground,userProtocolButton, bottomBackground);
   NSArray *viewConstraints = [[[[[[NSLayoutConstraint
       constraintsWithVisualFormat:@"H:|-41-[_inputBackground]-41-|"
                           options:0
@@ -341,24 +276,13 @@ arrayByAddingObjectsFromArray:
     
 //    CGPoint footerLabelCenter = footerLabel.center;
 //    settingButton.center = CGPointMake(footerLabelCenter.x, footerLabelCenter.y-12);
-  [[NSNotificationCenter defaultCenter]
-      addObserver:self
-         selector:@selector(keyboardWillShow:)
-             name:UIKeyboardWillShowNotification
-           object:self.view.window];
-  [[NSNotificationCenter defaultCenter]
-      addObserver:self
-         selector:@selector(keyboardWillHide:)
-             name:UIKeyboardWillHideNotification
-           object:self.view.window];
-  _statusBarView = [[UIView alloc]
-      initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 20)];
-  _statusBarView.backgroundColor =
-      [[UIColor alloc] initWithRed:0 green:0 blue:0 alpha:0.2];
+  [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:self.view.window];
+  [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:self.view.window];
+  _statusBarView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 20)];
+  _statusBarView.backgroundColor = [[UIColor alloc] initWithRed:0 green:0 blue:0 alpha:0.2];
   [self.view addSubview:_statusBarView];
   [self.view setNeedsLayout];
   [self.view setNeedsUpdateConstraints];
-    
 }
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
   [self.view endEditing:YES];
@@ -377,8 +301,7 @@ arrayByAddingObjectsFromArray:
   case PassWordFieldTag:
     [defaults removeObjectForKey:@"userPwd"];
     break;
-  default:
-    break;
+  default:break;
   }
   return YES;
 }
@@ -389,17 +312,11 @@ arrayByAddingObjectsFromArray:
   animation.duration = 0.25;
   [_rongLogo.layer addAnimation:animation forKey:nil];
   _rongLogo.hidden = YES;
-  [UIView animateWithDuration:0.25
-                   animations:^{
-                     self.view.frame =
-                         CGRectMake(0.f, -50, self.view.frame.size.width,
-                                    self.view.frame.size.height);
-                     _headBackground.frame =
-                         CGRectMake(0, 70, self.view.bounds.size.width, 50);
-                     _statusBarView.frame =
-                         CGRectMake(0.f, 50, self.view.frame.size.width, 20);
-                   }
-                   completion:nil];
+  [UIView animateWithDuration:0.25 animations:^{
+     self.view.frame = CGRectMake(0.f, -50, self.view.frame.size.width,self.view.frame.size.height);
+     _headBackground.frame = CGRectMake(0, 70, self.view.bounds.size.width, 50);
+     _statusBarView.frame = CGRectMake(0.f, 50, self.view.frame.size.width, 20);
+   }completion:nil];
 }
 //键盘关闭时动画
 - (void)keyboardWillHide:(NSNotification *)notif {
@@ -408,39 +325,24 @@ arrayByAddingObjectsFromArray:
   animation.duration = 0.25;
   [_rongLogo.layer addAnimation:animation forKey:nil];
   _rongLogo.hidden = NO;
-  [UIView animateWithDuration:0.25
-                   animations:^{
-                     self.view.frame =
-                         CGRectMake(0.f, 0.f, self.view.frame.size.width,
-                                    self.view.frame.size.height);
-                     CGRectMake(0, -100, self.view.bounds.size.width, 50);
-                     _headBackground.frame =
-                         CGRectMake(0, -100, self.view.bounds.size.width, 50);
-                     _statusBarView.frame =
-                         CGRectMake(0.f, 0, self.view.frame.size.width, 20);
-                   }
-                   completion:nil];
-}
-- (void)didReceiveMemoryWarning {
-  [super didReceiveMemoryWarning];
-  // Dispose of any resources that can be recreated.
+  [UIView animateWithDuration:0.25 animations:^{
+     self.view.frame = CGRectMake(0.f, 0.f, self.view.frame.size.width,self.view.frame.size.height);
+     CGRectMake(0, -100, self.view.bounds.size.width, 50);
+     _headBackground.frame = CGRectMake(0, -100, self.view.bounds.size.width, 50);
+     _statusBarView.frame = CGRectMake(0.f, 0, self.view.frame.size.width, 20);
+   }completion:nil];
 }
 - (void)viewWillAppear:(BOOL)animated {
-  NSString *userName =
-      [(UITextField *)[self.view viewWithTag:UserTextFieldTag] text];
-  NSRange foundObj =
-      [userName rangeOfString:@"@" options:NSCaseInsensitiveSearch];
+  NSString *userName = [(UITextField *)[self.view viewWithTag:UserTextFieldTag] text];
+  NSRange foundObj = [userName rangeOfString:@"@" options:NSCaseInsensitiveSearch];
   if (foundObj.length > 0) {
-    UITextField *PhoneNumber =
-        (UITextField *)[self.view viewWithTag:UserTextFieldTag];
+    UITextField *PhoneNumber = (UITextField *)[self.view viewWithTag:UserTextFieldTag];
     PhoneNumber.text = @"";
-    UITextField *Password =
-        (UITextField *)[self.view viewWithTag:PassWordFieldTag];
+    UITextField *Password = (UITextField *)[self.view viewWithTag:PassWordFieldTag];
     Password.text = @"";
   }
   if (userName.length > 0) {
-    [(UITextField *)[self.view viewWithTag:UserTextFieldTag]
-        setFont:[UIFont fontWithName:@"Heiti SC" size:25.0]];
+    [(UITextField *)[self.view viewWithTag:UserTextFieldTag] setFont:[UIFont fontWithName:@"Heiti SC" size:25.0]];
   }
   [super viewWillAppear:animated];
   [self.animatedImagesView startAnimating];
@@ -470,42 +372,31 @@ arrayByAddingObjectsFromArray:
   RCDFindPswViewController *temp = [[RCDFindPswViewController alloc] init];
   [self.navigationController pushViewController:temp animated:YES];
 }
-/**
- *  获取默认用户
- *
- *  @return 是否获取到数据
- */
+/***  获取默认用户*  @return 是否获取到数据*/
 - (BOOL)getDefaultUser {
-  NSString *userName =
-      [[NSUserDefaults standardUserDefaults] objectForKey:@"userName"];
-  NSString *userPwd =
-      [[NSUserDefaults standardUserDefaults] objectForKey:@"userPwd"];
+  NSString *userName = [[NSUserDefaults standardUserDefaults] objectForKey:@"userName"];
+  NSString *userPwd = [[NSUserDefaults standardUserDefaults] objectForKey:@"userPwd"];
   return userName && userPwd;
 }
 /*获取用户账号*/
 - (NSString *)getDefaultUserName {
-  NSString *defaultUser =
-      [[NSUserDefaults standardUserDefaults] objectForKey:@"userName"];
+  NSString *defaultUser = [[NSUserDefaults standardUserDefaults] objectForKey:@"userName"];
   return defaultUser;
 }
 /*获取用户密码*/
 - (NSString *)getDefaultUserPwd {
-  NSString *defaultUserPwd =
-      [[NSUserDefaults standardUserDefaults] objectForKey:@"userPwd"];
+  NSString *defaultUserPwd = [[NSUserDefaults standardUserDefaults] objectForKey:@"userPwd"];
   return defaultUserPwd;
 }
 - (IBAction)actionLogin:(id)sender {
-  NSString *userName =
-      [(UITextField *)[self.view viewWithTag:UserTextFieldTag] text];
-  NSString *userPwd =
-      [(UITextField *)[self.view viewWithTag:PassWordFieldTag] text];
+  NSString *userName = [(UITextField *)[self.view viewWithTag:UserTextFieldTag] text];
+  NSString *userPwd = [(UITextField *)[self.view viewWithTag:PassWordFieldTag] text];
     userName = @"18721064516";
     userPwd = @"123456";
     if(self.retryTime){
         [self invalidateRetryTime];
     }
     self.retryTime = [NSTimer scheduledTimerWithTimeInterval:60 target:self selector:@selector(retryConnectionFailed) userInfo:nil repeats:NO];
-    
   [self login:userName password:userPwd];
 }
 - (void)retryConnectionFailed {
@@ -517,10 +408,7 @@ arrayByAddingObjectsFromArray:
     [self.retryTime invalidate];
     self.retryTime = nil;
 }
-- (void)loginSuccess:(NSString *)userName
-              userId:(NSString *)userId
-               token:(NSString *)token
-            password:(NSString *)password {
+- (void)loginSuccess:(NSString *)userName userId:(NSString *)userId token:(NSString *)token password:(NSString *)password {
   [self invalidateRetryTime];
   //保存默认用户
   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -534,15 +422,12 @@ arrayByAddingObjectsFromArray:
     [defaults setObject:result forKey:@"SquareInfoList"];
     [defaults synchronize];
   }];
-  [AFHttpTool getUserInfo:userId
-      success:^(id response) {
+  [AFHttpTool getUserInfo:userId success:^(id response) {
         if ([response[@"code"] intValue] == 200) {
           NSDictionary *result = response[@"result"];
           NSString *nickname = result[@"nickname"];
           NSString *portraitUri = result[@"portraitUri"];
-          RCUserInfo *user = [[RCUserInfo alloc] initWithUserId:userId
-                                                           name:nickname
-                                                       portrait:portraitUri];
+          RCUserInfo *user = [[RCUserInfo alloc] initWithUserId:userId name:nickname portrait:portraitUri];
           if (!user.portraitUri || user.portraitUri.length <= 0) {
             user.portraitUri = [FreedomTools defaultUserPortrait:user];
           }
@@ -553,14 +438,11 @@ arrayByAddingObjectsFromArray:
           [defaults setObject:user.name forKey:@"userNickName"];
           [defaults synchronize];
         }
-      }
-      failure:^(NSError *err){
+      }failure:^(NSError *err){
       }];
   //同步群组
   [RCDDataSource syncGroups];
-  [RCDDataSource syncFriendList:userId
-                       complete:^(NSMutableArray *friends){
-                       }];
+  [RCDDataSource syncFriendList:userId complete:^(NSMutableArray *friends){}];
   dispatch_async(dispatch_get_main_queue(), ^{
     RCDMainTabBarViewController *mainTabBarVC = [RCDMainTabBarViewController shareInstance];
     [UIApplication sharedApplication].delegate.window.rootViewController = mainTabBarVC;
@@ -568,30 +450,21 @@ arrayByAddingObjectsFromArray:
 }
 /**
  *  登录融云服务器
- *
  *  @param userName 用户名
  *  @param token    token
  *  @param password 密码
  */
-- (void)loginRongCloud:(NSString *)userName
-                userId:(NSString *)userId
-                 token:(NSString *)token
-              password:(NSString *)password {
+- (void)loginRongCloud:(NSString *)userName userId:(NSString *)userId token:(NSString *)token password:(NSString *)password {
   self.loginUserName = userName;
   self.loginUserId = userId;
   self.loginToken = token;
   self.loginPassword = password;
-  
   //登录融云服务器
-  [[RCIM sharedRCIM] connectWithToken:token
-      success:^(NSString *userId) {
-        NSLog([NSString
-                  stringWithFormat:@"token is %@  userId is %@", token, userId],
-              nil);
+  [[RCIM sharedRCIM] connectWithToken:token success:^(NSString *userId) {
+        NSLog([NSString stringWithFormat:@"token is %@  userId is %@", token, userId],nil);
         self.loginUserId = userId;
         [self loginSuccess:self.loginUserName userId:self.loginUserId token:self.loginToken password:self.loginPassword];
-      }
-      error:^(RCConnectErrorCode status) {
+      }error:^(RCConnectErrorCode status) {
         //关闭HUD
         [hud hide:YES];
         NSLog(@"RCConnectErrorCode is %ld", (long)status);
@@ -603,26 +476,20 @@ arrayByAddingObjectsFromArray:
               NSLog(@"RCConnectErrorCode is %ld", (long)status);
               _errorMsgLb.text = [NSString stringWithFormat:@"登录失败！Status: %zd", status];
               [_pwdTextField shake];
-              
               //SDK会自动重连登录，这时候需要监听连接状态
               [[RCIM sharedRCIM] setConnectionStatusDelegate:self];
           });
         //SDK会自动重连登陆，这时候需要监听连接状态
         [[RCIM sharedRCIM] setConnectionStatusDelegate:self];
-      }
-      tokenIncorrect:^{
+      }tokenIncorrect:^{
         NSLog(@"IncorrectToken");
         if (_loginFailureTimes < 1) {
           _loginFailureTimes++;
           [AFHttpTool getTokenSuccess:^(id response) {
             NSString *token = response[@"result"][@"token"];
             NSString *userId = response[@"result"][@"userId"];
-            [self loginRongCloud:userName
-                          userId:userId
-                           token:token
-                        password:password];
-          }
-              failure:^(NSError *err) {
+            [self loginRongCloud:userName userId:userId token:token password:password];
+          }failure:^(NSError *err) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                   [hud hide:YES];
                   NSLog(@"Token无效");
@@ -632,13 +499,9 @@ arrayByAddingObjectsFromArray:
         }
       }];
 }
-/**
- *  登录
- */
+/***  登录*/
 - (void)login:(NSString *)userName password:(NSString *)password {
-  
-  RCNetworkStatus status =
-      [[RCIMClient sharedRCIMClient] getCurrentNetworkStatus];
+  RCNetworkStatus status = [[RCIMClient sharedRCIMClient] getCurrentNetworkStatus];
   if (RC_NotReachable == status) {
     _errorMsgLb.text = @"当前网络不可用，请检查！";
     return;
@@ -652,10 +515,7 @@ arrayByAddingObjectsFromArray:
     [hud show:YES];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"UserCookies"];
     //        [[RCIM sharedRCIM] initWithAppKey:@"p5tvi9dst25b4"];
-    [AFHttpTool loginWithPhone:userName
-        password:password
-        region:@"86"
-        success:^(id response) {
+    [AFHttpTool loginWithPhone:userName password:password region:@"86" success:^(id response) {
           if ([response[@"code"] intValue] == 200) {
             NSString *token = response[@"result"][@"token"];
             NSString *userId = response[@"result"][@"id"];
@@ -670,8 +530,7 @@ arrayByAddingObjectsFromArray:
             }
             [_pwdTextField shake];
           }
-        }
-        failure:^(NSError *err) {
+        }failure:^(NSError *err) {
           [hud hide:YES];
           _errorMsgLb.text = @"登录失败，请检查网络。";
         }];
@@ -719,10 +578,7 @@ arrayByAddingObjectsFromArray:
         [AFHttpTool getTokenSuccess:^(id response) {
           self.loginToken = response[@"result"][@"token"];
           self.loginUserId = response[@"result"][@"userId"];
-          [self loginRongCloud:self.loginUserName
-                        userId:self.loginUserId
-                         token:self.loginToken
-                      password:self.loginPassword];
+          [self loginRongCloud:self.loginUserName userId:self.loginUserId token:self.loginToken password:self.loginPassword];
         } failure:^(NSError *err) {
           dispatch_async(dispatch_get_main_queue(), ^{
             [hud hide:YES];
@@ -737,8 +593,7 @@ arrayByAddingObjectsFromArray:
   });
 }
 #pragma mark - UI
-- (BOOL)shouldAutorotateToInterfaceOrientation:
-    (UIInterfaceOrientation)toInterfaceOrientation {
+- (BOOL)shouldAutorotateToInterfaceOrientation: (UIInterfaceOrientation)toInterfaceOrientation {
   return (toInterfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 - (void)viewDidUnload {
@@ -746,13 +601,7 @@ arrayByAddingObjectsFromArray:
   [super viewDidUnload];
 }
 - (void)dealloc {
-  [[NSNotificationCenter defaultCenter]
-      removeObserver:self
-                name:UIKeyboardWillHideNotification
-              object:nil];
-  [[NSNotificationCenter defaultCenter]
-      removeObserver:self
-                name:UIKeyboardWillShowNotification
-              object:nil];
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+  [[NSNotificationCenter defaultCenter]removeObserver:self name:UIKeyboardWillShowNotification object:nil];
 }
 @end

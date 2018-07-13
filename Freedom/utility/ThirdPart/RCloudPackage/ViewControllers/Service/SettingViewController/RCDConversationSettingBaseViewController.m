@@ -54,8 +54,7 @@
     self.userId = userModel.userId;
     self.titleLabel.text = userModel.name;
     if ([userModel.portraitUri isEqualToString:@""]) {
-        UIView *defaultPortrait =
-        [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+        UIView *defaultPortrait = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
         defaultPortrait.backgroundColor = [UIColor randomColor];
         NSString *firstLetter = [ChineseToPinyin firstPinyinFromChinise:userModel.name];
         UILabel *firstCharacterLabel = [[UILabel alloc] initWithFrame:CGRectMake(defaultPortrait.frame.size.width / 2 - 30, defaultPortrait.frame.size.height / 2 - 30, 60, 60)];
@@ -72,8 +71,7 @@
     }
 }
 @end
-@interface RCDConversationSettingTableViewHeader () <
-RCDConversationSettingTableViewHeaderItemDelegate>
+@interface RCDConversationSettingTableViewHeader () <RCDConversationSettingTableViewHeaderItemDelegate>
 @end
 @implementation RCDConversationSettingTableViewHeader
 - (NSArray *)users {
@@ -83,26 +81,21 @@ RCDConversationSettingTableViewHeaderItemDelegate>
     return _users;
 }
 - (instancetype)init {
-    CGRect tempRect =
-    CGRectMake(0, 0, APPW, 120);
-    UICollectionViewFlowLayout *flowLayout =
-    [[UICollectionViewFlowLayout alloc] init];
+    CGRect tempRect = CGRectMake(0, 0, APPW, 120);
+    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
     self = [super initWithFrame:tempRect collectionViewLayout:flowLayout];
     if (self) {
         self.delegate = self;
         self.dataSource = self;
         self.scrollEnabled = NO;
-        [self registerClass:[RCDConversationSettingTableViewHeaderItem class]
- forCellWithReuseIdentifier:
-         @"RCDConversationSettingTableViewHeaderItem"];
+        [self registerClass:[RCDConversationSettingTableViewHeaderItem class] forCellWithReuseIdentifier:@"RCDConversationSettingTableViewHeaderItem"];
         self.isAllowedInviteMember = YES;
     }
     return self;
 }
 #pragma mark - UICollectionViewDataSource
-- (NSInteger)collectionView:(UICollectionView *)collectionView
-     numberOfItemsInSection:(NSInteger)section {
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     if (self.isAllowedDeleteMember) {
         return self.users.count + 2;
     } else {
@@ -113,83 +106,61 @@ RCDConversationSettingTableViewHeaderItemDelegate>
         }
     }
 }
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
-                  cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    RCDConversationSettingTableViewHeaderItem *cell =
-    [collectionView dequeueReusableCellWithReuseIdentifier:
-     @"RCDConversationSettingTableViewHeaderItem"
-                                              forIndexPath:indexPath];
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    RCDConversationSettingTableViewHeaderItem *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"RCDConversationSettingTableViewHeaderItem" forIndexPath:indexPath];
     if (self.users.count && (self.users.count - 1 >= indexPath.row)) {
         RCUserInfo *user = self.users[indexPath.row];
-        if ([user.userId isEqualToString:[RCIMClient sharedRCIMClient]
-             .currentUserInfo.userId]) {
+        if ([user.userId isEqualToString:[RCIMClient sharedRCIMClient].currentUserInfo.userId]) {
             [cell.btnImg setHidden:YES];
         } else {
             [cell.btnImg setHidden:!self.showDeleteTip];
         }
-        [cell.ivAva sd_setImageWithURL:[NSURL URLWithString:user.portraitUri]
-                      placeholderImage:[UIImage imageNamed:@"icon_person"]];
+        [cell.ivAva sd_setImageWithURL:[NSURL URLWithString:user.portraitUri] placeholderImage:[UIImage imageNamed:@"icon_person"]];
         cell.titleLabel.text = user.name;
         cell.userId = user.userId;
         cell.delegate = self;
         //长按显示减号
-        UILongPressGestureRecognizer *longPressGestureRecognizer =
-        [[UILongPressGestureRecognizer alloc]
-         initWithTarget:self
-         action:@selector(showDeleteTip:)];
+        UILongPressGestureRecognizer *longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(showDeleteTip:)];
         longPressGestureRecognizer.minimumPressDuration = 0.28;
         [cell addGestureRecognizer:longPressGestureRecognizer];
         // cell.tag=[NSString stringWithFormat:@"%@",user.userId];
         //点击隐藏减号
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
-                                       initWithTarget:self
-                                       action:@selector(hidesDeleteTip:)];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hidesDeleteTip:)];
         [cell addGestureRecognizer:tap];
     } else if (self.users.count >= indexPath.row) {
         cell.btnImg.hidden = YES;
         cell.gestureRecognizers = nil;
         cell.titleLabel.text = @"";
-        [cell.ivAva setImage:[FreedomTools imageNamed:@"add_members"
-                                             ofBundle:@"RongCloud.bundle"]];
+        [cell.ivAva setImage:[FreedomTools imageNamed:@"add_members" ofBundle:@"RongCloud.bundle"]];
     } else {
         cell.btnImg.hidden = YES;
         cell.gestureRecognizers = nil;
         cell.titleLabel.text = @"";
-        [cell.ivAva setImage:[FreedomTools imageNamed:@"delete_members"
-                                             ofBundle:@"RongCloud.bundle"]];
-        //长按显示减号
-        //        UILongPressGestureRecognizer *longPressGestureRecognizer =
-        //        [[UILongPressGestureRecognizer alloc]
-        //         initWithTarget:self
-        //         action:@selector(showDeleteTip:)];
-        //        longPressGestureRecognizer.minimumPressDuration = 0.28;
-        //        [cell addGestureRecognizer:longPressGestureRecognizer];
-        //点击去除减号
-        //        UITapGestureRecognizer *singleTapGestureRecognizer =
-        //        [[UITapGestureRecognizer alloc]
-        //         initWithTarget:self
-        //         action:@selector(notShowDeleteTip:)];
-        //        [cell addGestureRecognizer:singleTapGestureRecognizer];
+        [cell.ivAva setImage:[FreedomTools imageNamed:@"delete_members" ofBundle:@"RongCloud.bundle"]];
+//    长按显示减号
+//    UILongPressGestureRecognizer *longPressGestureRecognizer =
+//    [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(showDeleteTip:)];
+//    longPressGestureRecognizer.minimumPressDuration = 0.28;
+//    [cell addGestureRecognizer:longPressGestureRecognizer];
+//点击去除减号
+//    UITapGestureRecognizer *singleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(notShowDeleteTip:)];
+//    [cell addGestureRecognizer:singleTapGestureRecognizer];
     }
     cell.ivAva.contentMode = UIViewContentModeScaleAspectFill;
     return cell;
 }
 #pragma mark - RCConversationSettingTableViewHeaderItemDelegate
-- (void)deleteTipButtonClicked:
-(RCDConversationSettingTableViewHeaderItem *)item {
+- (void)deleteTipButtonClicked:(RCDConversationSettingTableViewHeaderItem *)item {
     NSIndexPath *indexPath = [self indexPathForCell:item];
     RCUserInfo *user = self.users[indexPath.row];
-    if ([user.userId isEqualToString:[RCIMClient sharedRCIMClient]
-         .currentUserInfo.userId]) {
+    if ([user.userId isEqualToString:[RCIMClient sharedRCIMClient].currentUserInfo.userId]) {
         NSString *mes = NSLocalizedStringFromTable(@"CanNotRemoveSelf",@"RongCloudKit", nil);
         [SVProgressHUD showInfoWithStatus:mes];
         return;
     }
     [self.users removeObjectAtIndex:indexPath.row];
     [self deleteItemsAtIndexPaths:@[ indexPath ]];
-    if (self.settingTableViewHeaderDelegate &&
-        [self.settingTableViewHeaderDelegate
-         respondsToSelector:@selector(deleteTipButtonClicked:)]) {
+    if (self.settingTableViewHeaderDelegate && [self.settingTableViewHeaderDelegate respondsToSelector:@selector(deleteTipButtonClicked:)]) {
             [self.settingTableViewHeaderDelegate deleteTipButtonClicked:indexPath];
             [self reloadData];
         }
@@ -203,15 +174,10 @@ RCDConversationSettingTableViewHeaderItemDelegate>
 }
 //点击去除减号
 //- (void)notShowDeleteTip:(RCDConversationSettingTableViewHeaderItem *)cell {
-//
 //    if (self.showDeleteTip == YES) {
-//
 //        self.showDeleteTip = NO;
-//
 //        [self reloadData];
-//
 //    }
-//
 //}
 //点击隐藏减号
 - (void)hidesDeleteTip:(UITapGestureRecognizer *)recognizer {
@@ -219,35 +185,26 @@ RCDConversationSettingTableViewHeaderItemDelegate>
         self.showDeleteTip = NO;
         [self reloadData];
     } else {
-        if (self.settingTableViewHeaderDelegate &&
-            [self.settingTableViewHeaderDelegate
-             respondsToSelector:@selector(didTipHeaderClicked:)]) {
-                RCDConversationSettingTableViewHeaderItem *cell =
-                (RCDConversationSettingTableViewHeaderItem *)recognizer.view;
+        if (self.settingTableViewHeaderDelegate && [self.settingTableViewHeaderDelegate respondsToSelector:@selector(didTipHeaderClicked:)]) {
+                RCDConversationSettingTableViewHeaderItem *cell = (RCDConversationSettingTableViewHeaderItem *)recognizer.view;
                 [self.settingTableViewHeaderDelegate didTipHeaderClicked:cell.userId];
             }
     }
 }
 #pragma mark - UICollectionViewDelegateFlowLayout
-- (CGSize)collectionView:(UICollectionView *)collectionView
-                  layout:(UICollectionViewLayout *)collectionViewLayout
-  sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     float width = 56;
     float height = width + 15 + 5;
     return CGSizeMake(width, height);
 }
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView
-                        layout:(UICollectionViewLayout *)collectionViewLayout
-        insetForSectionAtIndex:(NSInteger)section {
-    UICollectionViewFlowLayout *flowLayout =
-    (UICollectionViewFlowLayout *)collectionViewLayout;
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    UICollectionViewFlowLayout *flowLayout = (UICollectionViewFlowLayout *)collectionViewLayout;
     flowLayout.minimumInteritemSpacing = 5;
     flowLayout.minimumLineSpacing = 5;
     return UIEdgeInsetsMake(10, 10, 10, 10);
 }
 #pragma mark - UICollectionViewDelegate
-- (void)collectionView:(UICollectionView *)collectionView
-didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == self.users.count + 1) {
         if (self.isAllowedDeleteMember) {
             self.showDeleteTip = !self.showDeleteTip;
@@ -255,13 +212,8 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
         }
     }
     if (indexPath && self.settingTableViewHeaderDelegate &&
-        [self.settingTableViewHeaderDelegate
-         respondsToSelector:@selector(settingTableViewHeader:
-                                      indexPathOfSelectedItem:
-                                      allTheSeletedUsers:)]) {
-             [self.settingTableViewHeaderDelegate settingTableViewHeader:self
-                                                 indexPathOfSelectedItem:indexPath
-                                                      allTheSeletedUsers:self.users];
+        [self.settingTableViewHeaderDelegate respondsToSelector:@selector(settingTableViewHeader:indexPathOfSelectedItem: allTheSeletedUsers:)]) {
+             [self.settingTableViewHeaderDelegate settingTableViewHeader:self indexPathOfSelectedItem:indexPath allTheSeletedUsers:self.users];
          }
 }
 @end
@@ -285,11 +237,10 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
           constraintsWithVisualFormat:@"V:[_swich(33)]"
           options:kNilOptions
           metrics:nil
-          views:NSDictionaryOfVariableBindings(
-                                               _swich)]];
+          views:NSDictionaryOfVariableBindings(_swich)]];
         //        [self addConstraints:[NSLayoutConstraint
         //        constraintsWithVisualFormat:@"H:[_swich(35)]-30-|"
-        //                                                                     options:kNilOptions
+        //         options:kNilOptions
         //                                                                     metrics:nil
         //                                                                       views:NSDictionaryOfVariableBindings(_swich)]];
         [self addConstraint:[NSLayoutConstraint
@@ -389,13 +340,11 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     return self;
 }
 @end
-@interface RCDConversationSettingBaseViewController () <
-    RCDConversationSettingTableViewHeaderDelegate>
+@interface RCDConversationSettingBaseViewController () <RCDConversationSettingTableViewHeaderDelegate>
 @property(nonatomic, strong) RCDConversationSettingTableViewHeader *header;
 @property(nonatomic, strong) UIView *headerView;
 @property(nonatomic, strong) RCDConversationSettingTableViewCell *cell_isTop;
-@property(nonatomic, strong)
-    RCDConversationSettingTableViewCell *cell_newMessageNotify;
+@property(nonatomic, strong)RCDConversationSettingTableViewCell *cell_newMessageNotify;
 @end
 @implementation RCDConversationSettingBaseViewController
 - (instancetype)init {
@@ -406,17 +355,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 }
 - (void)viewDidLoad {
   [super viewDidLoad];
-  // Uncomment the following line to preserve selection between presentations.
-  // self.clearsSelectionOnViewWillAppear = NO;
-  // Uncomment the following line to display an Edit button in the navigation
-  // bar for this view controller.
-  // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-  // landspace notification
-  [[NSNotificationCenter defaultCenter]
-      addObserver:self
-         selector:@selector(orientChange:)
-             name:UIDeviceOrientationDidChangeNotification
-           object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientChange:) name:UIDeviceOrientationDidChangeNotification object:nil];
   // add the header view
   _headerView = [[UIView alloc] initWithFrame:CGRectZero];
   _header = [[RCDConversationSettingTableViewHeader alloc] init];
@@ -444,14 +383,11 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   self.tableView.tableFooterView = [UIView new];
 }
 - (void)addUsers:(NSMutableArray *)users {
-  if (!users)
-    return;
+  if (!users)return;
   _header.users = [NSMutableArray arrayWithArray:users];
   self.users = users;
   [_header reloadData];
-  _headerView.frame =
-      CGRectMake(0, 0, APPW,
-                 _header.collectionViewLayout.collectionViewContentSize.height + 20);
+  _headerView.frame = CGRectMake(0, 0, APPW,_header.collectionViewLayout.collectionViewContentSize.height + 20);
   self.tableView.tableHeaderView = _headerView;
 }
 - (void)disableDeleteMemberEvent:(BOOL)disable {
@@ -465,32 +401,19 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   }
 }
 - (NSArray *)defaultCells {
-  _cell_isTop =
-      [[RCDConversationSettingTableViewCell alloc] initWithFrame:CGRectZero];
-  [_cell_isTop.swich addTarget:self
-                        action:@selector(onClickIsTopSwitch:)
-              forControlEvents:UIControlEventValueChanged];
+  _cell_isTop = [[RCDConversationSettingTableViewCell alloc] initWithFrame:CGRectZero];
+  [_cell_isTop.swich addTarget:self action:@selector(onClickIsTopSwitch:) forControlEvents:UIControlEventValueChanged];
   _cell_isTop.swich.on = _switch_isTop;
-  _cell_isTop.label.text = NSLocalizedStringFromTable(
-      @"SetToTop", @"RongCloudKit", nil); //@"置顶聊天";
-  _cell_newMessageNotify =
-      [[RCDConversationSettingTableViewCell alloc] initWithFrame:CGRectZero];
-  [_cell_newMessageNotify.swich
-             addTarget:self
-                action:@selector(onClickNewMessageNotificationSwitch:)
-      forControlEvents:UIControlEventValueChanged];
+  _cell_isTop.label.text = NSLocalizedStringFromTable(@"SetToTop", @"RongCloudKit", nil); //@"置顶聊天";
+  _cell_newMessageNotify = [[RCDConversationSettingTableViewCell alloc] initWithFrame:CGRectZero];
+  [_cell_newMessageNotify.swich addTarget:self action:@selector(onClickNewMessageNotificationSwitch:) forControlEvents:UIControlEventValueChanged];
   _cell_newMessageNotify.swich.on = _switch_newMessageNotify;
-  _cell_newMessageNotify.label.text = NSLocalizedStringFromTable(
-      @"NewMsgNotification", @"RongCloudKit", nil); //@"新消息通知";
-  RCDConversationSettingClearMessageCell *cell_clearHistory =
-      [[RCDConversationSettingClearMessageCell alloc] initWithFrame:CGRectZero];
-  [cell_clearHistory.touchBtn addTarget:self
-                                 action:@selector(onClickClearMessageHistory:)
-                       forControlEvents:UIControlEventTouchUpInside];
+  _cell_newMessageNotify.label.text = NSLocalizedStringFromTable(@"NewMsgNotification", @"RongCloudKit", nil); //@"新消息通知";
+  RCDConversationSettingClearMessageCell *cell_clearHistory = [[RCDConversationSettingClearMessageCell alloc] initWithFrame:CGRectZero];
+  [cell_clearHistory.touchBtn addTarget:self action:@selector(onClickClearMessageHistory:) forControlEvents:UIControlEventTouchUpInside];
   cell_clearHistory.nameLabel.text = NSLocalizedStringFromTable(
       @"ClearRecord", @"RongCloudKit", nil); //@"清除聊天记录";
-  NSArray *_defaultCells =
-      @[ _cell_isTop, _cell_newMessageNotify, cell_clearHistory ];
+  NSArray *_defaultCells = @[ _cell_isTop, _cell_newMessageNotify, cell_clearHistory ];
   return _defaultCells;
 }
 - (void)setSwitch_isTop:(BOOL)switch_isTop {
@@ -503,23 +426,15 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 }
 // landspace notification
 - (void)orientChange:(NSNotification *)noti {
-  _headerView.frame =
-      CGRectMake(0, 0, APPW,
-                 _header.collectionViewLayout.collectionViewContentSize.height + 20);
+  _headerView.frame = CGRectMake(0, 0, APPW,_header.collectionViewLayout.collectionViewContentSize.height + 20);
   self.tableView.tableHeaderView = _headerView;
   if (self.headerHidden) {
     self.tableView.tableHeaderView = nil;
   }
 }
-- (void)didReceiveMemoryWarning {
-  [super didReceiveMemoryWarning];
-  // Dispose of any resources that can be recreated.
-}
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
-  _headerView.frame =
-      CGRectMake(0, 0, APPW,
-                 _header.collectionViewLayout.collectionViewContentSize.height + 20);
+  _headerView.frame = CGRectMake(0, 0, APPW, _header.collectionViewLayout.collectionViewContentSize.height + 20);
   self.tableView.tableHeaderView = _headerView;
   if (self.headerHidden) {
     self.tableView.tableHeaderView = nil;
@@ -530,25 +445,19 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   }
 }
 #pragma mark - Table view data source
-- (CGFloat)tableView:(UITableView *)tableView
-    heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
   return 44.f;
 }
-- (NSInteger)tableView:(UITableView *)tableView
- numberOfRowsInSection:(NSInteger)section {
-  // Return the number of rows in the section.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
   return self.defaultCells.count;
 }
-- (UITableViewCell *)tableView:(UITableView *)tableView
-         cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   return self.defaultCells[indexPath.row];
 }
 #pragma mark - Table view delegate
-- (void)tableView:(UITableView *)tableView
-    didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 }
-- (CGFloat)tableView:(UITableView *)tableView
-    heightForHeaderInSection:(NSInteger)section {
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
   return 20;
 }
 // override to impletion
@@ -563,10 +472,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 }
 //子类重写以下两个回调实现点击事件
 #pragma mark - RCConversationSettingTableViewHeader Delegate
-- (void)settingTableViewHeader:
-            (RCDConversationSettingTableViewHeader *)settingTableViewHeader
-       indexPathOfSelectedItem:(NSIndexPath *)indexPathOfSelectedItem
-            allTheSeletedUsers:(NSArray *)users {
+- (void)settingTableViewHeader:(RCDConversationSettingTableViewHeader *)settingTableViewHeader indexPathOfSelectedItem:(NSIndexPath *)indexPathOfSelectedItem allTheSeletedUsers:(NSArray *)users {
 }
 - (void)deleteTipButtonClicked:(NSIndexPath *)indexPath {
 }

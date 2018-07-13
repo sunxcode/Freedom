@@ -156,45 +156,33 @@
   return instance;
 }
 //创建群组
-- (void)createGroupWithGroupName:(NSString *)groupName
-                 GroupMemberList:(NSArray *)groupMemberList
-                        complete:(void (^)(NSString *))userId {
-  [AFHttpTool createGroupWithGroupName:groupName
-      groupMemberList:groupMemberList
-      success:^(id response) {
+- (void)createGroupWithGroupName:(NSString *)groupName GroupMemberList:(NSArray *)groupMemberList complete:(void (^)(NSString *))userId {
+  [AFHttpTool createGroupWithGroupName:groupName groupMemberList:groupMemberList success:^(id response) {
         if ([response[@"code"] integerValue] == 200) {
           NSDictionary *result = response[@"result"];
           userId(result[@"id"]);
         } else {
           userId(nil);
         }
-      }
-      failure:^(NSError *err) {
+      }failure:^(NSError *err) {
         userId(nil);
       }];
 }
 //设置群组头像
-- (void)setGroupPortraitUri:(NSString *)portraitUri
-                    groupId:(NSString *)groupId
-                   complete:(void (^)(BOOL))result {
-  [AFHttpTool setGroupPortraitUri:portraitUri
-      groupId:groupId
-      success:^(id response) {
+- (void)setGroupPortraitUri:(NSString *)portraitUri groupId:(NSString *)groupId complete:(void (^)(BOOL))result {
+  [AFHttpTool setGroupPortraitUri:portraitUri groupId:groupId success:^(id response) {
         if ([response[@"code"] intValue] == 200) {
           result(YES);
         } else {
           result(NO);
         }
-      }
-      failure:^(NSError *err) {
+      }failure:^(NSError *err) {
         result(NO);
       }];
 }
 //根据id获取单个群组
-- (void)getGroupByID:(NSString *)groupID
-   successCompletion:(void (^)(RCDGroupInfo *group))completion {
-  [AFHttpTool getGroupByID:groupID
-      success:^(id response) {
+- (void)getGroupByID:(NSString *)groupID successCompletion:(void (^)(RCDGroupInfo *group))completion {
+  [AFHttpTool getGroupByID:groupID success:^(id response) {
         NSString *code = [NSString stringWithFormat:@"%@", response[@"code"]];
         NSDictionary *result = response[@"result"];
         if (result && [code isEqualToString:@"200"]) {
@@ -213,8 +201,7 @@
           group.number = [result objectForKey:@"memberCount"];
           group.maxNumber = [result objectForKey:@"max_number"];
           group.creatorTime = [result objectForKey:@"creat_datetime"];
-          if (![[result objectForKey:@"deletedAt"]
-                  isKindOfClass:[NSNull class]]) {
+          if (![[result objectForKey:@"deletedAt"] isKindOfClass:[NSNull class]]) {
             group.isDismiss = @"YES";
           } else {
             group.isDismiss = @"NO";
@@ -230,10 +217,8 @@
             completion(nil);
           }
         }
-      }
-      failure:^(NSError *err) {
-        RCDGroupInfo *group =
-            [[RCDataBaseManager shareInstance] getGroupByGroupId:groupID];
+      }failure:^(NSError *err) {
+        RCDGroupInfo *group = [[RCDataBaseManager shareInstance] getGroupByGroupId:groupID];
         if (!group.portraitUri || group.portraitUri.length <= 0) {
           group.portraitUri = [FreedomTools defaultGroupPortrait:group];
         }
@@ -241,16 +226,12 @@
       }];
 }
 //根据userId获取单个用户信息
-- (void)getUserInfoByUserID:(NSString *)userID
-                 completion:(void (^)(RCUserInfo *user))completion {
-  RCUserInfo *userInfo =
-      [[RCDataBaseManager shareInstance] getUserByUserId:userID];
+- (void)getUserInfoByUserID:(NSString *)userID completion:(void (^)(RCUserInfo *user))completion {
+  RCUserInfo *userInfo = [[RCDataBaseManager shareInstance] getUserByUserId:userID];
   if (!userInfo) {
-    [AFHttpTool getUserInfo:userID
-        success:^(id response) {
+    [AFHttpTool getUserInfo:userID success:^(id response) {
           if (response) {
-            NSString *code =
-                [NSString stringWithFormat:@"%@", response[@"code"]];
+            NSString *code = [NSString stringWithFormat:@"%@", response[@"code"]];
             if ([code isEqualToString:@"200"]) {
               NSDictionary *dic = response[@"result"];
               RCUserInfo *user = [RCUserInfo new];
@@ -288,8 +269,7 @@
               });
             }
           }
-        }
-        failure:^(NSError *err) {
+        }failure:^(NSError *err) {
           NSLog(@"getUserInfoByUserID error");
           if (completion) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -313,17 +293,14 @@
   }
 }
 //设置用户头像上传到demo server
-- (void)setUserPortraitUri:(NSString *)portraitUri
-                  complete:(void (^)(BOOL))result {
-  [AFHttpTool setUserPortraitUri:portraitUri
-      success:^(id response) {
+- (void)setUserPortraitUri:(NSString *)portraitUri complete:(void (^)(BOOL))result {
+  [AFHttpTool setUserPortraitUri:portraitUri success:^(id response) {
         if ([response[@"code"] intValue] == 200) {
           result(YES);
         } else {
           result(NO);
         }
-      }
-      failure:^(NSError *err) {
+      }failure:^(NSError *err) {
         result(NO);
       }];
 }
@@ -345,7 +322,7 @@
           group.portraitUri = [FreedomTools defaultGroupPortrait:group];
         }
         group.creatorId = [groupInfo objectForKey:@"creatorId"];
-        //                group.introduce = [dic objectForKey:@"introduce"];
+//        group.introduce = [dic objectForKey:@"introduce"];
         if (!group.introduce) {
           group.introduce = @"";
         }
@@ -375,8 +352,7 @@
     } else {
       block(nil);
     }
-  }
-      failure:^(NSError *err) {
+  }failure:^(NSError *err) {
         NSMutableArray *tempArr = [[RCDataBaseManager shareInstance] getAllGroup];
         for (RCDGroupInfo *group in tempArr) {
           if (!group.portraitUri || group.portraitUri.length <= 0) {
@@ -387,10 +363,8 @@
       }];
 }
 //根据groupId获取群组成员信息
-- (void)getGroupMembersWithGroupId:(NSString *)groupId
-                             Block:(void (^)(NSMutableArray *result))block {
-  [AFHttpTool getGroupMembersByID:groupId
-      success:^(id response) {
+- (void)getGroupMembersWithGroupId:(NSString *)groupId Block:(void (^)(NSMutableArray *result))block {
+  [AFHttpTool getGroupMembersByID:groupId success:^(id response) {
         NSMutableArray *tempArr = [NSMutableArray new];
         if ([response[@"code"] integerValue] == 200) {
           NSArray *members = response[@"result"];
@@ -418,104 +392,79 @@
             }
           }
         }];
-      }
-      failure:^(NSError *err) {
+      }failure:^(NSError *err) {
         block(nil);
       }];
 }
 //加入群组(暂时没有用到这个接口)
-- (void)joinGroupWithGroupId:(NSString *)groupID
-                    complete:(void (^)(BOOL))result {
-  [AFHttpTool joinGroupWithGroupId:groupID
-      success:^(id response) {
+- (void)joinGroupWithGroupId:(NSString *)groupID complete:(void (^)(BOOL))result {
+  [AFHttpTool joinGroupWithGroupId:groupID success:^(id response) {
         if ([response[@"code"] integerValue] == 200) {
           result(YES);
         } else {
           result(NO);
         }
-      }
-      failure:^(NSError *err) {
+      }failure:^(NSError *err) {
         result(NO);
       }];
 }
 //添加群组成员
-- (void)addUsersIntoGroup:(NSString *)groupID
-                  usersId:(NSMutableArray *)usersId
-                 complete:(void (^)(BOOL))result {
-  [AFHttpTool addUsersIntoGroup:groupID
-      usersId:usersId
-      success:^(id response) {
+- (void)addUsersIntoGroup:(NSString *)groupID usersId:(NSMutableArray *)usersId complete:(void (^)(BOOL))result {
+  [AFHttpTool addUsersIntoGroup:groupID usersId:usersId success:^(id response) {
         if ([response[@"code"] integerValue] == 200) {
           result(YES);
         } else {
           result(NO);
         }
-      }
-      failure:^(NSError *err) {
+      }failure:^(NSError *err) {
         result(NO);
       }];
 }
 //将用户踢出群组
-- (void)kickUsersOutOfGroup:(NSString *)groupID
-                    usersId:(NSMutableArray *)usersId
-                   complete:(void (^)(BOOL))result {
-  [AFHttpTool kickUsersOutOfGroup:groupID
-      usersId:usersId
-      success:^(id response) {
+- (void)kickUsersOutOfGroup:(NSString *)groupID usersId:(NSMutableArray *)usersId complete:(void (^)(BOOL))result {
+  [AFHttpTool kickUsersOutOfGroup:groupID usersId:usersId success:^(id response) {
         if ([response[@"code"] integerValue] == 200) {
           result(YES);
         } else {
           result(NO);
         }
-      }
-      failure:^(NSError *err) {
+      }failure:^(NSError *err) {
         result(NO);
       }];
 }
 //退出群组
-- (void)quitGroupWithGroupId:(NSString *)groupID
-                    complete:(void (^)(BOOL))result {
-  [AFHttpTool quitGroupWithGroupId:groupID
-      success:^(id response) {
+- (void)quitGroupWithGroupId:(NSString *)groupID complete:(void (^)(BOOL))result {
+  [AFHttpTool quitGroupWithGroupId:groupID success:^(id response) {
         if ([response[@"code"] integerValue] == 200) {
           result(YES);
         } else {
           result(NO);
         }
-      }
-      failure:^(NSError *err) {
+      }failure:^(NSError *err) {
         result(NO);
       }];
 }
 //解散群组
-- (void)dismissGroupWithGroupId:(NSString *)groupID
-                       complete:(void (^)(BOOL))result {
-  [AFHttpTool dismissGroupWithGroupId:groupID
-      success:^(id response) {
+- (void)dismissGroupWithGroupId:(NSString *)groupID complete:(void (^)(BOOL))result {
+  [AFHttpTool dismissGroupWithGroupId:groupID success:^(id response) {
         if ([response[@"code"] integerValue] == 200) {
           result(YES);
         } else {
           result(NO);
         }
-      }
-      failure:^(NSError *err) {
+      }failure:^(NSError *err) {
         result(NO);
       }];
 }
 //修改群组名称
-- (void)renameGroupWithGoupId:(NSString *)groupID
-                    groupName:(NSString *)groupName
-                     complete:(void (^)(BOOL))result {
-  [AFHttpTool renameGroupWithGroupId:groupID
-      GroupName:groupName
-      success:^(id response) {
+- (void)renameGroupWithGoupId:(NSString *)groupID groupName:(NSString *)groupName complete:(void (^)(BOOL))result {
+  [AFHttpTool renameGroupWithGroupId:groupID GroupName:groupName success:^(id response) {
         if ([response[@"code"] integerValue] == 200) {
           result(YES);
         } else {
           result(NO);
         }
-      }
-      failure:^(NSError *err) {
+      }failure:^(NSError *err) {
         result(NO);
       }];
 }
@@ -526,10 +475,9 @@
     } else {
       completion(nil);
     }
-  }
-      Failure:^(NSError *err) {
+  }Failure:^(NSError *err) {
         completion(nil);
-      }];
+    }];
 }
 - (void)getFriendscomplete:(void (^)(NSMutableArray *))friendList {
   NSMutableArray *list = [NSMutableArray new];
@@ -548,7 +496,6 @@
             NSMutableArray *friendInfoList = [NSMutableArray new];
             for (int i = 0; i < regDataArray.count; i++) {
               NSDictionary *dic = [regDataArray objectAtIndex:i];
-            
               NSDictionary *userDic = dic[@"user"];
               if ([userDic isKindOfClass:[NSDictionary class]] && ![userDic[@"id"] isEqualToString:[RCIM sharedRCIM].currentUserInfo.userId]) {
                 RCDUserInfo *userInfo = [RCDUserInfo new];
@@ -557,13 +504,10 @@
                 userInfo.portraitUri = userDic[@"portraitUri"];
                 userInfo.displayName = dic[@"displayName"];
                 if (!userInfo.portraitUri || userInfo.portraitUri <= 0) {
-                  userInfo.portraitUri =
-                      [FreedomTools defaultUserPortrait:userInfo];
+                  userInfo.portraitUri = [FreedomTools defaultUserPortrait:userInfo];
                 }
-                userInfo.status = [NSString
-                    stringWithFormat:@"%@", [dic objectForKey:@"status"]];
-                userInfo.updatedAt = [NSString
-                    stringWithFormat:@"%@", [dic objectForKey:@"updatedAt"]];
+                userInfo.status = [NSString stringWithFormat:@"%@", [dic objectForKey:@"status"]];
+                userInfo.updatedAt = [NSString stringWithFormat:@"%@", [dic objectForKey:@"updatedAt"]];
                 [list addObject:userInfo];
                 [_allFriends addObject:userInfo];
                 RCUserInfo *user = [RCUserInfo new];
@@ -578,7 +522,6 @@
               }
             }
             [[RCDataBaseManager shareInstance] insertUserListToDB:userInfoList complete:^(BOOL result) {
-              
             }];
             [[RCDataBaseManager shareInstance] insertFriendListToDB:friendInfoList complete:^(BOOL result) {
               if (result == YES) {
@@ -591,26 +534,21 @@
             friendList(list);
           }
         }
-      }
-      failure:^(id response) {
+      }failure:^(id response) {
         if (friendList) {
-          NSMutableArray *cacheList = [[NSMutableArray alloc]
-              initWithArray:[[RCDataBaseManager shareInstance] getAllFriends]];
+          NSMutableArray *cacheList = [[NSMutableArray alloc] initWithArray:[[RCDataBaseManager shareInstance] getAllFriends]];
           for (RCDUserInfo *userInfo in cacheList) {
             if (!userInfo.portraitUri || userInfo.portraitUri <= 0) {
-              userInfo.portraitUri =
-                  [FreedomTools defaultUserPortrait:userInfo];
+              userInfo.portraitUri = [FreedomTools defaultUserPortrait:userInfo];
             }
           }
           friendList(cacheList);
         }
       }];
 }
-- (void)searchUserByPhone:(NSString *)phone
-                 complete:(void (^)(NSMutableArray *))userList {
+- (void)searchUserByPhone:(NSString *)phone complete:(void (^)(NSMutableArray *))userList {
   NSMutableArray *list = [NSMutableArray new];
-  [AFHttpTool findUserByPhone:phone
-      success:^(id response) {
+  [AFHttpTool findUserByPhone:phone success:^(id response) {
         if (userList && [response[@"code"] intValue] == 200) {
           id result = response[@"result"];
           if ([result respondsToSelector:@selector(intValue)])
@@ -621,8 +559,7 @@
             userInfo.name = [result objectForKey:@"nickname"];
             userInfo.portraitUri = [result objectForKey:@"portraitUri"];
             if (!userInfo.portraitUri || userInfo.portraitUri <= 0) {
-              userInfo.portraitUri =
-                  [FreedomTools defaultUserPortrait:userInfo];
+              userInfo.portraitUri = [FreedomTools defaultUserPortrait:userInfo];
             }
             [list addObject:userInfo];
             dispatch_async(dispatch_get_main_queue(), ^(void) {
@@ -632,14 +569,12 @@
         } else if(userList) {
           userList(nil);
         }
-      }
-      failure:^(NSError *err) {
+      }failure:^(NSError *err) {
         userList(nil);
       }];
 }
 - (void)requestFriend:(NSString *)userId complete:(void (^)(BOOL))result {
-  [AFHttpTool inviteUser:userId
-      success:^(id response) {
+  [AFHttpTool inviteUser:userId success:^(id response) {
         if (result && [response[@"code"] intValue] == 200) {
           dispatch_async(dispatch_get_main_queue(), ^(void) {
             result(YES);
@@ -647,17 +582,14 @@
         } else if (result) {
           result(NO);
         }
-      }
-      failure:^(NSError *err) {
+      }failure:^(NSError *err) {
         if(result) {
           result(NO);
         }
       }];
 }
-- (void)processInviteFriendRequest:(NSString *)userId
-                          complete:(void (^)(BOOL))result {
-  [AFHttpTool processInviteFriendRequest:userId
-      success:^(id response) {
+- (void)processInviteFriendRequest:(NSString *)userId complete:(void (^)(BOOL))result {
+  [AFHttpTool processInviteFriendRequest:userId success:^(id response) {
         if (result && [response[@"code"] intValue] == 200) {
           dispatch_async(dispatch_get_main_queue(), ^(void) {
             result(YES);
@@ -665,42 +597,35 @@
         } else if (result){
           result(NO);
         }
-      }
-      failure:^(id response) {
+      }failure:^(id response) {
         if (result) {
           result(NO);
         }
       }];
 }
-- (void)AddToBlacklist:(NSString *)userId
-              complete:(void (^)(BOOL result))result {
-  [AFHttpTool addToBlacklist:userId
-      success:^(id response) {
+- (void)AddToBlacklist:(NSString *)userId complete:(void (^)(BOOL result))result {
+  [AFHttpTool addToBlacklist:userId success:^(id response) {
         NSString *code = [NSString stringWithFormat:@"%@", response[@"code"]];
         if (result && [code isEqualToString:@"200"]) {
           result(YES);
         } else if(result) {
           result(NO);
         }
-      }
-      failure:^(NSError *err) {
+      }failure:^(NSError *err) {
         if (result) {
           result(NO);
         }
       }];
 }
-- (void)RemoveToBlacklist:(NSString *)userId
-                 complete:(void (^)(BOOL result))result {
-  [AFHttpTool removeToBlacklist:userId
-      success:^(id response) {
+- (void)RemoveToBlacklist:(NSString *)userId complete:(void (^)(BOOL result))result {
+  [AFHttpTool removeToBlacklist:userId success:^(id response) {
         NSString *code = [NSString stringWithFormat:@"%@", response[@"code"]];
         if (result && [code isEqualToString:@"200"]) {
           result(YES);
         } else if(result) {
           result(NO);
         }
-      }
-      failure:^(NSError *err) {
+      }failure:^(NSError *err) {
         if (result) {
           result(NO);
         }
@@ -715,30 +640,21 @@
     } else if(blacklist) {
       blacklist(nil);
     }
-  }
-      failure:^(NSError *err) {
+  }failure:^(NSError *err) {
         if(blacklist) {
           blacklist(nil);
         }
-      }];
+    }];
 }
-- (void)updateName:(NSString *)userName
-           success:(void (^)(id response))success
-           failure:(void (^)(NSError *err))failure {
-  [AFHttpTool updateName:userName
-      success:^(id response) {
+- (void)updateName:(NSString *)userName success:(void (^)(id response))success failure:(void (^)(NSError *err))failure {
+  [AFHttpTool updateName:userName success:^(id response) {
         success(response);
-      }
-      failure:^(NSError *err) {
+      }failure:^(NSError *err) {
         failure(err);
       }];
 }
-- (void)updateUserInfo:(NSString *)userID
-               success:(void (^)(RCDUserInfo *user))success
-               failure:(void (^)(NSError *err))failure {
-  [AFHttpTool
-   getFriendDetailsByID:userID
-   success:^(id response) {
+- (void)updateUserInfo:(NSString *)userID success:(void (^)(RCDUserInfo *user))success failure:(void (^)(NSError *err))failure {
+  [AFHttpTool getFriendDetailsByID:userID success:^(id response) {
      if ([response[@"code"] integerValue] == 200) {
        NSDictionary *dic = response[@"result"];
        NSDictionary *infoDic = dic[@"user"];
@@ -751,7 +667,6 @@
        }
        user.portraitUri = portraitUri;
        [[RCDataBaseManager shareInstance] insertUserToDB:user];
-       
        RCDUserInfo *Details = [[RCDataBaseManager shareInstance] getFriendInfo:userID];
        if (Details == nil) {
          Details = [[RCDUserInfo alloc] init];
@@ -795,23 +710,16 @@
 //        failure(err);
 //      }];
 }
-- (void)uploadImageToQiNiu:(NSString *)userId
-                 ImageData:(NSData *)image
-                   success:(void (^)(NSString *url))success
-                   failure:(void (^)(NSError *err))failure {
-  [AFHttpTool uploadFile:image
-      userId:userId
-      success:^(id response) {
+- (void)uploadImageToQiNiu:(NSString *)userId ImageData:(NSData *)image success:(void (^)(NSString *url))success failure:(void (^)(NSError *err))failure {
+  [AFHttpTool uploadFile:image userId:userId success:^(id response) {
         if ([response[@"key"] length] > 0) {
           NSString *key = response[@"key"];
           NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
           NSString *QiNiuDomai = [defaults objectForKey:@"QiNiuDomain"];
-          NSString *imageUrl =
-              [NSString stringWithFormat:@"http://%@/%@", QiNiuDomai, key];
+          NSString *imageUrl = [NSString stringWithFormat:@"http://%@/%@", QiNiuDomai, key];
           success(imageUrl);
         }
-      }
-      failure:^(NSError *err) {
+      }failure:^(NSError *err) {
         failure(err);
       }];
 }
@@ -821,18 +729,14 @@
       NSDictionary *iOSResult = response[@"iOS"];
       NSString *sealtalkBuild = iOSResult[@"build"];
       NSString *applistURL = iOSResult[@"url"];
-      
       NSDictionary *result;
       NSString *currentBuild = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
-      
       NSDate *currentBuildDate = [self stringToDate:currentBuild];
       NSDate *buildDtate = [self stringToDate:sealtalkBuild];
       NSTimeInterval secondsInterval= [currentBuildDate timeIntervalSinceDate:buildDtate];
       if (secondsInterval < 0) {
         result = [NSDictionary dictionaryWithObjectsAndKeys:@"YES",@"isNeedUpdate",applistURL,@"applist", nil];
-      }
-      else
-      {
+      }else{
         result = [NSDictionary dictionaryWithObjectsAndKeys:@"NO",@"isNeedUpdate", nil];
       }
       versionInfo(result);
@@ -841,64 +745,55 @@
     versionInfo(nil);
   }];
 }
--(NSDate *)stringToDate:(NSString *)build
-{
+-(NSDate *)stringToDate:(NSString *)build{
   NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
   [dateFormatter setDateFormat:@"yyyyMMddHHmm"];
   NSDate *date = [dateFormatter dateFromString:build];
   return date;
 }
 //设置好友备注
-- (void)setFriendDisplayName:(NSString *)friendId
-                 displayName:(NSString *)displayName
-                     complete:(void (^)(BOOL))result {
-  [AFHttpTool setFriendDisplayName:friendId
-                       displayName:displayName
-                           success:^(id response) {
-                             if ([response[@"code"] integerValue] == 200) {
-                               result(YES);
-                             } else {
-                               result(NO);
-                             }
-                           } failure:^(NSError *err) {
-                             result(NO);
-                           }];
+- (void)setFriendDisplayName:(NSString *)friendId displayName:(NSString *)displayName complete:(void (^)(BOOL))result {
+  [AFHttpTool setFriendDisplayName:friendId displayName:displayName success:^(id response) {
+     if ([response[@"code"] integerValue] == 200) {
+       result(YES);
+     } else {
+       result(NO);
+     }
+   } failure:^(NSError *err) {
+     result(NO);
+   }];
 }
 //获取用户详细资料
-- (void)getFriendDetailsWithFriendId:(NSString *)friendId
-                             success:(void (^)(RCDUserInfo *user))success
-                             failure:(void (^)(NSError *err))failure {
-  [AFHttpTool getFriendDetailsByID:friendId
-                           success:^(id response) {
-                             if ([response[@"code"] integerValue] == 200) {
-                               NSDictionary *dic = response[@"result"];
-                               NSDictionary *infoDic = dic[@"user"];
-                               RCUserInfo *user = [RCUserInfo new];
-                               user.userId = infoDic[@"id"];
-                               user.name = [infoDic objectForKey:@"nickname"];
-                               NSString *portraitUri = [infoDic objectForKey:@"portraitUri"];
-                               if (!portraitUri || portraitUri.length <= 0) {
-                                 portraitUri = [FreedomTools defaultUserPortrait:user];
-                               }
-                               user.portraitUri = portraitUri;
-                               [[RCDataBaseManager shareInstance] insertUserToDB:user];
-                               
-                               RCDUserInfo *Details = [[RCDataBaseManager shareInstance] getFriendInfo:friendId];
-                               if (Details == nil) {
-                                 Details = [[RCDUserInfo alloc] init];
-                               }
-                               Details.name = [infoDic objectForKey:@"nickname"];
-                               Details.portraitUri = portraitUri;
-                               Details.displayName = dic[@"displayName"];
-                               [[RCDataBaseManager shareInstance] insertFriendToDB:Details];
-                               if (success) {
-                                 dispatch_async(dispatch_get_main_queue(), ^{
-                                   success(Details);
-                                 });
-                               }
-                             }
-                           } failure:^(NSError *err) {
-                              failure(err);
-                           }];
+- (void)getFriendDetailsWithFriendId:(NSString *)friendId success:(void (^)(RCDUserInfo *user))success failure:(void (^)(NSError *err))failure {
+  [AFHttpTool getFriendDetailsByID:friendId success:^(id response) {
+     if ([response[@"code"] integerValue] == 200) {
+       NSDictionary *dic = response[@"result"];
+       NSDictionary *infoDic = dic[@"user"];
+       RCUserInfo *user = [RCUserInfo new];
+       user.userId = infoDic[@"id"];
+       user.name = [infoDic objectForKey:@"nickname"];
+       NSString *portraitUri = [infoDic objectForKey:@"portraitUri"];
+       if (!portraitUri || portraitUri.length <= 0) {
+         portraitUri = [FreedomTools defaultUserPortrait:user];
+       }
+       user.portraitUri = portraitUri;
+       [[RCDataBaseManager shareInstance] insertUserToDB:user];
+       RCDUserInfo *Details = [[RCDataBaseManager shareInstance] getFriendInfo:friendId];
+       if (Details == nil) {
+         Details = [[RCDUserInfo alloc] init];
+       }
+       Details.name = [infoDic objectForKey:@"nickname"];
+       Details.portraitUri = portraitUri;
+       Details.displayName = dic[@"displayName"];
+       [[RCDataBaseManager shareInstance] insertFriendToDB:Details];
+       if (success) {
+         dispatch_async(dispatch_get_main_queue(), ^{
+           success(Details);
+         });
+       }
+     }
+   } failure:^(NSError *err) {
+      failure(err);
+   }];
 }
 @end

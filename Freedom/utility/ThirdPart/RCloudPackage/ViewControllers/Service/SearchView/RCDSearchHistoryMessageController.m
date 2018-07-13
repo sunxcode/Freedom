@@ -27,7 +27,6 @@
     self.emptyLabel.textAlignment = NSTextAlignmentCenter;
     self.emptyLabel.numberOfLines = 0;
     [self.tableView addSubview:self.emptyLabel];
-    
   }
   return _emptyLabel;
 }
@@ -45,12 +44,10 @@
   [super viewWillLayoutSubviews];
   if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
     [self.tableView setSeparatorInset:UIEdgeInsetsMake(0,10, 0, 0)];
-    
   }
   if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)])  {
     [self.tableView setLayoutMargins:UIEdgeInsetsMake(0, 10, 0, 0)];
   }
-  
 }
 - (void)viewWillAppear:(BOOL)animated{
   [super viewWillAppear:animated];
@@ -78,7 +75,6 @@
   [_searchBars becomeFirstResponder];
   _searchBars.frame = CGRectMake( 0, 0,self.searchView.frame.size.width-55, 44);
   [self.searchView addSubview:self.searchBars];
-  
   _cancelButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_searchBars.frame)-3, CGRectGetMinY(self.searchBars.frame),55, 44)];
   [_cancelButton setTitle:@"取消" forState:UIControlStateNormal];
   [_cancelButton setTitleColor:[UIColor colorWithRGBHex:0x0099ff] forState:UIControlStateNormal];
@@ -125,8 +121,7 @@
   if (model.conversationType == ConversationType_PRIVATE) {
     _conversationVC.displayUserNameInCell = NO;
   }
-  [self.navigationController pushViewController:_conversationVC
-                                       animated:YES];
+  [self.navigationController pushViewController:_conversationVC animated:YES];
 }
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
   self.resultArray = nil;
@@ -139,7 +134,6 @@
     messegeModel.otherInformation = [RCKitUtility formatMessage:message.content];
     messegeModel.time = message.sentTime;
     messegeModel.searchType = RCDSearchChatHistory;
-    
     if (self.conversationType == ConversationType_GROUP) {
       RCUserInfo *user = [[RCDataBaseManager shareInstance] getUserByUserId:message.senderUserId];
       messegeModel.name = user.name;
@@ -201,7 +195,6 @@
     messegeModel.otherInformation = [RCKitUtility formatMessage:message.content];
     messegeModel.time = message.sentTime;
     messegeModel.searchType = RCDSearchChatHistory;
-    
     if (self.conversationType == ConversationType_GROUP) {
       RCUserInfo *user = [[RCDataBaseManager shareInstance] getUserByUserId:message.senderUserId];
       messegeModel.name = user.name;
@@ -218,15 +211,11 @@
 }
 - (CGFloat)labelAdaptive:(NSString *)string{
   float maxWidth = self.view.frame.size.width-20;
-  CGRect textRect = [string
-                     boundingRectWithSize:CGSizeMake(maxWidth, 8000)
+  CGRect textRect = [string boundingRectWithSize:CGSizeMake(maxWidth, 8000)
                      options:(NSStringDrawingTruncatesLastVisibleLine |
                               NSStringDrawingUsesLineFragmentOrigin |
                               NSStringDrawingUsesFontLeading)
-                     attributes:@{
-                                  NSFontAttributeName :
-                                    [UIFont systemFontOfSize:14.0]
-                                  }
+                     attributes:@{NSFontAttributeName :[UIFont systemFontOfSize:14.0]}
                      context:nil];
   textRect.size.height = ceilf(textRect.size.height);
   return textRect.size.height + 5;

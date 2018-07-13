@@ -17,8 +17,7 @@
 @property (nonatomic,strong)UILabel *moreLabel;
 @end
 @implementation RCDSearchMoreViewCell
-- (instancetype)initWithStyle:(UITableViewCellStyle)style
-              reuseIdentifier:(NSString *)reuseIdentifier {
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -34,14 +33,6 @@
     self.moreLabel.font = [UIFont systemFontOfSize:15.0];
     self.moreLabel.textColor = [UIColor colorWithRGBHex:0x7ca1c9];
     [self.contentView addSubview:self.moreLabel];
-}
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
-}
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-    // Configure the view for the selected state
 }
 @end
 @interface RCDSearchViewController ()<UISearchBarDelegate,UITableViewDelegate,UITableViewDataSource,UIGestureRecognizerDelegate>
@@ -85,7 +76,6 @@
   [self loadSearchView];
   self.navigationItem.titleView = self.searchView;
   self.view.backgroundColor = [UIColor colorWithWhite:1 alpha:0.95];
-  
   UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideSerchBarWhenTapBackground:)];
   tap.delegate = self;
   [self.view addGestureRecognizer:tap];
@@ -94,12 +84,10 @@
   [super viewWillLayoutSubviews];
   if ([self.resultTableView respondsToSelector:@selector(setSeparatorInset:)]) {
     [self.resultTableView setSeparatorInset:UIEdgeInsetsMake(0,10, 0, 0)];
-    
   }
   if ([self.resultTableView respondsToSelector:@selector(setLayoutMargins:)])  {
     [self.resultTableView setLayoutMargins:UIEdgeInsetsMake(0, 10, 0, 0)];
   }
-  
 }
 - (void)viewWillAppear:(BOOL)animated{
   [super viewWillAppear:animated];
@@ -111,7 +99,6 @@
 }
 - (void)loadSearchView{
   self.searchView = [[UIView alloc] initWithFrame:CGRectMake( 0, 0, APPW, 44)];
-  
   _searchBars = [[UISearchBar alloc] initWithFrame:CGRectZero];
     _searchBars.placeholder = @"搜索";
     _searchBars.keyboardType = UIKeyboardTypeDefault;
@@ -123,13 +110,11 @@
     searchField.layer.borderWidth = 0.5f;
     searchField.layer.borderColor = [[UIColor colorWithRGBHex:0xdfdfdf] CGColor];
     searchField.layer.cornerRadius = 5.f;
-    
   _searchBars.delegate = self;
   _searchBars.tintColor=[UIColor blueColor];
   [_searchBars becomeFirstResponder];
   _searchBars.frame = CGRectMake( 0, 0,self.searchView.frame.size.width-65, 44);
   [self.searchView addSubview:self.searchBars];
-  
   _cancelButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_searchBars.frame)-3, CGRectGetMinY(self.searchBars.frame),55, 44)];
   [_cancelButton setTitle:@"取消" forState:UIControlStateNormal];
   [_cancelButton setTitleColor:[UIColor colorWithRGBHex:0x0099ff] forState:UIControlStateNormal];
@@ -262,8 +247,7 @@
       [self.navigationController pushViewController:viewController animated:YES];
       return;
     }
-    RCDChatViewController *_conversationVC =
-    [[RCDChatViewController alloc] init];
+    RCDChatViewController *_conversationVC = [[RCDChatViewController alloc] init];
     _conversationVC.conversationType = model.conversationType;
     _conversationVC.targetId = model.targetId;
     _conversationVC.csInfo.nickName = model.name;
@@ -275,8 +259,7 @@
     if (model.conversationType == ConversationType_PRIVATE) {
       _conversationVC.displayUserNameInCell = NO;
     }
-    [self.navigationController pushViewController:_conversationVC
-                                         animated:YES];
+    [self.navigationController pushViewController:_conversationVC animated:YES];
   }
 }
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
@@ -315,15 +298,9 @@
 }
 - (CGFloat)labelAdaptive:(NSString *)string{
   float maxWidth = self.view.frame.size.width-20;
-  CGRect textRect = [string
-                     boundingRectWithSize:CGSizeMake(maxWidth, 8000)
-                     options:(NSStringDrawingTruncatesLastVisibleLine |
-                              NSStringDrawingUsesLineFragmentOrigin |
-                              NSStringDrawingUsesFontLeading)
-                     attributes:@{
-                                  NSFontAttributeName :
-                                    [UIFont systemFontOfSize:14.0]
-                                  }
+  CGRect textRect = [string boundingRectWithSize:CGSizeMake(maxWidth, 8000)
+                     options:(NSStringDrawingTruncatesLastVisibleLine |NSStringDrawingUsesLineFragmentOrigin |NSStringDrawingUsesFontLeading)
+                     attributes:@{NSFontAttributeName :[UIFont systemFontOfSize:14.0]}
                      context:nil];
   textRect.size.height = ceilf(textRect.size.height);
   return textRect.size.height + 5;

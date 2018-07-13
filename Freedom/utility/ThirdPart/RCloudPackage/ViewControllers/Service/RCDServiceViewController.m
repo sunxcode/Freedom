@@ -14,8 +14,7 @@
 @end
 @implementation RCDServiceViewController
 - (IBAction)acService:(UIButton *)sender {
-  RCDCustomerServiceViewController *chatService =
-      [[RCDCustomerServiceViewController alloc] init];
+  RCDCustomerServiceViewController *chatService = [[RCDCustomerServiceViewController alloc] init];
     NSString *SERVICE_ID = @"KEFU145801184889727";
     SERVICE_ID = @"KEFU146001495753714";
   chatService.csInfo.nickName = @"客服";
@@ -60,15 +59,9 @@
   self = [super initWithCoder:aDecoder];
   if (self) {
     //设置为不用默认渲染方式
-    self.tabBarItem.image = [[UIImage imageNamed:@"icon_server"]
-        imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    self.tabBarItem.selectedImage = [[UIImage imageNamed:@"icon_server_hover"]
-        imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    [[NSNotificationCenter defaultCenter]
-        addObserver:self
-           selector:@selector(didReceiveMessageNotification:)
-               name:RCKitDispatchMessageNotification
-             object:nil];
+    self.tabBarItem.image = [[UIImage imageNamed:@"icon_server"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    self.tabBarItem.selectedImage = [[UIImage imageNamed:@"icon_server_hover"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didReceiveMessageNotification:) name:RCKitDispatchMessageNotification object:nil];
   }
   return self;
 }
@@ -91,12 +84,10 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   if (!self.kefuIdField) {
-    self.kefuIdField =
-        [[UITextField alloc] initWithFrame:CGRectMake(10, 50, 200, 30)];
+    self.kefuIdField = [[UITextField alloc] initWithFrame:CGRectMake(10, 50, 200, 30)];
     [self.kefuIdField setBackgroundColor:[UIColor whiteColor]];
     [self.view addSubview:self.kefuIdField];
-    NSString *kefuId =
-        [[NSUserDefaults standardUserDefaults] objectForKey:@"KefuId"];
+    NSString *kefuId = [[NSUserDefaults standardUserDefaults] objectForKey:@"KefuId"];
     if (kefuId == nil) {
       kefuId = @"KEFU146001495753714"; //@"KEFUxiaoqiaoLive8001";
     }
@@ -126,15 +117,8 @@
     });
   }
 }
-- (void)didReceiveMemoryWarning {
-  [super didReceiveMemoryWarning];
-  // Dispose of any resources that can be recreated.
-}
 - (void)dealloc {
-  [[NSNotificationCenter defaultCenter]
-      removeObserver:self
-                name:RCKitDispatchMessageNotification
-              object:nil];
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:RCKitDispatchMessageNotification object:nil];
 }
 @end
 @interface RCDPublicServiceListViewController ()
@@ -142,25 +126,15 @@
 @implementation RCDPublicServiceListViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    //自定义rightBarButtonItem
     UIButton *rightBtn =
     [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 17, 17)];
     [rightBtn setImage:[UIImage imageNamed:@"u_add"] forState:UIControlStateNormal];
-    [rightBtn addTarget:self
-                 action:@selector(pushAddPublicService:)
-       forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *rightButton =
-    [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
+    [rightBtn addTarget:self action:@selector(pushAddPublicService:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
     [rightBtn setTintColor:[UIColor whiteColor]];
     self.navigationItem.rightBarButtonItem = rightButton;
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-- (void)tableView:(UITableView *)tableView
-didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *key = [self.allKeys objectAtIndex:indexPath.section];
     NSArray *arrayForKey = [self.allFriends objectForKey:key];
     RCPublicServiceProfile *PublicServiceProfile = arrayForKey[indexPath.row];
@@ -174,23 +148,12 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 }
 /**
  *  添加公众号
- *
  *  @param sender sender description
  */
 - (void)pushAddPublicService:(id)sender {
-    RCPublicServiceSearchViewController *searchFirendVC =
-    [[RCPublicServiceSearchViewController alloc] init];
+    RCPublicServiceSearchViewController *searchFirendVC = [[RCPublicServiceSearchViewController alloc] init];
     [self.navigationController pushViewController:searchFirendVC animated:YES];
 }
-/*
- #pragma mark - Navigation
- // In a storyboard-based application, you will often want to do a little
- preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 @end
 @interface RCDCustomerServiceViewController ()
 //＊＊＊＊＊＊＊＊＊应用自定义评价界面开始1＊＊＊＊＊＊＊＊＊＊＊＊＊
@@ -202,27 +165,20 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 @implementation RCDCustomerServiceViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     [self notifyUpdateUnreadMessageCount];
     /*
-     UIButton *button =
-     [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
-     UIImageView *imageView =
-     [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Private_Setting"]];
+     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
+     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Private_Setting"]];
      imageView.frame = CGRectMake(15, 5,16 , 17);
      [button addSubview:imageView];
-     [button addTarget:self
-     action:@selector(rightBarButtonItemClicked:)
-     forControlEvents:UIControlEventTouchUpInside];
-     UIBarButtonItem *rightBarButton =
-     [[UIBarButtonItem alloc] initWithCustomView:button];
+     [button addTarget:self action:@selector(rightBarButtonItemClicked:) forControlEvents:UIControlEventTouchUpInside];
+     UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithCustomView:button];
      */
     self.navigationItem.rightBarButtonItem = nil;
 }
 /*
  - (void)rightBarButtonItemClicked:(id)sender {
- RCDSettingBaseViewController *settingVC =
- [[RCDSettingBaseViewController alloc] init];
+ RCDSettingBaseViewController *settingVC = [[RCDSettingBaseViewController alloc] init];
  settingVC.conversationType = self.conversationType;
  settingVC.targetId = self.targetId;
  //清除聊天记录之后reload data
@@ -238,10 +194,6 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
  [self.navigationController pushViewController:settingVC animated:YES];
  }
  */
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 //客服VC左按键注册的selector是customerServiceLeftCurrentViewController，
 //这个函数是基类的函数，他会根据当前服务时间来决定是否弹出评价，根据服务的类型来决定弹出评价类型。
 //弹出评价的函数是commentCustomerServiceAndQuit，应用可以根据这个函数内的注释来自定义评价界面。
@@ -254,12 +206,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 //评价客服，并离开当前会话
 //如果您需要自定义客服评价界面，请把本函数注释掉，并打开“应用自定义评价界面开始1/2”到“应用自定义评价界面结束”部分的代码，然后根据您的需求进行修改。
 //如果您需要去掉客服评价界面，请把本函数注释掉，并打开下面“应用去掉评价界面开始”到“应用去掉评价界面结束”部分的代码，然后根据您的需求进行修改。
-- (void)commentCustomerServiceWithStatus:(RCCustomerServiceStatus)serviceStatus
-                               commentId:(NSString *)commentId
-                        quitAfterComment:(BOOL)isQuit {
-    [super commentCustomerServiceWithStatus:serviceStatus
-                                  commentId:commentId
-                           quitAfterComment:isQuit];
+- (void)commentCustomerServiceWithStatus:(RCCustomerServiceStatus)serviceStatus commentId:(NSString *)commentId quitAfterComment:(BOOL)isQuit {
+    [super commentCustomerServiceWithStatus:serviceStatus commentId:commentId quitAfterComment:isQuit];
 }
 //＊＊＊＊＊＊＊＊＊应用去掉评价界面开始＊＊＊＊＊＊＊＊＊＊＊＊＊
 //-
@@ -298,24 +246,16 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 //    //(1)调用evaluateCustomerService将评价结果传给融云sdk。
 //    if (self.serviceStatus == RCCustomerService_HumanService) { //人工评价结果
 //        if (buttonIndex == 0) {
-//            [[RCIMClient sharedRCIMClient]
-//            evaluateCustomerService:self.targetId dialogId:self.commentId
-//            humanValue:5 suggest:nil];
+//            [[RCIMClient sharedRCIMClient] evaluateCustomerService:self.targetId dialogId:self.commentId humanValue:5 suggest:nil];
 //        } else if (buttonIndex == 1) {
-//            [[RCIMClient sharedRCIMClient]
-//            evaluateCustomerService:self.targetId dialogId:self.commentId
-//            humanValue:0 suggest:nil];
+//            [[RCIMClient sharedRCIMClient] evaluateCustomerService:self.targetId dialogId:self.commentId humanValue:0 suggest:nil];
 //        }
 //    } else if (self.serviceStatus == RCCustomerService_RobotService)
 //    {//机器人评价结果
 //        if (buttonIndex == 0) {
-//            [[RCIMClient sharedRCIMClient]
-//            evaluateCustomerService:self.targetId knownledgeId:self.commentId
-//            robotValue:YES suggest:nil];
+//            [[RCIMClient sharedRCIMClient] evaluateCustomerService:self.targetId knownledgeId:self.commentId robotValue:YES suggest:nil];
 //        } else if (buttonIndex == 1) {
-//            [[RCIMClient sharedRCIMClient]
-//            evaluateCustomerService:self.targetId knownledgeId:self.commentId
-//            robotValue:NO suggest:nil];
+//            [[RCIMClient sharedRCIMClient] evaluateCustomerService:self.targetId knownledgeId:self.commentId robotValue:NO suggest:nil];
 //        }
 //    }
 //    //(2)离开当前客服VC
@@ -326,13 +266,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 //＊＊＊＊＊＊＊＊＊应用自定义评价界面结束2＊＊＊＊＊＊＊＊＊＊＊＊＊
 - (void)notifyUpdateUnreadMessageCount {
     __weak typeof(&*self) __weakself = self;
-    int count = [[RCIMClient sharedRCIMClient] getUnreadCount:@[
-                                                                @(ConversationType_PRIVATE),
-                                                                @(ConversationType_DISCUSSION),
-                                                                @(ConversationType_APPSERVICE),
-                                                                @(ConversationType_PUBLICSERVICE),
-                                                                @(ConversationType_GROUP)
-                                                                ]];
+    int count = [[RCIMClient sharedRCIMClient] getUnreadCount:@[@(ConversationType_PRIVATE),@(ConversationType_DISCUSSION),@(ConversationType_APPSERVICE),@(ConversationType_PUBLICSERVICE),@(ConversationType_GROUP)]];
     dispatch_async(dispatch_get_main_queue(), ^{
         NSString *backString = nil;
         if (count > 0 && count < 1000) {
@@ -344,23 +278,18 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
         }
         UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         backBtn.frame = CGRectMake(0, 6, 87, 23);
-        UIImageView *backImg = [[UIImageView alloc]
-                                initWithImage:[UIImage imageNamed:@"navigator_btn_back"]];
+        UIImageView *backImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"navigator_btn_back"]];
         backImg.frame = CGRectMake(-6, 4, 10, 17);
         [backBtn addSubview:backImg];
-        UILabel *backText =
-        [[UILabel alloc] initWithFrame:CGRectMake(9, 4, 85, 17)];
+        UILabel *backText = [[UILabel alloc] initWithFrame:CGRectMake(9, 4, 85, 17)];
         backText.text = backString; // NSLocalizedStringFromTable(@"Back",
         // @"RongCloudKit", nil);
         //   backText.font = [UIFont systemFontOfSize:17];
         [backText setBackgroundColor:[UIColor clearColor]];
         [backText setTextColor:[UIColor whiteColor]];
         [backBtn addSubview:backText];
-        [backBtn addTarget:__weakself
-                    action:@selector(customerServiceLeftCurrentViewController)
-          forControlEvents:UIControlEventTouchUpInside];
-        UIBarButtonItem *leftButton =
-        [[UIBarButtonItem alloc] initWithCustomView:backBtn];
+        [backBtn addTarget:__weakself action:@selector(customerServiceLeftCurrentViewController) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
         [__weakself.navigationItem setLeftBarButtonItem:leftButton];
     });
 }

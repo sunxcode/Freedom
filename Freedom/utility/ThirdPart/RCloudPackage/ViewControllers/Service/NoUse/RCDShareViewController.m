@@ -89,11 +89,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"选择";
-    self.rightBarButton =
-    [[UIBarButtonItem alloc] initWithTitle:@"发送"
-                                     style:UIBarButtonItemStylePlain
-                                    target:self
-                                    action:@selector(sendMessageTofriend:)];
+    self.rightBarButton = [[UIBarButtonItem alloc] initWithTitle:@"发送" style:UIBarButtonItemStylePlain target:self action:@selector(sendMessageTofriend:)];
     self.navigationItem.rightBarButtonItem = self.rightBarButton;
     if (self.titleString != nil && self.contentString != nil && self.imageString != nil && self.url!= nil) {
         self.rightBarButton.enabled = YES;
@@ -101,14 +97,10 @@
         self.rightBarButton.enabled = NO;
     }
     self.tableView.tableFooterView = [UIView new];
-    NSURL *groupURL = [[NSFileManager defaultManager]
-                       containerURLForSecurityApplicationGroupIdentifier:
-                       @"group.cn.rongcloud.im.share"];
-    NSURL *fileURL =
-    [groupURL URLByAppendingPathComponent:@"rongcloudShare.plist"];
+    NSURL *groupURL = [[NSFileManager defaultManager]containerURLForSecurityApplicationGroupIdentifier:@"group.cn.rongcloud.im.share"];
+    NSURL *fileURL = [groupURL URLByAppendingPathComponent:@"rongcloudShare.plist"];
     self.dataArray = [NSArray arrayWithContentsOfURL:fileURL];
-    [self.tableView registerClass:[RCDShareChatListCell class]
-           forCellReuseIdentifier:ReuseIdentifier];
+    [self.tableView registerClass:[RCDShareChatListCell class] forCellReuseIdentifier:ReuseIdentifier];
 }
 - (void)enableSendMessage:(BOOL)sender{
     if (sender && self.selectIndexPath) {
@@ -120,38 +112,26 @@
 - (void)sendMessageTofriend:(id)sender {
     NSDictionary *dic = self.dataArray[self.selectIndexPath.row];
     // 1.创建URL
-    NSString *urlStr =
-    [NSString stringWithFormat:@"%@misc/send_message", DemoServer];
+    NSString *urlStr = [NSString stringWithFormat:@"%@misc/send_message", DemoServer];
     NSURL *url = [NSURL URLWithString:urlStr];
     // 2.准备请求对象
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"POST"];
-    NSUserDefaults *userDefaults =
-    [[NSUserDefaults alloc] initWithSuiteName:@"group.cn.rongcloud.im.share"];
+    NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.cn.rongcloud.im.share"];
     NSString *cookie = [userDefaults valueForKey:@"Cookie"];
     [request setValue:cookie forHTTPHeaderField:@"Cookie"];
     request.HTTPShouldHandleCookies = YES;
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     // 3.准备参数
     NSString *objectName = @"RC:ImgTextMsg";
-    NSDictionary *messageContentDict = @{
-                                         @"title" :self.titleString,
-                                         @"content" : self.contentString,
-                                         @"imageUri" : self.imageString,
-                                         @"url" : self.url,
-                                         };
+    NSDictionary *messageContentDict = @{@"title" :self.titleString,@"content" : self.contentString,@"imageUri" : self.imageString,@"url" : self.url,};
     NSString *conversationType = nil;
     if ([dic[@"conversationType"] intValue] == 1) {
         conversationType = @"PRIVATE";
     }else{
         conversationType = @"GROUP";
     }
-    NSDictionary *sendMessageDict = @{
-                                      @"conversationType" : conversationType,
-                                      @"targetId" : dic[@"targetId"],
-                                      @"objectName" : objectName,
-                                      @"content" : messageContentDict
-                                      };
+    NSDictionary *sendMessageDict = @{@"conversationType" : conversationType,@"targetId" : dic[@"targetId"],@"objectName" : objectName,@"content" : messageContentDict};
     NSString *time = [NSString stringWithFormat:@"%f",[[NSDate date] timeIntervalSince1970]*1000];
     NSDictionary *insertMessageDict = @{
                                         @"conversationType" :dic[@"conversationType"],
@@ -163,22 +143,15 @@
                                         @"objectName" : @"RC:ImgTextMsg",
                                         @"sharedTime" :time
                                         };
-    [request setHTTPBody:[NSJSONSerialization dataWithJSONObject:sendMessageDict
-                                                         options:0
-                                                           error:nil]];
+    [request setHTTPBody:[NSJSONSerialization dataWithJSONObject:sendMessageDict options:0 error:nil]];
     [request setTimeoutInterval:10.0];
     self.rightBarButton.title = @"发送中";
     self.rightBarButton.enabled = NO;
     // 4.建立连接
-    [NSURLConnection
-     sendAsynchronousRequest:request
-     queue:[NSOperationQueue mainQueue]
-     completionHandler:^(NSURLResponse *response, NSData *data,
-                         NSError *connectionError) {
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data,NSError *connectionError) {
          NSString *notify = nil;
          if (!connectionError) {
-             NSUserDefaults *shareUserDefaults =
-             [[NSUserDefaults alloc] initWithSuiteName:@"group.cn.rongcloud.im.share"];
+             NSUserDefaults *shareUserDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.cn.rongcloud.im.share"];
              NSMutableArray *array = [NSMutableArray arrayWithArray:[shareUserDefaults valueForKey:@"sharedMessages"]];
              [array addObject:insertMessageDict];
              [shareUserDefaults setValue:array forKey:@"sharedMessages"];
@@ -200,27 +173,20 @@
     [self.extensionContext completeRequestReturningItems:@[] completionHandler:nil];
 }
 #pragma mark - Table view data source
-- (NSInteger)tableView:(UITableView *)tableView
- numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.dataArray.count;
 }
-- (UITableViewCell *)tableView:(UITableView *)tableView
-         cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    RCDShareChatListCell *cell =
-    [tableView dequeueReusableCellWithIdentifier:ReuseIdentifier
-                                    forIndexPath:indexPath];
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    RCDShareChatListCell *cell = [tableView dequeueReusableCellWithIdentifier:ReuseIdentifier forIndexPath:indexPath];
     if (!cell) {
-        cell =
-        [[RCDShareChatListCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                    reuseIdentifier:ReuseIdentifier];
+        cell = [[RCDShareChatListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ReuseIdentifier];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     NSDictionary *dic = self.dataArray[indexPath.row];
     [cell setDataDic:dic];
     return cell;
 }
-- (void)tableView:(UITableView *)tableView
-didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     RCDShareChatListCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     [cell setSelected:YES animated:YES];
     self.selectIndexPath = indexPath;
@@ -228,8 +194,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
         self.rightBarButton.enabled = YES;
     }
 }
-- (CGFloat)tableView:(UITableView *)tableView
-heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 45;
 }
 @end
@@ -249,12 +214,10 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 //  if(!imageItem) {
 //    return NO;
 //  }
-//  
 //  NSItemProvider *imageItemProvider = [[imageItem attachments] firstObject];
 //  if(!imageItemProvider) {
 //    return NO;
 //  }
-//  
 //  if([imageItemProvider hasItemConformingToTypeIdentifier:@"public.url"] && self.contentText.length > 0) {
 //    return YES;
 //  }
@@ -268,42 +231,29 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
   item.title = @"分享给朋友";
   __weak typeof(self) weakSelf = self;
   item.tapHandler = ^{
-    RCDShareChatListController *tableView =
-        [[RCDShareChatListController alloc] init];
+    RCDShareChatListController *tableView = [[RCDShareChatListController alloc] init];
     NSExtensionItem *imageItem = self.extensionContext.inputItems.firstObject;
     for (NSItemProvider *imageItemProvider in imageItem.attachments) {
-      
       if ([imageItemProvider hasItemConformingToTypeIdentifier:@"public.url"]) {
-        [imageItemProvider
-         loadItemForTypeIdentifier:@"public.url"
-         options:nil
-         completionHandler:^(NSURL *url, NSError *error) {
+        [imageItemProvider loadItemForTypeIdentifier:@"public.url" options:nil completionHandler:^(NSURL *url, NSError *error) {
            __strong typeof(weakSelf) strongSelf = weakSelf;
            strongSelf.url = url.absoluteString;
            NSData *data = [NSData dataWithContentsOfURL:url];
-           TFHpple *xpathParser =
-           [[TFHpple alloc] initWithHTMLData:data];
-           
+           TFHpple *xpathParser = [[TFHpple alloc] initWithHTMLData:data];
            if (strongSelf.contentText.length > 0) {
              strongSelf.titleString = strongSelf.contentText;
            } else {
-             NSArray *titleElements =
-             [xpathParser searchWithXPathQuery:@"//title"];
+             NSArray *titleElements = [xpathParser searchWithXPathQuery:@"//title"];
              if (titleElements.count > 0) {
-               TFHppleElement *element =
-               [titleElements objectAtIndex:0];
+               TFHppleElement *element = [titleElements objectAtIndex:0];
                strongSelf.titleString = element.content;
              }
            }
-           
-           NSArray *contentElements =
-           [xpathParser searchWithXPathQuery:@"//meta"];
+           NSArray *contentElements = [xpathParser searchWithXPathQuery:@"//meta"];
            if (contentElements.count > 0) {
              for (TFHppleElement *element in contentElements) {
-               if ([[element objectForKey:@"name"]
-                    isEqualToString:@"description"]) {
-                 strongSelf.contentString =
-                 [element objectForKey:@"content"];
+               if ([[element objectForKey:@"name"] isEqualToString:@"description"]) {
+                 strongSelf.contentString = [element objectForKey:@"content"];
                  break;
                } else {
                  strongSelf.contentString = url.absoluteString;
@@ -312,9 +262,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
            } else {
              strongSelf.contentString = url.absoluteString;
            }
-           
-           NSArray *imageElements =
-           [xpathParser searchWithXPathQuery:@"//img"];
+           NSArray *imageElements = [xpathParser searchWithXPathQuery:@"//img"];
            if (imageElements && contentElements.count > 0) {
              for (TFHppleElement *element in imageElements) {
                NSString *string = [element objectForKey:@"src"];
@@ -324,7 +272,6 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
                }
              }
            }
-           
            if (!strongSelf.imageString) {
              strongSelf.imageString = @"";
            }
@@ -333,7 +280,6 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
            tableView.url = strongSelf.url;
            tableView.imageString = strongSelf.imageString;
            [tableView enableSendMessage:YES];
-           
          }];
         break;
       }

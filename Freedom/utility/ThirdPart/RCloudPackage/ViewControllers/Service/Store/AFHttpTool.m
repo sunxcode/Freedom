@@ -54,7 +54,7 @@
   mgr.requestSerializer.HTTPShouldHandleCookies = YES;
   NSString *cookieString = [[NSUserDefaults standardUserDefaults] objectForKey:@"UserCookies"];
   if (cookieString)[mgr.requestSerializer setValue:cookieString forHTTPHeaderField:@"Cookie"];
-    NSCharacterSet *allowed = [NSCharacterSet URLQueryAllowedCharacterSet];
+  NSCharacterSet *allowed = [NSCharacterSet URLQueryAllowedCharacterSet];
   url = [url stringByAddingPercentEncodingWithAllowedCharacters:allowed];
   switch (methodType) {
   case RequestMethodTypeGet: {
@@ -180,11 +180,8 @@
                success:(void (^)(id response))success
                failure:(void (^)(NSError *err))failure {
   NSDictionary *params = @{ @"nickname" : nickname };
-  [AFHttpTool
-      requestWihtMethod:RequestMethodTypePost
-                    url:[NSString
-                            stringWithFormat:@"/user/set_nickname?userId=%@",
-                                             userId]
+  [AFHttpTool requestWihtMethod:RequestMethodTypePost
+                    url:[NSString stringWithFormat:@"/user/set_nickname?userId=%@",userId]
                  params:params
                 success:success
                 failure:failure];
@@ -254,8 +251,7 @@
 + (void)findUserByPhone:(NSString *)Phone
                 success:(void (^)(id response))success
                 failure:(void (^)(NSError *err))failure {
-  [AFHttpTool
-      requestWihtMethod:RequestMethodTypeGet
+  [AFHttpTool requestWihtMethod:RequestMethodTypeGet
                     url:[NSString stringWithFormat:@"user/find/86/%@", Phone]
                  params:nil
                 success:success
@@ -400,8 +396,7 @@
 + (void)getGroupMembersByID:(NSString *)groupID
                     success:(void (^)(id response))success
                     failure:(void (^)(NSError *err))failure {
-  [AFHttpTool
-      requestWihtMethod:RequestMethodTypeGet
+  [AFHttpTool requestWihtMethod:RequestMethodTypeGet
                     url:[NSString stringWithFormat:@"group/%@/members", groupID]
                  params:nil
                 success:success
@@ -479,8 +474,7 @@
 + (void)getFriendListFromServerSuccess:(void (^)(id))success
                         failure:(void (^)(NSError *))failure {
   //获取除自己之外的好友信息
-  [AFHttpTool
-      requestWihtMethod:RequestMethodTypeGet
+  [AFHttpTool requestWihtMethod:RequestMethodTypeGet
                     url:[NSString stringWithFormat:@"friendship/all"]
                  params:nil
                 success:success
@@ -549,9 +543,7 @@
            failure:(void (^)(NSError *err))failure {
   [AFHttpTool requestWihtMethod:RequestMethodTypePost
                             url:@"update_profile"
-                         params:@{
-                           @"username" : userName
-                         }
+                         params:@{@"username" : userName}
                         success:success
                         failure:failure];
 }
@@ -583,11 +575,6 @@
 + (void)getFriendDetailsByID:(NSString *)friendId
                     success:(void (^)(id response))success
                     failure:(void (^)(NSError *err))failure {
-  [AFHttpTool
-   requestWihtMethod:RequestMethodTypeGet
-   url:[NSString stringWithFormat:@"friendship/%@/profile", friendId]
-   params:nil
-   success:success
-   failure:failure];
+  [AFHttpTool requestWihtMethod:RequestMethodTypeGet url:[NSString stringWithFormat:@"friendship/%@/profile", friendId] params:nil success:success failure:failure];
 }
 @end

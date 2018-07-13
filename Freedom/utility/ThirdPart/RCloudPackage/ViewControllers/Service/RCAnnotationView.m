@@ -23,8 +23,7 @@
 }
 - (MKAnnotationView *)annotationViewInMap:(MKMapView *)mapView {
     if (!_view) {
-        _view = (RCAnnotationView *)[mapView
-                                     dequeueReusableAnnotationViewWithIdentifier:@"RCAnnotationView"];
+        _view = (RCAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"RCAnnotationView"];
         if (!_view)
             _view = [[RCAnnotationView alloc] initWithAnnotation:self];
     } else {
@@ -35,10 +34,9 @@
 }
 - (void)updateThumbnail:(RCLocationView *)thumbnail animated:(BOOL)animated {
     if (animated) {
-        [UIView animateWithDuration:0.33f
-                         animations:^{
-                             _coordinate = thumbnail.coordinate;
-                         }];
+        [UIView animateWithDuration:0.33f animations:^{
+             _coordinate = thumbnail.coordinate;
+         }];
     } else {
         _coordinate = thumbnail.coordinate;
     }
@@ -52,53 +50,31 @@
         } else {
             _view.locationImageView.image = [UIImage imageNamed:@"otherlocation.png"];
         }
-        //        if (_view.imageUrl&&_view.imageUrl.length>0) {
-        //            [_view refreshHead:_view.imageUrl];
-        //        }
+//        if (_view.imageUrl&&_view.imageUrl.length>0) {
+//            [_view refreshHead:_view.imageUrl];
+//        }
     }
 }
 @end
-#define LAT_OFFSET_0(x, y)                                                     \
--100.0 + 2.0 * x + 3.0 * y + 0.2 * y *y + 0.1 * x *y + 0.2 * sqrt(fabs(x))
-#define LAT_OFFSET_1                                                           \
-(20.0 * sin(6.0 * x * M_PI) + 20.0 * sin(2.0 * x * M_PI)) * 2.0 / 3.0
-#define LAT_OFFSET_2                                                           \
-(20.0 * sin(y * M_PI) + 40.0 * sin(y / 3.0 * M_PI)) * 2.0 / 3.0
-#define LAT_OFFSET_3                                                           \
-(160.0 * sin(y / 12.0 * M_PI) + 320 * sin(y * M_PI / 30.0)) * 2.0 / 3.0
-#define LON_OFFSET_0(x, y)                                                     \
-300.0 + x + 2.0 * y + 0.1 * x *x + 0.1 * x *y + 0.1 * sqrt(fabs(x))
-#define LON_OFFSET_1                                                           \
-(20.0 * sin(6.0 * x * M_PI) + 20.0 * sin(2.0 * x * M_PI)) * 2.0 / 3.0
-#define LON_OFFSET_2                                                           \
-(20.0 * sin(x * M_PI) + 40.0 * sin(x / 3.0 * M_PI)) * 2.0 / 3.0
-#define LON_OFFSET_3                                                           \
-(150.0 * sin(x / 12.0 * M_PI) + 300.0 * sin(x / 30.0 * M_PI)) * 2.0 / 3.0
-#define RANGE_LON_MAX 137.8347
-#define RANGE_LON_MIN 72.004
-#define RANGE_LAT_MAX 55.8271
-#define RANGE_LAT_MIN 0.8293
-#define jzA 6378245.0
-#define jzEE 0.00669342162296594323
 @implementation RCLocationConvert
 + (double)transformLat:(double)x bdLon:(double)y {
-    double ret = LAT_OFFSET_0(x, y);
-    ret += LAT_OFFSET_1;
-    ret += LAT_OFFSET_2;
-    ret += LAT_OFFSET_3;
+    double ret = -100.0 + 2.0 * x + 3.0 * y + 0.2 * y *y + 0.1 * x *y + 0.2 * sqrt(fabs(x));
+    ret += (20.0 * sin(6.0 * x * M_PI) + 20.0 * sin(2.0 * x * M_PI)) * 2.0 / 3.0;
+    ret += (20.0 * sin(y * M_PI) + 40.0 * sin(y / 3.0 * M_PI)) * 2.0 / 3.0;
+    ret += (160.0 * sin(y / 12.0 * M_PI) + 320 * sin(y * M_PI / 30.0)) * 2.0 / 3.0;
     return ret;
 }
 + (double)transformLon:(double)x bdLon:(double)y {
-    double ret = LON_OFFSET_0(x, y);
-    ret += LON_OFFSET_1;
-    ret += LON_OFFSET_2;
-    ret += LON_OFFSET_3;
+    double ret = 300.0 + x + 2.0 * y + 0.1 * x *x + 0.1 * x *y + 0.1 * sqrt(fabs(x));
+    ret += (20.0 * sin(6.0 * x * M_PI) + 20.0 * sin(2.0 * x * M_PI)) * 2.0 / 3.0;
+    ret += (20.0 * sin(x * M_PI) + 40.0 * sin(x / 3.0 * M_PI)) * 2.0 / 3.0;
+    ret += (150.0 * sin(x / 12.0 * M_PI) + 300.0 * sin(x / 30.0 * M_PI)) * 2.0 / 3.0;
     return ret;
 }
 + (BOOL)outOfChina:(double)lat bdLon:(double)lon {
-    if (lon < RANGE_LON_MIN || lon > RANGE_LON_MAX)
+    if (lon < 72.004 || lon > 137.8347)
         return true;
-    if (lat < RANGE_LAT_MIN || lat > RANGE_LAT_MAX)
+    if (lat < 0.8293 || lat > 55.8271)
         return true;
     return false;
 }
@@ -115,10 +91,10 @@
     double dLon = [self transformLon:(ggLon - 105.0) bdLon:(ggLat - 35.0)];
     double radLat = ggLat / 180.0 * M_PI;
     double magic = sin(radLat);
-    magic = 1 - jzEE * magic * magic;
+    magic = 1 - 0.00669342162296594323 * magic * magic;
     double sqrtMagic = sqrt(magic);
-    dLat = (dLat * 180.0) / ((jzA * (1 - jzEE)) / (magic * sqrtMagic) * M_PI);
-    dLon = (dLon * 180.0) / (jzA / sqrtMagic * cos(radLat) * M_PI);
+    dLat = (dLat * 180.0) / ((6378245.0 * (1 - 0.00669342162296594323)) / (magic * sqrtMagic) * M_PI);
+    dLon = (dLon * 180.0) / (6378245.0 / sqrtMagic * cos(radLat) * M_PI);
     mgLat = ggLat + dLat;
     mgLon = ggLon + dLon;
     resPoint.latitude = mgLat;
@@ -170,7 +146,7 @@
     return [self bd09Decrypt:location.latitude bdLon:location.longitude];
 }
 + (CLLocationCoordinate2D)bd09ToWgs84:(CLLocationCoordinate2D)location {
-    CLLocationCoordinate2D gcj02 = [self bd09ToGcj02:location];
+ CLLocationCoordinate2D gcj02 = [self bd09ToGcj02:location];
     return [self gcj02Decrypt:gcj02.latitude gjLon:gcj02.longitude];
 }
 @end
@@ -179,31 +155,22 @@
 @implementation RCAnnotationView
 float fromValue = 0.0f;
 - (id)initWithAnnotation:(id<MKAnnotation>)annotation {
-  self =
-      [super initWithAnnotation:annotation reuseIdentifier:@"RCAnnotationView"];
+  self = [super initWithAnnotation:annotation reuseIdentifier:@"RCAnnotationView"];
   if (self) {
     self.canShowCallout = NO;
     self.frame = CGRectMake(0, 0, 40, 40);
     self.backgroundColor = [UIColor clearColor];
     self.centerOffset = CGPointMake(0, 0);
     _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, -35, 40, 40)];
-    [_imageView
-        sd_setImageWithURL:[NSURL URLWithString:self.imageUrl]
-          placeholderImage:[FreedomTools imageNamed:@"default_portrait_msg"
-                                           ofBundle:@"RongCloud.bundle"]];
+    [_imageView sd_setImageWithURL:[NSURL URLWithString:self.imageUrl] placeholderImage:[FreedomTools imageNamed:@"default_portrait_msg" ofBundle:@"RongCloud.bundle"]];
     _imageView.layer.cornerRadius = 20.0;
     _imageView.layer.masksToBounds = YES;
     _imageView.layer.borderColor = [[UIColor whiteColor] CGColor];
     _imageView.layer.borderWidth = 2;
-    UIImageView *arrow =
-        [[UIImageView alloc] initWithFrame:CGRectMake(12, -1, 16, 12)];
+    UIImageView *arrow = [[UIImageView alloc] initWithFrame:CGRectMake(12, -1, 16, 12)];
     arrow.image = [UIImage imageNamed:@"big_arrow.png"];
-    _locationImageView =
-        [[UIImageView alloc] initWithFrame:CGRectMake(12, 12, 16, 16)];
-    [self addObserver:self
-           forKeyPath:@"imageUrl"
-              options:NSKeyValueObservingOptionNew
-              context:nil];
+    _locationImageView = [[UIImageView alloc] initWithFrame:CGRectMake(12, 12, 16, 16)];
+    [self addObserver:self forKeyPath:@"imageUrl" options:NSKeyValueObservingOptionNew context:nil];
     [self addSubview:_locationImageView];
     [self addSubview:arrow];
     [self addSubview:_imageView];
@@ -225,25 +192,16 @@ float fromValue = 0.0f;
   }
   return self;
 }
-//- (void)refreshHead:(NSString *)imageUrl
-//{
+//- (void)refreshHead:(NSString *)imageUrl{
 //    [_imageView sd_setImageWithURL:[NSURL URLWithString:imageUrl]
 //    placeholderImage:[FreedomTools imageNamed:@"default_portrait_msg"
 //    ofBundle:@"RongCloud.bundle"]];
-//
 //}
-- (void)observeValueForKeyPath:(NSString *)keyPath
-                      ofObject:(id)object
-                        change:(NSDictionary *)change
-                       context:(void *)context {
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
   if ([keyPath isEqualToString:@"imageUrl"]) {
     dispatch_async(dispatch_get_main_queue(), ^{
       if (![[change objectForKey:@"new"] isKindOfClass:[NSNull class]]) {
-        [_imageView
-            sd_setImageWithURL:[NSURL
-                                   URLWithString:[change objectForKey:@"new"]]
-              placeholderImage:[FreedomTools imageNamed:@"default_portrait_msg"
-                                               ofBundle:@"RongCloud.bundle"]];
+        [_imageView sd_setImageWithURL:[NSURL URLWithString:[change objectForKey:@"new"]] placeholderImage:[FreedomTools imageNamed:@"default_portrait_msg" ofBundle:@"RongCloud.bundle"]];
       }
     });
   }

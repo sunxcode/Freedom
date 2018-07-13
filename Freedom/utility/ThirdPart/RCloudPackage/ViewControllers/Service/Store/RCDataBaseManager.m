@@ -55,17 +55,12 @@ static NSString *const groupMemberTableName = @"GROUPMEMBERTABLE";
   if ([RCIMClient sharedRCIMClient].currentUserInfo.userId == nil) {
     return nil;
   }
-  
   if (!_dbQueue) {
     [self moveDBFile];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory,NSUserDomainMask, YES);
     NSString *const roungCloud = @"RongCloud";
     NSString *library = [[paths objectAtIndex:0] stringByAppendingPathComponent:roungCloud];
-    NSString *dbPath = [library
-                        stringByAppendingPathComponent:
-                        [NSString stringWithFormat:@"RongIMDemoDB%@",
-                         [RCIMClient sharedRCIMClient]
-                         .currentUserInfo.userId]];
+    NSString *dbPath = [library stringByAppendingPathComponent:[NSString stringWithFormat:@"RongIMDemoDB%@",[RCIMClient sharedRCIMClient].currentUserInfo.userId]];
     _dbQueue = [FMDatabaseQueue databaseQueueWithPath:dbPath];
     if (_dbQueue) {
       [self createUserTableIfNeed];
@@ -81,8 +76,7 @@ static NSString *const groupMemberTableName = @"GROUPMEMBERTABLE";
                                  @"KEY autoincrement, userid text,name text, "
                                  @"portraitUri text)";
       [db executeUpdate:createTableSQL];
-      NSString *createIndexSQL =
-          @"CREATE unique INDEX idx_userid ON USERTABLE(userid);";
+      NSString *createIndexSQL =@"CREATE unique INDEX idx_userid ON USERTABLE(userid);";
       [db executeUpdate:createIndexSQL];
     }
     if (![self isTableOK:groupTableName withDB:db]) {
@@ -92,19 +86,16 @@ static NSString *const groupMemberTableName = @"GROUPMEMBERTABLE";
           @"text ,introduce text ,creatorId text,creatorTime text, isJoin "
           @"text, isDismiss text)";
       [db executeUpdate:createTableSQL];
-      NSString *createIndexSQL =
-          @"CREATE unique INDEX idx_groupid ON GROUPTABLEV2(groupId);";
+      NSString *createIndexSQL = @"CREATE unique INDEX idx_groupid ON GROUPTABLEV2(groupId);";
       [db executeUpdate:createIndexSQL];
     }
-    
     if (![self isTableOK:friendTableName withDB:db]) {
       NSString *createTableSQL = @"CREATE TABLE FRIENDSTABLE (id integer "
                                  @"PRIMARY KEY autoincrement, userid "
                                  @"text,name text, portraitUri text, status "
                                  @"text, updatedAt text, displayName text)";
       [db executeUpdate:createTableSQL];
-      NSString *createIndexSQL =
-          @"CREATE unique INDEX idx_friendsId ON FRIENDSTABLE(userid);";
+      NSString *createIndexSQL = @"CREATE unique INDEX idx_friendsId ON FRIENDSTABLE(userid);";
       [db executeUpdate:createIndexSQL];
     } else if (![self isColumnExist:@"displayName" inTable:friendTableName withDB:db]) {
       [db executeUpdate:@"ALTER TABLE FRIENDSTABLE ADD COLUMN displayName text"];
@@ -114,11 +105,9 @@ static NSString *const groupMemberTableName = @"GROUPMEMBERTABLE";
                                  @"KEY autoincrement, userid text,name text, "
                                  @"portraitUri text)";
       [db executeUpdate:createTableSQL];
-      NSString *createIndexSQL =
-          @"CREATE unique INDEX idx_blackId ON BLACKTABLE(userid);";
+      NSString *createIndexSQL = @"CREATE unique INDEX idx_blackId ON BLACKTABLE(userid);";
       [db executeUpdate:createIndexSQL];
     }
-    
     if (![self isTableOK:groupMemberTableName withDB:db]) {
       NSString *createTableSQL = @"CREATE TABLE GROUPMEMBERTABLE (id integer "
                                  @"PRIMARY KEY autoincrement, groupid text, "
@@ -135,17 +124,14 @@ static NSString *const groupMemberTableName = @"GROUPMEMBERTABLE";
 }
 //存储用户信息
 - (void)insertUserToDB:(RCUserInfo *)user {
-  NSString *insertSql =
-      @"REPLACE INTO USERTABLE (userid, name, portraitUri) VALUES (?, ?, ?)";
+  NSString *insertSql = @"REPLACE INTO USERTABLE (userid, name, portraitUri) VALUES (?, ?, ?)";
   [self.dbQueue inDatabase:^(FMDatabase *db) {
     [db executeUpdate:insertSql, user.userId, user.name, user.portraitUri];
   }];
 }
 //存储用户列表信息
 - (void)insertUserListToDB:(NSMutableArray *)userList complete:(void (^)(BOOL))result{
-  
-  if (userList == nil || [userList count] < 1)
-    return;
+  if (userList == nil || [userList count] < 1)return;
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
     [self.dbQueue inTransaction:^(FMDatabase *db, BOOL *rollback) {
       for (RCUserInfo *user in userList) {
@@ -161,16 +147,13 @@ static NSString *const groupMemberTableName = @"GROUPMEMBERTABLE";
 }
 //插入黑名单列表
 - (void)insertBlackListToDB:(RCUserInfo *)user {
-  NSString *insertSql =
-      @"REPLACE INTO BLACKTABLE (userid, name, portraitUri) VALUES (?, ?, ?)";
+  NSString *insertSql = @"REPLACE INTO BLACKTABLE (userid, name, portraitUri) VALUES (?, ?, ?)";
   [self.dbQueue inDatabase:^(FMDatabase *db) {
     [db executeUpdate:insertSql, user.userId, user.name, user.portraitUri];
   }];
 }
 - (void)insertBlackListUsersToDB:(NSMutableArray *)userList complete:(void (^)(BOOL))result{
-  
-  if (userList == nil || [userList count] < 1)
-    return;
+  if (userList == nil || [userList count] < 1)return;
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
     [self.dbQueue inTransaction:^(FMDatabase *db, BOOL *rollback) {
       for (RCUserInfo *user in userList) {
@@ -200,9 +183,7 @@ static NSString *const groupMemberTableName = @"GROUPMEMBERTABLE";
 }
 //移除黑名单
 - (void)removeBlackList:(NSString *)userId {
-  NSString *deleteSql = [NSString
-      stringWithFormat:@"DELETE FROM BLACKTABLE WHERE userid=%@", userId];
-  
+  NSString *deleteSql = [NSString stringWithFormat:@"DELETE FROM BLACKTABLE WHERE userid=%@", userId];
   [self.dbQueue inDatabase:^(FMDatabase *db) {
     [db executeUpdate:deleteSql];
   }];
@@ -210,7 +191,6 @@ static NSString *const groupMemberTableName = @"GROUPMEMBERTABLE";
 //清空黑名单缓存数据
 - (void)clearBlackListData {
   NSString *deleteSql = @"DELETE FROM BLACKTABLE";
-  
   [self.dbQueue inDatabase:^(FMDatabase *db) {
     [db executeUpdate:deleteSql];
   }];
@@ -218,10 +198,8 @@ static NSString *const groupMemberTableName = @"GROUPMEMBERTABLE";
 //从表中获取用户信息
 - (RCUserInfo *)getUserByUserId:(NSString *)userId {
   __block RCUserInfo *model = nil;
-  
   [self.dbQueue inDatabase:^(FMDatabase *db) {
-    FMResultSet *rs =
-        [db executeQuery:@"SELECT * FROM USERTABLE where userid = ?", userId];
+    FMResultSet *rs = [db executeQuery:@"SELECT * FROM USERTABLE where userid = ?", userId];
     while ([rs next]) {
       model = [[RCUserInfo alloc] init];
       model.userId = [rs stringForColumn:@"userid"];
@@ -251,25 +229,17 @@ static NSString *const groupMemberTableName = @"GROUPMEMBERTABLE";
 }
 //存储群组信息
 - (void)insertGroupToDB:(RCDGroupInfo *)group {
-  if (group == nil || [group.groupId length] < 1)
-    return;
+  if (group == nil || [group.groupId length] < 1)return;
   NSString *insertSql = @"REPLACE INTO GROUPTABLEV2 (groupId, "
                         @"name,portraitUri,inNumber,maxNumber,introduce,"
                         @"creatorId,creatorTime,isJoin,isDismiss) VALUES "
                         @"(?,?,?,?,?,?,?,?,?,?)";
-  
   [self.dbQueue inDatabase:^(FMDatabase *db) {
-    [db executeUpdate:insertSql, group.groupId, group.groupName,
-                      group.portraitUri, group.number, group.maxNumber,
-                      group.introduce, group.creatorId, group.creatorTime,
-                      [NSString stringWithFormat:@"%d", group.isJoin],
-                      group.isDismiss];
+    [db executeUpdate:insertSql, group.groupId, group.groupName,group.portraitUri, group.number, group.maxNumber,group.introduce, group.creatorId, group.creatorTime,[NSString stringWithFormat:@"%d", group.isJoin],group.isDismiss];
   }];
 }
 - (void)insertGroupsToDB:(NSMutableArray *)groupList complete:(void (^)(BOOL))result{
-  
-  if (groupList == nil || [groupList count] < 1)
-    return;
+  if (groupList == nil || [groupList count] < 1)return;
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
     [self.dbQueue inTransaction:^(FMDatabase *db, BOOL *rollback) {
       for (RCDGroupInfo *group in groupList) {
@@ -277,11 +247,7 @@ static NSString *const groupMemberTableName = @"GROUPMEMBERTABLE";
         @"name,portraitUri,inNumber,maxNumber,introduce,"
         @"creatorId,creatorTime,isJoin,isDismiss) VALUES "
         @"(?,?,?,?,?,?,?,?,?,?)";
-        [db executeUpdate:insertSql, group.groupId, group.groupName,
-         group.portraitUri, group.number, group.maxNumber,
-         group.introduce, group.creatorId, group.creatorTime,
-         [NSString stringWithFormat:@"%d", group.isJoin],
-         group.isDismiss];
+        [db executeUpdate:insertSql, group.groupId, group.groupName,group.portraitUri, group.number, group.maxNumber,group.introduce, group.creatorId, group.creatorTime,[NSString stringWithFormat:@"%d", group.isJoin],group.isDismiss];
       }
     }];
     result (YES);
@@ -291,8 +257,7 @@ static NSString *const groupMemberTableName = @"GROUPMEMBERTABLE";
 - (RCDGroupInfo *)getGroupByGroupId:(NSString *)groupId {
   __block RCDGroupInfo *model = nil;
   [self.dbQueue inDatabase:^(FMDatabase *db) {
-    FMResultSet *rs = [db
-        executeQuery:@"SELECT * FROM GROUPTABLEV2 where groupId = ?", groupId];
+    FMResultSet *rs = [db executeQuery:@"SELECT * FROM GROUPTABLEV2 where groupId = ?", groupId];
     while ([rs next]) {
       model = [[RCDGroupInfo alloc] init];
       model.groupId = [rs stringForColumn:@"groupId"];
@@ -312,12 +277,8 @@ static NSString *const groupMemberTableName = @"GROUPMEMBERTABLE";
 }
 //删除表中的群组信息
 - (void)deleteGroupToDB:(NSString *)groupId {
-  if ([groupId length] < 1)
-    return;
-  NSString *deleteSql =
-      [NSString stringWithFormat:@"delete from %@ where %@ = '%@'",
-                                 @"GROUPTABLEV2", @"groupid", groupId];
-  
+  if ([groupId length] < 1)return;
+  NSString *deleteSql = [NSString stringWithFormat:@"delete from %@ where %@ = '%@'",@"GROUPTABLEV2", @"groupid", groupId];
   [self.dbQueue inDatabase:^(FMDatabase *db) {
     [db executeUpdate:deleteSql];
   }];
@@ -335,8 +296,7 @@ static NSString *const groupMemberTableName = @"GROUPMEMBERTABLE";
 - (NSMutableArray *)getAllGroup {
   NSMutableArray *allGroups = [NSMutableArray new];
   [self.dbQueue inDatabase:^(FMDatabase *db) {
-    FMResultSet *rs =
-        [db executeQuery:@"SELECT * FROM GROUPTABLEV2"];
+    FMResultSet *rs = [db executeQuery:@"SELECT * FROM GROUPTABLEV2"];
     while ([rs next]) {
       RCDGroupInfo *model;
       model = [[RCDGroupInfo alloc] init];
@@ -356,16 +316,9 @@ static NSString *const groupMemberTableName = @"GROUPMEMBERTABLE";
   return allGroups;
 }
 //存储群组成员信息
-- (void)insertGroupMemberToDB:(NSMutableArray *)groupMemberList
-                      groupId:(NSString *)groupId
-                     complete:(void (^)(BOOL))result
-{
-  if (groupMemberList == nil || [groupMemberList count] < 1)
-    return;
-  NSString *deleteSql =
-      [NSString stringWithFormat:@"delete from %@ where %@ = '%@'",
-                                 @"GROUPMEMBERTABLE", @"groupid", groupId];
-  
+- (void)insertGroupMemberToDB:(NSMutableArray *)groupMemberList groupId:(NSString *)groupId complete:(void (^)(BOOL))result{
+  if (groupMemberList == nil || [groupMemberList count] < 1)return;
+  NSString *deleteSql = [NSString stringWithFormat:@"delete from %@ where %@ = '%@'",@"GROUPMEMBERTABLE", @"groupid", groupId];
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
     [self.dbQueue inTransaction:^(FMDatabase *db, BOOL *rollback) {
       [db executeUpdate:deleteSql];
@@ -375,8 +328,7 @@ static NSString *const groupMemberTableName = @"GROUPMEMBERTABLE";
         if (user.portraitUri.length <= 0) {
           user.portraitUri = [FreedomTools defaultUserPortrait:user];
         }
-        [db executeUpdate:insertSql, groupId, user.userId, user.name,
-         user.portraitUri];
+        [db executeUpdate:insertSql, groupId, user.userId, user.name, user.portraitUri];
       }
     }];
     result (YES);
@@ -386,10 +338,7 @@ static NSString *const groupMemberTableName = @"GROUPMEMBERTABLE";
 - (NSMutableArray *)getGroupMember:(NSString *)groupId {
   NSMutableArray *allUsers = [NSMutableArray new];
   [self.dbQueue inDatabase:^(FMDatabase *db) {
-    FMResultSet *rs =
-        [db executeQuery:
-                @"SELECT * FROM GROUPMEMBERTABLE where groupid=? order by id",
-                groupId];
+    FMResultSet *rs = [db executeQuery:@"SELECT * FROM GROUPMEMBERTABLE where groupid=? order by id",groupId];
     while ([rs next]) {
       //            RCUserInfo *model;
       RCUserInfo *model;
@@ -405,27 +354,21 @@ static NSString *const groupMemberTableName = @"GROUPMEMBERTABLE";
 }
 //存储好友信息
 - (void)insertFriendToDB:(RCDUserInfo *)friendInfo {
-  NSString *insertSql = @"REPLACE INTO FRIENDSTABLE (userid, name, "
-                        @"portraitUri, status, updatedAt, displayName) VALUES (?, ?, ?, ?, "@"?, ?)";
+  NSString *insertSql = @"REPLACE INTO FRIENDSTABLE (userid, name, portraitUri, status, updatedAt, displayName) VALUES (?, ?, ?, ?, "@"?, ?)";
   [self.dbQueue inDatabase:^(FMDatabase *db) {
     [db executeUpdate:insertSql, friendInfo.userId, friendInfo.name,
      friendInfo.portraitUri, friendInfo.status,
      friendInfo.updatedAt, friendInfo.displayName];
   }];
-  
 }
 - (void)insertFriendListToDB:(NSMutableArray *)FriendList complete:(void (^)(BOOL))result{
-  
-  if (FriendList == nil || [FriendList count] < 1)
-    return;
+  if (FriendList == nil || [FriendList count] < 1)return;
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
     [self.dbQueue inTransaction:^(FMDatabase *db, BOOL *rollback) {
       for (RCDUserInfo *friendInfo in FriendList) {
         NSString *insertSql = @"REPLACE INTO FRIENDSTABLE (userid, name, "
         @"portraitUri, status, updatedAt, displayName) VALUES (?, ?, ?, ?, "@"?, ?)";
-        [db executeUpdate:insertSql, friendInfo.userId, friendInfo.name,
-         friendInfo.portraitUri, friendInfo.status,
-         friendInfo.updatedAt, friendInfo.displayName];
+        [db executeUpdate:insertSql, friendInfo.userId, friendInfo.name,friendInfo.portraitUri, friendInfo.status,friendInfo.updatedAt, friendInfo.displayName];
       }
     }];
     result (YES);
@@ -456,8 +399,7 @@ static NSString *const groupMemberTableName = @"GROUPMEMBERTABLE";
 - (RCDUserInfo *)getFriendInfo:(NSString *)friendId {
   __block RCDUserInfo *friendInfo;
   [self.dbQueue inDatabase:^(FMDatabase *db) {
-    FMResultSet *rs = [db
-        executeQuery:@"SELECT * FROM FRIENDSTABLE WHERE userid=?", friendId];
+    FMResultSet *rs = [db executeQuery:@"SELECT * FROM FRIENDSTABLE WHERE userid=?", friendId];
     while ([rs next]) {
       friendInfo = [RCDUserInfo new];
       friendInfo.userId = [rs stringForColumn:@"userid"];
@@ -474,7 +416,6 @@ static NSString *const groupMemberTableName = @"GROUPMEMBERTABLE";
 //清空群组缓存数据
 - (void)clearGroupsData {
   NSString *deleteSql = @"DELETE FROM GROUPTABLEV2";
-  
   [self.dbQueue inDatabase:^(FMDatabase *db) {
     [db executeUpdate:deleteSql];
   }];
@@ -482,29 +423,21 @@ static NSString *const groupMemberTableName = @"GROUPMEMBERTABLE";
 //清空好友缓存数据
 - (void)clearFriendsData {
   NSString *deleteSql = @"DELETE FROM FRIENDSTABLE";
-  
   [self.dbQueue inDatabase:^(FMDatabase *db) {
     [db executeUpdate:deleteSql];
   }];
 }
 - (void)deleteFriendFromDB:(NSString *)userId {
-  NSString *deleteSql = [NSString
-      stringWithFormat:@"DELETE FROM FRIENDSTABLE WHERE userid=%@", userId];
-  
+  NSString *deleteSql = [NSString stringWithFormat:@"DELETE FROM FRIENDSTABLE WHERE userid=%@", userId];
   [self.dbQueue inDatabase:^(FMDatabase *db) {
     [db executeUpdate:deleteSql];
   }];
 }
 - (BOOL)isTableOK:(NSString *)tableName withDB:(FMDatabase *)db {
   BOOL isOK = NO;
-  
-  FMResultSet *rs =
-  [db executeQuery:@"select count(*) as 'count' from sqlite_master where "
-   @"type ='table' and name = ?",
-   tableName];
+  FMResultSet *rs = [db executeQuery:@"select count(*) as 'count' from sqlite_master where type ='table' and name = ?",tableName];
   while ([rs next]) {
     NSInteger count = [rs intForColumn:@"count"];
-    
     if (0 == count) {
       isOK = NO;
     } else {
@@ -512,12 +445,10 @@ static NSString *const groupMemberTableName = @"GROUPMEMBERTABLE";
     }
   }
   [rs close];
-  
   return isOK;
 }
 - (BOOL)isColumnExist:(NSString *)columnName inTable:(NSString *)tableName withDB:(FMDatabase *)db {
   BOOL isExist = NO;
-  
   NSString *columnQurerySql = [NSString stringWithFormat:@"SELECT %@ from %@", columnName, tableName];
   FMResultSet *rs = [db executeQuery:columnQurerySql];
   if ([rs next]) {
@@ -526,7 +457,6 @@ static NSString *const groupMemberTableName = @"GROUPMEMBERTABLE";
     isExist = NO;
   }
   [rs close];
-  
   return isExist;
 }
 @end
