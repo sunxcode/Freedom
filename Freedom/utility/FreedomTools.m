@@ -145,9 +145,9 @@ char pinyinFirstLetter(unsigned short hanzi){
             nCode = (ucHigh - 0xa0) * 100 + ucLow - 0xa0;
         //不分大小写排序 同意大写
         NSString *unicodePath = [[NSBundle mainBundle]pathForResource:@"unicode" ofType:@"plist"];
-        NSDictionary *unicodeDict = [NSDictionary dictionaryWithContentsOfFile:unicodePath];
-        NSString *xingshi = [unicodeDict valueForKey:[NSString stringWithFormat:@"%d",nCode]];
-        NSString * strRes = [xingshi uppercaseString];
+        NSArray *unicodeArray = [NSArray arrayWithContentsOfFile:unicodePath];
+        NSString *xingshi = unicodeArray[nCode];
+        NSString *strRes = [xingshi uppercaseString];
         strValue = [strValue stringByAppendingString:strRes];
         i++;
     }

@@ -1078,8 +1078,8 @@
 		BF5B9B7F1F8E67B900BD885E /* WidomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5B9B7E1F8E67B900BD885E /* WidomViewController.swift */; };
 		BF5B9B811F8E67C000BD885E /* PowerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5B9B801F8E67C000BD885E /* PowerViewController.swift */; };
 		BF5B9B831F8E67CC00BD885E /* HappyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5B9B821F8E67CC00BD885E /* HappyViewController.swift */; };
-		BF6115B320FD9794007A010A /* unicode.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF6115B220FD9794007A010A /* unicode.plist */; };
 		BF6115B720FD9E9E007A010A /* firstLetter.txt in Resources */ = {isa = PBXBuildFile; fileRef = BF6115B620FD9E9E007A010A /* firstLetter.txt */; };
+		BF6115B920FDACC9007A010A /* unicode.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF6115B820FDACC9007A010A /* unicode.plist */; };
 		BF6E56961FAAF341005F7DF8 /* WXPictureCarouselView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6E567F1FAAEE5F005F7DF8 /* WXPictureCarouselView.m */; };
 		BF6E56981FAAF3F7005F7DF8 /* WXWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6E56801FAAEE5F005F7DF8 /* WXWebViewController.m */; };
 		BF6E569A1FAAF45A005F7DF8 /* WXSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6E567E1FAAEE5E005F7DF8 /* WXSearchController.m */; };
@@ -2384,8 +2384,8 @@
 		BF5B9B881F8E693C00BD885E /* e.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = e.png; sourceTree = "<group>"; };
 		BF5B9B891F8E694000BD885E /* f.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = f.png; sourceTree = "<group>"; };
 		BF5C6ACF20F37731000DF336 /* Freedom.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Freedom.entitlements; sourceTree = "<group>"; };
-		BF6115B220FD9794007A010A /* unicode.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = unicode.plist; sourceTree = "<group>"; };
 		BF6115B620FD9E9E007A010A /* firstLetter.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = firstLetter.txt; sourceTree = "<group>"; };
+		BF6115B820FDACC9007A010A /* unicode.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = unicode.plist; sourceTree = "<group>"; };
 		BF6E56741FAAEE5C005F7DF8 /* WXTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXTableViewController.h; sourceTree = "<group>"; };
 		BF6E56791FAAEE5D005F7DF8 /* WXPictureCarouselView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXPictureCarouselView.h; sourceTree = "<group>"; };
 		BF6E567A1FAAEE5E005F7DF8 /* WXWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXWebViewController.h; sourceTree = "<group>"; };
@@ -4099,8 +4099,8 @@
 				BFC6D95020E5C41900F17378 /* Chapter5.txt */,
 				BFC6D94F20E5C41800F17378 /* Chapter6.txt */,
 				BFC6D95220E5C41A00F17378 /* Chapter7.txt */,
-				BF6115B220FD9794007A010A /* unicode.plist */,
 				BF6115B620FD9E9E007A010A /* firstLetter.txt */,
+				BF6115B820FDACC9007A010A /* unicode.plist */,
 				BFC6D96A20E5D3D400F17378 /* 来自天堂的魔鬼.mp3 */,
 				BFC6D96920E5D3D300F17378 /* 走在冷风中.mp3 */,
 				BFC6D94C20E4EC8F00F17378 /* DianpingWo.plist */,
@@ -5510,6 +5510,7 @@
 				771917351D659950002F2BCD /* Alipay.storyboard in Resources */,
 				772E86FF1D76BC15004EDF50 /* KtvFocusEachIcon.png in Resources */,
 				779938E81E2F7B6500866968 /* d_xixi.png in Resources */,
+				BF6115B920FDACC9007A010A /* unicode.plist in Resources */,
 				772E862D1D76BC15004EDF50 /* ktv_listenwork_lbsrank3.png in Resources */,
 				7741F1381D6D50F900EED332 /* alipayHome2.png in Resources */,
 				77C3297A1E3068CA00DFEC89 /* cache_no_data.png in Resources */,
@@ -6094,7 +6095,6 @@
 				772E83AA1D76BC15004EDF50 /* box_redHeart.png in Resources */,
 				772E86741D76BC15004EDF50 /* ktv_mine.png in Resources */,
 				7772A8191D64648B00444973 /* database.png in Resources */,
-				BF6115B320FD9794007A010A /* unicode.plist in Resources */,
 				7772A80F1D64648B00444973 /* yingyongIcon.png in Resources */,
 				77BD149E1D6E817A00DE5DB9 /* taobao07.jpg in Resources */,
 				779938D11E2F7B6500866968 /* d_landelini.png in Resources */,
