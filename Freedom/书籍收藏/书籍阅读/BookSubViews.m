@@ -606,17 +606,9 @@
 }
 @end
 @implementation E_HUDView
-@synthesize msg;
-@synthesize leftMargin;
-@synthesize topMargin;
-@synthesize animationLeftScale;
-@synthesize animationTopScale;
-@synthesize totalDuration;
-@synthesize labelText;
 - (id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
     }
     return self;
 }
@@ -637,7 +629,7 @@
     //    center.y -= (int)((SCREEN_HEIGHT - self.frame.size.height) / 164.0f * 36 / 2);
     self.center=center;
     CAKeyframeAnimation* opacityAnimation= [CAKeyframeAnimation animationWithKeyPath:@"opacity"];
-    opacityAnimation.duration = totalDuration;
+    opacityAnimation.duration = _totalDuration;
     opacityAnimation.cumulative = YES;
     opacityAnimation.repeatCount = 1;
     opacityAnimation.removedOnCompletion = NO;
@@ -657,7 +649,7 @@
                                         [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear],
                                         [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut], nil];
     CAKeyframeAnimation* scaleAnimation =[CAKeyframeAnimation animationWithKeyPath:@"transform.scale"];
-    scaleAnimation.duration = totalDuration;
+    scaleAnimation.duration = _totalDuration;
     scaleAnimation.cumulative = YES;
     scaleAnimation.repeatCount = 1;
     scaleAnimation.removedOnCompletion = NO;
@@ -678,7 +670,7 @@
                                       [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear],
                                       [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut], nil];
     CAAnimationGroup *group = [CAAnimationGroup animation];
-    group.duration = totalDuration;
+    group.duration = _totalDuration;
     group.delegate = self;
     group.animations = [NSArray arrayWithObjects:opacityAnimation,scaleAnimation, nil];
     [self.layer addAnimation:group forKey:@"group"];
@@ -693,18 +685,18 @@
         self.animationTopScale = 1.2;
         self.animationLeftScale = 1.2;
         msgFont = [UIFont systemFontOfSize:14.0f];
-        CGSize textSize = [self getSizeFromString:msg];
+        CGSize textSize = [self getSizeFromString:_msg];
         
         self.bounds = CGRectMake(0, 0, 160, 50);
         self.labelText = [[UILabel alloc] init];
-        labelText.text = _msg;
-        labelText.numberOfLines = 0;
-        labelText.font = msgFont;
-        labelText.backgroundColor = [UIColor clearColor];
-        labelText.textColor = [UIColor whiteColor];
-        labelText.textAlignment = NSTextAlignmentCenter;
-        [labelText setFrame:CGRectMake((160 - textSize.width) / 2, 18,textSize.width, textSize.height)];
-        [self  addSubview:labelText];
+        _labelText.text = _msg;
+        _labelText.numberOfLines = 0;
+        _labelText.font = msgFont;
+        _labelText.backgroundColor = [UIColor clearColor];
+        _labelText.textColor = [UIColor whiteColor];
+        _labelText.textAlignment = NSTextAlignmentCenter;
+        [_labelText setFrame:CGRectMake((160 - textSize.width) / 2, 18,textSize.width, textSize.height)];
+        [self  addSubview:_labelText];
         self.layer.cornerRadius = 10;
         
     }

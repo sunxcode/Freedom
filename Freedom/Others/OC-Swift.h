@@ -11,3 +11,11 @@
 #import "RCDMainTabBarViewController.h"
 #import "FreedomTools.h"
 #import "RCWKRequestHandler.h"
+#import <RongIMKit/RongIMKit.h>
+
+#import "AFHttpTool.h"
+#import "RCloudModel.h"
+#import "RCDHttpTool.h"
+#import "RCDRCIMDataSource.h"
+#import "NSObject+Freedom.h"
+#import "RCDataBaseManager.h"

@@ -2,8 +2,6 @@
 //  Freedom
 //  Created by Super on 16/3/19.
 #import "WXBgSettingViewController.h"
-    
-#import "WXActionSheet.h"
 #import <BlocksKit/BlocksKit+UIKit.h>
 #import "WXChatViewController.h"
 #import "WXModes.h"
@@ -68,7 +66,7 @@
     return cell;
 }
 @end
-@interface WXBgSettingViewController () <WXActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
+@interface WXBgSettingViewController () <UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 @end
 @implementation WXBgSettingViewController
 - (void)viewDidLoad {
@@ -122,21 +120,22 @@
             [self presentViewController:imagePickerController animated:YES completion:nil];
         }
     }else if ([item.title isEqualToString:@"将背景应用到所有聊天场景"]) {
-        WXActionSheet *actionSheet = [[WXActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"将背景应用到所有聊天场景" otherButtonTitles:nil];
-        [actionSheet show];
+        [self showAlerWithtitle:nil message:nil style:UIAlertControllerStyleActionSheet ac1:^UIAlertAction *{
+            return [UIAlertAction actionWithTitle:@"将背景应用到所有聊天场景" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                for (NSString *key in [NSUserDefaults standardUserDefaults].dictionaryRepresentation.allKeys) {
+                    if ([key hasPrefix:@"CHAT_BG_"] && ![key isEqualToString:@"CHAT_BG_ALL"]) {
+                        [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
+                    }
+                }
+                [[WXChatViewController sharedChatVC] resetChatVC];
+            }];
+        } ac2:^UIAlertAction *{
+            return [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+
+            }];
+        } ac3:nil completion:nil];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-}
-//MARK: TLActionSheetDelegate
-- (void)actionSheet:(WXActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex == 0) {
-        for (NSString *key in [NSUserDefaults standardUserDefaults].dictionaryRepresentation.allKeys) {
-            if ([key hasPrefix:@"CHAT_BG_"] && ![key isEqualToString:@"CHAT_BG_ALL"]) {
-                [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
-            }
-        }
-        [[WXChatViewController sharedChatVC] resetChatVC];
-    }
 }
 #pragma mark - Private Methods -
 - (void)p_setChatBackgroundImage:(UIImage *)image{

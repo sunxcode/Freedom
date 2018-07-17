@@ -16,9 +16,6 @@
 @property (nonatomic, strong) WXDBExpressionStore *store;
 @end
 @implementation WXExpressionHelper
-@synthesize defaultFaceGroup = _defaultFaceGroup;
-@synthesize defaultSystemEmojiGroup = _defaultSystemEmojiGroup;
-@synthesize userEmojiGroups = _userEmojiGroups;
 + (WXExpressionHelper *)sharedHelper{
     static WXExpressionHelper *helper;
     static dispatch_once_t onceToken;

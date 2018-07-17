@@ -4,9 +4,8 @@
 // Created by Super
 #import "WXGroupQRCodeViewController.h"
 #import "WXQRCodeViewController.h"
-#import "WXActionSheet.h"
 #import <XCategory/NSDate+expanded.h>
-@interface WXGroupQRCodeViewController () <WXActionSheetDelegate>
+@interface WXGroupQRCodeViewController ()
 @property (nonatomic, strong) WXQRCodeViewController *qrCodeVC;
 @end
 @implementation WXGroupQRCodeViewController
@@ -29,16 +28,19 @@
     NSDate *date = [NSDate dateWithDaysFromNow:7];
     self.qrCodeVC.introduction = [NSString stringWithFormat:@"该二维码7天内(%lu月%lu日前)有效，重新进入将更新", (long)date.month, (long)date.day];
 }
-#pragma mark - TLActionSheetDelegate -
-- (void)actionSheet:(WXActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex == 1) {
-        [self.qrCodeVC saveQRCodeToSystemAlbum];
-    }
-}
 #pragma mark - Event Response -
 - (void)rightBarButtonDown:(UIBarButtonItem *)sender{
-    WXActionSheet *actionSheet = [[WXActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"用邮件发送", @"保存图片", nil];
-    [actionSheet show];
+    [self showAlerWithtitle:nil message:nil style:UIAlertControllerStyleActionSheet ac1:^UIAlertAction *{
+        return [UIAlertAction actionWithTitle:@"用邮件发送" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [SVProgressHUD showErrorWithStatus:@"正在开发"];
+        }];
+    } ac2:^UIAlertAction *{
+        return [UIAlertAction actionWithTitle:@"保存图片" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self.qrCodeVC saveQRCodeToSystemAlbum];
+        }];
+    } ac3:^UIAlertAction *{
+        return [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    } completion:nil];
 }
 #pragma mark - Getter -
 - (WXQRCodeViewController *)qrCodeVC{

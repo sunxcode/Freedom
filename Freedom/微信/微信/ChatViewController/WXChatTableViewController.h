@@ -4,7 +4,6 @@
 #import <UIKit/UIKit.h>
 #import "WXMessageManager.h"
 #import "TLEmojiKeyboard.h"
-#import "WXActionSheet.h"
 #import <Foundation/Foundation.h>
 @protocol WXMessageCellDelegate;
 typedef NS_ENUM(NSInteger, TLChatMenuItemType) {
@@ -21,7 +20,7 @@ typedef NS_ENUM(NSInteger, TLChatMenuItemType) {
 @property (nonatomic, strong) WXMessage *message;
 @end
 @interface WXTextMessage : WXMessage
-@property (nonatomic, strong) NSString *text;                       // 文字信息
+//@property (nonatomic, strong) NSString *text;                       // 文字信息
 @property (nonatomic, strong) NSAttributedString *attrText;         // 格式化的文字信息（仅展示用）
 @end
 @interface WXTextMessageCell : WXMessageBaseCell
@@ -84,7 +83,7 @@ typedef NS_ENUM(NSInteger, TLChatMenuItemType) {
 @interface UITableView (expanded)
 - (void)scrollToBottomWithAnimation:(BOOL)animation;
 @end
-@interface WXChatTableViewController : UITableViewController<WXMessageCellDelegate, WXActionSheetDelegate>
+@interface WXChatTableViewController : UITableViewController<WXMessageCellDelegate>
 - (void)registerCellClass;
 @property (nonatomic, assign) id<WXChatTableViewControllerDelegate>delegate;
 @property (nonatomic, strong) NSMutableArray *data;

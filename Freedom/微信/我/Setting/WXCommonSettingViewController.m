@@ -6,8 +6,6 @@
 #import "WXChatViewController.h"
 #import "WXBgSettingViewController.h"
 #import "WXMyExpressionViewController.h"
-#import "WXActionSheet.h"
-#define     TAG_ACTIONSHEET_EMPTY_REC       1001
 #import "WXChatTableViewController.h"
 #import "WXUserHelper.h"
 #import "WXBaseViewController.h"
@@ -138,6 +136,7 @@
     CGFloat size = [[NSUserDefaults standardUserDefaults] doubleForKey:@"CHAT_FONT_SIZE"];
     [self.chatFontSettingView setCurFontSize:size];
     self.chatTVC.data = [self p_chatTVCData];
+    [self.chatTVC.tableView reloadData];
 }
 #pragma mark - Private Methods -
 - (void)p_addMasonry{
@@ -156,7 +155,7 @@
     message.fromUser = [WXUserHelper sharedHelper].user;
     message.messageType = TLMessageTypeText;
     message.ownerTyper = TLMessageOwnerTypeSelf;
-    message.text = @"预览字体大小";
+    message.content[@"text"] = @"预览字体大小";
     
     WXUser *user = [[WXUser alloc] init];
     user.avatarPath = @"AppIcon";
@@ -173,12 +172,12 @@
     message1.fromUser = user;
     message1.messageType = TLMessageTypeText;
     message1.ownerTyper = TLMessageOwnerTypeFriend;
-    message1.text = @"拖动下面的滑块，可设置字体大小";
+    message1.content[@"text"] = @"拖动下面的滑块，可设置字体大小";
     WXTextMessage *message2 = [[WXTextMessage alloc] init];
     message2.fromUser = user;
     message2.messageType = TLMessageTypeText;
     message2.ownerTyper = TLMessageOwnerTypeFriend;
-    message2.text = @"设置后，会改变聊天页面的字体大小。后续将支持更改菜单、朋友圈的字体修改。";
+    message2.content[@"text"] = @"设置后，会改变聊天页面的字体大小。后续将支持更改菜单、朋友圈的字体修改。";
     
     NSMutableArray *data = [[NSMutableArray alloc] initWithObjects:message, message1, message2, nil];
     return data;
@@ -250,7 +249,7 @@
     [self.commonSettingData addObjectsFromArray:@[group1, group2, group3, group4, group5, group6]];
 }
 @end
-@interface WXCommonSettingViewController () <WXActionSheetDelegate>
+@interface WXCommonSettingViewController ()
 @property (nonatomic, strong) WXCommonSettingHelper *helper;
 @end
 @implementation WXCommonSettingViewController
@@ -278,20 +277,18 @@
         [self setHidesBottomBarWhenPushed:YES];
         [self.navigationController pushViewController:myExpressionVC animated:YES];
     }else if ([item.title isEqualToString:@"清空聊天记录"]) {
-        WXActionSheet *actionSheet = [[WXActionSheet alloc] initWithTitle:@"将删除所有个人和群的聊天记录。" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"清空聊天记录" otherButtonTitles:nil];
-        [actionSheet setTag:TAG_ACTIONSHEET_EMPTY_REC];
-        [actionSheet show];
+        [self showAlerWithtitle:@"将删除所有个人和群的聊天记录。" message:nil style:UIAlertControllerStyleActionSheet ac1:^UIAlertAction *{
+            return [UIAlertAction actionWithTitle:@"清空聊天记录" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    [[WXMessageManager sharedInstance] deleteAllMessages];
+                    [[WXChatViewController sharedChatVC] resetChatVC];
+            }];
+        } ac2:^UIAlertAction *{
+            return [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+
+            }];
+        } ac3:nil completion:nil];
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-}
-//MARK: TLActionSheetDelegate
-- (void)actionSheet:(WXActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (actionSheet.tag == TAG_ACTIONSHEET_EMPTY_REC) {
-        if (buttonIndex == 0) {
-            [[WXMessageManager sharedInstance] deleteAllMessages];
-            [[WXChatViewController sharedChatVC] resetChatVC];
-        }
-    }
 }
 @end

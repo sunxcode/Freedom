@@ -11,12 +11,10 @@ static NSString * const TFHppleTextNodeName            = @"text";
     NSDictionary * node;
     BOOL isXML;
     NSString *encoding;
-    __unsafe_unretained TFHppleElement *parent;
 }
 @property (nonatomic, unsafe_unretained, readwrite) TFHppleElement *parent;
 @end
 @implementation TFHppleElement
-@synthesize parent;
 - (id) initWithNode:(NSDictionary *) theNode isXML:(BOOL)isDataXML withEncoding:(NSString *)theEncoding{
   if (!(self = [super init]))
     return nil;

@@ -6,29 +6,6 @@
 #import "WXUserHelper.h"
 #import "WXModes.h"
 @implementation WXImageMessage
-@synthesize imagePath = _imagePath;
-@synthesize imageURL = _imageURL;
-#pragma mark -
-- (NSString *)imagePath{
-    if (_imagePath == nil) {
-        _imagePath = [self.content objectForKey:@"path"];
-    }
-    return _imagePath;
-}
-- (void)setImagePath:(NSString *)imagePath{
-    _imagePath = imagePath;
-    [self.content setObject:imagePath forKey:@"path"];
-}
-- (NSString *)imageURL{
-    if (_imageURL == nil) {
-        _imageURL = [self.content objectForKey:@"url"];
-    }
-    return _imageURL;
-}
-- (void)setImageURL:(NSString *)imageURL{
-    _imageURL = imageURL;
-    [self.content setObject:imageURL forKey:@"url"];
-}
 - (CGSize)imageSize{
     CGFloat width = [[self.content objectForKey:@"w"] doubleValue];
     CGFloat height = [[self.content objectForKey:@"h"] doubleValue];

@@ -52,7 +52,11 @@
         [alvc addAction:ac2()];
     }
     if(ac3){
-        [alvc addAction:ac3()];
+        UIAlertAction *ac = ac3();
+        [alvc addAction:ac];
+        if(ac.style != UIAlertActionStyleCancel){
+            [alvc addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+        }
     }
     [self presentViewController:alvc animated:YES completion:completion];
 }

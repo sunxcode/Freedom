@@ -8,12 +8,12 @@
 #import "RCDSettingsTableViewController.h"
 #import "RCDataBaseManager.h"
 #import "RCDChangePasswordViewController.h"
-#import "RCDLoginViewController.h"
 #import <RongIMLib/RongIMLib.h>
 #import "RCDPrivacyTableViewController.h"
 #import "RCDMessageNotifySettingTableViewController.h"
 #import "RCDBaseSettingTableViewCell.h"
 #import "RCDPushSettingViewController.h"
+#import "Freedom-Swift.h"
 @interface RCDSettingsTableViewController ()
 @end
 @implementation RCDSettingsTableViewController
@@ -174,7 +174,7 @@
   [defaults removeObjectForKey:@"isLogin"];
   [defaults synchronize];
   [[RCDataBaseManager shareInstance] closeDBForDisconnect];
-  RCDLoginViewController *loginVC = [[RCDLoginViewController alloc] init];
+  FreedomLoginViewController *loginVC = [[FreedomLoginViewController alloc] init];
   UINavigationController *navi =
       [[UINavigationController alloc] initWithRootViewController:loginVC];
   self.view.window.rootViewController = navi;

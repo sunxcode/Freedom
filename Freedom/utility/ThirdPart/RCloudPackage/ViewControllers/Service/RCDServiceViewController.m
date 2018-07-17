@@ -13,7 +13,7 @@
 @property(nonatomic, strong) UITextField *kefuIdField;
 @end
 @implementation RCDServiceViewController
-- (IBAction)acService:(UIButton *)sender {
+- (void)acService:(UIButton *)sender {
   RCDCustomerServiceViewController *chatService = [[RCDCustomerServiceViewController alloc] init];
     NSString *SERVICE_ID = @"KEFU145801184889727";
     SERVICE_ID = @"KEFU146001495753714";

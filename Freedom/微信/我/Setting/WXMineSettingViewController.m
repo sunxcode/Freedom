@@ -2,7 +2,6 @@
 //  Freedom
 //  Created by Super on 16/2/8.
 #import "WXMineSettingViewController.h"
-#import "WXActionSheet.h"
 #import "WXAccountAndSafetyViewController.h"
 #import "WXNewMessageSettingViewController.h"
 #import "WXPrivacySettingViewController.h"
@@ -49,7 +48,7 @@ typedef void (^ CompleteBlock)(NSMutableArray *data);
     [self.mineSettingData addObjectsFromArray:@[group1, group2, group3, group4]];
 }
 @end
-@interface WXMineSettingViewController () <WXActionSheetDelegate>
+@interface WXMineSettingViewController ()
 @property (nonatomic, strong) WXSettingHelper *helper;
 @end
 @implementation WXMineSettingViewController
@@ -89,12 +88,15 @@ typedef void (^ CompleteBlock)(NSMutableArray *data);
         [self setHidesBottomBarWhenPushed:YES];
         [self.navigationController pushViewController:aboutVC animated:YES];
     }else if ([item.title isEqualToString:@"退出登录"]) {
-        WXActionSheet *actionSheet = [[WXActionSheet alloc] initWithTitle:@"退出后不会删除任何历史数据，下次登录依然可以使用本账号。" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"退出登录" otherButtonTitles:nil];
-        [actionSheet show];
+        [self showAlerWithtitle:@"退出后不会删除任何历史数据，下次登录依然可以使用本账号。" message:nil style:UIAlertControllerStyleActionSheet ac1:^UIAlertAction *{
+            return [UIAlertAction actionWithTitle:@"退出登录" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            }];
+        } ac2:^UIAlertAction *{
+            return [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+
+            }];
+        } ac3:nil completion:nil];
     }
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];
-}
-//MARK: TLActionSheetDelegate
-- (void)actionSheet:(WXActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
 }
 @end

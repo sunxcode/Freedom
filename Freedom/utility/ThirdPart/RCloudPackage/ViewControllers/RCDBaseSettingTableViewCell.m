@@ -11,7 +11,6 @@
 @property(nonatomic, strong) NSArray *rightLabelConstraints;
 @end
 @implementation RCDBaseSettingTableViewCell
-@synthesize baseSettingTableViewDelegate;
 - (instancetype)initWithFrame:(CGRect)frame {
   self = [super initWithFrame:frame];
   if (self) {
@@ -121,8 +120,8 @@
   [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:constraints options:0 metrics:nil views:self.cellSubViews]];
 }
 - (void)onClickSwitch:(id)sender {
-  if ([baseSettingTableViewDelegate respondsToSelector:@selector(onClickSwitchButton:)]) {
-    [baseSettingTableViewDelegate onClickSwitchButton:sender];
+  if ([_baseSettingTableViewDelegate respondsToSelector:@selector(onClickSwitchButton:)]) {
+    [_baseSettingTableViewDelegate onClickSwitchButton:sender];
   }
 }
 - (void)setSwitchButtonStatus:(BOOL)switchButtonStatus {

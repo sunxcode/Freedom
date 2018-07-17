@@ -28,11 +28,14 @@
 - (void)setMessage:(WXMessage *)message{
     _message = message;
     if (message.messageType == TLMessageTypeImage) {
-        if ([(WXImageMessage *)message imagePath].length > 0) {
-            NSString *imagePath = [NSFileManager pathUserChatImage:[(WXImageMessage *)message imagePath]];
-            [self.imageView setImage:[UIImage imageNamed:imagePath]];
-        }else if ([(WXImageMessage *)message imageURL].length > 0) {
-            [self.imageView sd_setImageWithURL:TLURL([(WXImageMessage *)message imageURL]) placeholderImage:[UIImage imageNamed:@"userLogo"]];
+        WXImageMessage *me = (WXImageMessage*)message;
+        NSString *imagePath = me.content[@"path"];
+        NSString *imageURL = me.content[@"url"];
+        if (imagePath.length > 0) {
+            NSString *imagePatha = [NSFileManager pathUserChatImage:imagePath];
+            [self.imageView setImage:[UIImage imageNamed:imagePatha]];
+        }else if (imageURL.length > 0) {
+            [self.imageView sd_setImageWithURL:TLURL(imageURL) placeholderImage:[UIImage imageNamed:@"userLogo"]];
         }else{
             [self.imageView setImage:nil];
         }
@@ -209,12 +212,13 @@
                 if (message.messageType == TLMessageTypeImage) {
                     [_mediaData addObject:message];
                     NSURL *url;
-                    if ([(WXImageMessage *)message imagePath]) {
-                        NSString *imagePath = [NSFileManager pathUserChatImage:[(WXImageMessage *)message imagePath]];
+                    WXImageMessage *me = (WXImageMessage *)message;
+                    if (me.content[@"path"]) {
+                        NSString *imagePath = [NSFileManager pathUserChatImage:me.content[@"path"]];
                         url = [NSURL fileURLWithPath:imagePath];
                     }
                     else {
-                        url = TLURL([(WXImageMessage *)message imageURL]);
+                        url = TLURL(me.content[@"url"]);
                     }
                     MWPhoto *photo = [MWPhoto photoWithURL:url];
                     [_browserData addObject:photo];
@@ -230,12 +234,13 @@
         for (WXMessage *message in self.mediaData) {
             if (message.messageType == TLMessageTypeImage) {
                 NSURL *url;
-                if ([(WXImageMessage *)message imagePath]) {
-                    NSString *imagePath = [NSFileManager pathUserChatImage:[(WXImageMessage *)message imagePath]];
-                    url = [NSURL fileURLWithPath:imagePath];
+                NSString *imagePath = message.content[@"path"];
+                if (imagePath) {
+                    NSString *imagePatha = [NSFileManager pathUserChatImage:imagePath];
+                    url = [NSURL fileURLWithPath:imagePatha];
                 }
                 else {
-                    url = TLURL([(WXImageMessage *)message imageURL]);
+                    url = TLURL(message.content[@"url"]);
                 }
                 MWPhoto *photo = [MWPhoto photoWithURL:url];
                 [_browserData addObject:photo];

@@ -28,10 +28,6 @@
 - (void)showMenu;
 @end
 @implementation CDSideBarController
-@synthesize menuColor = _menuColor;
-@synthesize isOpen = _isOpen;
-#pragma mark -
-#pragma mark Init
 - (CDSideBarController*)initWithImages:(NSArray*)images{
     //    _menuButton = [UIButton buttonWithType:UIButtonTypeCustom];
     //    _menuButton.frame = CGRectMake(0, 0, 40, 40);

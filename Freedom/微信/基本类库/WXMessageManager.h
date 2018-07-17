@@ -81,8 +81,6 @@ typedef NS_ENUM(NSInteger, TLMessageReadState) {
 + (WXMessage *)createMessageByType:(TLMessageType)type;
 @end
 @interface WXImageMessage : WXMessage
-@property (nonatomic, strong) NSString *imagePath;                  // 本地图片Path
-@property (nonatomic, strong) NSString *imageURL;                   // 网络图片URL
 @property (nonatomic, assign) CGSize imageSize;
 @end
 @protocol WXMessageManagerConvVCDelegate <NSObject>

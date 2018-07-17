@@ -2,20 +2,16 @@
 #import "TFHpple.h"
 #import "XPathQuery.h"
 @interface TFHpple (){
-    NSData * data;
-    NSString * encoding;
     BOOL isXML;
 }
 @end
 @implementation TFHpple
-@synthesize data;
-@synthesize encoding;
 - (id) initWithData:(NSData *)theData encoding:(NSString *)theEncoding isXML:(BOOL)isDataXML{
   if (!(self = [super init])) {
     return nil;
   }
-  data = theData;
-  encoding = theEncoding;
+  _data = theData;
+  _encoding = theEncoding;
   isXML = isDataXML;
   return self;
 }
@@ -57,13 +53,13 @@
 - (NSArray *) searchWithXPathQuery:(NSString *)xPathOrCSS{
   NSArray * detailNodes = nil;
   if (isXML) {
-    detailNodes = PerformXMLXPathQueryWithEncoding(data, xPathOrCSS, encoding);
+    detailNodes = PerformXMLXPathQueryWithEncoding(_data, xPathOrCSS, _encoding);
   } else {
-    detailNodes = PerformHTMLXPathQueryWithEncoding(data, xPathOrCSS, encoding);
+    detailNodes = PerformHTMLXPathQueryWithEncoding(_data, xPathOrCSS, _encoding);
   }
   NSMutableArray * hppleElements = [NSMutableArray array];
   for (id node in detailNodes) {
-    [hppleElements addObject:[TFHppleElement hppleElementWithNode:node isXML:isXML withEncoding:encoding]];
+    [hppleElements addObject:[TFHppleElement hppleElementWithNode:node isXML:isXML withEncoding:_encoding]];
   }
   return hppleElements;
 }

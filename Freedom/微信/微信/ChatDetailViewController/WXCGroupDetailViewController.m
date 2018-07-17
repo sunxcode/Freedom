@@ -3,7 +3,6 @@
 // Created by Super
 #import "WXCGroupDetailViewController.h"
 #import "WXUserGroupCell.h"
-#import "WXActionSheet.h"
 #import <BlocksKit/BlocksKit+UIKit.h>
 #import "WXChatViewController.h"
 #import "WXMessageManager.h"
@@ -11,8 +10,7 @@
 #import "WXGroupQRCodeViewController.h"
 #import "WXChatFileViewController.h"
 #import "WXBgSettingViewController.h"
-#define     TAG_EMPTY_CHAT_REC      1001
-@interface WXCGroupDetailViewController () <WechatUserGroupCellDelegate, WXActionSheetDelegate>
+@interface WXCGroupDetailViewController () <WechatUserGroupCellDelegate>
 @property (nonatomic, strong) WXMessageManager *helper;
 @end
 @implementation WXCGroupDetailViewController
@@ -55,9 +53,19 @@
         [self setHidesBottomBarWhenPushed:YES];
         [self.navigationController pushViewController:chatFileVC animated:YES];
     }else if ([item.title isEqualToString:@"清空聊天记录"]) {
-        WXActionSheet *actionSheet = [[WXActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"清空聊天记录" otherButtonTitles: nil];
-        actionSheet.tag = TAG_EMPTY_CHAT_REC;
-        [actionSheet show];
+        [self showAlerWithtitle:nil message:nil style:UIAlertControllerStyleActionSheet ac1:^UIAlertAction *{
+            return [UIAlertAction actionWithTitle:@"清空聊天记录" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                BOOL ok = [[WXMessageManager sharedInstance] deleteMessagesByPartnerID:self.group.groupID];
+                if (!ok) {
+                    [SVProgressHUD showErrorWithStatus:@"清空讨论组聊天记录失败"];
+                }else{
+                    [[WXChatViewController sharedChatVC] resetChatVC];
+                }
+            }];
+        } ac2:^UIAlertAction *{
+            return [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            }];
+        } ac3:nil completion:nil];
     }
     [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
@@ -67,19 +75,6 @@
         return ((count + 1) / 4 + ((((count + 1) % 4) == 0) ? 0 : 1)) * 90 + 15;
     }
     return [super tableView:tableView heightForRowAtIndexPath:indexPath];
-}
-//MARK: TLActionSheetDelegate
-- (void)actionSheet:(WXActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (actionSheet.tag == TAG_EMPTY_CHAT_REC) {
-        if (buttonIndex == 0) {
-            BOOL ok = [[WXMessageManager sharedInstance] deleteMessagesByPartnerID:self.group.groupID];
-            if (!ok) {
-                [SVProgressHUD showErrorWithStatus:@"清空讨论组聊天记录失败"];
-            }else{
-                [[WXChatViewController sharedChatVC] resetChatVC];
-            }
-        }
-    }
 }
 //MARK: TLUserGroupCellDelegate
 - (void)userGroupCellDidSelectUser:(WXUser *)user{

@@ -4,10 +4,8 @@
 #import "WXMyQRCodeViewController.h"
 #import "WXScanningViewController.h"
 #import "WXQRCodeViewController.h"
-#define         ACTIONTAG_SHOW_SCANNER          101
-#import "WXActionSheet.h"
 #import "WXUserHelper.h"
-@interface WXMyQRCodeViewController () <WXActionSheetDelegate>
+@interface WXMyQRCodeViewController ()
 @property (nonatomic, strong) WXQRCodeViewController *qrCodeVC;
 @end
 @implementation WXMyQRCodeViewController
@@ -15,13 +13,10 @@
     [super viewDidLoad];
     [self.view setBackgroundColor:RGBACOLOR(46.0, 49.0, 50.0, 1.0)];
     [self.navigationItem setTitle:@"我的二维码"];
-    
     [self.view addSubview:self.qrCodeVC.view];
     [self addChildViewController:self.qrCodeVC];
-    
     UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav_more"] style:UIBarButtonItemStyleDone target:self action:@selector(rightBarButtonDown:)];
     [self.navigationItem setRightBarButtonItem:rightBarButtonItem];
-    
     [self setUser:[WXUserHelper sharedHelper].user];
 }
 - (void)setUser:(WXUser *)user{
@@ -32,28 +27,29 @@
     self.qrCodeVC.qrCode = self.user.userID;
     self.qrCodeVC.introduction = @"扫一扫上面的二维码图案，加我微信";
 }
-#pragma mark - Delegate
-//MARK: TLActionSheetDelegate
-- (void)actionSheet:(WXActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (actionSheet.tag == ACTIONTAG_SHOW_SCANNER && buttonIndex == 2) {
-        WXScanningViewController *scannerVC = [[WXScanningViewController alloc] init];
-        [scannerVC setDisableFunctionBar:YES];
-        [self setHidesBottomBarWhenPushed:YES];
-        [self.navigationController pushViewController:scannerVC animated:YES];
-    }else if (buttonIndex == 1) {
-        [self.qrCodeVC saveQRCodeToSystemAlbum];
-    }
-}
 #pragma mark - Event Response
 - (void)rightBarButtonDown:(UIBarButtonItem *)sender{
-    WXActionSheet *actionSheet;
+    UIAlertAction *ac;
     if ([self.navigationController findViewController:@"TLScanningViewController"]) {
-        actionSheet = [[WXActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"换个样式", @"保存图片", nil];
+        ac = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
     }else{
-        actionSheet = [[WXActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"换个样式", @"保存图片", @"扫描二维码", nil];
-        actionSheet.tag = ACTIONTAG_SHOW_SCANNER;
+        ac = [UIAlertAction actionWithTitle:@"扫描二维码" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            WXScanningViewController *scannerVC = [[WXScanningViewController alloc] init];
+            [scannerVC setDisableFunctionBar:YES];
+            [self setHidesBottomBarWhenPushed:YES];
+            [self.navigationController pushViewController:scannerVC animated:YES];
+        }];
     }
-    [actionSheet show];
+    [self showAlerWithtitle:nil message:nil style:UIAlertControllerStyleActionSheet ac1:^UIAlertAction *{
+        return [UIAlertAction actionWithTitle:@"换个样式" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        }];
+    } ac2:^UIAlertAction *{
+        return [UIAlertAction actionWithTitle:@"保存图片" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self.qrCodeVC saveQRCodeToSystemAlbum];
+        }];
+    } ac3:^UIAlertAction *{
+        return ac;
+    } completion:nil];
 }
 #pragma mark - Getter
 - (WXQRCodeViewController *)qrCodeVC{

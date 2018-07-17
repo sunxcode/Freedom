@@ -236,7 +236,6 @@
 @end
 static UILabel *textLabel;
 @implementation WXTextMessage
-@synthesize text = _text;
 - (id)init{
     if (self = [super init]) {
         textLabel = [[UILabel alloc] init];
@@ -247,19 +246,19 @@ static UILabel *textLabel;
     }
     return self;
 }
-- (NSString *)text{
-    if (_text == nil) {
-        _text = [self.content objectForKey:@"text"];
-    }
-    return _text;
-}
-- (void)setText:(NSString *)text{
-    _text = text;
-    [self.content setObject:text forKey:@"text"];
-}
+//- (NSString *)text{
+//    if (_text == nil) {
+//        _text = [self.content objectForKey:@"text"];
+//    }
+//    return _text;
+//}
+//- (void)setText:(NSString *)text{
+//    _text = text;
+//    [self.content setObject:text forKey:@"text"];
+//}
 - (NSAttributedString *)attrText{
     if (_attrText == nil) {
-        _attrText = [[NSAttributedString alloc]initWithString:self.text];
+        _attrText = [[NSAttributedString alloc]initWithString:self.content[@"text"]];
     }
     return _attrText;
 }
@@ -277,10 +276,10 @@ static UILabel *textLabel;
     return kMessageFrame;
 }
 - (NSString *)conversationContent{
-    return self.text;
+    return self.content[@"text"];
 }
 - (NSString *)messageCopy{
-    return self.text;
+    return self.content[@"text"];
 }
 @end
 @interface WXTextMessageCell ()
@@ -364,12 +363,12 @@ static UILabel *textLabel;
     }
     TLMessageOwnerType lastOwnType = self.message ? self.message.ownerTyper : -1;
     [super setMessage:message];
-    
-    if ([message imagePath]) {
-        NSString *imagePath = [NSFileManager pathUserChatImage:[message imagePath]];
-        [self.msgImageView setThumbnailPath:imagePath highDefinitionImageURL:[message imagePath]];
+    NSString *imagePath = message.content[@"path"];
+    if (imagePath) {
+        NSString *imagePatha = [NSFileManager pathUserChatImage:imagePath];
+        [self.msgImageView setThumbnailPath:imagePatha highDefinitionImageURL:imagePatha];
     }else{
-        [self.msgImageView setThumbnailPath:nil highDefinitionImageURL:[message imagePath]];
+        [self.msgImageView setThumbnailPath:nil highDefinitionImageURL:imagePath];
     }
     
     if (lastOwnType != message.ownerTyper) {
@@ -675,7 +674,6 @@ static UILabel *textLabel;
 @property (nonatomic, strong) NSDate *curDate;
 @end
 @implementation WXChatTableViewController
-@synthesize data = _data;
 - (void)viewDidLoad{
     [super viewDidLoad];
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
@@ -715,10 +713,6 @@ static UILabel *textLabel;
 }
 - (void)addMessage:(WXMessage *)message{
     [self.data addObject:message];
-    [self.tableView reloadData];
-}
-- (void)setData:(NSMutableArray *)data{
-    _data = data;
     [self.tableView reloadData];
 }
 - (void)deleteMessage:(WXMessage *)message{
@@ -768,13 +762,6 @@ static UILabel *textLabel;
                                      }
                                  }];
     }
-}
-#pragma mark - Getter -
-- (NSMutableArray *)data{
-    if (_data == nil) {
-        _data = [[NSMutableArray alloc] init];
-    }
-    return _data;
 }
 - (MJRefreshNormalHeader *)refresHeader{
     if (_refresHeader == nil) {
@@ -872,9 +859,14 @@ static UILabel *textLabel;
             NSString *str = [message messageCopy];
             [[UIPasteboard generalPasteboard] setString:str];
         }else if (type == TLChatMenuItemTypeDelete) {
-            WXActionSheet *actionSheet = [[WXActionSheet alloc] initWithTitle:@"是否删除该条消息" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"确定" otherButtonTitles: nil];
-            actionSheet.tag = [self.data indexOfObject:message];
-            [actionSheet show];
+            [self showAlerWithtitle:@"是否删除该条消息" message:nil style:UIAlertControllerStyleActionSheet ac1:^UIAlertAction *{
+                return [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    [self p_deleteMessage:message];
+                }];
+            } ac2:^UIAlertAction *{
+                return [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                }];
+            } ac3:nil completion:nil];
         }
     }];
 }
@@ -882,13 +874,6 @@ static UILabel *textLabel;
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     if (self.delegate && [self.delegate respondsToSelector:@selector(chatTableViewControllerDidTouched:)]) {
         [self.delegate chatTableViewControllerDidTouched:self];
-    }
-}
-//MARK: TLActionSheetDelegate
-- (void)actionSheet:(WXActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex == 0) {
-        WXMessage * message = [self.data objectAtIndex:actionSheet.tag];
-        [self p_deleteMessage:message];
     }
 }
 #pragma mark - Private Methods -

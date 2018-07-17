@@ -6,13 +6,13 @@
 #import "TLEmojiKeyboard.h"
 @interface WXExpressionHelper : NSObject
 /// 默认表情（Face）
-@property (nonatomic, strong, readonly) TLEmojiGroup *defaultFaceGroup;
+@property (nonatomic, strong) TLEmojiGroup *defaultFaceGroup;
 /// 默认系统Emoji
-@property (nonatomic, strong, readonly) TLEmojiGroup *defaultSystemEmojiGroup;
+@property (nonatomic, strong) TLEmojiGroup *defaultSystemEmojiGroup;
 /// 用户表情组
-@property (nonatomic, strong, readonly) NSArray *userEmojiGroups;
+@property (nonatomic, strong) NSArray *userEmojiGroups;
 /// 用户收藏的表情
-@property (nonatomic, strong, readonly) TLEmojiGroup *userPreferEmojiGroup;
+@property (nonatomic, strong) TLEmojiGroup *userPreferEmojiGroup;
 + (WXExpressionHelper *)sharedHelper;
 /*根据groupID获取表情包*/
 - (TLEmojiGroup *)emojiGroupByID:(NSString *)groupID;

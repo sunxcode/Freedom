@@ -10,10 +10,10 @@
 #import "RCDChatViewController.h"
 #import <RongIMKit/RongIMKit.h>
 @interface RCDChatRoomTableViewCell : UITableViewCell
-@property(weak, nonatomic) IBOutlet UILabel *lbChatroom;
-@property(weak, nonatomic) IBOutlet UIImageView *ivChatRoomPortrait;
-@property(weak, nonatomic) IBOutlet UILabel *lbNumber;
-@property(weak, nonatomic) IBOutlet UILabel *lbDescription;
+@property(strong, nonatomic) UILabel *lbChatroom;
+@property(strong, nonatomic) UIImageView *ivChatRoomPortrait;
+@property(strong, nonatomic) UILabel *lbNumber;
+@property(strong, nonatomic) UILabel *lbDescription;
 @end
 @implementation RCDChatRoomTableViewCell
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {

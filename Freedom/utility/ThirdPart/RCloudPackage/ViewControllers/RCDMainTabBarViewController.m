@@ -10,12 +10,11 @@
 #import "RCDHttpTool.h"
 #import "RCDRCIMDataSource.h"
 #import "RCDataBaseManager.h"
-#import "RCDLoginViewController.h"
-#import "RCDSettingServerUrlViewController.h"
 #import "RCDNavigationViewController.h"
 #import <AudioToolbox/AudioToolbox.h>
 #import <RongCallKit/RongCallKit.h>
 #import <RongIMKit/RongIMKit.h>
+#import "Freedom-Swift.h"
 #import <RongContactCard/RongContactCard.h>
 @interface RCDMainTabBarViewController ()<RCIMConnectionStatusDelegate,RCIMReceiveMessageDelegate>
 @end
@@ -66,7 +65,7 @@
             [[RCIMClient sharedRCIMClient ]setServerInfo:navServer fileServer:fileUrlver];
             [self gotoLogin];
         }else{
-            keywindow.rootViewController = [[RCDNavigationViewController alloc] initWithRootViewController:[[RCDSettingServerUrlViewController alloc] init]];;
+            [self gotoLogin];
         }
     }else {
         //非debug模式初始化sdk
@@ -132,7 +131,6 @@
     NSString *userNickName = [defaults objectForKey:@"userNickName"];
     NSString *userPortraitUri = [defaults objectForKey:@"userPortraitUri"];
     if (token.length && userId.length && password.length) {
-        keywindow.rootViewController = [RCDMainTabBarViewController shareInstance];
         [self insertSharedMessageIfNeed];
         RCUserInfo *_currentUserInfo = [[RCUserInfo alloc] initWithUserId:userId name:userNickName portrait:userPortraitUri];
         rc.currentUserInfo = _currentUserInfo;
@@ -293,7 +291,7 @@
 }
 ///FIXME:其他私有方法
 - (void)gotoLogin{
-[UIApplication sharedApplication].delegate.window.rootViewController = [[RCDNavigationViewController alloc] initWithRootViewController:[[RCDLoginViewController alloc] init]];
+[UIApplication sharedApplication].delegate.window.rootViewController = [[RCDNavigationViewController alloc] initWithRootViewController:[[FreedomLoginViewController alloc] init]];
 }
 - (void)loginSuccess:(NSString *)userName userId:(NSString *)userId token:(NSString *)token password:(NSString *)password {
     //保存默认用户

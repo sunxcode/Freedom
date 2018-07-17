@@ -4,7 +4,7 @@
 //
 //  Created by Liv on 14-10-22.
 //  Copyright (c) 2014年 RongCloud. All rights reserved.
-#import "AFHTTPSessionManager.h"
+#import <AFNetworking/AFHTTPSessionManager.h>
 #import <Foundation/Foundation.h>
 typedef NS_ENUM(NSInteger, RequestMethodType) {
   RequestMethodTypePost = 1,

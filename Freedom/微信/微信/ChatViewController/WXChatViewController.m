@@ -180,11 +180,12 @@ static WXChatViewController *chatVC;
     NSMutableArray *data = [[NSMutableArray alloc] init];
     for (WXMessage *message in imageMessages) {
         NSURL *url;
-        if ([(WXImageMessage *)message imagePath]) {
-            NSString *imagePath = [NSFileManager pathUserChatImage:[(WXImageMessage *)message imagePath]];
-            url = [NSURL fileURLWithPath:imagePath];
+        NSString *imagePath = message.content[@"path"];
+        if (imagePath) {
+            NSString *imagePatha = [NSFileManager pathUserChatImage:imagePath];
+            url = [NSURL fileURLWithPath:imagePatha];
         }else{
-            url = TLURL([(WXImageMessage *)message imageURL]);
+            url = TLURL(message.content[@"url"]);
         }
         
         MWPhoto *photo = [MWPhoto photoWithURL:url];

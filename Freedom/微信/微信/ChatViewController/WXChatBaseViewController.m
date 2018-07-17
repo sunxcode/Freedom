@@ -620,7 +620,7 @@
     message.fromUser = self.user;
     message.messageType = TLMessageTypeImage;
     message.ownerTyper = TLMessageOwnerTypeSelf;
-    message.imagePath = imageName;
+    message.content[@"path"] = imageName;
     message.imageSize = image.size;
     [self sendMessage:message];
     if ([self.partner chat_userType] == TLChatUserTypeUser) {
@@ -628,7 +628,7 @@
         message1.fromUser = self.partner;
         message1.messageType = TLMessageTypeImage;
         message1.ownerTyper = TLMessageOwnerTypeFriend;
-        message1.imagePath = imageName;
+        message1.content[@"path"] = imageName;
         message1.imageSize = image.size;
         [self sendMessage:message1];
     }else{
@@ -638,7 +638,7 @@
             message1.fromUser = user;
             message1.messageType = TLMessageTypeImage;
             message1.ownerTyper = TLMessageOwnerTypeFriend;
-            message1.imagePath = imageName;
+            message1.content[@"path"] = imageName;
             message1.imageSize = image.size;
             [self sendMessage:message1];
         }
@@ -704,14 +704,14 @@
     message.fromUser = self.user;
     message.messageType = TLMessageTypeText;
     message.ownerTyper = TLMessageOwnerTypeSelf;
-    message.text = text;
+    message.content[@"text"] = text;
     [self sendMessage:message];
     if ([self.partner chat_userType] == TLChatUserTypeUser) {
         WXTextMessage *message1 = [[WXTextMessage alloc] init];
         message1.fromUser = self.partner;
         message1.messageType = TLMessageTypeText;
         message1.ownerTyper = TLMessageOwnerTypeFriend;
-        message1.text = text;
+        message1.content[@"text"] = text;
         [self sendMessage:message1];
     }else{
         for (id<WXChatUserProtocol> user in [self.partner groupMembers]) {
@@ -720,7 +720,7 @@
             message1.fromUser = user;
             message1.messageType = TLMessageTypeText;
             message1.ownerTyper = TLMessageOwnerTypeFriend;
-            message1.text = text;
+            message1.content[@"text"] = text;
             [self sendMessage:message1];
         }
     }
